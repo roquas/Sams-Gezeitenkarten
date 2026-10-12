@@ -1,3 +1,4 @@
+import {CHART_BACKGROUND, chartOverlays, parchmentTiles} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
 import {mapLabels} from '../../content/reference-3.6.mjs';
@@ -12,23 +13,15 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
  const showArt=document.getElementById("showChart").checked;
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
- const image=(file,x,y,w,h,opacity=1)=>el("image",{href:"prototypes/3.6/assets/"+file,x,y,width:w,height:h,opacity,preserveAspectRatio:"none","pointer-events":"none"});
- art.append(el("image",{href:"assets/seekarte/meer-pergament.webp",x:0,y:0,width:475,height:385,preserveAspectRatio:"none","pointer-events":"none"}));
- // Neuer Fall: B3, C3 und E2 sind unpassierbar.
- // B3 + C3 bilden eine gemeinsame, über zwei Hexfelder reichende Insel.
- // Jede Illustration wird am Mittelpunkt ihrer Spielfeld-Zuordnung verankert.
- // Motivanker sind zentral konfiguriert: spätere Generatoren liefern Zellen + Variante.
- const mapArt=puzzle.overlays;
+ for(const tile of parchmentTiles()){
+  const slice=el("svg",{...tile,preserveAspectRatio:"none",overflow:"hidden","data-parchment-slice":"true"});
+  slice.append(el("image",{href:CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
+  art.append(slice);
+ }
  const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
- for(const o of mapArt){
+ for(const o of chartOverlays(puzzle.overlays)){
   const [cx,cy]=artCenter(o.cells);
-  const special={
-   "insel-zweier-01.png":{file:"tesoro.png",w:148,h:112,dx:0,dy:0},
-   "leuchtturm-01.png":{file:"leuchtturm.png",w:75,h:81,dx:0,dy:-5},
-   "segelboot-01.png":{file:"segelschiff.png",w:66,h:76,dx:0,dy:-6}
-  }[o.asset];
-  if(special)art.append(el("image",{href:"assets/seekarte/"+special.file,x:cx-special.w/2+special.dx,y:cy-special.h/2+special.dy,width:special.w,height:special.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
-  else art.append(image(o.asset,cx-o.w/2+o.dx,cy-o.h/2+o.dy,o.w,o.h,o.opacity));
+  art.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
  }
  // Beschriftung gehört zum geografischen Objekt, nicht zu einem einzelnen Hexfeld.
  const islandLabel=(ids,t,angle=0,dx=0,dy=0)=>{
@@ -97,11 +90,11 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
-  if(!land && ["D4","C1","E4","A3","D5"].includes(c.id)){
+  if(!land && ["C1","E4","A3","D5"].includes(c.id)){
     // Unregelmäßiger handgezeichneter Kartografenring, nicht anklickbar.
     const ring=Array.from({length:33},(_,i)=>{const a=i*Math.PI/16;const rr=24+1.15*Math.sin(i*2.4)+.7*Math.cos(i*1.3);return `${i?'L':'M'} ${(x+rr*Math.cos(a)).toFixed(1)} ${(y+rr*Math.sin(a)).toFixed(1)}`}).join(' ');
-    g.append(el("path",{d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
-    g.append(el("path",{d:ring,fill:"none",stroke:"#a57739","stroke-width":"1.35",opacity:".79","stroke-linecap":"round","stroke-linejoin":"round"}));
+    g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
+    g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#a57739","stroke-width":"1.35",opacity:".79","stroke-linecap":"round","stroke-linejoin":"round"}));
   }
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
   // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
@@ -153,10 +146,8 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  svg.append(routeInk);
  // Distinguish the actual departure point from the wreck's identical anchor icon.
  const [sx,sy]=coords(byId[puzzle.start]);
- svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#fff6d8","stroke-width":"5","pointer-events":"none"}));
- svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#b37b36","stroke-width":"3.5","stroke-dasharray":"5 3","pointer-events":"none"}));
- svg.append(el("rect",{x:sx-19,y:sy-39,width:38,height:16,rx:7,fill:"#fff6d8",stroke:"#b37b36","stroke-width":"1.5","pointer-events":"none"}));
- svg.append(el("text",{x:sx,y:sy-27,"font-size":"10","font-weight":"800","text-anchor":"middle",fill:"#79521e","pointer-events":"none"},"START"));
+ svg.append(el("ellipse",{cx:sx,cy:sy+5,rx:22,ry:15.5,fill:"none",stroke:"#e8c383","stroke-width":"1.5",opacity:".7","data-start-marker":"true","pointer-events":"none"}));
+ svg.append(el("text",{x:sx,y:sy-43,"font-size":"9","font-weight":"700","text-anchor":"middle",fill:"#483a23",stroke:"#f5e1b7","stroke-width":"2","paint-order":"stroke","pointer-events":"none"},"START"));
  if(state.showRouteNumbers){
    const numbers=el("g",{"pointer-events":"none","aria-hidden":"true"});
    state.route.forEach((id,i)=>{
