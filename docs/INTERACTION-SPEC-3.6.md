@@ -45,3 +45,30 @@ Beim Start wird ein JSON-Objekt aus `localStorage["gezeitenkarten-fall5-v1"]` **
 6. Undo, Speicherung und Prüfung sind **nicht** als isolierte Module testbar; dafür ist eine spätere Extraktion unter Regressionstests erforderlich.
 
 **Wichtig:** Diese Liste ist keine Freigabe, merkwürdiges Ist-Verhalten als Soll-Verhalten beizubehalten.
+
+
+## Produktentscheidungen nach Befundbesprechung (12.10.2026)
+
+Diese Entscheidungen gelten **für die künftige Version**, nicht rückwirkend für das unveränderte 3.6:
+- Stunden-0-Auswahlknopf entfernen; Startfeld bleibt vorhanden.
+- Undo-Historie braucht nicht in `localStorage` persistiert zu werden.
+- Undo-Verhalten nicht pauschal vereinheitlichen; absichtlich nicht undo-fähige Aktionen dokumentieren. Insbesondere **Denkanstoß/Tipps sollen nicht rückgängig machbar sein** (gegenwärtig ruft der Tipp-Handler `snapshot()` auf, also Abweichung zwischen Ist und Soll).
+
+### Inventar: Aktionen ohne eigenen Undo-Snapshot in 3.6
+
+| Aktion | Grund im Quellcode | Einordnung |
+|---|---|---|
+| Stundenwechsel | Handler setzt nur `state.layer` und ruft `render()` auf | UI-Navigation; logisch plausibel |
+| Werkzeugwahl | Handler setzt `state.tool` ohne Snapshot | UI-Modus; logisch plausibel |
+| Routennummern ein/aus | Toggle ohne Snapshot | Anzeigeoption; logisch plausibel |
+| Distanzmodus ein/aus | Toggle ohne Snapshot; Ursprung wird zurückgesetzt | Anzeige-/Messmodus; logisch plausibel, Ursprungsverlust prüfen |
+| Distanzursprung wählen | Früher Rücksprung aus `apply()` ohne Snapshot | Messinteraktion; logisch plausibel |
+| Routennotizen ausblenden | Toggle ohne Snapshot | Anzeigeoption; logisch plausibel |
+| Route prüfen | Schreibt nur `result`, ohne Snapshot | Abfrage; logisch plausibel |
+| Hinweis-Karussell vor/zurück | `currentClue` außerhalb `state` | Navigation; logisch plausibel |
+| Seekartenillustration umschalten | DOM-Checkbox außerhalb `state` | Anzeigeoption; technische Implementierung |
+| Reset | Setzt `history=[]` statt Snapshot | Absichtliche irreversible Gesamtaktion |
+| Ungültigen Routenschritt klicken | Früher Rücksprung ohne Snapshot | Keine Zustandsänderung; logisch notwendig |
+| „Alle Stunden radieren“ ohne Treffer | Kein Snapshot, aber Hinweistext | Keine inhaltliche Änderung; logisch plausibel |
+
+**Aktuell MIT Snapshot, fachlich zu prüfen:** Denkanstoß (+10 Strafpunkte, `hintCount`), Notizprüfung (+5 Strafpunkte), Leeren einer bereits leeren Stunde (erzeugt dennoch Snapshot), Klick auf ein bereits identisch markiertes Feld (löscht Markierung), Hinweis abhaken. Ein Undo kann wegen vollständiger Zustandssnapshots auch Einstellungen zurücksetzen, die selbst keinen Snapshot erzeugten. „Ohne eigenen Snapshot“ ist deshalb **nicht gleichbedeutend mit „kann niemals durch Undo zurückspringen“**.
