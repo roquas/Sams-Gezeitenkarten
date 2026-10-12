@@ -1,7 +1,8 @@
+import {createMobileViews} from './mobile-views.mjs';
 import {createBordbook} from './bordbook.mjs';
 import {createToolbar} from './toolbar.mjs';
 import {drawMap} from './map.mjs';
-import {GREEK, GREEK_SYMBOLS, ROWCOLORS, pretty} from './coordinates.mjs';
+import {pretty, coordinateMarkup, coordinateTextMarkup} from './coordinates.mjs';
 import {hints} from '../../content/reference-3.6.mjs';
 import {initialState, createHistory} from '../state/game-state.mjs';
 import {loadState,saveState} from '../persistence/storage.mjs';
@@ -13,34 +14,7 @@ const rules=createRules(puzzle);
 (()=>{
 "use strict";
 
-const responsiveAside=document.querySelector(".clue-panel");
-const mobileLayout=window.matchMedia("(max-width: 880px)");
-const logbookTab=document.getElementById("logbookTab");
-const logbookBackdrop=document.getElementById("logbookBackdrop");
-function setLogbook(open){
- const show=!!open && mobileLayout.matches;
- responsiveAside.classList.toggle("open",show);
- logbookBackdrop.classList.toggle("visible",show);
- document.body.classList.toggle("logbook-open",show);
- logbookTab.setAttribute("aria-expanded",String(show));
- logbookTab.setAttribute("aria-label",show?"Hilfe schließen":"Hilfe öffnen");
- if(show) responsiveAside.querySelector(".pad").scrollTop=0;
-}
-logbookTab.addEventListener("click",()=>setLogbook(!responsiveAside.classList.contains("open")));
-logbookBackdrop.addEventListener("click",()=>setLogbook(false));
-document.addEventListener("keydown",e=>{if(e.key==="Escape")setLogbook(false)});
-if(mobileLayout.addEventListener)mobileLayout.addEventListener("change",()=>setLogbook(false));
-else mobileLayout.addListener(()=>setLogbook(false));
-// Horizontale Wischgeste nur auf der Schublade und ihrem Griff, nicht auf der Hexkarte.
-let touchStart=null;
-responsiveAside.addEventListener("touchstart",e=>{if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}}, {passive:true});
-responsiveAside.addEventListener("touchend",e=>{
- if(!touchStart||!e.changedTouches.length)return;
- const dx=e.changedTouches[0].clientX-touchStart.x;
- const dy=e.changedTouches[0].clientY-touchStart.y;
- if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5)setLogbook(dx<0);
- touchStart=null;
-},{passive:true});
+createMobileViews();
 
 const blocked=rules.blocked,solution=puzzle.solution;
 // Neuer unabhängiger Testfall; sieben Hinweise gegen sämtliche legalen Routen geprüft.
@@ -67,15 +41,15 @@ function render(){if(state.layer==="all")state.layer=1;
  $("hideRouteMarks").checked=!!state.hideRouteMarks;
  $("score").textContent=state.penalty+" Strafpunkte";
  $("count").textContent=Object.keys(state.marks).filter(k=>k.startsWith(state.layer+":")&&state.marks[k]).length+" Markierungen auf dieser Karte";
- $("routeView").innerHTML=state.route.map((id,i)=>`${i?"<span>→</span>":""}<span class="step ${state.layer===i?"current":""}">${pretty(id)}</span>`).join("");
- $("helpStatus").innerHTML=state.help||"";
- $("verifyStatus").innerHTML=state.result||"";
+ $("routeView").innerHTML=state.route.map((id,i)=>`${i?"<span>→</span>":""}<span class="step ${state.layer===i?"current":""}">${coordinateMarkup(id)}</span>`).join("");
+ $("helpStatus").innerHTML=coordinateTextMarkup(state.help||"");
+ $("verifyStatus").innerHTML=coordinateTextMarkup(state.result||"");
  renderMap();bordbook.render();save();
 }
 function apply(id,first){
  if(blocked.has(id))return;
- if(state.tool==="clearAll"){const targets=Object.keys(state.marks).filter(k=>k.endsWith(":"+id));if(targets.length){snapshot();targets.forEach(k=>delete state.marks[k]);}state.help=`<div class="notice">Markierungen auf ${pretty(id)} in allen Stunden gelöscht (${targets.length}).</div>`;render();return}
  if(state.distanceMode && !state.distanceOrigin){state.distanceOrigin=id;render();return}
+ if(state.tool==="clearAll"){const targets=Object.keys(state.marks).filter(k=>k.endsWith(":"+id));if(targets.length){snapshot();targets.forEach(k=>delete state.marks[k]);}state.help=`<div class="notice">Markierungen auf ${pretty(id)} in allen Stunden gelöscht (${targets.length}).</div>`;render();return}
  if(state.tool==="route"){
   if(state.route.length>=puzzle.steps+1||state.route.includes(id)||!neighbor(state.route.at(-1),id))return;
   snapshot();state.route.push(id);state.result="";render();return;
@@ -127,16 +101,10 @@ $("hint").onclick=()=>{
  render();
 };
 $("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){state=initial();history.clear();render()}};
-const colorTokens={Cyan:0,Magenta:1,Violett:2,Blau:3,Orange:4};
-function clueMarkup(t){
- return t.replace(/(Alpha|Beta|Gamma|Delta|Epsilon)\/(Cyan|Magenta|Violett|Blau|Orange)/g,(_,col,row)=>{
-   const q=GREEK.indexOf(col),c=ROWCOLORS[colorTokens[row]];
-   return `<span class="coord-inline" aria-label="${col} / ${row}" title="${col} / ${row}"><span class="greek-badge" aria-hidden="true">${GREEK_SYMBOLS[q]}</span><span class="color-badge" style="--swatch:${c.hex}" aria-hidden="true">${c.short}</span></span>`;
- });
-}
-const bordbook=createBordbook({clues,getState:()=>state,markup:clueMarkup,toggleClue:id=>{
+const bordbook=createBordbook({clues,getState:()=>state,markup:coordinateTextMarkup,toggleClue:id=>{
  snapshot();state.doneClues=state.doneClues.includes(id)?state.doneClues.filter(v=>v!==id):[...state.doneClues,id];save();
 }});
 $("showChart").addEventListener("change",()=>renderMap());
+document.querySelectorAll(".logbook-section p").forEach(p=>p.innerHTML=coordinateTextMarkup(p.innerHTML));
 render();
 })();

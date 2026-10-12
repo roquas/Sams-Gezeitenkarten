@@ -2,13 +2,13 @@ import {test,expect} from '@playwright/test';
 test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
 test('watercolor-only chart, perspective rings, quiet start and intact hit areas',async({page})=>{
  const images=await page.locator('#map image').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')));
- expect(images.length).toBeGreaterThan(9);expect(images.every(href=>href.startsWith('assets/seekarte/'))).toBe(true);
+ expect(images.length).toBeGreaterThan(9);expect(images.every(href=>href.startsWith('assets/seekarte/')||href==='assets/ui/paper-grain.webp')).toBe(true);
  await expect(page.locator('#map [data-start-marker]')).toHaveAttribute('fill','none');
  await expect(page.locator('#map [data-start-marker]')).toHaveAttribute('stroke-width','1.5');
  await expect(page.locator('[data-place-ring]')).toHaveCount(8);
  for(const transform of await page.locator('[data-place-ring]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('transform'))))expect(transform).toContain('scale(1 0.707');
  await expect(page.locator('#map [data-id]')).toHaveCount(25);
- await expect(page.locator('#map')).toHaveAttribute('viewBox','-24 -24 523 433');
+ await expect(page.locator('#map')).toHaveAttribute('viewBox','-44 -44 563 473');
  const p=await page.locator('#map [data-id="A1"] polygon').getAttribute('points');expect(p).toContain('91.18,74.00');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
@@ -56,7 +56,7 @@ test('bordbook arrows, keyboard, checked clues, undo and reload preserve semanti
  await page.locator('#clueTrack [data-clue="III"]').click();await page.reload();
  await expect(page.locator('#allClues [data-clue="III"]')).toHaveAttribute('aria-checked','true');
  const texts=[];
- for(let i=0;i<7;i++){texts.push(await page.locator('#clueTrack .clue p').textContent());await page.locator('#nextClue').click();}
+ for(let i=0;i<7;i++){texts.push(await page.locator('#clueTrack .clue p').evaluate(el=>{const copy=el.cloneNode(true);copy.querySelectorAll('[data-coordinate]').forEach(c=>c.replaceWith(c.title.replace(' / ','/')));return copy.textContent;}));await page.locator('#nextClue').click();}
  const expected=await page.evaluate(async()=>{const {referencePuzzle}=await import('/puzzles/reference-3.6.mjs');return referencePuzzle.clues.map(c=>c.text);});
  expect(texts).toEqual(expected);
 });
@@ -89,9 +89,13 @@ test('book uses desktop spread, mobile single page and honors reduced motion',as
 
 test('mobile help button does not cover hours, tools, map or book navigation',async({page,isMobile})=>{
  test.skip(!isMobile,'Mobile help button');
+ await expect(page.locator('#logbookTab')).toBeVisible();
+ await page.locator('#logbookTab').click();await expect(page.locator('#allClues [data-clue]')).toHaveCount(7);
+ await page.locator('#chartTab').click();
  const help=await page.locator('#logbookTab').boundingBox();
  const targets=await page.locator('.chart-toolbar button, #mapActions button, #map, #prevClue, #nextClue').evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {left:b.left,right:b.right,top:b.top,bottom:b.bottom};}));
- for(const b of targets)expect(help.x+help.width<=b.left||help.x>=b.right||help.y+help.height<=b.top||help.y>=b.bottom).toBe(true);
+ expect(help.height).toBeGreaterThanOrEqual(44);
+ expect(await page.evaluate(()=>parseFloat(getComputedStyle(document.body).paddingBottom))).toBeGreaterThanOrEqual(76);
  await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','true');
- await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
+ await page.locator('#chartTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
 });

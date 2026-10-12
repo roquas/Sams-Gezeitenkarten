@@ -1,3 +1,5 @@
+import {distanceState} from './chart-art.mjs';
+import {coordinateMarkup} from './coordinates.mjs';
 import {mountUpperMaterials,mountLowerMaterials,rasterIcon} from './material-icons.mjs';
 const svg=body=>`<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">${body}</svg>`;
 const icons={
@@ -34,7 +36,13 @@ export function createToolbar(puzzle){
   const toggle=(id,on,label)=>{const b=$(id);b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',label);b.title=label;};
   toggle('toggleHourMarks',!state.hiddenHours.includes(state.layer),`Markierungen der Stunde ${state.layer} ein- oder ausblenden`);
   toggle('toggleRouteNumbers',state.showRouteNumbers,'Routennummern ein- oder ausblenden');
-  toggle('toggleDistances',state.distanceMode,state.distanceMode?(state.distanceOrigin?'Abstände ausblenden':'Abstände: Bezugspunkt auf der Karte wählen'):'Abstände einblenden');
+  const phase=distanceState(state);
+  toggle('toggleDistances',phase==='showing',phase==='waiting'?'Abstände: Jetzt ein Feld auf der Karte wählen. Erneut drücken zum Abbrechen.':phase==='showing'?'Abstände ausblenden':'Abstände einblenden');
+  $('toggleDistances').dataset.distanceState=phase;
+  $('toggleDistances').setAttribute('aria-pressed',String(state.distanceMode));
+  const status=$('distanceStatus');status.hidden=phase==='inactive';status.dataset.distanceState=phase;
+  status.innerHTML=phase==='waiting'?'Jetzt ein Feld auf der Karte wählen.':phase==='showing'?'Abstände ab '+coordinateMarkup(state.distanceOrigin)+' werden angezeigt.':'';
+  document.getElementById('map').classList.toggle('awaiting-distance',phase==='waiting');
   const edge=$('toggleHourMarks').querySelector('.hour-edge');
   Object.entries(hourEdge(state.layer)).forEach(([k,v])=>edge.setAttribute(k,v));
   $('verify').disabled=!puzzle.rules.legal(state.route);

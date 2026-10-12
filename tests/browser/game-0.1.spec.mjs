@@ -42,9 +42,11 @@ test('paid hint survives undo',async({page})=>{
  expect((await state(page)).penalty).toBe(10);
  await page.locator('#undo').click();expect((await state(page)).penalty).toBe(10);
 });
-test('chart illustration toggle does not enter state and survives undo',async({page})=>{
+test('chart illustration toggle does not enter state and survives undo',async({page,isMobile})=>{
  await cell(page,'A1').click();
- const checkbox=page.locator('#showChart');await checkbox.check();
+ if(isMobile)await page.locator('#logbookTab').click();
+ const checkbox=page.locator('#showChart');await checkbox.evaluate(el=>el.closest('details').open=true);await expect(checkbox).toBeChecked();
+ await checkbox.uncheck();await checkbox.check();if(isMobile)await page.locator('#chartTab').click();
  await page.locator('#undo').click();await expect(checkbox).toBeChecked();
 });
 test('display option undo regression is known in 3.6',async({page})=>{
@@ -115,7 +117,7 @@ test('chart assets load and playing has no browser errors or horizontal overflow
 test('mobile logbook opens and closes through its visible controls',async({page,isMobile})=>{
  test.skip(!isMobile,'Mobile drawer only');
  await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','true');
- await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
+ await page.locator('#chartTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
 });
 test('one mouse or touch drag marks two fields and undoes as one gesture',async({page,isMobile})=>{
  const center=async id=>{const b=await cell(page,id).boundingBox();return {x:b.x+b.width/2,y:b.y+b.height/2};};

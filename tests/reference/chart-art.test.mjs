@@ -20,7 +20,7 @@ test('temporary reuse preserves motif positions and avoids archived artwork',()=
 });
 test('parchment slices join without gaps and leave space for margin headings',()=>{
  const tiles=parchmentTiles();assert.equal(tiles.length,9);
- assert.equal(tiles[0].x,-24);assert.equal(tiles[8].x+tiles[8].width,499);
- assert.equal(tiles[0].y,-24);assert.equal(tiles[8].y+tiles[8].height,409);
+ assert.equal(tiles[0].x,-44);assert.equal(tiles[8].x+tiles[8].width,519);
+ assert.equal(tiles[0].y,-44);assert.equal(tiles[8].y+tiles[8].height,429);
  for(let row=0;row<3;row++)for(let col=0;col<2;col++)assert.equal(tiles[row*3+col].x+tiles[row*3+col].width,tiles[row*3+col+1].x);
 });
