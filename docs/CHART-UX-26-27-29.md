@@ -19,7 +19,7 @@ unverändert; ausschließlich die Browserdarstellung wird formatiert.
 
 ## #27: ruhige Pergamentschilder und Randabstand
 
-Tesoro, Klippen und Leuchtturm tragen klar lesbare Serifenschrift auf kleinen,
+Tesoro und Klippen tragen klar lesbare Serifenschrift auf kleinen,
 hellen Pergamentplättchen. Die vorhandene Papiertextur wird wiederverwendet;
 keine neue Seekartenillustration oder UI-Bildgenerierung.
 
@@ -88,3 +88,11 @@ Hinweisabschnitte und keine Karussellseiten.
 
 Safari ist für diese neue Ausbaustufe noch nicht auf echter Hardware geprüft.
 Der Nutzer hat den Ausgangsgrafikstand lokal in Safari abgenommen.
+
+## Abgenommener Nachtrag: kleinere landgebundene Schilder
+
+[Geometrie, Materialfeinschliff und aktuelle Prüfbilder](PLACE-LABEL-POLISH.md).
+Die Ortsplättchen sind kleiner, transparenter und mittig in gesperrten Hexen.
+Das Leuchtturm-Schild entfällt, weil C1 befahrbar bleibt. Alle anderen Änderungen
+aus #26/#27/#29 bleiben unverändert. Die obigen Bilder dokumentieren die erste
+Fassung; die aktuellen Schilder zeigen die Bilder des Nachtrags.
