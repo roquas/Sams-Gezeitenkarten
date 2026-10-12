@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="src/ui/chart-ux.css">
 </head>
 <body>
+<div id="gameSurface">
 <header><div><small>Gezeitenkarten · Ein Auftrag aus Nombreo</small><strong>Gezeitenkarten</strong></div><div style="text-align:right;font-size:12px">SPIELPROTOTYP · V0.1<br><span style="color:#ddc39c">Lokal · ohne Anmeldung</span></div></header>
 <main>
 <section class="panel map-panel" id="chartPanel"><div class="pad">
@@ -79,8 +80,10 @@
 <section class="logbook-section credits-section"><div class="credits-title">Credits</div><p class="muted">Gezeitenkarten – eigenständiger Spielprototyp, inspiriert von der Erzählwelt des Podcasts „Plötzlich Pirat:in“. Kartenornamente sind eigene Entwürfe und keine Originalillustrationen des Podcasts.</p></section>
 </div></aside>
 </main>
-<nav class="mobile-view-nav" aria-label="Spielansicht"><button id="chartTab" type="button" aria-controls="chartPanel" aria-pressed="true">Seekarte</button><button id="logbookTab" type="button" aria-label="Logbuch anzeigen" aria-controls="logbook" aria-expanded="false" aria-pressed="false">Logbuch</button></nav>
+
 <footer>Interaktiver Machbarkeitsprototyp · HTML mit lokalen Bilddateien · Keine externen Bibliotheken oder Netzwerkverbindungen</footer>
+</div>
+<nav class="mobile-view-nav" aria-label="Spielansicht"><button id="chartTab" type="button" aria-controls="chartPanel" aria-pressed="true">Seekarte</button><button id="logbookTab" type="button" aria-label="Logbuch anzeigen" aria-controls="logbook" aria-expanded="false" aria-pressed="false">Logbuch</button></nav>
 <script type="module" src="src/ui/game.mjs"></script>
 </body></html>
 

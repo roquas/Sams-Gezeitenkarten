@@ -30,17 +30,18 @@ test('distance phases announce selection, cancel and preserve notes',async({page
 test('mobile overview shows every clue and preserves game, scroll, keyboard and undo',async({page})=>{
  await page.setViewportSize({width:390,height:844});
  await page.locator('[data-hour="4"]').click();await page.locator('[data-tool="yes"]').click();await page.locator('#map [data-id="A1"]').click();
- await page.evaluate(()=>scrollTo(0,300));const mapScroll=await page.evaluate(()=>scrollY);
+ await page.locator('#gameSurface').evaluate(el=>el.scrollTop=300);const mapScroll=await page.locator('#gameSurface').evaluate(el=>el.scrollTop);
  await page.locator('#logbookTab').click();
+ const surface=await page.locator('#gameSurface').boundingBox(),nav=await page.locator('.mobile-view-nav').boundingBox();expect(surface.y+surface.height).toBeLessThanOrEqual(nav.y+.5);
  await expect(page.locator('.map-panel')).toBeHidden();await expect(page.locator('#logbook')).toBeVisible();
  for(const id of ['I','II','III','IV','V','VI','VII'])await expect(page.locator(`#allClues [data-clue="${id}"]`)).toBeVisible();
  await page.locator('#allClues [data-clue="V"]').focus();await page.keyboard.press('Space');
  await expect(page.locator('#allClues [data-clue="V"]')).toHaveAttribute('aria-checked','true');
- await page.evaluate(()=>scrollTo(0,400));const bookScroll=await page.evaluate(()=>scrollY);
+ await page.locator('#gameSurface').evaluate(el=>el.scrollTop=400);const bookScroll=await page.locator('#gameSurface').evaluate(el=>el.scrollTop);
  await page.locator('#chartTab').click();await expect(page.locator('[data-hour="4"]')).toHaveAttribute('aria-pressed','true');
  await expect(page.locator('[data-tool="yes"]')).toHaveAttribute('aria-pressed','true');
- expect(await page.evaluate(()=>scrollY)).toBe(mapScroll);
- await page.locator('#logbookTab').focus();await page.keyboard.press('Enter');expect(await page.evaluate(()=>scrollY)).toBe(bookScroll);
+ expect(await page.locator('#gameSurface').evaluate(el=>el.scrollTop)).toBe(mapScroll);
+ await page.locator('#logbookTab').focus();await page.keyboard.press('Enter');expect(await page.locator('#gameSurface').evaluate(el=>el.scrollTop)).toBe(bookScroll);
  await page.keyboard.press('Escape');await expect(page.locator('.map-panel')).toBeVisible();
  await page.locator('#undo').click();await expect(page.locator('#allClues [data-clue="V"]')).toHaveAttribute('aria-checked','false');
  await expect(page.locator('#map [data-id="A1"]')).toContainText('✓');
@@ -49,6 +50,9 @@ test('mobile overview shows every clue and preserves game, scroll, keyboard and 
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   const sizes=await page.locator('.mobile-view-nav button').evaluateAll(ns=>ns.map(n=>n.getBoundingClientRect().height));expect(sizes.every(h=>h>=44)).toBe(true);
  }
+ await page.locator('#chartTab').click();
+ await page.locator('#nextClue').scrollIntoViewIfNeeded();
+ const controls=await page.locator('.bordbook .clue-nav').boundingBox(),navigation=await page.locator('.mobile-view-nav').boundingBox();expect(controls.y+controls.height).toBeLessThanOrEqual(navigation.y);
  await page.setViewportSize({width:1440,height:1080});await expect(page.locator('.mobile-view-nav')).toBeHidden();await expect(page.locator('#logbook')).toBeVisible();
 });
 test('chart labels sit in parchment, are legible and do not intercept map controls',async({page})=>{
@@ -65,12 +69,19 @@ test('chart labels sit in parchment, are legible and do not intercept map contro
 test('actual browser screenshots for coordinate and logbook review',async({page},testInfo)=>{
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.setViewportSize({width:1440,height:1080});
- await page.locator('#allClues').evaluate(el=>el.closest('details').open=true);
+ 
  for(let i=0;i<4;i++)await page.locator('#nextClue').click();
- await page.locator('#toggleDistances').click();await page.evaluate(()=>scrollTo(0,0));
+ await page.locator('#toggleDistances').click();await page.locator('#allClues').evaluate(el=>el.closest('details').open=true);await page.evaluate(()=>scrollTo(0,0));
  await testInfo.attach('ux-desktop',{body:await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>scrollTo(0,0));
+ await page.locator('#gameSurface').evaluate(el=>el.scrollTop=0);
  await testInfo.attach('ux-mobile-chart',{body:await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
- await page.locator('#map [data-id="C1"]').click();await page.locator('#logbookTab').click();await page.evaluate(()=>scrollTo(0,0));
+ await page.locator('#map [data-id="C1"]').click();
+ await page.locator('.bordbook').scrollIntoViewIfNeeded();
+ await testInfo.attach('ux-mobile-bordbook',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+ await page.locator('#logbookTab').click();await page.evaluate(()=>scrollTo(0,0));
+ await page.locator('#gameSurface').evaluate(el=>el.scrollTop=0);
  await testInfo.attach('ux-mobile-logbook',{body:await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+ await page.locator('#allClues [data-clue="VI"]').scrollIntoViewIfNeeded();
+ await testInfo.attach('ux-mobile-logbook-later',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
 });

@@ -95,7 +95,7 @@ test('mobile help button does not cover hours, tools, map or book navigation',as
  const help=await page.locator('#logbookTab').boundingBox();
  const targets=await page.locator('.chart-toolbar button, #mapActions button, #map, #prevClue, #nextClue').evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {left:b.left,right:b.right,top:b.top,bottom:b.bottom};}));
  expect(help.height).toBeGreaterThanOrEqual(44);
- expect(await page.evaluate(()=>parseFloat(getComputedStyle(document.body).paddingBottom))).toBeGreaterThanOrEqual(76);
+ const surface=await page.locator('#gameSurface').boundingBox(),navigation=await page.locator('.mobile-view-nav').boundingBox();expect(surface.y+surface.height).toBeLessThanOrEqual(navigation.y+.5);
  await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','true');
  await page.locator('#chartTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
 });
