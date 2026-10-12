@@ -85,3 +85,6 @@ button:focus-visible,[tabindex]:focus-visible,a:focus-visible,summary:focus-visi
  .bordbook .clue-nav{padding:0 8px 3px}
 }
 @media(prefers-reduced-motion:reduce){.bordbook *{animation:none!important;transition:none!important}}
+
+/* A mobile drawer must not animate across the desktop grid after resizing. */
+@media(min-width:881px){.clue-panel{transition:none}}

@@ -4,7 +4,7 @@ const icons={
  undo:svg('<path d="M9 9H3V3M3 9C8 1 23 4 26 13S21 28 14 27"/>'),
  distance:svg('<path d="M2 22C7 7 24 5 30 22M5 24C10 12 21 12 27 24M10 25C13 18 20 18 23 25"/>'),
  marks:svg('<path class="hour-hex" d="M16 2L28 9V23L16 30L4 23V9Z"/>'+eye+'<line class="hour-edge" x1="28" y1="9" x2="16" y2="2"/>'),
- numbers:svg('<path d="M3 10Q10 3 17 10Q10 17 3 10Z"/><circle cx="10" cy="10" r="2"/><text x="3" y="29">①②③</text>'),
+ numbers:svg('<path d="M3 10Q10 3 17 10Q10 17 3 10Z"/><circle cx="10" cy="10" r="2"/><text x="3" y="29" textLength="26" lengthAdjust="spacingAndGlyphs">①②③</text>'),
  verify:svg('<path d="M3 24L10 16L15 20L21 9M19 24L23 28L30 18"/>')
 };
 export function hourEdge(hour){

@@ -15,10 +15,10 @@ test('watercolor-only chart, perspective rings, quiet start and intact hit areas
 test('brass rail order, hour icon, accessible toggles and verification readiness',async({page})=>{
  expect(await page.locator('#mapActions button').evaluateAll(ns=>ns.map(n=>n.id))).toEqual(['undo','toggleDistances','toggleHourMarks','toggleRouteNumbers','verify']);
  await expect(page.locator('#verify')).toBeDisabled();
- const edge=page.locator('#toggleHourMarks .hour-edge');const original=await edge.getAttribute('x1');
+ const edge=page.locator('#toggleHourMarks .hour-edge');const original=await edge.evaluate(el=>['x1','y1','x2','y2'].map(k=>el.getAttribute(k)));
  await page.locator('[data-hour="4"]').focus();await page.keyboard.press('Enter');
  await expect(page.locator('[data-hour="4"]')).toBeFocused();
- expect(await edge.getAttribute('x1')).not.toBe(original);
+ expect(await edge.evaluate(el=>['x1','y1','x2','y2'].map(k=>el.getAttribute(k)))).not.toEqual(original);
  await expect(page.locator('#toggleHourMarks')).toHaveAttribute('aria-label',/Stunde 4/);
  await page.locator('#toggleHourMarks').focus();await page.keyboard.press('Space');
  await expect(page.locator('#toggleHourMarks')).toHaveAttribute('aria-pressed','false');
@@ -35,7 +35,7 @@ test('both rails have 44px touch targets and a visible keyboard-accessible legen
   await page.setViewportSize(size);
   const boxes=await page.locator('.chart-toolbar button, #mapActions button').evaluateAll(ns=>ns.map(n=>({w:n.getBoundingClientRect().width,h:n.getBoundingClientRect().height})));
   expect(boxes.every(b=>b.w>=43.9&&b.h>=44)).toBe(true);
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),JSON.stringify(size)).toBe(true);
  }
  await page.locator('.toolbar-guide a').focus();await page.keyboard.press('Enter');
  await page.locator('#toolLegend summary').focus();await page.keyboard.press('Enter');
@@ -77,7 +77,8 @@ test('book uses desktop spread, mobile single page and honors reduced motion',as
  await expect(page.locator('.book-vignette')).toBeVisible();
  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#nextClue').click();
  expect(await page.locator('#clueTrack').evaluate(el=>el.getAnimations().length)).toBe(0);
- await page.locator('#map').scrollIntoViewIfNeeded();
+ await page.evaluate(()=>scrollTo(0,0));
+ await page.evaluate(()=>new Promise(requestAnimationFrame));
  await testInfo.attach('seekarte-desktop',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
  await page.setViewportSize({width:390,height:844});
  expect(await page.locator('.book-spread').evaluate(el=>getComputedStyle(el).display)).toBe('block');
