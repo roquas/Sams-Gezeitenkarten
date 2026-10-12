@@ -37,3 +37,24 @@ Werkzeugwechsel beendet die Abstandsanzeige gemäß besprochenem Fehlerbericht.
 
 Schritt 2: Push-Lauf 38257016148 erfolgreich. Neue Unit- und Browserregressionen
 prüfen Undo, Speicherung, ungültige Routen und Werkzeugwechsel.
+
+## Schritt 4: Modularisierung abschließen
+
+Kartendarstellung, Koordinatenpräsentation und fallbezogene Denkanstöße sind eigene
+Module. Native ES-Module ohne Build und ohne Laufzeitframework erfüllen die
+vorgegebene schlanke Architektur. Vorhandene Texte von 3.6 bleiben erhalten;
+die mitgelieferte ausführliche Weltreferenz dient der Einordnung, wird aber nicht
+als neuer Kanon oder als Anlass für zusätzliche Produktfunktionen verwendet.
+
+Die 5×5-Darstellung und sechs Stunden bleiben der freigegebene Umfang; variable
+Kartengrößen und Generatoren sind keine neuen Funktionen dieser Version.
+Grafiken werden aus dem unveränderten Archiv referenziert. Für Uberspace müssen
+sie zusammen mit den Modulen hochgeladen werden (siehe README).
+
+Testwerkzeuge sind über package-lock und exakte Playwright-Version festgelegt;
+Actions verwendet npm ci. Erweiterte Browserprüfungen umfassen Tastatur, Reset,
+mobile Logbuchbedienung, Assets, JavaScript-Fehler und horizontalen Überlauf.
+
+Schritt 3: Beide Actions-Läufe 38257401972 und 38257406902 erfolgreich.
+Lokale Unit-Tests: 20 bestanden. Lokale Browsertests gestartet, wegen fehlendem
+Chromium blockiert; Ausführung und Abschlussbewertung weiterhin über Actions.

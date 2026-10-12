@@ -1,23 +1,58 @@
-# Sams-Gezeitenkarten
+# Sams-Gezeitenkarten – Spielversion 0.1
 
-Privates Entwicklungsrepository für das browserbasierte Hex-Logikrätsel **Gezeitenkarten** in der erzählerischen Welt von „Plötzlich Pirat:in“.
+Spielbare modulare Fortsetzung von Prototyp 3.6. Der vorhandene Referenzfall
+bleibt derselbe: sechs Etappen auf einer 5×5-Hexkarte mit sieben Hinweisen.
 
-**Baseline 0.1 – Dokumentationsstand, kein Software-Release.** Der zuletzt gemeinsam gespielte Prototyp ist **3.6**; dessen Code und Grafiken wurden **noch nicht** ins Repository übernommen.
+## Starten
 
-## Projektunterlagen
+Im Repository-Verzeichnis:
 
-- [Produktbild](docs/PRODUCT.md)
-- [Anforderungen](docs/REQUIREMENTS.md)
-- [UI-Spezifikation](docs/UI-SPEC.md)
-- [Rätseldesign](docs/PUZZLE-DESIGN.md)
-- [Architekturentwurf](docs/ARCHITECTURE.md)
-- [Testplan](docs/TESTPLAN.md)
-- [Zusammenarbeit und Releases](docs/WORKFLOW.md)
-- [Entscheidungen](docs/DECISIONS.md)
-- [Welt und Stil](docs/WORLD-AND-STYLE.md)
+```sh
+python3 -m http.server 8000
+```
 
-## Verbindlicher Arbeitsmodus
+Dann `http://localhost:8000/` öffnen. Native ES-Module benötigen einen HTTP-Server;
+ein Doppelklick auf die HTML-Datei reicht nicht. Auf Uberspace werden `index.html`,
+`src/`, `puzzles/`, `content/` und `prototypes/3.6/assets/` im selben Verhältnis
+hochgeladen. Für das Spielen sind weder Node noch ein Buildschritt erforderlich.
 
-Chats sind Diskussionsraum; das Repository dokumentiert den abgestimmten Stand. Neue Ideen kommen ins Backlog und werden **nicht automatisch** im nächsten Build umgesetzt. Releases benötigen spezifizierte Akzeptanzkriterien, nachvollziehbare Tests und eine bewusste Freigabe. Die Dokumente unterscheiden Prototyp-Iststand, Ziele und offene Vorschläge.
+## Spielen
 
-**Rechte:** Keine Lizenz vergeben. Vor öffentlicher Veröffentlichung müssen insbesondere Bildrechte und Weltbezüge geprüft werden.
+Stunde 1–6 auswählen und Felder mit möglich, sicher oder ausgeschlossen markieren.
+Die sechs Eckmarkierungen zeigen alle Stunden gleichzeitig. Mit dem Routenwerkzeug
+vom Start aus sechs benachbarte Wasserfelder verbinden und „Route prüfen“ wählen.
+Hinweise und Einstellungen stehen im Logbuch; auf kleinen Displays öffnet „Hilfe“
+das seitliche Logbuch. Notizen und Route werden lokal im Browser gespeichert.
+
+Undo nimmt Bearbeitungen und Notizprüfungen zurück. Anzeigeoptionen, Navigation und
+bezahlte Denkanstöße bleiben bestehen. Undo-Historie wird nicht gespeichert.
+Spielstände von 3.6 werden nicht übernommen oder verändert.
+
+## Tests
+
+```sh
+npm ci
+npx playwright install chromium
+npm run test:all
+```
+
+Node-Tests prüfen Regeln, Eindeutigkeit des Referenzfalls, Speicherung und Undo.
+Playwright prüft Original 3.6 und Version 0.1 in Desktop- und Mobilansicht.
+GitHub Actions führt beide Testgruppen nach Push und Pull Request aus.
+
+## Aufbau und Entscheidungen
+
+- `src/engine/`: vorhandene DOM-unabhängige Geometrie und Rätselregeln
+- `puzzles/reference-3.6.mjs`: vorhandene versionierte Falldaten
+- `src/ui/`: Bedienung, Kartendarstellung, Koordinaten und CSS
+- `src/state/`, `src/persistence/`: Spielzustand, Undo und Speicherung
+- `content/reference-3.6.mjs`: fallbezogene Hilfe und Kartenbeschriftung
+- `prototypes/3.6/`: unverändertes Original mit Grafiken
+- [Umsetzung und Prüfstand 0.1](docs/IMPLEMENTATION-0.1.md)
+- [Anforderungen](docs/REQUIREMENTS.md), [Entscheidungen](docs/DECISIONS.md)
+
+Diese Version enthält einen festen Referenzfall. Generator, Tagesrätsel, Highscores
+und Backend gehören zu späteren Schritten. Die Darstellung ist auf die bestehende
+5×5-Karte und sechs Stunden ausgelegt; die Engine liest Sperrfelder und Orte aus
+Falldaten. Das Repository bleibt privat; eine öffentliche Veröffentlichung erfolgt
+hier nicht.

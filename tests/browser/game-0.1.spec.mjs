@@ -86,3 +86,34 @@ test('invalid saved route recovers to playable initial state',async({page})=>{
  await page.evaluate(k=>localStorage.setItem(k,JSON.stringify({route:['D4','Z9'],marks:null})),KEY);await page.reload();
  expect((await state(page)).route).toEqual(['D4']);await cell(page,'A1').click();expect((await state(page)).marks['1:A1']).toBe('maybe');
 });
+test('keyboard input, per-hour erasing, note checking and confirmed reset',async({page})=>{
+ await cell(page,'A1').focus();await page.keyboard.press('Enter');
+ expect((await state(page)).marks['1:A1']).toBe('maybe');
+ await page.locator('[data-hour="2"]').click();await cell(page,'A1').click();
+ await page.locator('#clearLayer').evaluate(el=>el.click());
+ expect((await state(page)).marks['2:A1']).toBeUndefined();expect((await state(page)).marks['1:A1']).toBe('maybe');
+ await page.locator('#checkMarks').evaluate(el=>el.click());expect((await state(page)).penalty).toBe(5);
+ await page.locator('#undo').click();expect((await state(page)).penalty).toBe(0);
+ page.once('dialog',dialog=>dialog.dismiss());await page.locator('#reset').evaluate(el=>el.click());expect((await state(page)).marks['1:A1']).toBe('maybe');
+ page.once('dialog',dialog=>dialog.accept());await page.locator('#reset').evaluate(el=>el.click());expect((await state(page)).marks).toEqual({});expect((await state(page)).route).toEqual(['D4']);
+});
+test('paid hint cost and count persist after reload and another undo',async({page})=>{
+ await page.locator('#hint').evaluate(el=>el.click());await page.reload();
+ await cell(page,'A1').click();await page.locator('#undo').click();
+ expect((await state(page)).penalty).toBe(10);expect((await state(page)).hintCount).toBe(1);
+});
+test('chart assets load and playing has no browser errors or horizontal overflow',async({page},testInfo)=>{
+ const errors=[],failures=[];page.on('pageerror',error=>errors.push(error.message));
+ page.on('response',response=>{if(response.status()>=400&&!response.url().endsWith('favicon.ico'))failures.push(response.url());});
+ await page.reload();
+ await page.locator('[data-tool="route"]').click();for(const id of ['E3','D2','C2','B2','B1','A1'])await cell(page,id).click();
+ await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig!');
+ expect(errors).toEqual([]);expect(failures).toEqual([]);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+ await testInfo.attach('version-0.1',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
+});
+test('mobile logbook opens and closes through its visible controls',async({page,isMobile})=>{
+ test.skip(!isMobile,'Mobile drawer only');
+ await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','true');
+ await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
+});
