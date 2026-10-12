@@ -60,7 +60,7 @@ test('bordbook arrows, keyboard, checked clues, undo and reload preserve semanti
  const expected=await page.evaluate(async()=>{const {referencePuzzle}=await import('/puzzles/reference-3.6.mjs');return referencePuzzle.clues.map(c=>c.text);});
  expect(texts).toEqual(expected);
 });
-test('mobile swipe turns pages but scrolling and cancelled gestures do not',async({page,isMobile})=>{
+test('mobile swipe turns pages while vertical gestures keep the current clue',async({page,isMobile})=>{
  test.skip(!isMobile,'Touch input project');
  await page.locator('#clueViewport').scrollIntoViewIfNeeded();
  const b=await page.locator('#clueViewport').boundingBox();const x=b.x+b.width*.8,y=b.y+b.height*.5;
@@ -85,4 +85,13 @@ test('book uses desktop spread, mobile single page and honors reduced motion',as
  await expect(page.locator('.book-vignette')).toBeHidden();
  expect(await page.locator('#clueTrack .clue p').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(15);
  await testInfo.attach('seekarte-mobile',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
+});
+
+test('mobile help button does not cover hours, tools, map or book navigation',async({page,isMobile})=>{
+ test.skip(!isMobile,'Mobile help button');
+ const help=await page.locator('#logbookTab').boundingBox();
+ const targets=await page.locator('.chart-toolbar button, #mapActions button, #map, #prevClue, #nextClue').evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {left:b.left,right:b.right,top:b.top,bottom:b.bottom};}));
+ for(const b of targets)expect(help.x+help.width<=b.left||help.x>=b.right||help.y+help.height<=b.top||help.y>=b.bottom).toBe(true);
+ await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','true');
+ await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
 });

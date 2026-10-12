@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="src/ui/chart-frame.css">
 </head>
 <body>
-<header><div><small>Gezeitenkarten · Ein Auftrag aus Nombreo</small><strong>Gezeitenkarten</strong></div><div style="text-align:right;font-size:12px">SPIELPROTOTYP · V0.1<br><span style="color:#ddc39c">Lokal · ohne Anmeldung</span></div></header>
+<header><div><small>Gezeitenkarten · Ein Auftrag aus Nombreo</small><strong>Gezeitenkarten</strong></div><div style="text-align:right;font-size:12px">SPIELPROTOTYP · V0.1<br><span style="color:#ddc39c">Lokal · ohne Anmeldung</span></div><button class="logbook-tab" id="logbookTab" type="button" aria-label="Hilfe öffnen" aria-expanded="false" aria-controls="logbook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span>Hilfe</span></button></header>
 <main>
 <section class="panel map-panel"><div class="pad">
 <div class="topline"><div><div class="eyebrow">Deine Seekarte</div><h1>Der verschwundene Kompass</h1></div><span class="pill" id="score">0 Strafpunkte</span></div>
@@ -59,7 +59,7 @@
 <div id="verifyStatus" aria-live="polite"></div>
 </div></section>
 <div class="logbook-backdrop" id="logbookBackdrop" aria-hidden="true"></div>
-<aside class="panel clue-panel" id="logbook" aria-label="Hilfe und Logbuch"><button class="logbook-tab" id="logbookTab" type="button" aria-label="Hilfe öffnen" aria-expanded="false" aria-controls="logbook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span>Hilfe</span></button><div class="pad">
+<aside class="panel clue-panel" id="logbook" aria-label="Hilfe und Logbuch"><div class="pad">
 <div class="eyebrow clue-heading">Hilfe &amp; Logbuch</div>
 <section class="logbook-section"><details open><summary>Die Geschichte</summary><p class="story">Robin hatte einen Kompass, Sam ein Logbuch und beide unterschiedliche Vorstellungen von einer Abkürzung. Nach sechs Stunden war der Kompass verschwunden. Die Route hatte Sam immerhin in sieben etwas eigenwilligen Beobachtungen festgehalten.</p>
 <p class="story">Rekonstruiere die sechs Stunden zwischen Kurswechseln, Leuchtturm und Tesoro. Wo sind Robin und Sam schließlich gelandet? Unter „Spielregeln“ steht, wie das funktioniert.</p></details></section>

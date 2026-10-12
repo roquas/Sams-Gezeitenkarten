@@ -88,3 +88,12 @@ button:focus-visible,[tabindex]:focus-visible,a:focus-visible,summary:focus-visi
 
 /* A mobile drawer must not animate across the desktop grid after resizing. */
 @media(min-width:881px){.clue-panel{transition:none}}
+
+/* Keep the existing help button clear of every map and toolbar hit area. */
+@media(max-width:880px){
+ header{display:grid;grid-template-columns:minmax(0,1fr) minmax(70px,96px) 44px;gap:8px;padding:12px 10px;align-items:center}
+ header .logbook-tab{display:flex;position:relative;z-index:101;left:auto;right:auto;top:auto;width:44px;height:44px;min-height:44px;padding:4px;flex-direction:row;gap:0;border:1px solid #a88b59;border-radius:5px;box-shadow:0 2px 5px #29231b22;touch-action:auto}
+ header .logbook-tab span{writing-mode:horizontal-tb;transform:none;font-size:11px;letter-spacing:0}
+ header .logbook-tab svg{display:none}
+ header .logbook-tab[aria-expanded="true"]{background:#173f46;color:#fff2cd}
+}

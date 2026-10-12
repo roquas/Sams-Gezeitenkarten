@@ -35,7 +35,8 @@ Die Routenprüfung wird nach sechs geometrisch gültigen Etappen freigegeben.
 Dabei wird nicht vorab geprüft, ob Hinweise erfüllt sind: Eine falsche, aber
 legal gezeichnete Route kann wie bisher zur Prüfung eingereicht werden.
 Undo, Anzeigen, bezahlte Denkanstöße, Speicherformat und Hinweisreihenfolge
-behalten ihre bestehende Semantik. Fokus bleibt bei Stundenwahl, wiederholter
+behalten ihre bestehende Semantik. Der mobile Hilfe-Button sitzt im Kopfbereich und verdeckt weder Stundenwahl
+noch Kartenwerkzeuge. Fokus bleibt bei Stundenwahl, wiederholter
 Tastaturmarkierung und Abhaken erhalten. Reduzierte Bewegung deaktiviert die
 kurze Text-Umblätteranimation; vertikale Wischgesten scrollen weiterhin.
 
