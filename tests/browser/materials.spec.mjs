@@ -48,3 +48,17 @@ test('actual browser screenshots of the complete material composition',async({pa
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>scrollTo(0,0));
  await testInfo.attach('material-complete-mobile',{body:await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
 });
+test('all seven clues stay legible above page controls at narrow and tablet widths',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});
+ for(const width of [320,390,620,768]){
+  await page.setViewportSize({width,height:900});
+  await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),{message:'overflow at '+width}).toBe(true);
+  for(let i=0;i<7;i++){
+   const text=await page.locator('#clueTrack p').boundingBox(),nav=await page.locator('.bordbook .clue-nav').boundingBox(),viewport=await page.locator('#clueViewport').boundingBox();
+   expect(text.x+text.width,`right edge of clue ${i} at ${width}`).toBeLessThanOrEqual(viewport.x+viewport.width+.5);
+   expect(text.y+text.height,`page controls overlap clue ${i} at ${width}`).toBeLessThanOrEqual(nav.y+.5);
+   expect(await page.locator('#clueTrack p').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(16);
+   await page.locator('#nextClue').click();
+  }
+ }
+});

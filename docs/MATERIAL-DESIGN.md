@@ -43,3 +43,41 @@ Assets liegen in `assets/ui/`.
 
 Die exakten Stundenkanten bleiben kleine zustandsabhängige SVG-Overlays;
 sie sind funktionale Geometrie und ersetzen kein Raster-Werkzeugbild.
+
+## Tatsächliche Browservergleiche
+
+1. Oberer Rahmen: Actions 38289476186, 28 Unit- und 59 Browserprüfungen.
+   Die Screenshots zeigten kachelnde Papierflächen, oval gestreckte Schrauben
+   und starke Einfärbung leerer Hexfelder. Korrigiert: durchgehende Papierfläche,
+   wiederholter Metall-Mittelteil mit separaten Endbeschlägen, transparente
+   ungefüllte Spielfelder und ruhigere, weiterhin erkennbare Stundenkanten.
+2. Gesamte Fassung: Actions 38291023432, 28 Unit- und 63 Browserprüfungen.
+   Metallleiste, zweiter Instrumentenrand und Buch wurden im echten Chromium
+   gerendert und gegen die Vorlage geprüft. Die mobile Textspalte lag zu nahe
+   am Lederdeckel; der Status war am dunklen Falz zu schwach. Korrektur: mehr
+   Innenabstand und kontrastierende Statusfläche. Alle sieben Hinweise werden
+   zusätzlich auf Überlappung mit der Buchnavigation geprüft.
+
+Alle Screenshots stammen aus Playwright/Chromium. Generierte Bilder wurden nur
+als UI-Assets eingesetzt; die Vergleichsbilder sind keine Konzeptillustrationen.
+Desktop und Pixel-7-Emulation, Breiten 320, 390, 620, 768, 1280 und 1440 CSS-Pixel.
+Die originalen Aquarellgrafiken und Prototyp 3.6 bleiben per Prüfsumme geschützt.
+Keine Änderung an Engine, Rätseldefinition, Hinweisinhalten oder Speicherung.
+
+## Bewusste Abweichungen und Grenzen
+
+- Die Referenz hat vier obere Werkzeuge, das Spiel sieben vorhandene Funktionen.
+  Sie bleiben erhalten; auf schmalen Displays verteilt sich die Leiste auf Reihen.
+- Eine exakte Nachbildung der Karte selbst würde andere Illustrationen,
+  Motivpositionen und eine andere Hexgeometrie erfordern. Diese bleiben erhalten.
+- Die feinen nautischen Ritzzeichnungen der Referenz und ihre individuelle
+  handgemalte Lichtführung sind nicht pixelgenau reproduziert. Die Raster-Assets
+  besitzen einen gemeinsamen Materialcharakter, sind aber eigene Ableitungen.
+- Das Konzeptbild zeigt kein Bordbuch. Leder, Papierlagen und Falz sind eine
+  Ergänzung in derselben Designsprache. Mobil wird nur die rechte Seite gezeigt.
+- Die Blätteranimation ist eine kurze perspektivische Papierbewegung, keine
+  vollständige physikalische Simulation der einzelnen Buchblätter.
+- Browserprüfung in GitHub Actions, kein lokaler Chromium verfügbar. Safari und
+  echte iPhone-Hardware sind nicht geprüft. Keine externen Fonts oder Laufzeit-
+  Bibliotheken; die Serifentypografie verwendet Georgia beziehungsweise den
+  Serif-Fallback des Systems.

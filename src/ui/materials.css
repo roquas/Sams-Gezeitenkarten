@@ -132,3 +132,23 @@ body{background-size:auto,100vw 100vh;background-repeat:no-repeat;background-att
 }
 @media(prefers-reduced-motion:reduce){.turning-leaf{display:none}}
 .mark-emblem svg{z-index:3}
+
+/* Review 2: keep every clue and its status inside the readable paper area. */
+.bordbook{padding-bottom:110px}
+.bordbook .clue-track,.bordbook .clue-slide,.bordbook .clue p{min-width:0}
+.bordbook .clue p{overflow-wrap:break-word}
+.book-heading strong{min-width:0}.book-heading #cluePosition{flex:none;color:#76532f}
+.bordbook .clue-nav{bottom:70px}
+.bordbook .clue-nav span{background:#f6e8c9e8;border:1px solid #b7996b70;padding:4px 8px;border-radius:3px;color:#59412b;box-shadow:0 1px 2px #49311c20}
+.bordbook .clue-nav button{background:linear-gradient(#f3e1bcdc,#d6bc8de0);border-color:#98713d;box-shadow:inset 0 1px #fff2cb,0 1px 3px #88633f60}
+.bordbook .clue-nav button .raster-icon{filter:saturate(.5) brightness(.56)}
+@media(min-width:601px) and (max-width:760px){
+ .map-actions{padding:22px 12px;gap:8px}.rail-button{width:56px;flex-basis:56px;min-height:56px;height:56px}
+ #toggleRouteNumbers{width:100px;flex-basis:100px}#verify{width:144px;flex-basis:144px}.verify-label{font-size:18px}
+}
+@media(max-width:600px){
+ .bordbook{padding:25px 50px 92px 34px}
+ .book-heading{padding-left:8px;padding-right:0}.book-heading strong{flex:1}.book-heading #cluePosition{font-size:12px}
+ .bordbook .clue-nav{bottom:64px;left:42px;right:42px}
+ .bordbook .clue-nav span{padding:3px 5px;font-size:10px;max-width:170px}
+}
