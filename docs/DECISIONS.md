@@ -13,3 +13,13 @@
 | ADR-009 | Offen | Backend | Für Tagesrätsel/Highscores später entscheiden |
 
 Entscheidungen künftig mit Begründung, Datum und Auswirkungen dokumentieren.
+
+
+## Umsetzung 0.1 (12.10.2026)
+
+- ADR-004: Native ES-Module, kein Buildschritt. Technische Umsetzung des beauftragten modularen Nachfolgers.
+- ADR-005: Node-Test-Runner und Playwright mit Lockfile; Desktop und Mobilansicht in Actions.
+- Eigener Einstiegspunkt im Repository-Wurzelverzeichnis; Original 3.6 unverändert.
+- Eigener fallbezogener Speichername ohne automatische Prototypmigration.
+- Undo speichert Bearbeitungen separat von Anzeigen und bezahlten Denkanstößen.
+- Einzelheiten und offene Grenzen: `docs/IMPLEMENTATION-0.1.md`.

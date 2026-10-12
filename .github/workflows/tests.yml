@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
-      - run: npm install --no-audit --no-fund
+      - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
       - if: always()
@@ -30,3 +30,4 @@ jobs:
             playwright-report/
             test-results/
           if-no-files-found: ignore
+

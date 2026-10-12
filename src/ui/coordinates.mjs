@@ -1,0 +1,2 @@
+export const LETTERS="ABCDE", GREEK_SYMBOLS=["α","β","γ","δ","ε"], GREEK=["Alpha","Beta","Gamma","Delta","Epsilon"], ROWCOLORS=[{name:"Cyan",short:"C",hex:"#28b9c5"},{name:"Magenta",short:"M",hex:"#c74c99"},{name:"Violett",short:"V",hex:"#8761ba"},{name:"Blau",short:"B",hex:"#4178b8"},{name:"Orange",short:"O",hex:"#d28a39"}];
+export const pretty=id=>GREEK[LETTERS.indexOf(id[0])]+" / "+ROWCOLORS[Number(id.slice(1))-1].name;
