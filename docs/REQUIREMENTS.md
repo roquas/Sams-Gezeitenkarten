@@ -34,3 +34,11 @@
 **Nicht mehr gewünscht:** Lineal, „Rest ausschließen“, beige Mittelpunktmarkierung, separate „Letzte Etappe zurück“-Schaltfläche unter der Karte.
 
 **Noch nicht spezifiziert:** Persistenzmigration, Tastaturbedienung, Barrierefreiheit, exakte Scoring-/Hilferegeln, vollständige Undo-Semantik.
+
+
+## Ergänzende Entscheidungen (12.10.2026)
+
+- **Beschlossen:** Der Stunden-0-Auswahlknopf entfällt in der künftigen Oberfläche; die Startposition bleibt Teil der Routenlogik.
+- **Beschlossen:** Undo-Historie muss nicht persistent gespeichert werden. Spielstandpersistenz ist davon unabhängig.
+- **Beschlossen:** Karte und Orts-Overlays einschließlich benannter Orte sind pro Rätsel konfigurierbar; feste Inhalte aus 3.6 sind keine universellen Regeln.
+- **Idee:** Rätsel wählen Hintergrund und Ortsgrafiken über Asset-IDs oder bringen eigene Dateien mit. Siehe Architektur und zugehörige Issues.
