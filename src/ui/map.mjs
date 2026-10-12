@@ -12,13 +12,17 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
  const showArt=document.getElementById("showChart").checked;
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
- const image=(file,x,y,w,h,opacity=1)=>el("image",{href:"prototypes/3.6/assets/"+file,x,y,width:w,height:h,opacity,preserveAspectRatio:"none","pointer-events":"none"});
- art.append(image(puzzle.background.asset,0,0,475,385));
- // Neuer Fall: B3, C3 und E2 sind unpassierbar.
- // B3 + C3 bilden eine gemeinsame, über zwei Hexfelder reichende Insel.
- // Jede Illustration wird am Mittelpunkt ihrer Spielfeld-Zuordnung verankert.
- // Motivanker sind zentral konfiguriert: spätere Generatoren liefern Zellen + Variante.
- const mapArt=puzzle.overlays;
+ const image=(file,x,y,w,h,opacity=1)=>el("image",{href:"assets/seekarte/"+file,x,y,width:w,height:h,opacity,preserveAspectRatio:"none","pointer-events":"none"});
+ art.append(image("meer-pergament.webp",0,0,475,385));
+ // Extend the parchment inside the existing coordinate system; hit polygons stay fixed.
+ art.append(el("rect",{x:-2,y:-2,width:479,height:389,rx:5,fill:"none",stroke:"#e6c591","stroke-width":"58",opacity:".96","data-map-frame":"parchment"}));
+ const mapArt=[
+ {asset:"tesoro.png",cells:["B3","C3"],w:148,h:112,dx:0,dy:0,opacity:.88},
+ {asset:"tesoro.png",cells:["E2"],w:67,h:59,dx:0,dy:0,opacity:.85},
+ {asset:"leuchtturm.png",cells:["C1"],w:75,h:81,dx:0,dy:-5,opacity:.92},
+ {asset:"segelschiff.png",cells:[puzzle.start],w:66,h:76,dx:0,dy:-6,opacity:.83},
+ {asset:"segelschiff.png",cells:["E4"],w:56,h:65,dx:0,dy:-5,opacity:.77}
+ ];
  const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
  for(const o of mapArt){const [cx,cy]=artCenter(o.cells);art.append(image(o.asset,cx-o.w/2+o.dx,cy-o.h/2+o.dy,o.w,o.h,o.opacity))}
  // Beschriftung gehört zum geografischen Objekt, nicht zu einem einzelnen Hexfeld.
@@ -88,11 +92,11 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
-  if(!land && ["D4","C1","E4","A3","D5"].includes(c.id)){
+  if(!land && ["C1","E4","A3","D5"].includes(c.id)){
     // Unregelmäßiger handgezeichneter Kartografenring, nicht anklickbar.
     const ring=Array.from({length:33},(_,i)=>{const a=i*Math.PI/16;const rr=24+1.15*Math.sin(i*2.4)+.7*Math.cos(i*1.3);return `${i?'L':'M'} ${(x+rr*Math.cos(a)).toFixed(1)} ${(y+rr*Math.sin(a)).toFixed(1)}`}).join(' ');
-    g.append(el("path",{d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
-    g.append(el("path",{d:ring,fill:"none",stroke:"#a57739","stroke-width":"1.35",opacity:".79","stroke-linecap":"round","stroke-linejoin":"round"}));
+    g.append(el("path",{transform:`translate(0 ${y*.293}) scale(1 .707)`,"data-place-ring":c.id,"pointer-events":"none",d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
+    g.append(el("path",{transform:`translate(0 ${y*.293}) scale(1 .707)`,"data-place-ring":c.id,"pointer-events":"none",d:ring,fill:"none",stroke:"#a57739","stroke-width":"1.35",opacity:".79","stroke-linecap":"round","stroke-linejoin":"round"}));
   }
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
   // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
@@ -144,10 +148,8 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  svg.append(routeInk);
  // Distinguish the actual departure point from the wreck's identical anchor icon.
  const [sx,sy]=coords(byId[puzzle.start]);
- svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#fff6d8","stroke-width":"5","pointer-events":"none"}));
- svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#b37b36","stroke-width":"3.5","stroke-dasharray":"5 3","pointer-events":"none"}));
- svg.append(el("rect",{x:sx-19,y:sy-39,width:38,height:16,rx:7,fill:"#fff6d8",stroke:"#b37b36","stroke-width":"1.5","pointer-events":"none"}));
- svg.append(el("text",{x:sx,y:sy-27,"font-size":"10","font-weight":"800","text-anchor":"middle",fill:"#79521e","pointer-events":"none"},"START"));
+ svg.append(el("ellipse",{cx:sx,cy:sy+5,rx:22,ry:15.5,fill:"none",stroke:"#e8c383","stroke-width":"1.5",opacity:".7","data-start-marker":"true","pointer-events":"none"}));
+ svg.append(el("text",{x:sx,y:sy-43,"font-size":"8","font-weight":"700","text-anchor":"middle",fill:"#483a23",stroke:"#f5e1b7","stroke-width":"2","paint-order":"stroke","pointer-events":"none"},"START"));
  if(state.showRouteNumbers){
    const numbers=el("g",{"pointer-events":"none","aria-hidden":"true"});
    state.route.forEach((id,i)=>{
