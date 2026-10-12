@@ -1,0 +1,12 @@
+{
+  "name": "sams-gezeitenkarten",
+  "private": true,
+  "scripts": {
+    "test:unit": "node --test tests/reference/*.test.mjs",
+    "test:browser": "playwright test",
+    "test:all": "npm run test:unit && npm run test:browser"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0"
+  }
+}
