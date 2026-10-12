@@ -1,9 +1,10 @@
+import {hexCenter,hexVertices,placeLabelLayout} from './place-labels.mjs';
 import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, MARGIN_COLUMNS, MARGIN_ROWS} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
 import {mapLabels} from '../../content/reference-3.6.mjs';
-function poly(x,y){return Array.from({length:6},(_,i)=>{const a=i*Math.PI/3+Math.PI/6;return `${(x+36*Math.cos(a)).toFixed(2)},${(y+36*Math.sin(a)).toFixed(2)}`}).join(" ")}
-function coords(c){return [60+c.q*82+(c.r%2)*41,56+c.r*68]}
+function poly(x,y){return hexVertices(x,y).map(([x,y])=>`${x.toFixed(2)},${y.toFixed(2)}`).join(" ")}
+const coords=hexCenter;
 export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate}){
  const $=id=>document.getElementById(id);
  const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.replaceChildren();svg.setAttribute("viewBox",CHART_VIEWBOX);
@@ -24,19 +25,29 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   const [cx,cy]=artCenter(o.cells);
   art.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
  }
- // Beschriftung gehört zum geografischen Objekt, nicht zu einem einzelnen Hexfeld.
- const islandLabel=(ids,t,angle=0,dx=0,dy=0)=>{
-   const [cx,cy]=artCenter(ids);
-   const width=Math.max(66,t.length*9.4+18);
-   const g=el("g",{class:"place-label",transform:`translate(${cx+dx} ${cy+dy})`,"pointer-events":"none","aria-hidden":"true"});
-   g.append(el("rect",{x:-width/2,y:-15,width,height:24,rx:3,fill:"#f3e5c5",stroke:"#9e7b45","stroke-width":".8",opacity:".97"}));
-   g.append(el("image",{href:"assets/ui/paper-grain.webp",x:-width/2+1,y:-14,width:width-2,height:22,preserveAspectRatio:"none",opacity:".35"}));
-   g.append(el("text",{x:0,y:2,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"17","font-weight":"600",fill:"#47351e"},t));
-   art.append(g);
+ // Labels belong exclusively to non-navigable, connected land geometry.
+ const islandLabel=(ids,t)=>{
+   const layout=placeLabelLayout(ids,t,blocked,byId);if(!layout)return;
+   const {x,y,width,height,fontSize,cell,polygon}=layout;
+   const clipId='place-label-clip-'+cell;
+   const clip=el("clipPath",{id:clipId,clipPathUnits:"userSpaceOnUse"});
+   clip.append(el("polygon",{points:polygon.map(p=>p.join(',')).join(' ')}));art.append(clip);
+   const clipped=el("g",{"clip-path":`url(#${clipId})`,"pointer-events":"none"});
+   const g=el("g",{class:"place-label",transform:`translate(${x} ${y})`,"data-label-cell":cell,"data-label-cells":layout.cells.join(' '),"pointer-events":"none","aria-hidden":"true"});
+   g.append(el("rect",{x:-width/2,y:-height/2,width,height,rx:2,fill:"#f3e5c5",stroke:"#9e7b45","stroke-width":".5",opacity:".62"}));
+   g.append(el("image",{href:"assets/ui/paper-grain.webp",x:-width/2+.5,y:-height/2+.5,width:width-1,height:height-1,preserveAspectRatio:"none",opacity:".12"}));
+   const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,serif","font-size":fontSize,"font-weight":"600",fill:"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
+   g.append(text);clipped.append(g);art.append(clipped);
  };
- for(const label of mapLabels)islandLabel(label.cells,label.text,label.angle,label.dx,label.dy);
- for(const place of Object.values(puzzle.places))if(place.kind==="island")islandLabel(place.cells,place.name,0,7,-23);else if(place.kind==="lighthouse")islandLabel(place.cells,place.name,0,0,-43);
+ for(const label of mapLabels)islandLabel(label.cells,label.text);
+ for(const place of Object.values(puzzle.places))islandLabel(place.cells,place.name);
  svg.append(art);
+ // Fit actual browser font metrics without expanding the safe land footprint.
+ for(const label of art.querySelectorAll('.place-label')){
+  const text=label.querySelector('text'),available=Number(label.querySelector('rect').getAttribute('width'))-6;
+  const measured=text.getComputedTextLength();
+  if(measured>available)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*available/measured);
+ }
  // Geographic coordinate guides and margin headings remain visible even when
  // the decorative chart is disabled. The staggered rows bend column guides.
  const graticule=el("g",{class:"coordinate-guides","pointer-events":"none","aria-hidden":"true"});

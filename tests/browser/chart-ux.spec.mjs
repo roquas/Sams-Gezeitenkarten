@@ -56,11 +56,11 @@ test('mobile overview shows every clue and preserves game, scroll, keyboard and 
  await page.setViewportSize({width:1440,height:1080});await expect(page.locator('.mobile-view-nav')).toBeHidden();await expect(page.locator('#logbook')).toBeVisible();
 });
 test('chart labels sit in parchment, are legible and do not intercept map controls',async({page})=>{
- await expect(page.locator('#map .place-label')).toHaveCount(3);
+ await expect(page.locator('#map .place-label')).toHaveCount(2);
  for(const width of [390,1440]){
   await page.setViewportSize({width,height:1000});
   const labels=await page.locator('#map .place-label').evaluateAll(ns=>ns.map(n=>({events:getComputedStyle(n).pointerEvents,size:Number(n.querySelector('text').getAttribute('font-size'))})));
-  expect(labels.every(l=>l.events==='none'&&l.size>=17)).toBe(true);
+  expect(labels.every(l=>l.events==='none'&&l.size>=11)).toBe(true);
   const bounds=await page.locator('#map .coordinate-guides').evaluate(g=>{const b=g.getBBox();return {x:b.x,y:b.y,width:b.width,height:b.height};});
   expect(bounds.x).toBeGreaterThan(-35);expect(bounds.y).toBeGreaterThan(-35);expect(bounds.x+bounds.width).toBeLessThan(510);expect(bounds.y+bounds.height).toBeLessThan(420);
  }
