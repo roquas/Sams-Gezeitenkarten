@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {blocked,cells,start,solution,distance,coast,routes,valid,direction,predicates,solutions} from './reference-rules.mjs';
+test('25 cells, three blocked',()=>{assert.equal(cells.length,25);assert.deepEqual([...blocked],['B3','C3','E2']);});
+test('hex distance symmetric and unaffected by obstacles',()=>{for(const a of cells)for(const b of cells){assert.equal(distance(a,b),distance(b,a));assert.equal(distance(a,b)===0,a===b);}assert.equal(distance('B3','C3'),1);});
+test('solution is a legal 6-leg route',()=>{assert.equal(start,'D4');assert.ok(valid(solution));assert.equal(direction('D4','E3'),'NE');assert.equal(direction('E3','D2'),'NW');assert.equal(direction('B1','A1'),'W');});
+test('coast is edge-adjacent to Tesoro',()=>{assert.equal(coast('C2'),true);assert.equal(coast('B2'),true);assert.equal(coast('B3'),false);assert.equal(coast('E2'),false);});
+test('all seven clues accept canonical solution',()=>predicates.forEach((p,i)=>assert.ok(p(solution),'clue '+(i+1))));
+test('519 legal routes and unique solution',()=>{const all=routes();assert.equal(all.length,519);assert.deepEqual(solutions(),[solution]);});
+test('six of seven clues needed for uniqueness',()=>{const all=routes();const required=predicates.filter((_,i)=>all.filter(r=>predicates.every((p,j)=>i===j||p(r))).length>1);assert.equal(required.length,6);});
