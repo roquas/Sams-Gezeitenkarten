@@ -123,3 +123,8 @@ Zusätzlicher Rasteratlas: `assets/ui/tool-refinements.webp`, 2 × 3 Zellen.
 Prompts sind in `UI-ASSET-PROMPTS.json` dokumentiert. Die bisherigen Bilder
 bleiben erhalten. Der lokale Safari-Review bestätigte die Materialdarstellung;
 ein alter Browsercache war Ursache der zunächst gemischten Oberfläche.
+
+Icon-Review verifiziert mit [Actions 38306195630](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38306195630):
+28 Unit-Tests und 67 Browser-Tests bestanden, 3 erwartete Skips.
+[Obere Leiste](screenshots/upper-icons.jpg) und [Mobilansicht](screenshots/mobile-icons.jpg)
+zeigen den tatsächlichen Chromium-Stand des UI-Commits `16a1b60`.
