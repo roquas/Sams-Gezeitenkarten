@@ -9,3 +9,15 @@ Noch keine Migration: Regeln und Bedienung werden im nächsten Schritt angeschlo
 
 Validierung: 15 Unit-Tests bestanden. Browserprüfung anfangs durch fehlende
 Chromium-Installation blockiert; Installation und erneute Prüfung erfolgen vor Push.
+
+## Schritt 2: Vorhandene Engine anschließen
+
+Start, befahrbare Felder, Sperrfelder, Lösung für Notizprüfung, Hinweistexte,
+Hintergrund und Overlays stammen aus `puzzles/reference-3.6.mjs`.
+Hexabstände und Nachbarschaft stammen aus `src/engine/hex.mjs`.
+Routenprüfung nutzt Legalität und sämtliche Hinweisprädikate der Engine.
+Keine neuen Rätselregeln oder Generatorfunktionen.
+
+Schritt 1: GitHub Actions Push-Lauf 38256784467 erfolgreich (Unit + Browser).
+Lokale Browsertests können wegen blockierter Chromium-Downloads nicht starten;
+die vollständige Browserprüfung erfolgt in Actions für Desktop und Mobilansicht.

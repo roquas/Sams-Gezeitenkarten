@@ -1,3 +1,7 @@
+import {referencePuzzle as puzzle} from '../../puzzles/reference-3.6.mjs';
+import {createRules} from '../engine/puzzle.mjs';
+import {distance as dist, adjacent as neighbor} from '../engine/hex.mjs';
+const rules=createRules(puzzle);
 
 (()=>{
 "use strict";
@@ -31,19 +35,17 @@ responsiveAside.addEventListener("touchend",e=>{
  touchStart=null;
 },{passive:true});
 
-const LETTERS="ABCDE", GREEK_SYMBOLS=["α","β","γ","δ","ε"], GREEK=["Alpha","Beta","Gamma","Delta","Epsilon"], ROWCOLORS=[{name:"Cyan",short:"C",hex:"#28b9c5"},{name:"Magenta",short:"M",hex:"#c74c99"},{name:"Violett",short:"V",hex:"#8761ba"},{name:"Blau",short:"B",hex:"#4178b8"},{name:"Orange",short:"O",hex:"#d28a39"}], blocked=new Set(["B3", "C3", "E2"]), solution=["D4", "E3", "D2", "C2", "B2", "B1", "A1"];
+const LETTERS="ABCDE", GREEK_SYMBOLS=["α","β","γ","δ","ε"], GREEK=["Alpha","Beta","Gamma","Delta","Epsilon"], ROWCOLORS=[{name:"Cyan",short:"C",hex:"#28b9c5"},{name:"Magenta",short:"M",hex:"#c74c99"},{name:"Violett",short:"V",hex:"#8761ba"},{name:"Blau",short:"B",hex:"#4178b8"},{name:"Orange",short:"O",hex:"#d28a39"}], blocked=rules.blocked, solution=puzzle.solution;
 // Neuer unabhängiger Testfall; sieben Hinweise gegen sämtliche legalen Routen geprüft.
-const clues=[["I","In der ersten Stunde hielten wir Kurs nach Nordosten. Robin sagte, der Kompass habe dabei ausgesprochen überzeugt ausgesehen."],["II","In der zweiten Stunde drehten wir den Kurs um genau 60° nach links. Sam notierte vorsichtshalber auch, dass links nicht dasselbe wie zurück bedeutet."],["III","Nach Stunde 4 lag unser Boot direkt an der Küste von Tesoro – auf einem Wasserfeld mit gemeinsamer Hexseite zur Insel. Robin winkte einem Felsen zu."],["IV","In der sechsten Stunde fuhren wir nach Westen. Das war laut Robin der kürzeste Weg nach irgendwohin."],["V","Nach Stunde 5 waren wir genau ein Hexfeld vom Leuchtturm bei Gamma/Cyan entfernt. Sam konnte sogar die Möwen zählen."],["VI","Zwischen unseren Positionen nach Stunde 1 und Stunde 3 lagen genau zwei Hexfelder Luftlinie. Auf dem Papier sah das ordentlicher aus als auf See."],["VII","Zwischen Stunde 3 und Stunde 6 waren wir insgesamt zweimal direkt an der Küste von Tesoro. Sam zählte die Stunden; Robin hatte inzwischen den Kompass verlegt."]];
-const cells=Array.from({length:25},(_,i)=>({q:i%5,r:Math.floor(i/5),id:LETTERS[i%5]+(Math.floor(i/5)+1)}));
+const clues=puzzle.clues.map(({id,text})=>[id,text]);
+const cells=rules.cells.map(id=>({q:id.charCodeAt(0)-65,r:Number(id.slice(1))-1,id}));
 const byId=Object.fromEntries(cells.map(c=>[c.id,c]));
 const pretty=id=>GREEK[LETTERS.indexOf(id[0])]+" / "+ROWCOLORS[Number(id.slice(1))-1].name;
-const dist=(a,b)=>{const x=byId[a],y=byId[b];const aq=x.q-Math.floor(x.r/2),bq=y.q-Math.floor(y.r/2);return Math.max(Math.abs(aq-bq),Math.abs(x.r-y.r),Math.abs(aq+x.r-bq-y.r))};
-const neighbor=(a,b)=>dist(a,b)===1;
 const key=(layer,id)=>layer+":"+id;
-const initial=()=>({layer:1,tool:"maybe",hideRouteMarks:false,showRouteNumbers:false,distanceMode:false,distanceOrigin:null,marks:{},route:["D4"],penalty:0,hintCount:0,hiddenHours:[],doneClues:[],help:"",result:""});
+const initial=()=>({layer:1,tool:"maybe",hideRouteMarks:false,showRouteNumbers:false,distanceMode:false,distanceOrigin:null,marks:{},route:[puzzle.start],penalty:0,hintCount:0,hiddenHours:[],doneClues:[],help:"",result:""});
 let state;
 try{state={...initial(),...JSON.parse(localStorage.getItem("gezeitenkarten-reference-3.6-v0.1")||"{}")}}catch{state=initial()}
-if(!Array.isArray(state.route)||state.route[0]!=="D4")state=initial();
+if(!Array.isArray(state.route)||state.route[0]!==puzzle.start)state=initial();
 let history=[],dragging=false,dragValue=null;
 const $=id=>document.getElementById(id);
 function save(){try{localStorage.setItem("gezeitenkarten-reference-3.6-v0.1",JSON.stringify(state))}catch{}}
@@ -59,23 +61,14 @@ function renderMap(){
  const showArt=document.getElementById("showChart").checked;
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
  const image=(file,x,y,w,h,opacity=1)=>el("image",{href:"prototypes/3.6/assets/"+file,x,y,width:w,height:h,opacity,preserveAspectRatio:"none","pointer-events":"none"});
- art.append(image("meer-01.webp",0,0,475,385));
+ art.append(image(puzzle.background.asset,0,0,475,385));
  // Neuer Fall: B3, C3 und E2 sind unpassierbar.
  // B3 + C3 bilden eine gemeinsame, über zwei Hexfelder reichende Insel.
  // Jede Illustration wird am Mittelpunkt ihrer Spielfeld-Zuordnung verankert.
  // Motivanker sind zentral konfiguriert: spätere Generatoren liefern Zellen + Variante.
- const mapArt=[
-   {file:"insel-einzeln-01.png",cells:["E2"],w:76,h:76,dx:0,dy:0,opacity:.85},
-   {file:"insel-zweier-01.png",cells:["B3","C3"],w:144,h:124,dx:0,dy:0,opacity:.88},
-   {file:"segelboot-01.png",cells:["D4"],w:60,h:47,dx:0,dy:0,opacity:.83},
-   {file:"leuchtturm-01.png",cells:["C1"],w:68,h:68,dx:0,dy:0,opacity:.92},
-   {file:"riff-01.png",cells:["A3"],w:68,h:66,dx:0,dy:0,opacity:.76},
-   {file:"insel-einzeln-02.png",cells:["D5"],w:64,h:64,dx:0,dy:0,opacity:.82},
-   {file:"segelboot-02.png",cells:["E4"],w:61,h:51,dx:0,dy:0,opacity:.77},
-   {file:"krabbe-01.png",cells:["D5"],w:45,h:42,dx:0,dy:0,opacity:.32}
- ];
+ const mapArt=puzzle.overlays;
  const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
- for(const o of mapArt){const [cx,cy]=artCenter(o.cells);art.append(image(o.file,cx-o.w/2+o.dx,cy-o.h/2+o.dy,o.w,o.h,o.opacity))}
+ for(const o of mapArt){const [cx,cy]=artCenter(o.cells);art.append(image(o.asset,cx-o.w/2+o.dx,cy-o.h/2+o.dy,o.w,o.h,o.opacity))}
  // Beschriftung gehört zum geografischen Objekt, nicht zu einem einzelnen Hexfeld.
  const islandLabel=(ids,t,angle=0,dx=0,dy=0)=>{
    const [cx,cy]=artCenter(ids);
@@ -84,7 +77,7 @@ function renderMap(){
    art.append(g);
  };
  islandLabel(["E2"],"Klippen",-9,0,-17);
- islandLabel(["B3","C3"],"Tesoro",-8,7,-23);
+ for(const place of Object.values(puzzle.places))if(place.kind==="island")islandLabel(place.cells,place.name,-8,7,-23);
  svg.append(art);
  // Geographic coordinate guides and margin headings remain visible even when
  // the decorative chart is disabled. The staggered rows bend column guides.
@@ -198,7 +191,7 @@ function renderMap(){
  }
  svg.append(routeInk);
  // Distinguish the actual departure point from the wreck's identical anchor icon.
- const [sx,sy]=coords(byId["D4"]);
+ const [sx,sy]=coords(byId[puzzle.start]);
  svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#fff6d8","stroke-width":"5","pointer-events":"none"}));
  svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#b37b36","stroke-width":"3.5","stroke-dasharray":"5 3","pointer-events":"none"}));
  svg.append(el("rect",{x:sx-19,y:sy-39,width:38,height:16,rx:7,fill:"#fff6d8",stroke:"#b37b36","stroke-width":"1.5","pointer-events":"none"}));
@@ -248,7 +241,7 @@ function apply(id,first){
  if(state.tool==="clearAll"){const targets=Object.keys(state.marks).filter(k=>k.endsWith(":"+id));if(targets.length){snapshot();targets.forEach(k=>delete state.marks[k]);}state.help=`<div class="notice">Markierungen auf ${pretty(id)} in allen Stunden gelöscht (${targets.length}).</div>`;render();return}
  if(state.distanceMode && !state.distanceOrigin){state.distanceOrigin=id;render();return}
  if(state.tool==="route"){
-  if(state.route.length>=7||state.route.includes(id)||!neighbor(state.route.at(-1),id))return;
+  if(state.route.length>=puzzle.steps+1||state.route.includes(id)||!neighbor(state.route.at(-1),id))return;
   snapshot();state.route.push(id);state.result="";render();return;
  }
  const k=key(state.layer,id),val=state.tool==="erase"?undefined:state.tool;
@@ -275,7 +268,7 @@ $("toggleDistances").onclick=()=>{state.distanceMode=!state.distanceMode;state.d
 $("hideRouteMarks").addEventListener("change",e=>{state.hideRouteMarks=e.target.checked;render()});
 $("clearLayer").onclick=()=>{snapshot();for(const k of Object.keys(state.marks))if(k.startsWith(state.layer+":"))delete state.marks[k];render()};
 $("routeBack").onclick=()=>{if(state.route.length>1){snapshot();state.route.pop();state.result="";render()}};
-$("verify").onclick=()=>{if(state.route.length!==7){state.result='<div class="notice error">Die Route braucht genau sechs Etappen. Aktuell sind es '+(state.route.length-1)+'.</div>'}else if(state.route.join("|")===solution.join("|")){state.result='<div class="notice success"><strong>Richtig!</strong> Die Route ist vollständig rekonstruiert. Sam hat den Kurs trotz verschwundenem Kompass rekonstruiert. Du hast '+state.penalty+' Strafpunkte gesammelt.</div>'}else{state.result='<div class="notice error">Diese Route erfüllt nicht alle Hinweise. Die korrekte Strecke wird nicht verraten.</div>'}render()};
+$("verify").onclick=()=>{if(state.route.length!==puzzle.steps+1){state.result='<div class="notice error">Die Route braucht genau sechs Etappen. Aktuell sind es '+(state.route.length-1)+'.</div>'}else if(rules.legal(state.route)&&puzzle.clues.every(clue=>rules.matches(state.route,clue))){state.result='<div class="notice success"><strong>Richtig!</strong> Die Route ist vollständig rekonstruiert. Sam hat den Kurs trotz verschwundenem Kompass rekonstruiert. Du hast '+state.penalty+' Strafpunkte gesammelt.</div>'}else{state.result='<div class="notice error">Diese Route erfüllt nicht alle Hinweise. Die korrekte Strecke wird nicht verraten.</div>'}render()};
 $("checkMarks").onclick=()=>{
  snapshot();state.penalty+=5;
  let wrong=0,checked=0;
