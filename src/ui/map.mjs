@@ -13,14 +13,23 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  const showArt=document.getElementById("showChart").checked;
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
  const image=(file,x,y,w,h,opacity=1)=>el("image",{href:"prototypes/3.6/assets/"+file,x,y,width:w,height:h,opacity,preserveAspectRatio:"none","pointer-events":"none"});
- art.append(image(puzzle.background.asset,0,0,475,385));
+ art.append(el("image",{href:"assets/seekarte/meer-pergament.webp",x:0,y:0,width:475,height:385,preserveAspectRatio:"none","pointer-events":"none"}));
  // Neuer Fall: B3, C3 und E2 sind unpassierbar.
  // B3 + C3 bilden eine gemeinsame, über zwei Hexfelder reichende Insel.
  // Jede Illustration wird am Mittelpunkt ihrer Spielfeld-Zuordnung verankert.
  // Motivanker sind zentral konfiguriert: spätere Generatoren liefern Zellen + Variante.
  const mapArt=puzzle.overlays;
  const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
- for(const o of mapArt){const [cx,cy]=artCenter(o.cells);art.append(image(o.asset,cx-o.w/2+o.dx,cy-o.h/2+o.dy,o.w,o.h,o.opacity))}
+ for(const o of mapArt){
+  const [cx,cy]=artCenter(o.cells);
+  const special={
+   "insel-zweier-01.png":{file:"tesoro.png",w:148,h:112,dx:0,dy:0},
+   "leuchtturm-01.png":{file:"leuchtturm.png",w:75,h:81,dx:0,dy:-5},
+   "segelboot-01.png":{file:"segelschiff.png",w:66,h:76,dx:0,dy:-6}
+  }[o.asset];
+  if(special)art.append(el("image",{href:"assets/seekarte/"+special.file,x:cx-special.w/2+special.dx,y:cy-special.h/2+special.dy,width:special.w,height:special.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
+  else art.append(image(o.asset,cx-o.w/2+o.dx,cy-o.h/2+o.dy,o.w,o.h,o.opacity));
+ }
  // Beschriftung gehört zum geografischen Objekt, nicht zu einem einzelnen Hexfeld.
  const islandLabel=(ids,t,angle=0,dx=0,dy=0)=>{
    const [cx,cy]=artCenter(ids);
