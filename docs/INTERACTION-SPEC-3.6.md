@@ -72,3 +72,7 @@ Diese Entscheidungen gelten **für die künftige Version**, nicht rückwirkend f
 | „Alle Stunden radieren“ ohne Treffer | Kein Snapshot, aber Hinweistext | Keine inhaltliche Änderung; logisch plausibel |
 
 **Aktuell MIT Snapshot, fachlich zu prüfen:** Denkanstoß (+10 Strafpunkte, `hintCount`), Notizprüfung (+5 Strafpunkte), Leeren einer bereits leeren Stunde (erzeugt dennoch Snapshot), Klick auf ein bereits identisch markiertes Feld (löscht Markierung), Hinweis abhaken. Ein Undo kann wegen vollständiger Zustandssnapshots auch Einstellungen zurücksetzen, die selbst keinen Snapshot erzeugten. „Ohne eigenen Snapshot“ ist deshalb **nicht gleichbedeutend mit „kann niemals durch Undo zurückspringen“**.
+
+### Beschlossene Fehlerkorrektur: Anzeigezustand und Undo
+
+Eine reine Anzeigeänderung ohne eigenen Undo-Eintrag darf durch ein späteres Undo **nicht** zurückgesetzt werden. Beispiel: Illustration einblenden → Markierung setzen → Undo; Illustration bleibt eingeblendet. Die Illustration ist in 3.6 separat als DOM-Checkbox verwaltet; für sie ist dieser konkrete Defekt bislang **nicht nachgewiesen**. Andere Anzeigeoptionen sind Teil vollständiger Zustandssnapshots und können dadurch indirekt zurückspringen. Regressionstests für alle Anzeigeoptionen vorsehen. Siehe GitHub-Issue #13.
