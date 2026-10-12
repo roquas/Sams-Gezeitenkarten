@@ -16,6 +16,8 @@ docs/
 index.html
 ```
 
+**Falldaten statt globaler Konstanten:** Gesperrte Felder sind eine variable Menge pro Rätsel; der Referenzfall 3.6 besitzt drei. Engine-Tests sollen mindestens eine abweichende Sperrfeldkonfiguration prüfen. Kartengröße, Startfeld und Routenlänge bleiben vorerst als mögliche spätere Parametrisierungen offen.
+
 **Prinzipien:** Engine und Generator unabhängig vom DOM; UI liest definierte Falldaten; Text/Grafikänderungen erzwingen keine Regeländerung; Generatorfehler über reproduzierbare Seeds testbar. Für den ersten modularen Stand kein verpflichtendes Backend.
 
 **Offen:** ES-Module vs. Buildschritt, Test- und CI-Werkzeuge, Persistenzmigration, Falldatenschema, Trennung regelrelevanter und erzählerischer Hinweise, Rechtehandling.
