@@ -1,3 +1,4 @@
+import {mountUpperMaterials} from './material-icons.mjs';
 const svg=body=>`<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">${body}</svg>`;
 const eye='<path d="M6 16Q16 6 26 16Q16 26 6 16Z"/><circle cx="16" cy="16" r="2.5"/><path class="eye-slash" d="M7 26L25 6"/>';
 const icons={
@@ -15,8 +16,9 @@ export function createToolbar(puzzle){
  const $=id=>document.getElementById(id);
  $('hours').innerHTML=Array.from({length:puzzle.steps},(_,index)=>{
   const h=index+1,edge=hourEdge(h);
-  return `<button type="button" class="hour" data-hour="${h}" aria-label="Stunde ${h}" title="Stunde ${h}"><svg viewBox="0 0 32 32" aria-hidden="true"><polygon class="hexface" points="28.1,9 28.1,23 16,30 3.9,23 3.9,9 16,2"/><line class="hexedge" ${Object.entries(edge).map(([k,v])=>`${k}="${v}"`).join(' ')}/><text class="hexhour" x="16" y="20" text-anchor="middle">${h}</text></svg></button>`;
+  return `<button type="button" class="hour" data-hour="${h}" aria-label="Stunde ${h}" title="Stunde ${h}"><span class="hour-number">${h}</span><svg class="hour-mini" viewBox="0 0 32 32" aria-hidden="true"><polygon class="hexface" points="28.1,9 28.1,23 16,30 3.9,23 3.9,9 16,2"/><line class="hexedge" ${Object.entries(edge).map(([k,v])=>`${k}="${v}"`).join(' ')}/><text class="hexhour" x="16" y="20" text-anchor="middle">${h}</text></svg></button>`;
  }).join('');
+ mountUpperMaterials();
  const button=(id,label,icon)=>`<button class="rail-button" id="${id}" type="button" aria-label="${label}" title="${label}">${icons[icon]}</button>`;
  $('mapActions').innerHTML=button('undo','Letzte Aktion rückgängig machen','undo')+button('toggleDistances','Abstände einblenden','distance')+'<span class="rail-separator" aria-hidden="true"></span>'+button('toggleHourMarks','Markierungen der aktuellen Stunde anzeigen','marks')+button('toggleRouteNumbers','Routennummern anzeigen','numbers')+'<span class="rail-separator" aria-hidden="true"></span>'+button('verify','Route überprüfen','verify');
  return state=>{
