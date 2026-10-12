@@ -24,7 +24,7 @@ vom Start aus sechs benachbarte Wasserfelder verbinden und „Route prüfen“ w
 Ein einzelner Hinweis steht im blätterbaren Bordbuch direkt unter der Seekarte.
 Pfeile, Wischgesten oder die Links-/Rechts-Tasten wechseln den Hinweis; Antippen,
 Enter oder Leertaste haken ihn ab. Zusätzliche Hinweise und Einstellungen stehen
-in der separaten Hilfe; auf kleinen Displays öffnet „Hilfe“ die seitliche Ansicht. Notizen und Route werden lokal im Browser gespeichert.
+in der separaten Hilfe; auf kleinen Displays wechselt „Seekarte | Logbuch“ am unteren Rand zwischen Karte und vollständiger Hinweisübersicht. Notizen und Route werden lokal im Browser gespeichert.
 
 Undo nimmt Bearbeitungen und Notizprüfungen zurück. Anzeigeoptionen, Navigation und
 bezahlte Denkanstöße bleiben bestehen. Undo-Historie wird nicht gespeichert.
@@ -51,6 +51,7 @@ GitHub Actions führt beide Testgruppen nach Push und Pull Request aus.
 - `content/reference-3.6.mjs`: fallbezogene Hilfe und Kartenbeschriftung
 - `prototypes/3.6/`: unverändertes Original mit Grafiken
 - [Grafische Ausbaustufe und Prüfumfang #15–#17](docs/SEEKARTE-15-17.md)
+- [Koordinaten, Kartenlabels und mobile Ansichten #26/#27/#29](docs/CHART-UX-26-27-29.md)
 - [Materialgestaltung, Browserbilder und Grenzen](docs/MATERIAL-DESIGN.md)
 - [Umsetzung und Prüfstand 0.1](docs/IMPLEMENTATION-0.1.md)
 - [Anforderungen](docs/REQUIREMENTS.md), [Entscheidungen](docs/DECISIONS.md)

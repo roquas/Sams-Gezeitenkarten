@@ -18,7 +18,7 @@ export function chartOverlays(overlays){
  });
 }
 // Nine slices reuse the original watercolor border, widening only the parchment.
-// All hex centers, polygons, labels and pointer coordinates stay unchanged.
+// All hex centers, polygons and pointer coordinates stay unchanged.
 export function parchmentTiles(){
  const sourceX=[0,30,445,475],sourceY=[0,30,355,385];
  const targetX=[-44,36,439,519],targetY=[-44,30,355,429];
