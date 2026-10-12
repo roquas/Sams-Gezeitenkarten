@@ -4,7 +4,7 @@ test('raster upper materials load, stay clear of hit targets and render at deskt
  const failed=[];page.on('response',r=>{if(r.status()>=400&&r.url().includes('/assets/'))failed.push(r.url());});
  await page.reload();
  await expect(page.locator('.chart-toolbar .brass-rail')).toHaveCount(2);
- await expect(page.locator('.chart-toolbar .raster-icon')).toHaveCount(7);
+ await expect(page.locator('.chart-toolbar .raster-icon')).toHaveCount(8);
  await page.locator('[data-hour="3"]').click();await expect(page.locator('[data-hour="3"]')).toHaveAttribute('aria-pressed','true');
  await page.locator('[data-tool="yes"]').click();await page.locator('#map [data-id="A1"]').click();
  await expect(page.locator('[data-tool="yes"]')).toHaveAttribute('aria-pressed','true');
@@ -26,7 +26,7 @@ test('all material exports decode and the page turn keeps one accessible hint',a
  const decoded=await page.evaluate(async()=>{const {MATERIAL_ASSETS}=await import('/src/ui/material-icons.mjs');return Promise.all(MATERIAL_ASSETS.map(async src=>{const im=new Image();im.src=src;await im.decode();return {src,width:im.naturalWidth,height:im.naturalHeight};}));});
  expect(decoded.every(im=>im.width>0&&im.height>0)).toBe(true);
  const backgrounds=await page.locator('.raster-icon').evaluateAll(ns=>ns.map(el=>getComputedStyle(el).backgroundImage));
- expect(backgrounds.every(bg=>bg.includes('tool-atlas.webp'))).toBe(true);
+ expect(backgrounds.every(bg=>/tool-(atlas|refinements)\.webp/.test(bg))).toBe(true);
  await page.emulateMedia({reducedMotion:'no-preference'});
  await page.locator('#nextClue').click();
  await expect(page.locator('#cluePosition')).toHaveText('II / VII');
@@ -63,4 +63,18 @@ test('all seven clues stay legible above page controls at narrow and tablet widt
    await page.locator('#nextClue').click();
   }
  }
+});
+
+test('refined icons keep hour geometry, shared writing tools and equal toggle eyes',async({page})=>{
+ await expect(page.locator('.marking-tools [data-tool]')).toHaveCount(5);
+ await expect(page.locator('#routeBack .icon-routeBack')).toHaveCount(1);
+ await expect(page.locator('#prevClue .icon-previous')).toHaveCount(1);
+ await expect(page.locator('#nextClue .icon-next')).toHaveCount(1);
+ for(const width of [320,390,768,1440]){
+  await page.setViewportSize({width,height:1000});
+  const eyes=await page.locator('#toggleHourMarks .icon-eye,#toggleRouteNumbers .icon-eye').evaluateAll(ns=>ns.map(n=>n.getBoundingClientRect().width));
+  expect(eyes[0]).toBe(eyes[1]);
+  const hex=await page.locator('[data-hour="1"] .hour-mini').boundingBox();expect(hex.width).toBeGreaterThanOrEqual(39);
+ }
+ await page.locator('[data-hour="6"]').focus();await page.keyboard.press('Enter');await expect(page.locator('[data-hour="6"]')).toHaveAttribute('aria-pressed','true');
 });

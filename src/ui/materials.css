@@ -152,3 +152,25 @@ body{background-size:auto,100vw 100vh;background-repeat:no-repeat;background-att
  .bordbook .clue-nav{bottom:64px;left:42px;right:42px}
  .bordbook .clue-nav #clueDone{padding:3px 5px;font-size:10px;max-width:170px}
 }
+
+/* Icon review: shared writing group, explicit route backstep and page directions. */
+.refined-icon{background-image:url('../../assets/ui/tool-refinements.webp');background-size:200% 300%}
+.chart-toolbar .hour .hour-mini{width:40px;height:40px;left:50%;top:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);opacity:1}
+.chart-toolbar .hour-number{position:relative;z-index:1;font-size:22px}
+.chart-toolbar .hour .hexface{fill:none;stroke:currentColor;stroke-width:1;opacity:.6}
+.chart-toolbar .hour .hexedge{stroke:currentColor;stroke-width:3}
+.marking-tools{position:relative;display:flex;align-items:center;flex:5;gap:4px;padding-top:15px;border-top:1px solid #92734480}
+.marking-feather{position:absolute;left:50%;top:-15px;transform:translateX(-50%);height:24px;padding:0 5px;background:#e3cfaa;pointer-events:none}
+.marking-feather .raster-icon{width:24px;height:24px}
+.chart-toolbar .toolstrip{align-items:center;gap:4px;padding-top:9px}
+.chart-toolbar .toolseparator{display:none}
+#nextClue .raster-icon{transform:none}
+.mark-emblem .raster-icon,.numbers-emblem .raster-icon{width:30px;height:30px}
+@media(max-width:600px){
+ .chart-toolbar .toolstrip{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:10px;gap:5px}
+ .marking-tools{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));width:100%;gap:2px;padding-top:10px}
+ .chart-toolbar .toolpick:nth-of-type(5),.chart-toolbar .toolpick:nth-of-type(6),.chart-toolbar .toolpick:nth-of-type(7){grid-column:auto}
+ .marking-feather{top:-16px}
+ .mark-emblem .raster-icon,.numbers-emblem .raster-icon{width:25px;height:25px}
+ #toggleRouteNumbers{width:76px;flex-basis:76px}
+}

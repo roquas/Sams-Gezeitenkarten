@@ -113,3 +113,13 @@ Der abschließende Dokumentationscommit ändert keine Browserdarstellung.
 
 Der neue Pull Request baut auf dem noch offenen PR #25 auf; Zielbranch ist deshalb
 `feature/aquarell-messing-bordbuch`. Beide Pull Requests bleiben ungemergt.
+
+## Icon-Nachtrag nach lokalem Safari-Review
+
+Große Stundenhexagone um die Ziffern; separates Route-minus-Symbol; gerade
+Buchpfeile; Radar mit konzentrischen Ringen; gemeinsame Schreibfeder über den
+ersten fünf Werkzeugen und gleich große Augen in beiden Anzeige-Toggles.
+Zusätzlicher Rasteratlas: `assets/ui/tool-refinements.webp`, 2 × 3 Zellen.
+Prompts sind in `UI-ASSET-PROMPTS.json` dokumentiert. Die bisherigen Bilder
+bleiben erhalten. Der lokale Safari-Review bestätigte die Materialdarstellung;
+ein alter Browsercache war Ursache der zunächst gemischten Oberfläche.
