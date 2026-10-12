@@ -1,3 +1,5 @@
+import {initialState, createHistory} from '../state/game-state.mjs';
+import {loadState,saveState} from '../persistence/storage.mjs';
 import {referencePuzzle as puzzle} from '../../puzzles/reference-3.6.mjs';
 import {createRules} from '../engine/puzzle.mjs';
 import {distance as dist, adjacent as neighbor} from '../engine/hex.mjs';
@@ -42,14 +44,14 @@ const cells=rules.cells.map(id=>({q:id.charCodeAt(0)-65,r:Number(id.slice(1))-1,
 const byId=Object.fromEntries(cells.map(c=>[c.id,c]));
 const pretty=id=>GREEK[LETTERS.indexOf(id[0])]+" / "+ROWCOLORS[Number(id.slice(1))-1].name;
 const key=(layer,id)=>layer+":"+id;
-const initial=()=>({layer:1,tool:"maybe",hideRouteMarks:false,showRouteNumbers:false,distanceMode:false,distanceOrigin:null,marks:{},route:[puzzle.start],penalty:0,hintCount:0,hiddenHours:[],doneClues:[],help:"",result:""});
-let state;
-try{state={...initial(),...JSON.parse(localStorage.getItem("gezeitenkarten-reference-3.6-v0.1")||"{}")}}catch{state=initial()}
-if(!Array.isArray(state.route)||state.route[0]!==puzzle.start)state=initial();
-let history=[],dragging=false,dragValue=null;
+const initial=()=>initialState(puzzle);
+let storage;try{storage=window.localStorage;}catch{}
+let state=loadState(puzzle,storage);
+const history=createHistory();
+let dragging=false,dragValue=null;
 const $=id=>document.getElementById(id);
-function save(){try{localStorage.setItem("gezeitenkarten-reference-3.6-v0.1",JSON.stringify(state))}catch{}}
-function snapshot(){history.push(JSON.stringify(state));if(history.length>100)history.shift()}
+function save(){saveState(puzzle,state,storage)}
+function snapshot(){history.push(state)}
 function poly(x,y){return Array.from({length:6},(_,i)=>{const a=i*Math.PI/3+Math.PI/6;return `${(x+36*Math.cos(a)).toFixed(2)},${(y+36*Math.sin(a)).toFixed(2)}`}).join(" ")}
 function coords(c){return [60+c.q*82+(c.r%2)*41,56+c.r*68]}
 function renderMap(){
@@ -207,7 +209,7 @@ function renderMap(){
  }
 }
 function render(){if(state.layer==="all")state.layer=1;
- $("hours").innerHTML=Array.from({length:7},(_,i)=>{
+ $("hours").innerHTML=Array.from({length:puzzle.steps},(_,index)=>{const i=index+1;
    const vertices=Array.from({length:6},(_,v)=>{const a=v*Math.PI/3+Math.PI/6;return `${(24+20*Math.cos(a)).toFixed(1)},${(23+20*Math.sin(a)).toFixed(1)}`}).join(" ");
    const a=(i-2)*Math.PI/3;
    const edge=i===0?"":`<line class="hexedge" x1="${(24+20*Math.cos(a-Math.PI/6)).toFixed(1)}" y1="${(23+20*Math.sin(a-Math.PI/6)).toFixed(1)}" x2="${(24+20*Math.cos(a+Math.PI/6)).toFixed(1)}" y2="${(23+20*Math.sin(a+Math.PI/6)).toFixed(1)}"/>`;
@@ -259,10 +261,10 @@ $("map").addEventListener("pointermove",e=>{
 window.addEventListener("pointerup",()=>dragging=false);
 $("hours").addEventListener("click",e=>{const b=e.target.closest("[data-hour]");if(!b)return;state.layer=Number(b.dataset.hour);render()});
 
-$("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>6)return;snapshot();const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
+$("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>6)return;const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
 
-$("tools").addEventListener("click",e=>{const b=e.target.closest("[data-tool]");if(!b)return;state.tool=b.dataset.tool;render()});
-$("undo").onclick=()=>{if(history.length){state=JSON.parse(history.pop());render()}};
+$("tools").addEventListener("click",e=>{const b=e.target.closest("[data-tool]");if(!b)return;state.tool=b.dataset.tool;state.distanceMode=false;state.distanceOrigin=null;render()});
+$("undo").onclick=()=>{state=history.undo(state);render()};
 $("toggleRouteNumbers").onclick=()=>{state.showRouteNumbers=!state.showRouteNumbers;render()};
 $("toggleDistances").onclick=()=>{state.distanceMode=!state.distanceMode;state.distanceOrigin=null;render()};
 $("hideRouteMarks").addEventListener("change",e=>{state.hideRouteMarks=e.target.checked;render()});
@@ -280,7 +282,7 @@ $("checkMarks").onclick=()=>{
  state.help='<div class="notice '+(wrong?"error":"success")+'"><strong>Notizprüfung:</strong> '+(wrong?`${wrong} Deiner ${checked} eindeutigen Markierungen widersprechen der tatsächlichen Route.`:`Keine der ${checked} eindeutigen Markierungen widerspricht der Route.`)+' „Möglich“-Markierungen werden nicht bewertet. Die Prüfung verrät nicht, welche Felder betroffen sind.</div>';render();
 };
 $("hint").onclick=()=>{
- snapshot();state.penalty+=10;state.hintCount++;
+ state.penalty+=10;state.hintPenalty+=10;state.hintCount++;
  const hints=["Hinweis I erlaubt direkt die erste Etappe: vom Startfeld aus genau einen Schritt nach Nordosten.", "Für Hinweis II drehe die erste Fahrtrichtung um eine Hexseite gegen den Uhrzeigersinn. So ergibt sich die zweite Etappe.", "Hinweis III betrifft nur Stunde 4: Die Position liegt auf einem befahrbaren Nachbarfeld von Tesoro.", "Hinweis IV sagt, in welche Richtung die letzte Etappe geht. Arbeite von möglichen Endfeldern rückwärts.", "Nutze „Abstände einblenden“ unter der Karte: Wähle den Leuchtturm als Bezugspunkt. Stunde 5 muss auf einem Feld mit Abstand 1 liegen.", "Vergleiche Stunde 1 und Stunde 3 mit der Abstandsanzeige. Die Luftlinie ist nicht die gefahrene Strecke.", "Zähle für Hinweis VII nur die Positionen der Stunden 3, 4, 5 und 6. Zwei davon müssen unmittelbar an Tesoro liegen."];
  // choose hint according to visible certainty and route progress, then move forward on repeated requests
  const certainHours=Array.from({length:7},(_,h)=>Object.entries(state.marks).some(([k,v])=>k.startsWith(h+":")&&v==="yes"));
@@ -290,7 +292,7 @@ $("hint").onclick=()=>{
  state.help='<div class="notice"><strong>Denkanstoß '+state.hintCount+':</strong> '+hints[idx]+'</div>';
  render();
 };
-$("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){state=initial();history=[];render()}};
+$("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){state=initial();history.clear();render()}};
 let currentClue=0;
 const colorTokens={Cyan:0,Magenta:1,Violett:2,Blau:3,Orange:4};
 function clueMarkup(t){

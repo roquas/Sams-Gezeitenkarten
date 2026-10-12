@@ -32,14 +32,15 @@ test('route, backstep, and verification of known solution',async({page})=>{
  await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig!');
  await page.locator('#routeBack').click();expect((await state(page)).route).toHaveLength(6);
 });
-test('hint has cost and is currently undoable (3.6 characterization)',async({page})=>{
+test('paid hint survives undo',async({page})=>{
  const help=page.locator('.logbook-section details').filter({has:page.locator('#hint')});
  // On mobile the logbook is in a scrollable pane; expand via DOM rather than
  // requiring Playwright to scroll the summary into the viewport.
  await help.evaluate(el=>{el.open=true;});
+ await cell(page,'A1').click();
  await page.locator('#hint').evaluate(el=>el.click());
  expect((await state(page)).penalty).toBe(10);
- await page.locator('#undo').click();expect((await state(page)).penalty).toBe(0);
+ await page.locator('#undo').click();expect((await state(page)).penalty).toBe(10);
 });
 test('chart illustration toggle does not enter state and survives undo',async({page})=>{
  await cell(page,'A1').click();
@@ -55,3 +56,33 @@ test('display option undo regression is known in 3.6',async({page})=>{
  expect((await state(page)).showRouteNumbers).toBe(true);
 });
 
+test('six hours and all display settings survive undo across an earlier edit',async({page})=>{
+ await expect(page.locator('#hours [data-hour]')).toHaveCount(6);
+ await cell(page,'A1').click();
+ await page.locator('[data-hour="3"]').click();
+ await page.locator('#toggleRouteNumbers').click();
+ await page.locator('#toggleHourMarks').click();
+ await page.locator('#toggleDistances').click();await cell(page,'A2').click();
+ await page.locator('#hideRouteMarks').evaluate(el=>{el.checked=true;el.dispatchEvent(new Event('change'));});
+ await page.locator('#undo').click();
+ const s=await state(page);expect(s.marks['1:A1']).toBeUndefined();expect(s.layer).toBe(3);
+ expect(s.showRouteNumbers).toBe(true);expect(s.hiddenHours).toEqual([3]);expect(s.hideRouteMarks).toBe(true);
+ expect(s.distanceMode).toBe(true);expect(s.distanceOrigin).toBe('A2');
+});
+test('switching tools removes distance overlay and next click marks immediately',async({page})=>{
+ await page.locator('#toggleDistances').click();await cell(page,'C1').click();
+ expect((await state(page)).distanceOrigin).toBe('C1');
+ await page.locator('[data-tool="yes"]').click();
+ expect((await state(page)).distanceMode).toBe(false);expect((await state(page)).distanceOrigin).toBeNull();
+ await cell(page,'A1').click();expect((await state(page)).marks['1:A1']).toBe('yes');
+});
+test('blocked, repeated and nonadjacent route clicks do not change route',async({page})=>{
+ await page.locator('[data-tool="route"]').click();
+ for(const id of ['B3','A1','D4'])await cell(page,id).click();
+ expect((await state(page)).route).toEqual(['D4']);
+ await cell(page,'E3').click();await cell(page,'D4').click();expect((await state(page)).route).toEqual(['D4','E3']);
+});
+test('invalid saved route recovers to playable initial state',async({page})=>{
+ await page.evaluate(k=>localStorage.setItem(k,JSON.stringify({route:['D4','Z9'],marks:null})),KEY);await page.reload();
+ expect((await state(page)).route).toEqual(['D4']);await cell(page,'A1').click();expect((await state(page)).marks['1:A1']).toBe('maybe');
+});

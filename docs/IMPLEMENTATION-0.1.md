@@ -21,3 +21,19 @@ Keine neuen Rätselregeln oder Generatorfunktionen.
 Schritt 1: GitHub Actions Push-Lauf 38256784467 erfolgreich (Unit + Browser).
 Lokale Browsertests können wegen blockierter Chromium-Downloads nicht starten;
 die vollständige Browserprüfung erfolgt in Actions für Desktop und Mobilansicht.
+
+## Schritt 3: Spielstand und Undo
+
+Eigene DOM-unabhängige Module für Initialzustand, begrenzte flüchtige Historie
+und fehlertolerante Speicherung. Ungültige Routen werden zurückgesetzt;
+Notizen und Anzeigeoptionen werden validiert. Persistierte HTML-Rückmeldungen
+werden beim Laden verworfen. Kein Zugriff auf den alten 3.6-Speicherschlüssel.
+
+Beschlossene Korrekturen: nur Stunden 1–6 auswählbar; Denkanstöße und ihre Kosten
+bleiben auch bei Undo älterer Bearbeitungen bestehen. Reine Anzeigeänderungen
+haben keinen Undo-Eintrag und werden nicht zurückgesetzt. Notizprüfung bleibt
+wie bisher rückgängig machbar, da keine gegenteilige Produktentscheidung vorliegt.
+Werkzeugwechsel beendet die Abstandsanzeige gemäß besprochenem Fehlerbericht.
+
+Schritt 2: Push-Lauf 38257016148 erfolgreich. Neue Unit- und Browserregressionen
+prüfen Undo, Speicherung, ungültige Routen und Werkzeugwechsel.
