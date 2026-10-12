@@ -1,0 +1,188 @@
+
+:root{--ink:#23363d;--navy:#173341;--paper:#fffdf6;--sand:#eee6d3;--muted:#65777b;--gold:#b37b36;--line:#d9d4c5}
+*{box-sizing:border-box}body{margin:0;background:#e8e8e2;color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer}button:disabled{opacity:.42;cursor:not-allowed}
+button:focus-visible,[tabindex]:focus-visible{outline:3px solid #e2a748;outline-offset:3px}
+header{background:var(--navy);color:#f8efdc;padding:15px max(18px,calc((100vw - 1340px)/2));display:flex;justify-content:space-between;gap:15px;align-items:center}
+header strong{font:700 23px Georgia,serif}header small{display:block;font-size:10px;letter-spacing:.17em;color:#d6b98e;text-transform:uppercase}
+main{max-width:1340px;margin:22px auto;padding:0 16px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(310px,.8fr);gap:18px;align-items:start}
+.panel{background:var(--paper);border:1px solid #d7d1c1;border-radius:15px;overflow:hidden;box-shadow:0 6px 24px #152b3010}
+.pad{padding:20px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#8e714d;font-weight:800}
+h1,h2,h3{font-family:Georgia,serif;line-height:1.18}h1{font-size:clamp(25px,3vw,37px);margin:5px 0 10px}h2{font-size:23px;margin:0 0 10px}h3{font-size:17px;margin:0 0 8px}
+p{margin:8px 0 12px}.muted{font-size:13px;color:var(--muted)}.story{font:16px/1.65 Georgia,serif;color:#4d4b43}
+.controls{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.btn{border:1px solid #bdc6c5;background:white;border-radius:9px;padding:9px 11px;color:var(--ink);font-weight:550}
+.btn.active{background:#1d4354;color:white;border-color:#1d4354}.btn.primary{background:#214c5c;color:white;border-color:#214c5c}
+.secondary-tools{margin-top:-5px;padding-top:9px;border-top:1px solid var(--line)}.secondary-tools .btn{font-size:13px;background:#f4f2eb;color:#52656a}.secondary-tools .btn.active{background:#1d4354;color:white}.btn.danger{color:#8e473e}.btn.small{font-size:12px;padding:7px 9px}
+.overlaybar{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:12px 0 3px;font-size:13px}.overlaybar select{background:white;border:1px solid #b9c4c4;border-radius:8px;padding:7px 9px;color:#203940}.hourbar{display:flex;gap:5px;margin:12px 0}.hour{flex:1;min-width:0;background:#f4f0e6;border:1px solid #d0c8b7;border-radius:8px;padding:7px 2px;font-weight:700;color:#43545a}
+.hour.hidden-hour .hexedge{stroke:#a7aeab;stroke-width:5}.hour.hidden-hour .hexface{fill:#e0e2df}.hour.hidden-hour.active .hexedge{stroke:#a7aeab}.hour.active{background:#b37b36;color:white;border-color:#b37b36}.hour small{display:block;font-size:9px;font-weight:400}.hour svg{width:42px;height:40px;margin:auto;overflow:visible}.hour .hexface{fill:#e7eeeb;stroke:#68817f;stroke-width:2}.hour .hexedge{stroke:#ae782e;stroke-width:5;stroke-linecap:round}.hour.active .hexface{fill:#f6e7c7;stroke:#765324}.hour.active .hexedge{stroke:#79521e}.hour .hexhour{font-size:13px;font-weight:800;fill:#254651}.hour .start-icon{font-size:17px;fill:#254651}.hour.active .hexhour,.hour.active .start-icon{fill:#62451c}
+.mapbox{background:radial-gradient(ellipse at 30% 20%,#d6e6df,#b0d1ce 65%,#96b7bb);border-radius:12px;overflow:hidden;position:relative}
+svg{display:block;width:100%;height:auto;touch-action:none;user-select:none}.cell{cursor:pointer}.cell polygon{transition:fill .1s,stroke .1s}.cell:not(.blocked-cell):hover polygon{stroke:#f9f1d8;stroke-width:3}.cell text,.cell path,.cell circle{pointer-events:none}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin:9px 0;font-size:12px;color:#5b6c70}.legend span{white-space:nowrap}
+.line{border:0;border-top:1px solid var(--line);margin:16px 0}.stat{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{font-size:12px;background:#f1eadb;padding:5px 9px;border-radius:30px}
+.step.current{background:#b37b36;color:white;box-shadow:0 0 0 2px #fff2d4 inset}.route{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin:8px 0 12px}.step{padding:4px 7px;background:#e6e9e5;border-radius:6px;font-weight:700;font-size:12px}
+details{border-top:1px solid #e4ddce;padding:11px 0}summary{cursor:pointer;font-weight:700}details p{margin:7px 0 0}
+.clue{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #e7e1d4}.num{flex:none;width:29px;height:29px;border-radius:8px;background:#f0e4cd;display:grid;place-items:center;font:700 15px Georgia,serif;color:#775a33}.clue p{margin:0}.clue{cursor:pointer;border-radius:8px;transition:opacity .15s,background .15s}.clue:hover{background:#f5f0e6}.clue.done{opacity:.38}.clue.done p{text-decoration:line-through;text-decoration-thickness:1px}.clue:focus-visible{outline:3px solid #ad7427}.clue .num{user-select:none}
+.notice{padding:12px 14px;background:#eef2ec;border-left:3px solid #537d77;border-radius:7px;font-size:13px;margin:12px 0}
+.notice.error{background:#f8e9e6;border-color:#af6657}.notice.success{background:#e6f1e7;border-color:#5a966d}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:10px}
+footer{max-width:1340px;margin:8px auto 28px;padding:0 16px;color:#68787a;font-size:12px}
+@media(max-width:880px){main{grid-template-columns:1fr}.pad{padding:16px}header strong{font-size:19px}.clue{padding:10px 0}}
+@media(max-width:430px){.btn{font-size:12px;padding:8px}.hour small{font-size:8px}.hour{font-size:12px}main{padding:0 9px;margin:10px auto}.panel{border-radius:10px}}
+
+/* Kompakte Werkzeugleiste direkt an der Karte */
+.toolstrip{display:flex;align-items:stretch;gap:3px;margin:9px 0 0;padding:7px 5px;background:#e9eee9;border:1px solid #c8d4ce;border-bottom:0;border-radius:12px 12px 0 0}
+.toolpick{min-width:0;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:5px 1px 6px;border:1px solid transparent;border-radius:8px;background:transparent;color:#435b62;transition:background .12s,color .12s}
+.toolpick:hover{background:#dce7e1}.toolpick.active{background:#214c5c;color:#fff;box-shadow:0 2px 6px #142f3830}.toolpick .toolicon{font-size:29px;font-weight:700;line-height:34px;height:34px;display:flex;align-items:center;justify-content:center}.toolpick .toolsvg{width:34px;height:34px;flex:none}.toolcaption{font-size:10px;line-height:1.15;white-space:nowrap}.toolseparator{width:1px;background:#bacac4;align-self:stretch;margin:6px 3px;flex:none}.route-pick{color:#926322}.route-pick.active{background:#9c6c2f;color:#fff}.visibility-pick[aria-pressed="false"] .eye-slash{display:block}.visibility-pick[aria-pressed="true"] .eye-slash{display:none}.visibility-pick:disabled{opacity:.35}.toolstrip+.mapbox{border-radius:0 0 12px 12px}
+@media(max-width:430px){.toolstrip{gap:1px;padding:5px 2px}.toolseparator{margin:5px 1px}.toolpick .toolicon{font-size:25px}.toolpick .toolsvg{width:29px;height:29px}.toolcaption{font-size:9px}}
+
+/* Dieselben Bedienelemente und dieselbe Spiellogik auf allen Bildschirmgrößen. */
+.toolcaption{display:none}
+.toolpick{min-height:48px}
+@media(max-width:880px){
+ main{display:block}
+ .map-panel{margin-bottom:0}
+ .clue-panel{margin:8px 0 12px}
+ .clue-panel .pad{padding:12px}
+ .clue-instruction,.map-status,#count{display:none!important}
+ .clue-heading{margin:0 0 9px!important}
+ #clues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:start}
+ .clue{background:#f8f4e9;border:1px solid #e0d8c7;padding:10px;border-radius:10px;display:flex;gap:7px;min-height:100%;font-size:13px;line-height:1.42}
+ .clue .num{width:23px;height:23px;font-size:12px}
+ .clue.done{opacity:.48;background:#eeeae1}
+ .clue-panel details{order:0}
+ .toolstrip{margin-top:6px}
+ .hourbar{margin:8px 0}
+ .hour small{display:none}
+}
+@media(max-width:360px){#clues{gap:6px}.clue{font-size:12px;padding:7px;gap:5px}.clue .num{width:19px;height:19px}}
+/* Intro and rules always precede the map, on desktop and mobile. */
+.opening{max-width:1308px;margin:18px auto 0}.opening .pad{padding:13px 20px}.opening details{border-top:0;padding:6px 0}.opening .rules-details{border-top:1px solid #e4ddce;margin-top:7px;padding-top:10px}.opening .story-details summary{font:700 21px Georgia,serif}.opening .story{max-width:1100px;margin:8px 0}.opening .rules-details summary{font-size:14px}
+@media(max-width:880px){.opening{margin:10px 9px 0}.opening .pad{padding:10px 14px}.opening .story-details summary{font-size:18px}.opening .story{font-size:14px;line-height:1.5}main{margin-top:9px}}
+
+/* Kartenaktionen: gleiche Bedienung auf allen Geräten, auf schmalen Displays 2×2. */
+.map-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:10px 0 5px}
+.map-actions .btn{white-space:normal;min-height:39px;padding:7px 5px;font-size:12px}
+.map-actions #routeBack{border-color:#b7a48a;background:#f5eee3;color:#74532e}
+.verify-wide{display:block;width:100%;padding:12px 16px;font-weight:700;margin:9px 0}
+.mapbox{background:radial-gradient(ellipse at 35% 20%,#eee0b9,#d8c49b 70%,#bfa579)}
+@media(max-width:680px){.map-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.map-actions .btn{font-size:12px;min-height:41px}}
+/* Tesoro-inspired warm ink-and-parchment palette; gameplay stays legible. */
+:root{--ink:#352f2a;--navy:#293e43;--paper:#fff9e9;--sand:#e8d8b7;--muted:#746d5f;--gold:#aa783a;--line:#d9c8a4}
+body{background:#e4d8bf}
+.panel{border-color:#cdbb97;box-shadow:0 7px 24px #4d3d2515}
+.toolstrip{background:#e8dfca;border-color:#cbbda2}
+.toolpick.active{background:#34565a}
+.clue{border-color:#dccaa7}
+@media(max-width:880px){.clue{background:#fcf3dc}}
+
+/* Mobile Logbuchschublade: dieselben Hinweise, nur eine andere Präsentation. */
+.logbook-tab,.logbook-backdrop{display:none}
+@media(max-width:880px){
+ .clue-panel{position:fixed;z-index:100;top:9vh;right:0;bottom:5vh;width:min(88vw,410px);margin:0!important;overflow:visible;border-radius:14px 0 0 14px;box-shadow:-12px 12px 35px #29231b40;transform:translateX(100%);transition:transform .25s ease;visibility:visible;background:#f9efd6;border:1px solid #a88b59;border-right:0}
+ .clue-panel.open{transform:translateX(0)}
+ .clue-panel>.pad{height:100%;overflow-y:auto;overscroll-behavior:contain;padding:20px 15px 28px;background:repeating-linear-gradient(0deg,transparent 0,transparent 29px,#b89d6d22 30px,#b89d6d22 31px),#f9efd6;border-radius:14px 0 0 14px}
+ .clue-panel .clue-heading{font:700 23px Georgia,serif;letter-spacing:0;text-transform:none;color:#76512d;margin:3px 0 13px!important}
+ #clues{display:flex;flex-direction:column;gap:10px}
+ .clue{min-height:0;background:#fff9e9!important;border:1px solid #d8be8e;box-shadow:1px 3px 0 #a7864e18;border-radius:3px 11px 7px 4px;padding:12px;font:14px/1.5 Georgia,serif}
+ .clue:nth-child(2n){transform:rotate(.35deg)}
+ .clue.done{opacity:.46;order:2}
+ .clue:not(.done){order:1}
+ .logbook-tab{display:flex;position:absolute;left:-45px;top:25%;width:45px;min-height:128px;align-items:center;justify-content:center;gap:6px;flex-direction:column;padding:12px 7px;background:#f0ddb0;color:#6b4825;border:1px solid #a88b59;border-right:0;border-radius:12px 0 0 12px;box-shadow:-4px 3px 8px #29231b22;font-weight:750;touch-action:pan-y}
+ .logbook-tab span{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.07em;font-size:13px}
+ .logbook-tab svg{width:20px;height:20px;transform:rotate(180deg);transition:transform .2s}
+ .clue-panel.open .logbook-tab svg{transform:none}
+ .logbook-backdrop{display:block;position:fixed;inset:0;z-index:99;background:#1b292950;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+ .logbook-backdrop.visible{opacity:1;visibility:visible}
+ body.logbook-open{overflow:hidden}
+}
+@media(prefers-reduced-motion:reduce){.clue-panel,.logbook-backdrop{transition:none!important}}
+
+/* V1.9: Einheitliche Hinweis-Karussellansicht für alle Bildschirmgrößen. */
+main{display:block;max-width:900px}
+.map-panel{width:100%}
+.clue-carousel{margin:12px 0 10px;padding:12px 0 8px;background:#f4e9d2;border:1px solid #d5bf95;border-radius:12px;overflow:hidden}
+.clue-carousel-title{display:flex;justify-content:space-between;align-items:center;padding:0 14px 8px;color:#74522e;font:15px Georgia,serif}
+.clue-carousel-title span{font:700 12px sans-serif;color:#8b7658}
+.clue-viewport{overflow:hidden;touch-action:pan-y;outline-offset:-3px}
+.clue-track{display:flex;align-items:stretch;gap:2%;width:100%;transform:translateX(-84%)}
+.clue-slide{flex:0 0 84%;min-width:0;padding:0 1px;opacity:.52;cursor:pointer}
+.clue-slide.center{opacity:1}
+.clue-slide .clue{height:100%;min-height:100px;background:#fff9e9!important;border:1px solid #d8be8e;border-radius:5px 12px 7px 4px;padding:13px 15px;font:15px/1.45 Georgia,serif;box-shadow:1px 3px 0 #a7864e18;display:flex;gap:12px}
+.clue-slide .clue.done{opacity:.42}
+.clue-nav{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 0;color:#8a7555;font-size:11px}
+.clue-nav button{border:1px solid #c6ad7f;background:#fff8e8;border-radius:9px;min-width:43px;min-height:35px;color:#75532c;font-size:26px;line-height:1}
+.logbook-tab,.logbook-backdrop{display:block}
+.clue-panel{position:fixed;z-index:100;top:9vh;right:0;bottom:5vh;width:min(88vw,410px);margin:0!important;overflow:visible;border-radius:14px 0 0 14px;box-shadow:-12px 12px 35px #29231b40;transform:translateX(100%);transition:transform .25s ease;background:#f9efd6;border:1px solid #a88b59;border-right:0}
+.clue-panel.open{transform:translateX(0)}
+.clue-panel>.pad{height:100%;overflow-y:auto;overscroll-behavior:contain;padding:20px 15px 28px;background:repeating-linear-gradient(0deg,transparent 0,transparent 29px,#b89d6d22 30px,#b89d6d22 31px),#f9efd6;border-radius:14px 0 0 14px}
+.clue-panel .clue-heading{font:700 21px Georgia,serif;color:#76512d}
+.logbook-tab{display:flex;position:absolute;left:-45px;top:25%;width:45px;min-height:128px;align-items:center;justify-content:center;gap:6px;flex-direction:column;padding:12px 7px;background:#f0ddb0;color:#6b4825;border:1px solid #a88b59;border-right:0;border-radius:12px 0 0 12px;box-shadow:-4px 3px 8px #29231b22;font-weight:750;touch-action:pan-y}
+.logbook-tab span{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.07em;font-size:13px}
+.logbook-tab svg{width:20px;height:20px;transform:rotate(180deg)}
+.clue-panel.open .logbook-tab svg{transform:none}
+.logbook-backdrop{position:fixed;inset:0;z-index:99;background:#1b292950;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.logbook-backdrop.visible{opacity:1;visibility:visible}
+body.logbook-open{overflow:hidden}
+@media(max-width:880px){.clue-carousel .clue{font-size:13px;min-height:120px;padding:11px 10px}.clue-carousel .num{width:24px;height:24px;font-size:12px}}
+
+/* V2.0: Ein einziges Logbuch als rechte Spalte oder mobile Schublade. */
+main{display:grid;max-width:1340px;grid-template-columns:minmax(0,1.65fr) minmax(300px,.82fr);gap:18px;align-items:start}
+.map-panel{width:100%;min-width:0}
+.clue-panel{position:sticky;top:12px;right:auto;bottom:auto;width:auto;margin:0!important;transform:none;overflow:hidden;box-shadow:0 7px 24px #4d3d2515;border:1px solid #cdbb97;border-radius:15px;z-index:auto;background:#f9efd6}
+.clue-panel>.pad{height:auto;max-height:calc(100vh - 24px);overflow-y:auto;overscroll-behavior:contain;padding:18px;background:repeating-linear-gradient(0deg,transparent 0,transparent 29px,#b89d6d19 30px,#b89d6d19 31px),#f9efd6;border-radius:0}
+.logbook-tab,.logbook-backdrop{display:none}
+.logbook-section{padding:14px 0;border-bottom:1px solid #cdb68b}
+.logbook-section:last-child{border-bottom:0}
+.logbook-section h3{margin-bottom:8px;color:#70512f}
+.logbook-section details{border:0;padding:2px 0}
+.logbook-section summary{font-weight:600;font-size:13px;color:#76532e}
+.logbook-section .story{font-size:14px;line-height:1.5}
+.all-clues{display:grid;gap:8px}
+.all-clues .clue{background:#fff9e9;border:1px solid #d9c49d;border-radius:9px;padding:10px;display:flex;gap:9px;font:13px/1.45 Georgia,serif}
+.all-clues .clue.done{opacity:.42}
+.all-clues .num{width:24px;height:24px;font-size:12px}
+.setting-row{display:flex;gap:9px;align-items:center;font-size:13px;padding:6px 0}
+.setting-row input{width:18px;height:18px;accent-color:#34565a}
+@media(max-width:880px){
+ main{display:block}
+ .clue-panel{position:fixed;z-index:100;top:5vh;right:0;bottom:3vh;width:min(88vw,410px);margin:0!important;overflow:visible;border-radius:14px 0 0 14px;transform:translateX(100%);transition:transform .25s ease;box-shadow:-12px 12px 35px #29231b40}
+ .clue-panel.open{transform:translateX(0)}
+ .clue-panel>.pad{height:100%;max-height:none;overflow-y:auto;padding:18px 14px 28px;border-radius:14px 0 0 14px}
+ .logbook-tab{display:flex}
+ .logbook-backdrop{display:block}
+}
+.coord-legend{display:grid;gap:10px;padding:12px;background:#f6e8c8;border:1px solid #c8b48c;border-radius:10px;font-size:13px}.coord-legend p{margin:5px 0}.color-legend{display:flex;flex-wrap:wrap;gap:7px 12px;margin-top:8px}.color-legend span{display:inline-flex;align-items:center;gap:5px}.color-legend i{display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:50% 44% 55% 40%;background:var(--swatch);color:#172f38;font:700 12px system-ui;box-shadow:0 0 0 2px #fff5dc inset;font-style:normal}
+.greek-legend{display:flex;flex-wrap:wrap;gap:8px 13px!important;align-items:center}.greek-legend span{display:inline-flex;gap:5px;align-items:center}.greek-legend b,.greek-badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;box-sizing:border-box;border:1px solid #8c7654;border-radius:4px;background:#f4e7c7;color:#315d58;font:bold 18px Georgia,serif}.coord-inline{display:inline-flex;align-items:center;gap:3px;vertical-align:middle;white-space:nowrap}.color-badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;box-sizing:border-box;border-radius:50% 44% 55% 40%;background:var(--swatch);border:1px solid #f9eacb;color:#172f38;font:bold 12px system-ui}.coord-inline .greek-badge,.coord-inline .color-badge{width:22px;height:22px}.coord-inline .greek-badge{font-size:16px}
+
+/* 3.2: Einheitliche Akkordeon-Navigation und Messfeld */
+.logbook-section{margin:0}
+.logbook-section h3{display:none}
+.logbook-section details{border:0;border-bottom:1px solid #e3d9c7;padding:0}
+.logbook-section summary{font:700 19px/1.3 Georgia,serif;color:#664725;padding:13px 4px 13px 26px;position:relative;list-style:none}
+.logbook-section summary::-webkit-details-marker{display:none}
+.logbook-section summary::before{content:"▸";position:absolute;left:4px;top:13px;font:700 18px Georgia,serif;color:#a57b42;transform-origin:center;transition:transform .12s}
+.logbook-section details[open]>summary::before{transform:rotate(90deg)}
+.logbook-section details>p,.logbook-section details>.coord-legend,.logbook-section details>.all-clues,.logbook-section details>.controls,.logbook-section details>.setting-row,.logbook-section details>.reset-setting,.logbook-section details>#helpStatus{margin-left:5px;margin-right:5px}
+.logbook-section details[open]{padding-bottom:12px}
+.credits-section{padding:14px 4px 5px}
+.credits-title{font:700 16px Georgia,serif;color:#755b3b;margin-bottom:6px}
+.reset-setting{border-top:1px dashed #d5c9b6;margin-top:14px;padding-top:10px}
+.measure-panel{display:flex;flex-direction:column;gap:4px;margin:10px 0 0;padding:12px 15px;border:1px solid #c4d0c9;border-left:4px solid #b88a48;border-radius:9px;background:#f3efe5;color:#3e5358;font-size:13px;line-height:1.5}
+.measure-panel strong{font:700 16px Georgia,serif;color:#70532c}
+.measure-panel[hidden]{display:none!important}
+
+#clearCellAll.active{background:#d9c69d;color:#523b22;border-color:#9c7943;box-shadow:0 0 0 2px #f7e6bf inset}
+
+/* 3.6: kompakte Aktionen und reine Anzeige-Toggles unter der Karte */
+.map-actions{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:8px 0 10px}
+.map-actions .btn{display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;min-height:42px;padding:7px 5px}
+.map-actions .btn.active{background:#34565a;color:#fff;border-color:#34565a}
+.visibility-toggle svg{display:block;width:20px;height:20px;flex:none;touch-action:auto}
+.visibility-toggle[aria-pressed="true"] .eye-slash{display:none}
+.visibility-toggle[aria-pressed="false"] .eye-slash{display:block}
+.all-eraser{position:relative;display:inline-flex!important;align-items:center}
+.all-eraser sup{position:absolute;right:-8px;top:-5px;font-size:13px;background:#e9eee9;color:#435b62;border-radius:6px;padding:0 2px;line-height:17px}
+.toolpick.active .all-eraser sup{background:#34565a;color:#fff}
+.route-undo{color:#926322}
+@media(max-width:650px){.map-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.map-actions .btn{font-size:12px;min-height:43px}}

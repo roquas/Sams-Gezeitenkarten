@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gezeitenkarten · Der verschwundene Kompass</title>
+<link rel="stylesheet" href="src/ui/game.css">
+</head>
+<body>
+<header><div><small>Gezeitenkarten · Ein Auftrag aus Nombreo</small><strong>Gezeitenkarten</strong></div><div style="text-align:right;font-size:12px">SPIELPROTOTYP · V0.1<br><span style="color:#ddc39c">Lokal · ohne Anmeldung</span></div></header>
+<main>
+<section class="panel map-panel"><div class="pad">
+<div class="topline"><div><div class="eyebrow">Deine Seekarte</div><h1>Der verschwundene Kompass</h1></div><span class="pill" id="score">0 Strafpunkte</span></div>
+
+<div class="topline"><strong id="layerTitle">Stunde 0 · Abfahrt</strong></div>
+<div class="hourbar" id="hours"></div>
+<div class="toolstrip" id="tools" role="group" aria-label="Kartenwerkzeuge">
+<button class="toolpick active" data-tool="maybe" title="Möglich" aria-label="Möglich"><span class="toolicon">?</span><span class="toolcaption">Möglich</span></button>
+<button class="toolpick" data-tool="yes" title="Sicher" aria-label="Sicher"><span class="toolicon">✓</span><span class="toolcaption">Sicher</span></button>
+<button class="toolpick" data-tool="no" title="Ausschließen" aria-label="Ausschließen"><span class="toolicon">×</span><span class="toolcaption">Ausschließen</span></button>
+<button class="toolpick" data-tool="erase" title="Radieren" aria-label="Radieren"><span class="toolicon">⌫</span><span class="toolcaption">Radieren</span></button>
+<span class="toolseparator" aria-hidden="true"></span>
+<button class="toolpick" data-tool="clearAll" title="Feld in allen Stunden radieren" aria-label="Feld in allen Stunden radieren"><span class="toolicon all-eraser">⌫<sup>∀</sup></span><span class="toolcaption">Alle Stunden</span></button>
+<span class="toolseparator" aria-hidden="true"></span>
+<button class="toolpick route-pick" data-tool="route" title="Route zeichnen" aria-label="Route zeichnen"><svg class="toolicon toolsvg" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 31L13 21L19 25L27 12L34 17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 6L38 14M38 6L30 14" stroke="currentColor" stroke-width="2.7" stroke-linecap="round"/></svg><span class="toolcaption">Route</span></button>
+<button class="toolpick route-undo" id="routeBack" type="button" title="Letzte Etappe zurücknehmen" aria-label="Letzte Etappe zurücknehmen"><svg class="toolicon toolsvg" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30L14 21L20 25L28 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 8a10 10 0 1 1-1 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M16 7l5 1-2 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="toolcaption">Route zurück</span></button>
+</div>
+<div class="mapbox"><svg id="map" viewBox="0 0 475 385" role="img" aria-label="Interaktive Hexkarte mit 25 Feldern"></svg></div>
+
+
+<section class="clue-carousel" aria-label="Hinweise aus dem Logbuch">
+ <div class="clue-carousel-title"><strong>Aus Robins Logbuch</strong><span id="cluePosition" aria-live="polite">I / VII</span></div>
+ <div class="clue-viewport" id="clueViewport" tabindex="0" aria-label="Hinweise. Seitlich wischen oder Pfeiltasten verwenden.">
+  <div class="clue-track" id="clueTrack"></div>
+ </div>
+ <div class="clue-nav"><button type="button" id="prevClue" aria-label="Vorheriger Hinweis">‹</button><span>Hinweis antippen zum Abhaken</span><button type="button" id="nextClue" aria-label="Nächster Hinweis">›</button></div>
+</section>
+<div class="controls map-actions" role="group" aria-label="Kartenaktionen und Anzeigeoptionen">
+<button class="btn small" id="undo" type="button" title="Letzte Aktion rückgängig machen">↶ Rückgängig</button>
+<button class="btn small visibility-toggle" id="toggleHourMarks" type="button" title="Markierungen der ausgewählten Stunde ein- oder ausblenden" aria-label="Markierungen der ausgewählten Stunde ein- oder ausblenden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12Q12 2 22 12Q12 22 2 12Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3" fill="currentColor"/><path class="eye-slash" d="M4 21L20 3" stroke="currentColor" stroke-width="2.1"/></svg><span>Markierungen</span></button>
+<button class="btn small" id="toggleRouteNumbers" type="button" aria-pressed="false">① Routennummern</button>
+<button class="btn small" id="toggleDistances" type="button" aria-pressed="false">Abstände einblenden</button>
+</div>
+<div class="stat"><span class="muted" id="count">0 Markierungen auf dieser Karte</span></div>
+<hr class="line">
+<h3>Deine rekonstruierte Route</h3>
+<div class="route" id="routeView"></div>
+<button class="btn primary verify-wide" id="verify">Route überprüfen</button>
+<div id="verifyStatus" aria-live="polite"></div>
+</div></section>
+<div class="logbook-backdrop" id="logbookBackdrop" aria-hidden="true"></div>
+<aside class="panel clue-panel" id="logbook" aria-label="Hilfe und Logbuch"><button class="logbook-tab" id="logbookTab" type="button" aria-label="Hilfe öffnen" aria-expanded="false" aria-controls="logbook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span>Hilfe</span></button><div class="pad">
+<div class="eyebrow clue-heading">Hilfe &amp; Logbuch</div>
+<section class="logbook-section"><details open><summary>Die Geschichte</summary><p class="story">Robin hatte einen Kompass, Sam ein Logbuch und beide unterschiedliche Vorstellungen von einer Abkürzung. Nach sechs Stunden war der Kompass verschwunden. Die Route hatte Sam immerhin in sieben etwas eigenwilligen Beobachtungen festgehalten.</p>
+<p class="story">Rekonstruiere die sechs Stunden zwischen Kurswechseln, Leuchtturm und Tesoro. Wo sind Robin und Sam schließlich gelandet? Unter „Spielregeln“ steht, wie das funktioniert.</p></details></section>
+<section class="logbook-section"><details open><summary>Legende</summary><p class="muted">Robin benutzt statt gewöhnlicher Buchstaben griechische Namen und statt Zahlen Farben. Eine Ortsangabe besteht aus Spalte / Zeile – zum Beispiel <strong>γ / V</strong> (Gamma / Violett).</p><div class="coord-legend"><div><strong>Spalten</strong><p class="greek-legend"><span><b>α</b> Alpha</span><span><b>β</b> Beta</span><span><b>γ</b> Gamma</span><span><b>δ</b> Delta</span><span><b>ε</b> Epsilon</span></p></div><div><strong>Zeilen</strong><div class="color-legend"><span><i style="--swatch:#28b9c5">C</i>Cyan</span><span><i style="--swatch:#c74c99">M</i>Magenta</span><span><i style="--swatch:#8761ba">V</i>Violett</span><span><i style="--swatch:#4178b8">B</i>Blau</span><span><i style="--swatch:#d28a39">O</i>Orange</span></div></div></div><p class="muted">Die Buchstaben in den Farbflecken helfen, die Zeilen auch ohne Farberkennung zu unterscheiden.</p></details></section>
+<section class="logbook-section"><details><summary>Spielregeln</summary><p>Start Delta/Blau. Sechs Etappen, pro Stunde ein Schritt in eines der sechs angrenzenden Hexfelder. Land ist gesperrt. Kein Feld darf mehrfach betreten werden. Das Riff Alpha/Violett ist in diesem Proberätsel ein befahrbares Wasserfeld; nur die als Land gekennzeichneten Felder sind gesperrt. Entfernungen werden als Hexabstände gemessen, unabhängig von Landhindernissen. Benachbarte Hexfelder teilen eine Seite. Die sechs möglichen Kursrichtungen heißen Ost, Südost, Südwest, West, Nordwest und Nordost. Ein Kurswechsel wird gegenüber der vorherigen Fahrtrichtung gemessen; rechts bedeutet im Uhrzeigersinn. Als Küste von Tesoro gelten befahrbare Wasserfelder mit einer gemeinsamen Hexseite zu B3 oder C3.</p></details></section>
+<section class="logbook-section"><details><summary>Aus Robins Logbuch</summary><p class="muted">Auch hier kannst Du die Hinweise abhaken.</p><div id="allClues" class="all-clues"></div></details></section>
+<section class="logbook-section"><details><summary>Hilfe</summary><p class="muted">Die Abstandsanzeige unter der Karte ist kostenlos. Rätselhilfen kosten Punkte. Deine Notizen werden nicht automatisch verändert.</p>
+<div class="controls"><button class="btn" id="checkMarks">Notizen prüfen · −5</button><button class="btn" id="hint">Passenden Tipp · −10</button></div>
+<div id="helpStatus" aria-live="polite"></div></details></section>
+<section class="logbook-section"><details><summary>Einstellungen</summary><label class="setting-row"><input type="checkbox" id="showChart" checked> Seekartenillustration anzeigen</label>
+<label class="setting-row"><input type="checkbox" id="hideRouteMarks"> Markierungen auf Routenfeldern ausblenden</label>
+<div class="controls"><button class="btn small" id="clearLayer" type="button">Aktuelle Stundenkarte leeren</button></div><div class="reset-setting"><div class="controls"><button class="btn small danger" id="reset">Gesamtes Rätsel zurücksetzen</button></div>
+<p class="muted">Alle Eingaben werden nur in diesem Browser gespeichert. Kein Server, keine Registrierung.</p></div></details></section>
+<section class="logbook-section credits-section"><div class="credits-title">Credits</div><p class="muted">Gezeitenkarten – eigenständiger Spielprototyp, inspiriert von der Erzählwelt des Podcasts „Plötzlich Pirat:in“. Kartenornamente sind eigene Entwürfe und keine Originalillustrationen des Podcasts.</p></section>
+</div></aside>
+</main>
+<footer>Interaktiver Machbarkeitsprototyp · HTML mit lokalen Bilddateien · Keine externen Bibliotheken oder Netzwerkverbindungen</footer>
+<script type="module" src="src/ui/game.mjs"></script>
+</body></html>
+
