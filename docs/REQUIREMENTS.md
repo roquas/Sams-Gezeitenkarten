@@ -42,3 +42,5 @@
 - **Beschlossen:** Undo-Historie muss nicht persistent gespeichert werden. Spielstandpersistenz ist davon unabhängig.
 - **Beschlossen:** Karte und Orts-Overlays einschließlich benannter Orte sind pro Rätsel konfigurierbar; feste Inhalte aus 3.6 sind keine universellen Regeln.
 - **Idee:** Rätsel wählen Hintergrund und Ortsgrafiken über Asset-IDs oder bringen eigene Dateien mit. Siehe Architektur und zugehörige Issues.
+
+- **Beschlossene Undo-Invariante:** Nicht-undo-fähige reine Anzeigeänderungen dürfen auch durch spätere Undo-Aktionen nicht zurückgesetzt werden. Siehe Issue #13. Dies betrifft u. a. Routennummern, Distanzanzeige und Sichtbarkeit von Notizen; die separat verwaltete Seekartenillustration ist ebenfalls als Regressionstest abzudecken.
