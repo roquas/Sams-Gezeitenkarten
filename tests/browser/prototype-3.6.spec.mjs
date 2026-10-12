@@ -33,6 +33,7 @@ test('route, backstep, and verification of known solution',async({page})=>{
  await page.locator('#routeBack').click();expect((await state(page)).route).toHaveLength(6);
 });
 test('hint has cost and is currently undoable (3.6 characterization)',async({page})=>{
+ await page.locator('.logbook-section details').filter({has:page.locator('#hint')}).locator('summary').click();
  await page.locator('#hint').click();expect((await state(page)).penalty).toBe(10);
  await page.locator('#undo').click();expect((await state(page)).penalty).toBe(0);
 });
