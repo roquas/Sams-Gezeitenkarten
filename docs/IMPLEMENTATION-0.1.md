@@ -58,3 +58,18 @@ mobile Logbuchbedienung, Assets, JavaScript-Fehler und horizontalen Überlauf.
 Schritt 3: Beide Actions-Läufe 38257401972 und 38257406902 erfolgreich.
 Lokale Unit-Tests: 20 bestanden. Lokale Browsertests gestartet, wegen fehlendem
 Chromium blockiert; Ausführung und Abschlussbewertung weiterhin über Actions.
+
+## Abschließende Absicherung
+
+Schritt 4: Beide Actions-Läufe 38257839758 und 38257844924 erfolgreich.
+Zusätzlich schützt ein Git-Blob-Prüfsummentest sämtliche Originaldateien und
+Grafiken unter `prototypes/3.6/` vor Änderungen. Ein Browserregressionstest führt
+je eine echte Maus- beziehungsweise Touch-Ziehgeste aus und prüft das gemeinsame
+Undo der betroffenen Felder. Lokal bestehen 21 Unit-Tests.
+
+Offen für spätere Versionen: Generator und Backend, andere Kartengrößen,
+Migration alter Spielstände sowie zusätzliche Browser (Safari/WebKit).
+Die automatisierte Mobilprüfung verwendet Chromium mit Pixel-7-Profil,
+keinen realen iPhone-/Safari-Browser. Lokale Chromium-Ausführung ist in dieser
+Arbeitsumgebung wegen des fehlgeschlagenen Downloads nicht verfügbar; Actions
+liefert die verbindliche Browserprüfung und Screenshots im Testbericht.

@@ -117,3 +117,17 @@ test('mobile logbook opens and closes through its visible controls',async({page,
  await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','true');
  await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
 });
+test('one mouse or touch drag marks two fields and undoes as one gesture',async({page,isMobile})=>{
+ const center=async id=>{const b=await cell(page,id).boundingBox();return {x:b.x+b.width/2,y:b.y+b.height/2};};
+ const first=await center('A1'),second=await center('B1');
+ if(isMobile){
+  const session=await page.context().newCDPSession(page);
+  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[first]});
+  await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[second]});
+  await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await session.detach();
+ }else{
+  await page.mouse.move(first.x,first.y);await page.mouse.down();await page.mouse.move(second.x,second.y,{steps:5});await page.mouse.up();
+ }
+ expect((await state(page)).marks['1:A1']).toBe('maybe');expect((await state(page)).marks['1:B1']).toBe('maybe');
+ await page.locator('#undo').click();expect((await state(page)).marks).toEqual({});
+});
