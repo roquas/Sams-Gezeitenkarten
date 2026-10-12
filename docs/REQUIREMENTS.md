@@ -4,7 +4,7 @@
 
 | ID | Status | Anforderung |
 |---|---|---|
-| CORE-001 | IST | Karte mit 5×5 Hexfeldern, Land- und Wasserfeldern; Land nicht befahrbar. |
+| CORE-001 | IST | Eine Karte definiert befahrbare und gesperrte Hexfelder; die Anzahl und Position gesperrter Felder sind **Falldaten**, keine globale Konstante. Referenzfall 3.6: 5×5, gesperrt B3/C3/E2. |
 | CORE-002 | IST | Route startet festgelegt, verläuft über benachbarte Wasserfelder und besucht kein Feld zweimal. |
 | CORE-003 | IST | Sechs Fahrtstunden; Start und sechs Folgestationen ergeben sieben Positionen. |
 | CORE-004 | IST | Route kann gegen eine hinterlegte Lösung geprüft werden. |
