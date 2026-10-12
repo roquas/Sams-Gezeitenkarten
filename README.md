@@ -13,7 +13,7 @@ python3 -m http.server 8000
 
 Dann `http://localhost:8000/` öffnen. Native ES-Module benötigen einen HTTP-Server;
 ein Doppelklick auf die HTML-Datei reicht nicht. Auf Uberspace werden `index.html`,
-`src/`, `puzzles/`, `content/` und `assets/seekarte/` im selben Verhältnis
+`src/`, `puzzles/`, `content/` und `assets/` (Seekarte und UI-Materialien) im selben Verhältnis
 hochgeladen. Für das Spielen sind weder Node noch ein Buildschritt erforderlich.
 
 ## Spielen
@@ -51,6 +51,7 @@ GitHub Actions führt beide Testgruppen nach Push und Pull Request aus.
 - `content/reference-3.6.mjs`: fallbezogene Hilfe und Kartenbeschriftung
 - `prototypes/3.6/`: unverändertes Original mit Grafiken
 - [Grafische Ausbaustufe und Prüfumfang #15–#17](docs/SEEKARTE-15-17.md)
+- [Materialgestaltung, Browserbilder und Grenzen](docs/MATERIAL-DESIGN.md)
 - [Umsetzung und Prüfstand 0.1](docs/IMPLEMENTATION-0.1.md)
 - [Anforderungen](docs/REQUIREMENTS.md), [Entscheidungen](docs/DECISIONS.md)
 

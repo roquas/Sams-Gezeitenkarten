@@ -93,3 +93,23 @@ Keine Änderung an Engine, Rätseldefinition, Hinweisinhalten oder Speicherung.
    übermalte die Rasterbilder der Buchpfeile. Sie wurde auf `#clueDone` begrenzt;
    eine Browserprüfung schützt jetzt die tatsächliche Rasterbindung aller Icons.
    Die mobile Seitennummer liegt zusätzlich weiter innerhalb der Papierfläche.
+
+## Gesicherter Abschlussstand
+
+Alle fünf Umsetzungsschritte wurden vor dem Verbindungsabbruch auf dem Feature-Branch
+gesichert. Letzter UI-Commit: `419dc4fc597456bca4348abf4cda83c24c4942e7`.
+[Actions 38293689634](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38293689634):
+28 Unit-Tests und 65 Browser-Tests bestanden, 3 erwartete projektabhängige Skips.
+Geprüft werden unter anderem Stundenwahl, Undo, Werkzeuge, Routenprüfung,
+Hinweisnavigation, Tastatur, Touchflächen und Reduced Motion.
+
+Die folgenden unveränderten Chromium-Screenshots stammen aus genau diesem Lauf.
+Der abschließende Dokumentationscommit ändert keine Browserdarstellung.
+
+- [Desktop, 1440 CSS-Pixel](screenshots/desktop-materials.jpg)
+- [Smartphone, 390 CSS-Pixel, Pixel-7-Emulation](screenshots/mobile-materials.jpg)
+- [Obere Werkzeugleiste](screenshots/upper-materials.jpg)
+- [Bordbuch](screenshots/bordbook-materials.jpg)
+
+Der neue Pull Request baut auf dem noch offenen PR #25 auf; Zielbranch ist deshalb
+`feature/aquarell-messing-bordbuch`. Beide Pull Requests bleiben ungemergt.
