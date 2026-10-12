@@ -21,3 +21,12 @@ Das README von Prototyp 3.6 dokumentiert eine Prüfung aller 519 zulässigen Rou
 - [Fünf Source-Contract-Tests](../tests/reference/source-contract.test.mjs) für Zustandsinitialisierung/Persistenz, Markierungen, Route, Schalter und Strafpunkte/Reset angelegt. Die fünf enthaltenen Assertionsgruppen wurden lokal anhand des Original-HTML abgeglichen und bestanden.
 - **Einschränkung:** Source-Contract-Tests prüfen Quelltextfragmente, **nicht** das tatsächliche Verhalten im Browser. Es wurde noch kein Playwright-/Safari-Test ausgeführt und kein CI-Workflow eingerichtet.
 - Offene fachliche Punkte: Undo-Grenzen, Stunde-0-Markierungen, Persistenz einzelner Einstellungen, Drag/Pointer-Capture und Schema-Validierung. Diese Punkte vor einer Verhaltensänderung gemeinsam entscheiden.
+
+## Browser-Test-Harness (12.10.2026)
+
+- Playwright-Konfiguration: `playwright.config.mjs`; Tests: `tests/browser/prototype-3.6.spec.mjs` (7 Szenarien × Chromium/Desktop und mobiles Chromium).
+- CI-Workflow: `.github/workflows/tests.yml`, mit getrennten Jobs für Node-Referenztests und Browser-Tests sowie Artefakt-Upload bei Fehlern.
+- Ausführung lokal: `npm install`, `npx playwright install chromium`, `npm run test:all` (Python 3 für lokalen HTTP-Server erforderlich).
+- **Status:** Dateien in GitHub angelegt; erfolgreicher CI-Lauf und Browserausführung **noch nicht verifiziert**. Vor Abnahme muss das Ergebnis unter GitHub Actions geprüft werden. Der Workflow nutzt derzeit `npm install`, da noch kein Lockfile vorliegt; Lockfile und `npm ci` für reproduzierbare Installationen nachziehen.
+- Charakterisierung von 3.6: Tippkosten sind derzeit per Undo rückgängig zu machen. Das ist **kein gewünschtes Sollverhalten** (Issue #10). Reine Anzeigeänderungen sollen künftig auch durch späteres Undo unverändert bleiben (Issue #13).
+- Drag/Pointer-Capture und vollständige Interaktionsmatrix sind noch nicht automatisiert getestet.
