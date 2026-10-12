@@ -1,6 +1,6 @@
 # Unveränderter Referenzstand 3.6 – Provenienz
 
-**Status:** Archivierungsmanifest; das Binärarchiv selbst ist **noch nicht** im GitHub-Repository. Keine Behauptung, dass 3.6 hier bereits lauffähig eingecheckt ist.
+**Status:** Originaldateien unter [`prototypes/3.6/`](../prototypes/3.6/) im privaten GitHub-Repository gesichert. Alle 14 Originaldateien wurden am 12.10.2026 anhand ihrer Git-Blob-SHA-1 mit den Dateien des ursprünglichen ZIP **bytegenau abgeglichen**. Das ZIP selbst wurde nicht eingecheckt.
 
 ## Originalartefakt
 
@@ -10,7 +10,9 @@
 - Umfang: 14 Dateien; ZIP etwa 2,22 MB
 - Falltitel: „Der verschwundene Kompass“
 - Kein Framework, keine externen Dienste laut Original-README.
-- **Noch ausstehend:** Archiv unverändert im privaten Repository ablegen, dort SHA-256 prüfen und auf Desktop/Mobil starten. Vorher Bildrechte beachten.
+- GitHub-Commit des manuellen Uploads: [`12d0410`](https://github.com/roquas/Sams-Gezeitenkarten/commit/12d041008d894d05c4337dd431e40eab6b92139b).
+- Zusätzlich wurde eine macOS-Datei `prototypes/3.6/.DS_Store` eingecheckt; sie gehört **nicht** zum Originalarchiv und kann später separat entfernt werden.
+- **Noch ausstehend:** Browser-Smoke-Test auf Desktop und Mobil; Bildrechte vor Veröffentlichung klären.
 
 ## Dokumentierter Prüfstand aus der Original-README
 
