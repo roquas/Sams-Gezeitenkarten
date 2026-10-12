@@ -14,7 +14,7 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
    return `<div class="clue ${done?'done':''}" data-clue="${id}" role="checkbox" tabindex="0" aria-checked="${done}" title="Hinweis abhaken"><span class="num">${id}</span><p>${format(text)}</p></div>`;
   };
   $('allClues').innerHTML=clues.map(c=>clue(c,markup)).join('');
-  $('clueTrack').innerHTML=`<div class="clue-slide center">${clue(clues[current],t=>t)}</div>`;
+  $('clueTrack').innerHTML=`<div class="clue-slide center">${clue(clues[current],markup)}</div>`;
   $('cluePosition').textContent=`${clues[current][0]} / ${clues.at(-1)[0]}`;
   $('clueDone').textContent=state.doneClues.includes(clues[current][0])?'✓ Abgehakt':'Hinweis antippen zum Abhaken';
   if(focusInBook)$('clueTrack').querySelector('[data-clue]').focus({preventScroll:true});
@@ -26,7 +26,7 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
   if(!motion.matches&&$('clueViewport').animate){
    const turning=document.createElement('div');turning.className='turning-leaf';turning.setAttribute('aria-hidden','true');
    const number=document.createElement('span');number.className='leaf-number';number.textContent=previous[0];
-   const text=document.createElement('p');text.textContent=previous[1];turning.append(number,text);
+   const text=document.createElement('p');text.innerHTML=markup(previous[1]);turning.append(number,text);
    $('clueViewport').append(turning);leaf=turning;
    const forward=delta>0;turning.style.transformOrigin=forward?'left center':'right center';
    animation=turning.animate([{transform:'perspective(900px) rotateY(0deg)',opacity:1},{transform:`perspective(900px) rotateY(${forward?-82:82}deg)`,opacity:0}],{duration:300,easing:'ease-in-out'});

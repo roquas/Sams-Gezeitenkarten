@@ -21,10 +21,15 @@ export function chartOverlays(overlays){
 // All hex centers, polygons, labels and pointer coordinates stay unchanged.
 export function parchmentTiles(){
  const sourceX=[0,30,445,475],sourceY=[0,30,355,385];
- const targetX=[-24,36,439,499],targetY=[-24,30,355,409];
+ const targetX=[-44,36,439,519],targetY=[-44,30,355,429];
  return Array.from({length:9},(_,i)=>{
   const q=i%3,r=Math.floor(i/3);
   return {x:targetX[q],y:targetY[r],width:targetX[q+1]-targetX[q],height:targetY[r+1]-targetY[r],
    viewBox:[sourceX[q],sourceY[r],sourceX[q+1]-sourceX[q],sourceY[r+1]-sourceY[r]].join(' ')};
  });
 }
+
+export const CHART_VIEWBOX='-44 -44 563 473';
+export const MARGIN_COLUMNS=[-19,404];
+export const MARGIN_ROWS=[-8,484];
+export const distanceState=state=>!state.distanceMode?'inactive':state.distanceOrigin?'showing':'waiting';

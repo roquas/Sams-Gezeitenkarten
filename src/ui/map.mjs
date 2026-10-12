@@ -1,4 +1,4 @@
-import {CHART_BACKGROUND, chartOverlays, parchmentTiles} from './chart-art.mjs';
+import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, MARGIN_COLUMNS, MARGIN_ROWS} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
 import {mapLabels} from '../../content/reference-3.6.mjs';
@@ -6,14 +6,14 @@ function poly(x,y){return Array.from({length:6},(_,i)=>{const a=i*Math.PI/3+Math
 function coords(c){return [60+c.q*82+(c.r%2)*41,56+c.r*68]}
 export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate}){
  const $=id=>document.getElementById(id);
- const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.replaceChildren();
+ const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.replaceChildren();svg.setAttribute("viewBox",CHART_VIEWBOX);
  const NS="http://www.w3.org/2000/svg";
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
  const showArt=document.getElementById("showChart").checked;
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
- svg.append(el("rect",{x:-24,y:-24,width:523,height:433,fill:"#e9d5b0","pointer-events":"none","aria-hidden":"true"}));
+ svg.append(el("rect",{x:-44,y:-44,width:563,height:473,fill:"#e9d5b0","pointer-events":"none","aria-hidden":"true"}));
  for(const [index,tile] of parchmentTiles().entries()){
   const slice=el("svg",{...tile,class:index===4?"parchment-water":"parchment-edge",preserveAspectRatio:"none",overflow:"hidden","data-parchment-slice":"true"});
   slice.append(el("image",{href:CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
@@ -27,16 +27,19 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  // Beschriftung gehört zum geografischen Objekt, nicht zu einem einzelnen Hexfeld.
  const islandLabel=(ids,t,angle=0,dx=0,dy=0)=>{
    const [cx,cy]=artCenter(ids);
-   const g=el("g",{transform:`translate(${cx+dx} ${cy+dy}) rotate(${angle})`,"pointer-events":"none"});
-   g.append(el("text",{x:0,y:0,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"11","font-style":"italic",fill:"#5a4634",stroke:"#f0dfbb","stroke-width":"1.4","paint-order":"stroke",opacity:".8"},t));
+   const width=Math.max(66,t.length*9.4+18);
+   const g=el("g",{class:"place-label",transform:`translate(${cx+dx} ${cy+dy})`,"pointer-events":"none","aria-hidden":"true"});
+   g.append(el("rect",{x:-width/2,y:-15,width,height:24,rx:3,fill:"#f3e5c5",stroke:"#9e7b45","stroke-width":".8",opacity:".97"}));
+   g.append(el("image",{href:"assets/ui/paper-grain.webp",x:-width/2+1,y:-14,width:width-2,height:22,preserveAspectRatio:"none",opacity:".35"}));
+   g.append(el("text",{x:0,y:2,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"17","font-weight":"600",fill:"#47351e"},t));
    art.append(g);
  };
  for(const label of mapLabels)islandLabel(label.cells,label.text,label.angle,label.dx,label.dy);
- for(const place of Object.values(puzzle.places))if(place.kind==="island")islandLabel(place.cells,place.name,-8,7,-23);
+ for(const place of Object.values(puzzle.places))if(place.kind==="island")islandLabel(place.cells,place.name,0,7,-23);else if(place.kind==="lighthouse")islandLabel(place.cells,place.name,0,0,-43);
  svg.append(art);
  // Geographic coordinate guides and margin headings remain visible even when
  // the decorative chart is disabled. The staggered rows bend column guides.
- const graticule=el("g",{"pointer-events":"none","aria-hidden":"true"});
+ const graticule=el("g",{class:"coordinate-guides","pointer-events":"none","aria-hidden":"true"});
  // Every guide passes through the actual centers of its five column hexes.
  // The alternating 41-unit row offset is intentional and shared with coords().
  for(let q=0;q<5;q++){
@@ -51,7 +54,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    graticule.append(el("path",{d:path,fill:"none",stroke:"#f5edce","stroke-width":"8",opacity:".12","stroke-linecap":"round"}));
    graticule.append(el("path",{d:path,fill:"none",stroke:"#446d70","stroke-width":"1.5",opacity:".24","stroke-linecap":"round"}));
    // Pergamentplättchen mit unregelmäßigen Kanten, gedämpfter Tinte.
-   for(const [x,y] of [[centers[0][0],14],[bottomX,372]]){
+   for(const [x,y] of [[centers[0][0],MARGIN_COLUMNS[0]],[bottomX,MARGIN_COLUMNS[1]]]){
      const d=`M ${x-13} ${y-10} Q ${x-4} ${y-12} ${x+12} ${y-10} L ${x+13} ${y+8} Q ${x+3} ${y+11} ${x-12} ${y+9} Z`;
      graticule.append(el("path",{d,fill:"#e9d7aa",stroke:"#b39b71","stroke-width":".7",opacity:".77"}));
      graticule.append(el("text",{x,y:y+5,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"17","font-style":"italic",fill:"#695037",opacity:".88"},GREEK_SYMBOLS[q]));
@@ -61,7 +64,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    const y=56+r*68;
    graticule.append(el("path",{d:`M 26 ${y} C 145 ${y-9}, 295 ${y+9}, 462 ${y}`,fill:"none",stroke:"#567e78","stroke-width":"1.1",opacity:".19","stroke-dasharray":"3 7"}));
    const rc=ROWCOLORS[r];
-   for(const x of [14,458]){
+   for(const x of MARGIN_ROWS){
      // Kein UI-Kreis: asymmetrischer, leicht durchscheinender Tintenklecks.
      const d=`M ${x-8} ${y-4} Q ${x-12} ${y-11} ${x-3} ${y-10} Q ${x+5} ${y-13} ${x+9} ${y-4} Q ${x+13} ${y+3} ${x+5} ${y+9} Q ${x-4} ${y+13} ${x-9} ${y+4} Z`;
      graticule.append(el("path",{d,fill:rc.hex,opacity:".57",stroke:rc.hex,"stroke-width":"1.3"}));
