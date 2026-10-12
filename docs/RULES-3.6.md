@@ -2,6 +2,10 @@
 
 **Quellenbasis:** Spielregelabschnitt und Konstante `blocked`/`solution` aus `gezeitenkarten_3_6/index.html` sowie dessen README. Dies ist eine **partielle** fachliche Spezifikation. Sie ersetzt noch nicht die vollständige Prüfung aller sieben Hinweisprädikate und aller UI-Zustandsübergänge.
 
+## Geltungsbereich
+
+Die folgenden konkreten Feldzahlen, Positionen und Namen gelten **nur für den Referenzfall 3.6**. Allgemein legt jeder Fall seine gesperrten Felder selbst fest; die Engine darf weder genau drei Sperrfelder noch deren feste Positionen voraussetzen. Ob Kartengröße, Startfeld und Routenlänge künftig ebenfalls variabel werden, ist offen.
+
 ## 1. Spielfeld und Positionen
 
 - Es gibt 25 benannte Hexfelder `A1` bis `E5` (Spalten A–E, Zeilen 1–5).
