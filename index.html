@@ -4,6 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gezeitenkarten · Der verschwundene Kompass</title>
 <link rel="stylesheet" href="src/ui/game.css">
+<link rel="stylesheet" href="src/ui/chart-frame.css">
 </head>
 <body>
 <header><div><small>Gezeitenkarten · Ein Auftrag aus Nombreo</small><strong>Gezeitenkarten</strong></div><div style="text-align:right;font-size:12px">SPIELPROTOTYP · V0.1<br><span style="color:#ddc39c">Lokal · ohne Anmeldung</span></div></header>
@@ -11,8 +12,9 @@
 <section class="panel map-panel"><div class="pad">
 <div class="topline"><div><div class="eyebrow">Deine Seekarte</div><h1>Der verschwundene Kompass</h1></div><span class="pill" id="score">0 Strafpunkte</span></div>
 
-<div class="topline"><strong id="layerTitle">Stunde 0 · Abfahrt</strong></div>
-<div class="hourbar" id="hours"></div>
+<div class="chart-toolbar" aria-label="Stundenwahl und Kartenwerkzeuge">
+<strong class="sr-only" id="layerTitle">Stunde 1 · Position</strong>
+<div class="hourbar" id="hours" role="group" aria-label="Stundenwahl"></div>
 <div class="toolstrip" id="tools" role="group" aria-label="Kartenwerkzeuge">
 <button class="toolpick active" data-tool="maybe" title="Möglich" aria-label="Möglich"><span class="toolicon">?</span><span class="toolcaption">Möglich</span></button>
 <button class="toolpick" data-tool="yes" title="Sicher" aria-label="Sicher"><span class="toolicon">✓</span><span class="toolcaption">Sicher</span></button>
@@ -24,27 +26,36 @@
 <button class="toolpick route-pick" data-tool="route" title="Route zeichnen" aria-label="Route zeichnen"><svg class="toolicon toolsvg" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 31L13 21L19 25L27 12L34 17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 6L38 14M38 6L30 14" stroke="currentColor" stroke-width="2.7" stroke-linecap="round"/></svg><span class="toolcaption">Route</span></button>
 <button class="toolpick route-undo" id="routeBack" type="button" title="Letzte Etappe zurücknehmen" aria-label="Letzte Etappe zurücknehmen"><svg class="toolicon toolsvg" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30L14 21L20 25L28 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 8a10 10 0 1 1-1 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M16 7l5 1-2 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="toolcaption">Route zurück</span></button>
 </div>
-<div class="mapbox"><svg id="map" viewBox="-24 -24 523 433" role="img" aria-label="Interaktive Hexkarte mit 25 Feldern"></svg></div>
-
-
-<section class="clue-carousel" aria-label="Hinweise aus dem Logbuch">
- <div class="clue-carousel-title"><strong>Aus Robins Logbuch</strong><span id="cluePosition" aria-live="polite">I / VII</span></div>
- <div class="clue-viewport" id="clueViewport" tabindex="0" aria-label="Hinweise. Seitlich wischen oder Pfeiltasten verwenden.">
-  <div class="clue-track" id="clueTrack"></div>
- </div>
- <div class="clue-nav"><button type="button" id="prevClue" aria-label="Vorheriger Hinweis">‹</button><span>Hinweis antippen zum Abhaken</span><button type="button" id="nextClue" aria-label="Nächster Hinweis">›</button></div>
-</section>
-<div class="controls map-actions" role="group" aria-label="Kartenaktionen und Anzeigeoptionen">
-<button class="btn small" id="undo" type="button" title="Letzte Aktion rückgängig machen">↶ Rückgängig</button>
-<button class="btn small visibility-toggle" id="toggleHourMarks" type="button" title="Markierungen der ausgewählten Stunde ein- oder ausblenden" aria-label="Markierungen der ausgewählten Stunde ein- oder ausblenden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12Q12 2 22 12Q12 22 2 12Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3" fill="currentColor"/><path class="eye-slash" d="M4 21L20 3" stroke="currentColor" stroke-width="2.1"/></svg><span>Markierungen</span></button>
-<button class="btn small" id="toggleRouteNumbers" type="button" aria-pressed="false">① Routennummern</button>
-<button class="btn small" id="toggleDistances" type="button" aria-pressed="false">Abstände einblenden</button>
 </div>
+<div class="mapbox"><svg id="map" viewBox="-24 -24 523 433" role="img" aria-label="Interaktive Hexkarte mit 25 Feldern"></svg></div>
+<div class="map-actions" id="mapActions" role="group" aria-label="Kartenaktionen und Anzeigeoptionen"></div>
+<section class="clue-carousel bordbook" aria-label="Hinweise aus dem Logbuch">
+ <div class="book-spread">
+  <div class="book-heading"><strong>Aus Robins Logbuch</strong><span id="cluePosition" aria-live="polite">I / VII</span><span class="book-vignette" aria-hidden="true">⚓</span><span class="book-subtitle">Der verschwundene Kompass</span></div>
+  <div class="clue-viewport" id="clueViewport" tabindex="0" aria-label="Hinweise. Seitlich wischen oder Pfeiltasten verwenden.">
+   <div class="clue-track" id="clueTrack"></div>
+  </div>
+ </div>
+ <div class="clue-nav"><button type="button" id="prevClue" title="Vorheriger Hinweis" aria-label="Vorheriger Hinweis">‹</button><span id="clueDone">Hinweis antippen zum Abhaken</span><button type="button" id="nextClue" title="Nächster Hinweis" aria-label="Nächster Hinweis">›</button></div>
+</section>
+<p class="toolbar-guide"><a href="#toolLegend">Werkzeuglegende</a></p>
+
+<details class="tool-legend" id="toolLegend"><summary>Werkzeuglegende</summary>
+<dl><dt>Stunden 1–6</dt><dd>Stundenkarte wählen. Die dicke Hexkante kennzeichnet dieselbe Stunde auf der Seekarte.</dd>
+<dt>? · ✓ · ×</dt><dd>Ein Feld als möglich, sicher oder ausgeschlossen markieren. Erneutes Antippen entfernt die Markierung.</dd>
+<dt>⌫ · ⌫∀</dt><dd>In der gewählten Stunde radieren oder das Feld in allen Stunden leeren.</dd>
+<dt>Routenlinie · Routenpfeil zurück</dt><dd>Ab Start benachbarte Wasserfelder verbinden oder die letzte Etappe zurücknehmen.</dd>
+<dt>↶ Rückgängig</dt><dd>Letzte Bearbeitung zurücknehmen. Anzeigeoptionen und bezahlte Denkanstöße bleiben bestehen.</dd>
+<dt>Konturlinien</dt><dd>Abstände umschalten, dann einen Bezugspunkt auf der Karte wählen.</dd>
+<dt>Auge im Hexagon</dt><dd>Markierungen der aktuellen Stunde ein- oder ausblenden. Die dicke Kante folgt der Stundenwahl.</dd>
+<dt>Auge mit ①②③</dt><dd>Routennummern ein- oder ausblenden.</dd>
+<dt>Route mit Haken</dt><dd>Die Route anhand der Hinweise überprüfen. Erst nach sechs gültigen Etappen verfügbar.</dd></dl>
+<p>Petrol und ein gedrückter Button zeigen das aktive Werkzeug beziehungsweise die eingeschaltete Anzeige. Ein durchgestrichenes Auge bedeutet ausgeblendete Stundenmarkierungen. Alle Buttons sind per Tab und Enter oder Leertaste bedienbar.</p></details>
 <div class="stat"><span class="muted" id="count">0 Markierungen auf dieser Karte</span></div>
 <hr class="line">
 <h3>Deine rekonstruierte Route</h3>
 <div class="route" id="routeView"></div>
-<button class="btn primary verify-wide" id="verify">Route überprüfen</button>
+
 <div id="verifyStatus" aria-live="polite"></div>
 </div></section>
 <div class="logbook-backdrop" id="logbookBackdrop" aria-hidden="true"></div>

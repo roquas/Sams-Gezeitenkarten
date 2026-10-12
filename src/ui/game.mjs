@@ -1,3 +1,5 @@
+import {createBordbook} from './bordbook.mjs';
+import {createToolbar} from './toolbar.mjs';
 import {drawMap} from './map.mjs';
 import {GREEK, GREEK_SYMBOLS, ROWCOLORS, pretty} from './coordinates.mjs';
 import {hints} from '../../content/reference-3.6.mjs';
@@ -56,35 +58,19 @@ const $=id=>document.getElementById(id);
 function save(){saveState(puzzle,state,storage)}
 function snapshot(){history.push(state)}
 function renderMap(){drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown:()=>{dragging=true;dragValue=null;},onActivate:apply})}
+const renderToolbar=createToolbar({...puzzle,rules});
 function render(){if(state.layer==="all")state.layer=1;
- $("hours").innerHTML=Array.from({length:puzzle.steps},(_,index)=>{const i=index+1;
-   const vertices=Array.from({length:6},(_,v)=>{const a=v*Math.PI/3+Math.PI/6;return `${(24+20*Math.cos(a)).toFixed(1)},${(23+20*Math.sin(a)).toFixed(1)}`}).join(" ");
-   const a=(i-2)*Math.PI/3;
-   const edge=i===0?"":`<line class="hexedge" x1="${(24+20*Math.cos(a-Math.PI/6)).toFixed(1)}" y1="${(23+20*Math.sin(a-Math.PI/6)).toFixed(1)}" x2="${(24+20*Math.cos(a+Math.PI/6)).toFixed(1)}" y2="${(23+20*Math.sin(a+Math.PI/6)).toFixed(1)}"/>`;
-   const glyph=i===0?'<text class="start-icon" x="24" y="29" text-anchor="middle">⚓</text>':`<text class="hexhour" x="24" y="27" text-anchor="middle">${i}h</text>`;
-   return `<button type="button" class="hour ${state.layer===i?"active":""} ${(state.hiddenHours||[]).includes(i)?"hidden-hour":""}" data-hour="${i}" title="${i===0?"Startposition":"Stunde "+i+": markierte Hexseite"}" aria-label="${i===0?"Startposition":"Stunde "+i}" aria-pressed="${state.layer===i}"><svg viewBox="0 0 48 46" aria-hidden="true"><polygon class="hexface" points="${vertices}"/>${edge}${glyph}</svg><small>${i===0?"Start":"Stunde "+i}</small></button>`;
- }).join("");
- const showToggle=$("toggleHourMarks");
- showToggle.disabled=!(Number.isInteger(state.layer)&&state.layer>=1&&state.layer<=6);
- showToggle.setAttribute("aria-pressed",String(!(state.hiddenHours||[]).includes(state.layer)));
-
+ renderToolbar(state);
  $("layerTitle").textContent=state.layer==="all"?"Gesamte Fahrt · alle Stunden":state.layer===0?"Stunde 0 · Abfahrt":"Stunde "+state.layer+" · Position";
  
- document.querySelectorAll("[data-tool]").forEach(b=>b.classList.toggle("active",b.dataset.tool===state.tool));
  $("routeBack").disabled=state.route.length<=1;
  $("hideRouteMarks").checked=!!state.hideRouteMarks;
  $("score").textContent=state.penalty+" Strafpunkte";
- $("toggleRouteNumbers").classList.toggle("active",!!state.showRouteNumbers);
- $("toggleRouteNumbers").setAttribute("aria-pressed",String(!!state.showRouteNumbers));
- $("toggleDistances").classList.toggle("active",!!state.distanceMode);
- $("toggleDistances").setAttribute("aria-pressed",String(!!state.distanceMode));
- $("toggleDistances").textContent=state.distanceMode?(state.distanceOrigin?"Abstände ausblenden":"Bitte Feld wählen …"):"Abstände einblenden";
- $("toggleHourMarks").classList.toggle("active",!(state.hiddenHours||[]).includes(state.layer));
  $("count").textContent=Object.keys(state.marks).filter(k=>k.startsWith(state.layer+":")&&state.marks[k]).length+" Markierungen auf dieser Karte";
  $("routeView").innerHTML=state.route.map((id,i)=>`${i?"<span>→</span>":""}<span class="step ${state.layer===i?"current":""}">${pretty(id)}</span>`).join("");
  $("helpStatus").innerHTML=state.help||"";
  $("verifyStatus").innerHTML=state.result||"";
- renderMap();renderClues();save();
+ renderMap();bordbook.render();save();
 }
 function apply(id,first){
  if(blocked.has(id))return;
@@ -141,7 +127,6 @@ $("hint").onclick=()=>{
  render();
 };
 $("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){state=initial();history.clear();render()}};
-let currentClue=0;
 const colorTokens={Cyan:0,Magenta:1,Violett:2,Blau:3,Orange:4};
 function clueMarkup(t){
  return t.replace(/(Alpha|Beta|Gamma|Delta|Epsilon)\/(Cyan|Magenta|Violett|Blau|Orange)/g,(_,col,row)=>{
@@ -149,32 +134,9 @@ function clueMarkup(t){
    return `<span class="coord-inline" aria-label="${col} / ${row}" title="${col} / ${row}"><span class="greek-badge" aria-hidden="true">${GREEK_SYMBOLS[q]}</span><span class="color-badge" style="--swatch:${c.hex}" aria-hidden="true">${c.short}</span></span>`;
  });
 }
-function renderClues(){
- $("allClues").innerHTML=clues.map(([n,t])=>{
-  const done=state.doneClues?.includes(n);
-  return `<div class="clue ${done?'done':''}" data-clue="${n}" role="checkbox" tabindex="0" aria-checked="${!!done}" title="Hinweis abhaken"><span class="num">${n}</span><p>${clueMarkup(t)}</p></div>`;
- }).join("");
- const items=clues;
- const idx=n=>(n+items.length)%items.length;
- const indexes=[idx(currentClue-1),currentClue,idx(currentClue+1)];
- $("clueTrack").innerHTML=indexes.map((i,pos)=>{
-  const [n,t]=items[i],done=state.doneClues?.includes(n);
-  return `<div class="clue-slide ${pos===1?'center':''}" aria-hidden="${pos!==1}"><div class="clue ${done?'done':''}" data-clue="${n}" role="checkbox" tabindex="${pos===1?0:-1}" aria-checked="${!!done}" title="Hinweis abhaken"><span class="num">${n}</span><p>${t}</p></div></div>`;
- }).join("");
- $("cluePosition").textContent=`${items[currentClue][0]} / VII`;
-}
-function shiftClue(dir){currentClue=(currentClue+dir+clues.length)%clues.length;renderClues()}
-$("prevClue").addEventListener("click",()=>shiftClue(-1));
-$("nextClue").addEventListener("click",()=>shiftClue(1));
-$("clueViewport").addEventListener("keydown",e=>{if(e.key==="ArrowLeft"||e.key==="ArrowRight"){e.preventDefault();shiftClue(e.key==="ArrowRight"?1:-1)}});
-let clueTouch=null;
-$("clueViewport").addEventListener("touchstart",e=>{if(e.touches.length===1)clueTouch={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});
-$("clueViewport").addEventListener("touchend",e=>{if(!clueTouch||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-clueTouch.x,dy=e.changedTouches[0].clientY-clueTouch.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.25)shiftClue(dx<0?1:-1);clueTouch=null},{passive:true});
-$("clueTrack").addEventListener("click",e=>{const slide=e.target.closest(".clue-slide");if(!slide)return;if(!slide.classList.contains("center")){shiftClue(slide===slide.parentElement.firstElementChild?-1:1);return}const n=e.target.closest("[data-clue]")?.dataset.clue;if(!n)return;snapshot();state.doneClues=state.doneClues||[];state.doneClues=state.doneClues.includes(n)?state.doneClues.filter(v=>v!==n):[...state.doneClues,n];renderClues();save()});
-$("allClues").addEventListener("click",e=>{const n=e.target.closest("[data-clue]")?.dataset.clue;if(!n)return;snapshot();state.doneClues=state.doneClues||[];state.doneClues=state.doneClues.includes(n)?state.doneClues.filter(v=>v!==n):[...state.doneClues,n];renderClues();save()});
-$("allClues").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();e.target.closest("[data-clue]")?.click()}});
+const bordbook=createBordbook({clues,getState:()=>state,markup:clueMarkup,toggleClue:id=>{
+ snapshot();state.doneClues=state.doneClues.includes(id)?state.doneClues.filter(v=>v!==id):[...state.doneClues,id];save();
+}});
 $("showChart").addEventListener("change",()=>renderMap());
-$("clueTrack").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();e.target.closest("[data-clue]")?.click()}});
-renderClues();
 render();
 })();

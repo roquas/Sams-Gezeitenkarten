@@ -6,7 +6,7 @@ function poly(x,y){return Array.from({length:6},(_,i)=>{const a=i*Math.PI/3+Math
 function coords(c){return [60+c.q*82+(c.r%2)*41,56+c.r*68]}
 export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate}){
  const $=id=>document.getElementById(id);
- const svg=$("map");svg.replaceChildren();
+ const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.replaceChildren();
  const NS="http://www.w3.org/2000/svg";
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
@@ -157,4 +157,5 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    });
    svg.append(numbers);
  }
+ if(focusedId)svg.querySelector(`[data-id="${focusedId}"]`)?.focus({preventScroll:true});
 }
