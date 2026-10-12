@@ -2,7 +2,7 @@ export function nextClue(index,delta,count){return ((index+delta)%count+count)%c
 export function swipeDirection(dx,dy){return Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.25?(dx<0?1:-1):0;}
 export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
  const $=id=>document.getElementById(id);
- let current=0,touch=null,suppressClickUntil=0,animation;
+ let current=0,touch=null,suppressClickUntil=0,animation,leaf;
  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
  function render(){
   const focusInBook=$('clueTrack').contains(document.activeElement);
@@ -21,10 +21,17 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
   if(focusInList)$('allClues').querySelector(`[data-clue="${focusedClue}"]`)?.focus({preventScroll:true});
  }
  function shift(delta){
-  current=nextClue(current,delta,clues.length);render();animation?.cancel();
-  if(!motion.matches&&$('clueTrack').animate)animation=$('clueTrack').animate([
-   {opacity:.65,transform:`translateX(${delta*6}px)`},{opacity:1,transform:'translateX(0)'}
-  ],{duration:160,easing:'ease-out'});
+  const previous=clues[current];animation?.cancel();leaf?.remove();
+  current=nextClue(current,delta,clues.length);render();
+  if(!motion.matches&&$('clueViewport').animate){
+   const turning=document.createElement('div');turning.className='turning-leaf';turning.setAttribute('aria-hidden','true');
+   const number=document.createElement('span');number.className='leaf-number';number.textContent=previous[0];
+   const text=document.createElement('p');text.textContent=previous[1];turning.append(number,text);
+   $('clueViewport').append(turning);leaf=turning;
+   const forward=delta>0;turning.style.transformOrigin=forward?'left center':'right center';
+   animation=turning.animate([{transform:'perspective(900px) rotateY(0deg)',opacity:1},{transform:`perspective(900px) rotateY(${forward?-82:82}deg)`,opacity:0}],{duration:300,easing:'ease-in-out'});
+   animation.finished.then(()=>turning.remove(),()=>turning.remove());
+  }
  }
  $('prevClue').addEventListener('click',()=>shift(-1));
  $('nextClue').addEventListener('click',()=>shift(1));
@@ -46,6 +53,6 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
   });
   container.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('[data-clue]')){e.preventDefault();e.target.closest('[data-clue]').click();}});
  }
- motion.addEventListener?.('change',()=>{if(motion.matches)animation?.cancel();});
+ motion.addEventListener?.('change',()=>{if(motion.matches){animation?.cancel();leaf?.remove();}});
  return {render};
 }

@@ -13,8 +13,9 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
  const showArt=document.getElementById("showChart").checked;
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
- for(const tile of parchmentTiles()){
-  const slice=el("svg",{...tile,preserveAspectRatio:"none",overflow:"hidden","data-parchment-slice":"true"});
+ svg.append(el("rect",{x:-24,y:-24,width:523,height:433,fill:"#e9d5b0","pointer-events":"none","aria-hidden":"true"}));
+ for(const [index,tile] of parchmentTiles().entries()){
+  const slice=el("svg",{...tile,class:index===4?"parchment-water":"parchment-edge",preserveAspectRatio:"none",overflow:"hidden","data-parchment-slice":"true"});
   slice.append(el("image",{href:CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
   art.append(slice);
  }
@@ -86,7 +87,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   const [x,y]=coords(c),m=state.marks[key(state.layer,c.id)],land=blocked.has(c.id);
   const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
   const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:land?"-1":"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
-  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"#b9e1e538",stroke:land?"none":"#746f57","stroke-width":land?"0.8":"0.35","stroke-opacity":land?".20":".16"}));
+  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"none":"#e5dfb9","stroke-width":land?"0.8":"0.8","stroke-opacity":land?".20":".34"}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
@@ -102,8 +103,8 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
     const angle=(state.layer-2)*Math.PI/3;
     const ax=x+36*Math.cos(angle-Math.PI/6),ay=y+36*Math.sin(angle-Math.PI/6);
     const bx=x+36*Math.cos(angle+Math.PI/6),by=y+36*Math.sin(angle+Math.PI/6);
-    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"2.3","stroke-linecap":"round"}));
-    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":"1.25",opacity:".72","stroke-linecap":"round"}));
+    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"1.9",opacity:".64","stroke-linecap":"round"}));
+    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":".8",opacity:".5","stroke-linecap":"round"}));
   }
   // Active layer is encoded by the field's central fill and a small center glyph.
   if(m){

@@ -22,3 +22,29 @@ test('raster upper materials load, stay clear of hit targets and render at deskt
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>scrollTo(0,0));
  await testInfo.attach('material-upper-mobile',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
 });
+test('all material exports decode and the page turn keeps one accessible hint',async({page})=>{
+ const decoded=await page.evaluate(async()=>{const {MATERIAL_ASSETS}=await import('/src/ui/material-icons.mjs');return Promise.all(MATERIAL_ASSETS.map(async src=>{const im=new Image();im.src=src;await im.decode();return {src,width:im.naturalWidth,height:im.naturalHeight};}));});
+ expect(decoded.every(im=>im.width>0&&im.height>0)).toBe(true);
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.locator('#nextClue').click();
+ await expect(page.locator('#cluePosition')).toHaveText('II / VII');
+ await expect(page.locator('#clueTrack [role="checkbox"]')).toHaveCount(1);
+ const leaf=page.locator('.turning-leaf');
+ if(await leaf.count())await expect(leaf).toHaveAttribute('aria-hidden','true');
+ await expect(leaf).toHaveCount(0,{timeout:2000});
+ await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#nextClue').click();
+ await expect(leaf).toHaveCount(0);
+ expect(await page.locator('#clueViewport').evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0);
+ await page.locator('#clueTrack [data-clue="III"]').focus();await page.keyboard.press('Space');
+ await expect(page.locator('#clueTrack [data-clue="III"]')).toHaveAttribute('aria-checked','true');
+});
+test('actual browser screenshots of the complete material composition',async({page},testInfo)=>{
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.setViewportSize({width:1440,height:1080});await page.evaluate(()=>scrollTo(0,0));
+ const desktop=await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'});
+ await testInfo.attach('material-complete-desktop',{body:desktop,contentType:'image/jpeg'});
+ await testInfo.attach('material-complete-upper',{body:await page.locator('.chart-toolbar').screenshot({type:'jpeg',quality:96,scale:'css'}),contentType:'image/jpeg'});
+ await testInfo.attach('material-complete-book',{body:await page.locator('.bordbook').screenshot({type:'jpeg',quality:96,scale:'css'}),contentType:'image/jpeg'});
+ await page.setViewportSize({width:390,height:844});await page.evaluate(()=>scrollTo(0,0));
+ await testInfo.attach('material-complete-mobile',{body:await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+});

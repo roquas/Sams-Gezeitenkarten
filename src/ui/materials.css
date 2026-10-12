@@ -51,3 +51,84 @@ main{max-width:1420px;grid-template-columns:minmax(0,1.9fr) minmax(300px,.8fr);g
  .brass-rail{height:23px;left:-3px;right:-3px;border-image-width:0 23px;border-width:0 23px}.rail-top{top:-6px}.rail-bottom{bottom:-6px}
  .material-map{padding:8px 2px 1px}
 }
+
+/* Review 1: no repeated paper seams, and screws keep their circular profile. */
+body{background-size:auto,100vw 100vh;background-repeat:no-repeat;background-attachment:fixed}
+.chart-toolbar{background-size:auto,100% 100%;background-repeat:no-repeat}
+.brass-rail{border:0;background:url('../../assets/ui/brass-strip.webp') center/auto 25px repeat-x}
+.brass-rail::before,.brass-rail::after{content:"";position:absolute;top:0;width:29px;height:29px;background:var(--rail-texture) left center/auto 29px no-repeat}
+.brass-rail::before{left:-1px}.brass-rail::after{right:-1px;background-position:right center}
+.raster-icon{width:40px;height:40px;filter:saturate(.5) brightness(.72) sepia(.15)}
+.chart-toolbar .toolpick.active{background:none;border:0;box-shadow:none}
+.chart-toolbar .toolpick.active::after,.rail-button::after{content:"";position:absolute;inset:3px;background:linear-gradient(150deg,#427278,#163e43 60%,#09292d);clip-path:polygon(16% 0,84% 0,100% 16%,100% 84%,84% 100%,16% 100%,0 84%,0 16%);z-index:0}
+.chart-toolbar .toolpick.active::before,.rail-button::before{content:"";position:absolute;inset:0;border:14px solid transparent;border-image:url('../../assets/ui/brass-bezel.webp') 78/14px stretch;z-index:1;pointer-events:none;filter:saturate(.7) brightness(.82) drop-shadow(0 2px 1px #44261780)}
+.chart-toolbar .toolpick.active .raster-icon{position:relative;z-index:2;filter:saturate(.65) brightness(1.12)}
+.material-map{background:#e9d5b0;padding:5px 3px 0}
+.parchment-edge{mix-blend-mode:multiply}
+
+/* The lower instrument shelf shares the exact same brass stock and bezels. */
+.map-actions{position:relative;min-height:112px;margin:0;padding:22px 30px;gap:16px;border:0;border-radius:0;background-color:#dfca9c;background-image:linear-gradient(90deg,#90734545,#ffefc629 12%,#ffefc650 78%,#76552a50),var(--paper-texture);background-size:auto,100% 100%;background-repeat:no-repeat;box-shadow:inset 1px 0 3px #8d673c,inset -1px 0 4px #8d673c,0 6px 12px #422d2335}
+.rail-button{position:relative;flex:0 0 64px;width:64px;min-height:64px;height:64px;padding:5px;border:0;background:none;box-shadow:none;border-radius:8px;color:#483723}
+.rail-button::after{background:linear-gradient(150deg,#f7e8c5,#dec596 58%,#c0a16d)}
+.rail-button .raster-icon,.rail-button .mark-emblem,.rail-button .numbers-emblem,.rail-button .verify-label{position:relative;z-index:2}
+.rail-button:hover{background:none;filter:brightness(1.07)}
+.rail-button.active{background:none;border:0;box-shadow:none;color:#f5e1ad}
+.rail-button.active::after{background:linear-gradient(150deg,#427278,#163e43 60%,#09292d)}
+.rail-button.active .raster-icon{filter:saturate(.65) brightness(1.12)}
+#undo::before,#toggleDistances::before{border:3px double #76572d;border-radius:50%;border-image:none;box-shadow:inset 0 1px 1px #fce3a7,inset 0 -2px 2px #5b3918,0 2px 3px #543c2180;filter:none}
+#undo::after,#toggleDistances::after{clip-path:circle(50% at 50% 50%)}
+.rail-separator{height:54px;width:2px;margin:0 2px;background:linear-gradient(90deg,#78563799,#ffebc17f)}
+.mark-emblem{width:42px;height:42px;display:grid;place-items:center}
+.mark-emblem .raster-icon{width:32px;height:32px}
+.mark-emblem svg{position:absolute;width:42px;height:42px;inset:0;stroke:#5e4528;stroke-width:1.4}
+.rail-button.active .mark-emblem svg{stroke:#f0d393}
+.rail-button .hour-hex{opacity:.55;stroke-width:1.1}
+.rail-button .hour-edge{stroke-width:3;stroke:#8e652e}.rail-button.active .hour-edge{stroke:#ffe1a2}
+.rail-button .eye-slash{stroke-width:2.5;stroke:#5e4528}.rail-button.active .eye-slash{stroke:#f0d393}
+#toggleRouteNumbers{width:116px;flex-basis:116px}
+.numbers-emblem{display:flex;gap:5px;align-items:center}.numbers-emblem .raster-icon{width:29px;height:29px}
+.route-numerals{font:700 18px Georgia,serif;letter-spacing:-1px}
+#verify{width:176px;flex-basis:176px;gap:8px}
+#verify .raster-icon{width:34px;height:34px}
+.verify-label{font:700 21px Georgia,serif}
+.rail-button:disabled{background:none;opacity:.58;filter:saturate(.4)}
+.rail-button:disabled::after{background:#aa9d82}
+
+/* A physical paper stack and leather spine; all text and checkboxes are live. */
+.bordbook{position:relative;margin:25px 0 8px;padding:46px 54px 65px;border:0;border-radius:0;min-height:365px;aspect-ratio:2.04;background:url('../../assets/ui/open-bordbook.webp') center/100% 100% no-repeat;box-shadow:none;filter:drop-shadow(0 7px 5px #5c39252d);overflow:visible;display:flex;flex-direction:column}
+.book-spread{flex:1;display:grid;grid-template-columns:50% 50%;align-items:center;min-height:230px;background:none;border-radius:0}
+.book-heading{padding:12px 28px 24px;border:0;font:600 23px/1.35 Georgia,serif;color:#694b29;gap:14px}
+.book-heading #cluePosition{font:13px Georgia,serif;letter-spacing:.14em}
+.book-vignette{display:block;width:45px;height:45px;margin:5px 0;font-size:0;background:url('../../assets/ui/ship-wheel.webp') center/contain no-repeat;filter:saturate(.4) brightness(.8);opacity:.75}
+.book-subtitle{font:italic 15px/1.6 Georgia,serif;max-width:200px}
+.bordbook .clue-viewport{position:relative;display:flex;align-items:center;padding:22px 25px 28px;min-height:220px;overflow:visible;perspective:900px}
+.bordbook .clue-slide .clue{font:18px/1.7 Georgia,serif;color:#44331e;gap:10px}
+.bordbook .clue-slide .clue:hover{background:#bea27814!important}
+.bordbook .num{background:none;font:700 16px Georgia,serif;border-bottom:1px solid #9f7d4380;border-radius:0;width:23px;margin-top:2px;color:#8f6935}
+.bordbook .clue-nav{position:absolute;bottom:35px;left:52px;right:52px;padding:0;gap:8px;color:#785a35;font:12px Georgia,serif}
+.bordbook .clue-nav button{width:44px;height:44px;border:1px solid #ad8a5380;border-radius:50%;background:linear-gradient(#f2dfb47d,#d1b7896f);box-shadow:inset 0 1px #fff5d185,0 1px 3px #88633f40;display:grid;place-items:center}
+.bordbook .clue-nav button .raster-icon{width:29px;height:29px}
+#nextClue .raster-icon{transform:scaleX(-1)}
+.turning-leaf{position:absolute;inset:0;z-index:4;display:flex;gap:10px;align-items:center;padding:22px 25px 28px;pointer-events:none;backface-visibility:hidden;transform-style:preserve-3d;background:linear-gradient(90deg,#c6a56b66,#fff5dc88 16%,#ead6b185),var(--paper-texture);background-size:auto,100% 100%;box-shadow:8px 0 13px #6d492852;border-radius:0 5px 8px 0;font:18px/1.7 Georgia,serif;color:#44331e}
+.turning-leaf p{margin:0}.leaf-number{align-self:flex-start;margin-top:2px;font:700 16px Georgia,serif;color:#8f6935;flex:none;width:23px}
+@media(max-width:600px){
+ .raster-icon{width:36px;height:36px}.brass-rail{height:23px;background-size:auto 22px}
+ .brass-rail::before,.brass-rail::after{width:25px;height:25px;background-size:auto 25px}
+ .chart-toolbar .toolpick.active::before{border-image-width:12px}
+ .map-actions{min-height:85px;padding:18px 8px;gap:2px}
+ .rail-button{width:44px;flex-basis:44px;min-height:48px;height:48px;padding:3px}
+ .rail-button::before{border-image-width:12px}.rail-button .raster-icon{width:31px;height:31px}
+ .rail-separator{height:32px;width:1px;margin:0 1px}
+ #toggleRouteNumbers{width:66px;flex-basis:66px}.numbers-emblem{gap:1px}.numbers-emblem .raster-icon{width:20px;height:20px}.route-numerals{font-size:12px;letter-spacing:-1px}
+ #verify{width:56px;flex-basis:56px;gap:0}.verify-label{display:none}#verify .raster-icon{width:30px;height:30px}
+ .mark-emblem{width:33px;height:33px}.mark-emblem svg{width:33px;height:33px}.mark-emblem .raster-icon{width:25px;height:25px}
+ .bordbook{margin-top:22px;aspect-ratio:auto;min-height:375px;padding:25px 22px 72px;background-size:200% 100%;background-position:right center}
+ .book-spread{display:block;min-height:0}.book-heading{display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:10px 12px 4px;font-size:17px;gap:7px;text-align:left}
+ .book-heading #cluePosition{font-size:11px;white-space:nowrap}.book-vignette,.book-subtitle{display:none}
+ .bordbook .clue-viewport{padding:22px 10px;min-height:218px;overflow:hidden}
+ .bordbook .clue-slide .clue{font-size:16px;line-height:1.7;gap:7px}
+ .bordbook .clue-nav{bottom:28px;left:35px;right:25px;font-size:11px}.bordbook .clue-nav span{max-width:180px}
+ .turning-leaf{padding:22px 10px;font-size:16px;line-height:1.7}
+}
+@media(prefers-reduced-motion:reduce){.turning-leaf{display:none}}
+.mark-emblem svg{z-index:3}
