@@ -95,9 +95,9 @@ body{background-size:auto,100vw 100vh;background-repeat:no-repeat;background-att
 .rail-button:disabled::after{background:#aa9d82}
 
 /* A physical paper stack and leather spine; all text and checkboxes are live. */
-.bordbook{position:relative;margin:25px 0 8px;padding:46px 54px 65px;border:0;border-radius:0;min-height:365px;aspect-ratio:2.04;background:url('../../assets/ui/open-bordbook.webp') center/100% 100% no-repeat;box-shadow:none;filter:drop-shadow(0 7px 5px #5c39252d);overflow:visible;display:flex;flex-direction:column}
+.bordbook{position:relative;margin:25px 0 8px;padding:46px 54px 65px;border:0;border-radius:0;min-height:clamp(365px,34vw,465px);width:100%;min-width:0;aspect-ratio:auto;background:url('../../assets/ui/open-bordbook.webp') center/100% 100% no-repeat;box-shadow:none;filter:drop-shadow(0 7px 5px #5c39252d);overflow:visible;display:flex;flex-direction:column}
 .book-spread{flex:1;display:grid;grid-template-columns:50% 50%;align-items:center;min-height:230px;background:none;border-radius:0}
-.book-heading{padding:12px 28px 24px;border:0;font:600 23px/1.35 Georgia,serif;color:#694b29;gap:14px}
+.book-heading{flex-direction:column;padding:12px 28px 24px;border:0;font:600 23px/1.35 Georgia,serif;color:#694b29;gap:14px}
 .book-heading #cluePosition{font:13px Georgia,serif;letter-spacing:.14em}
 .book-vignette{display:block;width:45px;height:45px;margin:5px 0;font-size:0;background:url('../../assets/ui/ship-wheel.webp') center/contain no-repeat;filter:saturate(.4) brightness(.8);opacity:.75}
 .book-subtitle{font:italic 15px/1.6 Georgia,serif;max-width:200px}

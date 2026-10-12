@@ -32,7 +32,9 @@ Darstellungsgröße optimiert. Die Quellen bleiben unverändert; die exportierte
 Assets liegen in `assets/ui/`.
 
 - `brass-rail.webp`: dunkles Metallprofil, Glanzrillen, Endbeschläge und Nieten;
-  neunfach skalierbare Rahmendarstellung über CSS border-image.
+  Endbeschläge mit unverzerrtem Profil; der Mittelteil wird separat wiederholt.
+- `brass-strip.webp`: wiederholbarer Metall-Mittelteil mit runden Nieten.
+- `brass-bezel.webp`: transparenter achteckiger Button-Beschlag mit Relief.
 - `tool-atlas.webp`: neun zusammengehörige Werkzeugbilder; aktives Werkzeug
   bleibt über DOM-Zustände, Tastatur und aria-pressed erkennbar.
 - `ship-wheel.webp`: dekoratives Steuerrad der oberen Fassung.
@@ -81,3 +83,8 @@ Keine Änderung an Engine, Rätseldefinition, Hinweisinhalten oder Speicherung.
   echte iPhone-Hardware sind nicht geprüft. Keine externen Fonts oder Laufzeit-
   Bibliotheken; die Serifentypografie verwendet Georgia beziehungsweise den
   Serif-Fallback des Systems.
+
+3. Zusatzprüfung: feste Seitenproportion und Mindesthöhe des Buchs erzeugten
+   bei 620 CSS-Pixeln eine überbreite Darstellung. Das Buch ist nun auf die
+   Kartenbreite begrenzt und wächst bei längeren Hinweisen in der Höhe; Titel
+   und Metadaten bleiben auf der linken Desktop-Seite untereinander.
