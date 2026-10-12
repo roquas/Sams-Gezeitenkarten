@@ -33,8 +33,12 @@ test('route, backstep, and verification of known solution',async({page})=>{
  await page.locator('#routeBack').click();expect((await state(page)).route).toHaveLength(6);
 });
 test('hint has cost and is currently undoable (3.6 characterization)',async({page})=>{
- await page.locator('.logbook-section details').filter({has:page.locator('#hint')}).locator('summary').click();
- await page.locator('#hint').click();expect((await state(page)).penalty).toBe(10);
+ const help=page.locator('.logbook-section details').filter({has:page.locator('#hint')});
+ // On mobile the logbook is in a scrollable pane; expand via DOM rather than
+ // requiring Playwright to scroll the summary into the viewport.
+ await help.evaluate(el=>{el.open=true;});
+ await page.locator('#hint').evaluate(el=>el.click());
+ expect((await state(page)).penalty).toBe(10);
  await page.locator('#undo').click();expect((await state(page)).penalty).toBe(0);
 });
 test('chart illustration toggle does not enter state and survives undo',async({page})=>{
