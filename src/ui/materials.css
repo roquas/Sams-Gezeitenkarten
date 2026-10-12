@@ -127,7 +127,7 @@ body{background-size:auto,100vw 100vh;background-repeat:no-repeat;background-att
  .book-heading #cluePosition{font-size:11px;white-space:nowrap}.book-vignette,.book-subtitle{display:none}
  .bordbook .clue-viewport{padding:22px 10px;min-height:218px;overflow:hidden}
  .bordbook .clue-slide .clue{font-size:16px;line-height:1.7;gap:7px}
- .bordbook .clue-nav{bottom:28px;left:35px;right:25px;font-size:11px}.bordbook .clue-nav span{max-width:180px}
+ .bordbook .clue-nav{bottom:28px;left:35px;right:25px;font-size:11px}.bordbook .clue-nav #clueDone{max-width:180px}
  .turning-leaf{padding:22px 10px;font-size:16px;line-height:1.7}
 }
 @media(prefers-reduced-motion:reduce){.turning-leaf{display:none}}
@@ -139,7 +139,7 @@ body{background-size:auto,100vw 100vh;background-repeat:no-repeat;background-att
 .bordbook .clue p{overflow-wrap:break-word}
 .book-heading strong{min-width:0}.book-heading #cluePosition{flex:none;color:#76532f}
 .bordbook .clue-nav{bottom:70px}
-.bordbook .clue-nav span{background:#f6e8c9e8;border:1px solid #b7996b70;padding:4px 8px;border-radius:3px;color:#59412b;box-shadow:0 1px 2px #49311c20}
+.bordbook .clue-nav #clueDone{background:#f6e8c9e8;border:1px solid #b7996b70;padding:4px 8px;border-radius:3px;color:#59412b;box-shadow:0 1px 2px #49311c20}
 .bordbook .clue-nav button{background:linear-gradient(#f3e1bcdc,#d6bc8de0);border-color:#98713d;box-shadow:inset 0 1px #fff2cb,0 1px 3px #88633f60}
 .bordbook .clue-nav button .raster-icon{filter:saturate(.5) brightness(.56)}
 @media(min-width:601px) and (max-width:760px){
@@ -148,7 +148,7 @@ body{background-size:auto,100vw 100vh;background-repeat:no-repeat;background-att
 }
 @media(max-width:600px){
  .bordbook{padding:25px 50px 92px 34px}
- .book-heading{padding-left:8px;padding-right:0}.book-heading strong{flex:1}.book-heading #cluePosition{font-size:12px}
+ .book-heading{padding-left:8px;padding-right:18px}.book-heading strong{flex:1}.book-heading #cluePosition{font-size:12px}
  .bordbook .clue-nav{bottom:64px;left:42px;right:42px}
- .bordbook .clue-nav span{padding:3px 5px;font-size:10px;max-width:170px}
+ .bordbook .clue-nav #clueDone{padding:3px 5px;font-size:10px;max-width:170px}
 }

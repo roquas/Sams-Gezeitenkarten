@@ -25,6 +25,8 @@ test('raster upper materials load, stay clear of hit targets and render at deskt
 test('all material exports decode and the page turn keeps one accessible hint',async({page})=>{
  const decoded=await page.evaluate(async()=>{const {MATERIAL_ASSETS}=await import('/src/ui/material-icons.mjs');return Promise.all(MATERIAL_ASSETS.map(async src=>{const im=new Image();im.src=src;await im.decode();return {src,width:im.naturalWidth,height:im.naturalHeight};}));});
  expect(decoded.every(im=>im.width>0&&im.height>0)).toBe(true);
+ const backgrounds=await page.locator('.raster-icon').evaluateAll(ns=>ns.map(el=>getComputedStyle(el).backgroundImage));
+ expect(backgrounds.every(bg=>bg.includes('tool-atlas.webp'))).toBe(true);
  await page.emulateMedia({reducedMotion:'no-preference'});
  await page.locator('#nextClue').click();
  await expect(page.locator('#cluePosition')).toHaveText('II / VII');

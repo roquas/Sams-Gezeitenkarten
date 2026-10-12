@@ -88,3 +88,8 @@ Keine Änderung an Engine, Rätseldefinition, Hinweisinhalten oder Speicherung.
    bei 620 CSS-Pixeln eine überbreite Darstellung. Das Buch ist nun auf die
    Kartenbreite begrenzt und wächst bei längeren Hinweisen in der Höhe; Titel
    und Metadaten bleiben auf der linken Desktop-Seite untereinander.
+
+4. Abschließende Sichtprüfung: eine zu breite CSS-Regel für die Statusfläche
+   übermalte die Rasterbilder der Buchpfeile. Sie wurde auf `#clueDone` begrenzt;
+   eine Browserprüfung schützt jetzt die tatsächliche Rasterbindung aller Icons.
+   Die mobile Seitennummer liegt zusätzlich weiter innerhalb der Papierfläche.
