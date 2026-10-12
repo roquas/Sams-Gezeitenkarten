@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gezeitenkarten · Der verschwundene Kompass</title>
+<style>
+:root{--ink:#23363d;--navy:#173341;--paper:#fffdf6;--sand:#eee6d3;--muted:#65777b;--gold:#b37b36;--line:#d9d4c5}
+*{box-sizing:border-box}body{margin:0;background:#e8e8e2;color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer}button:disabled{opacity:.42;cursor:not-allowed}
+button:focus-visible,[tabindex]:focus-visible{outline:3px solid #e2a748;outline-offset:3px}
+header{background:var(--navy);color:#f8efdc;padding:15px max(18px,calc((100vw - 1340px)/2));display:flex;justify-content:space-between;gap:15px;align-items:center}
+header strong{font:700 23px Georgia,serif}header small{display:block;font-size:10px;letter-spacing:.17em;color:#d6b98e;text-transform:uppercase}
+main{max-width:1340px;margin:22px auto;padding:0 16px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(310px,.8fr);gap:18px;align-items:start}
+.panel{background:var(--paper);border:1px solid #d7d1c1;border-radius:15px;overflow:hidden;box-shadow:0 6px 24px #152b3010}
+.pad{padding:20px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#8e714d;font-weight:800}
+h1,h2,h3{font-family:Georgia,serif;line-height:1.18}h1{font-size:clamp(25px,3vw,37px);margin:5px 0 10px}h2{font-size:23px;margin:0 0 10px}h3{font-size:17px;margin:0 0 8px}
+p{margin:8px 0 12px}.muted{font-size:13px;color:var(--muted)}.story{font:16px/1.65 Georgia,serif;color:#4d4b43}
+.controls{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.btn{border:1px solid #bdc6c5;background:white;border-radius:9px;padding:9px 11px;color:var(--ink);font-weight:550}
+.btn.active{background:#1d4354;color:white;border-color:#1d4354}.btn.primary{background:#214c5c;color:white;border-color:#214c5c}
+.secondary-tools{margin-top:-5px;padding-top:9px;border-top:1px solid var(--line)}.secondary-tools .btn{font-size:13px;background:#f4f2eb;color:#52656a}.secondary-tools .btn.active{background:#1d4354;color:white}.btn.danger{color:#8e473e}.btn.small{font-size:12px;padding:7px 9px}
+.overlaybar{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:12px 0 3px;font-size:13px}.overlaybar select{background:white;border:1px solid #b9c4c4;border-radius:8px;padding:7px 9px;color:#203940}.hourbar{display:flex;gap:5px;margin:12px 0}.hour{flex:1;min-width:0;background:#f4f0e6;border:1px solid #d0c8b7;border-radius:8px;padding:7px 2px;font-weight:700;color:#43545a}
+.hour.hidden-hour .hexedge{stroke:#a7aeab;stroke-width:5}.hour.hidden-hour .hexface{fill:#e0e2df}.hour.hidden-hour.active .hexedge{stroke:#a7aeab}.hour.active{background:#b37b36;color:white;border-color:#b37b36}.hour small{display:block;font-size:9px;font-weight:400}.hour svg{width:42px;height:40px;margin:auto;overflow:visible}.hour .hexface{fill:#e7eeeb;stroke:#68817f;stroke-width:2}.hour .hexedge{stroke:#ae782e;stroke-width:5;stroke-linecap:round}.hour.active .hexface{fill:#f6e7c7;stroke:#765324}.hour.active .hexedge{stroke:#79521e}.hour .hexhour{font-size:13px;font-weight:800;fill:#254651}.hour .start-icon{font-size:17px;fill:#254651}.hour.active .hexhour,.hour.active .start-icon{fill:#62451c}
+.mapbox{background:radial-gradient(ellipse at 30% 20%,#d6e6df,#b0d1ce 65%,#96b7bb);border-radius:12px;overflow:hidden;position:relative}
+svg{display:block;width:100%;height:auto;touch-action:none;user-select:none}.cell{cursor:pointer}.cell polygon{transition:fill .1s,stroke .1s}.cell:not(.blocked-cell):hover polygon{stroke:#f9f1d8;stroke-width:3}.cell text,.cell path,.cell circle{pointer-events:none}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin:9px 0;font-size:12px;color:#5b6c70}.legend span{white-space:nowrap}
+.line{border:0;border-top:1px solid var(--line);margin:16px 0}.stat{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{font-size:12px;background:#f1eadb;padding:5px 9px;border-radius:30px}
+.step.current{background:#b37b36;color:white;box-shadow:0 0 0 2px #fff2d4 inset}.route{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin:8px 0 12px}.step{padding:4px 7px;background:#e6e9e5;border-radius:6px;font-weight:700;font-size:12px}
+details{border-top:1px solid #e4ddce;padding:11px 0}summary{cursor:pointer;font-weight:700}details p{margin:7px 0 0}
+.clue{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #e7e1d4}.num{flex:none;width:29px;height:29px;border-radius:8px;background:#f0e4cd;display:grid;place-items:center;font:700 15px Georgia,serif;color:#775a33}.clue p{margin:0}.clue{cursor:pointer;border-radius:8px;transition:opacity .15s,background .15s}.clue:hover{background:#f5f0e6}.clue.done{opacity:.38}.clue.done p{text-decoration:line-through;text-decoration-thickness:1px}.clue:focus-visible{outline:3px solid #ad7427}.clue .num{user-select:none}
+.notice{padding:12px 14px;background:#eef2ec;border-left:3px solid #537d77;border-radius:7px;font-size:13px;margin:12px 0}
+.notice.error{background:#f8e9e6;border-color:#af6657}.notice.success{background:#e6f1e7;border-color:#5a966d}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:10px}
+footer{max-width:1340px;margin:8px auto 28px;padding:0 16px;color:#68787a;font-size:12px}
+@media(max-width:880px){main{grid-template-columns:1fr}.pad{padding:16px}header strong{font-size:19px}.clue{padding:10px 0}}
+@media(max-width:430px){.btn{font-size:12px;padding:8px}.hour small{font-size:8px}.hour{font-size:12px}main{padding:0 9px;margin:10px auto}.panel{border-radius:10px}}
+
+/* Kompakte Werkzeugleiste direkt an der Karte */
+.toolstrip{display:flex;align-items:stretch;gap:3px;margin:9px 0 0;padding:7px 5px;background:#e9eee9;border:1px solid #c8d4ce;border-bottom:0;border-radius:12px 12px 0 0}
+.toolpick{min-width:0;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:5px 1px 6px;border:1px solid transparent;border-radius:8px;background:transparent;color:#435b62;transition:background .12s,color .12s}
+.toolpick:hover{background:#dce7e1}.toolpick.active{background:#214c5c;color:#fff;box-shadow:0 2px 6px #142f3830}.toolpick .toolicon{font-size:29px;font-weight:700;line-height:34px;height:34px;display:flex;align-items:center;justify-content:center}.toolpick .toolsvg{width:34px;height:34px;flex:none}.toolcaption{font-size:10px;line-height:1.15;white-space:nowrap}.toolseparator{width:1px;background:#bacac4;align-self:stretch;margin:6px 3px;flex:none}.route-pick{color:#926322}.route-pick.active{background:#9c6c2f;color:#fff}.visibility-pick[aria-pressed="false"] .eye-slash{display:block}.visibility-pick[aria-pressed="true"] .eye-slash{display:none}.visibility-pick:disabled{opacity:.35}.toolstrip+.mapbox{border-radius:0 0 12px 12px}
+@media(max-width:430px){.toolstrip{gap:1px;padding:5px 2px}.toolseparator{margin:5px 1px}.toolpick .toolicon{font-size:25px}.toolpick .toolsvg{width:29px;height:29px}.toolcaption{font-size:9px}}
+
+/* Dieselben Bedienelemente und dieselbe Spiellogik auf allen Bildschirmgrößen. */
+.toolcaption{display:none}
+.toolpick{min-height:48px}
+@media(max-width:880px){
+ main{display:block}
+ .map-panel{margin-bottom:0}
+ .clue-panel{margin:8px 0 12px}
+ .clue-panel .pad{padding:12px}
+ .clue-instruction,.map-status,#count{display:none!important}
+ .clue-heading{margin:0 0 9px!important}
+ #clues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:start}
+ .clue{background:#f8f4e9;border:1px solid #e0d8c7;padding:10px;border-radius:10px;display:flex;gap:7px;min-height:100%;font-size:13px;line-height:1.42}
+ .clue .num{width:23px;height:23px;font-size:12px}
+ .clue.done{opacity:.48;background:#eeeae1}
+ .clue-panel details{order:0}
+ .toolstrip{margin-top:6px}
+ .hourbar{margin:8px 0}
+ .hour small{display:none}
+}
+@media(max-width:360px){#clues{gap:6px}.clue{font-size:12px;padding:7px;gap:5px}.clue .num{width:19px;height:19px}}
+/* Intro and rules always precede the map, on desktop and mobile. */
+.opening{max-width:1308px;margin:18px auto 0}.opening .pad{padding:13px 20px}.opening details{border-top:0;padding:6px 0}.opening .rules-details{border-top:1px solid #e4ddce;margin-top:7px;padding-top:10px}.opening .story-details summary{font:700 21px Georgia,serif}.opening .story{max-width:1100px;margin:8px 0}.opening .rules-details summary{font-size:14px}
+@media(max-width:880px){.opening{margin:10px 9px 0}.opening .pad{padding:10px 14px}.opening .story-details summary{font-size:18px}.opening .story{font-size:14px;line-height:1.5}main{margin-top:9px}}
+
+/* Kartenaktionen: gleiche Bedienung auf allen Geräten, auf schmalen Displays 2×2. */
+.map-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:10px 0 5px}
+.map-actions .btn{white-space:normal;min-height:39px;padding:7px 5px;font-size:12px}
+.map-actions #routeBack{border-color:#b7a48a;background:#f5eee3;color:#74532e}
+.verify-wide{display:block;width:100%;padding:12px 16px;font-weight:700;margin:9px 0}
+.mapbox{background:radial-gradient(ellipse at 35% 20%,#eee0b9,#d8c49b 70%,#bfa579)}
+@media(max-width:680px){.map-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.map-actions .btn{font-size:12px;min-height:41px}}
+/* Tesoro-inspired warm ink-and-parchment palette; gameplay stays legible. */
+:root{--ink:#352f2a;--navy:#293e43;--paper:#fff9e9;--sand:#e8d8b7;--muted:#746d5f;--gold:#aa783a;--line:#d9c8a4}
+body{background:#e4d8bf}
+.panel{border-color:#cdbb97;box-shadow:0 7px 24px #4d3d2515}
+.toolstrip{background:#e8dfca;border-color:#cbbda2}
+.toolpick.active{background:#34565a}
+.clue{border-color:#dccaa7}
+@media(max-width:880px){.clue{background:#fcf3dc}}
+
+/* Mobile Logbuchschublade: dieselben Hinweise, nur eine andere Präsentation. */
+.logbook-tab,.logbook-backdrop{display:none}
+@media(max-width:880px){
+ .clue-panel{position:fixed;z-index:100;top:9vh;right:0;bottom:5vh;width:min(88vw,410px);margin:0!important;overflow:visible;border-radius:14px 0 0 14px;box-shadow:-12px 12px 35px #29231b40;transform:translateX(100%);transition:transform .25s ease;visibility:visible;background:#f9efd6;border:1px solid #a88b59;border-right:0}
+ .clue-panel.open{transform:translateX(0)}
+ .clue-panel>.pad{height:100%;overflow-y:auto;overscroll-behavior:contain;padding:20px 15px 28px;background:repeating-linear-gradient(0deg,transparent 0,transparent 29px,#b89d6d22 30px,#b89d6d22 31px),#f9efd6;border-radius:14px 0 0 14px}
+ .clue-panel .clue-heading{font:700 23px Georgia,serif;letter-spacing:0;text-transform:none;color:#76512d;margin:3px 0 13px!important}
+ #clues{display:flex;flex-direction:column;gap:10px}
+ .clue{min-height:0;background:#fff9e9!important;border:1px solid #d8be8e;box-shadow:1px 3px 0 #a7864e18;border-radius:3px 11px 7px 4px;padding:12px;font:14px/1.5 Georgia,serif}
+ .clue:nth-child(2n){transform:rotate(.35deg)}
+ .clue.done{opacity:.46;order:2}
+ .clue:not(.done){order:1}
+ .logbook-tab{display:flex;position:absolute;left:-45px;top:25%;width:45px;min-height:128px;align-items:center;justify-content:center;gap:6px;flex-direction:column;padding:12px 7px;background:#f0ddb0;color:#6b4825;border:1px solid #a88b59;border-right:0;border-radius:12px 0 0 12px;box-shadow:-4px 3px 8px #29231b22;font-weight:750;touch-action:pan-y}
+ .logbook-tab span{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.07em;font-size:13px}
+ .logbook-tab svg{width:20px;height:20px;transform:rotate(180deg);transition:transform .2s}
+ .clue-panel.open .logbook-tab svg{transform:none}
+ .logbook-backdrop{display:block;position:fixed;inset:0;z-index:99;background:#1b292950;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+ .logbook-backdrop.visible{opacity:1;visibility:visible}
+ body.logbook-open{overflow:hidden}
+}
+@media(prefers-reduced-motion:reduce){.clue-panel,.logbook-backdrop{transition:none!important}}
+
+/* V1.9: Einheitliche Hinweis-Karussellansicht für alle Bildschirmgrößen. */
+main{display:block;max-width:900px}
+.map-panel{width:100%}
+.clue-carousel{margin:12px 0 10px;padding:12px 0 8px;background:#f4e9d2;border:1px solid #d5bf95;border-radius:12px;overflow:hidden}
+.clue-carousel-title{display:flex;justify-content:space-between;align-items:center;padding:0 14px 8px;color:#74522e;font:15px Georgia,serif}
+.clue-carousel-title span{font:700 12px sans-serif;color:#8b7658}
+.clue-viewport{overflow:hidden;touch-action:pan-y;outline-offset:-3px}
+.clue-track{display:flex;align-items:stretch;gap:2%;width:100%;transform:translateX(-84%)}
+.clue-slide{flex:0 0 84%;min-width:0;padding:0 1px;opacity:.52;cursor:pointer}
+.clue-slide.center{opacity:1}
+.clue-slide .clue{height:100%;min-height:100px;background:#fff9e9!important;border:1px solid #d8be8e;border-radius:5px 12px 7px 4px;padding:13px 15px;font:15px/1.45 Georgia,serif;box-shadow:1px 3px 0 #a7864e18;display:flex;gap:12px}
+.clue-slide .clue.done{opacity:.42}
+.clue-nav{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 0;color:#8a7555;font-size:11px}
+.clue-nav button{border:1px solid #c6ad7f;background:#fff8e8;border-radius:9px;min-width:43px;min-height:35px;color:#75532c;font-size:26px;line-height:1}
+.logbook-tab,.logbook-backdrop{display:block}
+.clue-panel{position:fixed;z-index:100;top:9vh;right:0;bottom:5vh;width:min(88vw,410px);margin:0!important;overflow:visible;border-radius:14px 0 0 14px;box-shadow:-12px 12px 35px #29231b40;transform:translateX(100%);transition:transform .25s ease;background:#f9efd6;border:1px solid #a88b59;border-right:0}
+.clue-panel.open{transform:translateX(0)}
+.clue-panel>.pad{height:100%;overflow-y:auto;overscroll-behavior:contain;padding:20px 15px 28px;background:repeating-linear-gradient(0deg,transparent 0,transparent 29px,#b89d6d22 30px,#b89d6d22 31px),#f9efd6;border-radius:14px 0 0 14px}
+.clue-panel .clue-heading{font:700 21px Georgia,serif;color:#76512d}
+.logbook-tab{display:flex;position:absolute;left:-45px;top:25%;width:45px;min-height:128px;align-items:center;justify-content:center;gap:6px;flex-direction:column;padding:12px 7px;background:#f0ddb0;color:#6b4825;border:1px solid #a88b59;border-right:0;border-radius:12px 0 0 12px;box-shadow:-4px 3px 8px #29231b22;font-weight:750;touch-action:pan-y}
+.logbook-tab span{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.07em;font-size:13px}
+.logbook-tab svg{width:20px;height:20px;transform:rotate(180deg)}
+.clue-panel.open .logbook-tab svg{transform:none}
+.logbook-backdrop{position:fixed;inset:0;z-index:99;background:#1b292950;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.logbook-backdrop.visible{opacity:1;visibility:visible}
+body.logbook-open{overflow:hidden}
+@media(max-width:880px){.clue-carousel .clue{font-size:13px;min-height:120px;padding:11px 10px}.clue-carousel .num{width:24px;height:24px;font-size:12px}}
+
+/* V2.0: Ein einziges Logbuch als rechte Spalte oder mobile Schublade. */
+main{display:grid;max-width:1340px;grid-template-columns:minmax(0,1.65fr) minmax(300px,.82fr);gap:18px;align-items:start}
+.map-panel{width:100%;min-width:0}
+.clue-panel{position:sticky;top:12px;right:auto;bottom:auto;width:auto;margin:0!important;transform:none;overflow:hidden;box-shadow:0 7px 24px #4d3d2515;border:1px solid #cdbb97;border-radius:15px;z-index:auto;background:#f9efd6}
+.clue-panel>.pad{height:auto;max-height:calc(100vh - 24px);overflow-y:auto;overscroll-behavior:contain;padding:18px;background:repeating-linear-gradient(0deg,transparent 0,transparent 29px,#b89d6d19 30px,#b89d6d19 31px),#f9efd6;border-radius:0}
+.logbook-tab,.logbook-backdrop{display:none}
+.logbook-section{padding:14px 0;border-bottom:1px solid #cdb68b}
+.logbook-section:last-child{border-bottom:0}
+.logbook-section h3{margin-bottom:8px;color:#70512f}
+.logbook-section details{border:0;padding:2px 0}
+.logbook-section summary{font-weight:600;font-size:13px;color:#76532e}
+.logbook-section .story{font-size:14px;line-height:1.5}
+.all-clues{display:grid;gap:8px}
+.all-clues .clue{background:#fff9e9;border:1px solid #d9c49d;border-radius:9px;padding:10px;display:flex;gap:9px;font:13px/1.45 Georgia,serif}
+.all-clues .clue.done{opacity:.42}
+.all-clues .num{width:24px;height:24px;font-size:12px}
+.setting-row{display:flex;gap:9px;align-items:center;font-size:13px;padding:6px 0}
+.setting-row input{width:18px;height:18px;accent-color:#34565a}
+@media(max-width:880px){
+ main{display:block}
+ .clue-panel{position:fixed;z-index:100;top:5vh;right:0;bottom:3vh;width:min(88vw,410px);margin:0!important;overflow:visible;border-radius:14px 0 0 14px;transform:translateX(100%);transition:transform .25s ease;box-shadow:-12px 12px 35px #29231b40}
+ .clue-panel.open{transform:translateX(0)}
+ .clue-panel>.pad{height:100%;max-height:none;overflow-y:auto;padding:18px 14px 28px;border-radius:14px 0 0 14px}
+ .logbook-tab{display:flex}
+ .logbook-backdrop{display:block}
+}
+.coord-legend{display:grid;gap:10px;padding:12px;background:#f6e8c8;border:1px solid #c8b48c;border-radius:10px;font-size:13px}.coord-legend p{margin:5px 0}.color-legend{display:flex;flex-wrap:wrap;gap:7px 12px;margin-top:8px}.color-legend span{display:inline-flex;align-items:center;gap:5px}.color-legend i{display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:50% 44% 55% 40%;background:var(--swatch);color:#172f38;font:700 12px system-ui;box-shadow:0 0 0 2px #fff5dc inset;font-style:normal}
+.greek-legend{display:flex;flex-wrap:wrap;gap:8px 13px!important;align-items:center}.greek-legend span{display:inline-flex;gap:5px;align-items:center}.greek-legend b,.greek-badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;box-sizing:border-box;border:1px solid #8c7654;border-radius:4px;background:#f4e7c7;color:#315d58;font:bold 18px Georgia,serif}.coord-inline{display:inline-flex;align-items:center;gap:3px;vertical-align:middle;white-space:nowrap}.color-badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;box-sizing:border-box;border-radius:50% 44% 55% 40%;background:var(--swatch);border:1px solid #f9eacb;color:#172f38;font:bold 12px system-ui}.coord-inline .greek-badge,.coord-inline .color-badge{width:22px;height:22px}.coord-inline .greek-badge{font-size:16px}
+
+/* 3.2: Einheitliche Akkordeon-Navigation und Messfeld */
+.logbook-section{margin:0}
+.logbook-section h3{display:none}
+.logbook-section details{border:0;border-bottom:1px solid #e3d9c7;padding:0}
+.logbook-section summary{font:700 19px/1.3 Georgia,serif;color:#664725;padding:13px 4px 13px 26px;position:relative;list-style:none}
+.logbook-section summary::-webkit-details-marker{display:none}
+.logbook-section summary::before{content:"▸";position:absolute;left:4px;top:13px;font:700 18px Georgia,serif;color:#a57b42;transform-origin:center;transition:transform .12s}
+.logbook-section details[open]>summary::before{transform:rotate(90deg)}
+.logbook-section details>p,.logbook-section details>.coord-legend,.logbook-section details>.all-clues,.logbook-section details>.controls,.logbook-section details>.setting-row,.logbook-section details>.reset-setting,.logbook-section details>#helpStatus{margin-left:5px;margin-right:5px}
+.logbook-section details[open]{padding-bottom:12px}
+.credits-section{padding:14px 4px 5px}
+.credits-title{font:700 16px Georgia,serif;color:#755b3b;margin-bottom:6px}
+.reset-setting{border-top:1px dashed #d5c9b6;margin-top:14px;padding-top:10px}
+.measure-panel{display:flex;flex-direction:column;gap:4px;margin:10px 0 0;padding:12px 15px;border:1px solid #c4d0c9;border-left:4px solid #b88a48;border-radius:9px;background:#f3efe5;color:#3e5358;font-size:13px;line-height:1.5}
+.measure-panel strong{font:700 16px Georgia,serif;color:#70532c}
+.measure-panel[hidden]{display:none!important}
+
+#clearCellAll.active{background:#d9c69d;color:#523b22;border-color:#9c7943;box-shadow:0 0 0 2px #f7e6bf inset}
+
+/* 3.6: kompakte Aktionen und reine Anzeige-Toggles unter der Karte */
+.map-actions{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:8px 0 10px}
+.map-actions .btn{display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;min-height:42px;padding:7px 5px}
+.map-actions .btn.active{background:#34565a;color:#fff;border-color:#34565a}
+.visibility-toggle svg{display:block;width:20px;height:20px;flex:none;touch-action:auto}
+.visibility-toggle[aria-pressed="true"] .eye-slash{display:none}
+.visibility-toggle[aria-pressed="false"] .eye-slash{display:block}
+.all-eraser{position:relative;display:inline-flex!important;align-items:center}
+.all-eraser sup{position:absolute;right:-8px;top:-5px;font-size:13px;background:#e9eee9;color:#435b62;border-radius:6px;padding:0 2px;line-height:17px}
+.toolpick.active .all-eraser sup{background:#34565a;color:#fff}
+.route-undo{color:#926322}
+@media(max-width:650px){.map-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.map-actions .btn{font-size:12px;min-height:43px}}
+</style>
+</head>
+<body>
+<header><div><small>Gezeitenkarten · Ein Auftrag aus Nombreo</small><strong>Gezeitenkarten</strong></div><div style="text-align:right;font-size:12px">SPIELPROTOTYP · V3.6<br><span style="color:#ddc39c">Lokal · ohne Anmeldung</span></div></header>
+<main>
+<section class="panel map-panel"><div class="pad">
+<div class="topline"><div><div class="eyebrow">Deine Seekarte</div><h1>Der verschwundene Kompass</h1></div><span class="pill" id="score">0 Strafpunkte</span></div>
+
+<div class="topline"><strong id="layerTitle">Stunde 0 · Abfahrt</strong></div>
+<div class="hourbar" id="hours"></div>
+<div class="toolstrip" id="tools" role="group" aria-label="Kartenwerkzeuge">
+<button class="toolpick active" data-tool="maybe" title="Möglich" aria-label="Möglich"><span class="toolicon">?</span><span class="toolcaption">Möglich</span></button>
+<button class="toolpick" data-tool="yes" title="Sicher" aria-label="Sicher"><span class="toolicon">✓</span><span class="toolcaption">Sicher</span></button>
+<button class="toolpick" data-tool="no" title="Ausschließen" aria-label="Ausschließen"><span class="toolicon">×</span><span class="toolcaption">Ausschließen</span></button>
+<button class="toolpick" data-tool="erase" title="Radieren" aria-label="Radieren"><span class="toolicon">⌫</span><span class="toolcaption">Radieren</span></button>
+<span class="toolseparator" aria-hidden="true"></span>
+<button class="toolpick" data-tool="clearAll" title="Feld in allen Stunden radieren" aria-label="Feld in allen Stunden radieren"><span class="toolicon all-eraser">⌫<sup>∀</sup></span><span class="toolcaption">Alle Stunden</span></button>
+<span class="toolseparator" aria-hidden="true"></span>
+<button class="toolpick route-pick" data-tool="route" title="Route zeichnen" aria-label="Route zeichnen"><svg class="toolicon toolsvg" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 31L13 21L19 25L27 12L34 17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 6L38 14M38 6L30 14" stroke="currentColor" stroke-width="2.7" stroke-linecap="round"/></svg><span class="toolcaption">Route</span></button>
+<button class="toolpick route-undo" id="routeBack" type="button" title="Letzte Etappe zurücknehmen" aria-label="Letzte Etappe zurücknehmen"><svg class="toolicon toolsvg" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30L14 21L20 25L28 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 8a10 10 0 1 1-1 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M16 7l5 1-2 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="toolcaption">Route zurück</span></button>
+</div>
+<div class="mapbox"><svg id="map" viewBox="0 0 475 385" role="img" aria-label="Interaktive Hexkarte mit 25 Feldern"></svg></div>
+
+
+<section class="clue-carousel" aria-label="Hinweise aus dem Logbuch">
+ <div class="clue-carousel-title"><strong>Aus Robins Logbuch</strong><span id="cluePosition" aria-live="polite">I / VII</span></div>
+ <div class="clue-viewport" id="clueViewport" tabindex="0" aria-label="Hinweise. Seitlich wischen oder Pfeiltasten verwenden.">
+  <div class="clue-track" id="clueTrack"></div>
+ </div>
+ <div class="clue-nav"><button type="button" id="prevClue" aria-label="Vorheriger Hinweis">‹</button><span>Hinweis antippen zum Abhaken</span><button type="button" id="nextClue" aria-label="Nächster Hinweis">›</button></div>
+</section>
+<div class="controls map-actions" role="group" aria-label="Kartenaktionen und Anzeigeoptionen">
+<button class="btn small" id="undo" type="button" title="Letzte Aktion rückgängig machen">↶ Rückgängig</button>
+<button class="btn small visibility-toggle" id="toggleHourMarks" type="button" title="Markierungen der ausgewählten Stunde ein- oder ausblenden" aria-label="Markierungen der ausgewählten Stunde ein- oder ausblenden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12Q12 2 22 12Q12 22 2 12Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3" fill="currentColor"/><path class="eye-slash" d="M4 21L20 3" stroke="currentColor" stroke-width="2.1"/></svg><span>Markierungen</span></button>
+<button class="btn small" id="toggleRouteNumbers" type="button" aria-pressed="false">① Routennummern</button>
+<button class="btn small" id="toggleDistances" type="button" aria-pressed="false">Abstände einblenden</button>
+</div>
+<div class="stat"><span class="muted" id="count">0 Markierungen auf dieser Karte</span></div>
+<hr class="line">
+<h3>Deine rekonstruierte Route</h3>
+<div class="route" id="routeView"></div>
+<button class="btn primary verify-wide" id="verify">Route überprüfen</button>
+<div id="verifyStatus" aria-live="polite"></div>
+</div></section>
+<div class="logbook-backdrop" id="logbookBackdrop" aria-hidden="true"></div>
+<aside class="panel clue-panel" id="logbook" aria-label="Hilfe und Logbuch"><button class="logbook-tab" id="logbookTab" type="button" aria-label="Hilfe öffnen" aria-expanded="false" aria-controls="logbook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span>Hilfe</span></button><div class="pad">
+<div class="eyebrow clue-heading">Hilfe &amp; Logbuch</div>
+<section class="logbook-section"><details open><summary>Die Geschichte</summary><p class="story">Robin hatte einen Kompass, Sam ein Logbuch und beide unterschiedliche Vorstellungen von einer Abkürzung. Nach sechs Stunden war der Kompass verschwunden. Die Route hatte Sam immerhin in sieben etwas eigenwilligen Beobachtungen festgehalten.</p>
+<p class="story">Rekonstruiere die sechs Stunden zwischen Kurswechseln, Leuchtturm und Tesoro. Wo sind Robin und Sam schließlich gelandet? Unter „Spielregeln“ steht, wie das funktioniert.</p></details></section>
+<section class="logbook-section"><details open><summary>Legende</summary><p class="muted">Robin benutzt statt gewöhnlicher Buchstaben griechische Namen und statt Zahlen Farben. Eine Ortsangabe besteht aus Spalte / Zeile – zum Beispiel <strong>γ / V</strong> (Gamma / Violett).</p><div class="coord-legend"><div><strong>Spalten</strong><p class="greek-legend"><span><b>α</b> Alpha</span><span><b>β</b> Beta</span><span><b>γ</b> Gamma</span><span><b>δ</b> Delta</span><span><b>ε</b> Epsilon</span></p></div><div><strong>Zeilen</strong><div class="color-legend"><span><i style="--swatch:#28b9c5">C</i>Cyan</span><span><i style="--swatch:#c74c99">M</i>Magenta</span><span><i style="--swatch:#8761ba">V</i>Violett</span><span><i style="--swatch:#4178b8">B</i>Blau</span><span><i style="--swatch:#d28a39">O</i>Orange</span></div></div></div><p class="muted">Die Buchstaben in den Farbflecken helfen, die Zeilen auch ohne Farberkennung zu unterscheiden.</p></details></section>
+<section class="logbook-section"><details><summary>Spielregeln</summary><p>Start Delta/Blau. Sechs Etappen, pro Stunde ein Schritt in eines der sechs angrenzenden Hexfelder. Land ist gesperrt. Kein Feld darf mehrfach betreten werden. Das Riff Alpha/Violett ist in diesem Proberätsel ein befahrbares Wasserfeld; nur die als Land gekennzeichneten Felder sind gesperrt. Entfernungen werden als Hexabstände gemessen, unabhängig von Landhindernissen. Benachbarte Hexfelder teilen eine Seite. Die sechs möglichen Kursrichtungen heißen Ost, Südost, Südwest, West, Nordwest und Nordost. Ein Kurswechsel wird gegenüber der vorherigen Fahrtrichtung gemessen; rechts bedeutet im Uhrzeigersinn. Als Küste von Tesoro gelten befahrbare Wasserfelder mit einer gemeinsamen Hexseite zu B3 oder C3.</p></details></section>
+<section class="logbook-section"><details><summary>Aus Robins Logbuch</summary><p class="muted">Auch hier kannst Du die Hinweise abhaken.</p><div id="allClues" class="all-clues"></div></details></section>
+<section class="logbook-section"><details><summary>Hilfe</summary><p class="muted">Die Abstandsanzeige unter der Karte ist kostenlos. Rätselhilfen kosten Punkte. Deine Notizen werden nicht automatisch verändert.</p>
+<div class="controls"><button class="btn" id="checkMarks">Notizen prüfen · −5</button><button class="btn" id="hint">Passenden Tipp · −10</button></div>
+<div id="helpStatus" aria-live="polite"></div></details></section>
+<section class="logbook-section"><details><summary>Einstellungen</summary><label class="setting-row"><input type="checkbox" id="showChart" checked> Seekartenillustration anzeigen</label>
+<label class="setting-row"><input type="checkbox" id="hideRouteMarks"> Markierungen auf Routenfeldern ausblenden</label>
+<div class="controls"><button class="btn small" id="clearLayer" type="button">Aktuelle Stundenkarte leeren</button></div><div class="reset-setting"><div class="controls"><button class="btn small danger" id="reset">Gesamtes Rätsel zurücksetzen</button></div>
+<p class="muted">Alle Eingaben werden nur in diesem Browser gespeichert. Kein Server, keine Registrierung.</p></div></details></section>
+<section class="logbook-section credits-section"><div class="credits-title">Credits</div><p class="muted">Gezeitenkarten – eigenständiger Spielprototyp, inspiriert von der Erzählwelt des Podcasts „Plötzlich Pirat:in“. Kartenornamente sind eigene Entwürfe und keine Originalillustrationen des Podcasts.</p></section>
+</div></aside>
+</main>
+<footer>Interaktiver Machbarkeitsprototyp · HTML mit lokalen Bilddateien · Keine externen Bibliotheken oder Netzwerkverbindungen</footer>
+<script>
+(()=>{
+"use strict";
+
+const responsiveAside=document.querySelector(".clue-panel");
+const mobileLayout=window.matchMedia("(max-width: 880px)");
+const logbookTab=document.getElementById("logbookTab");
+const logbookBackdrop=document.getElementById("logbookBackdrop");
+function setLogbook(open){
+ const show=!!open && mobileLayout.matches;
+ responsiveAside.classList.toggle("open",show);
+ logbookBackdrop.classList.toggle("visible",show);
+ document.body.classList.toggle("logbook-open",show);
+ logbookTab.setAttribute("aria-expanded",String(show));
+ logbookTab.setAttribute("aria-label",show?"Hilfe schließen":"Hilfe öffnen");
+ if(show) responsiveAside.querySelector(".pad").scrollTop=0;
+}
+logbookTab.addEventListener("click",()=>setLogbook(!responsiveAside.classList.contains("open")));
+logbookBackdrop.addEventListener("click",()=>setLogbook(false));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")setLogbook(false)});
+if(mobileLayout.addEventListener)mobileLayout.addEventListener("change",()=>setLogbook(false));
+else mobileLayout.addListener(()=>setLogbook(false));
+// Horizontale Wischgeste nur auf der Schublade und ihrem Griff, nicht auf der Hexkarte.
+let touchStart=null;
+responsiveAside.addEventListener("touchstart",e=>{if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}}, {passive:true});
+responsiveAside.addEventListener("touchend",e=>{
+ if(!touchStart||!e.changedTouches.length)return;
+ const dx=e.changedTouches[0].clientX-touchStart.x;
+ const dy=e.changedTouches[0].clientY-touchStart.y;
+ if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5)setLogbook(dx<0);
+ touchStart=null;
+},{passive:true});
+
+const LETTERS="ABCDE", GREEK_SYMBOLS=["α","β","γ","δ","ε"], GREEK=["Alpha","Beta","Gamma","Delta","Epsilon"], ROWCOLORS=[{name:"Cyan",short:"C",hex:"#28b9c5"},{name:"Magenta",short:"M",hex:"#c74c99"},{name:"Violett",short:"V",hex:"#8761ba"},{name:"Blau",short:"B",hex:"#4178b8"},{name:"Orange",short:"O",hex:"#d28a39"}], blocked=new Set(["B3", "C3", "E2"]), solution=["D4", "E3", "D2", "C2", "B2", "B1", "A1"];
+// Neuer unabhängiger Testfall; sieben Hinweise gegen sämtliche legalen Routen geprüft.
+const clues=[["I","In der ersten Stunde hielten wir Kurs nach Nordosten. Robin sagte, der Kompass habe dabei ausgesprochen überzeugt ausgesehen."],["II","In der zweiten Stunde drehten wir den Kurs um genau 60° nach links. Sam notierte vorsichtshalber auch, dass links nicht dasselbe wie zurück bedeutet."],["III","Nach Stunde 4 lag unser Boot direkt an der Küste von Tesoro – auf einem Wasserfeld mit gemeinsamer Hexseite zur Insel. Robin winkte einem Felsen zu."],["IV","In der sechsten Stunde fuhren wir nach Westen. Das war laut Robin der kürzeste Weg nach irgendwohin."],["V","Nach Stunde 5 waren wir genau ein Hexfeld vom Leuchtturm bei Gamma/Cyan entfernt. Sam konnte sogar die Möwen zählen."],["VI","Zwischen unseren Positionen nach Stunde 1 und Stunde 3 lagen genau zwei Hexfelder Luftlinie. Auf dem Papier sah das ordentlicher aus als auf See."],["VII","Zwischen Stunde 3 und Stunde 6 waren wir insgesamt zweimal direkt an der Küste von Tesoro. Sam zählte die Stunden; Robin hatte inzwischen den Kompass verlegt."]];
+const cells=Array.from({length:25},(_,i)=>({q:i%5,r:Math.floor(i/5),id:LETTERS[i%5]+(Math.floor(i/5)+1)}));
+const byId=Object.fromEntries(cells.map(c=>[c.id,c]));
+const pretty=id=>GREEK[LETTERS.indexOf(id[0])]+" / "+ROWCOLORS[Number(id.slice(1))-1].name;
+const dist=(a,b)=>{const x=byId[a],y=byId[b];const aq=x.q-Math.floor(x.r/2),bq=y.q-Math.floor(y.r/2);return Math.max(Math.abs(aq-bq),Math.abs(x.r-y.r),Math.abs(aq+x.r-bq-y.r))};
+const neighbor=(a,b)=>dist(a,b)===1;
+const key=(layer,id)=>layer+":"+id;
+const initial=()=>({layer:1,tool:"maybe",hideRouteMarks:false,showRouteNumbers:false,distanceMode:false,distanceOrigin:null,marks:{},route:["D4"],penalty:0,hintCount:0,hiddenHours:[],doneClues:[],help:"",result:""});
+let state;
+try{state={...initial(),...JSON.parse(localStorage.getItem("gezeitenkarten-fall5-v1")||"{}")}}catch{state=initial()}
+if(!Array.isArray(state.route)||state.route[0]!=="D4")state=initial();
+let history=[],dragging=false,dragValue=null;
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem("gezeitenkarten-fall5-v1",JSON.stringify(state))}catch{}}
+function snapshot(){history.push(JSON.stringify(state));if(history.length>100)history.shift()}
+function poly(x,y){return Array.from({length:6},(_,i)=>{const a=i*Math.PI/3+Math.PI/6;return `${(x+36*Math.cos(a)).toFixed(2)},${(y+36*Math.sin(a)).toFixed(2)}`}).join(" ")}
+function coords(c){return [60+c.q*82+(c.r%2)*41,56+c.r*68]}
+function renderMap(){
+ const svg=$("map");svg.replaceChildren();
+ const NS="http://www.w3.org/2000/svg";
+ const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
+ // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
+ // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
+ const showArt=document.getElementById("showChart").checked;
+ const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
+ const image=(file,x,y,w,h,opacity=1)=>el("image",{href:"assets/"+file,x,y,width:w,height:h,opacity,preserveAspectRatio:"none","pointer-events":"none"});
+ art.append(image("meer-01.webp",0,0,475,385));
+ // Neuer Fall: B3, C3 und E2 sind unpassierbar.
+ // B3 + C3 bilden eine gemeinsame, über zwei Hexfelder reichende Insel.
+ // Jede Illustration wird am Mittelpunkt ihrer Spielfeld-Zuordnung verankert.
+ // Motivanker sind zentral konfiguriert: spätere Generatoren liefern Zellen + Variante.
+ const mapArt=[
+   {file:"insel-einzeln-01.png",cells:["E2"],w:76,h:76,dx:0,dy:0,opacity:.85},
+   {file:"insel-zweier-01.png",cells:["B3","C3"],w:144,h:124,dx:0,dy:0,opacity:.88},
+   {file:"segelboot-01.png",cells:["D4"],w:60,h:47,dx:0,dy:0,opacity:.83},
+   {file:"leuchtturm-01.png",cells:["C1"],w:68,h:68,dx:0,dy:0,opacity:.92},
+   {file:"riff-01.png",cells:["A3"],w:68,h:66,dx:0,dy:0,opacity:.76},
+   {file:"insel-einzeln-02.png",cells:["D5"],w:64,h:64,dx:0,dy:0,opacity:.82},
+   {file:"segelboot-02.png",cells:["E4"],w:61,h:51,dx:0,dy:0,opacity:.77},
+   {file:"krabbe-01.png",cells:["D5"],w:45,h:42,dx:0,dy:0,opacity:.32}
+ ];
+ const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
+ for(const o of mapArt){const [cx,cy]=artCenter(o.cells);art.append(image(o.file,cx-o.w/2+o.dx,cy-o.h/2+o.dy,o.w,o.h,o.opacity))}
+ // Beschriftung gehört zum geografischen Objekt, nicht zu einem einzelnen Hexfeld.
+ const islandLabel=(ids,t,angle=0,dx=0,dy=0)=>{
+   const [cx,cy]=artCenter(ids);
+   const g=el("g",{transform:`translate(${cx+dx} ${cy+dy}) rotate(${angle})`,"pointer-events":"none"});
+   g.append(el("text",{x:0,y:0,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"11","font-style":"italic",fill:"#5a4634",stroke:"#f0dfbb","stroke-width":"1.4","paint-order":"stroke",opacity:".8"},t));
+   art.append(g);
+ };
+ islandLabel(["E2"],"Klippen",-9,0,-17);
+ islandLabel(["B3","C3"],"Tesoro",-8,7,-23);
+ svg.append(art);
+ // Geographic coordinate guides and margin headings remain visible even when
+ // the decorative chart is disabled. The staggered rows bend column guides.
+ const graticule=el("g",{"pointer-events":"none","aria-hidden":"true"});
+ // Every guide passes through the actual centers of its five column hexes.
+ // The alternating 41-unit row offset is intentional and shared with coords().
+ for(let q=0;q<5;q++){
+   const centers=Array.from({length:5},(_,r)=>coords({q,r}));
+   let path=`M ${centers[0][0]} 29 L ${centers[0][0]} ${centers[0][1]}`;
+   for(let r=1;r<centers.length;r++){
+     const [px,py]=centers[r-1], [x,y]=centers[r];
+     path+=` C ${px} ${py+24}, ${x} ${y-24}, ${x} ${y}`;
+   }
+   const [bottomX,bottomY]=centers[4];
+   path+=` L ${bottomX} 362`;
+   graticule.append(el("path",{d:path,fill:"none",stroke:"#f5edce","stroke-width":"8",opacity:".12","stroke-linecap":"round"}));
+   graticule.append(el("path",{d:path,fill:"none",stroke:"#446d70","stroke-width":"1.5",opacity:".24","stroke-linecap":"round"}));
+   // Pergamentplättchen mit unregelmäßigen Kanten, gedämpfter Tinte.
+   for(const [x,y] of [[centers[0][0],14],[bottomX,372]]){
+     const d=`M ${x-13} ${y-10} Q ${x-4} ${y-12} ${x+12} ${y-10} L ${x+13} ${y+8} Q ${x+3} ${y+11} ${x-12} ${y+9} Z`;
+     graticule.append(el("path",{d,fill:"#e9d7aa",stroke:"#b39b71","stroke-width":".7",opacity:".77"}));
+     graticule.append(el("text",{x,y:y+5,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"17","font-style":"italic",fill:"#695037",opacity:".88"},GREEK_SYMBOLS[q]));
+   }
+ }
+ for(let r=0;r<5;r++){
+   const y=56+r*68;
+   graticule.append(el("path",{d:`M 26 ${y} C 145 ${y-9}, 295 ${y+9}, 462 ${y}`,fill:"none",stroke:"#567e78","stroke-width":"1.1",opacity:".19","stroke-dasharray":"3 7"}));
+   const rc=ROWCOLORS[r];
+   for(const x of [14,458]){
+     // Kein UI-Kreis: asymmetrischer, leicht durchscheinender Tintenklecks.
+     const d=`M ${x-8} ${y-4} Q ${x-12} ${y-11} ${x-3} ${y-10} Q ${x+5} ${y-13} ${x+9} ${y-4} Q ${x+13} ${y+3} ${x+5} ${y+9} Q ${x-4} ${y+13} ${x-9} ${y+4} Z`;
+     graticule.append(el("path",{d,fill:rc.hex,opacity:".57",stroke:rc.hex,"stroke-width":"1.3"}));
+     graticule.append(el("circle",{cx:x-10,cy:y+9,r:1.6,fill:rc.hex,opacity:".4"}));
+     graticule.append(el("text",{x,y:y+3.7,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"10","font-weight":"bold",fill:"#2f3633",opacity:".85"},rc.short));
+   }
+ }
+ svg.append(graticule);
+ // 1c: Große, transparente Abstandszahlen auf Wasserfeldern; über den Illustrationen,
+ // aber unter interaktiven Hexflächen, Routenlinie und Markierungen.
+ if(state.distanceMode && state.distanceOrigin){
+   const layer=el("g",{"pointer-events":"none","aria-hidden":"true"});
+   const shades=["#bc388b","#aa438f","#80539f","#536da2","#348ca4","#259eaa","#268e98"];
+   for(const c of cells){
+     if(blocked.has(c.id))continue;
+     const d=dist(state.distanceOrigin,c.id),[x,y]=coords(c);
+     const col=shades[Math.min(d,shades.length-1)];
+     layer.append(el("text",{x,y:y+17,"text-anchor":"middle","font-family":"system-ui, sans-serif","font-size":"51","font-weight":"900",fill:col,opacity:Math.max(.31,.66-d*.055),stroke:"#fff6df","stroke-width":"1.8","paint-order":"stroke"},String(d)));
+   }
+   svg.append(layer);
+ }
+ for(const c of cells){
+  const [x,y]=coords(c),m=state.marks[key(state.layer,c.id)],land=blocked.has(c.id);
+  const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
+  const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:land?"-1":"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
+  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"#b9e1e538",stroke:land?"none":"#746f57","stroke-width":land?"0.8":"0.35","stroke-opacity":land?".20":".16"}));
+  // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
+  // Markierungen dürfen Motive niemals aus dem DOM entfernen.
+  // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
+  if(!land && ["D4","C1","E4","A3","D5"].includes(c.id)){
+    // Unregelmäßiger handgezeichneter Kartografenring, nicht anklickbar.
+    const ring=Array.from({length:33},(_,i)=>{const a=i*Math.PI/16;const rr=24+1.15*Math.sin(i*2.4)+.7*Math.cos(i*1.3);return `${i?'L':'M'} ${(x+rr*Math.cos(a)).toFixed(1)} ${(y+rr*Math.sin(a)).toFixed(1)}`}).join(' ');
+    g.append(el("path",{d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
+    g.append(el("path",{d:ring,fill:"none",stroke:"#a57739","stroke-width":"1.35",opacity:".79","stroke-linecap":"round","stroke-linejoin":"round"}));
+  }
+  // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
+  // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
+  if(Number.isInteger(state.layer) && state.layer>=1 && state.layer<=6){
+    const angle=(state.layer-2)*Math.PI/3;
+    const ax=x+36*Math.cos(angle-Math.PI/6),ay=y+36*Math.sin(angle-Math.PI/6);
+    const bx=x+36*Math.cos(angle+Math.PI/6),by=y+36*Math.sin(angle+Math.PI/6);
+    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"2.3","stroke-linecap":"round"}));
+    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":"1.25",opacity:".72","stroke-linecap":"round"}));
+  }
+  // Active layer is encoded by the field's central fill and a small center glyph.
+  if(m){
+    const glyph={no:"×",maybe:"?",yes:"✓"}[m];
+    g.append(el("text",{x,y:y+9,"font-size":"20","font-weight":"800","text-anchor":"middle",fill:m==="no"?"#933c34":m==="yes"?"#216542":"#8a6221",stroke:"#f6f0de","stroke-width":"1.4","paint-order":"stroke"},glyph));
+  }
+  // Six compact, fixed-position side annotations: hour 1 to 6.
+  // Hidden hours keep all their notes but do not clutter the overview.
+  for(let h=1;h<=6;h++){
+    const mark=state.marks[key(h,c.id)];
+    if(!mark || (state.hiddenHours||[]).includes(h) || (state.hideRouteMarks&&state.route.includes(c.id)))continue;
+    const angle=(h-2)*Math.PI/3;
+    const cx=x+28*Math.cos(angle),cy=y+28*Math.sin(angle);
+    const fills={no:"#a34c46",maybe:"#c69b40",yes:"#36816b"};
+    g.append(el("circle",{cx,cy,r:9.2,fill:fills[mark],opacity:state.layer===h?.98:.58,stroke:state.layer===h?"#ffffff":"#f8f3e6","stroke-width":state.layer===h?"1.5":".8"}));
+    g.append(el("text",{x:cx,y:cy+3.4,"font-size":"11.8","font-weight":"900","text-anchor":"middle",fill:"white",opacity:state.layer===h?1:.72},({no:"×",maybe:"?",yes:"✓"})[mark]));
+  }
+  // The route is a continuous line only; corner annotations stay unobstructed.
+  g.addEventListener("pointerdown",e=>{if(land)return;e.preventDefault();dragging=true;dragValue=null;try{svg.setPointerCapture(e.pointerId)}catch{};apply(c.id,true)});
+  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();apply(c.id,true)}});
+  svg.append(g);
+ }
+ // Handgezeichnete Route: weicher Schein + warmer Tintenstrich + feine Lichtkante.
+ // Vergangene Etappen lesbar, zukünftige Etappen weiterhin sichtbar, aber blasser.
+ const selected=Number.isInteger(state.layer)?state.layer:state.route.length-1;
+ const routeInk=el("g",{"pointer-events":"none","aria-hidden":"true"});
+ for(let i=1;i<state.route.length;i++){
+   const [x1,y1]=coords(byId[state.route[i-1]]),[x2,y2]=coords(byId[state.route[i]]);
+   const past=i<=selected, dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy),nx=-dy/len,ny=dx/len;
+   // Leicht gebogener Pinselzug statt geometrisch steriler Gerade.
+   const curve=`M ${x1} ${y1} Q ${(x1+x2)/2+nx*2.3} ${(y1+y2)/2+ny*2.3} ${x2} ${y2}`;
+   const lines=[
+     {stroke:"#f9ebc7",width:past?12:8,opacity:past?.24:.11},
+     {stroke:"#ead0a0",width:past?7.5:5.8,opacity:past?.46:.19},
+     {stroke:past?"#83582f":"#816d58",width:past?3.5:2.6,opacity:past?.92:.36},
+     {stroke:"#fff1cb",width:past?1.1:.8,opacity:past?.58:.22,offset:-1.3}
+   ];
+   for(const l of lines){routeInk.append(el("path",{d:curve,fill:"none",stroke:l.stroke,"stroke-width":l.width,opacity:l.opacity,"stroke-linecap":"round","stroke-linejoin":"round",transform:l.offset?`translate(${(nx*l.offset).toFixed(2)} ${(ny*l.offset).toFixed(2)})`:""}))}
+ }
+ svg.append(routeInk);
+ // Distinguish the actual departure point from the wreck's identical anchor icon.
+ const [sx,sy]=coords(byId["D4"]);
+ svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#fff6d8","stroke-width":"5","pointer-events":"none"}));
+ svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#b37b36","stroke-width":"3.5","stroke-dasharray":"5 3","pointer-events":"none"}));
+ svg.append(el("rect",{x:sx-19,y:sy-39,width:38,height:16,rx:7,fill:"#fff6d8",stroke:"#b37b36","stroke-width":"1.5","pointer-events":"none"}));
+ svg.append(el("text",{x:sx,y:sy-27,"font-size":"10","font-weight":"800","text-anchor":"middle",fill:"#79521e","pointer-events":"none"},"START"));
+ if(state.showRouteNumbers){
+   const numbers=el("g",{"pointer-events":"none","aria-hidden":"true"});
+   state.route.forEach((id,i)=>{
+     const [x,y]=coords(byId[id]);
+     numbers.append(el("circle",{cx:x,cy:y,r:i?12.4:11.8,fill:"#fff4d5",stroke:"#76512b","stroke-width":"2",opacity:".95"}));
+     numbers.append(el("text",{x,y:y+5,"text-anchor":"middle","font-family":"Georgia,serif","font-size":i?"16":"14","font-weight":"900",fill:"#50391e"},i?String(i):"S"));
+   });
+   svg.append(numbers);
+ }
+}
+function render(){if(state.layer==="all")state.layer=1;
+ $("hours").innerHTML=Array.from({length:7},(_,i)=>{
+   const vertices=Array.from({length:6},(_,v)=>{const a=v*Math.PI/3+Math.PI/6;return `${(24+20*Math.cos(a)).toFixed(1)},${(23+20*Math.sin(a)).toFixed(1)}`}).join(" ");
+   const a=(i-2)*Math.PI/3;
+   const edge=i===0?"":`<line class="hexedge" x1="${(24+20*Math.cos(a-Math.PI/6)).toFixed(1)}" y1="${(23+20*Math.sin(a-Math.PI/6)).toFixed(1)}" x2="${(24+20*Math.cos(a+Math.PI/6)).toFixed(1)}" y2="${(23+20*Math.sin(a+Math.PI/6)).toFixed(1)}"/>`;
+   const glyph=i===0?'<text class="start-icon" x="24" y="29" text-anchor="middle">⚓</text>':`<text class="hexhour" x="24" y="27" text-anchor="middle">${i}h</text>`;
+   return `<button type="button" class="hour ${state.layer===i?"active":""} ${(state.hiddenHours||[]).includes(i)?"hidden-hour":""}" data-hour="${i}" title="${i===0?"Startposition":"Stunde "+i+": markierte Hexseite"}" aria-label="${i===0?"Startposition":"Stunde "+i}" aria-pressed="${state.layer===i}"><svg viewBox="0 0 48 46" aria-hidden="true"><polygon class="hexface" points="${vertices}"/>${edge}${glyph}</svg><small>${i===0?"Start":"Stunde "+i}</small></button>`;
+ }).join("");
+ const showToggle=$("toggleHourMarks");
+ showToggle.disabled=!(Number.isInteger(state.layer)&&state.layer>=1&&state.layer<=6);
+ showToggle.setAttribute("aria-pressed",String(!(state.hiddenHours||[]).includes(state.layer)));
+
+ $("layerTitle").textContent=state.layer==="all"?"Gesamte Fahrt · alle Stunden":state.layer===0?"Stunde 0 · Abfahrt":"Stunde "+state.layer+" · Position";
+ 
+ document.querySelectorAll("[data-tool]").forEach(b=>b.classList.toggle("active",b.dataset.tool===state.tool));
+ $("routeBack").disabled=state.route.length<=1;
+ $("hideRouteMarks").checked=!!state.hideRouteMarks;
+ $("score").textContent=state.penalty+" Strafpunkte";
+ $("toggleRouteNumbers").classList.toggle("active",!!state.showRouteNumbers);
+ $("toggleRouteNumbers").setAttribute("aria-pressed",String(!!state.showRouteNumbers));
+ $("toggleDistances").classList.toggle("active",!!state.distanceMode);
+ $("toggleDistances").setAttribute("aria-pressed",String(!!state.distanceMode));
+ $("toggleDistances").textContent=state.distanceMode?(state.distanceOrigin?"Abstände ausblenden":"Bitte Feld wählen …"):"Abstände einblenden";
+ $("toggleHourMarks").classList.toggle("active",!(state.hiddenHours||[]).includes(state.layer));
+ $("count").textContent=Object.keys(state.marks).filter(k=>k.startsWith(state.layer+":")&&state.marks[k]).length+" Markierungen auf dieser Karte";
+ $("routeView").innerHTML=state.route.map((id,i)=>`${i?"<span>→</span>":""}<span class="step ${state.layer===i?"current":""}">${pretty(id)}</span>`).join("");
+ $("helpStatus").innerHTML=state.help||"";
+ $("verifyStatus").innerHTML=state.result||"";
+ renderMap();renderClues();save();
+}
+function apply(id,first){
+ if(blocked.has(id))return;
+ if(state.tool==="clearAll"){const targets=Object.keys(state.marks).filter(k=>k.endsWith(":"+id));if(targets.length){snapshot();targets.forEach(k=>delete state.marks[k]);}state.help=`<div class="notice">Markierungen auf ${pretty(id)} in allen Stunden gelöscht (${targets.length}).</div>`;render();return}
+ if(state.distanceMode && !state.distanceOrigin){state.distanceOrigin=id;render();return}
+ if(state.tool==="route"){
+  if(state.route.length>=7||state.route.includes(id)||!neighbor(state.route.at(-1),id))return;
+  snapshot();state.route.push(id);state.result="";render();return;
+ }
+ const k=key(state.layer,id),val=state.tool==="erase"?undefined:state.tool;
+ if(first){dragValue=state.marks[k]===val?undefined:val;snapshot()}
+ if(state.marks[k]===dragValue)return;
+ if(dragValue===undefined)delete state.marks[k];else state.marks[k]=dragValue;
+ render();
+}
+$("map").addEventListener("pointermove",e=>{
+ if(!dragging||!["no","maybe","yes","erase"].includes(state.tool))return;
+ const elem=document.elementFromPoint(e.clientX,e.clientY);
+ const g=elem?.closest?.("[data-id]");
+ if(g&&byId[g.dataset.id])apply(g.dataset.id,false);
+});
+window.addEventListener("pointerup",()=>dragging=false);
+$("hours").addEventListener("click",e=>{const b=e.target.closest("[data-hour]");if(!b)return;state.layer=Number(b.dataset.hour);render()});
+
+$("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>6)return;snapshot();const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
+
+$("tools").addEventListener("click",e=>{const b=e.target.closest("[data-tool]");if(!b)return;state.tool=b.dataset.tool;render()});
+$("undo").onclick=()=>{if(history.length){state=JSON.parse(history.pop());render()}};
+$("toggleRouteNumbers").onclick=()=>{state.showRouteNumbers=!state.showRouteNumbers;render()};
+$("toggleDistances").onclick=()=>{state.distanceMode=!state.distanceMode;state.distanceOrigin=null;render()};
+$("hideRouteMarks").addEventListener("change",e=>{state.hideRouteMarks=e.target.checked;render()});
+$("clearLayer").onclick=()=>{snapshot();for(const k of Object.keys(state.marks))if(k.startsWith(state.layer+":"))delete state.marks[k];render()};
+$("routeBack").onclick=()=>{if(state.route.length>1){snapshot();state.route.pop();state.result="";render()}};
+$("verify").onclick=()=>{if(state.route.length!==7){state.result='<div class="notice error">Die Route braucht genau sechs Etappen. Aktuell sind es '+(state.route.length-1)+'.</div>'}else if(state.route.join("|")===solution.join("|")){state.result='<div class="notice success"><strong>Richtig!</strong> Die Route ist vollständig rekonstruiert. Sam hat den Kurs trotz verschwundenem Kompass rekonstruiert. Du hast '+state.penalty+' Strafpunkte gesammelt.</div>'}else{state.result='<div class="notice error">Diese Route erfüllt nicht alle Hinweise. Die korrekte Strecke wird nicht verraten.</div>'}render()};
+$("checkMarks").onclick=()=>{
+ snapshot();state.penalty+=5;
+ let wrong=0,checked=0;
+ for(const [k,v] of Object.entries(state.marks)){
+  const [layer,id]=k.split(":");if(v!=="no"&&v!=="yes")continue;checked++;
+  const actual=layer==="all"?solution.includes(id):solution[Number(layer)]===id;
+  if((v==="yes"&&!actual)||(v==="no"&&actual))wrong++;
+ }
+ state.help='<div class="notice '+(wrong?"error":"success")+'"><strong>Notizprüfung:</strong> '+(wrong?`${wrong} Deiner ${checked} eindeutigen Markierungen widersprechen der tatsächlichen Route.`:`Keine der ${checked} eindeutigen Markierungen widerspricht der Route.`)+' „Möglich“-Markierungen werden nicht bewertet. Die Prüfung verrät nicht, welche Felder betroffen sind.</div>';render();
+};
+$("hint").onclick=()=>{
+ snapshot();state.penalty+=10;state.hintCount++;
+ const hints=["Hinweis I erlaubt direkt die erste Etappe: vom Startfeld aus genau einen Schritt nach Nordosten.", "Für Hinweis II drehe die erste Fahrtrichtung um eine Hexseite gegen den Uhrzeigersinn. So ergibt sich die zweite Etappe.", "Hinweis III betrifft nur Stunde 4: Die Position liegt auf einem befahrbaren Nachbarfeld von Tesoro.", "Hinweis IV sagt, in welche Richtung die letzte Etappe geht. Arbeite von möglichen Endfeldern rückwärts.", "Nutze „Abstände einblenden“ unter der Karte: Wähle den Leuchtturm als Bezugspunkt. Stunde 5 muss auf einem Feld mit Abstand 1 liegen.", "Vergleiche Stunde 1 und Stunde 3 mit der Abstandsanzeige. Die Luftlinie ist nicht die gefahrene Strecke.", "Zähle für Hinweis VII nur die Positionen der Stunden 3, 4, 5 und 6. Zwei davon müssen unmittelbar an Tesoro liegen."];
+ // choose hint according to visible certainty and route progress, then move forward on repeated requests
+ const certainHours=Array.from({length:7},(_,h)=>Object.entries(state.marks).some(([k,v])=>k.startsWith(h+":")&&v==="yes"));
+ const progress=state.route.length-1;
+ const base=progress>=5||certainHours[5]?4:progress>=4||certainHours[4]?3:progress>=2||certainHours[3]?2:progress>=1||certainHours[2]?1:0;
+ const idx=Math.min(hints.length-1,Math.max(base,state.hintCount-1));
+ state.help='<div class="notice"><strong>Denkanstoß '+state.hintCount+':</strong> '+hints[idx]+'</div>';
+ render();
+};
+$("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){state=initial();history=[];render()}};
+let currentClue=0;
+const colorTokens={Cyan:0,Magenta:1,Violett:2,Blau:3,Orange:4};
+function clueMarkup(t){
+ return t.replace(/(Alpha|Beta|Gamma|Delta|Epsilon)\/(Cyan|Magenta|Violett|Blau|Orange)/g,(_,col,row)=>{
+   const q=GREEK.indexOf(col),c=ROWCOLORS[colorTokens[row]];
+   return `<span class="coord-inline" aria-label="${col} / ${row}" title="${col} / ${row}"><span class="greek-badge" aria-hidden="true">${GREEK_SYMBOLS[q]}</span><span class="color-badge" style="--swatch:${c.hex}" aria-hidden="true">${c.short}</span></span>`;
+ });
+}
+function renderClues(){
+ $("allClues").innerHTML=clues.map(([n,t])=>{
+  const done=state.doneClues?.includes(n);
+  return `<div class="clue ${done?'done':''}" data-clue="${n}" role="checkbox" tabindex="0" aria-checked="${!!done}" title="Hinweis abhaken"><span class="num">${n}</span><p>${clueMarkup(t)}</p></div>`;
+ }).join("");
+ const items=clues;
+ const idx=n=>(n+items.length)%items.length;
+ const indexes=[idx(currentClue-1),currentClue,idx(currentClue+1)];
+ $("clueTrack").innerHTML=indexes.map((i,pos)=>{
+  const [n,t]=items[i],done=state.doneClues?.includes(n);
+  return `<div class="clue-slide ${pos===1?'center':''}" aria-hidden="${pos!==1}"><div class="clue ${done?'done':''}" data-clue="${n}" role="checkbox" tabindex="${pos===1?0:-1}" aria-checked="${!!done}" title="Hinweis abhaken"><span class="num">${n}</span><p>${t}</p></div></div>`;
+ }).join("");
+ $("cluePosition").textContent=`${items[currentClue][0]} / VII`;
+}
+function shiftClue(dir){currentClue=(currentClue+dir+clues.length)%clues.length;renderClues()}
+$("prevClue").addEventListener("click",()=>shiftClue(-1));
+$("nextClue").addEventListener("click",()=>shiftClue(1));
+$("clueViewport").addEventListener("keydown",e=>{if(e.key==="ArrowLeft"||e.key==="ArrowRight"){e.preventDefault();shiftClue(e.key==="ArrowRight"?1:-1)}});
+let clueTouch=null;
+$("clueViewport").addEventListener("touchstart",e=>{if(e.touches.length===1)clueTouch={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});
+$("clueViewport").addEventListener("touchend",e=>{if(!clueTouch||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-clueTouch.x,dy=e.changedTouches[0].clientY-clueTouch.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.25)shiftClue(dx<0?1:-1);clueTouch=null},{passive:true});
+$("clueTrack").addEventListener("click",e=>{const slide=e.target.closest(".clue-slide");if(!slide)return;if(!slide.classList.contains("center")){shiftClue(slide===slide.parentElement.firstElementChild?-1:1);return}const n=e.target.closest("[data-clue]")?.dataset.clue;if(!n)return;snapshot();state.doneClues=state.doneClues||[];state.doneClues=state.doneClues.includes(n)?state.doneClues.filter(v=>v!==n):[...state.doneClues,n];renderClues();save()});
+$("allClues").addEventListener("click",e=>{const n=e.target.closest("[data-clue]")?.dataset.clue;if(!n)return;snapshot();state.doneClues=state.doneClues||[];state.doneClues=state.doneClues.includes(n)?state.doneClues.filter(v=>v!==n):[...state.doneClues,n];renderClues();save()});
+$("allClues").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();e.target.closest("[data-clue]")?.click()}});
+$("showChart").addEventListener("change",()=>renderMap());
+$("clueTrack").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();e.target.closest("[data-clue]")?.click()}});
+renderClues();
+render();
+})();
+</script>
+</body></html>
