@@ -41,8 +41,8 @@ test('actual screenshots: polished controls and expanded rules',async({page},tes
   await testInfo.attach('rules-polish-'+width+'-controls',{body:await page.locator('#mapActions').screenshot({type:'jpeg',quality:96}),contentType:'image/jpeg'});
   if(width<601)await page.locator('#logbookTab').click();
   await page.locator('#gameRules').evaluate(el=>el.open=true);
-  await page.locator('#gameRules').scrollIntoViewIfNeeded();
-  await testInfo.attach('rules-polish-'+width+'-rules',{body:await page.locator('#gameRules').screenshot({type:'jpeg',quality:94}),contentType:'image/jpeg'});
+  await page.locator('#gameRules summary').scrollIntoViewIfNeeded();
+  await testInfo.attach('rules-polish-'+width+'-rules',{body:width<601?await page.screenshot({type:'jpeg',quality:94,scale:'css'}):await page.locator('#gameRules').screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
   await page.locator('#gameRules').evaluate(el=>el.open=false);
  }
 });
