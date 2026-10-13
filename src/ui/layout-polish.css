@@ -128,3 +128,18 @@
 .rules-introduction li{padding-left:3px;margin:8px 0}
 .rules-introduction strong{font-weight:700}
 @media(max-width:600px){.rules-introduction{font-size:16px;line-height:1.7}.rules-introduction h3{font-size:23px}}
+
+/* The actual chart column controls the lower rail, including narrow desktops. */
+.map-panel{container-name:chart;container-type:inline-size}
+.map-actions{display:flex;flex-wrap:nowrap;gap:8px;padding:22px 18px;min-height:104px}
+.map-actions .route-actions{display:flex;align-items:center;justify-content:center;gap:8px;margin-left:auto;flex:0 0 auto}
+.map-actions #routeTool{margin-left:0}
+.map-actions .rail-button,.map-actions .rail-button:hover,.map-actions .rail-button.active,.map-actions .rail-button:disabled,.map-actions #routeBack{background:transparent;border:0;box-shadow:none}
+.map-actions .rail-separator{display:block}
+@container chart (max-width:560px){
+ .map-actions{display:grid;grid-template-columns:repeat(4,minmax(44px,1fr));gap:12px 8px;padding:20px 8px;min-height:148px}
+ .map-actions .rail-separator{display:none}
+ .map-actions .rail-button,.map-actions #toggleRouteNumbers,.map-actions #verify{width:48px;flex-basis:48px;min-height:48px;height:48px;justify-self:center;margin:0}
+ .map-actions .route-actions{grid-column:1/-1;display:flex;justify-content:center;gap:12px;margin:0;width:100%}
+ .map-actions .route-actions .rail-button{flex:0 0 48px}
+}
