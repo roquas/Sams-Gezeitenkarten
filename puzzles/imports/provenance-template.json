@@ -1,0 +1,13 @@
+{
+  "puzzleId": null,
+  "originalArchive": null,
+  "sourceVersion": null,
+  "sha256": null,
+  "originalTitle": null,
+  "equivalentArchives": [],
+  "assetLicenseEvidence": [],
+  "semanticChanges": [],
+  "historicalClaims": {"legalRoutes": null, "solutionCount": null, "allCluesNecessary": null},
+  "verified": {"legalRoutes": null, "solutionCount": null, "redundantClueIds": null},
+  "importStatus": "awaiting-original-files"
+}
