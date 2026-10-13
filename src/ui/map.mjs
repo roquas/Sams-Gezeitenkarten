@@ -2,7 +2,6 @@ import {hexCenter,hexVertices,placeLabelLayout,startLabelLayout} from './place-l
 import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
-import {mapLabels} from '../../content/reference-3.6.mjs';
 function poly(x,y){return hexVertices(x,y).map(([x,y])=>`${x.toFixed(2)},${y.toFixed(2)}`).join(" ")}
 const coords=hexCenter;
 export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate}){
@@ -17,7 +16,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  svg.append(el("rect",{x:-44,y:-44,width:563,height:473,fill:"#e9d5b0","pointer-events":"none","aria-hidden":"true"}));
  for(const [index,tile] of parchmentTiles().entries()){
   const slice=el("svg",{...tile,class:index===4?"parchment-water":"parchment-edge",preserveAspectRatio:"none",overflow:"hidden","data-parchment-slice":"true"});
-  slice.append(el("image",{href:CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
+  slice.append(el("image",{href:puzzle.background?.asset?.startsWith('assets/')?puzzle.background.asset:CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
   art.append(slice);
  }
  const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
@@ -40,7 +39,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,serif","font-size":fontSize,"font-weight":"600",fill:start?"#8c3e2c":"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
    g.append(text);clipped.append(g);art.append(clipped);
  };
- for(const label of mapLabels)drawLabel(placeLabelLayout(label.cells,label.text,blocked,byId),label.text);
+
  for(const place of Object.values(puzzle.places))drawLabel(placeLabelLayout(place.cells,place.name,blocked,byId),place.name);
  drawLabel(startLabelLayout(byId[puzzle.start]),'Start',true);
  svg.append(art);
@@ -111,7 +110,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
-  if(!land && ["C1","E4","A3","D5"].includes(c.id)){
+  if(!land && Object.values(puzzle.places).some(place=>place.cells.includes(c.id))){
     // Unregelmäßiger handgezeichneter Kartografenring, nicht anklickbar.
     const ring=Array.from({length:33},(_,i)=>{const a=i*Math.PI/16;const rr=24+1.15*Math.sin(i*2.4)+.7*Math.cos(i*1.3);return `${i?'L':'M'} ${(x+rr*Math.cos(a)).toFixed(1)} ${(y+rr*Math.sin(a)).toFixed(1)}`}).join(' ');
     g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
@@ -119,7 +118,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   }
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
   // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
-  if(Number.isInteger(state.layer) && state.layer>=1 && state.layer<=6){
+  if(Number.isInteger(state.layer) && state.layer>=1 && state.layer<=puzzle.steps){
     const angle=(state.layer-2)*Math.PI/3;
     const ax=x+36*Math.cos(angle-Math.PI/6),ay=y+36*Math.sin(angle-Math.PI/6);
     const bx=x+36*Math.cos(angle+Math.PI/6),by=y+36*Math.sin(angle+Math.PI/6);
@@ -133,7 +132,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   }
   // Six compact, fixed-position side annotations: hour 1 to 6.
   // Hidden hours keep all their notes but do not clutter the overview.
-  for(let h=1;h<=6;h++){
+  for(let h=1;h<=puzzle.steps;h++){
     const mark=state.marks[key(h,c.id)];
     if(!mark || (state.hiddenHours||[]).includes(h) || (state.hideRouteMarks&&state.route.includes(c.id)))continue;
     const angle=(h-2)*Math.PI/3;

@@ -16,6 +16,7 @@
 <section class="panel map-panel" id="chartPanel"><div class="pad">
 <div class="topline"><div><div class="eyebrow">Deine Seekarte</div><h1>Der verschwundene Kompass</h1></div><span class="pill" id="score">0 Strafpunkte</span></div>
 
+<p id="puzzleLoadError" class="notice error" role="alert" hidden></p>
 <div class="chart-toolbar" aria-label="Stundenwahl und Kartenwerkzeuge">
 <strong class="sr-only" id="layerTitle">Stunde 1 · Position</strong>
 <div class="hourbar" id="hours" role="group" aria-label="Stundenwahl"></div>
@@ -69,8 +70,8 @@
 <div class="logbook-backdrop" id="logbookBackdrop" aria-hidden="true"></div>
 <aside class="panel clue-panel" id="logbook" aria-label="Hilfe und Logbuch"><div class="pad">
 <div class="eyebrow clue-heading">Hilfe &amp; Logbuch</div>
-<section class="logbook-section"><details open><summary>Die Geschichte</summary><p class="story">Robin hatte einen Kompass, Sam ein Logbuch und beide unterschiedliche Vorstellungen von einer Abkürzung. Nach sechs Stunden war der Kompass verschwunden. Die Route hatte Sam immerhin in sieben etwas eigenwilligen Beobachtungen festgehalten.</p>
-<p class="story">Rekonstruiere die sechs Stunden zwischen Kurswechseln, Leuchtturm und Tesoro. Wo sind Robin und Sam schließlich gelandet? Unter „Spielregeln“ steht, wie das funktioniert.</p></details></section>
+<section class="logbook-section"><details open><summary>Die Geschichte</summary><div id="puzzleStory"><p class="story">Robin hatte einen Kompass, Sam ein Logbuch und beide unterschiedliche Vorstellungen von einer Abkürzung. Nach sechs Stunden war der Kompass verschwunden. Die Route hatte Sam immerhin in sieben etwas eigenwilligen Beobachtungen festgehalten.</p>
+<p class="story">Rekonstruiere die sechs Stunden zwischen Kurswechseln, Leuchtturm und Tesoro. Wo sind Robin und Sam schließlich gelandet? Unter „Spielregeln“ steht, wie das funktioniert.</p></div></details></section>
 <section class="logbook-section"><details open><summary>Legende</summary><p class="muted">Robin benutzt statt gewöhnlicher Buchstaben griechische Namen und statt Zahlen Farben. Eine Ortsangabe besteht aus Spalte / Zeile – zum Beispiel <strong>γ / V</strong> (Gamma / Violett).</p><div class="coord-legend"><div><strong>Spalten</strong><p class="greek-legend"><span><b>α</b> Alpha</span><span><b>β</b> Beta</span><span><b>γ</b> Gamma</span><span><b>δ</b> Delta</span><span><b>ε</b> Epsilon</span></p></div><div><strong>Zeilen</strong><div class="color-legend"><span><i style="--swatch:#28b9c5">C</i>Cyan</span><span><i style="--swatch:#c74c99">M</i>Magenta</span><span><i style="--swatch:#8761ba">V</i>Violett</span><span><i style="--swatch:#4178b8">B</i>Blau</span><span><i style="--swatch:#d28a39">O</i>Orange</span></div></div></div><p class="muted">Die Buchstaben in den Farbflecken helfen, die Zeilen auch ohne Farberkennung zu unterscheiden.</p></details></section>
 <section class="logbook-section"><details id="gameRules"><summary>Spielregeln</summary>
 <article class="rules-introduction" aria-label="So liest man eine Gezeitenkarte">
@@ -117,7 +118,9 @@
 <div id="helpStatus" aria-live="polite"></div></details></section>
 <section class="logbook-section"><details><summary>Einstellungen</summary><label class="setting-row"><input type="checkbox" id="showChart" checked> Seekartenillustration anzeigen</label>
 <label class="setting-row"><input type="checkbox" id="hideRouteMarks"> Markierungen auf Routenfeldern ausblenden</label>
-<div class="controls"><button class="btn small" id="clearLayer" type="button">Aktuelle Stundenkarte leeren</button></div><div class="reset-setting"><div class="controls"><button class="btn small danger" id="reset">Gesamtes Rätsel zurücksetzen</button></div>
+<div class="controls"><button class="btn small" id="clearLayer" type="button">Aktuelle Stundenkarte leeren</button></div><div class="reset-setting"><label for="puzzleSelect">Rätsel auswählen</label>
+<select id="puzzleSelect" aria-describedby="puzzleStatus"></select>
+<p id="puzzleStatus" class="muted" role="status" aria-live="polite"></p><div class="controls"><button class="btn small danger" id="reset">Gesamtes Rätsel zurücksetzen</button></div>
 <p class="muted">Alle Eingaben werden nur in diesem Browser gespeichert. Kein Server, keine Registrierung.</p></div></details></section>
 <section class="logbook-section credits-section"><div class="credits-title">Credits</div><p class="muted">Gezeitenkarten – eigenständiger Spielprototyp, inspiriert von der Erzählwelt des Podcasts „Plötzlich Pirat:in“. Kartenornamente sind eigene Entwürfe und keine Originalillustrationen des Podcasts.</p></section>
 </div></aside>

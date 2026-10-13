@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
+test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('editorial rules remain collapsed and offer the complete structured introduction',async({page})=>{
  const rules=page.locator('#gameRules');
  await expect(rules).not.toHaveAttribute('open','');

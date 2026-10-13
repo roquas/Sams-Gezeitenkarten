@@ -1,10 +1,10 @@
 import {test,expect} from '@playwright/test';
-const KEY='gezeitenkarten-reference-3.6-v0.1';
+const KEY='gezeitenkarten-reference-3.6-schema1-data1';
 const state=page=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),KEY);
 const cell=(page,id)=>page.locator('#map [data-id="'+id+'"]');
 const overlay=page=>page.locator('.distance-overlay');
 const rows=async locator=>locator.evaluateAll(ns=>{const ys=ns.map(n=>{const b=n.getBoundingClientRect();return b.y+b.height/2;}).sort((a,b)=>a-b);return ys.reduce((a,y)=>{if(!a.length||y-a.at(-1)>1)a.push(y);return a;},[]).length;});
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
+test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('distance-two notes, both erasers, route and undo retain the independent overlay',async({page})=>{
  await page.locator('#toggleDistances').click();await cell(page,'C1').click();
  const retained=async()=>{await expect(overlay(page)).toHaveAttribute('data-distance-origin','C1');await expect(page.locator('.distance-value')).toHaveCount(22);await expect(page.locator('#toggleDistances')).toHaveAttribute('data-distance-state','showing');};
@@ -18,7 +18,7 @@ test('distance-two notes, both erasers, route and undo retain the independent ov
  await page.locator('[data-hour="2"]').click();await page.locator('[data-tool="yes"]').click();await cell(page,'A1').click();
  await page.locator('[data-tool="clearAll"]').click();await cell(page,'A1').click();expect(Object.keys((await state(page)).marks).filter(k=>k.endsWith(':A1'))).toEqual([]);await retained();
  await page.locator('#routeTool').click();await cell(page,'E3').click();await retained();await page.locator('#undo').click();expect((await state(page)).route).toEqual(['D4']);await retained();
- await page.reload();await retained();
+ await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);await retained();
 });
 test('keyboard origin changes, cancelled selection, off and reset preserve editing semantics',async({page})=>{
  const radar=page.locator('#toggleDistances');await radar.focus();await page.keyboard.press('Enter');

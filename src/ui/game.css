@@ -186,3 +186,8 @@ main{display:grid;max-width:1340px;grid-template-columns:minmax(0,1.65fr) minmax
 .toolpick.active .all-eraser sup{background:#34565a;color:#fff}
 .route-undo{color:#926322}
 @media(max-width:650px){.map-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.map-actions .btn{font-size:12px;min-height:43px}}
+
+/* Native puzzle selection preserves platform keyboard/touch behavior. */
+#puzzleSelect{display:block;box-sizing:border-box;width:100%;min-width:0;min-height:44px;margin:6px 0 10px;padding:8px;border:1px solid #967746;border-radius:5px;background:#f2e6c9;color:#274e50;font:inherit}
+
+.hour[hidden]{display:none}

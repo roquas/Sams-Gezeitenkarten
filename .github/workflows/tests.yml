@@ -13,6 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm run test:unit
+      - run: npm run test:puzzles
   browser:
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium webkit
       - run: npm run test:browser
       - if: always()
         uses: actions/upload-artifact@v4

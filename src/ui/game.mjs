@@ -3,21 +3,28 @@ import {createBordbook} from './bordbook.mjs';
 import {createToolbar} from './toolbar.mjs';
 import {drawMap} from './map.mjs';
 import {pretty, coordinateMarkup, coordinateTextMarkup} from './coordinates.mjs';
-import {hints} from '../../content/reference-3.6.mjs';
+import {createPuzzleLoader} from '../puzzles/loader.mjs';
 import {initialState, createHistory} from '../state/game-state.mjs';
 import {distancePhase,toggleDistance,chooseDistanceOrigin,selectChartTool} from '../state/distance-overlay.mjs';
 import {loadState,saveState} from '../persistence/storage.mjs';
-import {referencePuzzle as puzzle} from '../../puzzles/reference-3.6.mjs';
+
 import {createRules} from '../engine/puzzle.mjs';
 import {adjacent as neighbor} from '../engine/hex.mjs';
-const rules=createRules(puzzle);
 
-(()=>{
+
+(async()=>{
 "use strict";
 
 createMobileViews();
 
-const blocked=rules.blocked,solution=puzzle.solution;
+const loader=createPuzzleLoader();
+const catalog=await loader.manifest();
+let storage;try{storage=window.localStorage;}catch{}
+let selected;try{selected=storage?.getItem('gezeitenkarten-selected-puzzle');}catch{}
+let puzzle=await loader.load(catalog.puzzles.some(p=>p.id===selected)?selected:catalog.defaultId);
+let rules=createRules(puzzle),blocked=rules.blocked,solution=puzzle.solution,hints=puzzle.hints;
+const escapeText=text=>String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeMarkup=text=>coordinateTextMarkup(escapeText(text));
 // Neuer unabhängiger Testfall; sieben Hinweise gegen sämtliche legalen Routen geprüft.
 const clues=puzzle.clues.map(({id,text})=>[id,text]);
 const cells=rules.cells.map(id=>({q:id.charCodeAt(0)-65,r:Number(id.slice(1))-1,id}));
@@ -25,7 +32,6 @@ const byId=Object.fromEntries(cells.map(c=>[c.id,c]));
 
 const key=(layer,id)=>layer+":"+id;
 const initial=()=>initialState(puzzle);
-let storage;try{storage=window.localStorage;}catch{}
 let state=loadState(puzzle,storage);
 const history=createHistory();
 let dragging=false,dragValue=null;
@@ -33,9 +39,9 @@ const $=id=>document.getElementById(id);
 function save(){saveState(puzzle,state,storage)}
 function snapshot(){history.push(state)}
 function renderMap(){drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown:()=>{dragging=true;dragValue=null;},onActivate:apply})}
-const renderToolbar=createToolbar({...puzzle,rules});
+const renderToolbar=createToolbar({...puzzle,steps:6,rules});
 function render(){if(state.layer==="all")state.layer=1;
- renderToolbar(state);
+ renderToolbar(state,{...puzzle,rules});
  $("layerTitle").textContent=state.layer==="all"?"Gesamte Fahrt · alle Stunden":state.layer===0?"Stunde 0 · Abfahrt":"Stunde "+state.layer+" · Position";
  
  $("routeBack").disabled=state.route.length<=1;
@@ -70,7 +76,7 @@ $("map").addEventListener("pointermove",e=>{
 window.addEventListener("pointerup",()=>dragging=false);
 $("hours").addEventListener("click",e=>{const b=e.target.closest("[data-hour]");if(!b)return;state.layer=Number(b.dataset.hour);render()});
 
-$("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>6)return;const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
+$("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>puzzle.steps)return;const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
 
 function selectTool(e){const b=e.target.closest('[data-tool]');if(!b)return;state=selectChartTool(state,b.dataset.tool);render();}
 for(const id of ['tools','mapActions'])$(id).addEventListener('click',selectTool);
@@ -80,7 +86,7 @@ $("toggleDistances").onclick=()=>{state=toggleDistance(state);render()};
 $("hideRouteMarks").addEventListener("change",e=>{state.hideRouteMarks=e.target.checked;render()});
 $("clearLayer").onclick=()=>{snapshot();for(const k of Object.keys(state.marks))if(k.startsWith(state.layer+":"))delete state.marks[k];render()};
 $("routeBack").onclick=()=>{if(state.route.length>1){snapshot();state.route.pop();state.result="";render()}};
-$("verify").onclick=()=>{if(state.route.length!==puzzle.steps+1){state.result='<div class="notice error">Die Route braucht genau sechs Etappen. Aktuell sind es '+(state.route.length-1)+'.</div>'}else if(rules.legal(state.route)&&puzzle.clues.every(clue=>rules.matches(state.route,clue))){state.result='<div class="notice success"><strong>Richtig!</strong> Die Route ist vollständig rekonstruiert. Sam hat den Kurs trotz verschwundenem Kompass rekonstruiert. Du hast '+state.penalty+' Strafpunkte gesammelt.</div>'}else{state.result='<div class="notice error">Diese Route erfüllt nicht alle Hinweise. Die korrekte Strecke wird nicht verraten.</div>'}render()};
+$("verify").onclick=()=>{if(state.route.length!==puzzle.steps+1){state.result='<div class="notice error">Die Route braucht genau '+puzzle.steps+' Etappen. Aktuell sind es '+(state.route.length-1)+'.</div>'}else if(rules.legal(state.route)&&puzzle.clues.every(clue=>rules.matches(state.route,clue))){state.result='<div class="notice success"><strong>Richtig!</strong> Die Route ist vollständig rekonstruiert. Du hast '+state.penalty+' Strafpunkte gesammelt.</div>'}else{state.result='<div class="notice error">Diese Route erfüllt nicht alle Hinweise. Die korrekte Strecke wird nicht verraten.</div>'}render()};
 $("checkMarks").onclick=()=>{
  snapshot();state.penalty+=5;
  let wrong=0,checked=0;
@@ -95,18 +101,43 @@ $("hint").onclick=()=>{
  state.penalty+=10;state.hintPenalty+=10;state.hintCount++;
  
  // choose hint according to visible certainty and route progress, then move forward on repeated requests
- const certainHours=Array.from({length:7},(_,h)=>Object.entries(state.marks).some(([k,v])=>k.startsWith(h+":")&&v==="yes"));
+ const certainHours=Array.from({length:puzzle.steps+1},(_,h)=>Object.entries(state.marks).some(([k,v])=>k.startsWith(h+":")&&v==="yes"));
  const progress=state.route.length-1;
  const base=progress>=5||certainHours[5]?4:progress>=4||certainHours[4]?3:progress>=2||certainHours[3]?2:progress>=1||certainHours[2]?1:0;
  const idx=Math.min(hints.length-1,Math.max(base,state.hintCount-1));
- state.help='<div class="notice"><strong>Denkanstoß '+state.hintCount+':</strong> '+hints[idx]+'</div>';
+ state.help='<div class="notice"><strong>Denkanstoß '+state.hintCount+':</strong> '+escapeText(hints[idx]??'Lies die Hinweise gemeinsam und prüfe mögliche Nachbarfelder.')+'</div>';
  render();
 };
 $("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){state=initial();history.clear();render()}};
-const bordbook=createBordbook({clues,getState:()=>state,markup:coordinateTextMarkup,toggleClue:id=>{
+const bordbook=createBordbook({clues,getState:()=>state,markup:safeMarkup,toggleClue:id=>{
  snapshot();state.doneClues=state.doneClues.includes(id)?state.doneClues.filter(v=>v!==id):[...state.doneClues,id];save();
 }});
 $("showChart").addEventListener("change",()=>renderMap());
 document.querySelectorAll(".logbook-section p").forEach(p=>p.innerHTML=coordinateTextMarkup(p.innerHTML));
-render();
-})();
+const select=$('puzzleSelect'),rulesTemplate=$('gameRules').innerHTML;
+const rulesForHours=hours=>hours===6?rulesTemplate:rulesTemplate.replace(/sechs/g,String(hours)).replace(/Sechs/g,String(hours)).replace(/1 bis 6/g,'1 bis '+hours).replace(/sieben Beobachtungen/g,puzzle.clues.length+' Beobachtungen');
+for(const entry of catalog.puzzles){const option=document.createElement('option');option.value=entry.id;option.textContent=entry.title+(entry.difficulty?' · '+entry.difficulty:'');select.append(option);}
+function presentation(){
+ document.querySelector('h1').textContent=puzzle.title;document.title='Gezeitenkarten · '+puzzle.title;
+ const story=$('puzzleStory');story.replaceChildren();
+ for(const paragraph of puzzle.intro){const p=document.createElement('p');p.className='story';p.innerHTML=safeMarkup(paragraph);story.append(p);}
+ select.value=puzzle.id;
+ $('gameRules').innerHTML=rulesForHours(puzzle.steps);
+}
+let request=0;
+select.addEventListener('change',async()=>{
+ const id=select.value,token=++request;select.disabled=true;$('puzzleStatus').textContent='Rätsel wird geladen …';
+ try{
+  const next=await loader.load(id);if(token!==request)return;
+  save();puzzle=next;rules=createRules(puzzle);blocked=rules.blocked;solution=puzzle.solution;hints=puzzle.hints;
+  state=loadState(puzzle,storage);history.clear();dragging=false;dragValue=null;
+  presentation();bordbook.setClues(puzzle.clues.map(({id,text})=>[id,text]));render();
+  try{storage?.setItem('gezeitenkarten-selected-puzzle',puzzle.id);}catch{}
+  $('puzzleStatus').textContent='Geladen: '+puzzle.title+'. Spielstände bleiben getrennt gespeichert.';
+ }catch(error){select.value=puzzle.id;$('puzzleStatus').textContent=error.message;}
+ finally{if(token===request)select.disabled=false;}
+});
+presentation();render();
+})().catch(error=>{
+ const status=document.getElementById('puzzleLoadError');status.hidden=false;status.textContent=error.message;
+});

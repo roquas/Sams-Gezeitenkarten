@@ -54,5 +54,5 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
   container.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('[data-clue]')){e.preventDefault();e.target.closest('[data-clue]').click();}});
  }
  motion.addEventListener?.('change',()=>{if(motion.matches){animation?.cancel();leaf?.remove();}});
- return {render};
+ return {render,setClues(next){animation?.cancel();leaf?.remove();clues=next;current=0;touch=null;render();}};
 }

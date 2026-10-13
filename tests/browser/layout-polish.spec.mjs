@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
+test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 const rows=async locator=>locator.evaluateAll(ns=>{const tops=ns.map(n=>n.getBoundingClientRect().top+n.getBoundingClientRect().height/2).sort((a,b)=>a-b);return tops.reduce((a,v)=>{if(!a.length||v-a.at(-1)>1)a.push(v);return a;},[]).length;});
 test('instrument placement, two mobile rows, generous hit areas and compact route numbers',async({page})=>{
  await expect(page.locator('.chart-toolbar .wheel-emblem,.chart-toolbar .hour-label')).toHaveCount(0);
