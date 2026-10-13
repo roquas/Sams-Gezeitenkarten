@@ -72,7 +72,49 @@
 <section class="logbook-section"><details open><summary>Die Geschichte</summary><p class="story">Robin hatte einen Kompass, Sam ein Logbuch und beide unterschiedliche Vorstellungen von einer Abkürzung. Nach sechs Stunden war der Kompass verschwunden. Die Route hatte Sam immerhin in sieben etwas eigenwilligen Beobachtungen festgehalten.</p>
 <p class="story">Rekonstruiere die sechs Stunden zwischen Kurswechseln, Leuchtturm und Tesoro. Wo sind Robin und Sam schließlich gelandet? Unter „Spielregeln“ steht, wie das funktioniert.</p></details></section>
 <section class="logbook-section"><details open><summary>Legende</summary><p class="muted">Robin benutzt statt gewöhnlicher Buchstaben griechische Namen und statt Zahlen Farben. Eine Ortsangabe besteht aus Spalte / Zeile – zum Beispiel <strong>γ / V</strong> (Gamma / Violett).</p><div class="coord-legend"><div><strong>Spalten</strong><p class="greek-legend"><span><b>α</b> Alpha</span><span><b>β</b> Beta</span><span><b>γ</b> Gamma</span><span><b>δ</b> Delta</span><span><b>ε</b> Epsilon</span></p></div><div><strong>Zeilen</strong><div class="color-legend"><span><i style="--swatch:#28b9c5">C</i>Cyan</span><span><i style="--swatch:#c74c99">M</i>Magenta</span><span><i style="--swatch:#8761ba">V</i>Violett</span><span><i style="--swatch:#4178b8">B</i>Blau</span><span><i style="--swatch:#d28a39">O</i>Orange</span></div></div></div><p class="muted">Die Buchstaben in den Farbflecken helfen, die Zeilen auch ohne Farberkennung zu unterscheiden.</p></details></section>
-<section class="logbook-section"><details><summary>Spielregeln</summary><p>Start Delta/Blau. Sechs Etappen, pro Stunde ein Schritt in eines der sechs angrenzenden Hexfelder. Land ist gesperrt. Kein Feld darf mehrfach betreten werden. Das Riff Alpha/Violett ist in diesem Proberätsel ein befahrbares Wasserfeld; nur die als Land gekennzeichneten Felder sind gesperrt. Entfernungen werden als Hexabstände gemessen, unabhängig von Landhindernissen. Benachbarte Hexfelder teilen eine Seite. Die sechs möglichen Kursrichtungen heißen Ost, Südost, Südwest, West, Nordwest und Nordost. Ein Kurswechsel wird gegenüber der vorherigen Fahrtrichtung gemessen; rechts bedeutet im Uhrzeigersinn. Als Küste von Tesoro gelten befahrbare Wasserfelder mit einer gemeinsamen Hexseite zu B3 oder C3.</p></details></section>
+<section class="logbook-section"><details id="gameRules"><summary>Spielregeln</summary>
+<article class="rules-introduction" aria-label="So liest man eine Gezeitenkarte">
+<h3>So liest man eine Gezeitenkarte
+<em>Eine kleine Einführung in die Navigation, das Ausschlussverfahren und die gelegentlichen Schwierigkeiten, die entstehen, wenn Sam ein Logbuch führt.</em></h3>
+<h4>Was ist eigentlich eine Gezeitenkarte?
+Wer mit einem Schiff unterwegs ist, sollte ungefähr wissen, wo sich Wasser befindet. Noch besser ist es, wenn sich dort auch dann Wasser befindet, wenn man ankommt.</h4>
+<p>Echte Seekarten zeigen Küsten, Inseln, Untiefen und Wassertiefen. In Küstennähe sind außerdem die <strong>Gezeiten</strong> wichtig: Ebbe und Flut verändern den Wasserstand, und eine bei Hochwasser passierbare Stelle kann bei Niedrigwasser gefährlich flach sein.</p>
+<p>Unsere <strong>Gezeitenkarten</strong> sind davon inspiriert, aber keine echten Navigationskarten und simulieren noch keine Ebbe oder Flut. Sie sind Logikrätsel: eine Seekarte, eine unbekannte Schiffsroute und ein Logbuch voller Beobachtungen.</p>
+<p>Glücklicherweise müssen wir dafür weder den Mondstand berechnen noch auf die nächste Flut warten.</p>
+<h4>Dein Auftrag
+Sam und Robin waren sechs Stunden unterwegs. Das Schiff ist wieder aufgetaucht, der genaue Kurs allerdings nicht. Zum Glück gibt es Robins Logbuch. Darin stehen Beobachtungen über Fahrtrichtungen, Kurswechsel, Küsten und Entfernungen.</h4>
+<p><strong>Rekonstruiere die vollständige Route, die alle Hinweise gleichzeitig erfüllt.</strong></p>
+<ul><li>Das <strong>Startfeld</strong> ist bekannt.</li><li>Die Fahrt dauert <strong>sechs Stunden</strong>; pro Stunde geht es genau ein Feld weiter.</li><li>Jeder Schritt führt auf eines der sechs Hexfelder mit gemeinsamer Seite.</li><li><strong>Land ist gesperrt</strong>: Tesoro und die Klippen.</li><li>Kein Feld darf während der Route mehrfach besucht werden.</li><li>Das Riff bei Alpha/Violett ist in diesem Rätsel <strong>befahrbares Wasser</strong>.</li></ul>
+<h4>Die Karte lesen
+Die Seekarte besteht aus <strong>Hexfeldern</strong>. Zwei Felder sind benachbart, wenn sie eine gemeinsame <strong>Seite</strong> haben – eine Berührung an der Ecke reicht nicht.</h4>
+<p><strong>Koordinaten:</strong> Die Spalten heißen Alpha, Beta, Gamma, Delta und Epsilon; die Zeilen Cyan, Magenta, Violett, Blau und Orange. Beispiel: <strong>Gamma / Violett</strong>. Am Pergamentrand helfen Beschriftungen und geschwungene Hilfslinien bei der Orientierung. Die kompakte Symbolnotation in Hinweisen und Route meint dieselben Koordinaten.</p>
+<p><strong>Richtungen:</strong> Ost, Südost, Südwest, West, Nordwest und Nordost. Ein Kurswechsel bezieht sich auf die <strong>unmittelbar vorherige</strong> Fahrtrichtung. Von Ost aus bedeutet 60° rechts <strong>Südost</strong>, 60° links <strong>Nordost</strong>. Die erste Stunde hat noch keine vorherige Fahrtrichtung.</p>
+<p><strong>Abstände:</strong> Gemessen wird die <strong>Hexdistanz</strong>, also die kürzeste Schrittzahl auf einem ungehinderten Hexraster. Direkte Nachbarn haben Abstand 1. <strong>Landhindernisse verlängern diese geometrische Distanz nicht</strong>; der tatsächlich befahrbare Umweg kann länger sein.</p>
+<p><strong>Küste:</strong> Als Küste von Tesoro zählen befahrbare Wasserfelder mit gemeinsamer Hexseite zu einem der Inselfelder. Nur eine gemeinsame Ecke zählt nicht.</p>
+<h4>Mit den Stundenkarten arbeiten
+Du musst die Route nicht sofort kennen. Für <strong>jede Stunde 1 bis 6</strong> kannst Du getrennt notieren, wo das Schiff gewesen sein könnte. Wähle oben die Stunde und dann ein Werkzeug:</h4>
+<ul><li><strong>? Möglich:</strong> Hier könnte das Schiff in dieser Stunde gewesen sein.</li><li><strong>✓ Sicher:</strong> Hier muss es in dieser Stunde gewesen sein.</li><li><strong>× Ausgeschlossen:</strong> Hier kann es in dieser Stunde nicht gewesen sein.</li><li><strong>Radierer:</strong> Entfernt eine Markierung; ein erneuter Klick auf dieselbe Markierung entfernt sie ebenfalls.</li></ul>
+<p>Die Notizen gehören zur jeweils gewählten Stunde: Ein Feld kann in Stunde 2 ausgeschlossen und in Stunde 4 noch möglich sein. Mehrere Felder lassen sich nacheinander markieren. Anzeigeoptionen blenden Notizen aus, ohne sie zu löschen.</p>
+<p><strong>Beispiel:</strong> „In der ersten Stunde hielten wir Kurs nach Nordosten.“ Suche das Startfeld, gehe ein Hexfeld nach Nordosten, wähle <strong>Stunde 1</strong> und markiere das Zielfeld als <strong>✓ Sicher</strong>. Falls der nächste Hinweis eine Linksdrehung um 60° beschreibt, kannst Du von dort die nächste Richtung bestimmen.</p>
+<h4>Wie beginnt man sinnvoll?
+1. <strong>Alle Hinweise einmal lesen.</strong> Sie müssen nicht in Logbuchreihenfolge gelöst werden.
+2. <strong>Feste Angaben zuerst:</strong> Start, eindeutige Richtungen und bekannte Positionen.
+3. <strong>Hinweise kombinieren:</strong> Ein Kurswechsel wird erst mit bekanntem vorherigen Kurs konkret.
+4. <strong>Unmögliches ausschließen:</strong> Kein Land, kein Sprung über mehrere Hexfelder, kein Verlassen der Karte, kein erneuter Besuch.
+5. <strong>Abstände und Küsten prüfen:</strong> Damit lassen sich plausible Routen unterscheiden.
+6. <strong>Möglichkeiten markieren statt raten.</strong> Ein Fragezeichen ist dokumentierte Unsicherheit, kein Fehler.</h4>
+<h4>Die Route rekonstruieren
+Wenn Du eine plausible Fahrt hast, wähle das <strong>Routenwerkzeug</strong> und tippe die Positionen der Reihe nach an. Die Route beginnt am vorgegebenen Start. Jeder neue Schritt muss auf ein benachbartes befahrbares Feld führen. Mit <strong>„Route eins zurück“</strong> entfernst Du den letzten Schritt. Die <strong>„Rekonstruierte Route“</strong> zeigt die gewählten Positionen. Nach sechs Etappen kannst Du <strong>„Prüfen“</strong> verwenden. Eine falsche Route verrät die Lösung nicht.</h4>
+<h4>Wenn Du feststeckst
+- <strong>Abstandsanzeige:</strong> Werkzeug wählen, dann ein befahrbares Ursprungsfeld auf der Karte antippen. Geometrische Hexabstände werden angezeigt; <strong>kostenlos</strong>.
+- <strong>Notizprüfung:</strong> Prüft sichere und ausgeschlossene Markierungen auf Widersprüche und nennt deren Anzahl, nicht ihre Position; <strong>5 Strafpunkte</strong>. „Möglich“-Notizen werden ignoriert.
+- <strong>Denkanstoß:</strong> Zusätzliche Hilfe gegen <strong>10 Strafpunkte</strong>.</h4>
+<p>Du kannst einzelne Logbucheinträge durchblättern, alle Hinweise in der Übersicht lesen und erledigte Hinweise abhaken.</p>
+<h4>Und jetzt?
+Lies das Logbuch, wähle die erste Stunde und beginne mit dem, was Du sicher weißt. Du musst nicht sofort die ganze Route sehen. Es reicht, wenn nach jedem Hinweis ein paar Möglichkeiten weniger übrig bleiben.</h4>
+<p><strong>Sechs Stunden, eine Route und sieben Beobachtungen.</strong> Robin hat immerhin alles aufgeschrieben. Jetzt müssen wir nur noch herausfinden, was er damit gemeint hat.
+</p>
+</article></details></section>
 <section class="logbook-section"><details><summary>Aus Robins Logbuch</summary><p class="muted">Auch hier kannst Du die Hinweise abhaken.</p><div id="allClues" class="all-clues"></div></details></section>
 <section class="logbook-section"><details><summary>Hilfe</summary><p class="muted">Die Abstandsanzeige unter der Karte ist kostenlos. Rätselhilfen kosten Punkte. Deine Notizen werden nicht automatisch verändert.</p>
 <div class="controls"><button class="btn" id="checkMarks">Notizen prüfen · −5</button><button class="btn" id="hint">Passenden Tipp · −10</button></div>

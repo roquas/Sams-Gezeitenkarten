@@ -6,7 +6,7 @@ test('instrument placement, two mobile rows, generous hit areas and compact rout
  await expect(page.locator('.hours-group .hourglass-emblem')).toHaveCount(1);
  await expect(page.locator('#tools [data-tool]')).toHaveCount(5);
  await expect(page.locator('#mapActions button')).toHaveCount(7);
- await expect(page.locator('#toggleRouteNumbers .route-numerals')).toHaveText('①···②');
+ await expect(page.locator('#toggleRouteNumbers .route-numerals')).toHaveText('①②··');
  for(const width of [320,390,600,900,1440]){
   await page.setViewportSize({width,height:1000});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);

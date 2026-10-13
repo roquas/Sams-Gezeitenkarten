@@ -6,8 +6,8 @@ const icons={
  undo:rasterIcon('undo'),
  distance:rasterIcon('distance'),
  marks:`<span class="mark-emblem">${rasterIcon('eye')}${svg('<path class="hour-hex" d="M16 2L28 9V23L16 30L4 23V9Z"/><line class="hour-edge" x1="28" y1="9" x2="16" y2="2"/><path class="eye-slash" d="M5 27L27 5"/>')}</span>`,
- numbers:`<span class="numbers-emblem">${rasterIcon('eye')}<span class="route-numerals" aria-hidden="true">①···②</span></span>`,
- verify:rasterIcon('yes')+'<span class="verify-label" aria-hidden="true">Prüfen</span>'
+ numbers:`<span class="numbers-emblem">${rasterIcon('eye')}<span class="route-numerals" aria-hidden="true">①②··</span></span>`,
+ verify:rasterIcon('yes')
 };
 
 export function hourEdge(hour){
