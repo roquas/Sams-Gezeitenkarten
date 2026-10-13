@@ -11,9 +11,12 @@ async function choose(page,id){await settings(page);await page.locator('#puzzleS
 test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('switch, reload, isolated notes/routes/overlays, undo and reset',async({page},testInfo)=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const staticImage=await page.locator('#map image').first().elementHandle();
  await page.locator('#map [data-id="E3"]').click();
+ expect(await staticImage.evaluate(el=>el.isConnected)).toBe(true);
  await page.locator('#toggleDistances').click();await page.locator('#map [data-id="C1"]').click();
  await choose(page,other);
+ expect(await staticImage.evaluate(el=>el.isConnected)).toBe(false);
  await expect(page.locator('h1')).toHaveText('Technischer Testfall – Navigation');
  await expect(page.locator('#map .blocked-cell')).toHaveCount(3);
  await expect(page.locator('#map [data-id="E1"]')).toHaveClass(/blocked-cell/);

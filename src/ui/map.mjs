@@ -4,14 +4,23 @@ import {distance as dist} from '../engine/hex.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
 function poly(x,y){return hexVertices(x,y).map(([x,y])=>`${x.toFixed(2)},${y.toFixed(2)}`).join(" ")}
 const coords=hexCenter;
+const staticCharts=new WeakMap();
 export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate}){
  const $=id=>document.getElementById(id);
- const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.replaceChildren();svg.setAttribute("viewBox",CHART_VIEWBOX);
+ const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.setAttribute("viewBox",CHART_VIEWBOX);
  const NS="http://www.w3.org/2000/svg";
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
  const showArt=document.getElementById("showChart").checked;
+ const cached=staticCharts.get(svg);
+ if(cached?.puzzle===puzzle){
+  // Preserve decoded watercolor images and static SVG geometry across edits.
+  // Recreating them on every click is particularly costly in software WebKit.
+  for(const node of [...svg.children])if(!node.hasAttribute('data-static-chart'))node.remove();
+  cached.art.setAttribute('visibility',showArt?'visible':'hidden');
+ }else{
+ svg.replaceChildren();
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
  svg.append(el("rect",{x:-44,y:-44,width:563,height:473,fill:"#e9d5b0","pointer-events":"none","aria-hidden":"true"}));
  for(const [index,tile] of parchmentTiles().entries()){
@@ -89,6 +98,9 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    }
  }
  svg.append(graticule);
+ for(const node of svg.children)node.setAttribute('data-static-chart','true');
+ staticCharts.set(svg,{puzzle,art});
+ }
  // 1c: Große, transparente Abstandszahlen auf Wasserfeldern; über den Illustrationen,
  // aber unter interaktiven Hexflächen, Routenlinie und Markierungen.
  if(state.distanceMode && state.distanceOrigin){
