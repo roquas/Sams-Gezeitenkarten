@@ -1,0 +1,145 @@
+/* Two coordinated instrument groups; their decorative emblems consume no row. */
+.chart-toolbar{grid-template-columns:minmax(264px,1fr) minmax(220px,1fr);gap:18px;padding:18px 23px;min-height:112px}
+.hours-group,.marking-tools{position:relative;min-width:0;padding-top:24px}
+.hours-group::before,.marking-tools::before{content:"";position:absolute;left:0;right:0;top:11px;border-top:1px solid #92734480}
+.hourglass-emblem,.marking-feather{position:absolute;left:50%;top:-2px;transform:translateX(-50%);width:30px;height:28px;padding:2px 3px;background-color:#e3cfaa;background-image:var(--paper-texture);background-size:100% 100%;pointer-events:none}
+.hourglass-emblem{background-image:url('../../assets/ui/hourglass.webp'),var(--paper-texture);background-size:24px 24px,100% 100%;background-position:center;background-repeat:no-repeat}
+.marking-tools{border-top:0;flex:1;gap:4px}
+.marking-feather .raster-icon{width:24px;height:24px}
+.chart-toolbar .toolstrip{padding:0;gap:0;grid-column:auto;border:0}
+
+/* Route tools keep their original nodes, actions, focus and accessible labels. */
+.map-actions{gap:7px;padding:22px 18px;min-height:104px}
+.map-actions .rail-button{width:56px;flex-basis:56px;height:56px;min-height:56px}
+.map-actions #toggleRouteNumbers{width:98px;flex-basis:98px}
+.map-actions #verify{width:144px;flex-basis:144px;gap:5px}
+.numbers-emblem{gap:3px}.route-numerals{font-size:14px;letter-spacing:-1px}
+.map-actions #routeTool,.map-actions #routeBack{margin:0;border-radius:8px}
+@media(min-width:601px) and (max-width:1050px){
+ .map-actions{padding:22px 8px;gap:4px}
+ .map-actions .rail-button{width:48px;flex-basis:48px;height:52px;min-height:52px}
+ .map-actions #toggleRouteNumbers{width:84px;flex-basis:84px}
+ .map-actions #verify{width:104px;flex-basis:104px;gap:3px}.verify-label{font-size:18px}
+ .mark-emblem .raster-icon,.numbers-emblem .raster-icon{width:28px;height:28px}
+ .route-numerals{font-size:12px}
+ .rail-separator{width:1px;margin:0}
+}
+@media(max-width:600px){
+ .chart-toolbar{display:flex;gap:8px;padding:14px 12px 16px;min-height:0}
+ .hours-group,.marking-tools{padding-top:22px}
+ .chart-toolbar .toolstrip{display:block;padding:0;border:0}
+ .marking-tools{display:grid;grid-template-columns:repeat(5,minmax(44px,1fr));gap:2px;width:100%}
+ .marking-feather{top:-2px}
+ .map-actions{display:grid;grid-template-columns:repeat(4,minmax(44px,1fr));gap:6px;padding:20px 8px;min-height:138px}
+ .map-actions .rail-separator{display:none}
+ .map-actions .rail-button,.map-actions #toggleRouteNumbers,.map-actions #verify{width:100%;min-width:44px;height:48px;min-height:48px;margin:0}
+ .map-actions #routeTool{grid-column:2}.map-actions #routeBack{grid-column:3}.map-actions #verify{grid-column:4}
+ .numbers-emblem{gap:2px}.route-numerals{font-size:10px;letter-spacing:-.5px}
+ .mark-emblem .raster-icon,.numbers-emblem .raster-icon{width:25px;height:25px}
+}
+
+/* A full book with a narrow left leaf; neither outer cover is cropped away. */
+.bordbook{--left-leaf:14%;padding:0;min-height:0;background:none;aspect-ratio:auto}
+.bordbook::before,.bordbook::after{content:"";position:absolute;top:0;bottom:0;background-image:url('../../assets/ui/open-bordbook.webp');background-size:200% 100%;background-repeat:no-repeat;pointer-events:none}
+.bordbook::before{left:0;width:var(--left-leaf);background-position:left center}
+.bordbook::after{left:var(--left-leaf);right:0;background-position:right center}
+.book-spread{position:relative;z-index:1;display:grid;grid-template-columns:var(--left-leaf) minmax(0,1fr);min-height:430px;background:none;border-radius:0}
+.book-heading{padding:42px 4px 112px;border:0;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;gap:0}
+.book-vignette{display:block;width:34px;height:34px;margin:0;flex:none}
+.book-page{min-width:0;padding:42px 42px 112px 18px;display:flex;flex-direction:column}
+.book-page-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;color:#694b29;font:600 23px/1.4 Georgia,serif}
+.book-page-heading strong{min-width:0;flex:1}
+.book-page-heading #cluePosition{flex:none;white-space:nowrap;font:13px/1.8 Georgia,serif;letter-spacing:.1em}
+.bordbook .clue-viewport{padding:20px 0 12px;min-height:210px;flex:1;overflow:visible}
+.bordbook .clue-nav{z-index:2;left:calc(var(--left-leaf) + 18px);right:42px;bottom:68px}
+.bordbook .clue-nav #clueDone{max-width:calc(100% - 104px)}
+.turning-leaf{padding:20px 0 12px}
+.bordbook+h3{margin-top:28px}
+@media(max-width:600px){
+ .bordbook{--left-leaf:12%;padding:0;background:none;min-height:0}
+ .book-spread{display:grid;grid-template-columns:var(--left-leaf) minmax(0,1fr);min-height:390px}
+ .book-heading{padding:30px 3px 112px;justify-content:center}
+ .book-vignette{display:block;width:22px;height:22px}
+ .book-page{padding:30px 22px 112px 12px}
+ .book-page-heading{font-size:17px;gap:8px}
+ .book-page-heading #cluePosition{font-size:11px;letter-spacing:.08em}
+ .bordbook .clue-viewport{padding:16px 0 8px;min-height:210px;overflow:visible}
+ .bordbook .clue-nav{left:calc(var(--left-leaf) + 12px);right:22px;bottom:64px}
+ .turning-leaf{padding:16px 0 8px}
+}
+@media(min-width:881px) and (max-width:1050px){
+ .chart-toolbar{grid-template-columns:minmax(0,1fr);gap:8px;padding:14px 20px}
+ .chart-toolbar .toolstrip{grid-column:1}
+}
+@media(min-width:601px){
+ .chart-toolbar .marking-tools{justify-content:space-between}
+ .chart-toolbar .marking-tools .toolpick{flex:0 1 52px;width:52px}
+}
+
+/* Review: a right-aligned route group and paper clearance at the stacked edge. */
+.route-actions{display:contents}
+@media(min-width:601px){
+ .map-actions #routeTool{margin-left:auto}
+ .map-actions #verify{margin-left:0}
+}
+.book-page{padding-right:16%}
+.bordbook .clue-nav{right:16%}
+@media(max-width:600px){
+ .map-actions .rail-button,.map-actions #verify{width:48px;justify-self:center}
+ .map-actions #toggleRouteNumbers{width:100%}
+ .route-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px}
+ .route-actions .rail-button{flex:0 0 48px}
+ .book-page{padding-right:13%}
+ .bordbook .clue-nav{right:13%}
+}
+@media(max-width:600px){.map-actions .route-actions #verify{flex:0 0 48px}}
+/* Keep folio text away from the curled corner; limit the compact numbers bezel. */
+.book-page-heading{padding-right:12px}
+@media(max-width:600px){.map-actions #toggleRouteNumbers{width:72px;max-width:100%;justify-self:center}}
+@media(max-width:350px){.book-page-heading{font-size:16px}}
+
+/* #32: transparent instrument emblems; stop the divider beside each icon. */
+.hours-group::before,.marking-tools::before{border:0;height:1px;background:linear-gradient(to right,#92734480 calc(50% - 19px),transparent calc(50% - 19px),transparent calc(50% + 19px),#92734480 calc(50% + 19px))}
+.hourglass-emblem,.marking-feather{padding:0;background-color:transparent;background-image:none}
+.hourglass-emblem{background-image:url('../../assets/ui/hourglass.webp');background-size:24px 24px}
+.map-actions #toggleDistances{display:grid;place-items:center;padding:0}
+.map-actions #toggleDistances .raster-icon{display:block;margin:0;width:36px;height:36px}
+/* Atlas cell has asymmetric transparent padding: align its painted radar disc. */
+.map-actions #toggleDistances .raster-icon{transform:translate(-1px,-1.5px)}
+.map-actions #toggleRouteNumbers{width:56px;flex-basis:56px}
+.numbers-emblem{display:flex;flex-direction:column;justify-content:center;gap:0;height:44px}
+.numbers-emblem .raster-icon{width:30px;height:30px}
+.route-numerals{font-size:12px;line-height:14px;letter-spacing:0}
+.map-actions #verify{width:56px;flex-basis:56px;gap:0}
+.map-actions #verify:not(:disabled)::after{background:linear-gradient(150deg,#e0e6bd,#b7c39a 58%,#899b75)}
+@media(max-width:600px){
+ .map-actions #toggleRouteNumbers,.map-actions #verify{width:48px;flex-basis:48px}
+ .map-actions #toggleDistances .raster-icon{width:32px;height:32px}
+ .numbers-emblem .raster-icon{width:25px;height:25px}
+}
+@media(min-width:601px) and (max-width:1050px){.numbers-emblem .raster-icon{width:28px;height:28px}}
+
+/* #31: an editorial introduction inside the original collapsed rules panel. */
+.rules-introduction{max-width:65ch;font:16px/1.75 Georgia,serif;color:#493e30;padding:10px 0 18px;overflow-wrap:break-word}
+.logbook-section .rules-introduction h3{display:block;font-size:25px;line-height:1.25;margin:8px 0 16px;color:#173e43}
+.rules-introduction h4{font:700 19px/1.35 Georgia,serif;color:#173e43;margin:28px 0 10px}
+.rules-introduction p{margin:10px 0 16px}
+.rules-introduction ul,.rules-introduction ol{padding-left:24px;margin:12px 0 20px}
+.rules-introduction li{padding-left:3px;margin:8px 0}
+.rules-introduction strong{font-weight:700}
+@media(max-width:600px){.rules-introduction{font-size:16px;line-height:1.7}.rules-introduction h3{font-size:23px}}
+
+/* The actual chart column controls the lower rail, including narrow desktops. */
+.map-panel{container-name:chart;container-type:inline-size}
+.map-actions{display:flex;flex-wrap:nowrap;gap:8px;padding:22px 18px;min-height:104px}
+.map-actions .route-actions{display:flex;align-items:center;justify-content:center;gap:8px;margin-left:auto;flex:0 0 auto}
+.map-actions #routeTool{margin-left:0}
+.map-actions .rail-button,.map-actions .rail-button:hover,.map-actions .rail-button.active,.map-actions .rail-button:disabled,.map-actions #routeBack{background:transparent;border:0;box-shadow:none}
+.map-actions .rail-separator{display:block}
+@container chart (max-width:560px){
+ .map-actions{display:grid;grid-template-columns:repeat(4,minmax(44px,1fr));gap:12px 8px;padding:20px 8px;min-height:148px}
+ .map-actions .rail-separator{display:none}
+ .map-actions .rail-button,.map-actions #toggleRouteNumbers,.map-actions #verify{width:48px;flex-basis:48px;min-height:48px;height:48px;justify-self:center;margin:0}
+ .map-actions .route-actions{grid-column:1/-1;display:flex;justify-content:center;gap:12px;margin:0;width:100%}
+ .map-actions .route-actions .rail-button{flex:0 0 48px}
+}

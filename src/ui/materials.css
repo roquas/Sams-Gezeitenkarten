@@ -1,0 +1,176 @@
+/* Material skins use local raster artwork. Every hit target remains live HTML. */
+:root{--aged-brass:#6d502a;--light-brass:#d4b475;--petrol:#163e43;--rail-texture:url('../../assets/ui/brass-rail.webp');--paper-texture:url('../../assets/ui/paper-grain.webp')}
+body{background-color:#e9ddc5;background-image:linear-gradient(#e3d4b140,#e8ddc650),var(--paper-texture);background-size:auto,380px;color:#382e22}
+main{max-width:1420px;grid-template-columns:minmax(0,1.9fr) minmax(300px,.8fr);gap:28px;padding:0 24px;margin:28px auto}
+.map-panel{background:none;border:0;box-shadow:none;overflow:visible}.map-panel>.pad{padding:0}
+.map-panel .topline{padding:0 12px}.map-panel h1{font-size:clamp(25px,2.8vw,36px);font-weight:600;color:#47331f}
+.map-panel .pill{background:#f7ecd6;border:1px solid #bd9d65;box-shadow:inset 0 1px 2px #fff7df}
+.chart-toolbar{position:relative;display:grid;grid-template-columns:50px 64px minmax(264px,.95fr) minmax(0,1.1fr);align-items:center;gap:9px;min-height:104px;margin:24px 0 0;padding:20px 23px;border:0;border-radius:3px;background-color:#dfca9c;background-image:linear-gradient(90deg,#90734545,#ffefc629 12%,#ffefc650 78%,#76552a50),var(--paper-texture);background-size:auto,400px;box-shadow:inset 1px 0 3px #8d673c,inset -1px 0 4px #8d673c,0 7px 12px #422d2335}
+.chart-toolbar::before,.chart-toolbar::after{display:none}
+.brass-rail{position:absolute;left:-7px;right:-7px;height:27px;z-index:3;pointer-events:none;border-style:solid;border-color:transparent;border-width:0 28px;border-image-source:var(--rail-texture);border-image-slice:0 150 0 150 fill;border-image-width:0 28px;border-image-repeat:stretch;filter:drop-shadow(0 2px 2px #30231980)}
+.rail-top{top:-8px}.rail-bottom{bottom:-8px}
+.wheel-emblem{width:50px;height:50px;background:url('../../assets/ui/ship-wheel.webp') center/contain no-repeat;filter:saturate(.55) brightness(.7) drop-shadow(0 2px 1px #714e3144)}
+.hour-label{font:600 20px Georgia,serif;color:#4d3e27;text-shadow:0 1px #fff0d0}
+.chart-toolbar .hourbar{display:flex;padding:0;margin:0;border:2px solid #8a6a3a;border-radius:11px;gap:0;background:#ceb582;box-shadow:inset 0 2px 4px #62442090,0 1px 0 #ffefc3;overflow:hidden;min-height:50px}
+.chart-toolbar .hour{position:relative;flex:1;min-width:44px;min-height:48px;height:48px;border-radius:0;padding:4px;background:linear-gradient(#f8e6ba7a,#dac18d3b);border:0;border-right:1px solid #84603755;color:#463b25;box-shadow:none}
+.chart-toolbar .hour:last-child{border-right:0}
+.hour-number{font:700 25px Georgia,serif;line-height:1;text-shadow:0 1px 0 #f8e9cb}
+.chart-toolbar .hour .hour-mini{position:absolute;width:15px;height:15px;right:3px;bottom:2px;opacity:.55;overflow:visible}
+.chart-toolbar .hour .hexhour{display:none}
+.chart-toolbar .hour.active{background:linear-gradient(155deg,#37636a,#183e43 58%,#0e2b2f);color:#ffedbc;box-shadow:inset 0 0 0 2px #d6b76f,inset 0 3px 4px #eff5d327,inset 0 -3px 4px #011e2280}
+.chart-toolbar .hour.active .hour-number{text-shadow:0 2px #08252c}
+.chart-toolbar .hour.active .hour-mini{opacity:1}
+.chart-toolbar .toolstrip{background:none;gap:4px;padding-left:6px;justify-content:center}
+.chart-toolbar .toolpick{position:relative;width:48px;min-width:44px;min-height:52px;height:52px;padding:3px;border:1px solid transparent;border-radius:8px;background:none;box-shadow:none;flex:1}
+.chart-toolbar .toolpick:hover{background:#b6945366;border:1px solid #99723e;box-shadow:inset 0 1px #f9e3b499}
+.chart-toolbar .toolpick.active{background:linear-gradient(150deg,#427278,#163e43 60%,#09292d);border:2px solid #c09a53;box-shadow:0 2px 3px #382a2277,inset 0 0 0 1px #10363a,inset 0 2px 1px #8fadb07d,inset 0 -3px 4px #042226b0}
+.raster-icon{display:inline-block;flex:none;width:36px;height:36px;background-image:url('../../assets/ui/tool-atlas.webp');background-size:300% 300%;background-position:var(--icon-x) var(--icon-y);background-repeat:no-repeat;filter:saturate(.35) brightness(.53) sepia(.25);pointer-events:none}
+.toolpick.active .raster-icon{filter:saturate(.65) brightness(1.1) drop-shadow(0 1px 0 #0008)}
+.toolpick:disabled .raster-icon{filter:saturate(.1) brightness(.55);opacity:.45}
+.backstep-detail{position:absolute;right:4px;bottom:5px;font:700 10px Georgia,serif;color:#71582f}
+.chart-toolbar .toolseparator{background:linear-gradient(90deg,#68492280,#ffe7b185);width:2px;margin:8px 1px}
+.material-map{border:0;border-radius:0;padding:9px 4px 3px;background:#b48a52;box-shadow:inset 2px 0 3px #533a22b0,inset -2px 0 3px #533a22b0,0 4px 12px #573b2735}
+.material-map #map{aspect-ratio:523/433;filter:drop-shadow(0 2px 1px #533b2850)}
+.clue-panel{background-image:var(--paper-texture);box-shadow:0 7px 18px #4f37251c;border-color:#bba179}
+@media(max-width:1220px) and (min-width:601px){
+ .chart-toolbar{grid-template-columns:50px 64px minmax(264px,1fr);gap:10px;padding:22px 24px}
+ .chart-toolbar .toolstrip{grid-column:1/-1;border-top:1px solid #8e6d3a60;padding:8px 0 0;gap:10px}
+ .chart-toolbar .toolpick{flex:0 1 58px}
+}
+@media(max-width:880px){main{display:block;padding:0 14px;margin:18px auto}.map-panel>.pad{padding:0}}
+@media(max-width:600px){
+ main{padding:0 10px}.map-panel .topline{padding:0 3px}.map-panel h1{font-size:26px}
+ .chart-toolbar{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:20px 12px 18px;min-height:0;margin-top:20px}
+ .wheel-emblem,.hour-label{display:none}
+ .chart-toolbar .hourbar{min-height:46px;padding:0;flex:none;border-width:1.5px}
+ .chart-toolbar .hour{height:46px;min-height:46px;min-width:44px}.hour-number{font-size:24px}
+ .chart-toolbar .toolstrip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:3px 0 0;justify-items:center;min-width:0}
+ .chart-toolbar .toolpick{width:100%;min-width:44px;min-height:44px;height:44px;flex:none}
+ .chart-toolbar .toolpick:nth-of-type(5){grid-column:1}.chart-toolbar .toolpick:nth-of-type(6){grid-column:2}.chart-toolbar .toolpick:nth-of-type(7){grid-column:3}
+ .chart-toolbar .toolseparator{display:none}.raster-icon{width:33px;height:33px}
+ .brass-rail{height:23px;left:-3px;right:-3px;border-image-width:0 23px;border-width:0 23px}.rail-top{top:-6px}.rail-bottom{bottom:-6px}
+ .material-map{padding:8px 2px 1px}
+}
+
+/* Review 1: no repeated paper seams, and screws keep their circular profile. */
+body{background-size:auto,100vw 100vh;background-repeat:no-repeat;background-attachment:fixed}
+.chart-toolbar{background-size:auto,100% 100%;background-repeat:no-repeat}
+.brass-rail{border:0;background:url('../../assets/ui/brass-strip.webp') center/auto 25px repeat-x}
+.brass-rail::before,.brass-rail::after{content:"";position:absolute;top:0;width:29px;height:29px;background:var(--rail-texture) left center/auto 29px no-repeat}
+.brass-rail::before{left:-1px}.brass-rail::after{right:-1px;background-position:right center}
+.raster-icon{width:40px;height:40px;filter:saturate(.5) brightness(.72) sepia(.15)}
+.chart-toolbar .toolpick.active{background:none;border:0;box-shadow:none}
+.chart-toolbar .toolpick.active::after,.rail-button::after{content:"";position:absolute;inset:3px;background:linear-gradient(150deg,#427278,#163e43 60%,#09292d);clip-path:polygon(16% 0,84% 0,100% 16%,100% 84%,84% 100%,16% 100%,0 84%,0 16%);z-index:0}
+.chart-toolbar .toolpick.active::before,.rail-button::before{content:"";position:absolute;inset:0;border:14px solid transparent;border-image:url('../../assets/ui/brass-bezel.webp') 78/14px stretch;z-index:1;pointer-events:none;filter:saturate(.7) brightness(.82) drop-shadow(0 2px 1px #44261780)}
+.chart-toolbar .toolpick.active .raster-icon{position:relative;z-index:2;filter:saturate(.65) brightness(1.12)}
+.material-map{background:#e9d5b0;padding:5px 3px 0}
+.parchment-edge{mix-blend-mode:multiply}
+
+/* The lower instrument shelf shares the exact same brass stock and bezels. */
+.map-actions{position:relative;min-height:112px;margin:0;padding:22px 30px;gap:16px;border:0;border-radius:0;background-color:#dfca9c;background-image:linear-gradient(90deg,#90734545,#ffefc629 12%,#ffefc650 78%,#76552a50),var(--paper-texture);background-size:auto,100% 100%;background-repeat:no-repeat;box-shadow:inset 1px 0 3px #8d673c,inset -1px 0 4px #8d673c,0 6px 12px #422d2335}
+.rail-button{position:relative;flex:0 0 64px;width:64px;min-height:64px;height:64px;padding:5px;border:0;background:none;box-shadow:none;border-radius:8px;color:#483723}
+.rail-button::after{background:linear-gradient(150deg,#f7e8c5,#dec596 58%,#c0a16d)}
+.rail-button .raster-icon,.rail-button .mark-emblem,.rail-button .numbers-emblem,.rail-button .verify-label{position:relative;z-index:2}
+.rail-button:hover{background:none;filter:brightness(1.07)}
+.rail-button.active{background:none;border:0;box-shadow:none;color:#f5e1ad}
+.rail-button.active::after{background:linear-gradient(150deg,#427278,#163e43 60%,#09292d)}
+.rail-button.active .raster-icon{filter:saturate(.65) brightness(1.12)}
+#undo::before,#toggleDistances::before{border:3px double #76572d;border-radius:50%;border-image:none;box-shadow:inset 0 1px 1px #fce3a7,inset 0 -2px 2px #5b3918,0 2px 3px #543c2180;filter:none}
+#undo::after,#toggleDistances::after{clip-path:circle(50% at 50% 50%)}
+.rail-separator{height:54px;width:2px;margin:0 2px;background:linear-gradient(90deg,#78563799,#ffebc17f)}
+.mark-emblem{width:42px;height:42px;display:grid;place-items:center}
+.mark-emblem .raster-icon{width:32px;height:32px}
+.mark-emblem svg{position:absolute;width:42px;height:42px;inset:0;stroke:#5e4528;stroke-width:1.4}
+.rail-button.active .mark-emblem svg{stroke:#f0d393}
+.rail-button .hour-hex{opacity:.55;stroke-width:1.1}
+.rail-button .hour-edge{stroke-width:3;stroke:#8e652e}.rail-button.active .hour-edge{stroke:#ffe1a2}
+.rail-button .eye-slash{stroke-width:2.5;stroke:#5e4528}.rail-button.active .eye-slash{stroke:#f0d393}
+#toggleRouteNumbers{width:116px;flex-basis:116px}
+.numbers-emblem{display:flex;gap:5px;align-items:center}.numbers-emblem .raster-icon{width:29px;height:29px}
+.route-numerals{font:700 18px Georgia,serif;letter-spacing:-1px}
+#verify{width:176px;flex-basis:176px;gap:8px}
+#verify .raster-icon{width:34px;height:34px}
+.verify-label{font:700 21px Georgia,serif}
+.rail-button:disabled{background:none;opacity:.58;filter:saturate(.4)}
+.rail-button:disabled::after{background:#aa9d82}
+
+/* A physical paper stack and leather spine; all text and checkboxes are live. */
+.bordbook{position:relative;margin:25px 0 8px;padding:46px 54px 65px;border:0;border-radius:0;min-height:clamp(365px,34vw,465px);width:100%;min-width:0;aspect-ratio:auto;background:url('../../assets/ui/open-bordbook.webp') center/100% 100% no-repeat;box-shadow:none;filter:drop-shadow(0 7px 5px #5c39252d);overflow:visible;display:flex;flex-direction:column}
+.book-spread{flex:1;display:grid;grid-template-columns:50% 50%;align-items:center;min-height:230px;background:none;border-radius:0}
+.book-heading{flex-direction:column;padding:12px 28px 24px;border:0;font:600 23px/1.35 Georgia,serif;color:#694b29;gap:14px}
+.book-heading #cluePosition{font:13px Georgia,serif;letter-spacing:.14em}
+.book-vignette{display:block;width:45px;height:45px;margin:5px 0;font-size:0;background:url('../../assets/ui/ship-wheel.webp') center/contain no-repeat;filter:saturate(.4) brightness(.8);opacity:.75}
+.book-subtitle{font:italic 15px/1.6 Georgia,serif;max-width:200px}
+.bordbook .clue-viewport{position:relative;display:flex;align-items:center;padding:22px 25px 28px;min-height:220px;overflow:visible;perspective:900px}
+.bordbook .clue-slide .clue{font:18px/1.7 Georgia,serif;color:#44331e;gap:10px}
+.bordbook .clue-slide .clue:hover{background:#bea27814!important}
+.bordbook .num{background:none;font:700 16px Georgia,serif;border-bottom:1px solid #9f7d4380;border-radius:0;width:23px;margin-top:2px;color:#8f6935}
+.bordbook .clue-nav{position:absolute;bottom:35px;left:52px;right:52px;padding:0;gap:8px;color:#785a35;font:12px Georgia,serif}
+.bordbook .clue-nav button{width:44px;height:44px;border:1px solid #ad8a5380;border-radius:50%;background:linear-gradient(#f2dfb47d,#d1b7896f);box-shadow:inset 0 1px #fff5d185,0 1px 3px #88633f40;display:grid;place-items:center}
+.bordbook .clue-nav button .raster-icon{width:29px;height:29px}
+#nextClue .raster-icon{transform:scaleX(-1)}
+.turning-leaf{position:absolute;inset:0;z-index:4;display:flex;gap:10px;align-items:center;padding:22px 25px 28px;pointer-events:none;backface-visibility:hidden;transform-style:preserve-3d;background:linear-gradient(90deg,#c6a56b66,#fff5dc88 16%,#ead6b185),var(--paper-texture);background-size:auto,100% 100%;box-shadow:8px 0 13px #6d492852;border-radius:0 5px 8px 0;font:18px/1.7 Georgia,serif;color:#44331e}
+.turning-leaf p{margin:0}.leaf-number{align-self:flex-start;margin-top:2px;font:700 16px Georgia,serif;color:#8f6935;flex:none;width:23px}
+@media(max-width:600px){
+ .raster-icon{width:36px;height:36px}.brass-rail{height:23px;background-size:auto 22px}
+ .brass-rail::before,.brass-rail::after{width:25px;height:25px;background-size:auto 25px}
+ .chart-toolbar .toolpick.active::before{border-image-width:12px}
+ .map-actions{min-height:85px;padding:18px 8px;gap:2px}
+ .rail-button{width:44px;flex-basis:44px;min-height:48px;height:48px;padding:3px}
+ .rail-button::before{border-image-width:12px}.rail-button .raster-icon{width:31px;height:31px}
+ .rail-separator{height:32px;width:1px;margin:0 1px}
+ #toggleRouteNumbers{width:66px;flex-basis:66px}.numbers-emblem{gap:1px}.numbers-emblem .raster-icon{width:20px;height:20px}.route-numerals{font-size:12px;letter-spacing:-1px}
+ #verify{width:56px;flex-basis:56px;gap:0}.verify-label{display:none}#verify .raster-icon{width:30px;height:30px}
+ .mark-emblem{width:33px;height:33px}.mark-emblem svg{width:33px;height:33px}.mark-emblem .raster-icon{width:25px;height:25px}
+ .bordbook{margin-top:22px;aspect-ratio:auto;min-height:375px;padding:25px 22px 72px;background-size:200% 100%;background-position:right center}
+ .book-spread{display:block;min-height:0}.book-heading{display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:10px 12px 4px;font-size:17px;gap:7px;text-align:left}
+ .book-heading #cluePosition{font-size:11px;white-space:nowrap}.book-vignette,.book-subtitle{display:none}
+ .bordbook .clue-viewport{padding:22px 10px;min-height:218px;overflow:hidden}
+ .bordbook .clue-slide .clue{font-size:16px;line-height:1.7;gap:7px}
+ .bordbook .clue-nav{bottom:28px;left:35px;right:25px;font-size:11px}.bordbook .clue-nav #clueDone{max-width:180px}
+ .turning-leaf{padding:22px 10px;font-size:16px;line-height:1.7}
+}
+@media(prefers-reduced-motion:reduce){.turning-leaf{display:none}}
+.mark-emblem svg{z-index:3}
+
+/* Review 2: keep every clue and its status inside the readable paper area. */
+.bordbook{padding-bottom:110px}
+.bordbook .clue-track,.bordbook .clue-slide,.bordbook .clue p{min-width:0}
+.bordbook .clue p{overflow-wrap:break-word}
+.book-heading strong{min-width:0}.book-heading #cluePosition{flex:none;color:#76532f}
+.bordbook .clue-nav{bottom:70px}
+.bordbook .clue-nav #clueDone{background:#f6e8c9e8;border:1px solid #b7996b70;padding:4px 8px;border-radius:3px;color:#59412b;box-shadow:0 1px 2px #49311c20}
+.bordbook .clue-nav button{background:linear-gradient(#f3e1bcdc,#d6bc8de0);border-color:#98713d;box-shadow:inset 0 1px #fff2cb,0 1px 3px #88633f60}
+.bordbook .clue-nav button .raster-icon{filter:saturate(.5) brightness(.56)}
+@media(min-width:601px) and (max-width:760px){
+ .map-actions{padding:22px 12px;gap:8px}.rail-button{width:56px;flex-basis:56px;min-height:56px;height:56px}
+ #toggleRouteNumbers{width:100px;flex-basis:100px}#verify{width:144px;flex-basis:144px}.verify-label{font-size:18px}
+}
+@media(max-width:600px){
+ .bordbook{padding:25px 50px 92px 34px}
+ .book-heading{padding-left:8px;padding-right:18px}.book-heading strong{flex:1}.book-heading #cluePosition{font-size:12px}
+ .bordbook .clue-nav{bottom:64px;left:42px;right:42px}
+ .bordbook .clue-nav #clueDone{padding:3px 5px;font-size:10px;max-width:170px}
+}
+
+/* Icon review: shared writing group, explicit route backstep and page directions. */
+.refined-icon{background-image:url('../../assets/ui/tool-refinements.webp');background-size:200% 300%}
+.chart-toolbar .hour .hour-mini{width:40px;height:40px;left:50%;top:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);opacity:1}
+.chart-toolbar .hour-number{position:relative;z-index:1;font-size:22px}
+.chart-toolbar .hour .hexface{fill:none;stroke:currentColor;stroke-width:1;opacity:.6}
+.chart-toolbar .hour .hexedge{stroke:currentColor;stroke-width:3}
+.marking-tools{position:relative;display:flex;align-items:center;flex:5;gap:4px;padding-top:15px;border-top:1px solid #92734480}
+.marking-feather{position:absolute;left:50%;top:-15px;transform:translateX(-50%);height:24px;padding:0 5px;background:#e3cfaa;pointer-events:none}
+.marking-feather .raster-icon{width:24px;height:24px}
+.chart-toolbar .toolstrip{align-items:center;gap:4px;padding-top:9px}
+.chart-toolbar .toolseparator{display:none}
+#nextClue .raster-icon{transform:none}
+.mark-emblem .raster-icon,.numbers-emblem .raster-icon{width:30px;height:30px}
+@media(max-width:600px){
+ .chart-toolbar .toolstrip{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:10px;gap:5px}
+ .marking-tools{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));width:100%;gap:2px;padding-top:10px}
+ .chart-toolbar .toolpick:nth-of-type(5),.chart-toolbar .toolpick:nth-of-type(6),.chart-toolbar .toolpick:nth-of-type(7){grid-column:auto}
+ .marking-feather{top:-16px}
+ .mark-emblem .raster-icon,.numbers-emblem .raster-icon{width:25px;height:25px}
+ #toggleRouteNumbers{width:76px;flex-basis:76px}
+}

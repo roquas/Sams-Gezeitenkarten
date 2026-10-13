@@ -1,39 +1,58 @@
+import {hexCenter,hexVertices,placeLabelLayout,startLabelLayout} from './place-labels.mjs';
+import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
 import {mapLabels} from '../../content/reference-3.6.mjs';
-function poly(x,y){return Array.from({length:6},(_,i)=>{const a=i*Math.PI/3+Math.PI/6;return `${(x+36*Math.cos(a)).toFixed(2)},${(y+36*Math.sin(a)).toFixed(2)}`}).join(" ")}
-function coords(c){return [60+c.q*82+(c.r%2)*41,56+c.r*68]}
+function poly(x,y){return hexVertices(x,y).map(([x,y])=>`${x.toFixed(2)},${y.toFixed(2)}`).join(" ")}
+const coords=hexCenter;
 export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate}){
  const $=id=>document.getElementById(id);
- const svg=$("map");svg.replaceChildren();
+ const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.replaceChildren();svg.setAttribute("viewBox",CHART_VIEWBOX);
  const NS="http://www.w3.org/2000/svg";
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
  const showArt=document.getElementById("showChart").checked;
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
- const image=(file,x,y,w,h,opacity=1)=>el("image",{href:"prototypes/3.6/assets/"+file,x,y,width:w,height:h,opacity,preserveAspectRatio:"none","pointer-events":"none"});
- art.append(image(puzzle.background.asset,0,0,475,385));
- // Neuer Fall: B3, C3 und E2 sind unpassierbar.
- // B3 + C3 bilden eine gemeinsame, über zwei Hexfelder reichende Insel.
- // Jede Illustration wird am Mittelpunkt ihrer Spielfeld-Zuordnung verankert.
- // Motivanker sind zentral konfiguriert: spätere Generatoren liefern Zellen + Variante.
- const mapArt=puzzle.overlays;
+ svg.append(el("rect",{x:-44,y:-44,width:563,height:473,fill:"#e9d5b0","pointer-events":"none","aria-hidden":"true"}));
+ for(const [index,tile] of parchmentTiles().entries()){
+  const slice=el("svg",{...tile,class:index===4?"parchment-water":"parchment-edge",preserveAspectRatio:"none",overflow:"hidden","data-parchment-slice":"true"});
+  slice.append(el("image",{href:CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
+  art.append(slice);
+ }
  const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
- for(const o of mapArt){const [cx,cy]=artCenter(o.cells);art.append(image(o.asset,cx-o.w/2+o.dx,cy-o.h/2+o.dy,o.w,o.h,o.opacity))}
- // Beschriftung gehört zum geografischen Objekt, nicht zu einem einzelnen Hexfeld.
- const islandLabel=(ids,t,angle=0,dx=0,dy=0)=>{
-   const [cx,cy]=artCenter(ids);
-   const g=el("g",{transform:`translate(${cx+dx} ${cy+dy}) rotate(${angle})`,"pointer-events":"none"});
-   g.append(el("text",{x:0,y:0,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"11","font-style":"italic",fill:"#5a4634",stroke:"#f0dfbb","stroke-width":"1.4","paint-order":"stroke",opacity:".8"},t));
-   art.append(g);
+ const overlays=chartOverlays(puzzle.overlays);
+ for(const o of overlays){
+  const [cx,cy]=artCenter(o.cells);
+  art.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
+ }
+ // Island labels use connected land geometry; Start follows its ship.
+ const drawLabel=(layout,t,start=false)=>{
+   if(!layout)return;
+   const {x,y,width,height,fontSize,cell,polygon}=layout;
+   const clipId='place-label-clip-'+cell;
+   const clip=polygon?el("clipPath",{id:clipId,clipPathUnits:"userSpaceOnUse"}):null;
+   if(clip){clip.append(el("polygon",{points:polygon.map(p=>p.join(',')).join(' ')}));art.append(clip);}
+   const clipped=el("g",{...(polygon?{"clip-path":`url(#${clipId})`}:{}),"pointer-events":"none"});
+   const g=el("g",{class:start?"place-label start-label":"place-label island-label",transform:`translate(${x} ${y})`,"data-label-cell":cell,"data-label-cells":layout.cells.join(' '),"pointer-events":"none","aria-hidden":"true"});
+   g.append(el("rect",{x:-width/2,y:-height/2,width,height,rx:2,fill:"#f3e5c5",stroke:"#9e7b45","stroke-width":".5",opacity:".62"}));
+   g.append(el("image",{href:"assets/ui/paper-grain.webp",x:-width/2+.5,y:-height/2+.5,width:width-1,height:height-1,preserveAspectRatio:"none",opacity:".12"}));
+   const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,serif","font-size":fontSize,"font-weight":"600",fill:start?"#8c3e2c":"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
+   g.append(text);clipped.append(g);art.append(clipped);
  };
- for(const label of mapLabels)islandLabel(label.cells,label.text,label.angle,label.dx,label.dy);
- for(const place of Object.values(puzzle.places))if(place.kind==="island")islandLabel(place.cells,place.name,-8,7,-23);
+ for(const label of mapLabels)drawLabel(placeLabelLayout(label.cells,label.text,blocked,byId),label.text);
+ for(const place of Object.values(puzzle.places))drawLabel(placeLabelLayout(place.cells,place.name,blocked,byId),place.name);
+ drawLabel(startLabelLayout(byId[puzzle.start]),'Start',true);
  svg.append(art);
+ // Fit actual browser font metrics without expanding the safe land footprint.
+ for(const label of art.querySelectorAll('.place-label')){
+  const text=label.querySelector('text'),available=Number(label.querySelector('rect').getAttribute('width'))-6;
+  const measured=text.getComputedTextLength();
+  if(measured>available)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*available/measured);
+ }
  // Geographic coordinate guides and margin headings remain visible even when
  // the decorative chart is disabled. The staggered rows bend column guides.
- const graticule=el("g",{"pointer-events":"none","aria-hidden":"true"});
+ const graticule=el("g",{class:"coordinate-guides","pointer-events":"none","aria-hidden":"true"});
  // Every guide passes through the actual centers of its five column hexes.
  // The alternating 41-unit row offset is intentional and shared with coords().
  for(let q=0;q<5;q++){
@@ -45,38 +64,42 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    }
    const [bottomX,bottomY]=centers[4];
    path+=` L ${bottomX} 362`;
-   graticule.append(el("path",{d:path,fill:"none",stroke:"#f5edce","stroke-width":"8",opacity:".12","stroke-linecap":"round"}));
-   graticule.append(el("path",{d:path,fill:"none",stroke:"#446d70","stroke-width":"1.5",opacity:".24","stroke-linecap":"round"}));
+   graticule.append(el("path",{d:path,fill:"none",stroke:"#f5edce","stroke-width":"9",opacity:".19","stroke-linecap":"round"}));
+   graticule.append(el("path",{d:path,fill:"none",stroke:"#446d70","stroke-width":"1.7",opacity:".34","stroke-linecap":"round"}));
    // Pergamentplättchen mit unregelmäßigen Kanten, gedämpfter Tinte.
-   for(const [x,y] of [[centers[0][0],14],[bottomX,372]]){
+   for(const [side,x] of [['top',centers[0][0]],['bottom',bottomX]]){
+     const band=parchmentHeading(side,q),y=band.center;
+     const heading=el('g',{'data-margin-side':side,'data-margin-index':q,'data-margin-center':y,'data-margin-outer':band.outer,'data-margin-inner':band.inner});
      const d=`M ${x-13} ${y-10} Q ${x-4} ${y-12} ${x+12} ${y-10} L ${x+13} ${y+8} Q ${x+3} ${y+11} ${x-12} ${y+9} Z`;
-     graticule.append(el("path",{d,fill:"#e9d7aa",stroke:"#b39b71","stroke-width":".7",opacity:".77"}));
-     graticule.append(el("text",{x,y:y+5,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"17","font-style":"italic",fill:"#695037",opacity:".88"},GREEK_SYMBOLS[q]));
+     heading.append(el("path",{d,fill:"#e9d7aa",stroke:"#b39b71","stroke-width":".7",opacity:".77"}));
+     heading.append(el("text",{x,y:y+5,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"17","font-style":"italic",fill:"#695037",opacity:".88"},GREEK_SYMBOLS[q]));graticule.append(heading);
    }
  }
  for(let r=0;r<5;r++){
    const y=56+r*68;
    graticule.append(el("path",{d:`M 26 ${y} C 145 ${y-9}, 295 ${y+9}, 462 ${y}`,fill:"none",stroke:"#567e78","stroke-width":"1.1",opacity:".19","stroke-dasharray":"3 7"}));
    const rc=ROWCOLORS[r];
-   for(const x of [14,458]){
+   for(const side of ['left','right']){
+     const band=parchmentHeading(side,r),x=band.center;
+     const heading=el('g',{'data-margin-side':side,'data-margin-index':r,'data-margin-center':x,'data-margin-outer':band.outer,'data-margin-inner':band.inner});
      // Kein UI-Kreis: asymmetrischer, leicht durchscheinender Tintenklecks.
      const d=`M ${x-8} ${y-4} Q ${x-12} ${y-11} ${x-3} ${y-10} Q ${x+5} ${y-13} ${x+9} ${y-4} Q ${x+13} ${y+3} ${x+5} ${y+9} Q ${x-4} ${y+13} ${x-9} ${y+4} Z`;
-     graticule.append(el("path",{d,fill:rc.hex,opacity:".57",stroke:rc.hex,"stroke-width":"1.3"}));
-     graticule.append(el("circle",{cx:x-10,cy:y+9,r:1.6,fill:rc.hex,opacity:".4"}));
-     graticule.append(el("text",{x,y:y+3.7,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"10","font-weight":"bold",fill:"#2f3633",opacity:".85"},rc.short));
+     heading.append(el("path",{d,fill:rc.hex,opacity:".57",stroke:rc.hex,"stroke-width":"1.3"}));
+     heading.append(el("circle",{cx:x-10,cy:y+9,r:1.6,fill:rc.hex,opacity:".4"}));
+     heading.append(el("text",{x,y:y+3.7,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"10","font-weight":"bold",fill:"#2f3633",opacity:".85"},rc.short));graticule.append(heading);
    }
  }
  svg.append(graticule);
  // 1c: Große, transparente Abstandszahlen auf Wasserfeldern; über den Illustrationen,
  // aber unter interaktiven Hexflächen, Routenlinie und Markierungen.
  if(state.distanceMode && state.distanceOrigin){
-   const layer=el("g",{"pointer-events":"none","aria-hidden":"true"});
+   const layer=el("g",{class:"distance-overlay","data-distance-origin":state.distanceOrigin,"pointer-events":"none","aria-hidden":"true"});
    const shades=["#bc388b","#aa438f","#80539f","#536da2","#348ca4","#259eaa","#268e98"];
    for(const c of cells){
      if(blocked.has(c.id))continue;
      const d=dist(state.distanceOrigin,c.id),[x,y]=coords(c);
      const col=shades[Math.min(d,shades.length-1)];
-     layer.append(el("text",{x,y:y+17,"text-anchor":"middle","font-family":"system-ui, sans-serif","font-size":"51","font-weight":"900",fill:col,opacity:Math.max(.31,.66-d*.055),stroke:"#fff6df","stroke-width":"1.8","paint-order":"stroke"},String(d)));
+     layer.append(el("text",{class:"distance-value","data-distance-cell":c.id,"data-distance":d,x,y:y+17,"text-anchor":"middle","font-family":"system-ui, sans-serif","font-size":"51","font-weight":"900",fill:col,opacity:Math.max(.31,.66-d*.055),stroke:"#fff6df","stroke-width":"1.8","paint-order":"stroke"},String(d)));
    }
    svg.append(layer);
  }
@@ -84,15 +107,15 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   const [x,y]=coords(c),m=state.marks[key(state.layer,c.id)],land=blocked.has(c.id);
   const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
   const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:land?"-1":"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
-  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"#b9e1e538",stroke:land?"none":"#746f57","stroke-width":land?"0.8":"0.35","stroke-opacity":land?".20":".16"}));
+  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#765934":"#ece3c1","stroke-width":land?"1.25":"1.05","stroke-opacity":land?".72":".56","stroke-linejoin":"round"}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
-  if(!land && ["D4","C1","E4","A3","D5"].includes(c.id)){
+  if(!land && ["C1","E4","A3","D5"].includes(c.id)){
     // Unregelmäßiger handgezeichneter Kartografenring, nicht anklickbar.
     const ring=Array.from({length:33},(_,i)=>{const a=i*Math.PI/16;const rr=24+1.15*Math.sin(i*2.4)+.7*Math.cos(i*1.3);return `${i?'L':'M'} ${(x+rr*Math.cos(a)).toFixed(1)} ${(y+rr*Math.sin(a)).toFixed(1)}`}).join(' ');
-    g.append(el("path",{d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
-    g.append(el("path",{d:ring,fill:"none",stroke:"#a57739","stroke-width":"1.35",opacity:".79","stroke-linecap":"round","stroke-linejoin":"round"}));
+    g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
+    g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#a57739","stroke-width":"1.35",opacity:".79","stroke-linecap":"round","stroke-linejoin":"round"}));
   }
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
   // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
@@ -100,8 +123,8 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
     const angle=(state.layer-2)*Math.PI/3;
     const ax=x+36*Math.cos(angle-Math.PI/6),ay=y+36*Math.sin(angle-Math.PI/6);
     const bx=x+36*Math.cos(angle+Math.PI/6),by=y+36*Math.sin(angle+Math.PI/6);
-    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"2.3","stroke-linecap":"round"}));
-    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":"1.25",opacity:".72","stroke-linecap":"round"}));
+    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"1.9",opacity:".64","stroke-linecap":"round"}));
+    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":".8",opacity:".5","stroke-linecap":"round"}));
   }
   // Active layer is encoded by the field's central fill and a small center glyph.
   if(m){
@@ -144,10 +167,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  svg.append(routeInk);
  // Distinguish the actual departure point from the wreck's identical anchor icon.
  const [sx,sy]=coords(byId[puzzle.start]);
- svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#fff6d8","stroke-width":"5","pointer-events":"none"}));
- svg.append(el("circle",{cx:sx,cy:sy,r:23,fill:"none",stroke:"#b37b36","stroke-width":"3.5","stroke-dasharray":"5 3","pointer-events":"none"}));
- svg.append(el("rect",{x:sx-19,y:sy-39,width:38,height:16,rx:7,fill:"#fff6d8",stroke:"#b37b36","stroke-width":"1.5","pointer-events":"none"}));
- svg.append(el("text",{x:sx,y:sy-27,"font-size":"10","font-weight":"800","text-anchor":"middle",fill:"#79521e","pointer-events":"none"},"START"));
+ svg.append(el("ellipse",{cx:sx,cy:sy+5,rx:22,ry:15.5,fill:"none",stroke:"#e8c383","stroke-width":"1.5",opacity:".7","data-start-marker":"true","pointer-events":"none"}));
  if(state.showRouteNumbers){
    const numbers=el("g",{"pointer-events":"none","aria-hidden":"true"});
    state.route.forEach((id,i)=>{
@@ -157,4 +177,5 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    });
    svg.append(numbers);
  }
+ if(focusedId)svg.querySelector(`[data-id="${focusedId}"]`)?.focus({preventScroll:true});
 }
