@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 1,
+  "id": "ankerbuch-tesoro",
+  "logic": {
+    "grid": {
+      "columns": 5,
+      "rows": 5
+    },
+    "start": "E5",
+    "steps": 6,
+    "blocked": [
+      "B3",
+      "C3",
+      "D3",
+      "E1"
+    ],
+    "places": {
+      "isle": {
+        "kind": "island",
+        "cells": [
+          "B3",
+          "C3",
+          "D3"
+        ]
+      },
+      "cliffs": {
+        "kind": "island",
+        "cells": [
+          "E1"
+        ]
+      },
+      "beacon": {
+        "kind": "lighthouse",
+        "cells": [
+          "B1"
+        ]
+      },
+      "wreck": {
+        "kind": "wreck",
+        "cells": [
+          "E4"
+        ]
+      }
+    },
+    "clues": [
+      {
+        "id": "H1",
+        "type": "turn",
+        "hour": 3,
+        "degrees": -120
+      },
+      {
+        "id": "H2",
+        "type": "direction",
+        "hour": 1,
+        "direction": "NE"
+      },
+      {
+        "id": "H3",
+        "type": "adjacentToPlace",
+        "hour": 6,
+        "place": "isle"
+      },
+      {
+        "id": "H4",
+        "type": "countAdjacentToPlace",
+        "hours": [
+          3,
+          6
+        ],
+        "place": "isle",
+        "count": 2
+      },
+      {
+        "id": "H5",
+        "type": "distanceBetweenHours",
+        "hours": [
+          3,
+          6
+        ],
+        "distance": 2
+      }
+    ]
+  },
+  "presentation": {
+    "title": "Das doppelte Ankerbuch",
+    "intro": [
+      "Vor Tesoro tauchten zwei Ankerbücher auf. Beide waren sorgfältig geführt, beide widersprachen einander, und eines davon gehörte nicht einmal zum Schiff. Robin bestand darauf, wenigstens die Route aus den Beobachtungen zu rekonstruieren.",
+      "Sechs Stunden auf engem Wasser zwischen Dreifingerinsel und Nordklippe. Fünf Beobachtungen reichen aus – sofern man sie zusammen liest."
+    ],
+    "places": {
+      "isle": "Dreifingerinsel",
+      "cliffs": "Nordklippe",
+      "beacon": "Westfeuer",
+      "wreck": "Altes Wrack"
+    },
+    "clues": {
+      "H1": "In Stunde 3 drehten wir um 120° nach links gegenüber Stunde 2. Sam schrieb ausdrücklich „links“, weil die andere Möglichkeit näher an einer Klippe lag.",
+      "H2": "Die erste Stunde fuhren wir nach Nordosten. Robin vermerkte, dass das noch keine Aussage über das Ziel sei.",
+      "H3": "Nach Stunde 6 lagen wir direkt an der Dreifingerinsel, auf einem befahrbaren Nachbarfeld. Das Ankerbuch nannte es „landnah“.",
+      "H4": "In den Stunden 3 bis 6 lagen wir genau zweimal unmittelbar an der Dreifingerinsel. Das zweite Ankerbuch behauptete dreimal. Es war das falsche.",
+      "H5": "Zwischen den Positionen nach Stunde 3 und Stunde 6 lagen genau zwei Hexfelder Luftlinie. Die tatsächlich gefahrene Strecke war länger."
+    },
+    "hints": [
+      "Lege zunächst alle möglichen ersten Schritte nach Nordosten fest und beachte, dass die Dreifingerinsel nicht befahrbar ist.",
+      "Der Kurswechsel in Stunde 3 ist relativ zu Stunde 2. Es sind zwei 60°-Drehungen nach links.",
+      "Kombiniere die Insel-Nachbarschaft in Stunde 6 mit der Distanz zwischen Stunde 3 und Stunde 6.",
+      "Die Küstenzählung berücksichtigt nur die Positionen nach Stunde 3, 4, 5 und 6."
+    ],
+    "background": "meer-pergament",
+    "overlays": [
+      {
+        "asset": "insel-zweier-01.png",
+        "cells": [
+          "B3",
+          "C3"
+        ],
+        "w": 144,
+        "h": 124,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.88
+      },
+      {
+        "asset": "insel-einzeln-02.png",
+        "cells": [
+          "D3"
+        ],
+        "w": 76,
+        "h": 76,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.84
+      },
+      {
+        "asset": "insel-einzeln-01.png",
+        "cells": [
+          "E1"
+        ],
+        "w": 76,
+        "h": 76,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.85
+      },
+      {
+        "asset": "leuchtturm-01.png",
+        "cells": [
+          "B1"
+        ],
+        "w": 68,
+        "h": 68,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.9
+      },
+      {
+        "asset": "segelboot-02.png",
+        "cells": [
+          "E4"
+        ],
+        "w": 61,
+        "h": 51,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.77
+      },
+      {
+        "asset": "segelboot-01.png",
+        "cells": [
+          "E5"
+        ],
+        "w": 60,
+        "h": 47,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.83
+      }
+    ]
+  },
+  "solution": [
+    "E5",
+    "E4",
+    "E3",
+    "D4",
+    "D5",
+    "C5",
+    "B4"
+  ],
+  "resultTexts": {
+    "correct": "Richtig! Der Kurs ist rekonstruiert. Das zweite Ankerbuch gehörte offenbar zu einem Schreibtisch. Sam hat vorsichtshalber beide abgeheftet.",
+    "incorrect": "Diese Route widerspricht mindestens einer Beobachtung. Robin würde die beiden Küstenaufenthalte nochmals zählen – diesmal ohne das andere Ankerbuch."
+  },
+  "metadata": {
+    "kind": "editorial",
+    "source": "Neu entwickeltes Rätsel für Sams Gezeitenkarten, Oktober 2026",
+    "difficulty": "mittel"
+  }
+}

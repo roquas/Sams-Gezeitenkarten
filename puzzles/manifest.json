@@ -13,6 +13,20 @@
       "title": "Technischer Testfall – Navigation",
       "path": "test-navigation.json",
       "kind": "test"
+    },
+    {
+      "id": "quittung-nombreo",
+      "title": "Die Quittung von Nombreo",
+      "path": "quittung-nombreo.json",
+      "kind": "editorial",
+      "difficulty": "leicht-mittel"
+    },
+    {
+      "id": "ankerbuch-tesoro",
+      "title": "Das doppelte Ankerbuch",
+      "path": "ankerbuch-tesoro.json",
+      "kind": "editorial",
+      "difficulty": "mittel"
     }
   ]
 }

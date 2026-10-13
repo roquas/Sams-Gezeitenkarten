@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": 1,
+  "id": "quittung-nombreo",
+  "logic": {
+    "grid": {
+      "columns": 5,
+      "rows": 5
+    },
+    "start": "A5",
+    "steps": 6,
+    "blocked": [
+      "B2",
+      "C2",
+      "E3"
+    ],
+    "places": {
+      "isle": {
+        "kind": "island",
+        "cells": [
+          "B2",
+          "C2"
+        ]
+      },
+      "cliffs": {
+        "kind": "island",
+        "cells": [
+          "E3"
+        ]
+      },
+      "beacon": {
+        "kind": "lighthouse",
+        "cells": [
+          "A1"
+        ]
+      },
+      "reef": {
+        "kind": "reef",
+        "cells": [
+          "D4"
+        ]
+      }
+    },
+    "clues": [
+      {
+        "id": "H1",
+        "type": "distanceToPlace",
+        "hour": 6,
+        "place": "reef",
+        "distance": 3
+      },
+      {
+        "id": "H2",
+        "type": "countAdjacentToPlace",
+        "hours": [
+          3,
+          6
+        ],
+        "place": "cliffs",
+        "count": 2
+      },
+      {
+        "id": "H3",
+        "type": "turn",
+        "hour": 5,
+        "degrees": -60
+      },
+      {
+        "id": "H4",
+        "type": "turn",
+        "hour": 3,
+        "degrees": 0
+      },
+      {
+        "id": "H5",
+        "type": "countAdjacentToPlace",
+        "hours": [
+          1,
+          6
+        ],
+        "place": "isle",
+        "count": 3
+      }
+    ]
+  },
+  "presentation": {
+    "title": "Die Quittung von Nombreo",
+    "intro": [
+      "In Nombreo sollte Sam eine Kiste abholen. Die Quittung war vorhanden, die Kiste ebenfalls. Nur befanden sich beide auf verschiedenen Booten. Robin schlug vor, wenigstens den gefahrenen Weg ordentlich zu notieren.",
+      "Sechs Stunden, ein Zollbeamter mit überraschend viel Geduld und fünf Einträge aus Robins Logbuch. Rekonstruiere den Kurs."
+    ],
+    "places": {
+      "isle": "Zollinsel",
+      "cliffs": "Ostklippe",
+      "beacon": "Hafenfeuer",
+      "reef": "Tintenriff"
+    },
+    "clues": {
+      "H1": "Nach der sechsten Stunde lagen wir drei Hexfelder vom Tintenriff entfernt. Das Riff hat sich dazu nicht geäußert.",
+      "H2": "Zwischen Stunde 3 und Stunde 6 waren wir genau zweimal auf Wasserfeldern unmittelbar neben der Ostklippe. Robin nannte das eine gründliche Besichtigung.",
+      "H3": "In Stunde 5 änderten wir den Kurs um 60° nach links. Sam fragte, ob das auch auf der Quittung vermerkt werden müsse.",
+      "H4": "In Stunde 3 fuhren wir exakt geradeaus, ohne Kursänderung gegenüber Stunde 2. Eine bemerkenswerte Stunde.",
+      "H5": "In den Stunden 1 bis 6 lagen wir genau dreimal unmittelbar an der Zollinsel. Der Zollbeamte begann, uns zu erkennen."
+    },
+    "hints": [
+      "Die Zählhinweise beziehen sich auf die Positionen nach den genannten Stunden, nicht auf die gefahrenen Kanten.",
+      "Stunde 3 setzt die Richtung von Stunde 2 fort. Die beiden Fahrtrichtungen müssen gleich sein.",
+      "Beginne mit möglichen Positionen nahe der Zollinsel und prüfe dann die beiden Aufenthalte an der Ostklippe."
+    ],
+    "background": "meer-pergament",
+    "overlays": [
+      {
+        "asset": "insel-zweier-01.png",
+        "cells": [
+          "B2",
+          "C2"
+        ],
+        "w": 144,
+        "h": 124,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.88
+      },
+      {
+        "asset": "insel-einzeln-01.png",
+        "cells": [
+          "E3"
+        ],
+        "w": 76,
+        "h": 76,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.85
+      },
+      {
+        "asset": "leuchtturm-01.png",
+        "cells": [
+          "A1"
+        ],
+        "w": 68,
+        "h": 68,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.85
+      },
+      {
+        "asset": "riff-01.png",
+        "cells": [
+          "D4"
+        ],
+        "w": 68,
+        "h": 66,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.78
+      },
+      {
+        "asset": "segelboot-01.png",
+        "cells": [
+          "A5"
+        ],
+        "w": 60,
+        "h": 47,
+        "dx": 0,
+        "dy": 0,
+        "opacity": 0.83
+      }
+    ]
+  },
+  "solution": [
+    "A5",
+    "B5",
+    "B4",
+    "C3",
+    "D3",
+    "D2",
+    "E1"
+  ],
+  "resultTexts": {
+    "correct": "Richtig! Die Route stimmt. Sam hat die Quittung wiedergefunden. Sie bestätigt den Empfang einer Kiste, nicht deren Inhalt.",
+    "incorrect": "Noch nicht ganz. Robin empfiehlt, zuerst die Zollinsel-Aufenthalte zu zählen. Sam empfiehlt, den Zollbeamten nicht erneut zu fragen."
+  },
+  "metadata": {
+    "kind": "editorial",
+    "source": "Neu entwickeltes Rätsel für Sams Gezeitenkarten, Oktober 2026",
+    "difficulty": "leicht-mittel"
+  }
+}
