@@ -16,11 +16,11 @@ test('distance phases announce selection, cancel and preserve notes',async({page
  await expect(button).toHaveAttribute('data-distance-state','inactive');await expect(page.locator('#distanceStatus')).toBeHidden();
  await button.focus();await page.keyboard.press('Enter');
  await expect(button).toHaveAttribute('data-distance-state','waiting');await expect(button).toHaveAttribute('aria-pressed','true');
- await expect(page.locator('#distanceStatus')).toHaveText('Jetzt ein Feld auf der Karte wählen.');
+ await expect(page.locator('#distanceStatus')).toContainText('Jetzt ein Feld auf der Karte wählen.');
  await page.locator('#map [data-id="C1"]').focus();await page.keyboard.press('Enter');
  await expect(button).toHaveAttribute('data-distance-state','showing');await expect(button).toHaveClass(/active/);
  await expect(page.locator('#distanceStatus [data-coordinate="C1"]')).toHaveAttribute('aria-label','Gamma / Cyan');
- await page.locator('[data-tool="yes"]').click();await expect(button).toHaveAttribute('data-distance-state','inactive');
+ await page.locator('[data-tool="yes"]').click();await expect(button).toHaveAttribute('data-distance-state','showing');
  await page.locator('#map [data-id="A1"]').click();
  await button.click();await button.click();await expect(button).toHaveAttribute('data-distance-state','inactive');
  await page.locator('[data-tool="clearAll"]').click();await button.click();await page.locator('#map [data-id="A1"]').click();

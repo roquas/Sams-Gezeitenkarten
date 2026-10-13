@@ -71,11 +71,11 @@ test('six hours and all display settings survive undo across an earlier edit',as
  expect(s.showRouteNumbers).toBe(true);expect(s.hiddenHours).toEqual([3]);expect(s.hideRouteMarks).toBe(true);
  expect(s.distanceMode).toBe(true);expect(s.distanceOrigin).toBe('A2');
 });
-test('switching tools removes distance overlay and next click marks immediately',async({page})=>{
+test('switching tools preserves distance overlay and next click marks immediately',async({page})=>{
  await page.locator('#toggleDistances').click();await cell(page,'C1').click();
  expect((await state(page)).distanceOrigin).toBe('C1');
  await page.locator('[data-tool="yes"]').click();
- expect((await state(page)).distanceMode).toBe(false);expect((await state(page)).distanceOrigin).toBeNull();
+ expect((await state(page)).distanceMode).toBe(true);expect((await state(page)).distanceOrigin).toBe('C1');
  await cell(page,'A1').click();expect((await state(page)).marks['1:A1']).toBe('yes');
 });
 test('blocked, repeated and nonadjacent route clicks do not change route',async({page})=>{
