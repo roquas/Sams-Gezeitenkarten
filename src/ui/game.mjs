@@ -5,6 +5,7 @@ import {drawMap} from './map.mjs';
 import {pretty, coordinateMarkup, coordinateTextMarkup} from './coordinates.mjs';
 import {hints} from '../../content/reference-3.6.mjs';
 import {initialState, createHistory} from '../state/game-state.mjs';
+import {distancePhase,toggleDistance,chooseDistanceOrigin,selectChartTool} from '../state/distance-overlay.mjs';
 import {loadState,saveState} from '../persistence/storage.mjs';
 import {referencePuzzle as puzzle} from '../../puzzles/reference-3.6.mjs';
 import {createRules} from '../engine/puzzle.mjs';
@@ -48,7 +49,7 @@ function render(){if(state.layer==="all")state.layer=1;
 }
 function apply(id,first){
  if(blocked.has(id))return;
- if(state.distanceMode && !state.distanceOrigin){state.distanceOrigin=id;render();return}
+ if(distancePhase(state)==='waiting'){state=chooseDistanceOrigin(state,id);dragging=false;render();return}
  if(state.tool==="clearAll"){const targets=Object.keys(state.marks).filter(k=>k.endsWith(":"+id));if(targets.length){snapshot();targets.forEach(k=>delete state.marks[k]);}state.help=`<div class="notice">Markierungen auf ${pretty(id)} in allen Stunden gelöscht (${targets.length}).</div>`;render();return}
  if(state.tool==="route"){
   if(state.route.length>=puzzle.steps+1||state.route.includes(id)||!neighbor(state.route.at(-1),id))return;
@@ -71,11 +72,11 @@ $("hours").addEventListener("click",e=>{const b=e.target.closest("[data-hour]");
 
 $("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>6)return;const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
 
-function selectTool(e){const b=e.target.closest('[data-tool]');if(!b)return;state.tool=b.dataset.tool;state.distanceMode=false;state.distanceOrigin=null;render();}
+function selectTool(e){const b=e.target.closest('[data-tool]');if(!b)return;state=selectChartTool(state,b.dataset.tool);render();}
 for(const id of ['tools','mapActions'])$(id).addEventListener('click',selectTool);
 $("undo").onclick=()=>{state=history.undo(state);render()};
 $("toggleRouteNumbers").onclick=()=>{state.showRouteNumbers=!state.showRouteNumbers;render()};
-$("toggleDistances").onclick=()=>{state.distanceMode=!state.distanceMode;state.distanceOrigin=null;render()};
+$("toggleDistances").onclick=()=>{state=toggleDistance(state);render()};
 $("hideRouteMarks").addEventListener("change",e=>{state.hideRouteMarks=e.target.checked;render()});
 $("clearLayer").onclick=()=>{snapshot();for(const k of Object.keys(state.marks))if(k.startsWith(state.layer+":"))delete state.marks[k];render()};
 $("routeBack").onclick=()=>{if(state.route.length>1){snapshot();state.route.pop();state.result="";render()}};

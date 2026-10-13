@@ -34,18 +34,18 @@ export function createToolbar(puzzle){
    b.classList.toggle('hidden-hour',state.hiddenHours.includes(h));b.setAttribute('aria-pressed',String(state.layer===h));
   });
   document.querySelectorAll('[data-tool]').forEach(b=>{
-   const selected=b.dataset.tool===state.tool&&!state.distanceMode;
+   const selected=b.dataset.tool===state.tool&&distanceState(state)!=='waiting';
    b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected));
   });
   const toggle=(id,on,label)=>{const b=$(id);b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',label);b.title=label;};
   toggle('toggleHourMarks',!state.hiddenHours.includes(state.layer),`Markierungen der Stunde ${state.layer} ein- oder ausblenden`);
   toggle('toggleRouteNumbers',state.showRouteNumbers,'Routennummern ein- oder ausblenden');
   const phase=distanceState(state);
-  toggle('toggleDistances',phase==='showing',phase==='waiting'?'Abstände: Jetzt ein Feld auf der Karte wählen. Erneut drücken zum Abbrechen.':phase==='showing'?'Abstände ausblenden':'Abstände einblenden');
+  toggle('toggleDistances',phase==='showing',phase==='waiting'?'Abstände: Jetzt ein Feld auf der Karte wählen. Erneut drücken zum Ausschalten.':phase==='showing'?'Abstände: Ursprung ändern. Erneut drücken und ein Feld wählen; zweimal drücken zum Ausschalten.':'Abstände einblenden');
   $('toggleDistances').dataset.distanceState=phase;
   $('toggleDistances').setAttribute('aria-pressed',String(state.distanceMode));
   const status=$('distanceStatus');status.hidden=phase==='inactive';status.dataset.distanceState=phase;
-  status.innerHTML=phase==='waiting'?'Jetzt ein Feld auf der Karte wählen.':phase==='showing'?'Abstände ab '+coordinateMarkup(state.distanceOrigin)+' werden angezeigt.':'';
+  status.innerHTML=phase==='waiting'?'Jetzt ein Feld auf der Karte wählen. Erneut auf das Radar drücken, um die Anzeige auszuschalten.':phase==='showing'?'Abstände ab '+coordinateMarkup(state.distanceOrigin)+' werden angezeigt. Du kannst weiter markieren. Radar: Ursprung ändern; zweimal drücken: ausschalten.':'';
   document.getElementById('map').classList.toggle('awaiting-distance',phase==='waiting');
   const edge=$('toggleHourMarks').querySelector('.hour-edge');
   Object.entries(hourEdge(state.layer)).forEach(([k,v])=>edge.setAttribute(k,v));

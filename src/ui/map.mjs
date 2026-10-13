@@ -93,13 +93,13 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  // 1c: Große, transparente Abstandszahlen auf Wasserfeldern; über den Illustrationen,
  // aber unter interaktiven Hexflächen, Routenlinie und Markierungen.
  if(state.distanceMode && state.distanceOrigin){
-   const layer=el("g",{"pointer-events":"none","aria-hidden":"true"});
+   const layer=el("g",{class:"distance-overlay","data-distance-origin":state.distanceOrigin,"pointer-events":"none","aria-hidden":"true"});
    const shades=["#bc388b","#aa438f","#80539f","#536da2","#348ca4","#259eaa","#268e98"];
    for(const c of cells){
      if(blocked.has(c.id))continue;
      const d=dist(state.distanceOrigin,c.id),[x,y]=coords(c);
      const col=shades[Math.min(d,shades.length-1)];
-     layer.append(el("text",{x,y:y+17,"text-anchor":"middle","font-family":"system-ui, sans-serif","font-size":"51","font-weight":"900",fill:col,opacity:Math.max(.31,.66-d*.055),stroke:"#fff6df","stroke-width":"1.8","paint-order":"stroke"},String(d)));
+     layer.append(el("text",{class:"distance-value","data-distance-cell":c.id,"data-distance":d,x,y:y+17,"text-anchor":"middle","font-family":"system-ui, sans-serif","font-size":"51","font-weight":"900",fill:col,opacity:Math.max(.31,.66-d*.055),stroke:"#fff6df","stroke-width":"1.8","paint-order":"stroke"},String(d)));
    }
    svg.append(layer);
  }

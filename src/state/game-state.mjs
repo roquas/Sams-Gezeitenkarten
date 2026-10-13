@@ -1,6 +1,6 @@
 // Editing history excludes navigation, display and paid hints.
 export function initialState(puzzle){
- return {layer:1,tool:'maybe',hideRouteMarks:false,showRouteNumbers:false,distanceMode:false,distanceOrigin:null,marks:{},route:[puzzle.start],penalty:0,hintCount:0,hintPenalty:0,hiddenHours:[],doneClues:[],help:'',result:''};
+ return {layer:1,tool:'maybe',hideRouteMarks:false,showRouteNumbers:false,distanceMode:false,distanceSelecting:false,distanceOrigin:null,marks:{},route:[puzzle.start],penalty:0,hintCount:0,hintPenalty:0,hiddenHours:[],doneClues:[],help:'',result:''};
 }
 export function createHistory(limit=100){
  const entries=[];

@@ -53,4 +53,4 @@ export function parchmentHeading(side,index){
 const average=side=>PARCHMENT_PROFILES[side].reduce((n,_,i)=>n+parchmentHeading(side,i).center/5,0);
 export const MARGIN_COLUMNS=[average('top'),average('bottom')];
 export const MARGIN_ROWS=[average('left'),average('right')];
-export const distanceState=state=>!state.distanceMode?'inactive':state.distanceOrigin?'showing':'waiting';
+export {distancePhase as distanceState} from '../state/distance-overlay.mjs';
