@@ -108,14 +108,16 @@
 .map-actions #toggleDistances .raster-icon{transform:translate(-1px,-1.5px)}
 .map-actions #toggleRouteNumbers{width:56px;flex-basis:56px}
 .numbers-emblem{display:flex;flex-direction:column;justify-content:center;gap:0;height:44px}
-.numbers-emblem .raster-icon{width:25px;height:25px}
+.numbers-emblem .raster-icon{width:30px;height:30px}
 .route-numerals{font-size:12px;line-height:14px;letter-spacing:0}
 .map-actions #verify{width:56px;flex-basis:56px;gap:0}
 .map-actions #verify:not(:disabled)::after{background:linear-gradient(150deg,#e0e6bd,#b7c39a 58%,#899b75)}
 @media(max-width:600px){
  .map-actions #toggleRouteNumbers,.map-actions #verify{width:48px;flex-basis:48px}
  .map-actions #toggleDistances .raster-icon{width:32px;height:32px}
+ .numbers-emblem .raster-icon{width:25px;height:25px}
 }
+@media(min-width:601px) and (max-width:1050px){.numbers-emblem .raster-icon{width:28px;height:28px}}
 
 /* #31: an editorial introduction inside the original collapsed rules panel. */
 .rules-introduction{max-width:65ch;font:16px/1.75 Georgia,serif;color:#493e30;padding:10px 0 18px;overflow-wrap:break-word}

@@ -9,7 +9,7 @@ test('coordinate notation is shared and accessible across all outputs',async({pa
  expect(await single.innerHTML()).toBe(await list.innerHTML());
  await page.locator('#toggleDistances').click();await page.locator('#map [data-id="C1"]').click();
  expect(await page.locator('#distanceStatus [data-coordinate="C1"]').innerHTML()).toBe(await single.innerHTML());
- await expect(page.locator('#logbook [data-coordinate="B3"]')).toHaveCount(1);
+ await expect(page.locator('#gameRules [data-coordinate="C3"]')).toHaveAttribute('aria-label','Gamma / Violett');
 });
 test('distance phases announce selection, cancel and preserve notes',async({page})=>{
  const button=page.locator('#toggleDistances');
