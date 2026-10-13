@@ -121,7 +121,7 @@
 
 /* #31: an editorial introduction inside the original collapsed rules panel. */
 .rules-introduction{max-width:65ch;font:16px/1.75 Georgia,serif;color:#493e30;padding:10px 0 18px;overflow-wrap:break-word}
-.rules-introduction h3{font-size:25px;line-height:1.25;margin:8px 0 16px;color:#173e43}
+.logbook-section .rules-introduction h3{display:block;font-size:25px;line-height:1.25;margin:8px 0 16px;color:#173e43}
 .rules-introduction h4{font:700 19px/1.35 Georgia,serif;color:#173e43;margin:28px 0 10px}
 .rules-introduction p{margin:10px 0 16px}
 .rules-introduction ul,.rules-introduction ol{padding-left:24px;margin:12px 0 20px}

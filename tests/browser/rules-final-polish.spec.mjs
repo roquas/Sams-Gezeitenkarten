@@ -6,6 +6,7 @@ test('editorial rules remain collapsed and offer the complete structured introdu
  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
  await rules.locator('summary').click();
  await expect(rules.locator('h3')).toHaveText('So liest man eine Gezeitenkarte');
+ await expect(rules.locator('h3')).toBeVisible();
  await expect(rules.locator('h4')).toHaveCount(8);
  await expect(rules).toContainText('Landhindernisse verlängern diese geometrische Distanz nicht');
  await expect(rules).toContainText('5 Strafpunkte');await expect(rules).toContainText('10 Strafpunkte');
