@@ -17,11 +17,12 @@ export function chartOverlays(overlays){
   return {...o,...motif,asset:'assets/seekarte/'+motif.asset};
  });
 }
+const FRAME_X=[-44,36,439,519],FRAME_Y=[-44,30,355,429];
 // Nine slices reuse the original watercolor border, widening only the parchment.
 // All hex centers, polygons and pointer coordinates stay unchanged.
 export function parchmentTiles(){
  const sourceX=[0,30,445,475],sourceY=[0,30,355,385];
- const targetX=[-44,36,439,519],targetY=[-44,30,355,429];
+ const targetX=FRAME_X,targetY=FRAME_Y;
  return Array.from({length:9},(_,i)=>{
   const q=i%3,r=Math.floor(i/3);
   return {x:targetX[q],y:targetY[r],width:targetX[q+1]-targetX[q],height:targetY[r+1]-targetY[r],
@@ -30,6 +31,26 @@ export function parchmentTiles(){
 }
 
 export const CHART_VIEWBOX='-44 -44 563 473';
-export const MARGIN_COLUMNS=[-19,404];
-export const MARGIN_ROWS=[-8,484];
+// Visible parchment profiles sampled from the approved 858×789 watercolor.
+// Each pair is the outer inked edge and the first water pixel at a guide axis.
+export const PARCHMENT_PROFILES=Object.freeze({
+ top:[[9,41],[12,45],[9,41],[10,47],[11,46]],
+ bottom:[[5,40],[5,37],[3,49],[2,36],[5,39]],
+ left:[[13,40],[13,52],[12,48],[12,44],[11,54]],
+ right:[[3,39],[0,38],[0,43],[0,42],[0,45]]
+});
+function projectAxis(v,source,target){
+ const i=v<source[1]?0:v>source[2]?2:1;
+ return target[i]+(v-source[i])/(source[i+1]-source[i])*(target[i+1]-target[i]);
+}
+export function parchmentHeading(side,index){
+ const vertical=side==='top'||side==='bottom',reverse=side==='right'||side==='bottom';
+ const extent=vertical?385:475,pixels=vertical?789:858;
+ const convert=depth=>projectAxis((reverse?pixels-.5-depth:depth+.5)*extent/pixels,vertical?[0,30,355,385]:[0,30,445,475],vertical?FRAME_Y:FRAME_X);
+ const [a,b]=PARCHMENT_PROFILES[side][index].map(convert);
+ return {outer:a,inner:b,center:(a+b)/2};
+}
+const average=side=>PARCHMENT_PROFILES[side].reduce((n,_,i)=>n+parchmentHeading(side,i).center/5,0);
+export const MARGIN_COLUMNS=[average('top'),average('bottom')];
+export const MARGIN_ROWS=[average('left'),average('right')];
 export const distanceState=state=>!state.distanceMode?'inactive':state.distanceOrigin?'showing':'waiting';

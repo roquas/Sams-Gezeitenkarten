@@ -1,5 +1,5 @@
-import {hexCenter,hexVertices,placeLabelLayout} from './place-labels.mjs';
-import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, MARGIN_COLUMNS, MARGIN_ROWS} from './chart-art.mjs';
+import {hexCenter,hexVertices,placeLabelLayout,startLabelLayout} from './place-labels.mjs';
+import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
 import {mapLabels} from '../../content/reference-3.6.mjs';
@@ -21,26 +21,28 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   art.append(slice);
  }
  const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
- for(const o of chartOverlays(puzzle.overlays)){
+ const overlays=chartOverlays(puzzle.overlays);
+ for(const o of overlays){
   const [cx,cy]=artCenter(o.cells);
   art.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
  }
  // Labels belong exclusively to non-navigable, connected land geometry.
- const islandLabel=(ids,t)=>{
-   const layout=placeLabelLayout(ids,t,blocked,byId);if(!layout)return;
+ const drawLabel=(layout,t,start=false)=>{
+   if(!layout)return;
    const {x,y,width,height,fontSize,cell,polygon}=layout;
    const clipId='place-label-clip-'+cell;
-   const clip=el("clipPath",{id:clipId,clipPathUnits:"userSpaceOnUse"});
-   clip.append(el("polygon",{points:polygon.map(p=>p.join(',')).join(' ')}));art.append(clip);
-   const clipped=el("g",{"clip-path":`url(#${clipId})`,"pointer-events":"none"});
-   const g=el("g",{class:"place-label",transform:`translate(${x} ${y})`,"data-label-cell":cell,"data-label-cells":layout.cells.join(' '),"pointer-events":"none","aria-hidden":"true"});
+   const clip=polygon?el("clipPath",{id:clipId,clipPathUnits:"userSpaceOnUse"}):null;
+   if(clip){clip.append(el("polygon",{points:polygon.map(p=>p.join(',')).join(' ')}));art.append(clip);}
+   const clipped=el("g",{...(polygon?{"clip-path":`url(#${clipId})`}:{}),"pointer-events":"none"});
+   const g=el("g",{class:start?"place-label start-label":"place-label island-label",transform:`translate(${x} ${y})`,"data-label-cell":cell,"data-label-cells":layout.cells.join(' '),"pointer-events":"none","aria-hidden":"true"});
    g.append(el("rect",{x:-width/2,y:-height/2,width,height,rx:2,fill:"#f3e5c5",stroke:"#9e7b45","stroke-width":".5",opacity:".62"}));
    g.append(el("image",{href:"assets/ui/paper-grain.webp",x:-width/2+.5,y:-height/2+.5,width:width-1,height:height-1,preserveAspectRatio:"none",opacity:".12"}));
-   const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,serif","font-size":fontSize,"font-weight":"600",fill:"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
+   const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,serif","font-size":fontSize,"font-weight":"600",fill:start?"#8c3e2c":"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
    g.append(text);clipped.append(g);art.append(clipped);
  };
- for(const label of mapLabels)islandLabel(label.cells,label.text);
- for(const place of Object.values(puzzle.places))islandLabel(place.cells,place.name);
+ for(const label of mapLabels)drawLabel(placeLabelLayout(label.cells,label.text,blocked,byId),label.text);
+ for(const place of Object.values(puzzle.places))drawLabel(placeLabelLayout(place.cells,place.name,blocked,byId),place.name);
+ drawLabel(startLabelLayout(byId[puzzle.start],overlays.find(o=>o.cells.includes(puzzle.start)&&o.asset.endsWith('segelschiff.png'))),'Start',true);
  svg.append(art);
  // Fit actual browser font metrics without expanding the safe land footprint.
  for(const label of art.querySelectorAll('.place-label')){
@@ -65,22 +67,26 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    graticule.append(el("path",{d:path,fill:"none",stroke:"#f5edce","stroke-width":"8",opacity:".12","stroke-linecap":"round"}));
    graticule.append(el("path",{d:path,fill:"none",stroke:"#446d70","stroke-width":"1.5",opacity:".24","stroke-linecap":"round"}));
    // Pergamentplättchen mit unregelmäßigen Kanten, gedämpfter Tinte.
-   for(const [x,y] of [[centers[0][0],MARGIN_COLUMNS[0]],[bottomX,MARGIN_COLUMNS[1]]]){
+   for(const [side,x] of [['top',centers[0][0]],['bottom',bottomX]]){
+     const band=parchmentHeading(side,q),y=band.center;
+     const heading=el('g',{'data-margin-side':side,'data-margin-index':q,'data-margin-center':y,'data-margin-outer':band.outer,'data-margin-inner':band.inner});
      const d=`M ${x-13} ${y-10} Q ${x-4} ${y-12} ${x+12} ${y-10} L ${x+13} ${y+8} Q ${x+3} ${y+11} ${x-12} ${y+9} Z`;
-     graticule.append(el("path",{d,fill:"#e9d7aa",stroke:"#b39b71","stroke-width":".7",opacity:".77"}));
-     graticule.append(el("text",{x,y:y+5,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"17","font-style":"italic",fill:"#695037",opacity:".88"},GREEK_SYMBOLS[q]));
+     heading.append(el("path",{d,fill:"#e9d7aa",stroke:"#b39b71","stroke-width":".7",opacity:".77"}));
+     heading.append(el("text",{x,y:y+5,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"17","font-style":"italic",fill:"#695037",opacity:".88"},GREEK_SYMBOLS[q]));graticule.append(heading);
    }
  }
  for(let r=0;r<5;r++){
    const y=56+r*68;
    graticule.append(el("path",{d:`M 26 ${y} C 145 ${y-9}, 295 ${y+9}, 462 ${y}`,fill:"none",stroke:"#567e78","stroke-width":"1.1",opacity:".19","stroke-dasharray":"3 7"}));
    const rc=ROWCOLORS[r];
-   for(const x of MARGIN_ROWS){
+   for(const side of ['left','right']){
+     const band=parchmentHeading(side,r),x=band.center;
+     const heading=el('g',{'data-margin-side':side,'data-margin-index':r,'data-margin-center':x,'data-margin-outer':band.outer,'data-margin-inner':band.inner});
      // Kein UI-Kreis: asymmetrischer, leicht durchscheinender Tintenklecks.
      const d=`M ${x-8} ${y-4} Q ${x-12} ${y-11} ${x-3} ${y-10} Q ${x+5} ${y-13} ${x+9} ${y-4} Q ${x+13} ${y+3} ${x+5} ${y+9} Q ${x-4} ${y+13} ${x-9} ${y+4} Z`;
-     graticule.append(el("path",{d,fill:rc.hex,opacity:".57",stroke:rc.hex,"stroke-width":"1.3"}));
-     graticule.append(el("circle",{cx:x-10,cy:y+9,r:1.6,fill:rc.hex,opacity:".4"}));
-     graticule.append(el("text",{x,y:y+3.7,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"10","font-weight":"bold",fill:"#2f3633",opacity:".85"},rc.short));
+     heading.append(el("path",{d,fill:rc.hex,opacity:".57",stroke:rc.hex,"stroke-width":"1.3"}));
+     heading.append(el("circle",{cx:x-10,cy:y+9,r:1.6,fill:rc.hex,opacity:".4"}));
+     heading.append(el("text",{x,y:y+3.7,"text-anchor":"middle","font-family":"Georgia,serif","font-size":"10","font-weight":"bold",fill:"#2f3633",opacity:".85"},rc.short));graticule.append(heading);
    }
  }
  svg.append(graticule);
@@ -101,7 +107,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   const [x,y]=coords(c),m=state.marks[key(state.layer,c.id)],land=blocked.has(c.id);
   const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
   const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:land?"-1":"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
-  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"none":"#e5dfb9","stroke-width":land?"0.8":"0.8","stroke-opacity":land?".20":".34"}));
+  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#765934":"#ece3c1","stroke-width":land?"1.25":"1.05","stroke-opacity":land?".72":".56","stroke-linejoin":"round"}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
@@ -162,7 +168,6 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  // Distinguish the actual departure point from the wreck's identical anchor icon.
  const [sx,sy]=coords(byId[puzzle.start]);
  svg.append(el("ellipse",{cx:sx,cy:sy+5,rx:22,ry:15.5,fill:"none",stroke:"#e8c383","stroke-width":"1.5",opacity:".7","data-start-marker":"true","pointer-events":"none"}));
- svg.append(el("text",{x:sx,y:sy-43,"font-size":"9","font-weight":"700","text-anchor":"middle",fill:"#483a23",stroke:"#f5e1b7","stroke-width":"2","paint-order":"stroke","pointer-events":"none"},"START"));
  if(state.showRouteNumbers){
    const numbers=el("g",{"pointer-events":"none","aria-hidden":"true"});
    state.route.forEach((id,i)=>{

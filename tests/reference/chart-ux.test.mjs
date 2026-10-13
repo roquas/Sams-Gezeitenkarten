@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {coordinateMarkup,coordinateTextMarkup,pretty} from '../../src/ui/coordinates.mjs';
-import {distanceState,parchmentTiles,MARGIN_COLUMNS,MARGIN_ROWS} from '../../src/ui/chart-art.mjs';
+import {distanceState,parchmentTiles,MARGIN_COLUMNS,MARGIN_ROWS,parchmentHeading,PARCHMENT_PROFILES} from '../../src/ui/chart-art.mjs';
 test('all 25 coordinates share badges and a full accessible name',()=>{
  for(const col of 'ABCDE')for(let row=1;row<=5;row++){
   const id=col+row,markup=coordinateMarkup(id);
@@ -25,4 +25,12 @@ test('coordinate badges have parchment clearance from outer and inner slice boun
  for(const [position,tile] of [[MARGIN_COLUMNS[0],top],[MARGIN_COLUMNS[1],bottom]]){
   assert.ok(position-12>tile.y+8);assert.ok(position+12<tile.y+tile.height-8);
  }
+});
+
+test('each margin heading is centered between the visible painted edge and water',()=>{
+ for(const side of Object.keys(PARCHMENT_PROFILES))for(let i=0;i<5;i++){
+  const p=parchmentHeading(side,i);assert.equal(p.center,(p.outer+p.inner)/2);
+  assert.ok(Math.abs(p.center-p.outer)>14);assert.ok(Math.abs(p.center-p.inner)>14);
+ }
+ assert.notEqual(parchmentHeading('left',0).center,parchmentHeading('left',1).center);
 });
