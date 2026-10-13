@@ -27,7 +27,10 @@ for(const id of ids)test(`packaged ${id}: data, graphics, clues, hint, route and
  for(const paragraph of data.presentation.intro)await expect(page.locator('#puzzleStory')).toContainText(paragraph);
  await expect(page.locator('#map .blocked-cell')).toHaveCount(data.logic.blocked.length);
  for(const blocked of data.logic.blocked)await expect(page.locator(`#map [data-id="${blocked}"]`)).toHaveClass(/blocked-cell/);
- for(const name of Object.values(data.presentation.places))await expect(page.locator('#map')).toContainText(name);
+ for(const [placeId,place] of Object.entries(data.logic.places)){
+  if(place.kind==='island')await expect(page.locator('#map')).toContainText(data.presentation.places[placeId]);
+  else for(const cell of place.cells)await expect(page.locator(`#map [data-place-ring="${cell}"]`)).toHaveCount(2);
+ }
  for(const text of Object.values(data.presentation.clues))await expect(page.locator('#allClues')).toContainText(displayed(text));
  for(const clue of data.logic.clues){
   await expect(page.locator('#clueTrack')).toContainText(displayed(data.presentation.clues[clue.id]));
@@ -41,9 +44,9 @@ for(const id of ids)test(`packaged ${id}: data, graphics, clues, hint, route and
   const actual=[...document.querySelectorAll('#map image')].map(i=>i.getAttribute('href'));
   const urls=[...new Set(actual)];
   await Promise.all(urls.map(url=>new Promise((resolve,reject)=>{const image=new Image();image.onload=resolve;image.onerror=()=>reject(Error(url));image.src=url;})));
-  return {resultTexts:p.resultTexts,art:expected.every(asset=>actual.includes(asset))};
+  return {places:Object.fromEntries(Object.entries(p.places).map(([id,place])=>[id,place.name])),resultTexts:p.resultTexts,art:expected.every(asset=>actual.includes(asset))};
  },id);
- expect(loaded.art).toBe(true);expect(loaded.resultTexts).toEqual(data.resultTexts??{});
+ expect(loaded.places).toEqual(data.presentation.places);expect(loaded.art).toBe(true);expect(loaded.resultTexts).toEqual(data.resultTexts??{});
  // Accessible help section lives in the overview on small screens.
  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
  await page.locator('#hint').evaluate(el=>el.closest('details').open=true);await page.locator('#hint').click();
