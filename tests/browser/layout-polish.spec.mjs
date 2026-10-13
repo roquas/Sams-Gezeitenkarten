@@ -14,6 +14,7 @@ test('instrument placement, two mobile rows, generous hit areas and compact rout
   expect(boxes.every(b=>b.width>=43.9&&b.height>=44)).toBe(true);
   expect(await rows(page.locator('.chart-toolbar button'))).toBe(width<=600||(width>=881&&width<=1050)?2:1);
   expect(await rows(page.locator('#mapActions button'))).toBe(width<=600?2:1);
+  if(width<=600){const verify=await page.locator('#verify').boundingBox();expect(verify.width).toBe(48);}
  }
  await page.locator('#routeTool').focus();await page.keyboard.press('Enter');
  await expect(page.locator('#routeTool')).toHaveAttribute('aria-pressed','true');

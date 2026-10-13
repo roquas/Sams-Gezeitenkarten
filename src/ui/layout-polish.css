@@ -92,3 +92,4 @@
  .book-page{padding-right:13%}
  .bordbook .clue-nav{right:13%}
 }
+@media(max-width:600px){.map-actions .route-actions #verify{flex:0 0 48px}}
