@@ -5,9 +5,23 @@ import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
 function poly(x,y){return hexVertices(x,y).map(([x,y])=>`${x.toFixed(2)},${y.toFixed(2)}`).join(" ")}
 const coords=hexCenter;
 const staticCharts=new WeakMap();
+const observedCharts=new WeakSet();
+function fitLabels(svg){
+ // WebKit returns zero text metrics while the mobile chart panel is display:none.
+ // Retry when the actual SVG becomes visible; never enlarge the approved plaques.
+ if(!svg.getBoundingClientRect().width)return;
+ for(const label of svg.querySelectorAll('.place-label')){
+  const text=label.querySelector('text'),available=Number(label.querySelector('rect').getAttribute('width'))-6;
+  const measured=text.getComputedTextLength();
+  if(measured>available)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*available/measured);
+ }
+}
 export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate}){
  const $=id=>document.getElementById(id);
  const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.setAttribute("viewBox",CHART_VIEWBOX);
+ if(!observedCharts.has(svg)){
+  new ResizeObserver(()=>fitLabels(svg)).observe(svg);observedCharts.add(svg);
+ }
  const NS="http://www.w3.org/2000/svg";
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
@@ -53,11 +67,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  drawLabel(startLabelLayout(byId[puzzle.start]),'Start',true);
  svg.append(art);
  // Fit actual browser font metrics without expanding the safe land footprint.
- for(const label of art.querySelectorAll('.place-label')){
-  const text=label.querySelector('text'),available=Number(label.querySelector('rect').getAttribute('width'))-6;
-  const measured=text.getComputedTextLength();
-  if(measured>available)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*available/measured);
- }
+ fitLabels(svg);
  // Geographic coordinate guides and margin headings remain visible even when
  // the decorative chart is disabled. The staggered rows bend column guides.
  const graticule=el("g",{class:"coordinate-guides","pointer-events":"none","aria-hidden":"true"});

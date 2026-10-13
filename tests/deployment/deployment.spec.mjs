@@ -24,6 +24,10 @@ for(const id of ids)test(`packaged ${id}: data, graphics, clues, hint, route and
  expect(await page.locator('#puzzleSelect option').evaluateAll(options=>options.map(o=>o.value))).toEqual(ids);
  await choose(page,id);
  await expect(page.locator('h1')).toHaveText(data.presentation.title);
+ await expect.poll(()=>page.locator('#map .place-label').evaluateAll(labels=>labels.every(label=>{
+  const text=label.querySelector('text'),rect=label.querySelector('rect');
+  return text.getComputedTextLength()<=Number(rect.getAttribute('width'))-5.5;
+ }))).toBe(true);
  for(const paragraph of data.presentation.intro)await expect(page.locator('#puzzleStory')).toContainText(paragraph);
  await expect(page.locator('#map .blocked-cell')).toHaveCount(data.logic.blocked.length);
  for(const blocked of data.logic.blocked)await expect(page.locator(`#map [data-id="${blocked}"]`)).toHaveClass(/blocked-cell/);
