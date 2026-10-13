@@ -32,3 +32,28 @@ jobs:
             test-results/
           if-no-files-found: ignore
 
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: python3 tests/test_package.py
+      - run: sh scripts/package.sh
+      - name: Extract into a fresh directory outside the checkout
+        run: |
+          site=$(mktemp -d)
+          python3 -m zipfile -e dist/Sams-Gezeitenkarten.zip "$site"
+          echo "DEPLOY_ROOT=$site" >> "$GITHUB_ENV"
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npx playwright test --config playwright.deployment.config.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-deployment
+          path: |
+            dist/Sams-Gezeitenkarten.zip
+            deployment-report/
+            deployment-test-results/
+          if-no-files-found: error

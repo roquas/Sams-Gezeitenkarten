@@ -2,3 +2,8 @@ node_modules/
 playwright-report/
 test-results/
 .DS_Store
+
+dist/
+__pycache__/
+deployment-report/
+deployment-test-results/
