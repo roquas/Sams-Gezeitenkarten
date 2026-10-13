@@ -75,3 +75,20 @@
  .chart-toolbar .marking-tools{justify-content:space-between}
  .chart-toolbar .marking-tools .toolpick{flex:0 1 52px;width:52px}
 }
+
+/* Review: a right-aligned route group and paper clearance at the stacked edge. */
+.route-actions{display:contents}
+@media(min-width:601px){
+ .map-actions #routeTool{margin-left:auto}
+ .map-actions #verify{margin-left:0}
+}
+.book-page{padding-right:16%}
+.bordbook .clue-nav{right:16%}
+@media(max-width:600px){
+ .map-actions .rail-button,.map-actions #verify{width:48px;justify-self:center}
+ .map-actions #toggleRouteNumbers{width:100%}
+ .route-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px}
+ .route-actions .rail-button{flex:0 0 48px}
+ .book-page{padding-right:13%}
+ .bordbook .clue-nav{right:13%}
+}

@@ -25,7 +25,8 @@ export function createToolbar(puzzle){
  $('mapActions').innerHTML=button('undo','Letzte Aktion rückgängig machen','undo')+button('toggleDistances','Abstände einblenden','distance')+'<span class="rail-separator" aria-hidden="true"></span>'+button('toggleHourMarks','Markierungen der aktuellen Stunde anzeigen','marks')+button('toggleRouteNumbers','Routennummern anzeigen','numbers')+'<span class="rail-separator" aria-hidden="true"></span>'+button('verify','Route überprüfen','verify');
  const route=document.querySelector('[data-tool="route"]'),back=$('routeBack');
  route.id='routeTool';route.classList.add('rail-button');back.classList.add('rail-button');
- $('verify').before(route,back);
+ const routeGroup=document.createElement('div');routeGroup.className='route-actions';
+ $('verify').before(routeGroup);routeGroup.append(route,back,$('verify'));
  mountLowerMaterials();
  return state=>{
   $('hours').querySelectorAll('[data-hour]').forEach(b=>{
