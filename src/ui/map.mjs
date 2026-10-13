@@ -26,7 +26,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   const [cx,cy]=artCenter(o.cells);
   art.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
  }
- // Labels belong exclusively to non-navigable, connected land geometry.
+ // Island labels use connected land geometry; Start follows its ship.
  const drawLabel=(layout,t,start=false)=>{
    if(!layout)return;
    const {x,y,width,height,fontSize,cell,polygon}=layout;

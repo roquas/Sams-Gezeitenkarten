@@ -1,6 +1,8 @@
 # Ortsbeschriftungen: Geometrie und Materialfeinschliff
 
-Nachtrag zu PR #30. Ausschließlich Ortsbeschriftungen wurden verändert.
+Historischer erster Nachtrag zu PR #30. Den aktuellen Inselmittelpunkt und
+die vier abschließenden Korrekturen dokumentiert [FINAL-GRAPHICS.md](FINAL-GRAPHICS.md).
+In dieser ersten Fassung wurden ausschließlich Ortsbeschriftungen verändert.
 
 - Schilder: höchstens etwa 54 SVG-Einheiten breit, 18 hoch statt zuvor
   66–122 × 24. Papierdeckung 62 % statt 97 %, deutlich schwächere Textur.

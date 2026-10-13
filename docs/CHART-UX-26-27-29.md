@@ -96,3 +96,10 @@ Die Ortsplättchen sind kleiner, transparenter und mittig in gesperrten Hexen.
 Das Leuchtturm-Schild entfällt, weil C1 befahrbar bleibt. Alle anderen Änderungen
 aus #26/#27/#29 bleiben unverändert. Die obigen Bilder dokumentieren die erste
 Fassung; die aktuellen Schilder zeigen die Bilder des Nachtrags.
+
+## Abschließende grafische Korrekturen
+
+Der endgültige Stand von Inselzentrum, Startlabel, Pergamentkoordinaten und
+Hexlinien ist in [FINAL-GRAPHICS.md](FINAL-GRAPHICS.md) mit aktuellen echten
+Browserbildern dokumentiert. Die oben beschriebenen Ansichten und Spielfunktionen
+bleiben unverändert.
