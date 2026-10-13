@@ -1,5 +1,8 @@
 # Abschließende grafische Korrekturen
 
+Historischer Nachtrag; die aktuellen sechs Layout-Anpassungen stehen in
+[LAYOUT-POLISH.md](LAYOUT-POLISH.md).
+
 Nachtrag zu PR #30 auf `feature/coordinates-chart-logbook`. Keine Änderung an
 Spielregeln, Befahrbarkeit, Koordinatensystem, Icons, Logbuch oder Bedienlogik.
 Die vorhandenen Aquarell-/UI-Assets bleiben byte-identisch.
