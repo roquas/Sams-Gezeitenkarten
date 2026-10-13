@@ -1,4 +1,6 @@
 import {test,expect} from '@playwright/test';
+import {coordinateTextMarkup} from '../../src/ui/coordinates.mjs';
+const displayed=text=>coordinateTextMarkup(text).replace(/<[^>]*>/g,'');
 const ids=['reference-3.6','test-navigation','quittung-nombreo','ankerbuch-tesoro'];
 const key=id=>`gezeitenkarten-${id}-schema1-data1`;
 const saved=(page,id)=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),key(id));
@@ -26,8 +28,11 @@ for(const id of ids)test(`packaged ${id}: data, graphics, clues, hint, route and
  await expect(page.locator('#map .blocked-cell')).toHaveCount(data.logic.blocked.length);
  for(const blocked of data.logic.blocked)await expect(page.locator(`#map [data-id="${blocked}"]`)).toHaveClass(/blocked-cell/);
  for(const name of Object.values(data.presentation.places))await expect(page.locator('#map')).toContainText(name);
- for(const text of Object.values(data.presentation.clues))await expect(page.locator('#allClues')).toContainText(text);
- for(const clue of data.logic.clues){await expect(page.locator('#clueTrack')).toContainText(data.presentation.clues[clue.id]);}
+ for(const text of Object.values(data.presentation.clues))await expect(page.locator('#allClues')).toContainText(displayed(text));
+ for(const clue of data.logic.clues){
+  await expect(page.locator('#clueTrack')).toContainText(displayed(data.presentation.clues[clue.id]));
+  await page.locator('#nextClue').click();
+ }
  const loaded=await page.evaluate(async id=>{
   const {createPuzzleLoader}=await import('/src/puzzles/loader.mjs');
   const p=await createPuzzleLoader().load(id);
