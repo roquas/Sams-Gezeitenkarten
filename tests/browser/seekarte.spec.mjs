@@ -13,7 +13,7 @@ test('watercolor-only chart, perspective rings, quiet start and intact hit areas
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 test('brass rail order, hour icon, accessible toggles and verification readiness',async({page})=>{
- expect(await page.locator('#mapActions button').evaluateAll(ns=>ns.map(n=>n.id))).toEqual(['undo','toggleDistances','toggleHourMarks','toggleRouteNumbers','verify']);
+ expect(await page.locator('#mapActions button').evaluateAll(ns=>ns.map(n=>n.id))).toEqual(['undo','toggleDistances','toggleHourMarks','toggleRouteNumbers','routeTool','routeBack','verify']);
  await expect(page.locator('#verify')).toBeDisabled();
  const edge=page.locator('#toggleHourMarks .hour-edge');const original=await edge.evaluate(el=>['x1','y1','x2','y2'].map(k=>el.getAttribute(k)));
  await page.locator('[data-hour="4"]').focus();await page.keyboard.press('Enter');
@@ -71,7 +71,7 @@ test('mobile swipe turns pages while vertical gestures keep the current clue',as
  await gesture(-10,40);await expect(page.locator('#cluePosition')).toHaveText('II / VII');
  await session.detach();
 });
-test('book uses desktop spread, mobile single page and honors reduced motion',async({page},testInfo)=>{
+test('book keeps a narrow left leaf on desktop and mobile and honors reduced motion',async({page},testInfo)=>{
  await page.setViewportSize({width:1280,height:900});
  expect(await page.locator('.book-spread').evaluate(el=>getComputedStyle(el).display)).toBe('grid');
  await expect(page.locator('.book-vignette')).toBeVisible();
@@ -81,8 +81,8 @@ test('book uses desktop spread, mobile single page and honors reduced motion',as
  await page.evaluate(()=>new Promise(requestAnimationFrame));
  await testInfo.attach('seekarte-desktop',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
  await page.setViewportSize({width:390,height:844});
- expect(await page.locator('.book-spread').evaluate(el=>getComputedStyle(el).display)).toBe('block');
- await expect(page.locator('.book-vignette')).toBeHidden();
+ expect(await page.locator('.book-spread').evaluate(el=>getComputedStyle(el).display)).toBe('grid');
+ await expect(page.locator('.book-vignette')).toBeVisible();
  expect(await page.locator('#clueTrack .clue p').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(15);
  await testInfo.attach('seekarte-mobile',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
 });

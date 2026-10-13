@@ -44,14 +44,17 @@ export function placeLabelLayout(ids,text,blocked,byId){
  const polygon=convexHull(centers.flatMap(c=>hexVertices(...c.point)));
  const water=Object.values(byId).filter(c=>!blocked.has(c.id)).map(c=>hexVertices(...hexCenter(c)));
  const size=labelSize(text);
- const candidates=[centroid,...centers.sort((a,b)=>Math.hypot(a.point[0]-centroid[0],a.point[1]-centroid[1])-Math.hypot(b.point[0]-centroid[0],b.point[1]-centroid[1])).map(c=>c.point)];
- for(const [x,y] of candidates){
-  const p={x,y,...size},footprint=labelFootprint(p,size.margin);
-  if(footprint.every(v=>containsPoint(polygon,v))&&!water.some(w=>polygonsOverlap(footprint,w)))return {...p,cell:land[0],cells:land,polygon,centroid};
+ const anchors=[centroid,...centers.sort((a,b)=>Math.hypot(a.point[0]-centroid[0],a.point[1]-centroid[1])-Math.hypot(b.point[0]-centroid[0],b.point[1]-centroid[1])).map(c=>c.point)];
+ for(const [x,baseY] of anchors)for(let drop=HEX_RADIUS/2;drop>=0;drop-=.25){
+  const p={x,y:baseY+drop,...size},footprint=labelFootprint(p,size.margin);
+  if(footprint.every(v=>containsPoint(polygon,v))&&!water.some(w=>polygonsOverlap(footprint,w)))return {...p,cell:land[0],cells:land,polygon,centroid,drop};
  }return null;
 }
-export function startLabelLayout(cell,overlay){
- const [x,y]=hexCenter(cell),size=labelSize('Start');
- // Leave a small geometric gap above the unchanged ship's image bounding box.
- return {x:x+(overlay?.dx||0),y:y+(overlay?.dy||0)-(overlay?.h||76)/2-size.height/2-3,...size,cells:[cell.id],cell:cell.id,polygon:null};
+export function startLabelLayout(cell){
+ const [x,baseY]=hexCenter(cell),size=labelSize('Start'),polygon=hexVertices(x,baseY);
+ // Aim at the lower lateral vertices, then retain the whole plaque on its hex.
+ for(let drop=HEX_RADIUS/2;drop>=0;drop-=.25){
+  const p={x,y:baseY+drop,...size};
+  if(labelFootprint(p,size.margin).every(v=>containsPoint(polygon,v)))return {...p,cells:[cell.id],cell:cell.id,polygon,drop};
+ }return null;
 }

@@ -71,7 +71,8 @@ $("hours").addEventListener("click",e=>{const b=e.target.closest("[data-hour]");
 
 $("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>6)return;const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
 
-$("tools").addEventListener("click",e=>{const b=e.target.closest("[data-tool]");if(!b)return;state.tool=b.dataset.tool;state.distanceMode=false;state.distanceOrigin=null;render()});
+function selectTool(e){const b=e.target.closest('[data-tool]');if(!b)return;state.tool=b.dataset.tool;state.distanceMode=false;state.distanceOrigin=null;render();}
+for(const id of ['tools','mapActions'])$(id).addEventListener('click',selectTool);
 $("undo").onclick=()=>{state=history.undo(state);render()};
 $("toggleRouteNumbers").onclick=()=>{state.showRouteNumbers=!state.showRouteNumbers;render()};
 $("toggleDistances").onclick=()=>{state.distanceMode=!state.distanceMode;state.distanceOrigin=null;render()};

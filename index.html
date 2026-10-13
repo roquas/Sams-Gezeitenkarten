@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="src/ui/chart-frame.css">
 <link rel="stylesheet" href="src/ui/materials.css">
 <link rel="stylesheet" href="src/ui/chart-ux.css">
+<link rel="stylesheet" href="src/ui/layout-polish.css">
 </head>
 <body>
 <div id="gameSurface">
@@ -35,13 +36,19 @@
 <div class="map-actions" id="mapActions" role="group" aria-label="Kartenaktionen und Anzeigeoptionen"></div>
 <section class="clue-carousel bordbook" aria-label="Hinweise aus dem Logbuch">
  <div class="book-spread">
-  <div class="book-heading"><strong>Aus Robins Logbuch</strong><span id="cluePosition" aria-live="polite">I / VII</span><span class="book-vignette" aria-hidden="true">⚓</span><span class="book-subtitle">Der verschwundene Kompass</span></div>
+  <div class="book-heading" aria-hidden="true"><span class="book-vignette"></span></div>
+  <div class="book-page"><div class="book-page-heading"><strong>Aus Robins Logbuch</strong><span id="cluePosition" aria-live="polite">I / VII</span></div>
   <div class="clue-viewport" id="clueViewport" tabindex="0" aria-label="Hinweise. Seitlich wischen oder Pfeiltasten verwenden.">
    <div class="clue-track" id="clueTrack"></div>
+  </div>
   </div>
  </div>
  <div class="clue-nav"><button type="button" id="prevClue" title="Vorheriger Hinweis" aria-label="Vorheriger Hinweis">‹</button><span id="clueDone">Hinweis antippen zum Abhaken</span><button type="button" id="nextClue" title="Nächster Hinweis" aria-label="Nächster Hinweis">›</button></div>
 </section>
+<h3>Deine rekonstruierte Route</h3>
+<div class="route" id="routeView"></div>
+
+<div id="verifyStatus" aria-live="polite"></div>
 <p class="toolbar-guide"><a href="#toolLegend">Werkzeuglegende</a></p>
 
 <details class="tool-legend" id="toolLegend"><summary>Werkzeuglegende</summary>
@@ -57,10 +64,7 @@
 <p>Petrol und ein gedrückter Button zeigen das aktive Werkzeug beziehungsweise die eingeschaltete Anzeige. Ein durchgestrichenes Auge bedeutet ausgeblendete Stundenmarkierungen. Alle Buttons sind per Tab und Enter oder Leertaste bedienbar.</p></details>
 <div class="stat"><span class="muted" id="count">0 Markierungen auf dieser Karte</span></div>
 <hr class="line">
-<h3>Deine rekonstruierte Route</h3>
-<div class="route" id="routeView"></div>
 
-<div id="verifyStatus" aria-live="polite"></div>
 </div></section>
 <div class="logbook-backdrop" id="logbookBackdrop" aria-hidden="true"></div>
 <aside class="panel clue-panel" id="logbook" aria-label="Hilfe und Logbuch"><div class="pad">

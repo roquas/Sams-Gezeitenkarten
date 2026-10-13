@@ -34,7 +34,7 @@ test('actual browser screenshots of final chart graphics',async({page},testInfo)
 
 test('whole-island center, rust-red Start, visible land outlines and centered margin headings',async({page})=>{
  const island=page.locator('.island-label').filter({hasText:'Tesoro'});
- await expect(island).toHaveAttribute('transform','translate(183 192)');
+ await expect(island).toHaveAttribute('transform','translate(183 210)');
  const start=page.locator('.start-label');await expect(start).toContainText('Start');
  await expect(start.locator('text')).toHaveAttribute('fill','#8c3e2c');
  await expect(start.locator('rect')).toHaveAttribute('opacity','.62');

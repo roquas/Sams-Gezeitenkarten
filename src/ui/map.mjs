@@ -42,7 +42,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  };
  for(const label of mapLabels)drawLabel(placeLabelLayout(label.cells,label.text,blocked,byId),label.text);
  for(const place of Object.values(puzzle.places))drawLabel(placeLabelLayout(place.cells,place.name,blocked,byId),place.name);
- drawLabel(startLabelLayout(byId[puzzle.start],overlays.find(o=>o.cells.includes(puzzle.start)&&o.asset.endsWith('segelschiff.png'))),'Start',true);
+ drawLabel(startLabelLayout(byId[puzzle.start]),'Start',true);
  svg.append(art);
  // Fit actual browser font metrics without expanding the safe land footprint.
  for(const label of art.querySelectorAll('.place-label')){
@@ -64,8 +64,8 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    }
    const [bottomX,bottomY]=centers[4];
    path+=` L ${bottomX} 362`;
-   graticule.append(el("path",{d:path,fill:"none",stroke:"#f5edce","stroke-width":"8",opacity:".12","stroke-linecap":"round"}));
-   graticule.append(el("path",{d:path,fill:"none",stroke:"#446d70","stroke-width":"1.5",opacity:".24","stroke-linecap":"round"}));
+   graticule.append(el("path",{d:path,fill:"none",stroke:"#f5edce","stroke-width":"9",opacity:".19","stroke-linecap":"round"}));
+   graticule.append(el("path",{d:path,fill:"none",stroke:"#446d70","stroke-width":"1.7",opacity:".34","stroke-linecap":"round"}));
    // Pergamentplättchen mit unregelmäßigen Kanten, gedämpfter Tinte.
    for(const [side,x] of [['top',centers[0][0]],['bottom',bottomX]]){
      const band=parchmentHeading(side,q),y=band.center;

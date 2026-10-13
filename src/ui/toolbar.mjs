@@ -6,7 +6,7 @@ const icons={
  undo:rasterIcon('undo'),
  distance:rasterIcon('distance'),
  marks:`<span class="mark-emblem">${rasterIcon('eye')}${svg('<path class="hour-hex" d="M16 2L28 9V23L16 30L4 23V9Z"/><line class="hour-edge" x1="28" y1="9" x2="16" y2="2"/><path class="eye-slash" d="M5 27L27 5"/>')}</span>`,
- numbers:`<span class="numbers-emblem">${rasterIcon('eye')}<span class="route-numerals" aria-hidden="true">①②③</span></span>`,
+ numbers:`<span class="numbers-emblem">${rasterIcon('eye')}<span class="route-numerals" aria-hidden="true">①···②</span></span>`,
  verify:rasterIcon('yes')+'<span class="verify-label" aria-hidden="true">Prüfen</span>'
 };
 
@@ -23,6 +23,9 @@ export function createToolbar(puzzle){
  mountUpperMaterials();
  const button=(id,label,icon)=>`<button class="rail-button" id="${id}" type="button" aria-label="${label}" title="${label}">${icons[icon]}</button>`;
  $('mapActions').innerHTML=button('undo','Letzte Aktion rückgängig machen','undo')+button('toggleDistances','Abstände einblenden','distance')+'<span class="rail-separator" aria-hidden="true"></span>'+button('toggleHourMarks','Markierungen der aktuellen Stunde anzeigen','marks')+button('toggleRouteNumbers','Routennummern anzeigen','numbers')+'<span class="rail-separator" aria-hidden="true"></span>'+button('verify','Route überprüfen','verify');
+ const route=document.querySelector('[data-tool="route"]'),back=$('routeBack');
+ route.id='routeTool';route.classList.add('rail-button');back.classList.add('rail-button');
+ $('verify').before(route,back);
  mountLowerMaterials();
  return state=>{
   $('hours').querySelectorAll('[data-hour]').forEach(b=>{

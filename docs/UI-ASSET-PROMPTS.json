@@ -9,5 +9,11 @@
     "reference": "assets/ui/tool-atlas.webp",
     "output": "assets/ui/tool-refinements.webp",
     "prompt": "Use case: style-transfer. Asset type: transparent nautical UI icon sprite, 2 columns by 3 rows, six equal square cells, centered isolated icons with generous identical margins. Reference image is existing brass icon atlas: match its sculpted antique brass, dark brown engraved edges, upper-left highlights and restrained patina exactly. Row1: left standalone question mark (no feather); right standalone fountain pen feather nib (no question). Row2: left circular radar icon with three concentric thin brass rings, central dot and one radial sweep line, no frame disc; right nautical rope route with three waypoint dots and a clear small minus above it indicating remove last step. Row3: left straight horizontal arrow pointing left; right straight horizontal arrow pointing right. Arrows must be straight, never curved undo arrows. Six icons only. Transparent empty background, no labels, no additional decorations, strong simple silhouettes readable at 32px."
+  },
+  "hourglass": {
+    "tool": "built-in imagegen",
+    "reference": "assets/ui/tool-atlas.webp",
+    "output": "assets/ui/hourglass.webp",
+    "prompt": "Use case: style-transfer. Asset type: one transparent nautical UI icon. Reference image is existing antique brass icon atlas, match its sculpted worn brass, dark brown engraved contours and top-left golden highlights. Primary request: a single upright antique hourglass, sand visible flowing through the central narrow glass neck, two restrained brass end caps and thin side supports. Compact simple symmetric silhouette, readable at 24 to 32 pixels. Front view, isolated, centered with small transparent margins. No circular frame, no disc, no wheel, no lettering, no background, no extra objects. Genuinely transparent background. Keep visual complexity at the level of the reference icons."
   }
 }

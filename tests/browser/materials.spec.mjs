@@ -4,7 +4,7 @@ test('raster upper materials load, stay clear of hit targets and render at deskt
  const failed=[];page.on('response',r=>{if(r.status()>=400&&r.url().includes('/assets/'))failed.push(r.url());});
  await page.reload();
  await expect(page.locator('.chart-toolbar .brass-rail')).toHaveCount(2);
- await expect(page.locator('.chart-toolbar .raster-icon')).toHaveCount(8);
+ await expect(page.locator('.chart-toolbar .raster-icon')).toHaveCount(6);
  await page.locator('[data-hour="3"]').click();await expect(page.locator('[data-hour="3"]')).toHaveAttribute('aria-pressed','true');
  await page.locator('[data-tool="yes"]').click();await page.locator('#map [data-id="A1"]').click();
  await expect(page.locator('[data-tool="yes"]')).toHaveAttribute('aria-pressed','true');
