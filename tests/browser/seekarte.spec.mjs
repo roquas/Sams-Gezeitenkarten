@@ -40,7 +40,7 @@ test('both rails have 44px touch targets and a visible keyboard-accessible legen
  await page.locator('.toolbar-guide a').focus();await page.keyboard.press('Enter');
  await page.locator('#toolLegend summary').focus();await page.keyboard.press('Enter');
  await expect(page.locator('#toolLegend')).toHaveAttribute('open','');
- await expect(page.locator('#toolLegend')).toContainText('Konturlinien');
+ await expect(page.locator('#toolLegend')).toContainText('Radar');
 });
 test('bordbook arrows, keyboard, checked clues, undo and reload preserve semantics',async({page})=>{
  await expect(page.locator('#clueTrack [data-clue]')).toHaveCount(1);
