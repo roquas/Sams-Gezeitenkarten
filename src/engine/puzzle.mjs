@@ -7,6 +7,7 @@ export function createRules(puzzle){
  const matches=(route,clue)=>{
   const at=hour=>route[hour];
   switch(clue.type){
+   case 'position':return at(clue.hour)===clue.cell;
    case 'direction':return direction(at(clue.hour-1),at(clue.hour))===clue.direction;
    case 'turn':{const before=directions.indexOf(direction(at(clue.hour-2),at(clue.hour-1))),after=directions.indexOf(direction(at(clue.hour-1),at(clue.hour)));return before>=0&&after===(before+clue.degrees/60+6)%6;}
    case 'adjacentToPlace':return coast(at(clue.hour),clue.place);
@@ -16,6 +17,6 @@ export function createRules(puzzle){
    default:throw Error('Unsupported clue type '+clue.type);
   }
  };
- function* routes(path=[puzzle.start]){if(path.length===puzzle.steps+1){yield path;return;}for(const next of cells)if(!blocked.has(next)&&!path.includes(next)&&adjacent(path.at(-1),next))yield* routes([...path,next]);}
+ function* routes(path=[puzzle.start],budget={remaining:250000}){if(--budget.remaining<0)throw Error('Suchbudget überschritten; Eindeutigkeit nicht bewiesen');if(path.length===puzzle.steps+1){yield path;return;}for(const next of cells)if(!blocked.has(next)&&!path.includes(next)&&adjacent(path.at(-1),next))yield* routes([...path,next],budget);}
  return {cells,blocked,coast,legal,matches,routes,solutions:()=>[...routes()].filter(route=>puzzle.clues.every(clue=>matches(route,clue)))};
 }
