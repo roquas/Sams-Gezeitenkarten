@@ -53,6 +53,7 @@ GitHub Actions führt beide Testgruppen nach Push und Pull Request aus.
 - [Grafische Ausbaustufe und Prüfumfang #15–#17](docs/SEEKARTE-15-17.md)
 - [Aktuelle sechs Layout-Feinabstimmungen und Prüfbilder](docs/LAYOUT-POLISH.md)
 - [Spielregeln und letzter Instrumenten-Feinschliff (#31, #32)](docs/RULES-FINAL-POLISH.md)
+- [Aktuelle abschließende GUI-Abnahme: unabhängiges Radar, responsive Leiste und Lektorat](docs/GUI-FINAL-REVIEW.md)
 - [Koordinaten, Kartenlabels und mobile Ansichten #26/#27/#29](docs/CHART-UX-26-27-29.md)
 - [Materialgestaltung, Browserbilder und Grenzen](docs/MATERIAL-DESIGN.md)
 - [Umsetzung und Prüfstand 0.1](docs/IMPLEMENTATION-0.1.md)

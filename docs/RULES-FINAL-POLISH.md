@@ -1,5 +1,7 @@
 # Spielregeln und abschließender GUI-Feinschliff (#31, #32)
 
+Historischer Zwischenstand vor dem verbindlichen Lektoratsnachtrag. Aktuelle Umsetzung und Abnahme: [GUI-FINAL-REVIEW.md](GUI-FINAL-REVIEW.md). Die unten dokumentierten Illustrations-Folgeaufgaben bleiben bestehen.
+
 Bestehender GUI-Branch `feature/coordinates-chart-logbook`, bestehender PR #30.
 
 ## Umsetzung
