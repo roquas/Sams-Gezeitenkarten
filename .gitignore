@@ -7,3 +7,4 @@ dist/
 __pycache__/
 deployment-report/
 deployment-test-results/
+live-diagnostics/

@@ -74,6 +74,20 @@ def collect(root):
     return sorted(files)
 
 
+def deployment_name(name):
+    return name[:-4] + '.js' if name.endswith('.mjs') else name
+
+
+def deployment_bytes(root, name):
+    data = (root / name).read_bytes()
+    if name.endswith(('.html', '.mjs')):
+        # Preserve ESM semantics; only local module filenames change for static hosts.
+        pattern = r"([\"'])([^\"'\r\n]+)\.mjs\1"
+        data = re.sub(pattern, lambda m: m[1] + m[2] + '.js' + m[1],
+                      data.decode('utf-8')).encode('utf-8')
+    return data
+
+
 def package(root=ROOT):
     files = collect(root)  # Fail before replacing any previous valid archive.
     output = root / 'dist/Sams-Gezeitenkarten.zip'
@@ -82,11 +96,11 @@ def package(root=ROOT):
     try:
         with zipfile.ZipFile(temporary, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
             for name in files:
-                info = zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0))
+                info = zipfile.ZipInfo(deployment_name(name), date_time=(2026, 1, 1, 0, 0, 0))
                 info.compress_type = zipfile.ZIP_DEFLATED
                 info.create_system = 3
                 info.external_attr = 0o100644 << 16
-                archive.writestr(info, (root / name).read_bytes())
+                archive.writestr(info, deployment_bytes(root, name))
         temporary.replace(output)
     finally:
         temporary.unlink(missing_ok=True)

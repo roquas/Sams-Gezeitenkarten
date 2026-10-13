@@ -18,8 +18,8 @@ for(const id of ids)test(`packaged ${id}: data, graphics, clues, hint, route and
  page.on('pageerror',error=>errors.push(error.message));
  page.on('response',response=>{if(response.status()>=400)errors.push(`${response.status()} ${response.url()}`);});
  page.on('requestfailed',request=>errors.push(request.url()));
- const data=await (await request.get(`/puzzles/${id}.json`)).json();
- await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25);
+ const data=await (await request.get(`puzzles/${id}.json`)).json();
+ await page.goto('./');await expect(page.locator('#map .cell')).toHaveCount(25);
  await expect(page.locator('#puzzleSelect option')).toHaveCount(4);
  expect(await page.locator('#puzzleSelect option').evaluateAll(options=>options.map(o=>o.value))).toEqual(ids);
  await choose(page,id);
@@ -41,9 +41,9 @@ for(const id of ids)test(`packaged ${id}: data, graphics, clues, hint, route and
   await page.locator('#nextClue').click();
  }
  const loaded=await page.evaluate(async id=>{
-  const {createPuzzleLoader}=await import('/src/puzzles/loader.mjs');
+  const {createPuzzleLoader}=await import('./src/puzzles/loader.js');
   const p=await createPuzzleLoader().load(id);
-  const {chartOverlays}=await import('/src/ui/chart-art.mjs');
+  const {chartOverlays}=await import('./src/ui/chart-art.js');
   const expected=chartOverlays(p.overlays).map(o=>o.asset);
   const actual=[...document.querySelectorAll('#map image')].map(i=>i.getAttribute('href'));
   const urls=[...new Set(actual)];

@@ -32,12 +32,34 @@ class PackagingTests(unittest.TestCase):
         with zipfile.ZipFile(output) as archive:
             names = archive.namelist()
             self.assertIn('index.html', names)
-            self.assertEqual(names, packager.collect(self.root))
+            self.assertEqual(names, [packager.deployment_name(n) for n in packager.collect(self.root)])
             self.assertFalse(any(n.startswith(('tests/', 'docs/', 'node_modules/', 'prototypes/', '.git')) for n in names))
             manifest = json.loads(archive.read('puzzles/manifest.json'))
             self.assertEqual(len(manifest['puzzles']), 4)
             for entry in manifest['puzzles']:
                 self.assertIn('puzzles/' + entry['path'], names)
+
+    def test_all_module_references_are_exported_as_js(self):
+        import re
+        import posixpath
+        with contextlib.redirect_stdout(io.StringIO()):
+            output = packager.package(self.root)
+        with zipfile.ZipFile(output) as archive:
+            names = set(archive.namelist())
+            self.assertFalse(any(n.endswith('.mjs') for n in names))
+            self.assertIn('src/ui/game.js', names)
+            self.assertIn('type="module" src="src/ui/game.js"', archive.read('index.html').decode())
+            for name in names:
+                if not name.endswith('.js'):
+                    continue
+                text = archive.read(name).decode()
+                self.assertNotIn('.mjs', text)
+                refs = re.findall(r"(?:from\s*|import\s*)[\"']([^\"']+)[\"']", text)
+                for ref in refs:
+                    self.assertIn(posixpath.normpath(posixpath.join(posixpath.dirname(name), ref)), names)
+            for name in packager.collect(self.root):
+                if not name.endswith(('.mjs', '.html')):
+                    self.assertEqual(archive.read(name), (self.root / name).read_bytes())
 
     def test_missing_puzzle(self):
         (self.root / 'puzzles/quittung-nombreo.json').unlink()

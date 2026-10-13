@@ -4,11 +4,12 @@ export default defineConfig({
  testDir:'./tests/deployment',fullyParallel:true,retries:process.env.CI?1:0,timeout:180000,
  outputDir:'deployment-test-results',
  reporter:[['list'],['html',{outputFolder:'deployment-report',open:'never'}]],
- use:{baseURL:'http://127.0.0.1:4174',trace:'retain-on-failure',screenshot:'only-on-failure'},
+ use:{baseURL:'http://127.0.0.1:4174/gk/pr38/',trace:'retain-on-failure',screenshot:'only-on-failure'},
  projects:[
   {name:'desktop',use:{...devices['Desktop Chrome']}},
   {name:'smartphone',use:{...devices['Pixel 7'],viewport:{width:360,height:800}}},
+  {name:'iphone-webkit',testMatch:'**/startup.spec.mjs',use:{...devices['iPhone 13'],deviceScaleFactor:1}},
   {name:'ipad-webkit',use:{...devices['iPad (gen 7)'],deviceScaleFactor:1}}
  ],
- webServer:{command:'python3 -m http.server 4174 --bind 127.0.0.1',cwd:process.env.DEPLOY_ROOT,url:'http://127.0.0.1:4174/',reuseExistingServer:false,timeout:20000}
+ webServer:{command:'python3 tests/deployment/static_host.py',url:'http://127.0.0.1:4174/gk/pr38/',reuseExistingServer:false,timeout:20000}
 });
