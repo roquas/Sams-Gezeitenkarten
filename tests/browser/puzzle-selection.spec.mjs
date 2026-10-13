@@ -72,8 +72,27 @@ test('legacy state migrates without overwriting it and revision changes reset on
 test('data-defined four-hour puzzle adapts hours, notes and verification without code changes',async({page})=>{
  await page.route('**/puzzles/test-navigation.json',async route=>{const response=await route.fetch();const d=await response.json();d.logic.steps=4;d.solution=d.solution.slice(0,5);d.logic.clues=d.logic.clues.slice(0,4);d.presentation.clues=Object.fromEntries(Object.entries(d.presentation.clues).slice(0,4));await route.fulfill({json:d});});
  await choose(page,other);await expect(page.locator('#hours [data-hour]:visible')).toHaveCount(4);
+ await expect(page.locator('#gameRules')).toContainText('sechs Hexfelder');
+ await expect(page.locator('#gameRules')).toContainText('4 Stunden');
+ await expect(page.locator('#gameRules')).toContainText('4 Beobachtungen');
  await page.locator('[data-hour="4"]').click();await page.locator('#map [data-id="E5"]').click();expect((await saved(page,other)).marks['4:E5']).toBe('maybe');
  await page.locator('#routeTool').click();for(const id of ['B5','C5','D5','E5'])await page.locator(`#map [data-id="${id}"]`).click();
  await expect(page.locator('#verify')).toBeEnabled();await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig!');
  await choose(page,ref);await expect(page.locator('#hours [data-hour]:visible')).toHaveCount(6);
+});
+test('touch marking and clue state belong to the selected puzzle',async({page,isMobile})=>{
+ await choose(page,other);await page.locator('[data-tool="yes"]').click();
+ const cell=page.locator('#map [data-id="B5"]');if(isMobile)await cell.tap();else await cell.click();
+ await page.locator('#checkMarks').evaluate(el=>el.click());expect((await saved(page,other)).penalty).toBe(5);
+ await expect(page.locator('#helpStatus')).toContainText('Keine der 1');
+ await page.locator('#clueTrack [data-clue="T1"]').click();
+ await choose(page,ref);expect((await saved(page,ref)).doneClues).toEqual([]);expect((await saved(page,ref)).penalty).toBe(0);
+ await choose(page,other);await expect(page.locator('#clueTrack [data-clue="T1"]')).toHaveAttribute('aria-checked','true');expect((await saved(page,other)).penalty).toBe(5);
+});
+test('unavailable last-selected file falls back to reference without erasing either save',async({page})=>{
+ await choose(page,other);await page.locator('#map [data-id="B5"]').click();
+ await page.route('**/puzzles/test-navigation.json',r=>r.fulfill({status:404,body:'missing'}));
+ await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
+ await expect(page.locator('h1')).toHaveText('Der verschwundene Kompass');await expect(page.locator('#puzzleLoadError')).toContainText('Referenzrätsel bleibt verfügbar');
+ expect((await saved(page,other)).marks['1:B5']).toBe('maybe');
 });

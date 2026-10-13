@@ -21,11 +21,17 @@ const loader=createPuzzleLoader();
 const catalog=await loader.manifest();
 let storage;try{storage=window.localStorage;}catch{}
 let selected;try{selected=storage?.getItem('gezeitenkarten-selected-puzzle');}catch{}
-let puzzle=await loader.load(catalog.puzzles.some(p=>p.id===selected)?selected:catalog.defaultId);
+let puzzle;
+try{puzzle=await loader.load(catalog.puzzles.some(p=>p.id===selected)?selected:catalog.defaultId);}
+catch(error){
+ if(!selected||selected===catalog.defaultId)throw error;
+ puzzle=await loader.load(catalog.defaultId);
+ const notice=document.getElementById('puzzleLoadError');notice.hidden=false;notice.textContent=error.message+' Das Referenzrätsel bleibt verfügbar.';
+}
 let rules=createRules(puzzle),blocked=rules.blocked,solution=puzzle.solution,hints=puzzle.hints;
 const escapeText=text=>String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeMarkup=text=>coordinateTextMarkup(escapeText(text));
-// Neuer unabhängiger Testfall; sieben Hinweise gegen sämtliche legalen Routen geprüft.
+// The loader has independently established uniqueness before mounting the game.
 const clues=puzzle.clues.map(({id,text})=>[id,text]);
 const cells=rules.cells.map(id=>({q:id.charCodeAt(0)-65,r:Number(id.slice(1))-1,id}));
 const byId=Object.fromEntries(cells.map(c=>[c.id,c]));
@@ -114,22 +120,22 @@ const bordbook=createBordbook({clues,getState:()=>state,markup:safeMarkup,toggle
 }});
 $("showChart").addEventListener("change",()=>renderMap());
 document.querySelectorAll(".logbook-section p").forEach(p=>p.innerHTML=coordinateTextMarkup(p.innerHTML));
-const select=$('puzzleSelect'),rulesTemplate=$('gameRules').innerHTML;
-const rulesForHours=hours=>hours===6?rulesTemplate:rulesTemplate.replace(/sechs/g,String(hours)).replace(/Sechs/g,String(hours)).replace(/1 bis 6/g,'1 bis '+hours).replace(/sieben Beobachtungen/g,puzzle.clues.length+' Beobachtungen');
+const select=$('puzzleSelect');
 for(const entry of catalog.puzzles){const option=document.createElement('option');option.value=entry.id;option.textContent=entry.title+(entry.difficulty?' · '+entry.difficulty:'');select.append(option);}
 function presentation(){
  document.querySelector('h1').textContent=puzzle.title;document.title='Gezeitenkarten · '+puzzle.title;
  const story=$('puzzleStory');story.replaceChildren();
  for(const paragraph of puzzle.intro){const p=document.createElement('p');p.className='story';p.innerHTML=safeMarkup(paragraph);story.append(p);}
  select.value=puzzle.id;
- $('gameRules').innerHTML=rulesForHours(puzzle.steps);
+ document.querySelectorAll('[data-rule-hours]').forEach(el=>el.textContent=puzzle.steps===6&&el.dataset.ruleHours!=='number'?(el.dataset.ruleHours==='capital'?'Sechs':'sechs'):String(puzzle.steps));
+ document.querySelector('[data-rule-clues]').textContent=puzzle.clues.length===7?'sieben':String(puzzle.clues.length);
 }
 let request=0;
 select.addEventListener('change',async()=>{
  const id=select.value,token=++request;select.disabled=true;$('puzzleStatus').textContent='Rätsel wird geladen …';
  try{
   const next=await loader.load(id);if(token!==request)return;
-  save();puzzle=next;rules=createRules(puzzle);blocked=rules.blocked;solution=puzzle.solution;hints=puzzle.hints;
+  save();puzzle=next;$('puzzleLoadError').hidden=true;rules=createRules(puzzle);blocked=rules.blocked;solution=puzzle.solution;hints=puzzle.hints;
   state=loadState(puzzle,storage);history.clear();dragging=false;dragValue=null;
   presentation();bordbook.setClues(puzzle.clues.map(({id,text})=>[id,text]));render();
   try{storage?.setItem('gezeitenkarten-selected-puzzle',puzzle.id);}catch{}
