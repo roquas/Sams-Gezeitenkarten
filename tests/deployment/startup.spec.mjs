@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 
 test('former .mjs entry is rejected on the observed MIME configuration',async({page},info)=>{
  const errors=[];page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
+ page.on('pageerror',error=>errors.push(error.message));
  const entry=page.waitForResponse(r=>r.url().endsWith('/src/ui/game.mjs'));
  await page.goto('legacy/');const response=await entry;
  expect(response.status()).toBe(200);expect(response.headers()['content-type']).toBeUndefined();

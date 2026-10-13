@@ -83,3 +83,12 @@ Konsole, Startausnahmen, Antwortheader, gescheiterte Requests und Screenshots ei
 explizit angegebenen HTTPS-URL. Sie läuft bei Änderungen an den Diagnose-Dateien gegen die konkret gemeldete URL
 oder manuell mit einer angegebenen URL. Sie verändert keine Serverdateien und ist bewusst
 keine externe Netzwerkabhängigkeit der regulären Regressionstests.
+
+Die [Live-Diagnose vom 13.10.2026](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38443310129)
+bestätigte den Fehler in allen drei Browserprofilen. Chrome meldete
+`Failed to load module script ... MIME type of ""`; WebKit auf iPhone und iPad
+meldete `'text/plain' is not a valid JavaScript MIME type for module script`.
+Jeweils null Hexfelder und null Rätseloptionen; die mobile View-Initialisierung
+blieb aus. Header, Konsole und Screenshots liegen im zugehörigen Artefakt
+`live-diagnostics`. Die Diagnose stellt keine Veröffentlichung des Fixes dar;
+die öffentliche Website ändert sich erst nach Hochladen des neuen ZIP-Inhalts.
