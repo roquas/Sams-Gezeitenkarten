@@ -1,3 +1,4 @@
+import {frameMode,drawSea,drawFrame} from './parchment-frame.mjs';
 import {hexCenter,hexVertices,placeLabelLayout,startLabelLayout} from './place-labels.mjs';
 import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
@@ -12,20 +13,26 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
+ const mode=frameMode(window.location.search);
+ svg.dataset.frameMode=mode;
  const showArt=document.getElementById("showChart").checked;
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
  svg.append(el("rect",{x:-44,y:-44,width:563,height:473,fill:"#e9d5b0","pointer-events":"none","aria-hidden":"true"}));
- for(const [index,tile] of parchmentTiles().entries()){
+ if(mode==='legacy')for(const [index,tile] of parchmentTiles().entries()){
   const slice=el("svg",{...tile,class:index===4?"parchment-water":"parchment-edge",preserveAspectRatio:"none",overflow:"hidden","data-parchment-slice":"true"});
   slice.append(el("image",{href:CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
   art.append(slice);
  }
+ if(mode!=='legacy')art.append(drawSea(el));
+ const objects=el('g',{'data-chart-layer':'objects','pointer-events':'none','aria-hidden':'true'});
+ art.append(objects);
  const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
  const overlays=chartOverlays(puzzle.overlays);
  for(const o of overlays){
   const [cx,cy]=artCenter(o.cells);
-  art.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
+  objects.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
  }
+ if(mode!=='legacy')art.append(drawFrame(el,mode));
  // Island labels use connected land geometry; Start follows its ship.
  const drawLabel=(layout,t,start=false)=>{
    if(!layout)return;
@@ -82,6 +89,9 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    for(const side of ['left','right']){
      const band=parchmentHeading(side,r),x=band.center;
      const heading=el('g',{'data-margin-side':side,'data-margin-index':r,'data-margin-center':x,'data-margin-outer':band.outer,'data-margin-inner':band.inner});
+     // Thin frames leave some fixed-position labels over water: a neutral SVG
+     // backing preserves their contrast without moving the coordinate anchors.
+     if(mode!=='legacy')heading.append(el('circle',{cx:x,cy:y,r:14,fill:'#f3e5c5',opacity:'.92'}));
      // Kein UI-Kreis: asymmetrischer, leicht durchscheinender Tintenklecks.
      const d=`M ${x-8} ${y-4} Q ${x-12} ${y-11} ${x-3} ${y-10} Q ${x+5} ${y-13} ${x+9} ${y-4} Q ${x+13} ${y+3} ${x+5} ${y+9} Q ${x-4} ${y+13} ${x-9} ${y+4} Z`;
      heading.append(el("path",{d,fill:rc.hex,opacity:".57",stroke:rc.hex,"stroke-width":"1.3"}));
