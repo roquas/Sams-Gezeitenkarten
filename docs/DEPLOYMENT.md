@@ -92,3 +92,12 @@ Jeweils null Hexfelder und null Rätseloptionen; die mobile View-Initialisierung
 blieb aus. Header, Konsole und Screenshots liegen im zugehörigen Artefakt
 `live-diagnostics`. Die Diagnose stellt keine Veröffentlichung des Fixes dar;
 die öffentliche Website ändert sich erst nach Hochladen des neuen ZIP-Inhalts.
+
+## Stabilisierung #37 / #39 / #40
+
+Die aktuellen Änderungen und manuellen Hosting-Prüfschritte stehen in
+[PR38-STABILIZATION.md](PR38-STABILIZATION.md). Die Action `Tests` liefert weiter
+`static-deployment` mit dem reinen `dist/Sams-Gezeitenkarten.zip`, Browserbericht
+und echten Vorher-/Nachher-Aufnahmen. Der Export enthält auch die neue dekorative
+Logbuch-SVG; diese muss als `image/svg+xml` erreichbar sein. Die `.js`-Kompatibilität
+und der negative `.mjs`-Kontrolltest bleiben erhalten.

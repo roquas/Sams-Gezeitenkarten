@@ -34,8 +34,10 @@ test('single-click distance toggle, blocked land and unchanged editing work in t
  expect(land.every(n=>n.opacity===.35&&n.dash==='2 4')).toBe(true);
  await page.locator('[data-tool="maybe"]').click();await cell(page,'B3').click();await expect(cell(page,'B3')).not.toContainText('?');
 });
-test('rendered chart, shared Dreifingerinsel and quiet accessible logbook',async({page},info)=>{
+test('rendered chart, shared Dreifingerinsel and quiet accessible logbook',async({page,request},info)=>{
+ const ink=await request.get('assets/ui/logbook-chart.svg');expect(ink.status()).toBe(200);expect(ink.headers()['content-type']).toContain('image/svg+xml');
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ if(info.project.name==='desktop')await page.setViewportSize({width:2560,height:1440});
  await page.goto('./');await expect(page.locator('#map .cell')).toHaveCount(25);
  await page.locator('[data-hour="4"]').click();await shot(page,info,'after-active-hour-land','#map');
  await choose(page,'ankerbuch-tesoro');
@@ -51,9 +53,11 @@ test('rendered chart, shared Dreifingerinsel and quiet accessible logbook',async
  await shot(page,info,'after-logbook','.bordbook');
  await page.emulateMedia({reducedMotion:'no-preference'});
  // Capture the real animation synchronously so its short duration cannot hide a regression.
- const frames=await page.locator('#nextClue').evaluate(button=>{button.click();const a=document.querySelector('.turning-leaf').getAnimations()[0];return {frames:a.effect.getKeyframes(),duration:a.effect.getTiming().duration};});
+ const frames=await page.locator('#nextClue').evaluate(button=>{button.click();const a=document.querySelector('.turning-leaf').getAnimations()[0];a.pause();a.currentTime=80;return {frames:a.effect.getKeyframes(),duration:a.effect.getTiming().duration};});
  expect(frames.duration).toBeLessThanOrEqual(180);
  expect(frames.frames.every(f=>!/(perspective|rotate|scale)/.test(f.transform))).toBe(true);
+ await shot(page,info,'after-turn-midpoint','.bordbook');
+ await page.locator('.turning-leaf').evaluate(n=>n.getAnimations()[0].finish());
  await expect(page.locator('.turning-leaf')).toHaveCount(0);
  await expect(page.locator('#cluePosition')).toHaveText('H2 / H5');
  await shot(page,info,'after-page-turn','.bordbook');
@@ -66,8 +70,12 @@ test('rendered chart, shared Dreifingerinsel and quiet accessible logbook',async
 });
 test('before screenshots from the accepted PR deployment',async({page},info)=>{
  test.skip(!process.env.BASELINE_ROOT,'Baseline export is supplied by CI visual review');
+ if(info.project.name==='desktop')await page.setViewportSize({width:2560,height:1440});
  await page.goto('http://127.0.0.1:4175/gk/pr38/');await expect(page.locator('#map .cell')).toHaveCount(25);
  await page.locator('[data-hour="4"]').click();await shot(page,info,'before-active-hour-land','#map');
  await choose(page,'ankerbuch-tesoro');await shot(page,info,'before-dreifingerinsel','#map');
  await shot(page,info,'before-logbook','.bordbook');
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.locator('#nextClue').evaluate(b=>{b.click();const a=document.querySelector('.turning-leaf').getAnimations()[0];a.pause();a.currentTime=150;});
+ await shot(page,info,'before-turn-midpoint','.bordbook');
 });

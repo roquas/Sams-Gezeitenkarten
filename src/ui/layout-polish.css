@@ -44,7 +44,7 @@
 .bordbook::before{left:calc(2 * var(--left-leaf) - 100%);width:calc(100% - var(--left-leaf));background-position:left center}
 .bordbook::after{left:var(--left-leaf);right:0;background-position:right center}
 .book-spread{position:relative;z-index:1;display:grid;grid-template-columns:var(--left-leaf) minmax(0,1fr);min-height:430px;background:none;border-radius:0}
-.book-heading{position:relative;overflow:hidden;padding:42px 4px 112px;border:0;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;gap:0}
+.book-heading{position:relative;align-self:stretch;overflow:hidden;padding:42px 4px 112px;border:0;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;gap:0}
 .book-vignette{display:block;position:absolute;right:10%;top:18%;bottom:22%;width:360px;height:auto;margin:0;pointer-events:none;background:url('../../assets/ui/logbook-chart.svg') right center/360px 300px no-repeat;opacity:.38;filter:none}
 .book-page{min-width:0;padding:42px 42px 112px 18px;display:flex;flex-direction:column}
 .book-page-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;color:#694b29;font:600 23px/1.4 Georgia,serif}
