@@ -1,3 +1,4 @@
+import {CHART_VIEWBOX as VIEWBOX,headingBand} from './chart-geometry.mjs';
 // Presentation references only; puzzle geometry and rules remain independent.
 export const CHART_BACKGROUND='assets/seekarte/meer-pergament.webp';
 const motifs={
@@ -30,7 +31,7 @@ export function parchmentTiles(){
  });
 }
 
-export const CHART_VIEWBOX='-44 -44 563 473';
+export const CHART_VIEWBOX=VIEWBOX;
 // Visible parchment profiles sampled from the approved 858×789 watercolor.
 // Each pair is the outer inked edge and the first water pixel at a guide axis.
 export const PARCHMENT_PROFILES=Object.freeze({
@@ -43,13 +44,14 @@ function projectAxis(v,source,target){
  const i=v<source[1]?0:v>source[2]?2:1;
  return target[i]+(v-source[i])/(source[i+1]-source[i])*(target[i+1]-target[i]);
 }
-export function parchmentHeading(side,index){
+export function legacyParchmentHeading(side,index){
  const vertical=side==='top'||side==='bottom',reverse=side==='right'||side==='bottom';
  const extent=vertical?385:475,pixels=vertical?789:858;
  const convert=depth=>projectAxis((reverse?pixels-.5-depth:depth+.5)*extent/pixels,vertical?[0,30,355,385]:[0,30,445,475],vertical?FRAME_Y:FRAME_X);
  const [a,b]=PARCHMENT_PROFILES[side][index].map(convert);
  return {outer:a,inner:b,center:(a+b)/2};
 }
+export const parchmentHeading=headingBand;
 const average=side=>PARCHMENT_PROFILES[side].reduce((n,_,i)=>n+parchmentHeading(side,i).center/5,0);
 export const MARGIN_COLUMNS=[average('top'),average('bottom')];
 export const MARGIN_ROWS=[average('left'),average('right')];

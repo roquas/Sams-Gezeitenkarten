@@ -28,14 +28,28 @@ for kind in ['sea','frame']:
   xx=(np.arange(w)+.5)/scale+spec['x'];yy=(np.arange(h)+.5)/scale+spec['y']
   def mask(rect):
    l,t,r,b=rect;return (yy[:,None]>=t)&(yy[:,None]<b)&(xx[None,:]>=l)&(xx[None,:]<r)
-  opening=mask(spec['transparentOpening']);paper=mask(spec['opaqueOuter'])&~mask(spec['opaqueOpening'])
+  def polygon(points):
+   result=np.zeros((h,w),dtype=bool)
+   for i,(ax,ay) in enumerate(points):
+    bx,by=points[(i+1)%len(points)]
+    if ay==by:continue
+    result^=((ay>yy[:,None])!=(by>yy[:,None])) & (xx[None,:]<(bx-ax)*(yy[:,None]-ay)/(by-ay)+ax)
+   return result
+  def union(polys):
+   result=np.zeros((h,w),dtype=bool)
+   for points in polys:result|=polygon(points)
+   return result
+  opening=union(spec['transparent']['polygons'])
+  paper=polygon(spec['opaque']['outer'])&~union(spec['opaque']['subtractUnion'])
+  outside=~polygon(spec['outerEdgeCorridor']['outer'])
+  if np.any(alpha[outside]!=0):errors.append('frame: alpha outside permitted outer edge')
   if np.any(alpha[opening]!=0):errors.append('frame: nonzero alpha in mandatory clear opening')
   if np.any(alpha[paper]!=255):errors.append('frame: non-opaque mandatory parchment band')
   if any(np.any(edge!=0) for edge in [alpha[0],alpha[-1],alpha[:,0],alpha[:,-1]]):errors.append('frame: canvas edge must be transparent')
   rgb=rgba[:,:,:3]/255;linear=np.where(rgb<=.04045,rgb/12.92,((rgb+.055)/1.055)**2.4);luma=linear@np.array([.2126,.7152,.0722])
   info['label_zones']=[]
   for z in spec['headings']:
-   selected=mask(z['safe']);v=luma[selected]
+   selected=mask(z['bounds']);v=luma[selected]
    if np.any(alpha[selected]!=255):errors.append(f"frame: {z['side']} {z['index']+1} not on opaque parchment")
    info['label_zones'].append({'side':z['side'],'index':z['index'],'min_luminance':round(float(v.min()),4),'max_luminance':round(float(v.max()),4)})
 report['errors']=errors

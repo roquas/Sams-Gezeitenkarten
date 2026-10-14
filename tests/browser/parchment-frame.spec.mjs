@@ -24,7 +24,7 @@ test('all variants preserve geometry, coordinates and usable SVG targets',async(
     const ctx=canvas.getContext('2d');const scale=Math.min(563/img.width,473/img.height);
     ctx.drawImage(img,(563-img.width*scale)/2,(473-img.height*scale)/2,img.width*scale,img.height*scale);
     return [...document.querySelectorAll('#map .cell polygon')].flatMap(n=>n.getAttribute('points').split(' ').map(pair=>{
-     const [x,y]=pair.split(',').map(Number);return ctx.getImageData(Math.round(x+44),Math.round(y+44),1,1).data[3];
+     const [x,y]=pair.split(',').map(Number);return ctx.getImageData(Math.round(x+37),Math.round(y+44.5),1,1).data[3];
     }));
    });
    expect(Math.max(...alpha)).toBeLessThanOrEqual(1);
@@ -41,13 +41,13 @@ test('desktop and mobile render without errors, clipping or distortion',async({p
  for(const width of [1440,390,320])for(const mode of ['legacy','raster','modular']){
   await page.setViewportSize({width,height:1100});await page.goto('/?frame='+mode);
   await page.waitForSelector('#map .cell');await page.evaluate(()=>document.fonts.ready);
-  const map=page.locator('#map');expect(await map.getAttribute('viewBox')).toBe('-44 -44 563 473');
+  const map=page.locator('#map');expect(await map.getAttribute('viewBox')).toBe('-37 -44.5 563 473');
   const scale=await map.evaluate(n=>{const m=n.getScreenCTM();return [m.a,m.d];});
   expect(scale[0]).toBeCloseTo(scale[1],6);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await expect(page.locator('[data-margin-side]')).toHaveCount(20);
   const labels=await page.locator('[data-margin-side]').evaluateAll(ns=>ns.map(n=>{const b=n.getBBox();return [b.x,b.y,b.x+b.width,b.y+b.height];}));
-  expect(labels.every(([x,y,r,b])=>x>=-44&&y>=-44&&r<=519&&b<=429)).toBe(true);
+  expect(labels.every(([x,y,r,b])=>x>=-37&&y>=-44.5&&r<=526&&b<=428.5)).toBe(true);
   await testInfo.attach(`${mode}-${width}`,{body:await map.screenshot(),contentType:'image/png'});
  }
  expect(errors).toEqual([]);

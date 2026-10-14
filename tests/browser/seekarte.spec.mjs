@@ -8,7 +8,7 @@ test('watercolor-only chart, perspective rings, quiet start and intact hit areas
  await expect(page.locator('[data-place-ring]')).toHaveCount(8);
  for(const transform of await page.locator('[data-place-ring]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('transform'))))expect(transform).toContain('scale(1 0.707');
  await expect(page.locator('#map [data-id]')).toHaveCount(25);
- await expect(page.locator('#map')).toHaveAttribute('viewBox','-44 -44 563 473');
+ await expect(page.locator('#map')).toHaveAttribute('viewBox','-37 -44.5 563 473');
  const p=await page.locator('#map [data-id="A1"] polygon').getAttribute('points');expect(p).toContain('91.18,74.00');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });

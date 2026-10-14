@@ -1,7 +1,8 @@
+import {CHART_BOUNDS} from './chart-geometry.mjs';
 // Presentation-only experiment. No puzzle, coordinate or input configuration.
 export const FRAME_ASSET='assets/seekarte/pergament-rahmen-prototyp.webp';
 export const SEA_ASSET='assets/seekarte/meer-ohne-objekte-prototyp.webp';
-export const FRAME_BOUNDS=Object.freeze({x:-44,y:-44,width:563,height:473});
+export const FRAME_BOUNDS=Object.freeze(CHART_BOUNDS);
 export function frameMode(search=''){
  const mode=new URLSearchParams(search).get('frame');
  return ['legacy','modular'].includes(mode)?mode:'raster';
@@ -11,8 +12,9 @@ export function frameMode(search=''){
 export function frameTiles(){
  const sx=[0,110,1259,1369],sy=[0,110,1039,1149];
  const corner=110*563/1369;
- const tx=[-44,-44+corner,519-corner,519];
- const ty=[-44,-44+corner,429-corner,429];
+ const {x,y,width,height}=FRAME_BOUNDS;
+ const tx=[x,x+corner,x+width-corner,x+width];
+ const ty=[y,y+corner,y+height-corner,y+height];
  return Array.from({length:9},(_,i)=>{
   const c=i%3,r=Math.floor(i/3);
   return {x:tx[c],y:ty[r],width:tx[c+1]-tx[c],height:ty[r+1]-ty[r],
@@ -23,7 +25,7 @@ export function drawSea(el){
  const sea=el('g',{'data-chart-layer':'sea','pointer-events':'none','aria-hidden':'true'});
  // Keep water beneath the opaque band, never outside its torn outer edge.
  const clip=el('clipPath',{id:'frame-sea-clip',clipPathUnits:'userSpaceOnUse'});
- clip.append(el('rect',{x:-26,y:-26,width:527,height:437}));
+ clip.append(el('rect',{x:FRAME_BOUNDS.x+18,y:FRAME_BOUNDS.y+18,width:527,height:437}));
  sea.append(clip);
  sea.append(el('image',{href:SEA_ASSET,...FRAME_BOUNDS,preserveAspectRatio:'xMidYMid slice','clip-path':'url(#frame-sea-clip)'}));
  return sea;

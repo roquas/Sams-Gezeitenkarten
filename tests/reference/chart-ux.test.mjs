@@ -27,10 +27,12 @@ test('coordinate badges have parchment clearance from outer and inner slice boun
  }
 });
 
-test('each margin heading is centered between the visible painted edge and water',()=>{
+test('each margin heading is centered in its new symmetric geometry band',()=>{
  for(const side of Object.keys(PARCHMENT_PROFILES))for(let i=0;i<5;i++){
   const p=parchmentHeading(side,i);assert.equal(p.center,(p.outer+p.inner)/2);
   assert.ok(Math.abs(p.center-p.outer)>14);assert.ok(Math.abs(p.center-p.inner)>14);
  }
- assert.notEqual(parchmentHeading('left',0).center,parchmentHeading('left',1).center);
+ assert.equal(parchmentHeading('left',0).center,parchmentHeading('left',1).center);
+ assert.equal(parchmentHeading('left',0).center+parchmentHeading('right',0).center,489);
+ assert.equal(parchmentHeading('top',0).center+parchmentHeading('bottom',0).center,384);
 });
