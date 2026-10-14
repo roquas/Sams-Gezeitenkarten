@@ -89,7 +89,7 @@
  .map-actions #toggleRouteNumbers{width:100%}
  .route-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px}
  .route-actions .rail-button{flex:0 0 48px}
- .book-page{padding-right:13%}
+ .book-page{padding-right:17%}
  .bordbook .clue-nav{right:13%}
 }
 @media(max-width:600px){.map-actions .route-actions #verify{flex:0 0 48px}}

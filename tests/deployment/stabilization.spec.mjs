@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {expectClueOnPaper} from './text-layout.mjs';
 const cell=(page,id)=>page.locator(`#map [data-id="${id}"]`);
 async function choose(page,id){
  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
@@ -65,6 +66,7 @@ test('rendered chart, shared Dreifingerinsel and quiet accessible logbook',async
  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#nextClue').click();
  await expect(page.locator('#cluePosition')).toHaveText('H3 / H5');await expect(page.locator('.turning-leaf')).toHaveCount(0);
  expect(await page.locator('#clueViewport').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+ for(let i=0;i<5;i++){await expectClueOnPaper(page);await page.locator('#nextClue').click();}
  await choose(page,'quittung-nombreo');await expect(page.locator('#clueTrack [data-coordinate="D4"]')).toHaveCount(1);
  expect(errors).toEqual([]);
 });

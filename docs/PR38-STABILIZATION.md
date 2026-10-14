@@ -51,7 +51,9 @@ bisherige Ein- und Zweiermotive behalten ihre abgestimmten Darstellungsgrößen.
 Beide Papierseiten verwenden denselben horizontalen Maßstab der vorhandenen
 Buchtextur. Die volle linke Seite setzt sich links außerhalb des sichtbaren
 Buchausschnitts fort; ihre Außenkante wird nicht als kurze Seite eingequetscht.
-Die Falz und die breite rechte Textseite behalten ihre Position. Der Ausschnitt
+Die Falz und die breite rechte Textseite behalten ihre Position. Auf schmalen
+Displays erhält der Hinweis zusätzlich Abstand zum gewellten rechten Papierrand;
+Browserprüfungen messen die tatsächlichen Textzeilen einschließlich WebKit. Der Ausschnitt
 ist begrenzt, ohne horizontales Scrollen zu erzeugen.
 
 Das Steuerrad wird durch `assets/ui/logbook-chart.svg` ersetzt: eine eigens

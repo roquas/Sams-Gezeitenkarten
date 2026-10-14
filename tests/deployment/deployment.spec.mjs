@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {expectClueOnPaper} from './text-layout.mjs';
 import {coordinateTextMarkup} from '../../src/ui/coordinates.mjs';
 const displayed=text=>coordinateTextMarkup(text).replace(/<[^>]*>/g,'');
 const ids=['reference-3.6','test-navigation','quittung-nombreo','ankerbuch-tesoro'];
@@ -38,6 +39,7 @@ for(const id of ids)test(`packaged ${id}: data, graphics, clues, hint, route and
  for(const text of Object.values(data.presentation.clues))await expect(page.locator('#allClues')).toContainText(displayed(text));
  for(const clue of data.logic.clues){
   await expect(page.locator('#clueTrack')).toContainText(displayed(data.presentation.clues[clue.id]));
+  await expectClueOnPaper(page);
   await page.locator('#nextClue').click();
  }
  const loaded=await page.evaluate(async id=>{
