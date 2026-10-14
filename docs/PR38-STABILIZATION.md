@@ -30,8 +30,8 @@ Spielstand einschließlich Overlay. Rätsel behalten ihre getrennten Speicherkey
 ### Land und geografische Referenzen ([#40](https://github.com/roquas/Sams-Gezeitenkarten/issues/40))
 
 Gesperrte Felder haben keine aktive Stundenkante. Ihre transparente Umrandung
-verwendet 0,85 SVG-Einheiten, Deckkraft 0,35 und ein zurückhaltendes Strichmuster
-`2 4`. Wasserfelder und deren Stundenkanten bleiben unverändert. Befahrbarkeit
+verwendet 1,05 SVG-Einheiten, Deckkraft 0,62 und ein zurückhaltendes Strichmuster
+`4 3`. Wasserfelder und deren Stundenkanten bleiben unverändert. Befahrbarkeit
 kommt ausschließlich aus den Rätseldaten, niemals aus der Illustration.
 
 „Die Quittung von Nombreo“, H1, nennt nun **Tintenriff (D4)**. Die Oberfläche
@@ -118,3 +118,32 @@ neuen harten Schema- oder Solverbedingungen.
 Die Veröffentlichung erfolgt durch diesen Upload. Ein grüner PR-Lauf verändert
 keine Dateien auf Uberspace. Issues bleiben bis zur visuellen Abnahme offen;
 [PR #38](https://github.com/roquas/Sams-Gezeitenkarten/pull/38) bleibt ungemergt.
+
+
+## Gezielte Landhex-Korrektur nach Spieltest (#40)
+
+Die optische Abschwächung in Commit `c1939d09ce226c2eb0f83333073fd9e24d621a6d`
+reduzierte die Landkontur von 1,25/0,72 auf 0,85/0,35 mit kurzen Strichen.
+Die jetzt längeren Striche und höhere Deckkraft erhalten eine erkennbare,
+gegenüber Wasserfeldern ohne Stundenkante zurückgenommene Hexstruktur.
+
+Die Interaktionssperre wurde **nicht** durch diese Darstellung verursacht:
+`if(land)return`, `tabindex=-1` und die allgemeine `blocked.has(id)`-Sperre
+waren bereits beim Übernehmen der Oberfläche in `src/ui/game.mjs` durch
+Commit `778f60df36d0ce3cf05aa4d29168d9ab12253100` enthalten. Commit
+`2bf814753715c1ad55622fdcc0e47a09e34bab91` verschob den Renderer unverändert
+nach `map.mjs`. Die neue Anforderung korrigiert damit eine ältere Einschränkung,
+nicht einen durch die Strichelung verursachten Verlust der SVG-Trefferfläche.
+
+Darstellung, Notizbearbeitung und Befahrbarkeit sind unabhängig:
+- Alle 25 Hexpolygone haben volle transparente Pointer-Trefferflächen.
+- Landnotizen unterstützen alle drei Markierungen, beide Radierer, Undo,
+  Speicherung und Tab/Enter/Leertaste ebenso wie Wassernotizen.
+- Gesperrte Felder bleiben als Route und Abstandsurprung ausgeschlossen.
+- Keine aktive Stundenkante auf Land; keine Änderung an Rätseldaten oder Engine.
+
+`tests/deployment/blocked-hex.spec.mjs` prüft reale Maus-/Touch-Eingaben an
+Mitte und mehreren Innenpositionen, Tastatur, Persistenz, Overlay und Route.
+Die CI rendert Vergleichsbilder aus zwei tatsächlich entpackten ZIPs:
+Baseline `8e3629f` auf Port 4176 und korrigierter Export auf Port 4174.
+Die ältere Vergleichsserie zur Logbuch-Stabilisierung bleibt erhalten.

@@ -32,8 +32,8 @@ test('single-click distance toggle, blocked land and unchanged editing work in t
   await expect(page.locator('.cell:not(.blocked-cell) .active-hour-edge')).toHaveCount(44);
  }
  const land=await page.locator('.blocked-cell polygon').evaluateAll(ns=>ns.map(n=>({opacity:+n.getAttribute('stroke-opacity'),dash:n.getAttribute('stroke-dasharray')})));
- expect(land.every(n=>n.opacity===.35&&n.dash==='2 4')).toBe(true);
- await page.locator('[data-tool="maybe"]').click();await cell(page,'B3').click();await expect(cell(page,'B3')).not.toContainText('?');
+ expect(land.every(n=>n.opacity===.62&&n.dash==='4 3')).toBe(true);
+ await page.locator('[data-tool="maybe"]').click();await cell(page,'B3').click();await expect(cell(page,'B3')).toContainText('?');
 });
 test('rendered chart, shared Dreifingerinsel and quiet accessible logbook',async({page,request},info)=>{
  const ink=await request.get('assets/ui/logbook-chart.svg');expect(ink.status()).toBe(200);expect(ink.headers()['content-type']).toContain('image/svg+xml');

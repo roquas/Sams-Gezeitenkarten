@@ -56,6 +56,14 @@ jobs:
           echo "BASELINE_ROOT=$before" >> "$GITHUB_ENV"
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium webkit
+      - name: Export land-hex baseline before the targeted correction
+        run: |
+          baseline=$(mktemp -d)
+          git archive 8e3629fb73360f5982cc5da7fbc0a05ccd854b44 | tar -x -C "$baseline"
+          python3 "$baseline/scripts/package.py"
+          before=$(mktemp -d)
+          python3 -m zipfile -e "$baseline/dist/Sams-Gezeitenkarten.zip" "$before"
+          echo "LAND_BASELINE_ROOT=$before" >> "$GITHUB_ENV"
       - run: npx playwright test --config playwright.deployment.config.mjs
       - if: always()
         uses: actions/upload-artifact@v4

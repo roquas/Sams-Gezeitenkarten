@@ -60,7 +60,8 @@ function render(){if(state.layer==="all")state.layer=1;
  renderMap();bordbook.render();save();
 }
 function apply(id,first){
- if(blocked.has(id))return;
+ // Notes belong to any hex; only navigation and distance origins require water.
+ if(blocked.has(id)&&(state.tool==="route"||distancePhase(state)==='waiting'))return;
  if(distancePhase(state)==='waiting'){state=chooseDistanceOrigin(state,id);dragging=false;render();return}
  if(state.tool==="clearAll"){const targets=Object.keys(state.marks).filter(k=>k.endsWith(":"+id));if(targets.length){snapshot();targets.forEach(k=>delete state.marks[k]);}state.help=`<div class="notice">Markierungen auf ${pretty(id)} in allen Stunden gelöscht (${targets.length}).</div>`;render();return}
  if(state.tool==="route"){

@@ -127,8 +127,8 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  for(const c of cells){
   const [x,y]=coords(c),m=state.marks[key(state.layer,c.id)],land=blocked.has(c.id);
   const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
-  const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:land?"-1":"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
-  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#765934":"#ece3c1","stroke-width":land?".85":"1.05","stroke-opacity":land?".35":".56",...(land?{"stroke-dasharray":"2 4"}:{}),"stroke-linejoin":"round"}));
+  const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
+  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#765934":"#ece3c1","stroke-width":land?"1.05":"1.05","stroke-opacity":land?".62":".56",...(land?{"stroke-dasharray":"4 3"}:{}),"stroke-linejoin":"round","pointer-events":"all"}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
@@ -164,7 +164,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
     g.append(el("text",{x:cx,y:cy+3.4,"font-size":"11.8","font-weight":"900","text-anchor":"middle",fill:"white",opacity:state.layer===h?1:.72},({no:"×",maybe:"?",yes:"✓"})[mark]));
   }
   // The route is a continuous line only; corner annotations stay unobstructed.
-  g.addEventListener("pointerdown",e=>{if(land)return;e.preventDefault();onPointerDown();try{svg.setPointerCapture(e.pointerId)}catch{};onActivate(c.id,true)});
+  g.addEventListener("pointerdown",e=>{e.preventDefault();onPointerDown();try{svg.setPointerCapture(e.pointerId)}catch{};onActivate(c.id,true)});
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();onActivate(c.id,true)}});
   svg.append(g);
  }
