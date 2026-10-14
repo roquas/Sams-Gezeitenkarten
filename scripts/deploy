@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Deploy the GitHub Actions artifact for the current remote branch tip.
 HOST='roquas@roquas.uber.space'
-REMOTE_ROOT='www/roquas.de/sgz'
+REMOTE_ROOT='www/roquas.de/sgk'
 REPO='roquas/Sams-Gezeitenkarten'
 REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 
@@ -130,6 +130,8 @@ if find "$stage/src" -type f -name '*.mjs' -print -quit | grep -q .; then
   echo 'Fehler: .mjs-Dateien im Deployment-src gefunden.' >&2
   exit 1
 fi
+find "$stage" -type d -exec chmod 775 {} +
+find "$stage" -type f -exec chmod 644 {} +
 mv -- "$stage" "$target"
 stage=''
 printf 'Bereitgestellt: %s\n' "$target"
