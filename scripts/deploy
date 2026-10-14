@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Deploy the already-built static distribution from the repository root.
+HOST='roquas@roquas.uber.space'
+REMOTE_ROOT='www/roquas.de/sgz'
+REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+ZIP="$REPO_ROOT/dist/Sams-Gezeitenkarten.zip"
+
+usage() {
+  echo "Aufruf: ./scripts/deploy <name> (z. B. ./scripts/deploy pr40)" >&2
+  exit 2
+}
+
+[[ $# -eq 1 ]] || usage
+NAME=$1
+[[ "$NAME" =~ ^[a-zA-Z][a-zA-Z0-9_-]*$ ]] || { echo 'Ungültiger Versionsname.' >&2; exit 2; }
+[[ -f "$ZIP" && -r "$ZIP" ]] || { echo "Deployment-ZIP fehlt: $ZIP" >&2; exit 2; }
+unzip -tq "$ZIP" >/dev/null || { echo "Deployment-ZIP ist beschädigt: $ZIP" >&2; exit 1; }
+
+# The upload is temporary. A published version is never overwritten.
+UPLOAD=$(ssh -o BatchMode=yes "$HOST" "mkdir -p ~/$REMOTE_ROOT && mktemp ~/$REMOTE_ROOT/.upload-XXXXXXXX.zip")
+cleanup() { ssh -o BatchMode=yes "$HOST" "rm -f '$UPLOAD'" >/dev/null 2>&1 || true; }
+trap cleanup EXIT
+scp -q -o BatchMode=yes "$ZIP" "$HOST:$UPLOAD"
+
+ssh -o BatchMode=yes "$HOST" "bash -s -- '$NAME' '$UPLOAD' '$REMOTE_ROOT'" <<'REMOTE'
+set -euo pipefail
+name=$1
+upload=$2
+root="$HOME/$3"
+cd "$root"
+command -v unzip >/dev/null || { echo 'Fehler: unzip fehlt auf dem Server.' >&2; exit 1; }
+
+# Atomic directory creation prevents two simultaneous deploys from choosing
+# the same version number.
+if ! mkdir .deploy-lock 2>/dev/null; then
+  echo 'Ein anderes Deployment läuft bereits (.deploy-lock vorhanden).' >&2
+  exit 1
+fi
+stage=''
+finish() {
+  if [[ -n "$stage" && -d "$stage" ]]; then rm -rf -- "$stage"; fi
+  rmdir .deploy-lock 2>/dev/null || true
+}
+trap finish EXIT
+
+max=0
+shopt -s nullglob
+for path in "$name"-[0-9][0-9][0-9]*; do
+  [[ -d "$path" ]] || continue
+  suffix=${path#"$name"-}
+  [[ "$suffix" =~ ^[0-9]+$ ]] || continue
+  number=$((10#$suffix))
+  if (( number > max )); then max=$number; fi
+done
+next=$((max+1))
+printf -v target '%s-%03d' "$name" "$next"
+[[ ! -e "$target" ]] || { echo "Ziel existiert bereits: $target" >&2; exit 1; }
+
+stage=$(mktemp -d './.deploy-stage-XXXXXXXX')
+unzip -q "$upload" -d "$stage"
+
+# Allow one enclosing ZIP directory, but publish index.html at the URL root.
+if [[ ! -f "$stage/index.html" ]]; then
+  entries=("$stage"/*)
+  if [[ ${#entries[@]} -eq 1 && -d "${entries[0]}" && -f "${entries[0]}/index.html" ]]; then
+    inner=${entries[0]}
+    mv "$inner" "$stage-content"
+    rmdir "$stage"
+    stage="$stage-content"
+  fi
+fi
+for required in index.html src puzzles assets; do
+  [[ -e "$stage/$required" ]] || { echo "ZIP unvollständig: $required fehlt" >&2; exit 1; }
+done
+if find "$stage/src" -type f -name '*.mjs' -print -quit | grep -q .; then
+  echo 'Fehler: .mjs-Dateien im Deployment-src gefunden.' >&2
+  exit 1
+fi
+mv -- "$stage" "$target"
+stage=''
+printf 'Bereitgestellt: %s\n' "$target"
+printf 'Verzeichnis: %s/%s\n' "$root" "$target"
+REMOTE
