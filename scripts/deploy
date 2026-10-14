@@ -1,22 +1,48 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Deploy the already-built static distribution from the repository root.
+# Deploy the GitHub Actions artifact for the current remote branch tip.
 HOST='roquas@roquas.uber.space'
 REMOTE_ROOT='www/roquas.de/sgz'
+REPO='roquas/Sams-Gezeitenkarten'
 REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
-ZIP="$REPO_ROOT/dist/Sams-Gezeitenkarten.zip"
 
 usage() {
   echo "Aufruf: ./scripts/deploy <name> (z. B. ./scripts/deploy pr40)" >&2
   exit 2
 }
-
 [[ $# -eq 1 ]] || usage
 NAME=$1
 [[ "$NAME" =~ ^[a-zA-Z][a-zA-Z0-9_-]*$ ]] || { echo 'Ungültiger Versionsname.' >&2; exit 2; }
-[[ -f "$ZIP" && -r "$ZIP" ]] || { echo "Deployment-ZIP fehlt: $ZIP" >&2; exit 2; }
-unzip -tq "$ZIP" >/dev/null || { echo "Deployment-ZIP ist beschädigt: $ZIP" >&2; exit 1; }
+command -v gh >/dev/null || { echo 'GitHub CLI fehlt (brew install gh; gh auth login).' >&2; exit 1; }
+command -v unzip >/dev/null || { echo 'unzip fehlt.' >&2; exit 1; }
+
+BRANCH="$(git -C "$REPO_ROOT" symbolic-ref --quiet --short HEAD)" || {
+  echo 'Kein lokaler Branch ausgecheckt. Bitte Branch auswählen.' >&2; exit 1;
+}
+# Read the remote branch, not the local checkout. No git pull is necessary.
+SHA="$(gh api "repos/$REPO/branches/$BRANCH" --jq '.commit.sha')" || {
+  echo "Remote-Branch nicht gefunden: $BRANCH" >&2; exit 1;
+}
+RUN_ID="$(gh run list --repo "$REPO" --workflow tests.yml --commit "$SHA" --status success --limit 30 --json databaseId --jq '.[0].databaseId // empty')" || exit 1
+[[ -n "$RUN_ID" ]] || {
+  echo "Noch kein erfolgreicher Tests-Workflow für $BRANCH ($SHA)." >&2
+  echo 'Bitte warten, bis GitHub Actions erfolgreich abgeschlossen ist.' >&2
+  exit 1
+}
+echo "Branch: $BRANCH"
+echo "Commit: $SHA"
+echo "Erfolgreicher Workflow-Lauf: $RUN_ID"
+
+TEMP_DIR="$(mktemp -d)"
+cleanup_local() { rm -rf -- "$TEMP_DIR"; }
+trap cleanup_local EXIT
+gh run download "$RUN_ID" --repo "$REPO" --name static-deployment --dir "$TEMP_DIR"
+ZIP="$TEMP_DIR/dist/Sams-Gezeitenkarten.zip"
+[[ -f "$ZIP" ]] || {
+  echo "Deployment-ZIP fehlt im Artefakt: dist/Sams-Gezeitenkarten.zip" >&2; exit 1;
+}
+unzip -tq "$ZIP" >/dev/null || { echo 'Deployment-ZIP ist beschädigt.' >&2; exit 1; }
 
 # The upload is temporary. A published version is never overwritten.
 UPLOAD=$(ssh -o BatchMode=yes "$HOST" "mkdir -p ~/$REMOTE_ROOT && mktemp ~/$REMOTE_ROOT/.upload-XXXXXXXX.zip")
