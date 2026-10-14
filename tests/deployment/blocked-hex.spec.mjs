@@ -51,7 +51,7 @@ test('blocked hex keyboard access and visible subordinate outlines',async({page}
  const land=page.locator('.blocked-cell polygon');await expect(land).toHaveCount(3);
  for(const polygon of await land.all()){
   await expect(polygon).toHaveAttribute('pointer-events','all');await expect(polygon).toHaveAttribute('fill','transparent');
-  await expect(polygon).toHaveAttribute('stroke-width','1.05');await expect(polygon).toHaveAttribute('stroke-opacity','.62');await expect(polygon).toHaveAttribute('stroke-dasharray','4 3');
+  await expect(polygon).toHaveAttribute('stroke','#d6c59a');await expect(polygon).toHaveAttribute('stroke-width','1.05');await expect(polygon).toHaveAttribute('stroke-opacity','.62');await expect(polygon).toHaveAttribute('stroke-dasharray','4 3');
  }
  await page.locator('[data-hour="4"]').click();await picture(page,info,'after-landhex');
  if(process.env.LAND_BASELINE_ROOT){

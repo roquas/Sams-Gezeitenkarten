@@ -124,7 +124,9 @@ keine Dateien auf Uberspace. Issues bleiben bis zur visuellen Abnahme offen;
 
 Die optische Abschwächung in Commit `c1939d09ce226c2eb0f83333073fd9e24d621a6d`
 reduzierte die Landkontur von 1,25/0,72 auf 0,85/0,35 mit kurzen Strichen.
-Die jetzt längeren Striche und höhere Deckkraft erhalten eine erkennbare,
+Der Browservergleich zeigte, dass Braun auf dunklem Wasser weiterhin zu wenig
+Kontrast bot. Der gedämpfte Pergamentton `#d6c59a`, längere Striche und höhere
+Deckkraft erhalten eine erkennbare,
 gegenüber Wasserfeldern ohne Stundenkante zurückgenommene Hexstruktur.
 
 Die Interaktionssperre wurde **nicht** durch diese Darstellung verursacht:
