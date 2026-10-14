@@ -1,5 +1,9 @@
 # Eigenständiger Pergamentrahmen – Architekturprototyp
 
+> Historischer Vergleich. Die verbindliche technische Vorbereitung für #49 steht
+> in [SEEKARTEN-BASISASSETS-PHASE1.md](SEEKARTEN-BASISASSETS-PHASE1.md).
+> Der schmale Rahmen hier erfüllt die neue Vorgabe „alle Koordinaten auf Pergament“ nicht.
+
 Basis: `main` / `4d9913c68ec53e293ba4a7ace8da5880bb951181`. Ausschließlich Branch
 `experiment/parchment-frame`. Neue Gestaltungsentscheidung, kein Regressionsfix
 für #40. Die Bibliothekserweiterung aus #45 bleibt separat.
