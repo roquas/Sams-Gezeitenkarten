@@ -24,14 +24,40 @@ BRANCH="$(git -C "$REPO_ROOT" symbolic-ref --quiet --short HEAD)" || {
 SHA="$(gh api "repos/$REPO/branches/$BRANCH" --jq '.commit.sha')" || {
   echo "Remote-Branch nicht gefunden: $BRANCH" >&2; exit 1;
 }
-RUN_ID="$(gh run list --repo "$REPO" --workflow tests.yml --commit "$SHA" --status success --limit 30 --json databaseId --jq '.[0].databaseId // empty')" || exit 1
+# Prefer a successful run for the exact remote commit. If only this deployment
+# script changed afterward, reuse the previously tested application artifact.
+RUN_ID=''
+BUILT_SHA=''
+RUNS="$(gh run list --repo "$REPO" --branch "$BRANCH" --workflow tests.yml --status success --limit 50 --json databaseId,headSha --jq '.[] | [.databaseId, .headSha] | @tsv')" || exit 1
+while IFS=$'\t' read -r candidate_id candidate_sha; do
+  [[ -n "$candidate_id" && -n "$candidate_sha" ]] || continue
+  if [[ "$candidate_sha" == "$SHA" ]]; then
+    RUN_ID=$candidate_id
+    BUILT_SHA=$candidate_sha
+    break
+  fi
+  # GitHub compare must show that the tested commit is an ancestor of HEAD.
+  # Every intervening change must be exclusively to this deployment script.
+  if ! changes="$(gh api "repos/$REPO/compare/$candidate_sha...$SHA" --jq '.status, (.files[].filename)' 2>/dev/null)"; then
+    continue
+  fi
+  status=${changes%%$'\n'*}
+  [[ "$status" == ahead ]] || continue
+  paths=${changes#*$'\n'}
+  [[ "$paths" == scripts/deploy ]] || continue
+  RUN_ID=$candidate_id
+  BUILT_SHA=$candidate_sha
+  break
+done <<< "$RUNS"
+
 [[ -n "$RUN_ID" ]] || {
-  echo "Noch kein erfolgreicher Tests-Workflow für $BRANCH ($SHA)." >&2
-  echo 'Bitte warten, bis GitHub Actions erfolgreich abgeschlossen ist.' >&2
+  echo "Kein passendes erfolgreich getestetes Deployment für $BRANCH ($SHA)." >&2
+  echo 'Bitte GitHub Actions abwarten. Änderungen am Spielcode dürfen nicht übersprungen werden.' >&2
   exit 1
 }
 echo "Branch: $BRANCH"
-echo "Commit: $SHA"
+echo "Remote-Commit: $SHA"
+echo "Getesteter Build-Commit: $BUILT_SHA"
 echo "Erfolgreicher Workflow-Lauf: $RUN_ID"
 
 TEMP_DIR="$(mktemp -d)"
