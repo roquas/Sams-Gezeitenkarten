@@ -36,6 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: python3 tests/test_package.py
@@ -45,6 +46,14 @@ jobs:
           site=$(mktemp -d)
           python3 -m zipfile -e dist/Sams-Gezeitenkarten.zip "$site"
           echo "DEPLOY_ROOT=$site" >> "$GITHUB_ENV"
+      - name: Export accepted baseline for before/after browser screenshots
+        run: |
+          baseline=$(mktemp -d)
+          git archive 6479400974e7fe056aaefd39e6f8d1599b296a1f | tar -x -C "$baseline"
+          python3 "$baseline/scripts/package.py"
+          before=$(mktemp -d)
+          python3 -m zipfile -e "$baseline/dist/Sams-Gezeitenkarten.zip" "$before"
+          echo "BASELINE_ROOT=$before" >> "$GITHUB_ENV"
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium webkit
       - run: npx playwright test --config playwright.deployment.config.mjs

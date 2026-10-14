@@ -114,24 +114,14 @@
         "asset": "insel-zweier-01.png",
         "cells": [
           "B3",
-          "C3"
+          "C3",
+          "D3"
         ],
-        "w": 144,
-        "h": 124,
+        "w": 246,
+        "h": 112,
         "dx": 0,
         "dy": 0,
         "opacity": 0.88
-      },
-      {
-        "asset": "insel-einzeln-02.png",
-        "cells": [
-          "D3"
-        ],
-        "w": 76,
-        "h": 76,
-        "dx": 0,
-        "dy": 0,
-        "opacity": 0.84
       },
       {
         "asset": "insel-einzeln-01.png",

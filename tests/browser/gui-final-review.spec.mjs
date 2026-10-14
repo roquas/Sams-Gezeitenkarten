@@ -23,12 +23,13 @@ test('distance-two notes, both erasers, route and undo retain the independent ov
 test('keyboard origin changes, cancelled selection, off and reset preserve editing semantics',async({page})=>{
  const radar=page.locator('#toggleDistances');await radar.focus();await page.keyboard.press('Enter');
  await cell(page,'C1').focus();await page.keyboard.press('Enter');expect((await state(page)).marks).toEqual({});
- await radar.click();await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(overlay(page)).toHaveAttribute('data-distance-origin','C1');
+ await radar.click();await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(overlay(page)).toHaveCount(0);
+ await radar.click();await expect(radar).toHaveAttribute('data-distance-state','waiting');
  await cell(page,'B3').click();await expect(radar).toHaveAttribute('data-distance-state','waiting');
- await page.locator('[data-tool="no"]').click();await expect(radar).toHaveAttribute('data-distance-state','showing');await expect(overlay(page)).toHaveAttribute('data-distance-origin','C1');
+ await page.locator('[data-tool="no"]').click();await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(overlay(page)).toHaveCount(0);
  await radar.focus();await page.keyboard.press('Space');await cell(page,'A1').focus();await page.keyboard.press('Enter');await expect(overlay(page)).toHaveAttribute('data-distance-origin','A1');
  await expect(page.locator('[data-distance-cell="C1"]')).toHaveText('2');expect((await state(page)).marks).toEqual({});
- await radar.click();await radar.click();await expect(overlay(page)).toHaveCount(0);await expect(radar).toHaveAttribute('data-distance-state','inactive');
+ await radar.click();await expect(overlay(page)).toHaveCount(0);await expect(radar).toHaveAttribute('data-distance-state','inactive');
  await radar.click();await page.locator('[data-tool="maybe"]').click();await cell(page,'A2').click();expect((await state(page)).marks['1:A2']).toBe('maybe');await expect(overlay(page)).toHaveCount(0);
  await radar.click();await cell(page,'C1').click();page.once('dialog',d=>d.accept());await page.locator('#reset').evaluate(el=>el.click());await expect(overlay(page)).toHaveCount(0);expect((await state(page)).distanceOrigin).toBeNull();
 });

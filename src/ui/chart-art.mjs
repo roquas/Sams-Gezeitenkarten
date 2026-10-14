@@ -6,7 +6,8 @@ export function chartOverlays(overlays){
  return overlays.filter(o=>o.asset!=='krabbe-01.png').map(o=>{
   const motif=motifs[o.asset];
   if(!motif)throw Error('Unmapped chart motif: '+o.asset);
-  return {...o,...motif,asset:'assets/seekarte/'+motif.asset};
+  const extent=o.cells.length>2?{w:o.w,h:o.h,dx:o.dx,dy:o.dy}:{};
+  return {...o,...motif,...extent,asset:'assets/seekarte/'+motif.asset};
  });
 }
 const FRAME_X=[-44,36,439,519],FRAME_Y=[-44,30,355,429];

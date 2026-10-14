@@ -11,20 +11,23 @@ test('distance overlay survives every editing tool without altering notes or rou
   assert.deepEqual(s.marks,{});assert.deepEqual(s.route,[puzzle.start]);
  }
 });
-test('origin selection keeps the previous overlay until replaced; second radar press turns it off',()=>{
+test('one radar press clears a visible overlay; next press starts a fresh selection',()=>{
  let s=chooseDistanceOrigin(toggleDistance(initialState(puzzle)),'C1');
- const previous=structuredClone(s);s=toggleDistance(s);assert.equal(distancePhase(s),'waiting');assert.equal(s.distanceOrigin,'C1');assert.equal(previous.distanceSelecting,false);
+ const previous=structuredClone(s);s=toggleDistance(s);assert.equal(distancePhase(s),'inactive');assert.equal(s.distanceOrigin,null);assert.equal(previous.distanceOrigin,'C1');
+ s=toggleDistance(s);assert.equal(distancePhase(s),'waiting');assert.equal(s.distanceOrigin,null);
  s=chooseDistanceOrigin(s,'A1');assert.equal(distancePhase(s),'showing');assert.equal(s.distanceOrigin,'A1');
- s=toggleDistance(toggleDistance(s));assert.equal(distancePhase(s),'inactive');assert.equal(s.distanceOrigin,null);
+ s=toggleDistance(s);assert.equal(distancePhase(s),'inactive');assert.equal(s.distanceOrigin,null);
+ s=toggleDistance(toggleDistance(s));assert.equal(distancePhase(s),'inactive');
 });
 test('choosing an edit tool cancels pending origin selection and retains any existing overlay',()=>{
  let s=selectChartTool(toggleDistance(initialState(puzzle)),'yes');assert.equal(distancePhase(s),'inactive');
- s=chooseDistanceOrigin(toggleDistance(s),'C1');s=selectChartTool(toggleDistance(s),'erase');assert.equal(distancePhase(s),'showing');assert.equal(s.distanceOrigin,'C1');
+ s=chooseDistanceOrigin(toggleDistance(s),'C1');s=selectChartTool(s,'erase');assert.equal(distancePhase(s),'showing');assert.equal(s.distanceOrigin,'C1');
 });
-test('undo and reload preserve an independent overlay; pending reselection is transient',()=>{
- let s=chooseDistanceOrigin(toggleDistance(initialState(puzzle)),'C1');const h=createHistory();h.push(s);s.marks['1:A1']='maybe';s=toggleDistance(s);
- s=h.undo(s);assert.equal(distancePhase(s),'waiting');assert.equal(s.distanceOrigin,'C1');assert.deepEqual(s.marks,{});
+test('undo and reload preserve an independent overlay; an unfinished selection restores without an origin',()=>{
+ let s=chooseDistanceOrigin(toggleDistance(initialState(puzzle)),'C1');const h=createHistory();h.push(s);s.marks['1:A1']='maybe';
+ s=h.undo(s);assert.equal(distancePhase(s),'showing');assert.equal(s.distanceOrigin,'C1');assert.deepEqual(s.marks,{});
  s=restoreState(puzzle,s);assert.equal(distancePhase(s),'showing');assert.equal(s.distanceSelecting,false);assert.equal(s.distanceOrigin,'C1');
+ s=toggleDistance(toggleDistance(s));s=restoreState(puzzle,s);assert.equal(distancePhase(s),'waiting');assert.equal(s.distanceOrigin,null);
 });
 test('reset and another puzzle storage key start with no origin or overlay',()=>{
  const data=new Map(),storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};

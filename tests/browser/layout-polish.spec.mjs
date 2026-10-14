@@ -23,7 +23,7 @@ test('instrument placement, two mobile rows, generous hit areas and compact rout
  await page.locator('#routeBack').focus();await page.keyboard.press('Enter');await expect(page.locator('#routeBack')).toBeDisabled();
  await page.locator('[data-tool="yes"]').click();await expect(page.locator('#routeTool')).toHaveAttribute('aria-pressed','false');
 });
-test('one book composition preserves both covers, wheel leaf, heading and clue navigation',async({page})=>{
+test('cropped full-size left page preserves heading, text space and clue navigation',async({page})=>{
  for(const width of [320,390,620,1440]){
   await page.setViewportSize({width,height:1000});
   await expect(page.locator('.book-vignette')).toBeVisible();
@@ -33,6 +33,10 @@ test('one book composition preserves both covers, wheel leaf, heading and clue n
   expect(left.width/b.width).toBeGreaterThan(.1);expect(left.width/b.width).toBeLessThan(.2);expect(right.width/b.width).toBeGreaterThan(.8);
   const images=await page.locator('.bordbook').evaluate(el=>['::before','::after'].map(p=>({background:getComputedStyle(el,p).backgroundImage,position:getComputedStyle(el,p).backgroundPosition})));
   expect(images.every(p=>p.background.includes('open-bordbook.webp'))).toBe(true);expect(images[0].position).not.toBe(images[1].position);
+  const leaves=await page.locator('.bordbook').evaluate(el=>['::before','::after'].map(p=>({width:parseFloat(getComputedStyle(el,p).width),left:parseFloat(getComputedStyle(el,p).left)})));
+  expect(leaves[0].width).toBeCloseTo(leaves[1].width,0);expect(leaves[0].left).toBeLessThan(0);
+  await expect(page.locator('.book-heading')).toHaveAttribute('aria-hidden','true');
+  expect(await page.locator('.book-vignette').evaluate(el=>getComputedStyle(el).backgroundImage)).toContain('logbook-chart.svg');
  }
  await page.locator('#nextClue').click();await expect(page.locator('#cluePosition')).toHaveText('II / VII');
  await page.locator('#clueViewport').focus();await page.keyboard.press('ArrowRight');await expect(page.locator('#cluePosition')).toHaveText('III / VII');

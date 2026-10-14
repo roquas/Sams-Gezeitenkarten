@@ -46,4 +46,4 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    ThreadingHTTPServer(('127.0.0.1', 4174), Handler).serve_forever()
+    ThreadingHTTPServer(('127.0.0.1', int(os.environ.get('DEPLOY_PORT', '4174'))), Handler).serve_forever()

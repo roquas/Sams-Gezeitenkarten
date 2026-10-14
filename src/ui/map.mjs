@@ -46,7 +46,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  const overlays=chartOverlays(puzzle.overlays);
  for(const o of overlays){
   const [cx,cy]=artCenter(o.cells);
-  art.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
+  art.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,"data-art-cells":o.cells.join(" "),preserveAspectRatio:o.cells.length>2?"none":"xMidYMid meet","pointer-events":"none"}));
  }
  // Island labels use connected land geometry; Start follows its ship.
  const drawLabel=(layout,t,start=false)=>{
@@ -128,7 +128,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   const [x,y]=coords(c),m=state.marks[key(state.layer,c.id)],land=blocked.has(c.id);
   const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
   const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:land?"-1":"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
-  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#765934":"#ece3c1","stroke-width":land?"1.25":"1.05","stroke-opacity":land?".72":".56","stroke-linejoin":"round"}));
+  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#765934":"#ece3c1","stroke-width":land?".85":"1.05","stroke-opacity":land?".35":".56",...(land?{"stroke-dasharray":"2 4"}:{}),"stroke-linejoin":"round"}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
@@ -140,12 +140,12 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   }
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
   // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
-  if(Number.isInteger(state.layer) && state.layer>=1 && state.layer<=puzzle.steps){
+  if(!land && Number.isInteger(state.layer) && state.layer>=1 && state.layer<=puzzle.steps){
     const angle=(state.layer-2)*Math.PI/3;
     const ax=x+36*Math.cos(angle-Math.PI/6),ay=y+36*Math.sin(angle-Math.PI/6);
     const bx=x+36*Math.cos(angle+Math.PI/6),by=y+36*Math.sin(angle+Math.PI/6);
-    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"1.9",opacity:".64","stroke-linecap":"round"}));
-    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":".8",opacity:".5","stroke-linecap":"round"}));
+    g.append(el("path",{class:"active-hour-edge",d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"1.9",opacity:".64","stroke-linecap":"round"}));
+    g.append(el("path",{class:"active-hour-edge",d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":".8",opacity:".5","stroke-linecap":"round"}));
   }
   // Active layer is encoded by the field's central fill and a small center glyph.
   if(m){

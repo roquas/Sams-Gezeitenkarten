@@ -28,8 +28,8 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
    const number=document.createElement('span');number.className='leaf-number';number.textContent=previous[0];
    const text=document.createElement('p');text.innerHTML=markup(previous[1]);turning.append(number,text);
    $('clueViewport').append(turning);leaf=turning;
-   const forward=delta>0;turning.style.transformOrigin=forward?'left center':'right center';
-   animation=turning.animate([{transform:'perspective(900px) rotateY(0deg)',opacity:1},{transform:`perspective(900px) rotateY(${forward?-82:82}deg)`,opacity:0}],{duration:300,easing:'ease-in-out'});
+   const forward=delta>0;
+   animation=turning.animate([{transform:'translateX(0)',opacity:1},{transform:`translateX(${forward?-5:5}px)`,opacity:0}],{duration:160,easing:'ease-out'});
    animation.finished.then(()=>turning.remove(),()=>turning.remove());
   }
  }
