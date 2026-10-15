@@ -15,13 +15,13 @@ const region=(ps,attrs)=>ps.map(p=>polygon(p,attrs)).join('\n');
 const rect=(r,a)=>polygon(rectPolygon(r),a);
 const metadata='<metadata id="chart-contract">'+json.replaceAll('&','&amp;').replaceAll('<','&lt;')+'</metadata>';
 const defs=`<defs><mask id="paper" maskUnits="userSpaceOnUse" x="${s.x}" y="${s.y}" width="${s.width}" height="${s.height}">${rect(s.opaqueOuter,'fill="white"')}${region(EDGE_LIMIT,'fill="black"')}</mask></defs>`;
-await writeFile(`${dir}/frame-mask.svg`,root+'<title>Technical alpha reference v2; no artwork</title>'+metadata+defs+rect(s.opaqueOuter,'fill="white" mask="url(#paper)"')+'</svg>\n');
-let parts=[root,'<title>Seekarten-Geometrie v2 — technische Führung, keine Illustration</title>',rect([s.x,s.y,s.x+s.width,s.y+s.height],'fill="#f4f1e9"'),rect(s.opaqueOuter,'fill="#ead9ae"'),region(EDGE_LIMIT,'fill="#ed9c46"'),region(TRANSPARENT,'fill="#c4e9f2"')];
+await writeFile(`${dir}/frame-mask.svg`,root+'<title>Technical alpha reference v3; no artwork</title>'+metadata+defs+rect(s.opaqueOuter,'fill="white" mask="url(#paper)"')+'</svg>\n');
+let parts=[root,'<title>Seekarten-Geometrie v3 — technische Führung, keine Illustration</title>',rect([s.x,s.y,s.x+s.width,s.y+s.height],'fill="#f4f1e9"'),rect(s.opaqueOuter,'fill="#ead9ae"'),region(EDGE_LIMIT,'fill="#ed9c46"'),region(TRANSPARENT,'fill="#c4e9f2"')];
 parts.push(region(PROTECTION,'fill="none" stroke="#187b80" stroke-width=".8" stroke-dasharray="2 1"'));
 for(const h of HEXES)parts.push(polygon(h.polygon,'fill="#55b8c1" fill-opacity=".14" stroke="#236b75" stroke-width=".6"'),`<text x="${h.center[0]}" y="${h.center[1]+2}" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#236b75">${h.id}</text>`);
 for(const z of headingZones())parts.push(rect(z.safe,'fill="#f5d255" fill-opacity=".65" stroke="#987b12" stroke-width=".4"'),rect(z.hard,'fill="#cf5975" fill-opacity=".7" stroke="#8e2945" stroke-width=".5"'),rect(z.bounds,'fill="none" stroke="#584d32" stroke-width=".3"'),`<text x="${z.x}" y="${z.y+2}" text-anchor="middle" font-size="6" font-family="sans-serif">${z.side[0].toUpperCase()}${z.index+1}</text>`);
 // Legend is inside the guide only, never part of exported art or alpha reference.
 parts.push('<g font-family="sans-serif" font-size="6" fill="#213e49">');
-for(const [i,t] of ['GEOMETRIE v2 · 2252 × 1892 px','Türkis: Hexe / gestrichelt: Spielschutz','Blau: Alpha 0 · Orange: Kantenkorridor','Rot: Textschutz · Gelb: weicher Abstand','Keine festen Eckflächen · Dekor außerhalb Schutz','SVG-Mitte 244,5 / 192 · Maßstab 4 px/E'].entries())parts.push(`<text x="150" y="${163+i*10}" stroke="#e8f5f7" stroke-width="2" paint-order="stroke">${t}</text>`);
+for(const [i,t] of ['GEOMETRIE v3 · 2252 × 1892 px','Türkis: Hexe / gestrichelt: Spielschutz','Blau: Alpha 0 · Orange: Kantenkorridor','Rot: Textschutz · Gelb: weicher Abstand','Keine festen Eckflächen · Dekor außerhalb Schutz','SVG-Mitte 244,5 / 192 · Maßstab 4 px/E'].entries())parts.push(`<text x="150" y="${163+i*10}" stroke="#e8f5f7" stroke-width="2" paint-order="stroke">${t}</text>`);
 parts.push('</g></svg>');await writeFile(`${dir}/template.svg`,parts.join('\n')+'\n');
-console.log('Generated geometry v2 contract and matching SVG references');
+console.log('Generated geometry v3 contract and matching SVG references');
