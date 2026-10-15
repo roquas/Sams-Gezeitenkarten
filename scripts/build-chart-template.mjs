@@ -6,7 +6,7 @@ const contract=chartContract();
 // Preserve complete numeric precision, but keep coordinate pairs on one line.
 // Structural groups in chartContract make the file navigable for humans.
 export const prettyContract=(object)=>JSON.stringify(object,null,2)
- .replace(/\\[\\s*([-+0-9.eE]+),\\s*([-+0-9.eE]+)\\s*\\]/g,'[$1, $2]');
+ .replace(/\[\s*([-+0-9.eE]+),\s*([-+0-9.eE]+)\s*\]/g,'[$1, $2]');
 const json=prettyContract(contract);
 await writeFile(`${dir}/contract.json`,json+'\n');
 const root=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${s.viewBox}" width="${s.pixelWidth}" height="${s.pixelHeight}">`;
