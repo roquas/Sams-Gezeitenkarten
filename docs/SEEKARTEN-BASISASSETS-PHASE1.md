@@ -58,7 +58,7 @@ Künftige Lösung nach den Photoshop-Tests:
 - [`template.svg`](seekarte-template/template.svg) – **aktuelle v3-Schablone**, keine violetten Ecken, keine referenzrätselabhängigen Rechtecke; direkt auch in Photoshop importierbar.
 - [`contract.json`](seekarte-template/contract.json) – autoritativer, gruppierter v3-Geometrievertrag.
 - [`frame-mask.svg`](seekarte-template/frame-mask.svg) – technische Alpha-Referenz für die vorläufige Pergamentgeometrie.
-- `template.png` ist eine ältere Rasterisierung und darf **nicht** als aktuelle v3-Schablone verwendet werden, solange sie nicht durch Ausführen von `scripts/measure-chart-template.mjs` neu generiert und versioniert wurde.
+- `template.png` (alte v2-Rasterisierung) wurde bewusst **aus dem Branch entfernt**, damit niemand die falsche Schablone verwendet. `template.svg` ist die verbindliche Vorlage; mit `node scripts/measure-chart-template.mjs` lässt sich daraus wieder eine korrekte PNG in 2252 × 1892 px erzeugen.
 - [`measurements.json`](seekarte-template/measurements.json) – ältere Browsermessungen für unveränderte Koordinaten und Viewports; keine gültige v3-Bildfreigabe.
 - [KI-Herstellungsworkflow](SEEKARTEN-RAHMEN-BILD-KI-WORKFLOW.md) – freigegebene gestalterische Referenz und Prompt-Lehren.
 
