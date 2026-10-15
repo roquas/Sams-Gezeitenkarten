@@ -31,11 +31,32 @@ test('SVG alpha reference and JSON use identical union polygons, not an even-odd
  for(const p of EDGE_LIMIT)assert.ok(svg.includes(`d="${polygonPath(p)}" fill="black"`));
  assert.ok(svg.includes('mask="url(#paper)"'));assert.ok(!svg.includes('evenodd'));
 });
-test('illustration set differences exclude gameplay and hard text, including protected parrot',()=>{
- const c=chartContract();assert.equal(c.illustrationZones.length,4);
- for(const z of c.illustrationZones){assert.deepEqual(z.subtractUnion,[...EDGE_LIMIT,...headingZones().map(h=>h.hardPolygon)]);assert.equal(z.operation,'difference');}
- assert.match(c.illustrationZones[2].essentialParts,/Entire essential silhouette/);
+test('universal frame excludes puzzle-specific overlays and fixed decoration corners',()=>{
+ const c=chartContract();
+ assert.equal(c.geometry.hexes.length,25);
+ assert.equal(c.zones.gameplay.polygons.length,1);
+ assert.equal(c.zones.transparent.polygons.length,1);
+ assert.equal(c.zones.innerEdge.outerUnion.length,1);
+ assert.equal(c.zones.headings.items.length,20);
+ assert.equal(c.zones.headings.type,'coordinate-label-zones');
+ assert.equal(c.assetPolicy.issue,45);
+ assert.equal(c.illustrationZones,undefined);
+ assert.equal(c.freeIllustration,undefined);
+ assert.equal(c.objects,undefined);
+ const source=readFileSync('src/ui/chart-asset-contract.mjs','utf8');
+ assert.doesNotMatch(source,/referencePuzzle|chartOverlays/);
+ const guide=readFileSync('docs/seekarte-template/template.svg','utf8');
+ assert.doesNotMatch(guide,/#9572c3|Violett:|freeMask/);
 });
+test('typed and grouped JSON contract remains independent of reference puzzle',()=>{
+ const c=chartContract();
+ assert.deepEqual(Object.keys(c),['format','geometry','zones','rendering','assetPolicy']);
+ assert.equal(c.format.pixels.width,2252);
+ assert.equal(c.format.pixels.height,1892);
+ assert.equal(c.zones.transparent.type,'polygon-union');
+ assert.deepEqual(c.zones.transparent.polygons,[requireSinglePolygon(TRANSPARENT)]);
+});
+function requireSinglePolygon(polygons){assert.equal(polygons.length,1);return polygons[0];}
 test('prepared renderer has one uniformly scaled image per independent layer',()=>{
  const el=(tag,attrs={})=>({tag,attrs,children:[],append(n){this.children.push(n);}});
  for(const [kind,node] of Object.entries(createChartBaseLayers(el))){assert.equal(node.attrs['pointer-events'],'none');const image=node.children.filter(n=>n.tag==='image');assert.equal(image.length,1);assert.equal(image[0].attrs.href,s[kind]);assert.equal(image[0].attrs.preserveAspectRatio,'xMidYMid meet');assert.equal(image[0].attrs.x,s.x);}
