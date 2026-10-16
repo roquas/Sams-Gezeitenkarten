@@ -15,7 +15,7 @@ export function restoreState(puzzle,value){
  if(next.distanceMode&&cells.has(value.distanceOrigin)&&!rules.blocked.has(value.distanceOrigin))next.distanceOrigin=value.distanceOrigin;
  if(object(value.marks))for(const [key,mark] of Object.entries(value.marks)){
   const [hour,id,...extra]=key.split(':');
-  if(!extra.length&&/^[1-9][0-9]*$/.test(hour)&&Number(hour)<=puzzle.steps&&cells.has(id)&&!rules.blocked.has(id)&&['maybe','yes','no'].includes(mark))next.marks[key]=mark;
+  if(!extra.length&&/^[1-9][0-9]*$/.test(hour)&&Number(hour)<=puzzle.steps&&cells.has(id)&&['maybe','yes','no'].includes(mark))next.marks[key]=mark;
  }
  if(Array.isArray(value.hiddenHours))next.hiddenHours=[...new Set(value.hiddenHours.filter(h=>Number.isInteger(h)&&h>=1&&h<=puzzle.steps))];
  if(Array.isArray(value.doneClues))next.doneClues=[...new Set(value.doneClues.filter(id=>puzzle.clues.some(clue=>clue.id===id)))];
