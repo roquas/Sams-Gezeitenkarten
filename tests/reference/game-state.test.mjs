@@ -25,7 +25,7 @@ test('persisted invalid routes safely reset instead of crashing rendering',()=>{
 });
 test('restore sanitizes notes, settings and transient HTML',()=>{
  const state=restoreState(puzzle,{route:['D4'],layer:0,tool:'unknown',marks:{'0:A1':'yes','1:B3':'yes','2:A1':'maybe','3:E3':'bad'},hiddenHours:[0,1,1,7],doneClues:['I','bad'],help:'<img onerror=bad>',result:'<script>bad</script>'});
- assert.equal(state.layer,1);assert.equal(state.tool,'maybe');assert.deepEqual(state.marks,{'2:A1':'maybe'});assert.deepEqual(state.hiddenHours,[1]);assert.deepEqual(state.doneClues,['I']);assert.equal(state.help,'');assert.equal(state.result,'');
+ assert.equal(state.layer,1);assert.equal(state.tool,'maybe');assert.deepEqual(state.marks,{'1:B3':'yes','2:A1':'maybe'}); // Land is allowed for notes (Issue #40).assert.deepEqual(state.hiddenHours,[1]);assert.deepEqual(state.doneClues,['I']);assert.equal(state.help,'');assert.equal(state.result,'');
 });
 test('storage is isolated per puzzle, reloads without history and tolerates unavailable storage',()=>{
  const data=new Map(),storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};
