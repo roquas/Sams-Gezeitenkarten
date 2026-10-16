@@ -6,7 +6,7 @@ export const SEA_ASSET='assets/seekarte/meer-ohne-objekte-prototyp.webp';
 export const FRAME_BOUNDS=Object.freeze(CHART_BOUNDS);
 export function frameMode(search=''){
  const mode=new URLSearchParams(search).get('frame');
- return ['legacy','modular','final','quiet'].includes(mode)?mode:'raster';
+ return ['legacy','modular','raster','final','quiet'].includes(mode)?mode:'final';
 }
 // Eight slices, no opaque center. Native-image crops retain narrow borders.
 // Corners retain their aspect ratio; only the long edge direction stretches.
@@ -25,12 +25,18 @@ export function frameTiles(){
 export function drawSea(el,mode='raster'){
  const sea=el('g',{'data-chart-layer':'sea','pointer-events':'none','aria-hidden':'true'});
  // Keep water beneath the opaque band, never outside its torn outer edge.
- const clip=el('clipPath',{id:'frame-sea-clip',clipPathUnits:'userSpaceOnUse'});
  const finalAsset=mode==='final'||mode==='quiet';
- const [l,t,r,b]=finalAsset?CHART_ASSET_SPEC.seaClip:[FRAME_BOUNDS.x+18,FRAME_BOUNDS.y+18,FRAME_BOUNDS.x+545,FRAME_BOUNDS.y+455];
- clip.append(el('rect',{x:l,y:t,width:r-l,height:b-t}));
- sea.append(clip);
- sea.append(el('image',{href:finalAsset?CHART_ASSET_SPEC.sea:SEA_ASSET,...FRAME_BOUNDS,preserveAspectRatio:finalAsset?'xMidYMid meet':'xMidYMid slice','clip-path':'url(#frame-sea-clip)'}));
+ if(finalAsset){
+  // The raster frame is fully opaque at every outermost pixel. Keeping the
+  // water at full extent avoids beige holes in deep organic coastal recesses.
+  sea.append(el('image',{href:CHART_ASSET_SPEC.sea,...FRAME_BOUNDS,preserveAspectRatio:'xMidYMid meet'}));
+ }else{
+  // Historical prototype modes retain their original narrow water clipping.
+  const clip=el('clipPath',{id:'frame-sea-clip',clipPathUnits:'userSpaceOnUse'});
+  clip.append(el('rect',{x:FRAME_BOUNDS.x+18,y:FRAME_BOUNDS.y+18,width:527,height:437}));
+  sea.append(clip);
+  sea.append(el('image',{href:SEA_ASSET,...FRAME_BOUNDS,preserveAspectRatio:'xMidYMid slice','clip-path':'url(#frame-sea-clip)'}));
+ }
  return sea;
 }
 export function drawFrame(el,mode){
