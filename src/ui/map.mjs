@@ -68,7 +68,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    const g=el("g",{class:start?"place-label start-label":"place-label island-label",transform:`translate(${x} ${y})`,"data-label-cell":cell,"data-label-cells":layout.cells.join(' '),"pointer-events":"none","aria-hidden":"true"});
    g.append(el("rect",{x:-width/2,y:-height/2,width,height,rx:2,fill:"#f3e5c5",stroke:"#9e7b45","stroke-width":".5",opacity:".62"}));
    g.append(el("image",{href:"assets/ui/paper-grain.webp",x:-width/2+.5,y:-height/2+.5,width:width-1,height:height-1,preserveAspectRatio:"none",opacity:".12"}));
-   const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,serif","font-size":fontSize,"font-weight":"600",fill:start?"#8c3e2c":"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
+   const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,'Times New Roman',serif","font-size":fontSize,"font-weight":"600",fill:start?"#8c3e2c":"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
    g.append(text);clipped.append(g);art.append(clipped);
  };
  for(const place of Object.values(puzzle.places))drawLabel(placeLabelLayout(place.cells,place.name,blocked,byId),place.name);

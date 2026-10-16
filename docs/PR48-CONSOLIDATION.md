@@ -196,3 +196,13 @@ bestehende Label-Lesbarkeitsassertion. Die Diagnose erfasst nun Text,
 Pointer-Einstellung, gesetzte/berechnete Schriftgröße, Textmetriken, verfügbare
 Breite und SVG-Skalierung. Die Mindestgröße elf und `pointer-events:none`
 bleiben unverändert; dieser Fall läuft früh im WebKit-Vorlauf.
+
+Die konkrete Labeldiagnose [38974486450](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38974486450)
+zeigte `pointer-events:none`, aber 10,6916 Einheiten für Tesoro und 10,4056 für
+Klippen bei jeweils nahezu exakt ausgeschöpfter Plakettenbreite. Es handelt
+sich um die Metriken des generischen Serif-Ersatzes bei fehlender Georgia,
+keine fehlerhafte Trefferfläche. Die Labelschrift hat jetzt die explizite
+Fallbackfolge `Georgia, 'Times New Roman', serif`. Georgia bleibt auf
+entsprechend ausgestatteten Geräten unverändert bevorzugt; die Plaketten- und
+Hexgeometrie sowie Assetbytes bleiben gleich. Die Grenze elf und die
+Plaketten-Fit-Prüfungen werden nicht abgesenkt.
