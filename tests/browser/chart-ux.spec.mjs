@@ -59,8 +59,11 @@ test('chart labels sit in parchment, are legible and do not intercept map contro
  await expect(page.locator('#map .place-label')).toHaveCount(3);
  for(const width of [390,1440]){
   await page.setViewportSize({width,height:1000});
-  const labels=await page.locator('#map .place-label').evaluateAll(ns=>ns.map(n=>({events:getComputedStyle(n).pointerEvents,size:Number(n.querySelector('text').getAttribute('font-size'))})));
-  expect(labels.every(l=>l.events==='none'&&l.size>=11)).toBe(true);
+  const labels=await page.locator('#map .place-label').evaluateAll(ns=>ns.map(n=>{
+   const text=n.querySelector('text'),style=getComputedStyle(text);
+   return {text:text.textContent,cell:n.dataset.labelCell,events:getComputedStyle(n).pointerEvents,size:Number(text.getAttribute('font-size')),computed:style.fontSize,family:style.fontFamily,measured:text.getComputedTextLength(),box:text.getBBox().width,available:Number(n.querySelector('rect').getAttribute('width'))-6,scale:text.getScreenCTM().a};
+  }));
+  expect(labels.every(l=>l.events==='none'&&l.size>=11),`viewport ${width}: ${JSON.stringify(labels)}`).toBe(true);
   const bounds=await page.locator('#map .coordinate-guides').evaluate(g=>{const b=g.getBBox();return {x:b.x,y:b.y,width:b.width,height:b.height};});
   expect(bounds.x).toBeGreaterThan(-35);expect(bounds.y).toBeGreaterThan(-35);expect(bounds.x+bounds.width).toBeLessThan(510);expect(bounds.y+bounds.height).toBeLessThan(420);
  }

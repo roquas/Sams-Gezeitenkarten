@@ -57,7 +57,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
       - name: Check frame reload and touch protocols before the full WebKit suite
-        run: npx playwright test --config playwright.webkit.config.mjs --grep "visible frame choice|one mouse or touch drag|mobile swipe turns" --output webkit-smoke-results
+        run: npx playwright test --config playwright.webkit.config.mjs --grep "visible frame choice|one mouse or touch drag|mobile swipe turns|chart labels sit in parchment" --output webkit-smoke-results
       - run: npx playwright test --config playwright.webkit.config.mjs
       - if: failure()
         uses: actions/upload-artifact@v4

@@ -189,3 +189,10 @@ erreichten zwei gleichzeitig laufende native Masken-Zeilenfälle bei 768 Pixeln
 das Budget. WebKit läuft deshalb mit einem Worker, bei unverändertem DPR 2,
 allen Fällen und denselben 30-Sekunden-Grenzen. Das Ergebnis dieser gezielten
 Ressourcenkorrektur ist in den letzten PR-Checks zu verifizieren.
+
+Einzelworker-Diagnose [38973189208](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38973189208):
+Die komplette Desktop-DPR-2-Matrix bestand, anschließend scheiterte eine
+bestehende Label-Lesbarkeitsassertion. Die Diagnose erfasst nun Text,
+Pointer-Einstellung, gesetzte/berechnete Schriftgröße, Textmetriken, verfügbare
+Breite und SVG-Skalierung. Die Mindestgröße elf und `pointer-events:none`
+bleiben unverändert; dieser Fall läuft früh im WebKit-Vorlauf.
