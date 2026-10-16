@@ -111,9 +111,9 @@ bleiben Bestandteil der Rätselauswahl-/Startup-/Landfeldtests; die physische
 Touch-Scroll-/Drag-Interaktion auf Apple-Geräten gehört zusätzlich zur manuellen
 Abnahme. Diese Unterschiede sind kein Nachweis nativer WebKit-Drag-Automation.
 
-Die vollständige WebKit-Suite verteilt die voneinander isolierten Testfälle
-wie Chromium parallel auf zwei Worker. Testtimeouts und Assertions bleiben
-unverändert. Der Chromium-CDP-Pfad ist nach der Extraktion erneut bestanden;
+Die vollständige WebKit-Suite führt die isolierten Testfälle mit einem Worker
+aus, damit die softwaregerenderten DPR-2-Masken nicht um Renderingressourcen
+konkurrieren. Testtimeouts und Assertions bleiben unverändert. Der Chromium-CDP-Pfad ist nach der Extraktion erneut bestanden;
 der DOM-Pfad wurde zusätzlich an der gerenderten Anwendung geprüft.
 
 Die WebKit-CI stoppt nach dem ersten endgültigen Fehler mit rotem Status, damit
@@ -181,3 +181,11 @@ Verpackungstests, 32 Fälle am frisch entpackten ZIP, die betroffenen
 Funktionsregressionen (mit separat grüner Renderingmatrix: sechs Fälle) sowie
 fünf Gesten-/Abstandsprüfungen; die Desktop-Touch-Auslassung bleibt planmäßig.
 Die freigegebenen Assetbytes sind weiterhin unverändert.
+
+[Lauf 38972364262](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38972364262):
+Unit, Assets, Deployment und 219 Chromiumfälle grün; WebKit-Vorlauf elf
+bestanden/eine planmäßige Auslassung ohne Flaky-Ergebnis. In der Vollsuite
+erreichten zwei gleichzeitig laufende native Masken-Zeilenfälle bei 768 Pixeln
+das Budget. WebKit läuft deshalb mit einem Worker, bei unverändertem DPR 2,
+allen Fällen und denselben 30-Sekunden-Grenzen. Das Ergebnis dieser gezielten
+Ressourcenkorrektur ist in den letzten PR-Checks zu verifizieren.
