@@ -1,5 +1,10 @@
 # PR #38: Stabilisierung für die Hosting-Abnahme
 
+Historisches Herkunftsdokument. Für den konsolidierten PR48-Stand gilt
+[PR48-CONSOLIDATION.md](PR48-CONSOLIDATION.md), insbesondere dessen spätere
+Landfeld- und Radarregeln; widersprechende historische Angaben unten sind
+keine aktuellen Akzeptanzkriterien.
+
 Auftrag vom 14. Oktober 2026, auf dem bestehenden Branch
 `feature/puzzle-schema-loader-solver`. Kein Merge und keine Änderungen an `main`.
 Diese Beschreibung ergänzt die historischen Abnahmeberichte; sie überschreibt

@@ -1,7 +1,10 @@
 # Sams-Gezeitenkarten – Spielversion 0.1
 
 Spielbare modulare Fortsetzung von Prototyp 3.6. Der vorhandene Referenzfall
-bleibt derselbe: sechs Etappen auf einer 5×5-Hexkarte mit sieben Hinweisen.
+bleibt erhalten: sechs Etappen auf einer 5×5-Hexkarte mit sieben Hinweisen.
+Unter „Einstellungen“ sind außerdem „Die Quittung von Nombreo“, „Das doppelte
+Ankerbuch“ und ein ausdrücklich gekennzeichneter technischer Testfall auswählbar.
+Spielstände werden pro Rätsel und Datenversion getrennt gespeichert.
 
 ## Starten
 
@@ -58,11 +61,19 @@ Spielstände von 3.6 werden nicht übernommen oder verändert.
 npm ci
 npx playwright install chromium
 npm run test:all
+npx playwright install webkit
+npx playwright test --config playwright.webkit.config.mjs
 ```
 
 Node-Tests prüfen Regeln, Eindeutigkeit des Referenzfalls, Speicherung und Undo.
 Playwright prüft Original 3.6 und Version 0.1 in Desktop- und Mobilansicht.
-GitHub Actions führt beide Testgruppen nach Push und Pull Request aus.
+GitHub Actions prüft Unit-Tests, Rätselvalidierung, Assets, Chromium, WebKit
+und das entpackte Deployment-ZIP bei Pull Requests und Pushes auf main.
+
+Ein direkt verwendbares statisches Paket erzeugt `sh scripts/package.sh` unter
+`dist/Sams-Gezeitenkarten.zip`; dabei werden ES-Module für MIME-kritische
+Webserver nach `.js` umbenannt. Details: [Deployment](docs/DEPLOYMENT.md),
+[Konsolidierung und Sichtprüfung von PR #48](docs/PR48-CONSOLIDATION.md).
 
 ## Aufbau und Entscheidungen
 
@@ -81,7 +92,7 @@ GitHub Actions führt beide Testgruppen nach Push und Pull Request aus.
 - [Umsetzung und Prüfstand 0.1](docs/IMPLEMENTATION-0.1.md)
 - [Anforderungen](docs/REQUIREMENTS.md), [Entscheidungen](docs/DECISIONS.md)
 
-Diese Version enthält einen festen Referenzfall. Generator, Tagesrätsel, Highscores
+Diese Version lädt vier feste Rätsel aus einem statischen JSON-Manifest. Generator, Tagesrätsel, Highscores
 und Backend gehören zu späteren Schritten. Die Darstellung ist auf die bestehende
 5×5-Karte und sechs Stunden ausgelegt; die Engine liest Sperrfelder und Orte aus
 Falldaten. Der Quellcode ist öffentlich einsehbar. Ohne ausdrückliche Lizenz wird keine allgemeine Erlaubnis zur Weiterverwendung oder kommerziellen Verwertung erteilt.

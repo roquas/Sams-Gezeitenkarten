@@ -30,8 +30,9 @@ Verzeichnis **außerhalb des Checkouts** und startet dort den HTTP-Server für
 360px-Smartphone-Chromium und iPad-WebKit geprüft: Inhalte, Grafiken, Hinweise,
 Abstandsoverlay beim Markieren, vollständige Routenprüfung, Wechsel, Neuladen,
 getrennte Spielstände und Zurücksetzen. HTTP-Fehler und fehlende Bildressourcen
-lassen den Test scheitern. Screenshots und ZIP liegen im Actions-Artefakt
-`static-deployment`. Die vollständige bestehende Browsersuite läuft zusätzlich
+lassen den Test scheitern. Das ZIP liegt im Actions-Artefakt
+`static-deployment`; Fehlerberichte und Screenshots liegen bei Fehlschlägen
+für drei Tage in `deployment-failure`. Die vollständige bestehende Browsersuite läuft zusätzlich
 gegen den Entwicklungsstand, einschließlich historischer Regressionstests.
 
 Die Python-Packagingtests prüfen fehlende Rätsel/Bilder/Module, unbekannte Asset-IDs,
@@ -80,8 +81,7 @@ Zusätzlich zu Smartphone-Chromium und iPad-WebKit wird iPhone-WebKit geprüft.
 
 Die Action `Diagnose explicit live deployment` protokolliert
 Konsole, Startausnahmen, Antwortheader, gescheiterte Requests und Screenshots einer
-explizit angegebenen HTTPS-URL. Sie läuft bei Änderungen an den Diagnose-Dateien gegen die konkret gemeldete URL
-oder manuell mit einer angegebenen URL. Sie verändert keine Serverdateien und ist bewusst
+explizit angegebenen HTTPS-URL. Sie läuft ausschließlich manuell mit einer angegebenen URL. Sie verändert keine Serverdateien und ist bewusst
 keine externe Netzwerkabhängigkeit der regulären Regressionstests.
 
 Die [Live-Diagnose vom 13.10.2026](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38443310129)
@@ -97,7 +97,12 @@ die öffentliche Website ändert sich erst nach Hochladen des neuen ZIP-Inhalts.
 
 Die aktuellen Änderungen und manuellen Hosting-Prüfschritte stehen in
 [PR38-STABILIZATION.md](PR38-STABILIZATION.md). Die Action `Tests` liefert weiter
-`static-deployment` mit dem reinen `dist/Sams-Gezeitenkarten.zip`, Browserbericht
-und echten Vorher-/Nachher-Aufnahmen. Der Export enthält auch die neue dekorative
+`static-deployment` mit dem reinen `Sams-Gezeitenkarten.zip`; Berichte
+und Vorher-/Nachher-Aufnahmen bleiben im Fehlerfall separat erhalten. Der Export enthält auch die neue dekorative
 Logbuch-SVG; diese muss als `image/svg+xml` erreichbar sein. Die `.js`-Kompatibilität
 und der negative `.mjs`-Kontrolltest bleiben erhalten.
+
+Aktuelle Konsolidierung und lokale Sichtprüfung: [PR48-CONSOLIDATION.md](PR48-CONSOLIDATION.md).
+Das Archiv enthält beide freigegebenen Rahmen, das Meer, die dekorative
+Logbuchkarte, alle vier Manifest-Rätsel und die bestehende `.htaccess`
+für Neuvalidierung auf Apache/Uberspace.

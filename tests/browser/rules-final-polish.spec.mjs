@@ -28,7 +28,7 @@ test('compact controls, transparent group decorations and centered radar in all 
    if(state==='inactive')await page.locator('#toggleDistances').click();
    if(state==='waiting')await page.locator('#map [data-id="E3"]').click();
   }
-  await page.locator('#toggleDistances').click();
+  await page.locator('#toggleDistances').click();await page.locator('#toggleDistances').click();
  }
 });
 test('actual screenshots: polished controls and expanded rules',async({page},testInfo)=>{
