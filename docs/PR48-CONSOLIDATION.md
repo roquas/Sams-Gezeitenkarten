@@ -279,3 +279,21 @@ Lokale Prüfung der dynamischen Root-Höhe: 62 Chromiumfälle bestanden, zwei
 planmäßige Desktop-Auslassungen (native mobile Navigation, Rätselauswahl,
 Speicherung, beide Radierer/Route, Land-Radar und Logbuch). Sieben
 Verpackungstests bestanden; ZIP mit 53 Dateien neu erzeugt.
+
+
+Die CSS-Hypothese wurde in [38982348931](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38982348931)
+widerlegt: selbst `100dvh` blieb in der laufend vergrößerten mobilen
+Emulation bei 664 Pixeln. Die Produkt-CSS wurde deshalb auf den vorherigen
+Stand zurückgenommen. Die offizielle Playwright-API-Dokumentation der
+installierten Version empfiehlt bei `setViewportSize`, die Größe vor der
+Navigation festzulegen. Die parametrisierten Regel-/Grafikfälle erstellen
+ihren Kontext nun direkt mit ihrer jeweiligen Testgröße (`test.use`),
+anstatt eine bereits geladene mobile Seite künstlich zu vergrößern.
+Alle sechs Leistenbreiten, drei Screenshotbreiten, Radarphasen, Aufnahmen
+und nativen Navigationsklicks bleiben erhalten. Der zusätzliche direkte
+Trefferflächentest bleibt bestehen. Dies ist eine Korrektur der
+Viewport-Testvorbereitung, keine Produktgestaltung oder Klickumgehung.
+
+Lokale Kontextprüfung: alle 20 Regel-/Radar-/Screenshotfälle bestanden.
+Das erneute ZIP ist wieder bytegleich zum Stand vor dem CSS-Versuch
+(SHA-256 `d026ce287d1eb1f61fb78e0bb1bb9103f99776f97720572a0d736232d8d3bdf8`).

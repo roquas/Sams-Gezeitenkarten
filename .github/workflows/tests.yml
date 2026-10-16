@@ -56,7 +56,7 @@ jobs:
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
-      - name: Check native mobile navigation after viewport resize
+      - name: Check native mobile navigation at 390px
         run: npx playwright test --config playwright.webkit.config.mjs --project webkit-mobile --grep "actual polished controls and expanded rules screenshots at 390px" --output webkit-viewport-results
       - name: Check frame reload and touch protocols before the full WebKit suite
         run: npx playwright test --config playwright.webkit.config.mjs --grep "visible frame choice|one mouse or touch drag|mobile swipe turns|chart labels sit in parchment|erasing all hours|overwriting and erasing|manifest puzzle|switch and reload isolate|reset after reload|selected puzzle|compact controls and centered radar|actual polished controls" --output webkit-smoke-results
