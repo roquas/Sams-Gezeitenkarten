@@ -89,7 +89,7 @@ for (const width of [1440,390]) test('visible frame choice works at '+width+'px 
  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
  const geometryBefore=await geometry(page),headingsBefore=await headings(page);
  if(width<881)await page.locator('#logbookTab').click();
- const settings=page.locator('.logbook-section details').filter({hasText:'Einstellungen'}).first();
+ const settings=page.locator('#frameStyle').locator('xpath=ancestor::details[1]');
  await settings.locator('summary').click();
  await expect(settings).toHaveAttribute('open','');
  const picker=settings.locator('#frameStyle');
