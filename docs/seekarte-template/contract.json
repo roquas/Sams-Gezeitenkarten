@@ -1,6 +1,6 @@
 {
   "format": {
-    "version": 3,
+    "version": 4,
     "type": "raster-assets",
     "viewBox": "-37 -44.5 563 473",
     "svgBounds": {
@@ -16,7 +16,8 @@
     },
     "files": {
       "sea": "assets/seekarte/sea-blue-01.webp",
-      "frame": "assets/seekarte/frame-parchment-01.webp"
+      "frame": "assets/seekarte/frame-parchment-01.webp",
+      "quietFrame": "assets/seekarte/frame-parchment-02.webp"
     },
     "units": "SVG coordinates; rectangle=[left, top, right, bottom]; polygon=[[x,y], ...]; polygon closes implicitly",
     "svgToPixel": {
@@ -553,7 +554,7 @@
     },
     "opaque": {
       "type": "polygon-difference",
-      "purpose": "Provisional required opaque parchment; label zones remain mandatory",
+      "purpose": "Artwork guide only; deep coastal recesses beyond the old corridor are permitted. Mandatory opaque zones are canvas perimeter and coordinate plaques.",
       "outer": [
         [-27, -34.5],
         [516, -34.5],
@@ -588,22 +589,18 @@
           [14.823085463760211, 29.91709623134524]
         ]
       ],
-      "alpha": 255
+      "alpha": 255,
+      "acceptance": "illustrative-only"
     },
     "outerEdge": {
-      "type": "outer-transition",
-      "purpose": "PROVISIONAL: outer alpha and beige underlay will be finalized after Photoshop delivery",
-      "outer": [
-        [-32, -39.5],
-        [521, -39.5],
-        [521, 423.5],
-        [-32, 423.5]
-      ],
-      "inner": [
-        [-27, -34.5],
-        [516, -34.5],
-        [516, 418.5],
-        [-27, 418.5]
+      "type": "opaque-canvas-perimeter",
+      "purpose": "No outer fade or additional beige underlay. All four outermost pixel rows/columns of frame must have alpha 255.",
+      "alpha": 255,
+      "canvas": [
+        [-37, -44.5],
+        [526, -44.5],
+        [526, 428.5],
+        [-37, 428.5]
       ]
     },
     "headings": {
