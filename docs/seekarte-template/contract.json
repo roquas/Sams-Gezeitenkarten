@@ -1456,12 +1456,12 @@
   },
   "rendering": {
     "seaClip": [
-      -27,
-      -34.5,
-      516,
-      418.5
+      -37,
+      -44.5,
+      526,
+      428.5
     ],
-    "compositing": "Sea, puzzle objects, frame, SVG labels and interaction. Frame pointer-events none. Shared viewBox; no nonuniform image scaling.",
+    "compositing": "Full-canvas sea, puzzle objects, frame, SVG labels and interaction. Outer frame pixels are opaque; no inset sea clip or nonuniform scaling. Frame pointer-events none.",
     "alphaReference": "frame-mask.svg contains exactly this contract as metadata; technical guide only, not approved art"
   },
   "assetPolicy": {
