@@ -78,29 +78,61 @@ test('both delivered frames load as independent 2252x1892 preview assets',async(
  }
 });
 
-test('illustrated frame is the default; quiet setting swaps only the frame and preserves marks',async({page})=>{
+for (const width of [1440,390]) test('visible frame choice works at '+width+'px and persists on reload',async({page})=>{
+ await page.setViewportSize({width,height:900});
  await page.goto('/');
- const map=page.locator('#map');
- await expect(map).toHaveAttribute('data-frame-mode','final');
- const artwork=page.locator('#map [data-chart-layer="frame"] image');
- await expect(artwork).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
+ const svg=page.locator('#map');
+ await expect(svg).toHaveAttribute('data-frame-mode','final');
+ const frame=page.locator('#map [data-chart-layer="frame"] image');
+ await expect(frame).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
  await page.locator('#map [data-id="E3"]').click();
  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
- const original=await geometry(page);
- const anchors=await headings(page);
- const option=page.locator('#quietFrame');
- await option.evaluate(el=>el.click());
- await expect(map).toHaveAttribute('data-frame-mode','quiet');
- await expect(artwork).toHaveAttribute('href','assets/seekarte/frame-parchment-01.webp');
- expect(await geometry(page)).toEqual(original);
- expect(await headings(page)).toEqual(anchors);
+ const geometryBefore=await geometry(page),headingsBefore=await headings(page);
+ if(width<881)await page.locator('#logbookTab').click();
+ const settings=page.locator('.logbook-section details').filter({hasText:'Einstellungen'}).first();
+ await settings.locator('summary').click();
+ await expect(settings).toHaveAttribute('open','');
+ const picker=settings.locator('#frameStyle');
+ await expect(picker).toHaveValue('final');
+ await picker.selectOption('quiet');
+ await expect(svg).toHaveAttribute('data-frame-mode','quiet');
+ await expect(frame).toHaveAttribute('href','assets/seekarte/frame-parchment-01.webp');
+ await expect(picker).toHaveValue('quiet');
+ expect(new URL(page.url()).searchParams.get('frame')).toBe('quiet');
+ expect(await geometry(page)).toEqual(geometryBefore);
+ expect(await headings(page)).toEqual(headingsBefore);
  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
+ // Decode actual WebPs and verify that the 01 and 02 visuals are not identical.
+ const differentPixels=await page.evaluate(async()=>{
+  async function imageData(url){
+   const image=new Image();image.src=url;await image.decode();
+   const canvas=document.createElement('canvas');canvas.width=563;canvas.height=473;
+   const ctx=canvas.getContext('2d');ctx.drawImage(image,0,0,563,473);
+   return ctx.getImageData(0,0,563,473).data;
+  }
+  const [a,b]=await Promise.all([imageData('assets/seekarte/frame-parchment-01.webp'),imageData('assets/seekarte/frame-parchment-02.webp')]);
+  let changed=0;
+  for(let i=0;i<a.length;i+=4)if(
+   Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2])+Math.abs(a[i+3]-b[i+3])>30
+  )changed++;
+  return changed;
+ });
+ expect(differentPixels).toBeGreaterThan(100);
+ if(width<881)await page.locator('#chartTab').click();
+ const quietScreenshot=await svg.screenshot();
  await page.reload();
- await expect(map).toHaveAttribute('data-frame-mode','quiet');
- await expect(option).toBeChecked();
- await option.evaluate(el=>el.click());
- await expect(map).toHaveAttribute('data-frame-mode','final');
- await expect(artwork).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
+ await expect(svg).toHaveAttribute('data-frame-mode','quiet');
+ if(width<881)await page.locator('#logbookTab').click();
+ await settings.locator('summary').click();
+ await expect(picker).toHaveValue('quiet');
+ await picker.selectOption('final');
+ await expect(svg).toHaveAttribute('data-frame-mode','final');
+ await expect(frame).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
+ expect(new URL(page.url()).searchParams.get('frame')).toBe('final');
+ if(width<881)await page.locator('#chartTab').click();
+ const illustratedScreenshot=await svg.screenshot();
+ expect(quietScreenshot.equals(illustratedScreenshot)).toBe(false);
+ await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
  await page.evaluate(()=>localStorage.clear());
 });
 test('final-frame sea reaches the full SVG canvas without legacy water clipping',async({page})=>{
