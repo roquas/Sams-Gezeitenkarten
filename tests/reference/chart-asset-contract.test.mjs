@@ -54,7 +54,8 @@ test('typed and grouped JSON contract remains independent of reference puzzle',(
  assert.equal(c.format.pixels.width,2252);
  assert.equal(c.format.pixels.height,1892);
  assert.equal(c.format.version,4);
- assert.equal(c.format.files.quietFrame,'assets/seekarte/frame-parchment-02.webp');
+ assert.equal(c.format.files.quietFrame,'assets/seekarte/frame-parchment-01.webp');
+ assert.equal(c.format.files.frame,'assets/seekarte/frame-parchment-02.webp');
  assert.equal(c.zones.outerEdge.alpha,255);
  assert.equal(c.zones.outerEdge.type,'opaque-canvas-perimeter');
  assert.equal(c.zones.transparent.type,'polygon-union');
