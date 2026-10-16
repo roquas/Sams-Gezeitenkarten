@@ -77,3 +77,41 @@ test('both delivered frames load as independent 2252x1892 preview assets',async(
   expect(failed).toEqual([]);
  }
 });
+
+test('illustrated frame is the default; quiet setting swaps only the frame and preserves marks',async({page})=>{
+ await page.goto('/');
+ const map=page.locator('#map');
+ await expect(map).toHaveAttribute('data-frame-mode','final');
+ const artwork=page.locator('#map [data-chart-layer="frame"] image');
+ await expect(artwork).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
+ await page.locator('#map [data-id="E3"]').click();
+ await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
+ const original=await geometry(page);
+ const anchors=await headings(page);
+ const option=page.locator('#quietFrame');
+ await option.check();
+ await expect(map).toHaveAttribute('data-frame-mode','quiet');
+ await expect(artwork).toHaveAttribute('href','assets/seekarte/frame-parchment-01.webp');
+ expect(await geometry(page)).toEqual(original);
+ expect(await headings(page)).toEqual(anchors);
+ await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
+ await page.reload();
+ await expect(map).toHaveAttribute('data-frame-mode','quiet');
+ await expect(option).toBeChecked();
+ await option.uncheck();
+ await expect(map).toHaveAttribute('data-frame-mode','final');
+ await expect(artwork).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
+ await page.evaluate(()=>localStorage.clear());
+});
+test('final-frame sea reaches the full SVG canvas without legacy water clipping',async({page})=>{
+ for(const mode of ['final','quiet']){
+  await page.goto('/?frame='+mode);
+  const sea=page.locator('#map [data-chart-layer="sea"]');
+  await expect(sea.locator('image')).toHaveCount(1);
+  await expect(sea.locator('clipPath')).toHaveCount(0);
+  const image=sea.locator('image');
+  await expect(image).toHaveAttribute('href','assets/seekarte/sea-blue-01.webp');
+  await expect(image).not.toHaveAttribute('clip-path',/./);
+  await expect(image).toHaveAttribute('preserveAspectRatio','xMidYMid meet');
+ }
+});
