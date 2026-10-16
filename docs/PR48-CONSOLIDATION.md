@@ -206,3 +206,19 @@ Fallbackfolge `Georgia, 'Times New Roman', serif`. Georgia bleibt auf
 entsprechend ausgestatteten Geräten unverändert bevorzugt; die Plaketten- und
 Hexgeometrie sowie Assetbytes bleiben gleich. Die Grenze elf und die
 Plaketten-Fit-Prüfungen werden nicht abgesenkt.
+
+
+[Lauf 38975300744](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38975300744)
+bestätigt den Schriftfallback: 13 WebKit-Vorlauffälle bestanden, eine planmäßige
+Desktop-Auslassung; die Labelprüfung ist grün. Unit, Assets, Deployment und
+219 Chromiumfälle bestanden. In der vollständigen WebKit-Suite bestanden
+54 Fälle, bevor der kombinierte Radar-/Radierer-/Route-/Undo-Test sein
+30-Sekunden-Budget beim zweiten Radierer erreichte (166 Fälle ungestartet).
+Die aufeinanderfolgenden fachlichen Abläufe werden jetzt unabhängig geprüft:
+Distanz-zwei-Notizen, Überschreiben/Stundenradierer, Mehrstundenradierer,
+Route/Undo/Reload sowie Tastatur und Auswahlabbruch. Alle Bedienungen erfolgen
+weiter über die UI; alle ursprünglichen Assertions bleiben erhalten. Auch die
+14 Leistenbreiten und sieben Leistenaufnahmen bleiben als einzelne Fälle
+mit denselben Maßen/Pixeln erhalten. Der Vorlauf prüft beide Radierer früh.
+Die Vollsuite enthält nun 272 Fälle je Browserfamilie (269 plus drei
+planmäßige Desktop-Auslassungen); 18 Fälle im Vorlauf. Keine Timeoutänderung.
