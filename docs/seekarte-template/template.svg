@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-37 -44.5 563 473" width="2252" height="1892">
-<title>Seekarten-Geometrie v3 — technische Führung, keine Illustration</title>
+<title>Seekarten-Geometrie v4 — technische Führung, keine Illustration</title>
 <path d="M -37 -44.5 L 526 -44.5 L 526 428.5 L -37 428.5 Z" fill="#f4f1e9"/>
 <path d="M -27 -34.5 L 516 -34.5 L 516 418.5 L -27 418.5 Z" fill="#ead9ae"/>
 <path d="M 56.24871130596428 6 L 391.7512886940357 6 L 433.1769145362398 29.91709623134524 L 433.1769145362398 67.16744870875692 L 474.1769145362398 99.16744870875692 L 474.1769145362398 148.83255129124308 L 433.1769145362398 180.83255129124308 L 433.1769145362398 203.16744870875692 L 474.1769145362398 235.16744870875692 L 474.1769145362398 284.8325512912431 L 433.1769145362398 316.8325512912431 L 433.1769145362398 354.0829037686548 L 391.75128869403574 378 L 56.248711305964264 378 L 14.823085463760208 354.0829037686548 L 14.823085463760211 303.1674487087569 L 55.8230854637602 271.1674487087569 L 55.82308546376021 248.8325512912431 L 14.823085463760208 216.8325512912431 L 14.823085463760211 167.1674487087569 L 55.8230854637602 135.16744870875692 L 55.82308546376021 112.8325512912431 L 14.823085463760208 80.8325512912431 L 14.823085463760211 29.91709623134524 Z" fill="#ed9c46"/>
@@ -136,7 +136,7 @@
 <path d="M 477 314 L 505 314 L 505 342 L 477 342 Z" fill="none" stroke="#584d32" stroke-width=".3"/>
 <text x="491" y="330" text-anchor="middle" font-size="6" font-family="sans-serif">R5</text>
 <g font-family="sans-serif" font-size="6" fill="#213e49">
-<text x="150" y="163" stroke="#e8f5f7" stroke-width="2" paint-order="stroke">GEOMETRIE v3 · 2252 × 1892 px</text>
+<text x="150" y="163" stroke="#e8f5f7" stroke-width="2" paint-order="stroke">GEOMETRIE v4 · 2252 × 1892 px</text>
 <text x="150" y="173" stroke="#e8f5f7" stroke-width="2" paint-order="stroke">Türkis: Hexe / gestrichelt: Spielschutz</text>
 <text x="150" y="183" stroke="#e8f5f7" stroke-width="2" paint-order="stroke">Blau: Alpha 0 · Orange: Kantenkorridor</text>
 <text x="150" y="193" stroke="#e8f5f7" stroke-width="2" paint-order="stroke">Rot: Textschutz · Gelb: weicher Abstand</text>
