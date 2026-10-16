@@ -78,55 +78,62 @@ test('both delivered frames load as independent 2252x1892 preview assets',async(
  }
 });
 
-for (const width of [1440,390]) test('visible frame choice works at '+width+'px and persists on reload',async({page})=>{
- await page.emulateMedia({reducedMotion:'reduce'});
- await page.setViewportSize({width,height:900});
- await page.goto('/');
- const svg=page.locator('#map');
- await expect(svg).toHaveAttribute('data-frame-mode','final');
- const illustrated=page.locator('#map [data-chart-layer="frame"] image[data-frame-variant="final"]');
- const quiet=page.locator('#map [data-chart-layer="frame"] image[data-frame-variant="quiet"]');
- await expect(illustrated).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
- await expect(quiet).toHaveAttribute('href','assets/seekarte/frame-parchment-01.webp');
- await expect(illustrated).toHaveAttribute('visibility','visible');
- await expect(quiet).toHaveAttribute('visibility','hidden');
- await page.locator('#map [data-id="E3"]').click();
- await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
- const geometryBefore=await geometry(page),headingsBefore=await headings(page);
- if(width<881)await page.locator('#logbookTab').click();
+async function frameSettings(page,width){
+ if(width<881&&await page.locator('body').getAttribute('data-mobile-view')!=='logbook')await page.locator('#logbookTab').click();
  const settings=page.locator('#frameStyle').locator('xpath=ancestor::details[1]');
- await settings.locator('summary').click();
+ if(await settings.getAttribute('open')===null)await settings.locator('summary').click();
  await expect(settings).toHaveAttribute('open','');
- const picker=settings.locator('#frameStyle');
- await expect(picker).toHaveValue('final');
- await picker.selectOption('quiet');
- await expect(svg).toHaveAttribute('data-frame-mode','quiet');
- await expect(illustrated).toHaveAttribute('visibility','hidden');
- await expect(quiet).toHaveAttribute('visibility','visible');
- await expect(picker).toHaveValue('quiet');
- expect(new URL(page.url()).searchParams.get('frame')).toBe('quiet');
- await expect(page.locator('#map [data-chart-layer="frame"] image')).toHaveCount(2);
- expect(await geometry(page)).toEqual(geometryBefore);
- expect(await headings(page)).toEqual(headingsBefore);
- await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
- if(width<881)await page.locator('#chartTab').click();
- const quietScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
- await page.reload();
- await expect(svg).toHaveAttribute('data-frame-mode','quiet');
- if(width<881)await page.locator('#logbookTab').click();
- await settings.locator('summary').click();
- await expect(picker).toHaveValue('quiet');
- await picker.selectOption('final');
- await expect(svg).toHaveAttribute('data-frame-mode','final');
- await expect(illustrated).toHaveAttribute('visibility','visible');
- await expect(quiet).toHaveAttribute('visibility','hidden');
- expect(new URL(page.url()).searchParams.get('frame')).toBe('final');
- if(width<881)await page.locator('#chartTab').click();
- const illustratedScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
- expect(quietScreenshot.equals(illustratedScreenshot)).toBe(false);
- await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
- await page.evaluate(()=>localStorage.clear());
-});
+ return settings.locator('#frameStyle');
+}
+async function chartView(page,width){
+ if(width<881&&await page.locator('body').getAttribute('data-mobile-view')!=='chart')await page.locator('#chartTab').click();
+}
+for(const width of [1440,390]){
+ test('visible frame choice works at '+width+'px without altering notes or geometry',async({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width,height:900});await page.goto('/');
+  const svg=page.locator('#map');await expect(svg).toHaveAttribute('data-frame-mode','final');
+  const illustrated=page.locator('#map [data-chart-layer="frame"] image[data-frame-variant="final"]');
+  const quiet=page.locator('#map [data-chart-layer="frame"] image[data-frame-variant="quiet"]');
+  await expect(illustrated).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
+  await expect(quiet).toHaveAttribute('href','assets/seekarte/frame-parchment-01.webp');
+  await expect(illustrated).toHaveAttribute('visibility','visible');await expect(quiet).toHaveAttribute('visibility','hidden');
+  await page.locator('#map [data-id="E3"]').click();await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
+  const geometryBefore=await geometry(page),headingsBefore=await headings(page);
+  const picker=await frameSettings(page,width);await expect(picker).toHaveValue('final');await picker.selectOption('quiet');
+  await expect(svg).toHaveAttribute('data-frame-mode','quiet');
+  await expect(illustrated).toHaveAttribute('visibility','hidden');await expect(quiet).toHaveAttribute('visibility','visible');
+  await expect(picker).toHaveValue('quiet');expect(new URL(page.url()).searchParams.get('frame')).toBe('quiet');
+  await expect(page.locator('#map [data-chart-layer="frame"] image')).toHaveCount(2);
+  expect(await geometry(page)).toEqual(geometryBefore);expect(await headings(page)).toEqual(headingsBefore);
+  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
+  await chartView(page,width);const quietScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
+  await frameSettings(page,width);await picker.selectOption('final');
+  await expect(svg).toHaveAttribute('data-frame-mode','final');
+  await expect(illustrated).toHaveAttribute('visibility','visible');await expect(quiet).toHaveAttribute('visibility','hidden');
+  expect(new URL(page.url()).searchParams.get('frame')).toBe('final');
+  await chartView(page,width);const illustratedScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
+  expect(quietScreenshot.equals(illustratedScreenshot)).toBe(false);
+  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');await page.evaluate(()=>localStorage.clear());
+ });
+ test('visible frame choice at '+width+'px persists on reload and a fresh root URL',async({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width,height:900});await page.goto('/');
+  const svg=page.locator('#map');await expect(svg).toHaveAttribute('data-frame-mode','final');
+  await page.locator('#map [data-id="E3"]').click();
+  const picker=await frameSettings(page,width);await picker.selectOption('quiet');await chartView(page,width);
+  await expect(svg).toHaveAttribute('data-frame-mode','quiet');await page.reload();
+  await expect(svg).toHaveAttribute('data-frame-mode','quiet');await frameSettings(page,width);await expect(picker).toHaveValue('quiet');
+  // Verify storage itself, independently of the ?frame=quiet URL override.
+  expect(await page.evaluate(()=>localStorage.getItem('gezeitenkarten-frame-style'))).toBe('quiet');
+  await page.goto('/');await expect(svg).toHaveAttribute('data-frame-mode','quiet');
+  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
+  await frameSettings(page,width);await expect(picker).toHaveValue('quiet');await picker.selectOption('final');
+  await expect(svg).toHaveAttribute('data-frame-mode','final');
+  await expect(page.locator('[data-frame-variant="final"]')).toHaveAttribute('visibility','visible');
+  await expect(page.locator('[data-frame-variant="quiet"]')).toHaveAttribute('visibility','hidden');
+  expect(new URL(page.url()).searchParams.get('frame')).toBe('final');
+  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');await page.evaluate(()=>localStorage.clear());
+ });
+}
 test('final-frame sea reaches the full SVG canvas without legacy water clipping',async({page})=>{
  for(const mode of ['final','quiet']){
   await page.goto('/?frame='+mode);

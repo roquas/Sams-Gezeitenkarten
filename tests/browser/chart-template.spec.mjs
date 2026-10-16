@@ -1,6 +1,9 @@
 import {test,expect} from '@playwright/test';
 import {installTechnicalTemplate} from '../../scripts/chart-template-browser.mjs';
 test.use({deviceScaleFactor:2});
+// These cases verify geometry and input, not animated transitions. Keep the
+// software-rendered SVG stable while retaining the mandatory DPR 2 matrix.
+test.beforeEach(async({page})=>{await page.emulateMedia({reducedMotion:'reduce'});});
 for(const width of [320,390,768,1440,2560])test(`phase 1 geometry and technical paper mask at ${width}px, DPR 2`,async({page},testInfo)=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(r.url());});
  await page.setViewportSize({width,height:1200});await page.goto('/?frame=raster');await page.waitForSelector('#map .cell');await page.evaluate(()=>document.fonts.ready);
@@ -39,10 +42,32 @@ for(const width of [320,390,768,1440,2560])test(`phase 1 geometry and technical 
  // The fixture leaves every existing pointer/keyboard handler intact.
  const target=page.locator('#map [data-id="E3"]');await target.click();await expect(target).toContainText('?');
  await target.focus();await page.keyboard.press('Enter');await expect(target).not.toContainText('?');
- // All 25 polygons remain visible. All 22 navigable fields support real pointer
- // and keyboard actions; the three land cells keep their existing inert behavior.
- const ids=await page.locator('.cell:not(.blocked-cell)').evaluateAll(ns=>ns.map(n=>n.dataset.id));
- for(const id of ids){const cell=page.locator(`[data-id="${id}"]`);await cell.click();await expect(cell).toContainText('?');await cell.focus();await page.keyboard.press('Enter');await expect(cell).not.toContainText('?');}
+ // Exhaustive native input coverage for all 22 water cells is parameterized
+ // by viewport and row below, independently of mask decoding/screenshots.
  await expect(page.locator('.blocked-cell')).toHaveCount(3);
  expect(errors).toEqual([]);
 });
+
+const waterRows=[
+ ['A1','B1','C1','D1','E1'],['A2','B2','C2','D2'],['A3','D3','E3'],
+ ['A4','B4','C4','D4','E4'],['A5','B5','C5','D5','E5']
+];
+for(const width of [320,390,768,1440,2560])for(const [index,expected] of waterRows.entries()){
+ test(`technical template native mouse/keyboard row ${index+1} at ${width}px, DPR 2`,async({page})=>{
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(r.url());});
+  await page.setViewportSize({width,height:1200});await page.goto('/?frame=raster');
+  await expect(page.locator('#map .cell')).toHaveCount(25);await page.evaluate(()=>document.fonts.ready);
+  await installTechnicalTemplate(page);
+  const ids=await page.locator('.cell:not(.blocked-cell)').evaluateAll((ns,row)=>ns.map(n=>n.dataset.id).filter(id=>id.endsWith(String(row))),index+1);
+  expect(ids).toEqual(expected);
+  // Preserve the original sweep's incoming focus, including row transitions.
+  const previous=index?waterRows[index-1].at(-1):'E3';
+  await page.locator(`[data-id="${previous}"]`).focus();
+  for(const id of ids){
+   const cell=page.locator(`[data-id="${id}"]`);
+   await cell.click();await expect(cell).toContainText('?');
+   await cell.focus();await page.keyboard.press('Enter');await expect(cell).not.toContainText('?');
+  }
+  await expect(page.locator('.blocked-cell')).toHaveCount(3);expect(errors).toEqual([]);
+ });
+}

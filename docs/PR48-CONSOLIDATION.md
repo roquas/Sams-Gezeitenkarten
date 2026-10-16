@@ -43,7 +43,7 @@ am Ende des Rahmenpersistenztests: Screenshot (Desktop), Einstellungs-Klick
 nach Reload bzw. abschließendes localStorage-Aufräumen (Mobil).
 Die Pixelanalyse beider großen WebPs lief bisher zusätzlich in jedem solchen
 Test. Sie hat jetzt einen eigenen Test mit unveränderter Pixelprüfung.
-Die Persistenztests behalten beide sichtbaren Umschaltungen, URL-/Speicher-,
+Die Rahmenregressionen behalten beide sichtbaren Umschaltungen, URL-/Speicher-,
 Geometrie-, Notiz- und Screenshotprüfungen. Screenshots verwenden CSS-Pixel
 und deaktivieren Animationen; keine Timeout-Erhöhung und kein deaktivierter Test.
 Die Mobil-WebKit-Projekte verwenden wie PR38 CSS-Pixel (deviceScaleFactor 1).
@@ -118,7 +118,7 @@ der DOM-Pfad wurde zusätzlich an der gerenderten Anwendung geprüft.
 
 Die WebKit-CI stoppt nach dem ersten endgültigen Fehler mit rotem Status, damit
 Diagnosen ohne lange Folgefehlerläufe verfügbar werden. Ein grüner Lauf muss
-weiterhin sämtliche 164 Testfälle abarbeiten (drei plangemäße Desktop-Auslassungen).
+weiterhin sämtliche Fälle der vollständigen Testliste abarbeiten (drei plangemäße Desktop-Auslassungen).
 Diese Einstellung überspringt keine Tests in einem erfolgreichen Lauf.
 
 Ein kurzer WebKit-Vorlauf prüft Rahmen-Reload und beide Gestenprotokolle zuerst,
@@ -127,3 +127,37 @@ läuft weiterhin die vollständige Suite. Erfolg des Vorlaufs allein ist keine
 Freigabe; beide Schritte müssen grün sein. WebKit-TouchEvents werden durch
 Playwrights unterstützten Dispatcher erzeugt, der die WebKit-TouchLists korrekt
 aufbaut. Chromium verwendet weiterhin native CDP-Touchereignisse.
+
+
+## Befund aus dem schnellen WebKit-Diagnoselauf
+
+[Lauf 38970018467](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38970018467)
+meldete auf dem Desktop bei 320/390 Pixeln aufgebrauchte 30-Sekunden-Budgets
+innerhalb der technischen Maskenprüfung. Der kumulative Test decodierte die
+DPR-2-Maske, prüfte Pixel/Geometrie, erzeugte Aufnahmen und bediente anschließend
+alle 22 Wasserfelder mit Maus und Tastatur. Die jeweils erreichte Zelle variierte.
+Die Geometrie-/Maskenprüfung und die vollständige Eingabematrix sind jetzt als
+unabhängige Fälle organisiert: jede der fünf Breiten und jede Kartenzeile wird
+weiter bei DPR 2 geprüft. Sämtliche ursprünglichen Assertions bleiben erhalten;
+die erwarteten Wasserfeld-IDs werden zusätzlich pro Zeile geprüft. Der eingehende
+Fokus des ursprünglichen Zeilendurchlaufs wird reproduziert. Reduzierte Bewegung
+vermeidet irrelevante Übergänge; Animationsprüfungen bleiben separat erhalten.
+Kein Timeout wurde erhöht. Die vollständige Suite enthält nach der zusätzlichen Rahmenaufteilung 218 Fälle pro
+Browserfamilie (Desktop + Mobil); ein grüner Vorlauf allein reicht weiterhin nicht.
+
+
+Im WebKit-Vorlauf von [Lauf 38970347240](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38970347240)
+war der lange Rahmenpersistenztest einmal flaky: Die Pixel-/Sichtbarkeitsprüfungen
+waren bereits durchlaufen, das Budget endete bei der abschließenden Notizprüfung.
+Sichtbarer Wechsel mit Screenshotvergleich und Persistenz nach Reload haben jetzt
+getrennte Fälle mit unveränderten 30-Sekunden-Grenzen. Alle ursprünglichen
+Prüfungen bleiben erhalten; zusätzlich wird die gespeicherte Präferenz bei einer
+frischen Root-URL ohne `?frame` geprüft. Die Vollsuite hat 218 Fälle pro
+Browserfamilie, der kurze WebKit-Vorlauf zwölf (inklusive Desktop-Auslassung für
+reine Touch-Gesten). Flaky, fehlgeschlagene oder ungestartete Fälle gelten nicht
+als vollständige Freigabe.
+
+Lokale Prüfung der aufgeteilten Fälle: alle 60 technischen Masken-/Zeilenfälle
+und alle 18 Rahmenfälle mit Chromium Desktop/Mobil bestanden. Die vollständige
+WebKit-Testliste enthält 218 Fälle; die CI-Verifikation der aufgeteilten Fälle
+bleibt erforderlich. Die frühe rote Diagnose hat keine Anwendung verändert.
