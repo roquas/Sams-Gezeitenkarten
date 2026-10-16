@@ -297,3 +297,16 @@ Viewport-Testvorbereitung, keine Produktgestaltung oder Klickumgehung.
 Lokale Kontextprüfung: alle 20 Regel-/Radar-/Screenshotfälle bestanden.
 Das erneute ZIP ist wieder bytegleich zum Stand vor dem CSS-Versuch
 (SHA-256 `d026ce287d1eb1f61fb78e0bb1bb9103f99776f97720572a0d736232d8d3bdf8`).
+
+Der erste native 390-Pixel-Fall ist in [38983081184](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38983081184)
+grün (23:46:07–23:46:19 UTC). Die Kontextvorbereitung vor der Navigation
+behebt die gemessene Trefferflächenabweichung ohne Produkt-CSS oder erzwungene
+Klicks. Der gleiche Aufbau wurde auch in den beiden `chart-ux`-Abläufen
+gefunden: mobile Übersicht und fünf Desktop-/Mobilaufnahmen. Sie verwenden
+nun ebenfalls vorab konfigurierte Kontexte. Die funktionale Übersicht
+behält Spielstand, Scrollpositionen, Tastatur, Escape, Undo und Desktopwechsel.
+Alle drei Navigationsbreiten und die Kontrolle des Buchseiten-Abstands
+werden zusätzlich je Breite geprüft. Alle fünf bisherigen Aufnahmen bleiben
+mit identischen Ausschnitten/Qualitäten und über UI aufgebautem Zustand erhalten.
+Die Vollsuite enthält jetzt 308 Fälle je Browserfamilie (305 plus drei
+planmäßige Desktop-Auslassungen). Der frühe Vorlauf umfasst 68 Fälle.
