@@ -11,22 +11,28 @@ export async function dragTouch(page,{browserName,from,to,pointer=false}){
   }finally{await session.detach();}
   return;
  }
- await page.evaluate(({from,to,pointer})=>{
+ if(!pointer){
+  // Playwright's dispatcher constructs WebKit TouchLists with createTouch /
+  // createTouchList; WebKit does not support Chromium's new Touch() path.
+  const target=await page.evaluateHandle(({x,y})=>document.elementFromPoint(x,y),from);
+  const element=target.asElement();
+  if(!element){await target.dispose();throw Error('Touch start is outside the rendered page');}
+  try{
+   for(const [type,point,end] of [['touchstart',from,false],['touchmove',to,false],['touchend',to,true]]){
+    const touch={identifier:91,clientX:point.x,clientY:point.y,screenX:point.x,screenY:point.y,radiusX:1,radiusY:1,rotationAngle:0,force:.5};
+    await element.dispatchEvent(type,{touches:end?[]:[touch],targetTouches:end?[]:[touch],changedTouches:[touch]});
+   }
+  }finally{await target.dispose();}
+  return;
+ }
+ await page.evaluate(({from,to})=>{
   const first=document.elementFromPoint(from.x,from.y);
   if(!first)throw Error('Touch start is outside the rendered page');
-  if(pointer){
-   const send=(type,point,buttons)=>{
-    const target=document.elementFromPoint(point.x,point.y);
-    if(!target)throw Error('Touch point is outside the rendered page');
-    target.dispatchEvent(new PointerEvent(type,{bubbles:true,cancelable:true,view:window,pointerType:'touch',pointerId:91,isPrimary:true,button:0,buttons,clientX:point.x,clientY:point.y}));
-   };
-   send('pointerdown',from,1);send('pointermove',to,1);send('pointerup',to,0);
-  }else{
-   const send=(type,point,end=false)=>{
-    const touch=new Touch({identifier:91,target:first,clientX:point.x,clientY:point.y,pageX:point.x+scrollX,pageY:point.y+scrollY,screenX:point.x,screenY:point.y,radiusX:1,radiusY:1,force:.5});
-    first.dispatchEvent(new TouchEvent(type,{bubbles:true,cancelable:true,touches:end?[]:[touch],targetTouches:end?[]:[touch],changedTouches:[touch]}));
-   };
-   send('touchstart',from);send('touchmove',to);send('touchend',to,true);
-  }
- },{from,to,pointer});
+  const send=(type,point,buttons)=>{
+   const target=document.elementFromPoint(point.x,point.y);
+   if(!target)throw Error('Touch point is outside the rendered page');
+   target.dispatchEvent(new PointerEvent(type,{bubbles:true,cancelable:true,view:window,pointerType:'touch',pointerId:91,isPrimary:true,button:0,buttons,clientX:point.x,clientY:point.y}));
+  };
+  send('pointerdown',from,1);send('pointermove',to,1);send('pointerup',to,0);
+ },{from,to});
 }

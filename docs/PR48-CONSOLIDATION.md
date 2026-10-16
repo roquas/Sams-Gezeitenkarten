@@ -120,3 +120,10 @@ Die WebKit-CI stoppt nach dem ersten endgültigen Fehler mit rotem Status, damit
 Diagnosen ohne lange Folgefehlerläufe verfügbar werden. Ein grüner Lauf muss
 weiterhin sämtliche 164 Testfälle abarbeiten (drei plangemäße Desktop-Auslassungen).
 Diese Einstellung überspringt keine Tests in einem erfolgreichen Lauf.
+
+Ein kurzer WebKit-Vorlauf prüft Rahmen-Reload und beide Gestenprotokolle zuerst,
+damit Fehler dieser bekannten Integrationsstellen sofort sichtbar werden. Danach
+läuft weiterhin die vollständige Suite. Erfolg des Vorlaufs allein ist keine
+Freigabe; beide Schritte müssen grün sein. WebKit-TouchEvents werden durch
+Playwrights unterstützten Dispatcher erzeugt, der die WebKit-TouchLists korrekt
+aufbaut. Chromium verwendet weiterhin native CDP-Touchereignisse.
