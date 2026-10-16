@@ -250,3 +250,15 @@ fehlgeschlagener Fall behält seinen Retry-Trace. Lokal bleibt
 Ausführungspfad; alle fachlichen Assertions, Aufnahmen, Browser und Zeitgrenzen
 bleiben unverändert. Der Einfluss auf Laufzeit/Stabilität ist durch den
 nächsten CI-Lauf zu verifizieren, nicht bereits als Ursache bewiesen.
+
+
+[Lauf 38980648240](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38980648240):
+Unit, Assets, Deployment und 291 Chromiumfälle grün. Im erweiterten WebKit-
+Vorlauf bestanden 46 Fälle einschließlich der Rätsel-/Speicherkorrekturen;
+eine planmäßige Auslassung und zwei ungestartete Fälle. Bei 390 Pixeln meldete
+der native Klick auf die feste mobile Navigation nach einer Viewporthöhenänderung
+`html`/`body` als fremde Trefferfläche. Dies ist keine reine Budgetdiagnose.
+Der Test erhebt jetzt DOM-/Visual-Viewport, Bildschirmmaße, Scrollposition,
+Buttonrechteck und `elementFromPoint` vor demselben unveränderten nativen Klick.
+Der gezielte Fall läuft zuerst, damit die Ursache ohne langen Vorlauf sichtbar
+wird. Keine neue Produktänderung und keine gelockerte Klickprüfung.

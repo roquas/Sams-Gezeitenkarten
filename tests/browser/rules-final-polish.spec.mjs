@@ -35,7 +35,15 @@ for(const width of [1440,390,320]){
  test(`actual polished controls and expanded rules screenshots at ${width}px`,async({page},testInfo)=>{
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.setViewportSize({width,height:width===1440?1080:844});
-  if(width<601)await page.locator('#chartTab').click();
+  if(width<601){
+   const target=page.locator('#chartTab');
+   const metrics=await target.evaluate(button=>{
+    const r=button.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,hit=document.elementFromPoint(x,y),v=visualViewport;
+    return {hit:button===hit||button.contains(hit),target:r.toJSON(),hitElement:hit?.outerHTML.slice(0,200),inner:[innerWidth,innerHeight],client:[document.documentElement.clientWidth,document.documentElement.clientHeight],visual:v?{width:v.width,height:v.height,top:v.offsetTop,left:v.offsetLeft,scale:v.scale}:null,screen:[screen.width,screen.height],scroll:[scrollX,scrollY],body:document.body.getBoundingClientRect().toJSON()};
+   });
+   expect(metrics,'native mobile navigation hit-test after viewport resize: '+JSON.stringify(metrics)).toMatchObject({hit:true});
+   await target.click();
+  }
   await page.locator('.chart-toolbar').scrollIntoViewIfNeeded();
   await testInfo.attach('rules-polish-'+width+'-chart',{body:await page.screenshot({type:'jpeg',quality:94,fullPage:width===1440}),contentType:'image/jpeg'});
   await page.locator('#mapActions').scrollIntoViewIfNeeded();
