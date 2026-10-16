@@ -16,8 +16,8 @@
     },
     "files": {
       "sea": "assets/seekarte/sea-blue-01.webp",
-      "frame": "assets/seekarte/frame-parchment-01.webp",
-      "quietFrame": "assets/seekarte/frame-parchment-02.webp"
+      "frame": "assets/seekarte/frame-parchment-02.webp",
+      "quietFrame": "assets/seekarte/frame-parchment-01.webp"
     },
     "units": "SVG coordinates; rectangle=[left, top, right, bottom]; polygon=[[x,y], ...]; polygon closes implicitly",
     "svgToPixel": {

@@ -3,7 +3,7 @@ import {CHART_BOUNDS,CHART_VIEWBOX,CHART_CENTER,HEX_BOUNDS,HEXES,ROW_ENVELOPE,of
 export const CHART_ASSET_SPEC=Object.freeze({
  version:4,viewBox:CHART_VIEWBOX,...CHART_BOUNDS,
  pixelWidth:2252,pixelHeight:1892,pixelsPerUnit:4,safety:4,
- sea:'assets/seekarte/sea-blue-01.webp',frame:'assets/seekarte/frame-parchment-01.webp',quietFrame:'assets/seekarte/frame-parchment-02.webp',
+ sea:'assets/seekarte/sea-blue-01.webp',frame:'assets/seekarte/frame-parchment-02.webp',quietFrame:'assets/seekarte/frame-parchment-01.webp',
  opaqueOuter:[-27,-34.5,516,418.5],seaClip:[-27,-34.5,516,418.5],
  outerEdge:[-32,-39.5,521,423.5],
 });
