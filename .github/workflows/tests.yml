@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Verify alpha artifact normalizer safety
+        run: |
+          python3 -m pip install --user Pillow numpy
+          python3 scripts/normalize-chart-alpha.py --self-test
       - name: Validate sea and both parchment frames
         run: |
           python3 -m pip install --user Pillow numpy
