@@ -2,7 +2,7 @@
 
 **Stand:** 15.10.2026 · **Branch:** `experiment/parchment-frame` · [PR #48](https://github.com/roquas/Sams-Gezeitenkarten/pull/48) · [Issue #49](https://github.com/roquas/Sams-Gezeitenkarten/issues/49)
 
-**Phase 1, technische Schablone.** Noch keine finalen Rastergrafiken ins Spiel integriert; kein Merge. Vorgänger-Vertrag v2: Commit `a0eebde2e8cfe074fcb1da059a035c1118caaf6f`. Das v3-Update behebt die konzeptionelle Kopplung an Objekte des Referenzrätsels und entfernt künstliche Eckbereiche. **Verbindliche Nutzerentscheidung vom 16.10.2026:** Kein äußerer Alpha-Übergang. Alle vier Bildkanten des Rahmens bleiben vollständig opak. Zwei Rahmenvarianten sind vorgesehen (reich illustriert und ruhig).
+**Phase 1 plus Integration zur visuellen Abnahme.** Die Bilddateien sind technisch geprüft; Version 02 ist innerhalb des Experiment-Branches Standard, Version 01 optional zuschaltbar. Kein Merge. Vorgänger-Vertrag v2: Commit `a0eebde2e8cfe074fcb1da059a035c1118caaf6f`. Das v3-Update behebt die konzeptionelle Kopplung an Objekte des Referenzrätsels und entfernt künstliche Eckbereiche. **Verbindliche Nutzerentscheidung vom 16.10.2026:** Kein äußerer Alpha-Übergang. Alle vier Bildkanten des Rahmens bleiben vollständig opak. Zwei Rahmenvarianten sind vorgesehen (reich illustriert und ruhig).
 
 ## Wesentliche Entscheidungen (15.10.)
 
@@ -47,7 +47,7 @@ Die Pflichttransparenz hängt **nur** vom Spielraster ab, nicht von zufällig im
 
 Beide Rahmenvarianten bleiben **bis einschließlich aller vier äußeren Pixelkanten vollständig opak (Alpha 255)**. Kein äußerer Alpha-Übergang, keine Sonderfläche in CSS mit angeglichenem Beige. Der Rahmen selbst verdeckt das Meer an den äußeren Bildrändern.
 
-Die bisherige `outerEdge`-Transparenzregel des v3-Vertrags war daher falsch und wurde in **v4** ersetzt. Der Prüfer kontrolliert jetzt den opaken äußeren Pixelrand bei beiden Rahmenvarianten. Die bisherige feste Papierzone außerhalb des schmalen orangefarbenen inneren Korridors ist dagegen **keine harte Alpha-Grenze mehr**: Die Küste darf organisch ins Papier zurückweichen und weiteres Meer freigeben. Dies muss vor Integration mit dem tatsächlichen `seaClip` und mit dem Bild an der gesamten inneren Küste abgeglichen werden.
+Die bisherige `outerEdge`-Transparenzregel des v3-Vertrags war daher falsch und wurde in **v4** ersetzt. Der Prüfer kontrolliert jetzt den opaken äußeren Pixelrand bei beiden Rahmenvarianten. Die bisherige feste Papierzone außerhalb des schmalen orangefarbenen inneren Korridors ist dagegen **keine harte Alpha-Grenze mehr**: Die Küste darf organisch ins Papier zurückweichen und weiteres Meer freigeben. Deshalb wird für die finalen Varianten **das vollständige Meeresbild ohne inneren rechteckigen Clip** gerendert: Die deckende äußere Pergamentkante begrenzt das Wasser selbst, auch in tiefen organischen Buchten.
 
 Die zwingend transparente Innenfläche (`zones.transparent`) sowie die 20 deckend zu haltenden Beschriftungsplättchen sind **weiterhin harte technische Vorgaben**. Über die künstlerische Qualität entscheidet die visuelle Freigabe, nicht allein der Prüfer.
 
@@ -82,7 +82,7 @@ git diff --stat
 
 Hinweis: `git diff --stat` zeigt bei binären WebP-Dateien nicht die tatsächlich veränderten Pixel. Deshalb prüft der Normalizer seine neue Ausgabe selbst wieder auf identische Alpha- und sichtbare Farbwerte.
 
-**Vorschau-Modi:** `?frame=quiet` = Rahmen **01** ohne Illustrationen; `?frame=final` = Rahmen **02** mit Illustrationen. Der normale Spiel-Default bleibt zunächst beim Prototyp, bis die neuen Bilder visuell freigegeben und abschließend integriert sind. Ein späterer zusätzlicher UI-Umschalter ist nicht Teil der jetzigen technischen Reparatur.
+**Vorschau-Modi:** `?frame=quiet` = Rahmen **01** ohne Illustrationen; `?frame=final` = Rahmen **02** mit Illustrationen. **Aktuell ist 02 im experimentellen Branch die Standardanzeige**, 01 per Einstellung „Ruhiger Pergamentrahmen“ umschaltbar; die Auswahl wird getrennt vom Spielstand im Browser gespeichert. Historische Grafikmodi bleiben über `?frame=legacy`, `?frame=raster`, `?frame=modular` als Debugvergleich verfügbar. Eine umfassende künstlerische Freigabe und Merge nach `main` erfolgen weiterhin erst nach manueller Sichtprüfung.
 
 ## Dateien
 
@@ -106,6 +106,6 @@ python3 scripts/check-chart-assets.py
 
 `build-chart-template.mjs` erzeugt JSON, SVG-Schablone und SVG-Maske erneut aus demselben v4-Code. `measure-chart-template.mjs` rastert `template.svg` nach `template.png` mit exakt **2252 × 1892 Pixeln** und erstellt Ansichten für 320/390/768/1440/2560 CSS-px, DPR 2.
 
-Unit- und Browsertests prüfen die Polygon- und Textzonen, alte Hexzentren, Masken-Vertrag, Interaktion und gleiche Bildskalierung. Der PNG-Export und die Screenshots müssen nach dem v3-Update noch regeneriert werden; sie sind **keine** künstlerische Freigabe. Der Asset-Validator liefert erwartungsgemäß `pending`, bis echte freigegebene Produktionsbilder vorliegen. Der äußere Alphatest wurde an den opaken Bildrand angepasst; andere tatsächliche Bild-/Meerpassungen müssen nach Lieferung geprüft werden.
+Unit- und Browsertests prüfen die Polygon- und Textzonen, alte Hexzentren, Masken-Vertrag, Interaktion und gleiche Bildskalierung. Der PNG-Export und die Screenshots müssen nach dem v3-Update noch regeneriert werden; sie sind **keine** künstlerische Freigabe. Nach der finalen Normalisierung (Commit `7961587`) bestätigt der Asset-Validator die verbindlichen Alpha-Zonen aller drei Produktionsbilder. Die Darstellung im Browser, die Varianten-Umschaltung und die vollständig gefüllten Küstenbuchten werden weiterhin separat geprüft; Bildfreigabe bleibt manuell.
 
-**Kein Merge und keine Aktivierung der finalen Grafiken ohne ausdrückliche Freigabe.**
+**Experimentelle Integration nur auf PR #48. Kein Merge nach `main` und keine endgültige gestalterische Abnahme ohne ausdrückliche Freigabe.**
