@@ -62,5 +62,4 @@ GitHub Actions führt beide Testgruppen nach Push und Pull Request aus.
 Diese Version enthält einen festen Referenzfall. Generator, Tagesrätsel, Highscores
 und Backend gehören zu späteren Schritten. Die Darstellung ist auf die bestehende
 5×5-Karte und sechs Stunden ausgelegt; die Engine liest Sperrfelder und Orte aus
-Falldaten. Das Repository bleibt privat; eine öffentliche Veröffentlichung erfolgt
-hier nicht.
+Falldaten. Der Quellcode ist öffentlich einsehbar. Ohne ausdrückliche Lizenz wird keine allgemeine Erlaubnis zur Weiterverwendung oder kommerziellen Verwertung erteilt.
