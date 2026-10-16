@@ -57,8 +57,9 @@ function render(){if(state.layer==="all")state.layer=1;
  renderMap();bordbook.render();save();
 }
 function apply(id,first){
- // Land supports notes and erasers, but never a route or distance origin.
- if(blocked.has(id)&&(state.tool==="route"||distancePhase(state)==="waiting"))return;
+ // Islands remain unmarkable and impassable, yet can be chosen as a
+ // geometrical distance origin while the radar waits for a target.
+ if(blocked.has(id)&&distancePhase(state)!=='waiting')return;
  if(distancePhase(state)==='waiting'){state=chooseDistanceOrigin(state,id);dragging=false;render();return}
  if(state.tool==="clearAll"){const targets=Object.keys(state.marks).filter(k=>k.endsWith(":"+id));if(targets.length){snapshot();targets.forEach(k=>delete state.marks[k]);}state.help=`<div class="notice">Markierungen auf ${pretty(id)} in allen Stunden gelöscht (${targets.length}).</div>`;render();return}
  if(state.tool==="route"){
@@ -119,19 +120,30 @@ const bordbook=createBordbook({clues,getState:()=>state,markup:coordinateTextMar
 $("showChart").addEventListener("change",()=>renderMap());
 const frameSelect=$("frameStyle");
 frameSelect.value=frameStyle==='quiet'?'quiet':'final';
-frameSelect.addEventListener("change",()=>{
- frameStyle=frameSelect.value==='quiet'?'quiet':'final';
- // Selecting either frame explicitly makes the selected artwork visible.
+function changeFrame(){
+ const selected=frameSelect.value==='quiet'?'quiet':'final';
+ if(selected===frameStyle&&$("showChart").checked)return; // input/change may fire twice
+ frameStyle=selected;
+ const wasHidden=!$("showChart").checked;
  $("showChart").checked=true;
  try{storage?.setItem(frameSettingKey,frameStyle)}catch{}
- // Keep the shareable preview URL consistent, including on reload in Safari.
  try{
   const url=new URL(window.location.href);
   url.searchParams.set('frame',frameStyle);
   window.history.replaceState(window.history.state,'',url);
  }catch{}
- renderMap();
-});
+ // Swap visibility of *preloaded* SVG images in place instead of replacing
+ // the whole SVG. This avoids Safari displaying the previously decoded WebP,
+ // and does not disturb the hex hit targets or selected keyboard focus.
+ const svg=$("map");
+ const variants=svg.querySelectorAll('[data-frame-variant]');
+ if(wasHidden||variants.length!==2){renderMap();return}
+ variants.forEach(image=>image.setAttribute('visibility',image.dataset.frameVariant===frameStyle?'visible':'hidden'));
+ svg.dataset.frameMode=frameStyle;
+ svg.querySelector('[data-chart-layer="frame"]').dataset.frameMode=frameStyle;
+}
+frameSelect.addEventListener("input",changeFrame);
+frameSelect.addEventListener("change",changeFrame);
 document.querySelectorAll(".logbook-section p").forEach(p=>p.innerHTML=coordinateTextMarkup(p.innerHTML));
 render();
 })();

@@ -3,6 +3,7 @@ import {frameMode,drawSea,drawFrame} from './parchment-frame.mjs';
 import {hexCenter,hexVertices,placeLabelLayout,startLabelLayout} from './place-labels.mjs';
 import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
+import {distancePhase} from '../state/distance-overlay.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
 import {mapLabels} from '../../content/reference-3.6.mjs';
 function poly(x,y){return hexVertices(x,y).map(([x,y])=>`${x.toFixed(2)},${y.toFixed(2)}`).join(" ")}
@@ -90,9 +91,9 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    for(const side of ['left','right']){
      const band=parchmentHeading(side,r),x=band.center;
      const heading=el('g',{'data-margin-side':side,'data-margin-index':r,'data-margin-center':x,'data-margin-outer':band.outer,'data-margin-inner':band.inner});
-     // Thin frames leave some fixed-position labels over water: a neutral SVG
-     // backing preserves their contrast without moving the coordinate anchors.
-     if(mode!=='legacy')heading.append(el('circle',{cx:x,cy:y,r:14,fill:'#f3e5c5',opacity:'.92'}));
+     // The transparent inkblot now shows the underlying art/sea directly:
+     // no beige SVG backing in the two approved parchment frames.
+     if(mode==='raster'||mode==='modular')heading.append(el('circle',{cx:x,cy:y,r:14,fill:'#f3e5c5',opacity:'.92'}));
      // Kein UI-Kreis: asymmetrischer, leicht durchscheinender Tintenklecks.
      const d=`M ${x-8} ${y-4} Q ${x-12} ${y-11} ${x-3} ${y-10} Q ${x+5} ${y-13} ${x+9} ${y-4} Q ${x+13} ${y+3} ${x+5} ${y+9} Q ${x-4} ${y+13} ${x-9} ${y+4} Z`;
      heading.append(el("path",{d,fill:rc.hex,opacity:".57",stroke:rc.hex,"stroke-width":"1.3"}));
@@ -107,7 +108,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    const layer=el("g",{class:"distance-overlay","data-distance-origin":state.distanceOrigin,"pointer-events":"none","aria-hidden":"true"});
    const shades=["#bc388b","#aa438f","#80539f","#536da2","#348ca4","#259eaa","#268e98"];
    for(const c of cells){
-     if(blocked.has(c.id))continue;
+     // Distances include island / blocked hexes too: geometry is independent of sailing.
      const d=dist(state.distanceOrigin,c.id),[x,y]=coords(c);
      const col=shades[Math.min(d,shades.length-1)];
      layer.append(el("text",{class:"distance-value","data-distance-cell":c.id,"data-distance":d,x,y:y+17,"text-anchor":"middle","font-family":"system-ui, sans-serif","font-size":"51","font-weight":"900",fill:col,opacity:Math.max(.31,.66-d*.055),stroke:"#fff6df","stroke-width":"1.8","paint-order":"stroke"},String(d)));
@@ -115,7 +116,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    svg.append(layer);
  }
  for(const c of cells){
-  const [x,y]=coords(c),m=state.marks[key(state.layer,c.id)],land=blocked.has(c.id);
+  const [x,y]=coords(c),land=blocked.has(c.id),m=land?undefined:state.marks[key(state.layer,c.id)];
   const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
   const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
   g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#d6c59a":"#ece3c1","stroke-width":"1.05","stroke-opacity":land?".62":".56",...(land?{"stroke-dasharray":"4 3"}:{}),"stroke-linejoin":"round","pointer-events":"all"}));
@@ -154,8 +155,11 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
     g.append(el("text",{x:cx,y:cy+3.4,"font-size":"11.8","font-weight":"900","text-anchor":"middle",fill:"white",opacity:state.layer===h?1:.72},({no:"×",maybe:"?",yes:"✓"})[mark]));
   }
   // The route is a continuous line only; corner annotations stay unobstructed.
-  g.addEventListener("pointerdown",e=>{e.preventDefault();onPointerDown();try{svg.setPointerCapture(e.pointerId)}catch{};onActivate(c.id,true)});
-  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();onActivate(c.id,true)}});
+  // Blocked hexes are hit targets only for distance selection, never for notes
+  // or route editing. Do not initiate a drag from a blocked hex in normal mode.
+  const mayActivate=()=>!land||distancePhase(state)==='waiting';
+  g.addEventListener("pointerdown",e=>{if(!mayActivate())return;e.preventDefault();onPointerDown();try{svg.setPointerCapture(e.pointerId)}catch{};onActivate(c.id,true)});
+  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();if(mayActivate())onActivate(c.id,true)}});
   svg.append(g);
  }
  // Handgezeichnete Route: weicher Schein + warmer Tintenstrich + feine Lichtkante.

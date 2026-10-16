@@ -13,7 +13,8 @@
 .distance-status{margin:0;padding:17px 15px 10px;background:#f4e4bb;border-left:2px solid #ad8441;border-right:2px solid #ad8441;color:#574021;font:600 15px/1.5 Georgia,serif}
 .distance-status[data-distance-state="showing"]{background:#e0e8dd;color:#163e43}
 .distance-status[hidden]{display:none}
-.awaiting-distance .cell:not(.blocked-cell){cursor:crosshair}
+.cell.blocked-cell{cursor:default}
+.awaiting-distance .cell{cursor:crosshair}
 .mobile-view-nav{display:none}
 @media(max-width:880px){
  body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}

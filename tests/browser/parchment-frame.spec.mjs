@@ -60,13 +60,13 @@ test('both delivered frames load as independent 2252x1892 preview assets',async(
   await page.goto('/?frame='+mode);
   await expect(page.locator('#map .cell')).toHaveCount(25);
   expect(await page.locator('#map').getAttribute('data-frame-mode')).toBe(mode);
-  const assets=await page.evaluate(async()=>{
-   const layers=[...document.querySelectorAll('#map [data-chart-layer="sea"] image,#map [data-chart-layer="frame"] image')];
+  const assets=await page.evaluate(async(mode)=>{
+   const layers=[...document.querySelectorAll('#map [data-chart-layer="sea"] image,#map [data-chart-layer="frame"] image')].filter(el=>!el.dataset.frameVariant||el.dataset.frameVariant===mode);
    return Promise.all(layers.map(async el=>{
     const href=el.getAttribute('href');const img=new Image();img.src=href;await img.decode();
     return {href,width:img.naturalWidth,height:img.naturalHeight,preserve:el.getAttribute('preserveAspectRatio')};
    }));
-  });
+  },mode);
   expect(assets).toHaveLength(2);
   expect(assets[0].href).toBe('assets/seekarte/sea-blue-01.webp');
   expect(assets[1].href).toBe('assets/seekarte/'+frameName);
@@ -83,8 +83,12 @@ for (const width of [1440,390]) test('visible frame choice works at '+width+'px 
  await page.goto('/');
  const svg=page.locator('#map');
  await expect(svg).toHaveAttribute('data-frame-mode','final');
- const frame=page.locator('#map [data-chart-layer="frame"] image');
- await expect(frame).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
+ const illustrated=page.locator('#map [data-chart-layer="frame"] image[data-frame-variant="final"]');
+ const quiet=page.locator('#map [data-chart-layer="frame"] image[data-frame-variant="quiet"]');
+ await expect(illustrated).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
+ await expect(quiet).toHaveAttribute('href','assets/seekarte/frame-parchment-01.webp');
+ await expect(illustrated).toHaveAttribute('visibility','visible');
+ await expect(quiet).toHaveAttribute('visibility','hidden');
  await page.locator('#map [data-id="E3"]').click();
  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
  const geometryBefore=await geometry(page),headingsBefore=await headings(page);
@@ -96,9 +100,11 @@ for (const width of [1440,390]) test('visible frame choice works at '+width+'px 
  await expect(picker).toHaveValue('final');
  await picker.selectOption('quiet');
  await expect(svg).toHaveAttribute('data-frame-mode','quiet');
- await expect(frame).toHaveAttribute('href','assets/seekarte/frame-parchment-01.webp');
+ await expect(illustrated).toHaveAttribute('visibility','hidden');
+ await expect(quiet).toHaveAttribute('visibility','visible');
  await expect(picker).toHaveValue('quiet');
  expect(new URL(page.url()).searchParams.get('frame')).toBe('quiet');
+ await expect(page.locator('#map [data-chart-layer="frame"] image')).toHaveCount(2);
  expect(await geometry(page)).toEqual(geometryBefore);
  expect(await headings(page)).toEqual(headingsBefore);
  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
@@ -127,7 +133,8 @@ for (const width of [1440,390]) test('visible frame choice works at '+width+'px 
  await expect(picker).toHaveValue('quiet');
  await picker.selectOption('final');
  await expect(svg).toHaveAttribute('data-frame-mode','final');
- await expect(frame).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
+ await expect(illustrated).toHaveAttribute('visibility','visible');
+ await expect(quiet).toHaveAttribute('visibility','hidden');
  expect(new URL(page.url()).searchParams.get('frame')).toBe('final');
  if(width<881)await page.locator('#chartTab').click();
  const illustratedScreenshot=await svg.screenshot();

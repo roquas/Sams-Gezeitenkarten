@@ -43,3 +43,20 @@ jobs:
             test-results/
           if-no-files-found: ignore
 
+  webkit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps webkit
+      - run: npx playwright test --config playwright.webkit.config.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: webkit-chart-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore

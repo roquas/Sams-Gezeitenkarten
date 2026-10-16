@@ -47,9 +47,14 @@ export function drawFrame(el,mode){
    slice.append(el('image',{href:FRAME_ASSET,width:1369,height:1149}));
    frame.append(slice);
   }
- }else {
-  const href=mode==='final'?CHART_ASSET_SPEC.frame:mode==='quiet'?CHART_ASSET_SPEC.quietFrame:FRAME_ASSET;
-  frame.append(el('image',{href,...FRAME_BOUNDS,preserveAspectRatio:'xMidYMid meet'}));
+ }else if(mode==='final'||mode==='quiet'){
+  // Keep both variants decoded and switch visibility in place. Safari/WebKit
+  // does not need to invalidate a newly loaded SVG <image> on each selection.
+  for(const [variant,href] of [['final',CHART_ASSET_SPEC.frame],['quiet',CHART_ASSET_SPEC.quietFrame]]){
+   frame.append(el('image',{href,...FRAME_BOUNDS,preserveAspectRatio:'xMidYMid meet','data-frame-variant':variant,visibility:mode===variant?'visible':'hidden'}));
+  }
+ }else{
+  frame.append(el('image',{href:FRAME_ASSET,...FRAME_BOUNDS,preserveAspectRatio:'xMidYMid meet'}));
  }
  return frame;
 }
