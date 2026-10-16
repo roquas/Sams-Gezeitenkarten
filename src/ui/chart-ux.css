@@ -40,7 +40,8 @@
 /* Keep the navigation OUTSIDE the content viewport, including on iOS. */
 #gameSurface{display:contents}
 @media(max-width:880px){
- html,body{height:100%;overflow:hidden}
+ /* Keep the root hit-test area aligned with the dynamic viewport on iOS. */
+ html,body{height:100%;height:100svh;height:100dvh;overflow:hidden}
  body{padding-bottom:0}
  #gameSurface{display:block;height:calc(100svh - 64px - env(safe-area-inset-bottom,0px));height:calc(100dvh - 64px - env(safe-area-inset-bottom,0px));overflow-y:auto;overflow-x:hidden;scroll-padding:16px;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
  .mobile-view-nav{height:calc(64px + env(safe-area-inset-bottom,0px));box-sizing:border-box}

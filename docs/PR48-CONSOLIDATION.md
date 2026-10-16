@@ -262,3 +262,20 @@ Der Test erhebt jetzt DOM-/Visual-Viewport, Bildschirmmaße, Scrollposition,
 Buttonrechteck und `elementFromPoint` vor demselben unveränderten nativen Klick.
 Der gezielte Fall läuft zuerst, damit die Ursache ohne langen Vorlauf sichtbar
 wird. Keine neue Produktänderung und keine gelockerte Klickprüfung.
+
+
+Die native Diagnose [38981650655](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38981650655)
+misst bei 390×844: `innerHeight=844`, `visualViewport.height=844`, aber
+`documentElement.clientHeight=664` und Bodyhöhe 664. Der Button liegt bei
+y=790…836, der Hit-Test liefert `html`. Die mobile Root-/Bodyhöhe verwendet
+nun dieselben dynamischen Viewporteinheiten wie der bestehende Inhaltsbereich
+(`100%`, `100svh`, `100dvh` als Fallbackfolge), damit die sichtbare feste
+Navigation nicht außerhalb des prozentual begrenzten Seitenkörpers liegt.
+Desktop, Karten-/Rahmengeometrie und Assetbytes werden nicht verändert.
+Die zusätzliche Trefferflächenassertion und der native Klick bleiben erhalten;
+die WebKit-Verifikation dieser konkreten CSS-Korrektur ist noch erforderlich.
+
+Lokale Prüfung der dynamischen Root-Höhe: 62 Chromiumfälle bestanden, zwei
+planmäßige Desktop-Auslassungen (native mobile Navigation, Rätselauswahl,
+Speicherung, beide Radierer/Route, Land-Radar und Logbuch). Sieben
+Verpackungstests bestanden; ZIP mit 53 Dateien neu erzeugt.
