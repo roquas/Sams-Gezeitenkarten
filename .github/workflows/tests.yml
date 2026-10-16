@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - name: Verify no-cache development HTTP semantics
+        run: python3 scripts/dev-server.py --self-test
       - run: npm run test:unit
   assets:
     runs-on: ubuntu-latest

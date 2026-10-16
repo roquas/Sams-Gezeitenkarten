@@ -8,10 +8,32 @@ bleibt derselbe: sechs Etappen auf einer 5×5-Hexkarte mit sieben Hinweisen.
 Im Repository-Verzeichnis:
 
 ```sh
-python3 -m http.server 8000
+python3 scripts/dev-server.py
 ```
 
-Dann `http://localhost:8000/` öffnen. Native ES-Module benötigen einen HTTP-Server;
+Dann `http://localhost:8000/` öffnen. Der Entwicklungsserver deaktiviert den
+HTTP-Cache für **HTML, ES-Module, CSS, JSON und Grafiken** und antwortet selbst
+auf eine ältere `If-Modified-Since`-Anfrage mit der aktuellen Datei statt mit
+einem irreführenden `304 Not Modified`. Wenn schon der alte Server läuft,
+diesen zuerst mit `Ctrl+C` beenden. Funktionstest: `python3 scripts/dev-server.py
+--self-test`.
+
+Der private Browsermodus setzt außerdem gespeicherten **Rätselstand** und
+**Rahmenwahl** zurück. Wer Unterschiede nur im Privatfenster sieht, sollte
+darum auch die URL (`?frame=quiet` oder `?frame=final`) und gespeicherte
+Einstellungen prüfen. Bei zuvor bereits gecachten Dateien kann einmalig
+`Entwickler → Caches leeren` nötig sein; danach verhindert der neue
+lokale Server erneute veraltete HTTP-Antworten. Zum Test auf einem anderen
+Gerät im vertrauenswürdigen Heimnetz kann man `--host 0.0.0.0` angeben.
+
+Das beiliegende `.htaccess` sorgt beim Uberspace-/Apache-Deployment während
+der iterativen Entwicklung für **bedingte Neuvalidierung** statt
+unkontrolliertem Cache; unveränderte große Grafiken können weiter als
+`304 Not Modified` bestätigt werden. Bei späterer Versionierung mit
+gehashten Dateinamen können die Grafiken langfristig gecacht werden.
+Für andere Webserver müssen entsprechende HTTP-Header konfiguriert werden.
+
+Native ES-Module benötigen einen HTTP-Server;
 ein Doppelklick auf die HTML-Datei reicht nicht. Auf Uberspace werden `index.html`,
 `src/`, `puzzles/`, `content/` und `assets/` (Seekarte und UI-Materialien) im selben Verhältnis
 hochgeladen. Für das Spielen sind weder Node noch ein Buildschritt erforderlich.
