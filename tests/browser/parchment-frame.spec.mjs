@@ -54,7 +54,7 @@ test('desktop and mobile render without errors, clipping or distortion',async({p
 });
 
 test('both delivered frames load as independent 2252x1892 preview assets',async({page})=>{
- for(const [mode,frameName] of [['final','frame-parchment-01.webp'],['quiet','frame-parchment-02.webp']]){
+ for(const [mode,frameName] of [['final','frame-parchment-02.webp'],['quiet','frame-parchment-01.webp']]){
   const failed=[];
   page.on('pageerror',e=>failed.push(e.message));
   await page.goto('/?frame='+mode);
