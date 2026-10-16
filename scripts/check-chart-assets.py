@@ -43,13 +43,35 @@ for kind in ['sea','frame','quietFrame']:
    return result
   zones=spec['zones']
   opening=union(zones['transparent']['polygons'])
-  if np.any(alpha[opening]!=0):errors.append(f'{kind}: nonzero alpha in mandatory clear opening')
-  if any(np.any(edge!=255) for edge in [alpha[0],alpha[-1],alpha[:,0],alpha[:,-1]]):errors.append(f'{kind}: all outermost pixels must be opaque')
+  # Keep the hard alpha rules; add counts/extent so export defects can be
+  # distinguished from substantial coast/coordinate geometry problems.
+  info['alpha_diagnostics']={}
+  def examine(name, bad):
+   n=int(np.count_nonzero(bad))
+   if not n:return
+   rows,cols=np.where(bad)
+   ix=int(rows[0]);iy=int(cols[0])
+   info['alpha_diagnostics'][name]={
+    'affected_pixels':n, 'fraction_of_region':round(n/max(int(np.count_nonzero(opening if name=='mandatory_clear' else perimeter if name=='perimeter' else np.ones_like(alpha,dtype=bool))),1),7),
+    'bbox_pixels':[int(cols.min()),int(rows.min()),int(cols.max()),int(rows.max())],
+    'first_pixel':[iy,ix,int(alpha[ix,iy])],
+    'alpha_min':int(alpha[bad].min()),'alpha_max':int(alpha[bad].max())
+   }
+  examine('mandatory_clear',opening&(alpha!=0))
+  if 'mandatory_clear' in info['alpha_diagnostics']:errors.append(f'{kind}: nonzero alpha in mandatory clear opening')
+  perimeter=np.zeros_like(alpha,dtype=bool)
+  perimeter[[0,-1],:]=True
+  perimeter[:,[0,-1]]=True
+  examine('perimeter',perimeter&(alpha!=255))
+  if 'perimeter' in info['alpha_diagnostics']:errors.append(f'{kind}: all outermost pixels must be opaque')
   rgb=rgba[:,:,:3]/255;linear=np.where(rgb<=.04045,rgb/12.92,((rgb+.055)/1.055)**2.4);luma=linear@np.array([.2126,.7152,.0722])
   info['label_zones']=[]
   for z in zones['headings']['items']:
    selected=mask(z['bounds']);v=luma[selected]
-   if np.any(alpha[selected]!=255):errors.append(f"{kind}: {z['side']} {z['index']+1} not on opaque parchment")
+   if np.any(alpha[selected]!=255):
+    name=f"label_{z['side']}_{z['index']+1}"
+    examine(name,selected&(alpha!=255))
+    errors.append(f"{kind}: {z['side']} {z['index']+1} not on opaque parchment")
    info['label_zones'].append({'side':z['side'],'index':z['index'],'min_luminance':round(float(v.min()),4),'max_luminance':round(float(v.max()),4)})
 report['errors']=errors
 if errors:report['status']='failed'
