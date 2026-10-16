@@ -79,6 +79,7 @@ test('both delivered frames load as independent 2252x1892 preview assets',async(
 });
 
 for (const width of [1440,390]) test('visible frame choice works at '+width+'px and persists on reload',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});
  await page.setViewportSize({width,height:900});
  await page.goto('/');
  const svg=page.locator('#map');
@@ -108,6 +109,39 @@ for (const width of [1440,390]) test('visible frame choice works at '+width+'px 
  expect(await geometry(page)).toEqual(geometryBefore);
  expect(await headings(page)).toEqual(headingsBefore);
  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
+ if(width<881)await page.locator('#chartTab').click();
+ const quietScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
+ await page.reload();
+ await expect(svg).toHaveAttribute('data-frame-mode','quiet');
+ if(width<881)await page.locator('#logbookTab').click();
+ await settings.locator('summary').click();
+ await expect(picker).toHaveValue('quiet');
+ await picker.selectOption('final');
+ await expect(svg).toHaveAttribute('data-frame-mode','final');
+ await expect(illustrated).toHaveAttribute('visibility','visible');
+ await expect(quiet).toHaveAttribute('visibility','hidden');
+ expect(new URL(page.url()).searchParams.get('frame')).toBe('final');
+ if(width<881)await page.locator('#chartTab').click();
+ const illustratedScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
+ expect(quietScreenshot.equals(illustratedScreenshot)).toBe(false);
+ await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
+ await page.evaluate(()=>localStorage.clear());
+});
+test('final-frame sea reaches the full SVG canvas without legacy water clipping',async({page})=>{
+ for(const mode of ['final','quiet']){
+  await page.goto('/?frame='+mode);
+  const sea=page.locator('#map [data-chart-layer="sea"]');
+  await expect(sea.locator('image')).toHaveCount(1);
+  await expect(sea.locator('clipPath')).toHaveCount(0);
+  const image=sea.locator('image');
+  await expect(image).toHaveAttribute('href','assets/seekarte/sea-blue-01.webp');
+  await expect(image).not.toHaveAttribute('clip-path',/./);
+  await expect(image).toHaveAttribute('preserveAspectRatio','xMidYMid meet');
+ }
+});
+
+test('delivered frame rasters have visibly different pixels',async({page})=>{
+ await page.goto('/');
  // Decode actual WebPs and verify that the 01 and 02 visuals are not identical.
  const differentPixels=await page.evaluate(async()=>{
   async function imageData(url){
@@ -124,33 +158,4 @@ for (const width of [1440,390]) test('visible frame choice works at '+width+'px 
   return changed;
  });
  expect(differentPixels).toBeGreaterThan(100);
- if(width<881)await page.locator('#chartTab').click();
- const quietScreenshot=await svg.screenshot();
- await page.reload();
- await expect(svg).toHaveAttribute('data-frame-mode','quiet');
- if(width<881)await page.locator('#logbookTab').click();
- await settings.locator('summary').click();
- await expect(picker).toHaveValue('quiet');
- await picker.selectOption('final');
- await expect(svg).toHaveAttribute('data-frame-mode','final');
- await expect(illustrated).toHaveAttribute('visibility','visible');
- await expect(quiet).toHaveAttribute('visibility','hidden');
- expect(new URL(page.url()).searchParams.get('frame')).toBe('final');
- if(width<881)await page.locator('#chartTab').click();
- const illustratedScreenshot=await svg.screenshot();
- expect(quietScreenshot.equals(illustratedScreenshot)).toBe(false);
- await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
- await page.evaluate(()=>localStorage.clear());
-});
-test('final-frame sea reaches the full SVG canvas without legacy water clipping',async({page})=>{
- for(const mode of ['final','quiet']){
-  await page.goto('/?frame='+mode);
-  const sea=page.locator('#map [data-chart-layer="sea"]');
-  await expect(sea.locator('image')).toHaveCount(1);
-  await expect(sea.locator('clipPath')).toHaveCount(0);
-  const image=sea.locator('image');
-  await expect(image).toHaveAttribute('href','assets/seekarte/sea-blue-01.webp');
-  await expect(image).not.toHaveAttribute('clip-path',/./);
-  await expect(image).toHaveAttribute('preserveAspectRatio','xMidYMid meet');
- }
 });

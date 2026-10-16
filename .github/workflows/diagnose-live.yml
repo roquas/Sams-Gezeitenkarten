@@ -1,0 +1,29 @@
+name: Diagnose explicit live deployment
+on:
+  workflow_dispatch:
+    inputs:
+      live_url:
+        description: HTTPS deployment explicitly selected for diagnosis
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium webkit
+      - run: node scripts/diagnose-live.mjs
+        env:
+          LIVE_URL: ${{ inputs.live_url || 'https://roquas.de/gk/pr38/' }}
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-diagnostics
+          path: live-diagnostics/
+          retention-days: 3

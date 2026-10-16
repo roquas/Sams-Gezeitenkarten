@@ -2,6 +2,7 @@ name: Tests
 on:
   workflow_dispatch:
   push:
+    branches: [main]
   pull_request:
 permissions:
   contents: read
@@ -15,6 +16,7 @@ jobs:
       - name: Verify no-cache development HTTP semantics
         run: python3 scripts/dev-server.py --self-test
       - run: npm run test:unit
+      - run: npm run test:puzzles
   assets:
     runs-on: ubuntu-latest
     steps:
@@ -36,7 +38,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
-      - if: always()
+      - if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
@@ -44,6 +46,7 @@ jobs:
             playwright-report/
             test-results/
           if-no-files-found: ignore
+          retention-days: 3
 
   webkit:
     runs-on: ubuntu-latest
@@ -54,7 +57,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
       - run: npx playwright test --config playwright.webkit.config.mjs
-      - if: always()
+      - if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: webkit-chart-report
@@ -62,3 +65,49 @@ jobs:
             playwright-report/
             test-results/
           if-no-files-found: ignore
+          retention-days: 3
+
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: python3 tests/test_package.py
+      - run: sh scripts/package.sh
+      - name: Extract actual release ZIP outside the checkout
+        run: |
+          site=$(mktemp -d)
+          python3 -m zipfile -e dist/Sams-Gezeitenkarten.zip "$site"
+          echo "DEPLOY_ROOT=$site" >> "$GITHUB_ENV"
+      - name: Export PR38 comparison deployments
+        run: |
+          for pair in '6479400974e7fe056aaefd39e6f8d1599b296a1f BASELINE_ROOT' '8e3629fb73360f5982cc5da7fbc0a05ccd854b44 LAND_BASELINE_ROOT'; do
+            set -- $pair
+            baseline=$(mktemp -d)
+            git archive "$1" | tar -x -C "$baseline"
+            python3 "$baseline/scripts/package.py"
+            before=$(mktemp -d)
+            python3 -m zipfile -e "$baseline/dist/Sams-Gezeitenkarten.zip" "$before"
+            echo "$2=$before" >> "$GITHUB_ENV"
+          done
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npx playwright test --config playwright.deployment.config.mjs
+      - name: Retain directly deployable ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-deployment
+          path: dist/Sams-Gezeitenkarten.zip
+          if-no-files-found: error
+          retention-days: 3
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-failure
+          path: |
+            deployment-report/
+            deployment-test-results/
+          if-no-files-found: ignore
+          retention-days: 3
