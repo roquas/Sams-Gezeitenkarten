@@ -43,7 +43,7 @@ test('whole-island center, rust-red Start, visible land outlines and centered ma
   await page.setViewportSize({width,height:900});
   const headings=await page.locator('[data-margin-side]').evaluateAll(ns=>ns.map(n=>{const b=n.getBBox(),side=n.dataset.marginSide,vertical=side==='top'||side==='bottom';return {center:Number(n.dataset.marginCenter),outer:Number(n.dataset.marginOuter),inner:Number(n.dataset.marginInner),min:vertical?b.y:b.x,max:vertical?b.y+b.height:b.x+b.width};}));
   expect(headings).toHaveLength(20);for(const p of headings){expect(p.center).toBeCloseTo((p.outer+p.inner)/2,5);expect(p.min).toBeGreaterThan(Math.min(p.outer,p.inner));expect(p.max).toBeLessThan(Math.max(p.outer,p.inner));}
-  const outlines=await page.locator('.blocked-cell polygon').evaluateAll(ns=>ns.map(n=>({stroke:n.getAttribute('stroke'),width:Number(n.getAttribute('stroke-width')),opacity:Number(n.getAttribute('stroke-opacity')),fill:n.getAttribute('fill')})));
-  expect(outlines).toHaveLength(3);expect(outlines.every(p=>p.stroke!=='none'&&p.width>=1.2&&p.opacity>=.7&&p.fill==='transparent')).toBe(true);
+  const outlines=await page.locator('.blocked-cell polygon').evaluateAll(ns=>ns.map(n=>({stroke:n.getAttribute('stroke'),width:Number(n.getAttribute('stroke-width')),opacity:Number(n.getAttribute('stroke-opacity')),dash:n.getAttribute('stroke-dasharray'),fill:n.getAttribute('fill')})));
+  expect(outlines).toHaveLength(3);expect(outlines.every(p=>p.stroke==='#d6c59a'&&p.width===1.05&&p.opacity===.62&&p.dash==='4 3'&&p.fill==='transparent')).toBe(true);
  }
 });
