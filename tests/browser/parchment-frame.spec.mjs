@@ -11,7 +11,7 @@ test('all variants preserve geometry, coordinates and usable SVG targets',async(
  await page.goto('/?frame=legacy');
  const original=await geometry(page),anchors=await headings(page);
  expect(original).toHaveLength(25);expect(anchors).toHaveLength(20);
- for(const mode of ['raster','modular']){
+ for(const mode of ['raster','modular','final','quiet']){
   await page.goto('/?frame='+mode);
   expect(await geometry(page)).toEqual(original);expect(await headings(page)).toEqual(anchors);
   const layers=page.locator('[data-chart-layer]');
@@ -38,7 +38,7 @@ test('all variants preserve geometry, coordinates and usable SVG targets',async(
 test('desktop and mobile render without errors, clipping or distortion',async({page},testInfo)=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{if(r.status()>=400)errors.push(r.url());});
- for(const width of [1440,390,320])for(const mode of ['legacy','raster','modular']){
+ for(const width of [1440,390,320])for(const mode of ['legacy','raster','modular','final','quiet']){
   await page.setViewportSize({width,height:1100});await page.goto('/?frame='+mode);
   await page.waitForSelector('#map .cell');await page.evaluate(()=>document.fonts.ready);
   const map=page.locator('#map');expect(await map.getAttribute('viewBox')).toBe('-37 -44.5 563 473');
@@ -51,4 +51,29 @@ test('desktop and mobile render without errors, clipping or distortion',async({p
   await testInfo.attach(`${mode}-${width}`,{body:await map.screenshot(),contentType:'image/png'});
  }
  expect(errors).toEqual([]);
+});
+
+test('both delivered frames load as independent 2252x1892 preview assets',async({page})=>{
+ for(const [mode,frameName] of [['final','frame-parchment-01.webp'],['quiet','frame-parchment-02.webp']]){
+  const failed=[];
+  page.on('pageerror',e=>failed.push(e.message));
+  await page.goto('/?frame='+mode);
+  await expect(page.locator('#map .cell')).toHaveCount(25);
+  expect(await page.locator('#map').getAttribute('data-frame-mode')).toBe(mode);
+  const assets=await page.evaluate(async()=>{
+   const layers=[...document.querySelectorAll('#map [data-chart-layer="sea"] image,#map [data-chart-layer="frame"] image')];
+   return Promise.all(layers.map(async el=>{
+    const href=el.getAttribute('href');const img=new Image();img.src=href;await img.decode();
+    return {href,width:img.naturalWidth,height:img.naturalHeight,preserve:el.getAttribute('preserveAspectRatio')};
+   }));
+  });
+  expect(assets).toHaveLength(2);
+  expect(assets[0].href).toBe('assets/seekarte/sea-blue-01.webp');
+  expect(assets[1].href).toBe('assets/seekarte/'+frameName);
+  for(const asset of assets){expect([asset.width,asset.height]).toEqual([2252,1892]);expect(asset.preserve).toBe('xMidYMid meet');}
+  await page.locator('#map [data-id="E3"]').click();
+  await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
+  await page.evaluate(()=>localStorage.clear());
+  expect(failed).toEqual([]);
+ }
 });
