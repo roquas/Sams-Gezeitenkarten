@@ -1,11 +1,12 @@
 import {CHART_BOUNDS} from './chart-geometry.mjs';
+import {CHART_ASSET_SPEC} from './chart-asset-contract.mjs';
 // Presentation-only experiment. No puzzle, coordinate or input configuration.
 export const FRAME_ASSET='assets/seekarte/pergament-rahmen-prototyp.webp';
 export const SEA_ASSET='assets/seekarte/meer-ohne-objekte-prototyp.webp';
 export const FRAME_BOUNDS=Object.freeze(CHART_BOUNDS);
 export function frameMode(search=''){
  const mode=new URLSearchParams(search).get('frame');
- return ['legacy','modular'].includes(mode)?mode:'raster';
+ return ['legacy','modular','final','quiet'].includes(mode)?mode:'raster';
 }
 // Eight slices, no opaque center. Native-image crops retain narrow borders.
 // Corners retain their aspect ratio; only the long edge direction stretches.
@@ -21,13 +22,15 @@ export function frameTiles(){
    viewBox:[sx[c],sy[r],sx[c+1]-sx[c],sy[r+1]-sy[r]].join(' ')};
  }).filter((_,i)=>i!==4);
 }
-export function drawSea(el){
+export function drawSea(el,mode='raster'){
  const sea=el('g',{'data-chart-layer':'sea','pointer-events':'none','aria-hidden':'true'});
  // Keep water beneath the opaque band, never outside its torn outer edge.
  const clip=el('clipPath',{id:'frame-sea-clip',clipPathUnits:'userSpaceOnUse'});
- clip.append(el('rect',{x:FRAME_BOUNDS.x+18,y:FRAME_BOUNDS.y+18,width:527,height:437}));
+ const finalAsset=mode==='final'||mode==='quiet';
+ const [l,t,r,b]=finalAsset?CHART_ASSET_SPEC.seaClip:[FRAME_BOUNDS.x+18,FRAME_BOUNDS.y+18,FRAME_BOUNDS.x+545,FRAME_BOUNDS.y+455];
+ clip.append(el('rect',{x:l,y:t,width:r-l,height:b-t}));
  sea.append(clip);
- sea.append(el('image',{href:SEA_ASSET,...FRAME_BOUNDS,preserveAspectRatio:'xMidYMid slice','clip-path':'url(#frame-sea-clip)'}));
+ sea.append(el('image',{href:finalAsset?CHART_ASSET_SPEC.sea:SEA_ASSET,...FRAME_BOUNDS,preserveAspectRatio:finalAsset?'xMidYMid meet':'xMidYMid slice','clip-path':'url(#frame-sea-clip)'}));
  return sea;
 }
 export function drawFrame(el,mode){
@@ -38,6 +41,9 @@ export function drawFrame(el,mode){
    slice.append(el('image',{href:FRAME_ASSET,width:1369,height:1149}));
    frame.append(slice);
   }
- }else frame.append(el('image',{href:FRAME_ASSET,...FRAME_BOUNDS,preserveAspectRatio:'xMidYMid meet'}));
+ }else {
+  const href=mode==='final'?CHART_ASSET_SPEC.frame:mode==='quiet'?CHART_ASSET_SPEC.quietFrame:FRAME_ASSET;
+  frame.append(el('image',{href,...FRAME_BOUNDS,preserveAspectRatio:'xMidYMid meet'}));
+ }
  return frame;
 }
