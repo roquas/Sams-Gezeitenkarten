@@ -9,7 +9,7 @@ async function settings(page){
 }
 async function choose(page,id){await settings(page);await page.locator('#puzzleSelect').selectOption(id);await expect(page.locator('#puzzleStatus')).toContainText('Geladen:');await expect(page.locator('#puzzleSelect')).toBeEnabled();await chart(page);}
 test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);await expect(page.locator('#map .cell')).toHaveCount(25);});
-test('switch, reload, isolated notes/routes/overlays, undo and reset',async({page},testInfo)=>{
+test('switch and reload isolate notes, routes, overlays and undo',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  const staticImage=await page.locator('#map image').first().elementHandle();
  await page.locator('#map [data-id="E3"]').click();
@@ -34,22 +34,41 @@ test('switch, reload, isolated notes/routes/overlays, undo and reset',async({pag
  await choose(page,other);expect((await saved(page,other)).route).toEqual(['A5','B5']);
  await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);await expect(page.locator('h1')).toHaveText('Technischer Testfall – Navigation');
  await expect(page.locator('#map .cell')).toHaveCount(25);
- await settings(page);page.once('dialog',d=>d.accept());await page.locator('#reset').click();
- expect((await saved(page,other)).route).toEqual(['A5']);expect((await saved(page,other)).marks).toEqual({});
- expect((await saved(page,ref)).marks['1:E3']).toBe('maybe');
- await testInfo.attach('puzzle-settings-'+testInfo.project.name,{body:await page.screenshot({type:'jpeg',quality:90,scale:'css'}),contentType:'image/jpeg'});
- await chart(page);await page.locator('.mapbox').scrollIntoViewIfNeeded();
- await testInfo.attach('puzzle-map-'+testInfo.project.name,{body:await page.screenshot({type:'jpeg',quality:90,scale:'css'}),contentType:'image/jpeg'});
+ expect((await saved(page,other)).route).toEqual(['A5','B5']);
  expect(errors).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
-test('both manifest puzzles can be solved and verified after repeated switches',async({page})=>{
- for(const [id,route] of [[other,['B5','C5','D5','E5','E4','D4']],[ref,['E3','D2','C2','B2','B1','A1']],[other,['B5','C5','D5','E5','E4','D4']]]){
-  await choose(page,id);
-  if((await saved(page,id)).route.length===1){await page.locator('#routeTool').click();for(const cell of route)await page.locator(`#map [data-id="${cell}"]`).click();}
-  await expect(page.locator('#verify')).toBeEnabled();await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig!');
- }
+test('reset after reload clears only the selected puzzle',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.locator('#map [data-id="E3"]').click();
+ await choose(page,other);await page.locator('#map [data-id="B5"]').click();
+ await page.locator('#routeTool').click();await page.locator('#map [data-id="B5"]').click();
+ await page.reload();await expect(page.locator('h1')).toHaveText('Technischer Testfall – Navigation');
+ expect((await saved(page,other)).route).toEqual(['A5','B5']);
+ await settings(page);page.once('dialog',d=>d.accept());await page.locator('#reset').click();
+ expect((await saved(page,other)).route).toEqual(['A5']);expect((await saved(page,other)).marks).toEqual({});
+ expect((await saved(page,ref)).marks['1:E3']).toBe('maybe');
+ expect(errors).toEqual([]);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
+for(const surface of ['settings','map'])test(`selected puzzle ${surface} screenshot`,async({page},testInfo)=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await choose(page,other);
+ if(surface==='settings')await settings(page);
+ else {await chart(page);await page.locator('.mapbox').scrollIntoViewIfNeeded();}
+ await testInfo.attach('puzzle-'+surface+'-'+testInfo.project.name,{body:await page.screenshot({type:'jpeg',quality:90,scale:'css'}),contentType:'image/jpeg'});
+ expect(errors).toEqual([]);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+for(const [id,route,start] of [[other,['B5','C5','D5','E5','E4','D4'],'A5'],[ref,['E3','D2','C2','B2','B1','A1'],'D4']]){
+ test(`manifest puzzle ${id} can be solved and verified after repeated switches`,async({page})=>{
+  await choose(page,id);await page.locator('#routeTool').click();
+  for(const cell of route)await page.locator(`#map [data-id="${cell}"]`).click();
+  await expect(page.locator('#verify')).toBeEnabled();await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig!');
+  expect((await saved(page,id)).route).toEqual([start,...route]);
+  await choose(page,id===ref?other:ref);await choose(page,id);
+  expect((await saved(page,id)).route).toEqual([start,...route]);
+  await expect(page.locator('#verify')).toBeEnabled();await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig!');
+ });
+}
 test('failed load keeps the previous puzzle and editable state',async({page})=>{
  await page.locator('#map [data-id="E3"]').click();
  await page.route('**/puzzles/test-navigation.json',r=>r.fulfill({status:404,body:'missing'}));

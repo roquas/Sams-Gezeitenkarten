@@ -222,3 +222,31 @@ weiter über die UI; alle ursprünglichen Assertions bleiben erhalten. Auch die
 mit denselben Maßen/Pixeln erhalten. Der Vorlauf prüft beide Radierer früh.
 Die Vollsuite enthält nun 272 Fälle je Browserfamilie (269 plus drei
 planmäßige Desktop-Auslassungen); 18 Fälle im Vorlauf. Keine Timeoutänderung.
+
+
+[Lauf 38977408555](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38977408555):
+Unit, Assets, Deployment und 269 Chromiumfälle grün. Der erweiterte WebKit-
+Vorlauf bestand 17 Fälle bei einer planmäßigen Auslassung. In der Vollsuite
+bestanden 117 Fälle einschließlich der Radar-/Radiererszenarien; ein kombinierter
+Rätselwechseltest war einmal flaky bei der zweiten Aufnahme, und die Prüfung
+zweier kompletter Lösungsrouten samt drei Wechseln erschöpfte das Gesamtbudget
+am Verifizieren-Knopf. 152 Fälle wurden danach nicht gestartet.
+
+Die bestehenden Speicher-/Undo-/Reload-Prüfungen und Reset-Prüfung haben nun
+eigene Fälle; beide bisherigen Aufnahmen bleiben separat. Jede der zwei
+Lösungen wird weiterhin vollständig durch UI-Klicks gezeichnet, überprüft,
+weg- und wieder angewählt und erneut überprüft. Zusätzlich wird die exakt
+gespeicherte Route vor/nach dem Wechsel geprüft. Derselbe kumulative Aufbau
+der Radar-Regelprüfung wird pro vorhandener Breite parametrisiert; alle drei
+Radarphasen, sechs Breiten und alle neun Regelaufnahmen bleiben erhalten.
+Die Vollsuite umfasst 294 Fälle je Browserfamilie (291 plus drei planmäßige
+Desktop-Auslassungen). Der gezielte frühe Vorlauf enthält 50 Fälle.
+Zeitgrenzen und Assertions bleiben erhalten; keine Anwendungsänderung.
+
+Die WebKit-CI zeichnet Traces mit `on-first-retry` auf: normale Erstläufe
+erzeugen nicht für jede Eingabe einen DOM-/Rendering-Trace, ein erneut
+fehlgeschlagener Fall behält seinen Retry-Trace. Lokal bleibt
+`retain-on-failure` aktiv. Dies reduziert Diagnoseaufwand im normalen
+Ausführungspfad; alle fachlichen Assertions, Aufnahmen, Browser und Zeitgrenzen
+bleiben unverändert. Der Einfluss auf Laufzeit/Stabilität ist durch den
+nächsten CI-Lauf zu verifizieren, nicht bereits als Ursache bewiesen.

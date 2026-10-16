@@ -14,8 +14,8 @@ test('editorial rules remain collapsed and offer the complete structured introdu
  await expect(rules).not.toContainText('Bildplatzhalter');
  await rules.locator('summary').focus();await page.keyboard.press('Enter');await expect(rules).not.toHaveAttribute('open','');
 });
-test('compact controls, transparent group decorations and centered radar in all states',async({page})=>{
- for(const width of [320,360,390,600,900,1440]){
+for(const width of [320,360,390,600,900,1440]){
+ test(`compact controls and centered radar in all states at ${width}px`,async({page})=>{
   await page.setViewportSize({width,height:1000});
   await expect(page.locator('#toggleRouteNumbers .route-numerals')).toHaveText('①②··');
   await expect(page.locator('#verify .verify-label')).toHaveCount(0);
@@ -29,11 +29,11 @@ test('compact controls, transparent group decorations and centered radar in all 
    if(state==='waiting')await page.locator('#map [data-id="E3"]').click();
   }
   await page.locator('#toggleDistances').click();await page.locator('#toggleDistances').click();
- }
-});
-test('actual screenshots: polished controls and expanded rules',async({page},testInfo)=>{
- await page.emulateMedia({reducedMotion:'reduce'});
- for(const width of [1440,390,320]){
+ });
+}
+for(const width of [1440,390,320]){
+ test(`actual polished controls and expanded rules screenshots at ${width}px`,async({page},testInfo)=>{
+  await page.emulateMedia({reducedMotion:'reduce'});
   await page.setViewportSize({width,height:width===1440?1080:844});
   if(width<601)await page.locator('#chartTab').click();
   await page.locator('.chart-toolbar').scrollIntoViewIfNeeded();
@@ -45,5 +45,5 @@ test('actual screenshots: polished controls and expanded rules',async({page},tes
   await page.locator('#gameRules summary').scrollIntoViewIfNeeded();
   await testInfo.attach('rules-polish-'+width+'-rules',{body:width<601?await page.screenshot({type:'jpeg',quality:94,scale:'css'}):await page.locator('#gameRules').screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
   await page.locator('#gameRules').evaluate(el=>el.open=false);
- }
-});
+ });
+}
