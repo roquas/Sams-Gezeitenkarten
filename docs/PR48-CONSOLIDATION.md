@@ -115,3 +115,8 @@ Die vollständige WebKit-Suite verteilt die voneinander isolierten Testfälle
 wie Chromium parallel auf zwei Worker. Testtimeouts und Assertions bleiben
 unverändert. Der Chromium-CDP-Pfad ist nach der Extraktion erneut bestanden;
 der DOM-Pfad wurde zusätzlich an der gerenderten Anwendung geprüft.
+
+Die WebKit-CI stoppt nach dem ersten endgültigen Fehler mit rotem Status, damit
+Diagnosen ohne lange Folgefehlerläufe verfügbar werden. Ein grüner Lauf muss
+weiterhin sämtliche 164 Testfälle abarbeiten (drei plangemäße Desktop-Auslassungen).
+Diese Einstellung überspringt keine Tests in einem erfolgreichen Lauf.

@@ -2,6 +2,8 @@ import {defineConfig,devices} from '@playwright/test';
 // Full Safari/WebKit regression suite; Chromium runs separately.
 export default defineConfig({
  testDir:'./tests/browser',fullyParallel:true,workers:2,
+ // Stop a red diagnostic run early; a green run still executes every test.
+ maxFailures:process.env.CI?1:0,
  retries:process.env.CI?1:0,
  reporter:process.env.CI?[['github'],['html',{open:'never'}]]:'list',
  use:{baseURL:'http://127.0.0.1:4173',trace:'retain-on-failure',screenshot:'only-on-failure'},
