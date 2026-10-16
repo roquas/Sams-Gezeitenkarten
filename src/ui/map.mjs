@@ -7,14 +7,14 @@ import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
 import {mapLabels} from '../../content/reference-3.6.mjs';
 function poly(x,y){return hexVertices(x,y).map(([x,y])=>`${x.toFixed(2)},${y.toFixed(2)}`).join(" ")}
 const coords=hexCenter;
-export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate}){
+export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate,frameStyle}){
  const $=id=>document.getElementById(id);
  const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.replaceChildren();svg.setAttribute("viewBox",CHART_VIEWBOX);
  const NS="http://www.w3.org/2000/svg";
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
- const mode=frameMode(window.location.search);
+ const mode=frameStyle||frameMode(window.location.search);
  svg.dataset.frameMode=mode;
  const showArt=document.getElementById("showChart").checked;
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
