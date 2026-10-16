@@ -41,10 +41,10 @@ test('land notes never make an impassable hex a route step or distance origin',a
  const land=page.locator('#map [data-id="B3"]');
  await land.click();
  await expect(land).toContainText('?');
- const routeBefore=await page.locator('#routeView').innerText();
+ const routeBefore=await page.locator('#routeView').textContent();
  await page.locator('#routeTool').click();
  await land.click();
- await expect(page.locator('#routeView')).toHaveText(routeBefore);
+ expect(await page.locator('#routeView').textContent()).toBe(routeBefore);
  await page.locator('#toggleDistances').click();
  await land.click();
  await expect(page.locator('#map .distance-overlay')).toHaveCount(0);
