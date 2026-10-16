@@ -14,7 +14,7 @@
 ## Unveränderte Grundgeometrie
 
 - **Alle drei Zielgrafiken:** exakt **2252 × 1892 px**, WebP, gemeinsame SVG-ViewBox `-37 -44.5 563 473`, **4 Bildpixel je SVG-Einheit**.
-- **Dateinamen:** `assets/seekarte/sea-blue-01.webp` (vollständig deckendes, objektfreies Meer), `assets/seekarte/frame-parchment-01.webp` (illustrierter Rahmen) und `assets/seekarte/frame-parchment-02.webp` (ruhiger Rahmen ohne Illustration).
+- **Dateinamen:** `assets/seekarte/sea-blue-01.webp` (vollständig deckendes, objektfreies Meer), `assets/seekarte/frame-parchment-01.webp` (**ruhiger Rahmen ohne Illustration**) und `assets/seekarte/frame-parchment-02.webp` (**illustrierter Rahmen, vorgesehen als späterer Default**).
 - **Kartenmitte:** `(244,5; 192)`; über die *äußere* Hexausdehnung `[28,823085…; 20; 460,176915…; 364]` gemessen. Die zuvor vorhandene Verschiebung gegenüber der alten ViewBox betrug 7 Einheiten nach rechts und 0,5 nach oben. **Keine Hexzentren, Kanten oder Trefferflächen verschoben.**
 - Hexradius 36; `x=60+82*q+41*(r%2)`, `y=56+68*r`, Punkte bei Winkeln `30°+60°*i`. 25 Felder, insgesamt 150 Ecken.
 - Zeilenhülle `rowEnvelope` ist **nicht konvex**: Wechselnde linke/rechte Einbuchtungen und diagonale Enden bleiben erhalten; Wasserabstände zwischen den Hexen bleiben im Spielschutz enthalten.
@@ -52,6 +52,37 @@ Die bisherige `outerEdge`-Transparenzregel des v3-Vertrags war daher falsch und 
 Die zwingend transparente Innenfläche (`zones.transparent`) sowie die 20 deckend zu haltenden Beschriftungsplättchen sind **weiterhin harte technische Vorgaben**. Über die künstlerische Qualität entscheidet die visuelle Freigabe, nicht allein der Prüfer.
 
 Für beide fertigen Rahmenbilder gelten exakt **2252 × 1892 Pixel**, WebP mit Alphakanal und identische Spielgeometrie. Die ruhige Rahmenvariante darf ausschließlich gestalterisch anders sein; Spiel- und Beschriftungszonen müssen deckungsgleich sicher bleiben. Die Umschalt-Funktion ist **nicht Gegenstand der bloßen Bereitstellung der Bilddateien**.
+
+## Alpha-Normalisierung nach der Photoshop-Korrektur
+
+Die neuen Bilddaten zeigen die gleiche Grundmaske in zwei Varianten. Beim ersten Check betrafen kleine WebP-/Layer-Artefakte nur **23 Alpha-Restpixel (1–24)** im zwingend transparenten Meerbereich pro Rahmen sowie **ca. 4.300–4.500 äußere Randpixel (238–254)**. Unter mehreren Koordinatenplättchen liegt dagegen **erhebliche Transparenz bis Alpha 0**: Das ist kein Artefakt, sondern in Photoshop durch Verschieben/Verzerren/Reparieren zu korrigieren.
+
+**Nach** dieser manuellen Korrektur kann `scripts/normalize-chart-alpha.py` die restlichen Exportartefakte gezielt normalisieren. Es greift ausschließlich auf die harten Pflichtzonen aus `contract.json` zu:
+- Nur Alpha **1–24** in der zwingend transparenten Öffnung wird **0**.
+- Nur Alpha **238–254** entlang des äußersten Bildrandes wird **255**.
+- In Beschriftungsplättchen dürfen nur Alpha **238–254** zu **255** werden. Wenn dort echte Transparenz (Alpha unter 238) bleibt, **bricht das Skript ab**, anstatt fehlendes Papier zu erfinden.
+- Alle anderen Pixel und die gezeichnete Küstenlinie bleiben unverändert. Es wird lossless WebP exportiert, damit das sichtbare RGB-Bild keine weitere verlustbehaftete Kodierung erhält. Die Ausgabedatei kann dadurch größer werden.
+- Es gibt keinen stillen Push: Der Script-Aufruf ist zunächst eine Vorschau und überschreibt erst mit `--apply`, **nachdem beide Varianten überprüft wurden**. Die beiden Quelldateien können bei Bedarf vorab über Git gesichert werden.
+
+```sh
+# Falls Pillow und NumPy noch nicht installiert sind, in einer virtuellen Umgebung:
+python3 -m venv .venv
+.venv/bin/python -m pip install Pillow numpy
+
+# Zuerst nur Bericht, ohne Dateiänderungen:
+.venv/bin/python scripts/normalize-chart-alpha.py
+
+# Nach erfolgreich gemeldeter Prüfung beide Rahmen gezielt korrigieren:
+.venv/bin/python scripts/normalize-chart-alpha.py --apply
+
+# Anschließend strikte Abnahme und eigener Commit:
+.venv/bin/python scripts/check-chart-assets.py
+git diff --stat
+```
+
+Hinweis: `git diff --stat` zeigt bei binären WebP-Dateien nicht die tatsächlich veränderten Pixel. Deshalb prüft der Normalizer seine neue Ausgabe selbst wieder auf identische Alpha- und sichtbare Farbwerte.
+
+**Vorschau-Modi:** `?frame=quiet` = Rahmen **01** ohne Illustrationen; `?frame=final` = Rahmen **02** mit Illustrationen. Der normale Spiel-Default bleibt zunächst beim Prototyp, bis die neuen Bilder visuell freigegeben und abschließend integriert sind. Ein späterer zusätzlicher UI-Umschalter ist nicht Teil der jetzigen technischen Reparatur.
 
 ## Dateien
 
