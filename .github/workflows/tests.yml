@@ -20,6 +20,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
+      - name: Validate final sea and both parchment frames
+        run: |
+          python3 -m pip install --user Pillow numpy
+          python3 scripts/check-chart-assets.py
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
       - if: always()
