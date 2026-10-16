@@ -2,6 +2,7 @@ import {createMobileViews} from './mobile-views.mjs';
 import {createBordbook} from './bordbook.mjs';
 import {createToolbar} from './toolbar.mjs';
 import {drawMap} from './map.mjs';
+import {frameMode} from './parchment-frame.mjs';
 import {pretty, coordinateMarkup, coordinateTextMarkup} from './coordinates.mjs';
 import {hints} from '../../content/reference-3.6.mjs';
 import {initialState, createHistory} from '../state/game-state.mjs';
@@ -26,13 +27,20 @@ const byId=Object.fromEntries(cells.map(c=>[c.id,c]));
 const key=(layer,id)=>layer+":"+id;
 const initial=()=>initialState(puzzle);
 let storage;try{storage=window.localStorage;}catch{}
+// Visual preference is independent of puzzle state and its reset/history.
+const frameSettingKey='gezeitenkarten-frame-style';
+let frameStyle=frameMode(window.location.search);
+if(!new URLSearchParams(window.location.search).has('frame')){
+ const storedFrame=storage?.getItem(frameSettingKey);
+ if(storedFrame==='final'||storedFrame==='quiet')frameStyle=storedFrame;
+}
 let state=loadState(puzzle,storage);
 const history=createHistory();
 let dragging=false,dragValue=null;
 const $=id=>document.getElementById(id);
 function save(){saveState(puzzle,state,storage)}
 function snapshot(){history.push(state)}
-function renderMap(){drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown:()=>{dragging=true;dragValue=null;},onActivate:apply})}
+function renderMap(){drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown:()=>{dragging=true;dragValue=null;},onActivate:apply,frameStyle})}
 const renderToolbar=createToolbar({...puzzle,rules});
 function render(){if(state.layer==="all")state.layer=1;
  renderToolbar(state);
@@ -107,6 +115,12 @@ const bordbook=createBordbook({clues,getState:()=>state,markup:coordinateTextMar
  snapshot();state.doneClues=state.doneClues.includes(id)?state.doneClues.filter(v=>v!==id):[...state.doneClues,id];save();
 }});
 $("showChart").addEventListener("change",()=>renderMap());
+$("quietFrame").checked=frameStyle==='quiet';
+$("quietFrame").addEventListener("change",()=>{
+ frameStyle=$("quietFrame").checked?'quiet':'final';
+ try{storage?.setItem(frameSettingKey,frameStyle)}catch{}
+ renderMap();
+});
 document.querySelectorAll(".logbook-section p").forEach(p=>p.innerHTML=coordinateTextMarkup(p.innerHTML));
 render();
 })();
