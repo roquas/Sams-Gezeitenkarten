@@ -51,7 +51,31 @@ Die tatsächliche WebKit-Verifikation wird im Prüfergebnis gesondert ausgewiese
 
 ## Prüfergebnis
 
-Wird nach den vollständigen lokalen und GitHub-Actions-Läufen ergänzt.
+| Prüfung | Ergebnis / Nachweis |
+| --- | --- |
+| Reguläres `npm run test:unit` | 65 Tests bestanden. |
+| `npm run test:puzzles` | Alle vier Manifest-Rätsel unabhängig als eindeutig lösbar bestätigt. |
+| `python3 tests/test_package.py` | Sieben Tests bestanden; ZIP reproduzierbar, alle Laufzeitreferenzen enthalten. |
+| Alpha-Normalisierer / Assetvertrag | Selbsttest und `check-chart-assets.py` bestanden; freigegebene WebP-Bytes unverändert. |
+| Entwicklungsserver | No-cache-Selbsttest bestanden. |
+| Chromium Desktop + Mobil | Vollständiger lokaler Durchlauf: 161 bestanden, drei nur mobil sinnvolle Tests im Desktop-Projekt übersprungen. |
+| Letzte Loader-Bereitschaftskorrekturen | 20 Land-/Rahmentests und sechs ZIP-Landfeldtests gezielt erneut bestanden. |
+| Entpacktes ZIP im Unterverzeichnis | 30 Prüfungen im ersten Lauf bestanden; mit historischen Vergleichsexporten 31 bestanden und eine Initialisierungsrace erkannt. Diese durch explizites Warten auf 25 Hexfelder korrigiert und alle sechs betroffenen Prüfungen erneut bestanden. CI prüft die vollständige Kombination einschließlich WebKit. |
+| GitHub Actions | [Konsolidierungslauf 38965750559](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38965750559), [jeweils letzte PR48-Prüfungen](https://github.com/roquas/Sams-Gezeitenkarten/pull/48/checks). Erforderlich: unit, assets, browser, webkit, deployment. |
+
+Lokales Chromium verwendet den vorhandenen Systembrowser über eine außerhalb des
+Repositories gespeicherte Konfiguration. Die zu Playwright gehörenden Browser
+werden in GitHub Actions installiert. Lokale WebKit-Downloads und die GitHub-API
+waren in der Cloud durch die Netzwerkpolitik gesperrt; die öffentlichen
+Actions-Seiten erlauben die Kontrolle der CI-Ergebnisse. Die vorbereiteten
+Netzwerkergänzungen sind in den Umgebungseinstellungen separat zu übernehmen.
+Das ersetzt keinen grünen CI-Lauf: Merge erst nach Erfolg aller fünf Jobs am
+letzten Branchstand und anschließender manueller Nutzerfreigabe.
+
+Die Sichtprüfung aktueller Chromium-Aufnahmen bei 1440, 768 und 390 Pixeln
+bestätigt Sepiakarte, volle angeschnittene linke Buchseite und Text innerhalb
+des sichtbaren Papiers. Die Benutzerabnahme auf echten Apple-Geräten bleibt
+Teil der unten beschriebenen abschließenden Sichtprüfung.
 
 ## Abschließende lokale Sichtprüfung
 

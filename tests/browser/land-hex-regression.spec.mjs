@@ -36,6 +36,7 @@ test('blocked hexes stay dashed and unmarkable with mouse and keyboard',async({p
 
 test('blocked hexes can be chosen as radar distance origins, not route steps',async({page})=>{
  await page.goto('/');
+ await expect(page.locator('#map .cell')).toHaveCount(25);
  const land=page.locator('#map [data-id="B3"]');
  const routeBefore=await page.locator('#routeView').textContent();
  await page.locator('#routeTool').click();

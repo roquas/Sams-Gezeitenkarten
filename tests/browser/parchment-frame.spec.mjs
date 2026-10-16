@@ -8,11 +8,11 @@ const headings=page=>page.locator('[data-margin-side]').evaluateAll(ns=>ns.map(n
  side:n.dataset.marginSide,index:n.dataset.marginIndex,center:n.dataset.marginCenter
 })));
 test('all variants preserve geometry, coordinates and usable SVG targets',async({page})=>{
- await page.goto('/?frame=legacy');
+ await page.goto('/?frame=legacy');await expect(page.locator('#map .cell')).toHaveCount(25);
  const original=await geometry(page),anchors=await headings(page);
  expect(original).toHaveLength(25);expect(anchors).toHaveLength(20);
  for(const mode of ['raster','modular','final','quiet']){
-  await page.goto('/?frame='+mode);
+  await page.goto('/?frame='+mode);await expect(page.locator('#map .cell')).toHaveCount(25);
   expect(await geometry(page)).toEqual(original);expect(await headings(page)).toEqual(anchors);
   const layers=page.locator('[data-chart-layer]');
   expect(await layers.evaluateAll(ns=>ns.map(n=>n.dataset.chartLayer))).toEqual(['sea','objects','frame']);
