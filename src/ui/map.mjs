@@ -117,8 +117,8 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  for(const c of cells){
   const [x,y]=coords(c),m=state.marks[key(state.layer,c.id)],land=blocked.has(c.id);
   const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
-  const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:land?"-1":"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
-  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#765934":"#ece3c1","stroke-width":land?"1.25":"1.05","stroke-opacity":land?".72":".56","stroke-linejoin":"round"}));
+  const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
+  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#d6c59a":"#ece3c1","stroke-width":"1.05","stroke-opacity":land?".62":".56",...(land?{"stroke-dasharray":"4 3"}:{}),"stroke-linejoin":"round","pointer-events":"all"}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
@@ -130,12 +130,12 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   }
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
   // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
-  if(Number.isInteger(state.layer) && state.layer>=1 && state.layer<=6){
+  if(!land && Number.isInteger(state.layer) && state.layer>=1 && state.layer<=6){
     const angle=(state.layer-2)*Math.PI/3;
     const ax=x+36*Math.cos(angle-Math.PI/6),ay=y+36*Math.sin(angle-Math.PI/6);
     const bx=x+36*Math.cos(angle+Math.PI/6),by=y+36*Math.sin(angle+Math.PI/6);
-    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"1.9",opacity:".64","stroke-linecap":"round"}));
-    g.append(el("path",{d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":".8",opacity:".5","stroke-linecap":"round"}));
+    g.append(el("path",{class:"active-hour-edge",d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"1.9",opacity:".64","stroke-linecap":"round"}));
+    g.append(el("path",{class:"active-hour-edge",d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":".8",opacity:".5","stroke-linecap":"round"}));
   }
   // Active layer is encoded by the field's central fill and a small center glyph.
   if(m){
@@ -154,7 +154,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
     g.append(el("text",{x:cx,y:cy+3.4,"font-size":"11.8","font-weight":"900","text-anchor":"middle",fill:"white",opacity:state.layer===h?1:.72},({no:"×",maybe:"?",yes:"✓"})[mark]));
   }
   // The route is a continuous line only; corner annotations stay unobstructed.
-  g.addEventListener("pointerdown",e=>{if(land)return;e.preventDefault();onPointerDown();try{svg.setPointerCapture(e.pointerId)}catch{};onActivate(c.id,true)});
+  g.addEventListener("pointerdown",e=>{e.preventDefault();onPointerDown();try{svg.setPointerCapture(e.pointerId)}catch{};onActivate(c.id,true)});
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();onActivate(c.id,true)}});
   svg.append(g);
  }
