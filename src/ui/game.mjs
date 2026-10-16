@@ -29,9 +29,10 @@ const initial=()=>initialState(puzzle);
 let storage;try{storage=window.localStorage;}catch{}
 // Visual preference is independent of puzzle state and its reset/history.
 const frameSettingKey='gezeitenkarten-frame-style';
+const frameParam=new URLSearchParams(window.location.search).get('frame');
 let frameStyle=frameMode(window.location.search);
-if(!new URLSearchParams(window.location.search).has('frame')){
- const storedFrame=storage?.getItem(frameSettingKey);
+if(!frameParam){
+ let storedFrame;try{storedFrame=storage?.getItem(frameSettingKey)}catch{}
  if(storedFrame==='final'||storedFrame==='quiet')frameStyle=storedFrame;
 }
 let state=loadState(puzzle,storage);
@@ -56,7 +57,8 @@ function render(){if(state.layer==="all")state.layer=1;
  renderMap();bordbook.render();save();
 }
 function apply(id,first){
- if(blocked.has(id))return;
+ // Land supports notes and erasers, but never a route or distance origin.
+ if(blocked.has(id)&&(state.tool==="route"||distancePhase(state)==="waiting"))return;
  if(distancePhase(state)==='waiting'){state=chooseDistanceOrigin(state,id);dragging=false;render();return}
  if(state.tool==="clearAll"){const targets=Object.keys(state.marks).filter(k=>k.endsWith(":"+id));if(targets.length){snapshot();targets.forEach(k=>delete state.marks[k]);}state.help=`<div class="notice">Markierungen auf ${pretty(id)} in allen Stunden gelöscht (${targets.length}).</div>`;render();return}
  if(state.tool==="route"){
@@ -115,10 +117,19 @@ const bordbook=createBordbook({clues,getState:()=>state,markup:coordinateTextMar
  snapshot();state.doneClues=state.doneClues.includes(id)?state.doneClues.filter(v=>v!==id):[...state.doneClues,id];save();
 }});
 $("showChart").addEventListener("change",()=>renderMap());
-$("quietFrame").checked=frameStyle==='quiet';
-$("quietFrame").addEventListener("change",()=>{
- frameStyle=$("quietFrame").checked?'quiet':'final';
+const frameSelect=$("frameStyle");
+frameSelect.value=frameStyle==='quiet'?'quiet':'final';
+frameSelect.addEventListener("change",()=>{
+ frameStyle=frameSelect.value==='quiet'?'quiet':'final';
+ // Selecting either frame explicitly makes the selected artwork visible.
+ $("showChart").checked=true;
  try{storage?.setItem(frameSettingKey,frameStyle)}catch{}
+ // Keep the shareable preview URL consistent, including on reload in Safari.
+ try{
+  const url=new URL(window.location.href);
+  url.searchParams.set('frame',frameStyle);
+  window.history.replaceState(window.history.state,'',url);
+ }catch{}
  renderMap();
 });
 document.querySelectorAll(".logbook-section p").forEach(p=>p.innerHTML=coordinateTextMarkup(p.innerHTML));
