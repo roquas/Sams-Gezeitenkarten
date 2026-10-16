@@ -30,5 +30,6 @@ test('reset and another puzzle storage key start with no origin or overlay',()=>
  const data=new Map(),storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};
  saveState(puzzle,chooseDistanceOrigin(toggleDistance(initialState(puzzle)),'C1'),storage);
  for(const s of [initialState(puzzle),loadState({...puzzle,id:'other-puzzle'},storage)]){assert.equal(distancePhase(s),'inactive');assert.equal(s.distanceOrigin,null);}
- const invalid=restoreState(puzzle,{...initialState(puzzle),distanceMode:true,distanceOrigin:'B3'});assert.equal(invalid.distanceOrigin,null);
+ const island=restoreState(puzzle,{...initialState(puzzle),distanceMode:true,distanceOrigin:'B3'});assert.equal(island.distanceOrigin,'B3');
+ const invalid=restoreState(puzzle,{...initialState(puzzle),distanceMode:true,distanceOrigin:'Z9'});assert.equal(invalid.distanceOrigin,null);
 });

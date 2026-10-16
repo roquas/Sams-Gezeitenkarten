@@ -7,7 +7,7 @@ const rows=async locator=>locator.evaluateAll(ns=>{const ys=ns.map(n=>{const b=n
 test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
 test('distance-two notes, both erasers, route and undo retain the independent overlay',async({page})=>{
  await page.locator('#toggleDistances').click();await cell(page,'C1').click();
- const retained=async()=>{await expect(overlay(page)).toHaveAttribute('data-distance-origin','C1');await expect(page.locator('.distance-value')).toHaveCount(22);await expect(page.locator('#toggleDistances')).toHaveAttribute('data-distance-state','showing');};
+ const retained=async()=>{await expect(overlay(page)).toHaveAttribute('data-distance-origin','C1');await expect(page.locator('.distance-value')).toHaveCount(25);await expect(page.locator('#toggleDistances')).toHaveAttribute('data-distance-state','showing');};
  await page.locator('[data-tool="maybe"]').click();await expect(page.locator('[data-tool="maybe"]')).toHaveAttribute('aria-pressed','true');
  for(const id of ['A1','A2','D2','D3','E1']){
   await expect(page.locator(`[data-distance-cell="${id}"]`)).toHaveText('2');await cell(page,id).click();expect((await state(page)).marks['1:'+id]).toBe('maybe');await retained();
@@ -24,8 +24,10 @@ test('keyboard origin changes, cancelled selection, off and reset preserve editi
  const radar=page.locator('#toggleDistances');await radar.focus();await page.keyboard.press('Enter');
  await cell(page,'C1').focus();await page.keyboard.press('Enter');expect((await state(page)).marks).toEqual({});
  await radar.click();await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(overlay(page)).toHaveAttribute('data-distance-origin','C1');
- await cell(page,'B3').click();await expect(radar).toHaveAttribute('data-distance-state','waiting');
- await page.locator('[data-tool="no"]').click();await expect(radar).toHaveAttribute('data-distance-state','showing');await expect(overlay(page)).toHaveAttribute('data-distance-origin','C1');
+ await cell(page,'B3').click();await expect(radar).toHaveAttribute('data-distance-state','showing');
+ await expect(overlay(page)).toHaveAttribute('data-distance-origin','B3');
+ await expect(page.locator('[data-distance-cell="B3"]')).toHaveText('0');
+ await page.locator('[data-tool="no"]').click();await expect(radar).toHaveAttribute('data-distance-state','showing');await expect(overlay(page)).toHaveAttribute('data-distance-origin','B3');
  await radar.focus();await page.keyboard.press('Space');await cell(page,'A1').focus();await page.keyboard.press('Enter');await expect(overlay(page)).toHaveAttribute('data-distance-origin','A1');
  await expect(page.locator('[data-distance-cell="C1"]')).toHaveText('2');expect((await state(page)).marks).toEqual({});
  await radar.click();await radar.click();await expect(overlay(page)).toHaveCount(0);await expect(radar).toHaveAttribute('data-distance-state','inactive');
