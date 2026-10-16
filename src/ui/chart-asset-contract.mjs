@@ -1,10 +1,10 @@
-// Phase 1 geometry contract; final raster assets are deliberately not activated.
+// Phase 1 fixed geometry and approved-candidate sea / parchment assets.
 import {CHART_BOUNDS,CHART_VIEWBOX,CHART_CENTER,HEX_BOUNDS,HEXES,ROW_ENVELOPE,offsetPolygon,pointInPolygon,rectPolygon,headingBand} from './chart-geometry.mjs';
 export const CHART_ASSET_SPEC=Object.freeze({
  version:4,viewBox:CHART_VIEWBOX,...CHART_BOUNDS,
  pixelWidth:2252,pixelHeight:1892,pixelsPerUnit:4,safety:4,
  sea:'assets/seekarte/sea-blue-01.webp',frame:'assets/seekarte/frame-parchment-02.webp',quietFrame:'assets/seekarte/frame-parchment-01.webp',
- opaqueOuter:[-27,-34.5,516,418.5],seaClip:[-27,-34.5,516,418.5],
+ opaqueOuter:[-27,-34.5,516,418.5],seaClip:[CHART_BOUNDS.x,CHART_BOUNDS.y,CHART_BOUNDS.x+CHART_BOUNDS.width,CHART_BOUNDS.y+CHART_BOUNDS.height],
  outerEdge:[-32,-39.5,521,423.5],
 });
 export function headingZones(){
@@ -48,7 +48,7 @@ export function chartContract(){
    outerEdge:{type:'opaque-canvas-perimeter',purpose:'No outer fade or additional beige underlay. All four outermost pixel rows/columns of frame must have alpha 255.',alpha:255,canvas:rectPolygon([s.x,s.y,s.x+s.width,s.y+s.height])},
    headings:{type:'coordinate-label-zones',items:headingZones(),rules:{hard:'No illustration, tear or transparency; quiet high-contrast parchment under entire text envelope',soft:'Safe rectangle minus hard rectangle; decorative overlap allowed, text remains untouched',paper:'Whole plaque bounds must remain alpha=255; four-unit safety is soft, not an illustration ban'}}
   },
-  rendering:{seaClip:s.seaClip,compositing:'Sea, puzzle objects, frame, SVG labels and interaction. Frame pointer-events none. Shared viewBox; no nonuniform image scaling.',alphaReference:'frame-mask.svg contains exactly this contract as metadata; technical guide only, not approved art'},
+  rendering:{seaClip:s.seaClip,compositing:'Full-canvas sea, puzzle objects, frame, SVG labels and interaction. Outer frame pixels are opaque; no inset sea clip or nonuniform scaling. Frame pointer-events none.',alphaReference:'frame-mask.svg contains exactly this contract as metadata; technical guide only, not approved art'},
   assetPolicy:{type:'future-asset-library-rule',issue:45,rule:'Puzzle-specific artwork must fit its declared hex (or explicitly declared multi-hex footprint) on every row, including internally adjacent hexes; the frame does not define or repair individual asset bounds.'}
  };
 }
