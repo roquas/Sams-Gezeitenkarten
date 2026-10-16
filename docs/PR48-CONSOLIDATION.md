@@ -99,3 +99,19 @@ Teil der unten beschriebenen abschließenden Sichtprüfung.
    manuell zu startender Upload, der einen erfolgreichen Actions-Build verlangt.
 
 Freigabe und Merge verbleiben beim Nutzer.
+
+
+## Touch-Gesten in der vollständigen WebKit-Suite
+
+Die bisherige Chromium-Suite nutzte `newCDPSession` für native Touch-Drags.
+WebKit unterstützt CDP nicht. Der gemeinsame Testhelfer behält den nativen
+Chromium-Pfad bei und prüft WebKit-Gestenhandler mit DOM-Touch-/Pointerevents.
+Er ändert keine Anwendung und entfernt keine Assertions. Echte WebKit-Taps
+bleiben Bestandteil der Rätselauswahl-/Startup-/Landfeldtests; die physische
+Touch-Scroll-/Drag-Interaktion auf Apple-Geräten gehört zusätzlich zur manuellen
+Abnahme. Diese Unterschiede sind kein Nachweis nativer WebKit-Drag-Automation.
+
+Die vollständige WebKit-Suite verteilt die voneinander isolierten Testfälle
+wie Chromium parallel auf zwei Worker. Testtimeouts und Assertions bleiben
+unverändert. Der Chromium-CDP-Pfad ist nach der Extraktion erneut bestanden;
+der DOM-Pfad wurde zusätzlich an der gerenderten Anwendung geprüft.

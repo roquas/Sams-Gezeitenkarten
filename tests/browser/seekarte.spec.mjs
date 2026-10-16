@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {dragTouch} from '../integration/touch-gesture.mjs';
 test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('watercolor-only chart, perspective rings, quiet start and intact hit areas',async({page})=>{
  const images=await page.locator('#map image').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')));
@@ -60,16 +61,14 @@ test('bordbook arrows, keyboard, checked clues, undo and reload preserve semanti
  const expected=await page.evaluate(async()=>{const {referencePuzzle}=await import('/puzzles/reference-3.6.mjs');return referencePuzzle.clues.map(c=>c.text);});
  expect(texts).toEqual(expected);
 });
-test('mobile swipe turns pages while vertical gestures keep the current clue',async({page,isMobile})=>{
+test('mobile swipe turns pages while vertical gestures keep the current clue',async({page,isMobile,browserName})=>{
  test.skip(!isMobile,'Touch input project');
  await page.locator('#clueViewport').scrollIntoViewIfNeeded();
  const b=await page.locator('#clueViewport').boundingBox();const x=b.x+b.width*.8,y=b.y+b.height*.5;
- const session=await page.context().newCDPSession(page);
- async function gesture(dx,dy){await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+dx,y:y+dy}]});await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+ const gesture=(dx,dy)=>dragTouch(page,{browserName,from:{x,y},to:{x:x+dx,y:y+dy}});
  await gesture(-110,0);await expect(page.locator('#cluePosition')).toHaveText('II / VII');
  await expect(page.locator('#clueTrack [data-clue="II"]')).toHaveAttribute('aria-checked','false');
  await gesture(-10,40);await expect(page.locator('#cluePosition')).toHaveText('II / VII');
- await session.detach();
 });
 test('book keeps a narrow left leaf on desktop and mobile and honors reduced motion',async({page},testInfo)=>{
  await page.setViewportSize({width:1280,height:900});

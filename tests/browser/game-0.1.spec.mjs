@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {dragTouch} from '../integration/touch-gesture.mjs';
 const KEY='gezeitenkarten-reference-3.6-schema1-data1';
 test.beforeEach(async({page})=>{await page.goto('/index.html');await page.evaluate(k=>localStorage.removeItem(k),KEY);await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 const state=page=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),KEY);
@@ -119,14 +120,11 @@ test('mobile logbook opens and closes through its visible controls',async({page,
  await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','true');
  await page.locator('#chartTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
 });
-test('one mouse or touch drag marks two fields and undoes as one gesture',async({page,isMobile})=>{
+test('one mouse or touch drag marks two fields and undoes as one gesture',async({page,isMobile,browserName})=>{
  const center=async id=>{const b=await cell(page,id).boundingBox();return {x:b.x+b.width/2,y:b.y+b.height/2};};
  const first=await center('A1'),second=await center('B1');
  if(isMobile){
-  const session=await page.context().newCDPSession(page);
-  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[first]});
-  await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[second]});
-  await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await session.detach();
+  await dragTouch(page,{browserName,from:first,to:second,pointer:true});
  }else{
   await page.mouse.move(first.x,first.y);await page.mouse.down();await page.mouse.move(second.x,second.y,{steps:5});await page.mouse.up();
  }
