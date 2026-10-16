@@ -89,7 +89,7 @@ test('illustrated frame is the default; quiet setting swaps only the frame and p
  const original=await geometry(page);
  const anchors=await headings(page);
  const option=page.locator('#quietFrame');
- await option.check();
+ await option.evaluate(el=>el.click());
  await expect(map).toHaveAttribute('data-frame-mode','quiet');
  await expect(artwork).toHaveAttribute('href','assets/seekarte/frame-parchment-01.webp');
  expect(await geometry(page)).toEqual(original);
@@ -98,7 +98,7 @@ test('illustrated frame is the default; quiet setting swaps only the frame and p
  await page.reload();
  await expect(map).toHaveAttribute('data-frame-mode','quiet');
  await expect(option).toBeChecked();
- await option.uncheck();
+ await option.evaluate(el=>el.click());
  await expect(map).toHaveAttribute('data-frame-mode','final');
  await expect(artwork).toHaveAttribute('href','assets/seekarte/frame-parchment-02.webp');
  await page.evaluate(()=>localStorage.clear());
