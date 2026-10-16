@@ -19,7 +19,10 @@ function fitLabels(svg){
 }
 export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate,frameStyle}){
  const $=id=>document.getElementById(id);
- const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.setAttribute("viewBox",CHART_VIEWBOX);
+ const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;
+ // Avoid repeated viewBox writes that can invalidate WebKit SVG layout,
+ // including the large cached raster layers. Geometry is immutable here.
+ if(svg.getAttribute('viewBox')!==CHART_VIEWBOX)svg.setAttribute('viewBox',CHART_VIEWBOX);
  if(!observedCharts.has(svg)){
   new ResizeObserver(()=>fitLabels(svg)).observe(svg);observedCharts.add(svg);
  }
@@ -28,12 +31,13 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
  const mode=frameStyle||frameMode(window.location.search);
- svg.dataset.frameMode=mode;
+ if(svg.dataset.frameMode!==mode)svg.dataset.frameMode=mode;
  const showArt=document.getElementById("showChart").checked;
  const cached=staticCharts.get(svg);
  if(cached?.puzzle===puzzle&&cached.mode===mode){
   for(const node of [...svg.children])if(!node.hasAttribute('data-static-chart'))node.remove();
-  cached.art.setAttribute('visibility',showArt?'visible':'hidden');
+  const visibility=showArt?'visible':'hidden';
+  if(cached.art.getAttribute('visibility')!==visibility)cached.art.setAttribute('visibility',visibility);
  }else{
  svg.replaceChildren();
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});

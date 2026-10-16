@@ -35,10 +35,10 @@ test('all variants preserve geometry, coordinates and usable SVG targets',async(
  }
 });
 
-test('desktop and mobile render without errors, clipping or distortion',async({page},testInfo)=>{
+for(const width of [1440,390,320])test(`render matrix at ${width}px has no errors, clipping or distortion`,async({page},testInfo)=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{if(r.status()>=400)errors.push(r.url());});
- for(const width of [1440,390,320])for(const mode of ['legacy','raster','modular','final','quiet']){
+ for(const mode of ['legacy','raster','modular','final','quiet']){
   await page.setViewportSize({width,height:1100});await page.goto('/?frame='+mode);
   await page.waitForSelector('#map .cell');await page.evaluate(()=>document.fonts.ready);
   const map=page.locator('#map');expect(await map.getAttribute('viewBox')).toBe('-37 -44.5 563 473');

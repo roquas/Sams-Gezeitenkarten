@@ -142,7 +142,7 @@ weiter bei DPR 2 geprüft. Sämtliche ursprünglichen Assertions bleiben erhalte
 die erwarteten Wasserfeld-IDs werden zusätzlich pro Zeile geprüft. Der eingehende
 Fokus des ursprünglichen Zeilendurchlaufs wird reproduziert. Reduzierte Bewegung
 vermeidet irrelevante Übergänge; Animationsprüfungen bleiben separat erhalten.
-Kein Timeout wurde erhöht. Die vollständige Suite enthält nach der zusätzlichen Rahmenaufteilung 218 Fälle pro
+Kein Timeout wurde erhöht. Die vollständige Suite enthält nach der zusätzlichen Rahmenaufteilung 222 Fälle pro
 Browserfamilie (Desktop + Mobil); ein grüner Vorlauf allein reicht weiterhin nicht.
 
 
@@ -152,12 +152,32 @@ waren bereits durchlaufen, das Budget endete bei der abschließenden Notizprüfu
 Sichtbarer Wechsel mit Screenshotvergleich und Persistenz nach Reload haben jetzt
 getrennte Fälle mit unveränderten 30-Sekunden-Grenzen. Alle ursprünglichen
 Prüfungen bleiben erhalten; zusätzlich wird die gespeicherte Präferenz bei einer
-frischen Root-URL ohne `?frame` geprüft. Die Vollsuite hat 218 Fälle pro
+frischen Root-URL ohne `?frame` geprüft. Die Vollsuite hat 222 Fälle pro
 Browserfamilie, der kurze WebKit-Vorlauf zwölf (inklusive Desktop-Auslassung für
 reine Touch-Gesten). Flaky, fehlgeschlagene oder ungestartete Fälle gelten nicht
 als vollständige Freigabe.
 
 Lokale Prüfung der aufgeteilten Fälle: alle 60 technischen Masken-/Zeilenfälle
 und alle 18 Rahmenfälle mit Chromium Desktop/Mobil bestanden. Die vollständige
-WebKit-Testliste enthält 218 Fälle; die CI-Verifikation der aufgeteilten Fälle
+WebKit-Testliste enthält 222 Fälle; die CI-Verifikation der aufgeteilten Fälle
 bleibt erforderlich. Die frühe rote Diagnose hat keine Anwendung verändert.
+
+Beim Zusammenführen des statischen PR38-Caches mit den hochauflösenden PR48-
+Ebenen werden unveränderte `viewBox`-, Rahmenmodus- und Sichtbarkeitsattribute
+jetzt nicht erneut geschrieben. Insbesondere eine erneute `viewBox`-Zuweisung
+kann in WebKit die gesamte SVG-Szene trotz beibehaltener Rasterknoten invalidieren.
+Die Werte, Geometrie, Bilddateien und Umschaltfunktionen bleiben identisch.
+Dieser Hotpath-Abgleich ergänzt die getrennten, unverändert strengen Prüfungen.
+
+Die vollständige lokale Rendering-Prüfung erreichte unter paralleler Last auch
+im 15-Aufnahmen-Sammeltest das 30-Sekunden-Budget (47 andere Hotpath-Fälle
+bestanden). Die identische Renderingmatrix ist nun pro Breite parametrisiert:
+alle fünf Modi bei 1440, 390 und 320 Pixeln, dieselben Geometrie-/Koordinaten-
+und Screenshot-Assertions, unveränderte native Pixelauflösung und Zeitgrenzen.
+Damit umfasst die Vollsuite 222 Fälle pro Browserfamilie.
+
+Nach dem SVG-Hotpath-Abgleich erneut bestätigt: 65 Unit-Tests, sieben
+Verpackungstests, 32 Fälle am frisch entpackten ZIP, die betroffenen
+Funktionsregressionen (mit separat grüner Renderingmatrix: sechs Fälle) sowie
+fünf Gesten-/Abstandsprüfungen; die Desktop-Touch-Auslassung bleibt planmäßig.
+Die freigegebenen Assetbytes sind weiterhin unverändert.
