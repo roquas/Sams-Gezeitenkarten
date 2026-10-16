@@ -24,7 +24,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   slice.append(el("image",{href:CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
   art.append(slice);
  }
- if(mode!=='legacy')art.append(drawSea(el));
+ if(mode!=='legacy')art.append(drawSea(el,mode));
  const objects=el('g',{'data-chart-layer':'objects','pointer-events':'none','aria-hidden':'true'});
  art.append(objects);
  const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
