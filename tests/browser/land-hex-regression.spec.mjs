@@ -26,12 +26,13 @@ test('land has dotted readable borders, no active hour edge, and remains annotat
   await page.keyboard.press('Space');
   await expect(land).toContainText('?');
  }
- // A fresh render preserves all saved land annotations when the frame changes.
+ // Undo still removes the most recent annotation, before any page reload.
+ await page.locator('#undo').click();
+ await expect(page.locator('#map [data-id="E2"]')).not.toContainText('?');
+ // A fresh render preserves the remaining annotations across frame variants.
  await page.goto('/?frame=quiet');
  await expect(page.locator('#map [data-id="B3"]')).toContainText('?');
  await expect(page.locator('#map [data-id="B3"] .active-hour-edge')).toHaveCount(0);
- await page.locator('#undo').click();
- await expect(page.locator('#map [data-id="E2"]')).not.toContainText('?');
  await page.evaluate(()=>localStorage.clear());
 });
 
