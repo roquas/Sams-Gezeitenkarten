@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
+test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 // A formatter is shared by the full book, single page, route and distance status.
 test('coordinate notation is shared and accessible across all outputs',async({page})=>{
  await expect(page.locator('#routeView [data-coordinate="D4"]')).toHaveAttribute('aria-label','Delta / Blau');

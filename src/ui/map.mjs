@@ -5,12 +5,24 @@ import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, parchmen
 import {distance as dist} from '../engine/hex.mjs';
 import {distancePhase} from '../state/distance-overlay.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
-import {mapLabels} from '../../content/reference-3.6.mjs';
 function poly(x,y){return hexVertices(x,y).map(([x,y])=>`${x.toFixed(2)},${y.toFixed(2)}`).join(" ")}
 const coords=hexCenter;
+const staticCharts=new WeakMap();
+const observedCharts=new WeakSet();
+function fitLabels(svg){
+ if(!svg.getBoundingClientRect().width)return;
+ for(const label of svg.querySelectorAll('.place-label')){
+  const text=label.querySelector('text'),available=Number(label.querySelector('rect').getAttribute('width'))-6;
+  const measured=text.getComputedTextLength();
+  if(measured>available)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*available/measured);
+ }
+}
 export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate,frameStyle}){
  const $=id=>document.getElementById(id);
- const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.replaceChildren();svg.setAttribute("viewBox",CHART_VIEWBOX);
+ const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;svg.setAttribute("viewBox",CHART_VIEWBOX);
+ if(!observedCharts.has(svg)){
+  new ResizeObserver(()=>fitLabels(svg)).observe(svg);observedCharts.add(svg);
+ }
  const NS="http://www.w3.org/2000/svg";
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
@@ -18,11 +30,17 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  const mode=frameStyle||frameMode(window.location.search);
  svg.dataset.frameMode=mode;
  const showArt=document.getElementById("showChart").checked;
+ const cached=staticCharts.get(svg);
+ if(cached?.puzzle===puzzle&&cached.mode===mode){
+  for(const node of [...svg.children])if(!node.hasAttribute('data-static-chart'))node.remove();
+  cached.art.setAttribute('visibility',showArt?'visible':'hidden');
+ }else{
+ svg.replaceChildren();
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
  svg.append(el("rect",{...CHART_BOUNDS,fill:"#e9d5b0","pointer-events":"none","aria-hidden":"true"}));
  if(mode==='legacy')for(const [index,tile] of parchmentTiles().entries()){
   const slice=el("svg",{...tile,class:index===4?"parchment-water":"parchment-edge",preserveAspectRatio:"none",overflow:"hidden","data-parchment-slice":"true"});
-  slice.append(el("image",{href:CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
+  slice.append(el("image",{href:puzzle.background?.asset||CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
   art.append(slice);
  }
  if(mode!=='legacy')art.append(drawSea(el,mode));
@@ -32,7 +50,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
  const overlays=chartOverlays(puzzle.overlays);
  for(const o of overlays){
   const [cx,cy]=artCenter(o.cells);
-  objects.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,preserveAspectRatio:"xMidYMid meet","pointer-events":"none"}));
+  objects.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,"data-art-cells":o.cells.join(" "),preserveAspectRatio:o.cells.length>2?"none":"xMidYMid meet","pointer-events":"none"}));
  }
  if(mode!=='legacy')art.append(drawFrame(el,mode));
  // Island labels use connected land geometry; Start follows its ship.
@@ -49,16 +67,11 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,serif","font-size":fontSize,"font-weight":"600",fill:start?"#8c3e2c":"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
    g.append(text);clipped.append(g);art.append(clipped);
  };
- for(const label of mapLabels)drawLabel(placeLabelLayout(label.cells,label.text,blocked,byId),label.text);
  for(const place of Object.values(puzzle.places))drawLabel(placeLabelLayout(place.cells,place.name,blocked,byId),place.name);
  drawLabel(startLabelLayout(byId[puzzle.start]),'Start',true);
  svg.append(art);
  // Fit actual browser font metrics without expanding the safe land footprint.
- for(const label of art.querySelectorAll('.place-label')){
-  const text=label.querySelector('text'),available=Number(label.querySelector('rect').getAttribute('width'))-6;
-  const measured=text.getComputedTextLength();
-  if(measured>available)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*available/measured);
- }
+ fitLabels(svg);
  // Geographic coordinate guides and margin headings remain visible even when
  // the decorative chart is disabled. The staggered rows bend column guides.
  const graticule=el("g",{class:"coordinate-guides","pointer-events":"none","aria-hidden":"true"});
@@ -102,6 +115,9 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
    }
  }
  svg.append(graticule);
+ for(const node of svg.children)node.setAttribute('data-static-chart','true');
+ staticCharts.set(svg,{puzzle,mode,art});
+ }
  // 1c: Große, transparente Abstandszahlen auf Wasserfeldern; über den Illustrationen,
  // aber unter interaktiven Hexflächen, Routenlinie und Markierungen.
  if(state.distanceMode && state.distanceOrigin){
@@ -123,7 +139,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
-  if(!land && ["C1","E4","A3","D5"].includes(c.id)){
+  if(!land && Object.values(puzzle.places).some(place=>place.cells.includes(c.id))){
     // Unregelmäßiger handgezeichneter Kartografenring, nicht anklickbar.
     const ring=Array.from({length:33},(_,i)=>{const a=i*Math.PI/16;const rr=24+1.15*Math.sin(i*2.4)+.7*Math.cos(i*1.3);return `${i?'L':'M'} ${(x+rr*Math.cos(a)).toFixed(1)} ${(y+rr*Math.sin(a)).toFixed(1)}`}).join(' ');
     g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
@@ -131,7 +147,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   }
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
   // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
-  if(!land && Number.isInteger(state.layer) && state.layer>=1 && state.layer<=6){
+  if(!land && Number.isInteger(state.layer) && state.layer>=1 && state.layer<=puzzle.steps){
     const angle=(state.layer-2)*Math.PI/3;
     const ax=x+36*Math.cos(angle-Math.PI/6),ay=y+36*Math.sin(angle-Math.PI/6);
     const bx=x+36*Math.cos(angle+Math.PI/6),by=y+36*Math.sin(angle+Math.PI/6);
@@ -145,9 +161,9 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   }
   // Six compact, fixed-position side annotations: hour 1 to 6.
   // Hidden hours keep all their notes but do not clutter the overview.
-  for(let h=1;h<=6;h++){
+  for(let h=1;h<=puzzle.steps;h++){
     const mark=state.marks[key(h,c.id)];
-    if(!mark || (state.hiddenHours||[]).includes(h) || (state.hideRouteMarks&&state.route.includes(c.id)))continue;
+    if(land || !mark || (state.hiddenHours||[]).includes(h) || (state.hideRouteMarks&&state.route.includes(c.id)))continue;
     const angle=(h-2)*Math.PI/3;
     const cx=x+28*Math.cos(angle),cy=y+28*Math.sin(angle);
     const fills={no:"#a34c46",maybe:"#c69b40",yes:"#36816b"};

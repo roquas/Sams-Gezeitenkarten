@@ -1,8 +1,8 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
+test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('raster upper materials load, stay clear of hit targets and render at desktop and mobile',async({page},testInfo)=>{
  const failed=[];page.on('response',r=>{if(r.status()>=400&&r.url().includes('/assets/'))failed.push(r.url());});
- await page.reload();
+ await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
  await expect(page.locator('.chart-toolbar .brass-rail')).toHaveCount(2);
  await expect(page.locator('.chart-toolbar .raster-icon')).toHaveCount(6);
  await page.locator('[data-hour="3"]').click();await expect(page.locator('[data-hour="3"]')).toHaveAttribute('aria-pressed','true');

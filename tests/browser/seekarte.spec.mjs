@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
+test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('watercolor-only chart, perspective rings, quiet start and intact hit areas',async({page})=>{
  const images=await page.locator('#map image').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')));
  expect(images.length).toBeGreaterThan(9);expect(images.every(href=>href.startsWith('assets/seekarte/')||href==='assets/ui/paper-grain.webp')).toBe(true);
@@ -53,7 +53,7 @@ test('bordbook arrows, keyboard, checked clues, undo and reload preserve semanti
  await expect(page.locator('#allClues [data-clue="II"]')).toHaveAttribute('aria-checked','true');
  await page.keyboard.press('ArrowRight');await expect(page.locator('#clueTrack [data-clue="III"]')).toBeFocused();
  await page.locator('#undo').click();await expect(page.locator('#allClues [data-clue="II"]')).toHaveAttribute('aria-checked','false');
- await page.locator('#clueTrack [data-clue="III"]').click();await page.reload();
+ await page.locator('#clueTrack [data-clue="III"]').click();await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
  await expect(page.locator('#allClues [data-clue="III"]')).toHaveAttribute('aria-checked','true');
  const texts=[];
  for(let i=0;i<7;i++){texts.push(await page.locator('#clueTrack .clue p').evaluate(el=>{const copy=el.cloneNode(true);copy.querySelectorAll('[data-coordinate]').forEach(c=>c.replaceWith(c.title.replace(' / ','/')));return copy.textContent;}));await page.locator('#nextClue').click();}
