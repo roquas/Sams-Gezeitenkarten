@@ -1,9 +1,9 @@
 // Phase 1 geometry contract; final raster assets are deliberately not activated.
 import {CHART_BOUNDS,CHART_VIEWBOX,CHART_CENTER,HEX_BOUNDS,HEXES,ROW_ENVELOPE,offsetPolygon,pointInPolygon,rectPolygon,headingBand} from './chart-geometry.mjs';
 export const CHART_ASSET_SPEC=Object.freeze({
- version:3,viewBox:CHART_VIEWBOX,...CHART_BOUNDS,
+ version:4,viewBox:CHART_VIEWBOX,...CHART_BOUNDS,
  pixelWidth:2252,pixelHeight:1892,pixelsPerUnit:4,safety:4,
- sea:'assets/seekarte/sea-blue-01.webp',frame:'assets/seekarte/frame-parchment-01.webp',
+ sea:'assets/seekarte/sea-blue-01.webp',frame:'assets/seekarte/frame-parchment-01.webp',quietFrame:'assets/seekarte/frame-parchment-02.webp',
  opaqueOuter:[-27,-34.5,516,418.5],seaClip:[-27,-34.5,516,418.5],
  outerEdge:[-32,-39.5,521,423.5],
 });
@@ -35,7 +35,7 @@ export function chartContract(){
   format:{version:s.version,type:'raster-assets',viewBox:s.viewBox,
    svgBounds:{x:s.x,y:s.y,width:s.width,height:s.height},
    pixels:{width:s.pixelWidth,height:s.pixelHeight,perSvgUnit:s.pixelsPerUnit},
-   files:{sea:s.sea,frame:s.frame},
+   files:{sea:s.sea,frame:s.frame,quietFrame:s.quietFrame},
    units:'SVG coordinates; rectangle=[left, top, right, bottom]; polygon=[[x,y], ...]; polygon closes implicitly',
    svgToPixel:{type:'affine',scale:4,translate:[-CHART_BOUNDS.x*4,-CHART_BOUNDS.y*4],formula:'px=(x-viewBox.x)*4; py=(y-viewBox.y)*4; sample at pixel centers'}},
   geometry:{type:'fixed-hex-map',centering:{method:'bounding box center of all 150 hex vertices',center:CHART_CENTER,hexBounds:HEX_BOUNDS,previousViewBoxCenter:[237.5,192.5],viewBoxShift:[7,-.5],hexTranslation:[0,0],equalAreaCentroid:[240.4,192]},
@@ -44,8 +44,8 @@ export function chartContract(){
    gameplay:{type:'polygon-union',purpose:'Hexes and hour markers only; puzzle overlays excluded',polygons:PROTECTION,rowOffset:8,reason:'28-unit hour-marker offset + 9.2 radius + 0.75 stroke exceeds hex side by 6.774; 8 covers marks and hex strokes'},
    transparent:{type:'polygon-union',purpose:'Must have frame alpha=0; independent of individual puzzles',polygons:TRANSPARENT,alpha:0,rowOffset:10},
    innerEdge:{type:'polygon-difference',purpose:'Provisional inner shoreline alpha corridor; to be reconsidered with final art',outerUnion:EDGE_LIMIT,subtractUnion:TRANSPARENT,alphaRange:[0,255]},
-   opaque:{type:'polygon-difference',purpose:'Provisional required opaque parchment; label zones remain mandatory',outer:rectPolygon(s.opaqueOuter),subtractUnion:EDGE_LIMIT,alpha:255},
-   outerEdge:{type:'outer-transition',purpose:'PROVISIONAL: outer alpha and beige underlay will be finalized after Photoshop delivery',outer:rectPolygon(s.outerEdge),inner:rectPolygon(s.opaqueOuter)},
+   opaque:{type:'polygon-difference',purpose:'Artwork guide only; deep coastal recesses beyond the old corridor are permitted. Mandatory opaque zones are canvas perimeter and coordinate plaques.',outer:rectPolygon(s.opaqueOuter),subtractUnion:EDGE_LIMIT,alpha:255,acceptance:'illustrative-only'},
+   outerEdge:{type:'opaque-canvas-perimeter',purpose:'No outer fade or additional beige underlay. All four outermost pixel rows/columns of frame must have alpha 255.',alpha:255,canvas:rectPolygon([s.x,s.y,s.x+s.width,s.y+s.height])},
    headings:{type:'coordinate-label-zones',items:headingZones(),rules:{hard:'No illustration, tear or transparency; quiet high-contrast parchment under entire text envelope',soft:'Safe rectangle minus hard rectangle; decorative overlap allowed, text remains untouched',paper:'Whole plaque bounds must remain alpha=255; four-unit safety is soft, not an illustration ban'}}
   },
   rendering:{seaClip:s.seaClip,compositing:'Sea, puzzle objects, frame, SVG labels and interaction. Frame pointer-events none. Shared viewBox; no nonuniform image scaling.',alphaReference:'frame-mask.svg contains exactly this contract as metadata; technical guide only, not approved art'},
