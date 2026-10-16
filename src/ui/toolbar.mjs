@@ -28,7 +28,9 @@ export function createToolbar(puzzle){
  const routeGroup=document.createElement('div');routeGroup.className='route-actions';
  $('verify').before(routeGroup);routeGroup.append(route,back,$('verify'));
  mountLowerMaterials();
- return state=>{
+ return (state,currentPuzzle=puzzle)=>{
+  puzzle=currentPuzzle;
+  $('hours').querySelectorAll('[data-hour]').forEach(b=>b.hidden=Number(b.dataset.hour)>puzzle.steps);
   $('hours').querySelectorAll('[data-hour]').forEach(b=>{
    const h=Number(b.dataset.hour);b.classList.toggle('active',state.layer===h);
    b.classList.toggle('hidden-hour',state.hiddenHours.includes(h));b.setAttribute('aria-pressed',String(state.layer===h));
@@ -41,15 +43,15 @@ export function createToolbar(puzzle){
   toggle('toggleHourMarks',!state.hiddenHours.includes(state.layer),`Markierungen der Stunde ${state.layer} ein- oder ausblenden`);
   toggle('toggleRouteNumbers',state.showRouteNumbers,'Routennummern ein- oder ausblenden');
   const phase=distanceState(state);
-  toggle('toggleDistances',phase==='showing',phase==='waiting'?'Abstände: Jetzt ein Feld auf der Karte wählen. Erneut drücken zum Ausschalten.':phase==='showing'?'Abstände: Ursprung ändern. Erneut drücken und ein Feld wählen; zweimal drücken zum Ausschalten.':'Abstände einblenden');
+  toggle('toggleDistances',phase==='showing',phase==='waiting'?'Abstände: Jetzt ein Feld auf der Karte wählen. Erneut drücken zum Ausschalten.':phase==='showing'?'Abstände ausschalten. Für einen neuen Ursprung anschließend erneut aktivieren.':'Abstände einblenden');
   $('toggleDistances').dataset.distanceState=phase;
   $('toggleDistances').setAttribute('aria-pressed',String(state.distanceMode));
   const status=$('distanceStatus');status.hidden=phase==='inactive';status.dataset.distanceState=phase;
-  status.innerHTML=phase==='waiting'?'Jetzt ein Feld auf der Karte wählen. Erneut auf das Radar drücken, um die Anzeige auszuschalten.':phase==='showing'?'Abstände ab '+coordinateMarkup(state.distanceOrigin)+' werden angezeigt. Du kannst weiter markieren. Radar: Ursprung ändern; zweimal drücken: ausschalten.':'';
+  status.innerHTML=phase==='waiting'?'Jetzt ein Feld auf der Karte wählen. Erneut auf das Radar drücken, um die Anzeige auszuschalten.':phase==='showing'?'Abstände ab '+coordinateMarkup(state.distanceOrigin)+' werden angezeigt. Du kannst weiter markieren. Radar: einmal drücken zum Ausschalten. Für einen neuen Ursprung anschließend erneut aktivieren.':'';
   document.getElementById('map').classList.toggle('awaiting-distance',phase==='waiting');
   const edge=$('toggleHourMarks').querySelector('.hour-edge');
   Object.entries(hourEdge(state.layer)).forEach(([k,v])=>edge.setAttribute(k,v));
   $('verify').disabled=!puzzle.rules.legal(state.route);
-  $('verify').title=$('verify').disabled?'Route überprüfen: zuerst sechs gültige Etappen ab Start wählen':'Route überprüfen';
+  $('verify').title=$('verify').disabled?`Route überprüfen: zuerst ${puzzle.steps} gültige Etappen ab Start wählen`:'Route überprüfen';
  };
 }

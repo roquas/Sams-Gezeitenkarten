@@ -24,8 +24,8 @@ test('persisted invalid routes safely reset instead of crashing rendering',()=>{
  for(const route of [null,[],['D4','B3'],['D4','A1'],['D4','E3','D4'],['D4','Z9']])assert.deepEqual(restoreState(puzzle,{route}),initialState(puzzle));
 });
 test('restore sanitizes notes, settings and transient HTML',()=>{
- const state=restoreState(puzzle,{route:['D4'],layer:0,tool:'unknown',marks:{'0:A1':'yes','1:B3':'yes','2:A1':'maybe','3:E3':'bad'},hiddenHours:[0,1,1,7],doneClues:['I','bad'],help:'<img onerror=bad>',result:'<script>bad</script>'});
- assert.equal(state.layer,1);assert.equal(state.tool,'maybe');assert.deepEqual(state.marks,{'2:A1':'maybe'});assert.deepEqual(state.hiddenHours,[1]);assert.deepEqual(state.doneClues,['I']);assert.equal(state.help,'');assert.equal(state.result,'');
+ const state=restoreState(puzzle,{route:['D4'],layer:0,tool:'unknown',marks:{'0:A1':'yes','1:Z9':'yes','1:B3':'yes','2:A1':'maybe','3:E3':'bad'},hiddenHours:[0,1,1,7],doneClues:['I','bad'],help:'<img onerror=bad>',result:'<script>bad</script>'});
+ assert.equal(state.layer,1);assert.equal(state.tool,'maybe');assert.deepEqual(state.marks,{'1:B3':'yes','2:A1':'maybe'});assert.deepEqual(state.hiddenHours,[1]);assert.deepEqual(state.doneClues,['I']);assert.equal(state.help,'');assert.equal(state.result,'');
 });
 test('storage is isolated per puzzle, reloads without history and tolerates unavailable storage',()=>{
  const data=new Map(),storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};

@@ -1,7 +1,8 @@
 import {initialState} from '../state/game-state.mjs';
 import {createRules} from '../engine/puzzle.mjs';
 import {adjacent} from '../engine/hex.mjs';
-export const storageKey=puzzle=>`gezeitenkarten-${puzzle.id}-v0.1`;
+export const legacyStorageKey=puzzle=>`gezeitenkarten-${puzzle.id}-v0.1`;
+export const storageKey=puzzle=>puzzle.dataVersion?`gezeitenkarten-${puzzle.id}-schema${puzzle.schemaVersion}-data${puzzle.dataVersion}`:legacyStorageKey(puzzle);
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 export function restoreState(puzzle,value){
  const fresh=initialState(puzzle),rules=createRules(puzzle),cells=new Set(rules.cells);
@@ -15,7 +16,7 @@ export function restoreState(puzzle,value){
  if(next.distanceMode&&cells.has(value.distanceOrigin)&&!rules.blocked.has(value.distanceOrigin))next.distanceOrigin=value.distanceOrigin;
  if(object(value.marks))for(const [key,mark] of Object.entries(value.marks)){
   const [hour,id,...extra]=key.split(':');
-  if(!extra.length&&/^[1-9][0-9]*$/.test(hour)&&Number(hour)<=puzzle.steps&&cells.has(id)&&!rules.blocked.has(id)&&['maybe','yes','no'].includes(mark))next.marks[key]=mark;
+  if(!extra.length&&/^[1-9][0-9]*$/.test(hour)&&Number(hour)<=puzzle.steps&&cells.has(id)&&['maybe','yes','no'].includes(mark))next.marks[key]=mark;
  }
  if(Array.isArray(value.hiddenHours))next.hiddenHours=[...new Set(value.hiddenHours.filter(h=>Number.isInteger(h)&&h>=1&&h<=puzzle.steps))];
  if(Array.isArray(value.doneClues))next.doneClues=[...new Set(value.doneClues.filter(id=>puzzle.clues.some(clue=>clue.id===id)))];
@@ -24,5 +25,5 @@ export function restoreState(puzzle,value){
  // Result HTML is transient: never insert persisted markup into the DOM.
  return next;
 }
-export function loadState(puzzle,storage){try{return restoreState(puzzle,JSON.parse(storage.getItem(storageKey(puzzle))||'null'));}catch{return initialState(puzzle);}}
+export function loadState(puzzle,storage){try{return restoreState(puzzle,JSON.parse(storage.getItem(storageKey(puzzle))??(puzzle.id==='reference-3.6'&&puzzle.schemaVersion===1&&puzzle.dataVersion===1?storage.getItem(legacyStorageKey(puzzle)):null)??'null'));}catch{return initialState(puzzle);}}
 export function saveState(puzzle,state,storage){try{storage.setItem(storageKey(puzzle),JSON.stringify(state));return true;}catch{return false;}}

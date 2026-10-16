@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
+test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('editorial rules remain collapsed and offer the complete structured introduction',async({page})=>{
  const rules=page.locator('#gameRules');
  await expect(rules).not.toHaveAttribute('open','');
@@ -28,7 +28,7 @@ test('compact controls, transparent group decorations and centered radar in all 
    if(state==='inactive')await page.locator('#toggleDistances').click();
    if(state==='waiting')await page.locator('#map [data-id="E3"]').click();
   }
-  await page.locator('#toggleDistances').click();await page.locator('#toggleDistances').click();
+  await page.locator('#toggleDistances').click();
  }
 });
 test('actual screenshots: polished controls and expanded rules',async({page},testInfo)=>{

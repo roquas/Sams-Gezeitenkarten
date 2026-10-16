@@ -1,20 +1,13 @@
 // Presentation references only; puzzle geometry and rules remain independent.
 export const CHART_BACKGROUND='assets/seekarte/meer-pergament.webp';
-const motifs={
- 'insel-zweier-01.png':{asset:'tesoro.png',w:148,h:112,dx:0,dy:0},
- 'insel-einzeln-01.png':{asset:'tesoro.png',w:76,h:58,dx:0,dy:0},
- 'insel-einzeln-02.png':{asset:'tesoro.png',w:64,h:49,dx:0,dy:0},
- 'riff-01.png':{asset:'tesoro.png',w:54,h:41,dx:0,dy:0},
- 'segelboot-01.png':{asset:'segelschiff.png',w:66,h:76,dx:0,dy:-6},
- 'segelboot-02.png':{asset:'segelschiff.png',w:61,h:70,dx:0,dy:-5},
- 'leuchtturm-01.png':{asset:'leuchtturm.png',w:75,h:81,dx:0,dy:-5}
-};
+import {MOTIFS as motifs} from '../puzzles/assets.mjs';
 export function chartOverlays(overlays){
  // The crab accent shares its location's island illustration for now.
  return overlays.filter(o=>o.asset!=='krabbe-01.png').map(o=>{
   const motif=motifs[o.asset];
   if(!motif)throw Error('Unmapped chart motif: '+o.asset);
-  return {...o,...motif,asset:'assets/seekarte/'+motif.asset};
+  const extent=o.cells.length>2?{w:o.w,h:o.h,dx:o.dx,dy:o.dy}:{};
+  return {...o,...motif,...extent,asset:'assets/seekarte/'+motif.asset};
  });
 }
 const FRAME_X=[-44,36,439,519],FRAME_Y=[-44,30,355,429];

@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
+test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 // A formatter is shared by the full book, single page, route and distance status.
 test('coordinate notation is shared and accessible across all outputs',async({page})=>{
  await expect(page.locator('#routeView [data-coordinate="D4"]')).toHaveAttribute('aria-label','Delta / Blau');
@@ -22,7 +22,7 @@ test('distance phases announce selection, cancel and preserve notes',async({page
  await expect(page.locator('#distanceStatus [data-coordinate="C1"]')).toHaveAttribute('aria-label','Gamma / Cyan');
  await page.locator('[data-tool="yes"]').click();await expect(button).toHaveAttribute('data-distance-state','showing');
  await page.locator('#map [data-id="A1"]').click();
- await button.click();await button.click();await expect(button).toHaveAttribute('data-distance-state','inactive');
+ await button.click();await expect(button).toHaveAttribute('data-distance-state','inactive');
  await page.locator('[data-tool="clearAll"]').click();await button.click();await page.locator('#map [data-id="A1"]').click();
  await expect(button).toHaveAttribute('data-distance-state','showing');
  await expect(page.locator('#map [data-id="A1"]')).toContainText('✓');

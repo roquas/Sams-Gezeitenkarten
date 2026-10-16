@@ -14,6 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm run test:unit
+      - run: npm run test:puzzles
   browser:
     runs-on: ubuntu-latest
     steps:
@@ -21,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium webkit
       - run: npm run test:browser
       - if: failure()
         uses: actions/upload-artifact@v4
@@ -33,3 +34,45 @@ jobs:
           if-no-files-found: ignore
           retention-days: 3
 
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: python3 tests/test_package.py
+      - run: sh scripts/package.sh
+      - name: Extract into a fresh directory outside the checkout
+        run: |
+          site=$(mktemp -d)
+          python3 -m zipfile -e dist/Sams-Gezeitenkarten.zip "$site"
+          echo "DEPLOY_ROOT=$site" >> "$GITHUB_ENV"
+      - name: Export accepted baseline for before/after browser screenshots
+        run: |
+          baseline=$(mktemp -d)
+          git archive 6479400974e7fe056aaefd39e6f8d1599b296a1f | tar -x -C "$baseline"
+          python3 "$baseline/scripts/package.py"
+          before=$(mktemp -d)
+          python3 -m zipfile -e "$baseline/dist/Sams-Gezeitenkarten.zip" "$before"
+          echo "BASELINE_ROOT=$before" >> "$GITHUB_ENV"
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Export land-hex baseline before the targeted correction
+        run: |
+          baseline=$(mktemp -d)
+          git archive 8e3629fb73360f5982cc5da7fbc0a05ccd854b44 | tar -x -C "$baseline"
+          python3 "$baseline/scripts/package.py"
+          before=$(mktemp -d)
+          python3 -m zipfile -e "$baseline/dist/Sams-Gezeitenkarten.zip" "$before"
+          echo "LAND_BASELINE_ROOT=$before" >> "$GITHUB_ENV"
+      - run: npx playwright test --config playwright.deployment.config.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-deployment
+          path: |
+            dist/Sams-Gezeitenkarten.zip
+            deployment-report/
+            deployment-test-results/
+          if-no-files-found: error
