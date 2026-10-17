@@ -1,4 +1,6 @@
 import {test,expect} from '@playwright/test';
+// Set reference viewports before navigation: mobile WebKit can keep stale
+// hit-test bounds after changing only the height of an already loaded page.
 const ids=['reference-3.6','quittung-nombreo','ankerbuch-tesoro'];
 const key=id=>`gezeitenkarten-${id}-schema1-data1`;
 const saved=(page,id)=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),key(id));
@@ -44,10 +46,11 @@ export function registerConsolidationTests(){
   await choose(page,other);await choose(page,id);expect((await saved(page,id)).marks).toEqual({});
   expect(errors).toEqual([]);
  });
- test('tablet settings and clipped full-size sepia logbook remain usable',async({page},info)=>{
+ for(const width of [768,1024])test.describe(`tablet settings viewport ${width}px`,()=>{
+  test.use({viewport:{width,height:1024}});
+  test('tablet settings and clipped full-size sepia logbook remain usable',async({page},info)=>{
   await page.goto('./');await expect(page.locator('#map .cell')).toHaveCount(25);
-  for(const width of [768,1024]){
-   await page.setViewportSize({width,height:1024});await choose(page,'ankerbuch-tesoro');
+   await choose(page,'ankerbuch-tesoro');
    await expect(page.locator('#map .cell')).toHaveCount(25);
    await expect(page.locator('#map [data-margin-side]')).toHaveCount(20);
    const leaves=await page.locator('.bordbook').evaluate(n=>['::before','::after'].map(p=>({w:parseFloat(getComputedStyle(n,p).width),x:parseFloat(getComputedStyle(n,p).left)})));
@@ -56,6 +59,6 @@ export function registerConsolidationTests(){
    await expect(page.locator('.book-vignette svg,.book-vignette img')).toHaveCount(0);
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    await info.attach(`consolidated-tablet-${width}`,{body:await page.locator('.bordbook').screenshot({scale:'css'}),contentType:'image/png'});
-  }
+  });
  });
 }

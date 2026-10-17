@@ -1,4 +1,6 @@
 import {test,expect} from '@playwright/test';
+// Set reference viewports before navigation: mobile WebKit can keep stale
+// hit-test bounds after changing only the height of an already loaded page.
 const KEY='gezeitenkarten-reference-3.6-schema1-data1';
 const state=page=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),KEY);
 const cell=(page,id)=>page.locator('#map [data-id="'+id+'"]');
@@ -48,9 +50,9 @@ test('cancelled selection, off and reset preserve editing semantics',async({page
  await radar.click();await page.locator('[data-tool="maybe"]').click();await cell(page,'A2').click();expect((await state(page)).marks['1:A2']).toBe('maybe');await expect(overlay(page)).toHaveCount(0);
  await radar.click();await cell(page,'C1').click();page.once('dialog',d=>d.accept());await page.locator('#reset').evaluate(el=>el.click());await expect(overlay(page)).toHaveCount(0);expect((await state(page)).distanceOrigin).toBeNull();
 });
-for(const width of [320,360,390,430,540,580,600,620,768,820,900,1024,1280,1440]){
+for(const width of [320,360,390,430,540,580,600,620,768,820,900,1024,1280,1440])test.describe(`lower rail viewport ${width}px`,()=>{
+ test.use({viewport:{width,height:1080}});
  test(`lower rail centers correctly with transparent buttons at ${width}px`,async({page})=>{
-  await page.setViewportSize({width,height:1080});
   const chart=await page.locator('.map-panel').boundingBox(),rail=await page.locator('#mapActions').boundingBox();
   expect(await rows(page.locator('#mapActions button'))).toBe(chart.width<=560?2:1);
   const bs=await page.locator('#mapActions button').evaluateAll(ns=>ns.map(n=>n.getBoundingClientRect().toJSON()));expect(bs.every(b=>b.width>=44&&b.height>=44)).toBe(true);
@@ -59,7 +61,7 @@ for(const width of [320,360,390,430,540,580,600,620,768,820,900,1024,1280,1440])
   expect(await page.locator('#mapActions button').evaluateAll(ns=>ns.every(n=>getComputedStyle(n).backgroundColor==='rgba(0, 0, 0, 0)'))).toBe(true);
   const rails=await page.locator('#mapActions .brass-rail').evaluateAll(ns=>ns.map(n=>n.getBoundingClientRect().width));expect(rails.every(w=>w>=rail.width)).toBe(true);
  });
-}
+});
 test('rules incorporate all editorial corrections without inventing a global display switch',async({page})=>{
  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
  const rules=page.locator('#gameRules');await rules.locator('summary').click();
@@ -68,22 +70,28 @@ test('rules incorporate all editorial corrections without inventing a global dis
  await expect(rules).not.toContainText('eine Berührung an der Ecke');await expect(rules).not.toContainText('Das Riff bei Alpha/Violett');
  await expect(page.locator('#mapActions button')).toHaveCount(7);
 });
-for(const width of [1440,1024,900,768,540,390,320]){
+for(const width of [1440,1024,900,768,540,390,320])test.describe(`rail screenshot viewport ${width}px`,()=>{
+ test.use({viewport:{width,height:width===1440?1080:844}});
  test(`actual rail screenshot at ${width}px`,async({page},testInfo)=>{
   await page.emulateMedia({reducedMotion:'reduce'});
-  await page.setViewportSize({width,height:width===1440?1080:844});
   await testInfo.attach('gui-review-'+width+'-rail',{body:await page.locator('#mapActions').screenshot({type:'jpeg',quality:95,scale:'css'}),contentType:'image/jpeg'});
  });
-}
-test('actual desktop GUI screenshot',async({page},testInfo)=>{
- await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width:1440,height:1080});
- await testInfo.attach('gui-review-desktop',{body:await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
 });
-test('actual mobile overlay and rules screenshots',async({page},testInfo)=>{
+test.describe('desktop GUI viewport',()=>{
+ test.use({viewport:{width:1440,height:1080}});
+ test('actual desktop GUI screenshot',async({page},testInfo)=>{
  await page.emulateMedia({reducedMotion:'reduce'});
- await page.setViewportSize({width:390,height:844});await startRadar(page);await page.locator('[data-tool="maybe"]').click();
+ await testInfo.attach('gui-review-desktop',{body:await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+ });
+});
+test.describe('mobile overlay viewport',()=>{
+ test.use({viewport:{width:390,height:844}});
+ test('actual mobile overlay and rules screenshots',async({page},testInfo)=>{
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await startRadar(page);await page.locator('[data-tool="maybe"]').click();
  for(const id of ['A1','A2','D2'])await cell(page,id).click();
  await testInfo.attach('gui-review-overlay',{body:await page.locator('.mapbox').screenshot({type:'jpeg',quality:96,scale:'css'}),contentType:'image/jpeg'});
  await page.locator('#logbookTab').click();await page.locator('#gameRules').evaluate(el=>el.open=true);await page.locator('#gameRules summary').evaluate(el=>el.scrollIntoView({block:'start'}));
  await testInfo.attach('gui-review-rules-mobile',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+});
 });

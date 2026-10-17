@@ -310,3 +310,28 @@ werden zusätzlich je Breite geprüft. Alle fünf bisherigen Aufnahmen bleiben
 mit identischen Ausschnitten/Qualitäten und über UI aufgebautem Zustand erhalten.
 Die Vollsuite enthält jetzt 308 Fälle je Browserfamilie (305 plus drei
 planmäßige Desktop-Auslassungen). Der frühe Vorlauf umfasst 68 Fälle.
+
+
+[Lauf 38983768078](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/38983768078):
+Unit, Assets, Deployment und 305 Chromiumfälle grün. Der native Mobilcheck
+und 67 WebKit-Vorlauffälle bestanden bei einer planmäßigen Auslassung.
+Die Vollsuite bestand 242 Fälle; drei planmäßige Auslassungen, ein Fehler
+und 62 ungestartete Fälle. Der GUI-Aufnahmefall bei 390×844 enthielt noch
+eine Größenänderung nach dem Laden und denselben fremden `html`-Hit auf
+`#logbookTab`. Dieser Fall war im vorherigen Abgleich übersehen worden.
+
+Die GUI-Referenzbreiten und Aufnahmen verwenden nun vollständig vorab
+konfigurierte Kontexte. Beide gemeinsamen Tabletbreiten sind ebenfalls
+eigenständige Kontexte vor `goto`; alle ursprünglichen Geometrie-, Sepia-,
+Überlauf-, Auswahl- und Screenshotprüfungen bleiben bestehen. Der vollständige
+Abgleich umfasst Browser-, gemeinsame Integrations- und Deploymenttests:
+weitere native mobile Navigationsklicks erfolgen ohne nachträglichen Resize
+oder nach einer neuen Navigation. Desktop-Resizes im Deployment bleiben
+unverändert. Keine Klickumgehung, keine Timeoutänderung, keine Produkt-CSS.
+Die Vollsuite enthält 310 Fälle je Browserfamilie (307 plus drei planmäßige
+Desktop-Auslassungen), der erweiterte Vorlauf 74. Der erste Mobilcheck
+prüft den GUI-Aufnahmefall sofort zusammen mit dem 390-Pixel-Regelfall.
+
+Lokale Verifikation dieser vollständigen Kontextvorbereitung: 70 GUI-/
+Integrationsfälle bestanden, zusätzlich vier Tabletprüfungen am frisch
+entpackten ZIP im Unterverzeichnis. Keine Produktdatei oder ZIP-Byte geändert.
