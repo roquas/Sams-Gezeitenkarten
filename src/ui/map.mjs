@@ -178,7 +178,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   // Blocked hexes are hit targets only for distance selection, never for notes
   // or route editing. Do not initiate a drag from a blocked hex in normal mode.
   const mayActivate=()=>!land||distancePhase(state)==='waiting';
-  g.addEventListener("pointerdown",e=>{if(!mayActivate())return;e.preventDefault();onPointerDown();try{svg.setPointerCapture(e.pointerId)}catch{};onActivate(c.id,true)});
+  g.addEventListener("pointerdown",e=>{if(e.button!==0||!mayActivate())return;e.preventDefault();onPointerDown();try{svg.setPointerCapture(e.pointerId)}catch{};onActivate(c.id,true)});
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();if(mayActivate())onActivate(c.id,true)}});
   svg.append(g);
  }
