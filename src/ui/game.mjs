@@ -89,7 +89,8 @@ $("map").addEventListener("pointermove",e=>{
  const g=elem?.closest?.("[data-id]");
  if(g&&byId[g.dataset.id])apply(g.dataset.id,false);
 });
-window.addEventListener("pointerup",()=>dragging=false);
+// Interrupted or released capture must not let later movement keep editing.
+for(const type of ['pointerup','pointercancel','lostpointercapture'])window.addEventListener(type,()=>dragging=false);
 $("hours").addEventListener("click",e=>{const b=e.target.closest("[data-hour]");if(!b)return;state.layer=Number(b.dataset.hour);render()});
 
 $("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>puzzle.steps)return;const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
