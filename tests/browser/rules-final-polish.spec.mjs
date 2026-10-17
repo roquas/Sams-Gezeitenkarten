@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();});
+test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('editorial rules remain collapsed and offer the complete structured introduction',async({page})=>{
  const rules=page.locator('#gameRules');
  await expect(rules).not.toHaveAttribute('open','');
@@ -14,9 +14,9 @@ test('editorial rules remain collapsed and offer the complete structured introdu
  await expect(rules).not.toContainText('Bildplatzhalter');
  await rules.locator('summary').focus();await page.keyboard.press('Enter');await expect(rules).not.toHaveAttribute('open','');
 });
-test('compact controls, transparent group decorations and centered radar in all states',async({page})=>{
- for(const width of [320,360,390,600,900,1440]){
-  await page.setViewportSize({width,height:1000});
+for(const width of [320,360,390,600,900,1440])test.describe(`controls viewport ${width}px`,()=>{
+ test.use({viewport:{width,height:1000}});
+ test(`compact controls and centered radar in all states at ${width}px`,async({page})=>{
   await expect(page.locator('#toggleRouteNumbers .route-numerals')).toHaveText('①②··');
   await expect(page.locator('#verify .verify-label')).toHaveCount(0);
   await expect(page.locator('#verify')).toHaveAccessibleName('Route überprüfen');
@@ -29,13 +29,21 @@ test('compact controls, transparent group decorations and centered radar in all 
    if(state==='waiting')await page.locator('#map [data-id="E3"]').click();
   }
   await page.locator('#toggleDistances').click();await page.locator('#toggleDistances').click();
- }
+ });
 });
-test('actual screenshots: polished controls and expanded rules',async({page},testInfo)=>{
- await page.emulateMedia({reducedMotion:'reduce'});
- for(const width of [1440,390,320]){
-  await page.setViewportSize({width,height:width===1440?1080:844});
-  if(width<601)await page.locator('#chartTab').click();
+for(const width of [1440,390,320])test.describe(`rules screenshot viewport ${width}px`,()=>{
+ test.use({viewport:{width,height:width===1440?1080:844}});
+ test(`actual polished controls and expanded rules screenshots at ${width}px`,async({page},testInfo)=>{
+  await page.emulateMedia({reducedMotion:'reduce'});
+  if(width<601){
+   const target=page.locator('#chartTab');
+   const metrics=await target.evaluate(button=>{
+    const r=button.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,hit=document.elementFromPoint(x,y),v=visualViewport;
+    return {hit:button===hit||button.contains(hit),target:r.toJSON(),hitElement:hit?.outerHTML.slice(0,200),inner:[innerWidth,innerHeight],client:[document.documentElement.clientWidth,document.documentElement.clientHeight],visual:v?{width:v.width,height:v.height,top:v.offsetTop,left:v.offsetLeft,scale:v.scale}:null,screen:[screen.width,screen.height],scroll:[scrollX,scrollY],body:document.body.getBoundingClientRect().toJSON()};
+   });
+   expect(metrics,'native mobile navigation hit-test for configured viewport: '+JSON.stringify(metrics)).toMatchObject({hit:true});
+   await target.click();
+  }
   await page.locator('.chart-toolbar').scrollIntoViewIfNeeded();
   await testInfo.attach('rules-polish-'+width+'-chart',{body:await page.screenshot({type:'jpeg',quality:94,fullPage:width===1440}),contentType:'image/jpeg'});
   await page.locator('#mapActions').scrollIntoViewIfNeeded();
@@ -45,5 +53,5 @@ test('actual screenshots: polished controls and expanded rules',async({page},tes
   await page.locator('#gameRules summary').scrollIntoViewIfNeeded();
   await testInfo.attach('rules-polish-'+width+'-rules',{body:width<601?await page.screenshot({type:'jpeg',quality:94,scale:'css'}):await page.locator('#gameRules').screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
   await page.locator('#gameRules').evaluate(el=>el.open=false);
- }
+ });
 });

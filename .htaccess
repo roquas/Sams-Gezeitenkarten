@@ -1,0 +1,9 @@
+# Static preview/deployment cache policy for files whose names remain stable.
+# Revalidate across deployments: browsers may reuse unchanged WebP bytes via 304,
+# but must check before using stale JS/CSS/JSON/images after an update.
+# Production release with hashed assets may use a longer cache lifetime later.
+<IfModule mod_headers.c>
+  <FilesMatch "[.](html?|mjs|js|css|json|webp|png|svg)$">
+    Header always set Cache-Control "no-cache, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>

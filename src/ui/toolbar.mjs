@@ -28,7 +28,9 @@ export function createToolbar(puzzle){
  const routeGroup=document.createElement('div');routeGroup.className='route-actions';
  $('verify').before(routeGroup);routeGroup.append(route,back,$('verify'));
  mountLowerMaterials();
- return state=>{
+ return (state,currentPuzzle=puzzle)=>{
+  puzzle=currentPuzzle;
+  $('hours').querySelectorAll('[data-hour]').forEach(b=>b.hidden=Number(b.dataset.hour)>puzzle.steps);
   $('hours').querySelectorAll('[data-hour]').forEach(b=>{
    const h=Number(b.dataset.hour);b.classList.toggle('active',state.layer===h);
    b.classList.toggle('hidden-hour',state.hiddenHours.includes(h));b.setAttribute('aria-pressed',String(state.layer===h));
@@ -50,6 +52,6 @@ export function createToolbar(puzzle){
   const edge=$('toggleHourMarks').querySelector('.hour-edge');
   Object.entries(hourEdge(state.layer)).forEach(([k,v])=>edge.setAttribute(k,v));
   $('verify').disabled=!puzzle.rules.legal(state.route);
-  $('verify').title=$('verify').disabled?'Route überprüfen: zuerst sechs gültige Etappen ab Start wählen':'Route überprüfen';
+  $('verify').title=$('verify').disabled?`Route überprüfen: zuerst ${puzzle.steps} gültige Etappen ab Start wählen`:'Route überprüfen';
  };
 }

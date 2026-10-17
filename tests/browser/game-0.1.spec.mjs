@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
-const KEY='gezeitenkarten-reference-3.6-v0.1';
-test.beforeEach(async({page})=>{await page.goto('/index.html');await page.evaluate(k=>localStorage.removeItem(k),KEY);await page.reload();});
+import {dragTouch} from '../integration/touch-gesture.mjs';
+const KEY='gezeitenkarten-reference-3.6-schema1-data1';
+test.beforeEach(async({page})=>{await page.goto('/index.html');await page.evaluate(k=>localStorage.removeItem(k),KEY);await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 const state=page=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),KEY);
 const cell=(page,id)=>page.locator('#map [data-id="'+id+'"]').first();
 test('initial state, hour navigation, and persistence',async({page})=>{
@@ -9,14 +10,14 @@ test('initial state, hour navigation, and persistence',async({page})=>{
  await expect(page.locator('#layerTitle')).toContainText('Stunde 2');
  await cell(page,'A1').click();
  expect((await state(page)).marks['2:A1']).toBe('maybe');
- await page.reload();
+ await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
  expect((await state(page)).marks['2:A1']).toBe('maybe');
  expect((await state(page)).layer).toBe(2);
 });
 test('undo restores mark and does not survive reload',async({page})=>{
  await cell(page,'A1').click();expect((await state(page)).marks['1:A1']).toBe('maybe');
  await page.locator('#undo').click();expect((await state(page)).marks['1:A1']).toBeUndefined();
- await cell(page,'A1').click();await page.reload();await page.locator('#undo').click();
+ await cell(page,'A1').click();await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);await page.locator('#undo').click();
  expect((await state(page)).marks['1:A1']).toBe('maybe');
 });
 test('clear all hours removes one cell across layers',async({page})=>{
@@ -85,7 +86,7 @@ test('blocked, repeated and nonadjacent route clicks do not change route',async(
  await cell(page,'E3').click();await cell(page,'D4').click();expect((await state(page)).route).toEqual(['D4','E3']);
 });
 test('invalid saved route recovers to playable initial state',async({page})=>{
- await page.evaluate(k=>localStorage.setItem(k,JSON.stringify({route:['D4','Z9'],marks:null})),KEY);await page.reload();
+ await page.evaluate(k=>localStorage.setItem(k,JSON.stringify({route:['D4','Z9'],marks:null})),KEY);await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
  expect((await state(page)).route).toEqual(['D4']);await cell(page,'A1').click();expect((await state(page)).marks['1:A1']).toBe('maybe');
 });
 test('keyboard input, per-hour erasing, note checking and confirmed reset',async({page})=>{
@@ -100,14 +101,14 @@ test('keyboard input, per-hour erasing, note checking and confirmed reset',async
  page.once('dialog',dialog=>dialog.accept());await page.locator('#reset').evaluate(el=>el.click());expect((await state(page)).marks).toEqual({});expect((await state(page)).route).toEqual(['D4']);
 });
 test('paid hint cost and count persist after reload and another undo',async({page})=>{
- await page.locator('#hint').evaluate(el=>el.click());await page.reload();
+ await page.locator('#hint').evaluate(el=>el.click());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
  await cell(page,'A1').click();await page.locator('#undo').click();
  expect((await state(page)).penalty).toBe(10);expect((await state(page)).hintCount).toBe(1);
 });
 test('chart assets load and playing has no browser errors or horizontal overflow',async({page},testInfo)=>{
  const errors=[],failures=[];page.on('pageerror',error=>errors.push(error.message));
  page.on('response',response=>{if(response.status()>=400&&!response.url().endsWith('favicon.ico'))failures.push(response.url());});
- await page.reload();
+ await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
  await page.locator('[data-tool="route"]').click();for(const id of ['E3','D2','C2','B2','B1','A1'])await cell(page,id).click();
  await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig!');
  expect(errors).toEqual([]);expect(failures).toEqual([]);
@@ -119,14 +120,11 @@ test('mobile logbook opens and closes through its visible controls',async({page,
  await page.locator('#logbookTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','true');
  await page.locator('#chartTab').click();await expect(page.locator('#logbookTab')).toHaveAttribute('aria-expanded','false');
 });
-test('one mouse or touch drag marks two fields and undoes as one gesture',async({page,isMobile})=>{
+test('one mouse or touch drag marks two fields and undoes as one gesture',async({page,isMobile,browserName})=>{
  const center=async id=>{const b=await cell(page,id).boundingBox();return {x:b.x+b.width/2,y:b.y+b.height/2};};
  const first=await center('A1'),second=await center('B1');
  if(isMobile){
-  const session=await page.context().newCDPSession(page);
-  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[first]});
-  await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[second]});
-  await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await session.detach();
+  await dragTouch(page,{browserName,from:first,to:second,pointer:true});
  }else{
   await page.mouse.move(first.x,first.y);await page.mouse.down();await page.mouse.move(second.x,second.y,{steps:5});await page.mouse.up();
  }

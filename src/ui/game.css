@@ -144,6 +144,7 @@ main{display:grid;max-width:1340px;grid-template-columns:minmax(0,1.65fr) minmax
 .all-clues .num{width:24px;height:24px;font-size:12px}
 .setting-row{display:flex;gap:9px;align-items:center;font-size:13px;padding:6px 0}
 .setting-row input{width:18px;height:18px;accent-color:#34565a}
+.setting-row select{min-height:42px;max-width:100%;flex:1 1 auto;min-width:0;padding:7px 10px;border:1px solid #a88b59;border-radius:6px;background:#fff8e8;color:#493c27;font:inherit;cursor:pointer}
 @media(max-width:880px){
  main{display:block}
  .clue-panel{position:fixed;z-index:100;top:5vh;right:0;bottom:3vh;width:min(88vw,410px);margin:0!important;overflow:visible;border-radius:14px 0 0 14px;transform:translateX(100%);transition:transform .25s ease;box-shadow:-12px 12px 35px #29231b40}
@@ -186,3 +187,8 @@ main{display:grid;max-width:1340px;grid-template-columns:minmax(0,1.65fr) minmax
 .toolpick.active .all-eraser sup{background:#34565a;color:#fff}
 .route-undo{color:#926322}
 @media(max-width:650px){.map-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.map-actions .btn{font-size:12px;min-height:43px}}
+
+/* Native puzzle selection preserves platform keyboard/touch behavior. */
+#puzzleSelect{display:block;box-sizing:border-box;width:100%;min-width:0;min-height:44px;margin:6px 0 10px;padding:8px;border:1px solid #967746;border-radius:5px;background:#f2e6c9;color:#274e50;font:inherit}
+
+#hours .hour[hidden]{display:none}
