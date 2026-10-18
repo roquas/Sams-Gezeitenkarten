@@ -32,6 +32,9 @@ class PackagingTests(unittest.TestCase):
         with zipfile.ZipFile(output) as archive:
             names = archive.namelist()
             self.assertIn('index.html', names)
+            self.assertIn('assets/catalog/library.json', names)
+            self.assertIn('assets/library/technical-double.png', names)
+            self.assertNotIn('dev/asset-library.html', names)
             for name in ['assets/seekarte/sea-blue-01.webp', 'assets/seekarte/frame-parchment-01.webp', 'assets/seekarte/frame-parchment-02.webp', 'assets/ui/logbook-chart.svg', '.htaccess']:
                 self.assertIn(name, names)
                 self.assertEqual(archive.read(name), (ROOT / name).read_bytes())
@@ -77,6 +80,28 @@ class PackagingTests(unittest.TestCase):
     def test_missing_module(self):
         (self.root / 'src/engine/hex.mjs').unlink()
         with self.assertRaisesRegex(ValueError, 'hex.mjs'):
+            packager.collect(self.root)
+
+    def test_missing_catalog_image(self):
+        (self.root / 'assets/library/technical-single.png').unlink()
+        with self.assertRaisesRegex(ValueError, 'technical-single.png'):
+            packager.collect(self.root)
+
+    def test_catalog_path_escape(self):
+        path = self.root / 'assets/catalog/library.json'
+        data = json.loads(path.read_text())
+        data['assets'][0]['image']['path'] = 'assets/library/../../README.md'
+        path.write_text(json.dumps(data))
+        with self.assertRaisesRegex(ValueError, 'Assetpfad'):
+            packager.collect(self.root)
+
+    def test_unapproved_catalog_placement_is_not_shipped(self):
+        path = self.root / 'puzzles/reference-3.6.json'
+        data = json.loads(path.read_text())
+        data['presentation']['assetBackground'] = 'sea-blue-01'
+        data['presentation']['assetPlacements'] = [{'id': 'new', 'assetId': 'technical.single.v1', 'anchor': 'B3'}]
+        path.write_text(json.dumps(data))
+        with self.assertRaisesRegex(ValueError, 'Nicht freigegeben'):
             packager.collect(self.root)
 
     def test_unknown_asset_id(self):

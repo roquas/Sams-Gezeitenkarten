@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assetbibliothek – technische Abnahme</title>
+<link rel="stylesheet" href="asset-library.css">
+<main>
+ <h1>Assetbibliothek: technische Testansicht</h1>
+ <p>Nur Entwicklung und visuelle Abnahme. Violette Symbole sind technische Platzhalter, keine endgültigen Illustrationen. Transparenz ist keine visuelle Freigabe.</p>
+ <label>Meereshintergrund <select id="background"></select></label>
+ <label><input type="checkbox" id="hexes" checked> Hexgrenzen anzeigen</label>
+ <p id="status" role="status"></p>
+ <svg id="gallery" viewBox="-37 -44.5 563 473" role="img" aria-label="Einzelhex, Mehrhex-Insel, befahrbarer Leuchtturm und Dekoration auf einer Testkarte"></svg>
+ <div id="inventory"></div>
+ <h2>Weitere Prüfpositionen</h2>
+ <label>Asset zur Einzelprüfung <select id="reviewAsset"></select></label>
+ <p>Dieselben Grafiken an Rand- und Innenpositionen, mit beiden Zeilenparitäten. Alle Ansichten verwenden dieselben Maße wie die Spielkarte.</p>
+ <div id="positions"></div>
+ <p id="error" role="alert"></p>
+</main>
+<script type="module" src="asset-library.mjs"></script>
+</html>

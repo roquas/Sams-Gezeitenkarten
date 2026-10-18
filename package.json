@@ -6,7 +6,8 @@
     "test:unit": "node --test tests/reference/*.test.mjs",
     "test:browser": "playwright test",
     "test:all": "npm run test:unit && npm run test:puzzles && npm run test:browser",
-    "test:puzzles": "node scripts/validate-puzzles.mjs"
+    "test:puzzles": "node scripts/validate-puzzles.mjs",
+    "test:assets": "node scripts/validate-assets.mjs && python3 scripts/check-library-images.py && python3 tests/test_library_images.py"
   },
   "devDependencies": {
     "@playwright/test": "1.64.0"

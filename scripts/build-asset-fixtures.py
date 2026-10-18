@@ -45,4 +45,6 @@ if __name__ == '__main__':
                    dict(id='prototype-sea', family='blue-sea', image='assets/seekarte/meer-ohne-objekte-prototyp.webp')]
     catalog = dict(schemaVersion=1, backgrounds=backgrounds, assets=assets,
                    reviews=[dict(assetId=a['id'], backgroundId=b['id'], status='pending', notes='Technical placeholder; no artistic approval.') for a in assets for b in backgrounds])
-    (ROOT / 'assets/catalog/library.json').write_text(json.dumps(catalog, indent=2)+'\n')
+    catalog_path = ROOT / 'assets/catalog/library.json'
+    if not catalog_path.exists():
+        catalog_path.write_text(json.dumps(catalog, indent=2)+'\n')
