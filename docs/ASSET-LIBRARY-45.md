@@ -1,6 +1,6 @@
 # Grafikasset-Bibliothek (#45)
 
-Erster Integrationsstand auf `main` nach PR #63 (`1f968b0`). Grundlage sind die vollständige Spezifikation von [Issue #45](https://github.com/roquas/Sams-Gezeitenkarten/issues/45) und der Kommentar zur **lokalen** Hexbegrenzung vom 15.10.2026. Der alte Branch `feature/asset-library-45` wurde geprüft, nicht gemergt. Sein Vorschlagskatalog bleibt unverändert in `assets/catalog/asset-proposals.json`; Zusammenhangsprüfung, axiale Koordinaten, unabhängige Befahrbarkeit und ausstehende Freigaben wurden übernommen. Die alte Prüfung auf exakt 18 Vorschläge ist keine Laufzeitbeschränkung.
+Erster Integrationsstand auf `main` nach PR #63 (`1f968b0`). Grundlage sind die vollständige Spezifikation von [Issue #45](https://github.com/roquas/Sams-Gezeitenkarten/issues/45) und die verbindliche Grafikregel vom **18.10.2026**. Sie ersetzt die Präzisierung vom 15.10.2026 hinsichtlich der Polygongeometrie: Der Footprint besteht aus lückenlosen Grafikzellen, während sämtliche sichtbaren Pixel weiterhin hart begrenzt bleiben. Der alte Branch `feature/asset-library-45` wurde geprüft, nicht gemergt. Sein Vorschlagskatalog bleibt unverändert in `assets/catalog/asset-proposals.json`; Zusammenhangsprüfung, axiale Koordinaten, unabhängige Befahrbarkeit und ausstehende Freigaben wurden übernommen. Die alte Prüfung auf exakt 18 Vorschläge ist keine Laufzeitbeschränkung.
 
 ## Architektur und Datenfluss
 
@@ -23,20 +23,46 @@ Statische **PNG oder WebP mit explizitem Alpha-Kanal**, keine Animation. Bilder 
 ```text
 x = 82*q + 41*r
 y = 68*r
-Hexradius = 36 SVG-Einheiten, Spitzen bei 30°, 90°, …
+Sichtbares Spiel-Hex: Radius 36 SVG-Einheiten, Spitzen bei 30°, 90°, …
+Grafik-Hex: Voronoi-Zelle des vollständigen, unendlichen Zentrenrasters
 ```
 
 Das Ankerfeld wird mit der Engine-Funktion `axial` umgerechnet. Dadurch bleibt dieselbe Ausrichtung auch beim Wechsel zwischen geraden und ungeraden Kartenzeilen erhalten. Hexfelder sind einzelne Bewegungsfelder; ein Mehrhexasset fasst sie nicht zu einem Spielzug zusammen.
 
-Der Bildmittelpunkt liegt auf dem arithmetischen Mittel **aller belegten Hexzentren**. Der feste symmetrische Bildrahmen entsteht aus den tatsächlichen Hexpolygonen um diesen Mittelpunkt, aufgerundet auf gerade SVG-Maße, plus vier Einheiten transparenter Rand je Seite. Eine Bounding-Box bestimmt nur die Bilddatei, niemals die belegten Felder. Die Grafik muss innerhalb der **Vereinigung ihrer konkreten Hexpolygone** liegen, einschließlich Innenpositionen. Die bestehende Karte hat Wasserabstände zwischen den Hexpolygonen; diese bleiben transparent. Verbindungen über die Lücken oder Aussparungen sind nicht zulässig.
+### Lückenlose Grafikzellen und Kartenrand
+
+Die sichtbaren Spielpolygone bleiben unverändert: Hexlinien, Markierungen, Hinweise und Eingaben verwenden weiterhin Radius 36. Ihr horizontaler Abstand von etwa 19,65 SVG-Einheiten ist **keine** Grafikgrenze mehr.
+
+Die Mittelsenkrechten zum vollständigen Zentrenraster ergeben die Voronoi-Zelle um `(0,0)`:
+
+```text
+|x| ≤ 41
+±41*x ±68*y ≤ (41² + 68²)/2 = 3152,5
+Ecken: (0, ±46,360294117647…), (±41, ±21,639705882353…)
+Fläche: 82*68 = 5576 SVG-Quadrateinheiten
+```
+
+Die Zellen sind wegen der tatsächlichen Projektion **keine regelmäßigen Hexagone**. Jeder der sechs logischen Kantennachbarn teilt eine ganze Kante, auch bei wechselnder Zeilenparität. Ihre Innenflächen sind disjunkt. Mehrhexflächen sind Vereinigungen dieser Zellen; interne Kanten sind keine Pixelbarrieren. Konkavitäten und ausgelassene Zellen bleiben erhalten. Ein konvexer Rumpf oder ein gemeinsames Rechteck wäre falsch.
+
+Der äußere Kartenbereich ist die Vereinigung der 25 Zellen aus dem **vollständigen Raster**, geschnitten mit der bereits vorhandenen geometrischen 8-Einheiten-Spielschutzzone `PROTECTION[0]`. Diese stammt aus `ROW_ENVELOPE`, also der festen Spielgeometrie, unabhängig von Pergamentalpha und Illustrationen. Dadurch werden Voronoi-Zellen am Rand nicht bis ins Unendliche erweitert und bestehende Sicherheitsabstände nicht aufgehoben. Beispielsweise läge die volle Spitze von A1 bei `y≈9,64`, die bestehende Schutzzone beginnt dort aber bei `y=12`. Diese Spitze ist an A1 als Bildinhalt unzulässig.
+
+`boardGraphicCell` zerlegt die geschnittenen Randzellen in konvexe Fragmente mit disjunkten Innenflächen. `placementContract` liefert sie im lokalen Bildkoordinatensystem. Der Export prüft alle tatsächlich eingetragenen Platzierungen zusätzlich gegen diese Randgeometrie. Ein innen gültiges Bild kann am Kartenrand ungültig sein. Dafür muss die Illustration von Anfang an passend komponiert oder eine eigene Assetvariante erstellt werden; der Renderer beschneidet oder verschiebt nichts. Die Entwicklungsgalerie zeigt die tatsächlich erlaubte Fläche grün an.
+
+Der Bildmittelpunkt liegt auf dem arithmetischen Mittel **aller belegten Hexzentren**. Der feste symmetrische Bildrahmen entsteht aus den Grafikzellen um diesen Mittelpunkt: je Achse `2*ceil(max(abs(Koordinate))+4)` SVG-Einheiten, also mindestens vier Einheiten transparenter Dateirand. Eine Bounding-Box bestimmt nur die Bilddatei, niemals die erlaubte Grafikfläche.
 
 | Axiale Geometrie | Anzeige in SVG-Einheiten | Datei in Pixeln |
 | --- | --- | --- |
-| `[[0,0]]` | 72 × 80 | **288 × 320** |
-| `[[0,0],[1,0]]` | 154 × 80 | **616 × 320** |
-| `[[0,0],[0,1]]` | 112 × 148 | **448 × 592** |
-| `[[0,0],[1,0],[0,1]]` | 154 × 172 | **616 × 688** |
-| `[[0,0],[1,0],[2,0]]` | 236 × 80 | **944 × 320** |
+| `[[0,0]]` | 90 × 102 | **360 × 408** |
+| `[[0,0],[1,0]]` | 172 × 102 | **688 × 408** |
+| `[[0,0],[0,1]]` | 132 × 170 | **528 × 680** |
+| `[[0,0],[1,0],[0,1]]` | 172 × 192 | **688 × 768** |
+| `[[0,0],[1,0],[2,0]]` | 254 × 102 | **1016 × 408** |
+
+Die alten Produktionsmaße 288 × 320 beziehungsweise 616 × 320 sind damit ersetzt. Die vier technischen PNGs sind reproduzierbar mit `python3 scripts/build-asset-fixtures.py` angepasst; die Zweierform zeigt eine durchgehende technische Verbindung über die frühere Lücke.
+
+### Reproduzierbare Zeichenschablonen
+
+[docs/asset-templates](asset-templates/README.md) enthält für die ersten vier Formen jeweils eine transparente PNG-Maske mit den festen Bildmaßen und einen JSON-Vertrag mit den exakten Vektorpolygonen. Weiß/Alpha 255 bedeutet: Dieses vollständige Pixel darf bemalt werden. Alpha 0 muss transparent bleiben. Der Generator `python3 scripts/build-asset-templates.py` verwendet den Browservertrag und denselben Flächenprüfer wie der Export. Die Masken sind technische Hilfsmittel, keine Illustrationen. Randplatzierungen müssen zusätzlich den positionsabhängigen Vertrag erfüllen.
 
 Andere Formen erhalten ihre Maße ohne Architekturänderung durch:
 
@@ -44,7 +70,11 @@ Andere Formen erhalten ihre Maße ohne Architekturänderung durch:
 node --input-type=module -e "import {imageContract} from './src/assets/geometry.mjs'; console.log(imageContract([[0,0],[1,0]]));"
 ```
 
-Ein Motiv darf innerhalb der Datei asymmetrisch komponiert sein, etwa ein Leuchtturm mit mehr offenem Wasser darunter. Seine Leinwand wird trotzdem geometrisch zentriert. **Alle sichtbaren Pixel** müssen im lokalen Footprint bleiben, auch kaum sichtbare Schatten/Wellen. Es gibt weder ein automatisches Wegschneiden ungeeigneter Bilder noch ein Hineinquetschen durch Verzerrung. Die Pixelprüfung prüft alle vier Ecken jedes Pixels mit Alpha > 0.
+Ein Motiv darf innerhalb der Datei asymmetrisch komponiert sein, etwa ein Leuchtturm mit mehr offenem Wasser darunter. Seine Leinwand wird trotzdem geometrisch zentriert. **Alle sichtbaren Pixel** müssen im lokalen Footprint bleiben, auch kaum sichtbare Schatten/Wellen. Es gibt weder ein automatisches Wegschneiden ungeeigneter Bilder noch ein Hineinquetschen durch Verzerrung. Die Pixelprüfung behandelt jedes Pixel mit Alpha > 0 als vollständiges Quadrat von ¼ × ¼ SVG-Einheiten. Sie schneidet dieses Quadrat gegen die konvexen, innen disjunkten Fragmente und verlangt dessen vollständige Flächendeckung durch die Vereinigung. Damit sind interne Kanten übermalbar, aber selbst eingeschlossene kleine Aussparungen bleiben verboten. Vier Ecken oder nur der Mittelpunkt reichen nicht. Die numerische Toleranz von `1e-10` SVG-Flächeneinheiten kompensiert ausschließlich Gleitkommaarithmetik.
+
+Gemeinsame Linien haben Fläche null. Ein Punkt exakt darauf gehört deterministisch zum lexikografisch kleinsten axialen Paar `[q,r]` (`graphicOwner`). Pixelquadrate dürfen solche Linien berühren; sie dürfen keine positive Fläche außerhalb ihres Asset-Footprints beanspruchen. Zwei verschiedene Assets dürfen auch als Dekoration keine gemeinsame logische Grafikzelle belegen. Zusammen mit der Flächenprüfung verhindert dies jede Überdeckung von Quellpixel-Flächen.
+
+Responsive Bildfilter können benachbarte Quellpixel im selben **Bildschirm**pixel abtasten. Der gemeinsame Renderer summiert deshalb die vormultiplizierten Farb-/Alphabeiträge mit `mix-blend-mode: plus-lighter` in einer isolierten SVG-Gruppe und komponiert diese einmal über den Hintergrund. Das erhält die glatte Skalierung und vermeidet reihenfolgeabhängiges Übermalen an Zellgrenzen. Es verändert keine Bildmaße, Positionen oder Footprints. Browsertests vergleichen die gerenderten PNGs bei vertauschter Reihenfolge für horizontale und diagonale Nachbarn, gerade/ungerade Zeilen und Desktop/Mobil.
 
 ## Visuelle Freigabe und Hintergrundwelten
 
@@ -52,7 +82,7 @@ Die Hintergrundliste besitzt unabhängige IDs und Familien. `candidateFamilies` 
 
 `approved` verlangt Prüfer, Datum, Notiz und SHA-256 der Bilddateien. Änderungen an Asset oder konkretem Hintergrund machen die Freigabe im Dateivalidator ungültig. Bei universeller Freigabe wird das Asset gehasht; der Prüfer verantwortet die ausdrückliche universelle Aussage. Transparenz, bestandene Pixelprüfung und ein Test-Screenshot setzen **keinen** Freigabestatus.
 
-Die Entwicklungsansicht zeigt auch unbestätigte Kombinationen. Veröffentlichte Rätsel akzeptieren ausschließlich `stage: "illustration"` mit bestätigter Freigabe. Der erste Integrationsstand unterstützt für neue **Spielkarten** nur `assetBackground: "sea-blue-01"`, da dies das tatsächlich gerenderte Meer in beiden verbindlichen Rahmenvarianten ist. Historische `?frame=`-Experimente werden bei neuen Platzierungen auf `final` begrenzt. Andere Hintergrundwelten sind im Katalog und in der Entwicklungsansicht prüfbar; ihr Produkt-Einbau bleibt eine getrennte Aufgabe.
+Die Entwicklungsansicht zeigt auch unbestätigte Kombinationen. Veröffentlichte Rätsel akzeptieren ausschließlich `stage: "illustration"` mit bestätigter Freigabe. Der erste Integrationsstand unterstützt für neue **Spielkarten** nur `assetBackground: "sea-blue-01"`, wobei der Katalogpfad zwingend exakt `CHART_ASSET_SPEC.sea` (`assets/seekarte/sea-blue-01.webp`) entsprechen muss. Ein anderer Dateipfad unter unveränderter ID wird bereits vom gemeinsamen Validator abgelehnt, auch mit passenden Hashes. Dies ist das tatsächlich gerenderte Meer in beiden verbindlichen Rahmenvarianten. Historische `?frame=`-Experimente werden bei neuen Platzierungen auf `final` begrenzt. Andere Hintergrundwelten sind im Katalog und in der Entwicklungsansicht prüfbar; ihr Produkt-Einbau bleibt eine getrennte Aufgabe.
 
 Zur Abnahme: Original-Hexgröße, mehrere Kartenpositionen, Desktop, iPhone und iPad sowie DPR 1/2 prüfen. Wasserkante, Licht, Transparenz, Perspektive, visuelle Befahrbarkeit und Namenslesbarkeit prüfen. Screenshots und Entscheidung im zugehörigen Issue/PR dokumentieren, dann erst Revieweintrag ändern.
 
@@ -60,7 +90,7 @@ Zur Abnahme: Original-Hexgröße, mehrere Kartenpositionen, Desktop, iPhone und 
 
 Dieses Beispiel beschreibt die spätere Produktion. Die genannte Datei existiert bewusst noch nicht; keinen Pfad als verfügbar registrieren, bevor die Datei geliefert ist.
 
-1. `assets/library/needle-beacon-v1.png` als transparentes **288 × 320** PNG liefern. Schmale Felsnadel und Leuchtfeuer bleiben vollständig im Einzelhex; erkennbarer offener Wasserraum. Herkunft und Nutzungsrechte dokumentieren.
+1. `assets/library/needle-beacon-v1.png` als transparentes **360 × 408** PNG liefern. Schmale Felsnadel und Leuchtfeuer bleiben vollständig im Einzelhex; erkennbarer offener Wasserraum. Herkunft und Nutzungsrechte dokumentieren.
 2. Diesen Eintrag an `assets` in `assets/catalog/library.json` anhängen:
 
 ```json
@@ -72,7 +102,7 @@ Dieses Beispiel beschreibt die spätere Produktion. Die genannte Datei existiert
   "passable": true,
   "stage": "illustration",
   "geometry": {"cells": [[0, 0]]},
-  "image": {"path": "assets/library/needle-beacon-v1.png", "width": 288, "height": 320},
+  "image": {"path": "assets/library/needle-beacon-v1.png", "width": 360, "height": 408},
   "provenance": {"source": "Hier tatsächlichen Urheber/Produktionsbeleg eintragen", "rights": "Hier tatsächliche Nutzungsrechte eintragen"},
   "candidateFamilies": ["blue-sea"]
 }
@@ -89,7 +119,7 @@ Dieses Beispiel beschreibt die spätere Produktion. Die genannte Datei existiert
 }
 ```
 
-4. Entwicklungsserver starten und `/dev/asset-library.html` öffnen. Im Menü **Asset zur Einzelprüfung** das neue Asset wählen. Es erscheint automatisch an Rand- und Innenpositionen. Meereshintergründe wechseln, Hexgrenzen ein-/ausblenden. Kein Code muss angepasst werden.
+4. Entwicklungsserver starten und `/dev/asset-library.html` öffnen. Im Menü **Asset zur Einzelprüfung** das neue Asset wählen. Es erscheint deterministisch an Rand- und Innenpositionen für jede verfügbare gerade und ungerade Zeile (Zeilennummern ab 1). Unmögliche Kategorien werden ausgelassen; Anker, Parität und Lage stehen an jeder Ansicht. Meereshintergründe wechseln, Spiel-Hexgrenzen und grüne Grafikflächen getrennt ein-/ausblenden. Kein Code muss angepasst werden.
 5. `npm run test:assets` ausführen. Nach menschlicher Abnahme den Revieweintrag auf `approved` setzen, tatsächlichen `reviewer`, `date`, `notes`, `assetSha256` und `backgroundSha256` ergänzen. Die Hashes liefert:
 
 ```sh
@@ -107,7 +137,7 @@ sha256sum assets/library/needle-beacon-v1.png assets/seekarte/sea-blue-01.webp
 
 Den dadurch ersetzten alten Leuchtturm-Eintrag aus `presentation.overlays` entfernen, um keine Doppelgrafik zu erzeugen. `logic`, Ortsname, Hinweise, `solution` und Befahrbarkeit unverändert lassen. Verschiedene Assetinstanzen können dieselbe `placeId` besitzen, wenn ihre Zellen zu diesem Ort gehören. Dekoration verwendet keine `placeId` und kein `passable`.
 
-7. `npm run test:unit`, `npm run test:puzzles`, `npm run test:assets`, Browser-/Deploymentprüfungen und `python3 tests/test_package.py` ausführen. `sh scripts/package.sh` erstellt das eigenständige ZIP mit Katalog, Bildern und umgeschriebenen `.js`-Modulen. Die Entwicklungsansicht wird nicht ausgeliefert und ist in der normalen Spieloberfläche nicht verlinkt.
+7. `npm run test:unit`, `npm run test:puzzles`, `npm run test:assets`, Browser-/Deploymentprüfungen und `python3 tests/test_package.py` ausführen. `sh scripts/package.sh` (oder direkt `python3 scripts/package.py`) verlangt Node.js, Python 3 und Pillow, erzwingt alle Freigabe-, Puzzle-/Solver- und Bildprüfungen und erstellt das eigenständige ZIP mit Katalog, Bildern und umgeschriebenen `.js`-Modulen. Die Entwicklungsansicht wird nicht ausgeliefert und ist in der normalen Spieloberfläche nicht verlinkt.
 
 ## Legacy-Migration und bewusste Ausnahmen
 
@@ -128,11 +158,19 @@ Die vier veröffentlichten Rätsel verwenden diese Legacyregistrierungen ohne Da
 
 ## Automatische Gates und erste Illustrationen
 
-- IDs, bekannte Referenzen, sichere Dateipfade und Herkunft/Rechte; keine doppelten Geometriezellen, getrennten Komponenten oder fremden Transformationsfelder.
+- IDs, bekannte Referenzen, sichere Dateipfade und Herkunft/Rechte; symbolische Dateien und symbolische Pfadkomponenten sind ausdrücklich nicht unterstützt, auch keine internen Aliase; keine doppelten Geometriezellen, getrennten Komponenten oder fremden Transformationsfelder.
 - Tatsächliches Dateiformat, Pixelmaße, Alpha, nichtleerer Inhalt und vollständige lokale Polygonbegrenzung.
 - Unabhängige Befahrbarkeit, unveränderte Landfelder, Ortszugehörigkeit, mehrere getrennte Assets je Ort, Kartenrand und Zeilenparität.
 - Hintergrund-/Freigabereferenzen, ausstehende/abgelehnte Freigaben, keine automatische Familienfreigabe und keine veralteten Freigabehashes.
 - Alle bisherigen Unit-, Lösungs-, Browser-, WebKit- und Deploymenttests bleiben erhalten. Neue Browsertests verwenden auch abgefangene, ausdrücklich testinterne Freigabedaten; im echten Katalog ist nichts freigegeben.
-- Deterministisches, vollständiges Deployment-ZIP; Entwicklungsgalerie ausgeschlossen.
+- Deterministisches, vollständiges Deployment-ZIP; Entwicklungsgalerie ausgeschlossen. Beide Exporteinstiege erzwingen dieselben JS-Validatoren und den Bildvalidator, einschließlich Dekodierung aller ausgelieferten PNG/WebP-Dateien. Kein paralleler Teilvalidator für Freigaben im Python-Exporter. Bei Fehler: verständliche Meldung, Fehlerstatus und unverändertes letztes ZIP.
+- Die konkreten Regressionen und Prüfbefehle stehen im [Testplan](TESTPLAN.md#assetbibliothek-und-grafikzellen-18102026).
 
-Für die ersten **separat** zu erstellenden Bilder: Einzelhex-Insel **288 × 320**, Zweierinsel Ost **616 × 320**, schmaler befahrbarer Einzelhex-Leuchtturm **288 × 320** und eindeutig dekoratives Einzelhex-Motiv **288 × 320**. Andere Ausrichtungen benötigen eigene IDs und konkret dafür komponierte Dateien. Aquarell-/isometrische Stilreferenz aus #45/#49 erhalten; keine eingebackenen Ortsnamen. Vor der Registrierung den lokalen Footprint berücksichtigen; vor der Veröffentlichung die konkrete Kombination mit `sea-blue-01` künstlerisch abnehmen.
+Für die ersten **separat** zu erstellenden Bilder: Einzelhex-Insel **360 × 408**, Zweierinsel Ost **688 × 408**, schmaler befahrbarer Einzelhex-Leuchtturm **360 × 408** und eindeutig dekoratives Einzelhex-Motiv **360 × 408**. Andere Ausrichtungen benötigen eigene IDs und konkret dafür komponierte Dateien. Aquarell-/isometrische Stilreferenz aus #45/#49 erhalten; keine eingebackenen Ortsnamen. Vor der Registrierung den lokalen Footprint berücksichtigen; vor der Veröffentlichung die konkrete Kombination mit `sea-blue-01` künstlerisch abnehmen.
+
+
+## Verbleibende Folgearbeiten vor produktiven Illustrationen
+
+- **B4 – Beschriftung getrennter Teilinseln:** Der bestehende Algorithmus beschriftet nur eine Komponente eines benannten Ortes. Vor produktiver Verwendung entsprechender Orte muss eine bewusste Gestaltung entschieden werden. Dieser PR verändert die Beschriftungslogik nicht und wiederholt den Ortsnamen nicht ungefragt auf jedem Teil.
+- **B6 – Bildladefehler im Browser:** Eine eigene sichtbare Fehlerbehandlung des neuen Renderers für fehlende/beschädigte Bilder steht aus und muss vor produktivem Einsatz neuer Illustrationen umgesetzt werden. Der jetzt zwingende Exportcheck verhindert ungültige Quelldateien, ersetzt aber keine Behandlung späterer Hosting- oder Ladefehler.
+- Echte Aquarellillustrationen, menschliche Freigaben und vollständige Legacy-Migration bleiben separate Arbeiten. Die geometrische Zulässigkeit beweist keine künstlerische Eignung.
