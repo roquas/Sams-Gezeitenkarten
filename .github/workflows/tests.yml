@@ -38,6 +38,17 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
+      - name: Retain UI review screenshots and lifecycle observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-safari-review-chromium
+          path: |
+            test-results/**/ink-*.png
+            test-results/**/resume-lifecycle.json
+            test-results/**/cold-chart-timeline.json
+          if-no-files-found: ignore
+          retention-days: 3
       - if: failure()
         uses: actions/upload-artifact@v4
         with:
@@ -70,7 +81,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: webkit-timings-${{ matrix.shard }}
-          path: webkit-results.json
+          path: |
+            webkit-results.json
+            test-results/**/ink-*.png
+            test-results/**/resume-lifecycle.json
+            test-results/**/cold-chart-timeline.json
           if-no-files-found: error
           retention-days: 3
       - if: failure()
@@ -111,6 +126,17 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium webkit
       - run: npx playwright test --config playwright.deployment.config.mjs
+      - name: Retain deployment UI review and lifecycle observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-safari-review-deployment
+          path: |
+            deployment-test-results/**/ink-*.png
+            deployment-test-results/**/resume-lifecycle.json
+            deployment-test-results/**/cold-chart-timeline.json
+          if-no-files-found: ignore
+          retention-days: 3
       - name: Retain directly deployable ZIP
         uses: actions/upload-artifact@v4
         with:

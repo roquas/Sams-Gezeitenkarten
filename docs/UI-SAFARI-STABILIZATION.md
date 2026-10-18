@@ -1,0 +1,132 @@
+# UI- und Safari-Nacharbeiten vor #45
+
+Basis: `ebcef40`, aktueller main nach Merge von PR #53. Main-Lauf
+[39106051293](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39106051293)
+erfolgreich. Branch: `fix/ui-safari-stabilization`. Kein Merge nach main.
+
+Gelesen: #54, #55, #57, #58, #60, #61, #62 einschließlich aller Kommentare;
+außerdem die Querverweise #29, #31, #40 und #47. Die spätere Orts-/Insel-
+Distanzsemantik aus #47 wird nicht implementiert. Land bleibt entsprechend
+aktuellem main ein einzelner Radarursprung, aber weder Notiz- noch Routenfeld.
+#45, #56, #59, Rätseldaten, Solver und Assetbytes bleiben unverändert.
+
+## Ergebnisse je Issue
+
+| Issue | Technischer Stand | Ursache / Änderung | Regression und Restrisiko |
+| --- | --- | --- | --- |
+| #55 Radar | Behoben | Die alte #29-Zustandsmaschine schaltete `showing` wieder auf `waiting` und behielt den Ursprung. Jetzt schaltet ein Druck sowohl `waiting` als auch `showing` vollständig aus; Wiederaktivierung verlangt einen frischen Ursprung. Bearbeitungswerkzeuge behalten ein fertiges Overlay. | Unit-Zustandsübergänge, Maus, native Taps, Tastatur, Land-/Quellwechsel, Undo und Reload in Quelle und ZIP. Bestehende Prüfungen der alten Zweiklick-Semantik wurden durch ausdrückliche Ein-Klick-Prüfungen ersetzt. |
+| #54 Routenlesbarkeit | Behoben | Spätere Segmente hatten nur 0,36 Deckkraft und eine dünne, kontrastarme Linie. Aktuelle Stunde: kräftiger, durchgezogener warmer Strich. Alle anderen Stunden: identische, gut sichtbare konturierte Strichlinie. | Stilgleichheit vor/nach der gewählten Stunde, Strichmuster statt bloßer Farbdifferenz, Konturkontrast, Papier-/Kartenscreenshots bei 390/820/1440px. Keine Vergangenheits-/Zukunftssemantik aus #56. Persönliche visuelle Abnahme bleibt sinnvoll. |
+| #57 Stundenkante | Behoben | Bisher 1,9/0,8 SVG-Einheiten bei 0,64/0,5 Deckkraft. Jetzt helle Kontur 4,6 und dunkle Tinte 2,2 bei 0,98; Geometrie und Zuordnung bleiben gleich. | 22 Wasserkantenpaare, keine Landkante, Stundenwechsel, bestehende DPR-2-Matrix, Klick-/Markierungsregressionen. Notizzeichen werden weiterhin über der Kante gezeichnet. |
+| #58 Statuszeile | Behoben | Nur der Radarhinweis verwendet `distanceStatus`; sein bisheriges Ein-/Ausblenden oberhalb der Karte änderte deren Position. Jetzt fester Zweizeilenbereich nach der unteren Werkzeugleiste, ohne leeres Zusatzpanel. | Bounding-Box-Gleichheit von Karte, Leiste, Status und Bordbuch in allen Radarphasen bei 390/820/1440px, Inhalt passt in den reservierten Raum. `role=status`, `aria-live=polite`, `aria-atomic=true`; identische Meldungen werden nicht neu geschrieben. |
+| #60 Scrollen | Im Code behoben; native iOS-Geräteabnahme offen | `svg { touch-action:none }`, `preventDefault()` und sofortiges Schreiben auf `pointerdown` verhinderten Scrollbeginn bzw. hätten beim Scrollen schon Notizen erzeugt. SVG erlaubt nun `pan-y pinch-zoom`; Touch bearbeitet erst nach erkannter Absicht. | Native Chromium-Touchstreams auf Wasser und Land, Radar beim Scrollen, native WebKit-Taps und Ereignis-/Scrollgrenzen, Zeichnen/Radieren/Undo, Abbruch, Capture-Verlust, zweiter Finger und Diagonalen bei 390/820/1024px. Playwright kann keine native WebKit-Fingerwischgeste senden; diese Geräteprüfung wird nicht als automatisiert bestanden ausgegeben. |
+| #61 Wiederaufnahme | Untersucht, weiterhin offen | Kein reproduzierbarer Nachweis für die beobachtete 1–3 Sekunden leere Safari-Ansicht. Die App initialisiert einmal; kein Resume-Handler baut gesunde Karten erneut auf. Kein spekulativer Wiederaufbau eingebaut. | Vertrauenswürdige `pageshow`-Ereignisse, Navigationstyp, Dokumentidentität, DOM-Erhalt, Spiel-/Radar-/Werkzeugzustand, Scrollposition sowie verzögerte Bilddekodierung werden getrennt erfasst. Echter iOS-Appwechsel, lange Hintergrundphase und OS-Tab-Discard sind mit dieser Umgebung nicht nachgewiesen. |
+| #62 Regeln | Behoben | Nur die drei vereinbarten Regelabsätze geändert: direkter Radar-Toggle, neutraler Schluss ohne feste Hinweiszahl, Hexseiten-Erklärung ab Nordost/Stunde 1. Dazu die falsche Radarbedienung in der Werkzeuglegende berichtigt. | Erzählerischer Text, Struktur und Preise bleiben erhalten. Tests für Richtungsreihenfolge, hervorgehobene Seite, keine Kursvorgabe durch die Notizposition, neutraler Abschluss und echtes Vier-Hinweise-Rätsel. |
+
+### Beleg zur Radar-Regression
+
+`8e3629f:src/state/distance-overlay.mjs` enthält bereits den richtigen Test
+`phase !== 'inactive'` und setzt beim Einschalten den Ursprung auf `null`.
+Dieser Referenzcommit aus PR #38 ist **kein Vorfahr** des aktuellen main.
+Dort stammt die Funktion laut `git blame` weiterhin aus `6658cbb` (#29):
+`showing → waiting` mit erhaltenem Ursprung. Die Konsolidierung `e7778aa`
+übernahm Paket-/Deploymentteile, änderte diese Zustandsdatei aber nicht;
+übernommene Tests erwarteten weiterhin die alte Neuauswahl. Hier wird die
+verbindliche #40-Semantik wiederhergestellt, nicht die Werkzeugunabhängigkeit
+zurückgenommen. Auch UI-Titel, Live-Text und Legende entsprechen dem Toggle.
+
+### Tatsächliche Statusausgaben
+
+`distanceStatus` gehört nur der Radarauswahl. Notizprüfung, Denkanstoß und
+Gesamtradierer schreiben nach `helpStatus`; Routenprüfung nach `verifyStatus`;
+Rätselwechsel nach `puzzleStatus`; Ladefehler nach `puzzleLoadError`.
+Diese anderen Ausgaben werden nicht fälschlich zu Radarmeldungen umgebaut.
+Der reservierte Bereich ist 3,5rem hoch und reicht auch für Koordinatenbadges
+auf schmalen Geräten; ein leerer Live-Bereich erzeugt keine Meldung.
+
+## Gestenvertrag
+
+- Maus und Stift: primäre Taste startet sofort; Ziehen in jede Richtung bleibt
+  erhalten. Rechte/mittlere Maustaste verändern weder Notizen noch Undo.
+- Ein Finger: unter 10 CSS-Pixel Bewegung bleibt die Geste ein Tap; erst beim
+  Loslassen wird genau ein Feld bearbeitet bzw. der Radarursprung gewählt.
+- Ab 10 Pixeln: `abs(dy) >= abs(dx)` gehört zum vertikalen Scrollen, auch bei
+  diagonaler Bewegung. Kein Notiz-/Undo-Eintrag und keine Quellwahl.
+- Seitlich dominantes Ziehen beginnt eine zusammenhängende Markierungs- oder
+  Radiergeste. Ein Undo nimmt sie vollständig zurück. Route und Gesamtradierer
+  behalten ihre bestehende Einzelaktivierung, statt im Vorbeiziehen zu ändern.
+- `pointercancel`, Verlust der eigenen SVG-Capture, zweiter Finger, Blur,
+  Hintergrundwechsel und Seitenwechsel beenden die Geste. Der Transfer der
+  impliziten Touch-Capture vom Hex zum SVG wird nicht mit einem Abbruch
+  verwechselt. Nach Abbruch gibt es ohne neues Aufsetzen keine weiteren Notizen.
+- Stunden-/Werkzeug-/Rätselwechsel, Radar, Undo und Reset beenden ebenfalls
+  laufende Gesten. Land bleibt für Notizen und Route gesperrt; vertikal darf
+  dort trotzdem gescrollt werden. Beim Radar darf Land Quelle sein.
+
+Die Tests verwenden für echte Chromium-Wischgesten CDP. WebKit hat in Playwright
+weder einen nativen Touch-Drag- noch im Mobilkontext einen Wheel-Treiber.
+Dort prüfen DOM-Pointerfolgen die Anwendungsgrenze (kein `preventDefault` bei
+Scrollabsicht, kein Schreiben); tatsächliches Scrollen des fokussierten
+Kartenbereichs wird mit nativem PageDown und echte Taps mit `touchscreen`
+geprüft. Das beweist **keinen physischen Safari-Fingerswipe**. Dieser Unterschied
+steht zusätzlich als Annotation im jeweiligen Testergebnis.
+
+## Darstellung und Screenshots
+
+Die Kontur-/Tintenpaare haben rechnerisch 5,69:1 (andere Routenstunden), 6,20:1
+(aktuelle Route) und 6,57:1 (Stundenkante) sRGB-Kontrast. Das sind Kontraste der
+gewählten Vollfarben zueinander, keine behauptete Pixelmessung der gesamten
+Aquarellfläche. Kontur und Tinte werden mit mindestens 0,94 Deckkraft gezeichnet.
+Die Screenshots prüfen die tatsächliche Komposition auf Seekarte und heller
+Papierfläche; Strichmuster/Breite unterscheiden die Route auch ohne Farbe.
+
+Vorher/Nachher lokal unter `/workspace/artifacts/ui-safari/` bei identischer
+Route, Stunde und Notizen aufgenommen; Desktop- und Mobilbilder visuell
+verglichen. Die CI behält die neuen PNGs und Lifecycle-JSONs auch bei Erfolg:
+`ui-safari-review-chromium`, `ui-safari-review-deployment` und die bestehenden
+vier `webkit-timings-*`-Artefakte. Die ZIP-Prüfungen verwenden dieselben
+Regressionen auf einem frisch außerhalb des Checkouts entpackten Release.
+
+## Safari-Wiederaufnahme: Nachweisgrenzen und weitere Diagnose
+
+Ein künstlich ausgelöstes `PageTransitionEvent` prüft nur den Ereignisvertrag:
+Es darf weder DOM, Zustand noch Scrollposition zurücksetzen. Es wird anhand
+`isTrusted=false` ausdrücklich von einem Browserereignis unterschieden.
+Beim echten Wegnavigieren und Zurückgehen werden Dokumenttoken,
+`pageshow.persisted`, Navigation Timing, Paint-/Ressourcenzeiten und Spielstand
+aufgezeichnet. `persisted=true` ist ein tatsächlicher BFCache-Nachweis; schnelle
+Navigation allein ist keiner. Ein echter Reload muss ein neues Dokument und
+Navigationstyp `reload` liefern. In den ersten lokalen Chromium-Läufen war
+History-Rückkehr `back_forward` mit `persisted=false`; ein BFCache-Treffer wurde
+also nicht behauptet.
+
+Beim Zurückhalten der Karten-WebPs bleiben die opake Papierfläche, alle 25
+Trefferflächen und die Bearbeitung nutzbar. Nach Freigabe der Bilder bleiben
+Notizen erhalten. Das prüft kalte Bilddekodierung separat von Initialisierung
+und Reload; keine künstliche Performance-Schwelle oder geänderte Testtimeouts.
+
+Für den sporadischen iOS-Befund fehlen insbesondere eine genaue Safari-/iOS-
+Version und eine aufgezeichnete echte Rückkehr nach OS-Speicherdruck. Zur
+Geräteabnahme Web Inspector mit erhaltenem Netzwerk-/Konsolenprotokoll nutzen:
+kurz und mehrere Minuten in eine andere App wechseln, zusätzlich Tabwechsel,
+Zurücknavigation und bewussten Reload getrennt prüfen. `pageshow.persisted`,
+Document/JS-Neuanforderungen, Bildzeiten, Stunden-/Werkzeugwahl, Notizen,
+Radar und Scrollposition festhalten. Nur ein nachgewiesener Auslöser rechtfertigt
+einen speziellen Recovery-Eingriff. #61 bleibt offen und blockiert die übrigen
+sechs Korrekturen nicht.
+
+## Verifikation
+
+Gezielte lokale Prüfungen: 65 Unit-Tests, Puzzlevalidierung, sieben Pakettests,
+Radar-/Tastaturregressionen, native Chromium-Taps/-Drags/-Scrollen, Darstellung
+und Lifecycle-Fälle. Die Aufteilung langer neuer Eingabeszenarien in einzelne
+Tests erhält sämtliche Assertions; Timeouts und Retries bleiben unverändert.
+Die vollständigen Listen umfassen 370 Fälle je Browserfamilie sowie 163
+Deploymentfälle, einschließlich Desktop, Smartphone, iPhone-WebKit und
+ipad-WebKit. Drei bestehende bedingte Auslassungen pro Browserfamilie bleiben
+unverändert. Quell- und ZIP-Prüfungen sind absichtlich beide vorhanden.
+
+Vollständige GitHub-Läufe, letzter geprüfter Commit und endgültige lokale
+Ergebnisse werden mit Links im begleitenden PR dokumentiert. Die durch #53
+optimierte Vier-Shard-CI mit einem Worker je WebKit-Runner bleibt erhalten;
+zusätzlich werden nur die gezielten Review-Artefakte aufbewahrt. Keine höheren
+Retries, keine abgeschwächten Assertions oder neuen kostenpflichtigen Dienste.
