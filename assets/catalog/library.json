@@ -160,6 +160,34 @@
       "candidateFamilies": [
         "blue-sea"
       ]
+    },
+    {
+      "id": "land-coast.island.h1.basalt-spire-water.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/basalt-spire-water-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "Original OpenAI image_gen source from 2026-10-18, water-rich alternative requested 2026-10-19; uniform authoring export without water clipping. See docs/FELSNADEL-WATER-COMPARISON-65.md",
+        "rights": "AI-generated derivative from user-supplied project references for this project; no third-party stock used or additional reuse license granted; reference rights remain with their respective rights holders."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
     }
   ],
   "reviews": [
@@ -240,6 +268,12 @@
       "backgroundId": "sea-blue-01",
       "status": "pending",
       "notes": "Felsnadel prototype; technical checks do not constitute artistic or background approval. Human review pending."
+    },
+    {
+      "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Intentionally water-rich alternative of the same rock spire motif; artistic and background comparison pending. No preferred variant selected."
     }
   ]
 }

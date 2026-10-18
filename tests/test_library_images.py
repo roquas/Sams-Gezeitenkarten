@@ -137,6 +137,22 @@ class LibraryImageTests(unittest.TestCase):
                 for x in range(mask.width):
                     self.assertEqual(mask.getpixel((x, y))[3] > 0, footprint.contains(x, y))
 
+    def test_both_spire_variants_fit_all_25_board_positions(self):
+        source = """import fs from 'node:fs';
+        import {imageContract,placementContract} from './src/assets/geometry.mjs';
+        import {HEXES} from './src/ui/chart-geometry.mjs';
+        const ids=['land-coast.island.h1.basalt-spire.v1','land-coast.island.h1.basalt-spire-water.v1'];
+        const catalog=JSON.parse(fs.readFileSync('assets/catalog/library.json'));
+        console.log(JSON.stringify(ids.map(id=>{const a=catalog.assets.find(a=>a.id===id);
+        return {...a,contract:imageContract(a.geometry.cells),placements:HEXES.map(h=>({
+        id:'review-'+h.id,anchor:h.id,contract:placementContract(a,h.id)}))};})));"""
+        assets = json.loads(subprocess.check_output(['node', '--input-type=module', '-e', source], cwd=ROOT))
+        self.assertNotEqual(assets[0]['image']['path'], assets[1]['image']['path'])
+        for asset in assets:
+            with self.subTest(asset=asset['id']):
+                self.assertEqual(len(asset['placements']), 25)
+                checker.check_image((ROOT / asset['image']['path']).read_bytes(), asset)
+
 
 if __name__ == '__main__':
     unittest.main()

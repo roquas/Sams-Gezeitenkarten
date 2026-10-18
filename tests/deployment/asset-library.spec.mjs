@@ -3,7 +3,16 @@ import {interceptNewAssets} from '../integration/asset-library.mjs';
 
 test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules under a subpath',async({page,request},info)=>{
  const response=await request.get('assets/catalog/library.json');expect(response.ok()).toBe(true);
- const library=await response.json();expect(library.assets).toHaveLength(4);
+ const library=await response.json();
+ expect(library.assets.filter(a=>a.stage==='technical-placeholder')).toHaveLength(4);
+ for(const id of ['land-coast.island.h1.basalt-spire.v1','land-coast.island.h1.basalt-spire-water.v1']){
+  const asset=library.assets.find(a=>a.id===id);
+  expect(asset).toMatchObject({stage:'illustration',passable:false,geometry:{cells:[[0,0]]},image:{width:360,height:408}});
+  expect(library.reviews.find(r=>r.assetId===id&&r.backgroundId==='sea-blue-01')?.status).toBe('pending');
+  const png=await request.get(asset.image.path);expect(png.ok()).toBe(true);
+  const size=await page.evaluate(async url=>{const i=new Image();i.src=url;await i.decode();return [i.naturalWidth,i.naturalHeight];},new URL('../../'+asset.image.path,response.url()).href);
+  expect(size).toEqual([360,408]);
+ }
  expect(library.reviews.every(r=>r.status==='pending')).toBe(true);
  const errors=[],requests=[];
  page.on('pageerror',e=>errors.push(e.message));

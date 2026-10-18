@@ -32,6 +32,30 @@ test('development gallery shows fixed single/multihex assets, separate places an
  expect(failures).toEqual([]);
 });
 
+test('water-rich and water-reduced spires are independently selectable at the same gallery scale',async({page})=>{
+ await page.goto('/dev/asset-library.html');
+ const states=[];
+ for(const id of ['land-coast.island.h1.basalt-spire.v1','land-coast.island.h1.basalt-spire-water.v1']){
+  await page.locator('#reviewAsset').selectOption(id);
+  await expect(page.locator('#status')).toContainText(id+' / pending');
+  const images=page.locator('#positions [data-asset-id="'+id+'"]');
+  await expect(images).toHaveCount(4);
+  states.push(await images.evaluateAll(async ns=>Promise.all(ns.map(async n=>{
+   const i=new Image();i.src=n.getAttribute('href');await i.decode();
+   return {anchor:n.closest('svg').dataset.anchor,source:i.src,decoded:[i.naturalWidth,i.naturalHeight],
+    x:n.getAttribute('x'),y:n.getAttribute('y'),width:n.getAttribute('width'),height:n.getAttribute('height'),
+    transform:n.getAttribute('transform'),clip:n.getAttribute('clip-path')};
+  }))));
+  for(const state of states.at(-1)){
+   expect(state.decoded).toEqual([360,408]);expect(state.width).toBe('90');expect(state.height).toBe('102');
+   expect(state.transform).toBeNull();expect(state.clip).toBeNull();
+  }
+ }
+ expect(states[0].map(({source,...s})=>s)).toEqual(states[1].map(({source,...s})=>s));
+ expect(states[0][0].source).not.toBe(states[1][0].source);
+ await expect(page.locator('#error')).toBeEmpty();
+});
+
 test('normal map renders the shared asset layer beneath hexes, labels and notes without changing land input',async({page},info)=>{
  await interceptNewAssets(page);await page.goto('/');
  await expect(page.locator('#map .cell')).toHaveCount(25);

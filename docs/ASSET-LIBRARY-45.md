@@ -12,7 +12,7 @@ Erster Integrationsstand auf `main` nach PR #63 (`1f968b0`). Grundlage sind die 
 
 Der Puzzleloader lädt den JSON-Katalog erst, wenn ein Rätsel neue Platzierungen verwendet. `validatePuzzle` überprüft deren Übereinstimmung mit der bestehenden `logic.blocked` und der Ortszugehörigkeit. Es erzeugt oder verändert keine Landfelder. Ein Ort darf mehrere getrennte Assets enthalten. Bestehende JSON-Rätsel, `dataVersion`, Speicherstände, Lösungen und Solver bleiben unverändert; das v1-Schema erhält ausschließlich optionale Präsentationsfelder.
 
-Der Katalog enthält vier **schematische technische Platzhalter**, zwölf `pending`-Kombinationen und drei schon vorhandene Meerhintergründe. Keine neue Illustration wurde erzeugt oder künstlerisch freigegeben. Die Meer-/Rahmendateien aus #49 sind unverändert.
+Der Katalog enthält vier **schematische technische Platzhalter**, zwei alternative Felsnadel-Illustrationen und drei schon vorhandene Meerhintergründe. Sämtliche vierzehn eingetragenen Kombinationen bleiben `pending`; keine Illustration ist künstlerisch freigegeben. Der [Felsnadel-Vergleich](FELSNADEL-WATER-COMPARISON-65.md) dokumentiert die wasserreiche und wasserreduzierte Fassung desselben unbefahrbaren Einzelhex-Motivs. Die Meer-/Rahmendateien aus #49 sind unverändert.
 
 ## Formate, Maße und Koordinaten
 

@@ -1,0 +1,34 @@
+{
+  "source": "felsnadel-water-source.png",
+  "sourceWidth": 1177,
+  "sourceHeight": 1336,
+  "authoringExport": {
+    "kernel": "lanczos3",
+    "sampledWidth": 232,
+    "sampledHeight": 263,
+    "scale": 0.19711129991503823,
+    "left": 64,
+    "top": 72,
+    "crop": false,
+    "maskApplied": false,
+    "commonBoardPositions": 25,
+    "alphaThresholdApplied": false,
+    "note": "Full source canvas uniformly sampled and padded; alpha preserved. Renderer unchanged."
+  },
+  "result": {
+    "width": 360,
+    "height": 408,
+    "visible": 29483,
+    "semiTransparent": 29082,
+    "fullyTransparent": 117397,
+    "forbiddenVisiblePixels": 0,
+    "inclusiveAlphaBounds": [
+      67,
+      75,
+      295,
+      331
+    ]
+  },
+  "sourceSha256": "5b320c0bbf7fd5d7c47937bf09a0191de2c7c7d9fda4c576460b0945932911fa",
+  "sourceOriginalFilename": "exec-cec45435-7e44-4380-a021-010e56a82777.png"
+}
