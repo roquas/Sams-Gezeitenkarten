@@ -120,7 +120,7 @@ Gezielte lokale Prüfungen: 65 Unit-Tests, Puzzlevalidierung, sieben Pakettests,
 Radar-/Tastaturregressionen, native Chromium-Taps/-Drags/-Scrollen, Darstellung
 und Lifecycle-Fälle. Die Aufteilung langer neuer Eingabeszenarien in einzelne
 Tests erhält sämtliche Assertions; Timeouts und Retries bleiben unverändert.
-Die vollständigen Listen umfassen 400 Fälle je Browserfamilie sowie 223
+Die vollständigen Listen umfassen 406 Fälle je Browserfamilie sowie 235
 Deploymentfälle, einschließlich Desktop, Smartphone, iPhone-WebKit und
 ipad-WebKit. Drei bestehende bedingte Auslassungen pro Browserfamilie bleiben
 unverändert. Quell- und ZIP-Prüfungen sind absichtlich beide vorhanden.
@@ -166,7 +166,7 @@ persistierte Route, statt sämtliche bereits separat geprüften Eingaben zu
 wiederholen, warten auf echte Dekodierung und behalten native DPR-Auflösung.
 Keine Assertion entfällt, beide Bilder bleiben erhalten und die bestehenden
 Timeouts gelten unverändert. Die ausführlichen Listen umfassen deshalb jetzt
-400 statt ursprünglich 370 Fälle je Browserfamilie und 223 statt 163 ZIP-Fälle.
+406 statt ursprünglich 370 Fälle je Browserfamilie und 235 statt 163 ZIP-Fälle.
 
 Auch der kombinierte lokale DPR-2-Radarzyklus lag am Budget. Die komplette
 Maus-/Tastatur-/Touch-Matrix bleibt bestehen, jetzt getrennt in Auswahl/Ein-Klick-
@@ -174,3 +174,10 @@ Aus und in Wiederaktivierung/Frischquelle/Undo/Reload. Der zweite Teil beginnt
 mit derselben gültigen, abgeschlossenen C1-Auswahl als gespeicherter Fixture;
 ein Sessionmarker verhindert ein erneutes Seeden beim getesteten Reload.
 Alle Layout-, Overlay-, Notiz- und Persistenzassertions bleiben erhalten.
+
+Die Status-PNG-Aufnahme ist ebenfalls ein eigener Renderingfall: Im lokalen
+DPR-2-Lauf verbrauchte sie das Budget des danach noch folgenden Undo. Die
+vollständige Radar-Eingabematrix behält alle Zustands-/Undo-/Reloadassertions.
+Der Kontrastfall lädt die von den bestehenden Routen-/Undo-Suiten geprüfte
+Route als Fixture und bedient weiterhin die echten Stundenkontrollen;
+sämtliche Stil-, Kanten- und Stundenwechselassertions bleiben erhalten.

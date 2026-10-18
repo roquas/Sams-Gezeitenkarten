@@ -48,18 +48,15 @@ export function registerInkStatusTests(url){
     await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
     await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
     await activate(page,method,cell(page,'A1'));await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');await expect(cell(page,'A1')).not.toContainText('✓');expect(await layout(page)).toEqual(before);
-    if(method==='touch'){
-     await status.scrollIntoViewIfNeeded();const path=info.outputPath(`status-${width}.png`);
-     await page.screenshot({path});await info.attach(`status-${width}`,{path,contentType:'image/png'});
-    }
     await activate(page,method,radar);await page.locator('#undo').click();await expect(page.locator('.distance-overlay')).toHaveCount(0);
     await page.reload();await expect(radar).toHaveAttribute('data-distance-state','inactive');
    });
   }
   test('route contrast, equal other hours and active edges follow the selected hour',async({page})=>{
+   // Route entry is already covered by the route/undo suites. This case
+   // exercises the real hour transition with that same legal route restored.
+   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4','E3','D2','C2','B2'],layer:1,tool:'route'})));
    await page.goto(url);await expect(cell(page,'D4')).toBeVisible();
-   await page.locator('#routeTool').click();
-   for(const id of ['E3','D2','C2','B2'])await cell(page,id).click();
    await page.locator('[data-hour="2"]').click();
    const paths=page.locator('.route-stroke');await expect(paths).toHaveCount(4);
    const styles=await paths.evaluateAll(nodes=>nodes.map(n=>({current:n.dataset.routeCurrent,stroke:n.getAttribute('stroke'),width:n.getAttribute('stroke-width'),opacity:+n.getAttribute('opacity'),dash:n.getAttribute('stroke-dasharray')})));
@@ -76,6 +73,13 @@ export function registerInkStatusTests(url){
    await page.locator('#showChart').evaluate(el=>{el.checked=false;el.dispatchEvent(new Event('change'));});
    await page.locator('[data-hour="3"]').click();await expect(page.locator('.edge-ink').first()).toHaveAttribute('data-active-hour','3');
    await expect(page.locator('.route-stroke[data-route-current="true"]')).toHaveAttribute('data-route-hour','3');
+  });
+  test('radar status screenshot below the toolbar',async({page},info)=>{
+   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'A1'})));
+   await page.goto(url);await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');
+   const status=page.locator('#distanceStatus');await expect(status).not.toBeEmpty();await status.scrollIntoViewIfNeeded();
+   await page.evaluate(()=>document.fonts.ready);const path=info.outputPath(`status-${width}.png`);
+   await page.screenshot({path});await info.attach(`status-${width}`,{path,contentType:'image/png'});
   });
   for(const art of [true,false])test(`route and edge screenshot on ${art?'chart':'paper'}`,async({page},info)=>{
    // Pixel inspection is a separate rendering scenario. Interaction and
