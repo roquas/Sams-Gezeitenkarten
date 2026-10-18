@@ -30,9 +30,13 @@ test('catalog files, stable IDs, provenance and separated review catalog validat
   const spire=c.assets.find(a=>a.id===id);
   assert.equal(spire.passable,false);
   assert.equal(spire.stage,'illustration');
-  assert.equal(compatibility(c,spire.id,'sea-blue-01'),'pending');
-  assert.ok(validatePlacements([{id:'spire',assetId:spire.id,anchor:'B3'}],c,source().logic,'sea-blue-01').some(e=>e.includes('not visually approved')));
+  assert.deepEqual(spire.geometry.cells,[[0,0]]);
+  const isWaterRich=id==='land-coast.island.h1.basalt-spire-water.v1';
+  assert.equal(compatibility(c,spire.id,'sea-blue-01'),isWaterRich?'approved':'pending');
+  assert.equal(validatePlacements([{id:'spire',assetId:spire.id,anchor:'B3'}],c,source().logic,'sea-blue-01').some(e=>e.includes('not visually approved')),!isWaterRich);
+  for(const background of c.backgrounds.filter(b=>b.id!=='sea-blue-01'))assert.equal(compatibility(c,spire.id,background.id),'pending');
  }
+ assert.deepEqual(c.reviews.filter(r=>r.status==='approved').map(r=>[r.assetId,r.backgroundId]),[['land-coast.island.h1.basalt-spire-water.v1','sea-blue-01']]);
  assert.equal(new Set(LEGACY_ASSETS.map(a=>a.id)).size,8);
  assert.ok(LEGACY_ASSETS.every(a=>a.stage==='legacy'&&a.exception));
 });

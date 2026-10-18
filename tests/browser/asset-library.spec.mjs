@@ -37,7 +37,8 @@ test('water-rich and water-reduced spires are independently selectable at the sa
  const states=[];
  for(const id of ['land-coast.island.h1.basalt-spire.v1','land-coast.island.h1.basalt-spire-water.v1']){
   await page.locator('#reviewAsset').selectOption(id);
-  await expect(page.locator('#status')).toContainText(id+' / pending');
+  const status=id==='land-coast.island.h1.basalt-spire-water.v1'?'approved':'pending';
+  await expect(page.locator('#status')).toContainText(id+' / '+status);
   const images=page.locator('#positions [data-asset-id="'+id+'"]');
   await expect(images).toHaveCount(4);
   states.push(await images.evaluateAll(async ns=>Promise.all(ns.map(async n=>{
@@ -53,6 +54,8 @@ test('water-rich and water-reduced spires are independently selectable at the sa
  }
  expect(states[0].map(({source,...s})=>s)).toEqual(states[1].map(({source,...s})=>s));
  expect(states[0][0].source).not.toBe(states[1][0].source);
+ await page.locator('#background').selectOption('prototype-sea');
+ await expect(page.locator('#status')).toContainText('land-coast.island.h1.basalt-spire-water.v1 / pending');
  await expect(page.locator('#error')).toBeEmpty();
 });
 

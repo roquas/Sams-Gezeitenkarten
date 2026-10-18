@@ -1,6 +1,20 @@
-# Felsnadel: zwei Wasserfassungen zur gemeinsamen Auswahl
+# Felsnadel: Variantenvergleich und gestalterische Entscheidung
 
-Stand 19.10.2026, PR #65 / Issue #45, Branch `feature/asset-library-integration`. **Beide sind technisch gültige Alternativen desselben Inselmotivs; beide bleiben künstlerisch und für `sea-blue-01` ungeprüft (`pending`).** Die wasserreiche Fassung ist eine ausdrücklich gewünschte gestalterische Alternative. Sie wird nicht als fehlerhafter Zwischenstand geführt. Der Katalog legt keine bevorzugte Variante fest. Es entsteht kein zweiter geografischer Ort und keine neue Regel für Wasserflächen oder Transparenz.
+Stand 19.10.2026, PR #65 / Issue #45, Branch `feature/asset-library-integration`. **Die wasserreiche Felsnadel ist ausdrücklich künstlerisch freigegeben und die bevorzugte Variante.** Die wasserreduzierte Fassung bleibt unverändert als eigenständig auswählbare Vergleichs- und Entwicklungsfassung erhalten, ohne Bevorzugung oder Freigabe (`pending`). Beide stellen denselben unbefahrbaren Einzelhex-Ort dar.
+
+## Nutzerentscheidung und Geltungsbereich
+
+Grundlage ist die ausdrückliche Entscheidung des Projektverantwortlichen roquas in [„Visuellen Stil festlegen“](https://chatgpt.com/c/6ad513d0-5508-83ed-b2b2-5af0d5bf2107), im Fortsetzungsauftrag vom **19.10.2026** bestätigt. Der Nutzer bevorzugt die wasserreiche Fassung deutlich und wünscht ausdrücklich die plastische Präsenz einer Brettspiel-/Computerspielillustration. Die Entscheidung beruht auf dem Vergleich auf dem tatsächlichen Meer, nicht auf der technischen Pixelprüfung.
+
+Im bestehenden Freigabemodell wird ausschließlich das Paar **`land-coast.island.h1.basalt-spire-water.v1` / `sea-blue-01`** auf `approved` gesetzt, mit Prüfer, Datum und den unten dokumentierten Datei-Hashes. Die Bevorzugung ist in dessen `notes` und diesem Entscheidungsbericht festgehalten; es wird kein neues Schemafeld eingeführt. Andere Hintergründe, Familienmitglieder und die wasserreduzierte Fassung erhalten dadurch keine Freigabe. Die wasserreiche Fassung dient als bevorzugte gestalterische Referenz für unbefahrbare Einzelhex-Inseln.
+
+**Offene Integrationsprüfung:** Überlagerungen mit echten Stunden-/Ausschlussmarkierungen und realen Ortsnamen sind noch nicht geprüft. Die vorhandenen Ansichten zeigen Hexgrenzen und Koordinaten; sie ersetzen diese Prüfung nicht. Die künstlerische Freigabe behauptet keine abgeschlossene Prüfung aller Spielmarkierungen. Es wird keine produktive Platzierung ergänzt; die offene Bildladefehlerbehandlung B6 bleibt bestehen.
+
+## Präzisierter visueller Stil
+
+Sams Gezeitenkarten verwendet eine **farbenfrohe, detailreiche, plastische Brettspiel-/Computerspielillustration mit Aquarellcharakter**. Benannte geografische Orte sollen als eigenständige, klar erkennbare und wiedererkennbare Orte wirken. Der Aquarellcharakter verbindet sie mit Meer und Seekartenästhetik, begrenzt aber weder Detailgrad noch Farbintensität oder Plastizität.
+
+Eigene türkisfarbene Küsten- und Flachwasserbereiche sind **erlaubt, aber nicht verpflichtend**. Die Entscheidung schreibt keine allgemeine verbindliche Wasserregel fest; dafür wäre eine gesonderte Entscheidung nötig. Die technischen Grenzen für sämtliche sichtbaren Pixel, Transparenzvertrag, Geometrie und Renderer bleiben unverändert.
 
 ## Dateien, Registrierung und Pixelprüfung
 
@@ -15,7 +29,7 @@ Stand 19.10.2026, PR #65 / Issue #45, Branch `feature/asset-library-integration`
 | Unzulässige sichtbare Pixel in `single.png` | **0** | **0** |
 | Vollständige Pixelquadrate lokal | bestanden | bestanden |
 | Vollständige Pixelquadrate an A1–E5 | **25/25 bestanden** | **25/25 bestanden** |
-| Hintergrundfreigabe `sea-blue-01` | `pending` | `pending` |
+| Hintergrundfreigabe `sea-blue-01` | `pending`, Vergleich | `approved`, bevorzugt |
 
 SHA-256 der wasserreduzierten Datei, vor und nach dieser Ergänzung bytegleich:
 
@@ -37,7 +51,7 @@ Die ursprüngliche wasserreiche `image_gen`-Datei vom 18.10.2026 ist noch vorhan
 
 Zum vollständig unbeschnittenen Einpassen einschließlich aller schwachen Alpha-Ränder an allen 25 Kartenpositionen wurde die komplette Quellleinwand beim Authoring proportional mit Lanczos3 auf **232×263 px** abgetastet (`232/1177 ≈ 0,1971112999`) und durch transparente Ränder auf 360×408 ergänzt: links/rechts 64 px, oben 72 px, unten 73 px. Es wurde keine Maske auf das Bild angewendet, kein Wasser abgeschnitten und kein Alpha-Schwellwert gesetzt. Die normale Filterung/Quantisierung beim Verkleinern gehört zum einmaligen Export. [Exportparameter, Originaldateiname und Quellhash](reviews/felsnadel-water/export-metadata.json).
 
-**Sichtbarer Kompromiss:** Die bisherige wasserreduzierte Datei verwendet einen Authoring-Faktor von `265/1177`. Für die größere Ausdehnung der wasserreichen Quelle beträgt der neue Faktor `232/265 ≈ 87,55 %` davon. Die neue Insel erscheint somit ungefähr **12,45 % kleiner** und etwas tiefer innerhalb ihrer Leinwand. Die bestehende Datei bleibt unverändert. Dieser Motivgrößenunterschied ist Teil des gelieferten Vergleichs und wird nicht durch eine zusätzliche Bildskalierung kaschiert. Es wurden keine Wasserflächen geopfert, um eine gleiche Felshöhe zu erzwingen. Ob diese Einpassung gestalterisch überzeugt, bleibt Gegenstand der gemeinsamen Abnahme.
+**Sichtbarer Kompromiss:** Die bisherige wasserreduzierte Datei verwendet einen Authoring-Faktor von `265/1177`. Für die größere Ausdehnung der wasserreichen Quelle beträgt der neue Faktor `232/265 ≈ 87,55 %` davon. Die neue Insel erscheint somit ungefähr **12,45 % kleiner** und etwas tiefer innerhalb ihrer Leinwand. Die bestehende Datei bleibt unverändert. Dieser Motivgrößenunterschied ist Teil des gelieferten Vergleichs und wird nicht durch eine zusätzliche Bildskalierung kaschiert. Es wurden keine Wasserflächen geopfert, um eine gleiche Felshöhe zu erzwingen. Diese Einpassung ist Bestandteil der nun ausdrücklich gestalterisch freigegebenen wasserreichen Fassung.
 
 ## Identischer Vergleich in der vorhandenen Galerie
 
@@ -55,17 +69,28 @@ Links ist jeweils wasserreduziert, rechts wasserreich. Der Kartenmaßstab ist id
 
 Bei der wasserreichen Variante bleibt unmittelbar am Felsfuß ein hellerer, stärker türkisfarbener Flachwasserbereich sichtbar. Er verbindet die vorgelagerten Felsen optisch mit der Insel und hebt sich bewusst vom dunkleren bzw. gröber strukturierten Originalmeer ab. Die Außenkante folgt einer unregelmäßigen Küsten-/Brandungsform und läuft mit variabler Transparenz aus. Im B3-Ausschnitt ist keine rechteckige oder hexagonale Schnittkante zu erkennen. Der Farb- und Texturunterschied zum Originalmeer bleibt erkennbar; die Überblendung ist kein Nachweis einer universellen Hintergrundverträglichkeit.
 
-Die wasserreduzierte Variante zeigt in den Zwischenräumen unmittelbar die Originalmeerstruktur; vor allem die weißen Brandungsstriche setzen die Küste ab. Beide lösen den Übergang sichtbar unterschiedlich. Keine dieser Beobachtungen setzt eine allgemeine Gestaltungsregel oder erteilt eine Freigabe. Die Vergleichsansichten und die vier Galeriepositionen dienen der anschließenden menschlichen Entscheidung über Natürlichkeit, Größe und Farbwirkung.
+Die wasserreduzierte Variante zeigt in den Zwischenräumen unmittelbar die Originalmeerstruktur; vor allem die weißen Brandungsstriche setzen die Küste ab. Beide lösen den Übergang sichtbar unterschiedlich. Diese Beobachtungen begründen keine allgemeine Wasserregel. Die oben dokumentierte menschliche Entscheidung gibt die wasserreiche Fassung auf `sea-blue-01` frei; eine universelle Hintergrundverträglichkeit wird nicht behauptet.
 
-## Tests und verbleibende Abnahme
+## Prüfung der Entscheidungsübernahme am 19.10.2026
+
+- Katalog- und Dateivalidierung erfolgreich: sechs Assets, drei Hintergründe, genau eine konkrete Freigabe mit gültigen SHA-256-Bindungen und dreizehn `pending`-Einträge. Assetdefinitionen und Hintergrunddateipfade bleiben unverändert.
+- **88/88 Unit-Tests**, unabhängige Validierung aller vier Rätsel, **13/13 Bildregressionen** und **27/27 Pakettests** bestanden.
+- Bestehende Asset-Browsertests: **10/10 Chromium und 10/10 WebKit** bestanden. Beide Fassungen bleiben unabhängig auswählbar, mit identischen Leinwandmaßen und Prüfankern. Nur wasserreich auf `sea-blue-01` zeigt `approved`; andere Hintergründe bleiben `pending`.
+- **4/4 Asset-Deploymenttests** des frisch erzeugten ZIPs bestanden (Desktop, Smartphone, iPhone/WebKit, iPad/WebKit). Auch das ausgelieferte JSON enthält ausschließlich diese eine Freigabe.
+
+Diese Regressionen prüfen Katalog, Galerie und Export; sie sind keine künstlerische Prüfung der Felsnadel mit echten Spielmarkierungen. Die CI des gepushten Entscheidungscommits ist unter [PR #65 / Checks](https://github.com/roquas/Sams-Gezeitenkarten/pull/65/checks) nachvollziehbar.
+
+## Technische Prüfbelege vor der gestalterischen Entscheidung
+
+Die folgenden Ergebnisse dokumentieren den Variantenstand vor der Nutzerfreigabe (`6a8635a`); historische Auditdateien bleiben unverändert. Sie belegen keine Prüfung echter Spielmarkierungen. Die an die Entscheidung angepassten Regressionen prüfen nun ausschließlich die wasserreiche Freigabe, die weiter gesperrte Vergleichsfassung und ausstehende andere Hintergründe.
 
 - Katalog-/Bildvalidator: sechs Assets, drei Hintergründe; beide PNGs mit explizitem Alpha und gültigen Pixelmaßen.
 - **13/13 Bildregressionen bestanden**, einschließlich des neuen vollständigen Nachweises beider Fassungen an allen 25 Positionen.
 - **88/88 Unit-Tests bestanden**; beide Fassungen sind unbefahrbar, `pending` und für ungeprüfte produktive Platzierungen gesperrt.
 - **27/27 Pakettests und 4/4 Deployment-Browserprüfungen bestanden**. Das tatsächlich erzeugte/entpackte ZIP lädt beide Illustrationen unter dem Unterpfad auf Desktop, Smartphone, iPhone/WebKit und iPad/WebKit. Der bisherige Deploymenttest mit pauschal exakt vier Katalogeinträgen wurde auf die vier technischen Platzhalter und unabhängig dekodierbare PNGs beider Illustrationen umgestellt. Der Fehler des vorherigen CI-Laufs lag in dieser veralteten Testannahme, nicht in einem ungültigen Bild.
 - Die vorhandenen Galerie-/Renderer-Browserprüfungen sind um den Wechsel beider Varianten bei identischen Bildmaßen und Ankern erweitert. Ergänzende Galerieaufnahmen in Chromium Desktop/Mobil und WebKit Desktop/Tablet bei DPR 1/2 sind erfolgreich; beide IDs sind unabhängig auswählbar. [Messbericht](reviews/felsnadel-water/browser-audit.json).
-- Ein erster lokaler paralleler Browserlauf scheiterte an `ERR_CONNECTION_RESET` beim Laden von `mobile-views.mjs`; dies betraf den vorhandenen DPR-2-Test. Die serielle Wiederholung des gesamten Asset-Browserfiles bestand mit **10/10 Chromium- und 10/10 WebKit-Fällen**. Der GitHub-Actions-Lauf für den endgültigen Commit wird anschließend abgewartet; sein Abschluss wird in [PR #65 / Checks](https://github.com/roquas/Sams-Gezeitenkarten/pull/65/checks) und in der Abschlussmeldung dokumentiert.
+- Ein erster lokaler paralleler Browserlauf scheiterte an `ERR_CONNECTION_RESET` beim Laden von `mobile-views.mjs`; dies betraf den vorhandenen DPR-2-Test. Die serielle Wiederholung des gesamten Asset-Browserfiles bestand mit **10/10 Chromium- und 10/10 WebKit-Fällen**. Der [GitHub-Actions-Lauf für `6a8635a`](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39172629543) ist mit allen zehn Jobs erfolgreich abgeschlossen.
 
-Künstlerische und konkrete Hintergrundfreigabe bleiben für **beide** Fassungen `pending`. Keine bevorzugte Variante im Katalog, keine neuen Orte, keine veröffentlichten Platzierungen, keine Änderungen an `main`, kein Merge. Die bestehende offene Bildladefehlerbehandlung B6 aus PR #65 wird durch diesen Variantenvergleich nicht verändert.
+Aktueller Katalogstatus: **wasserreich / `sea-blue-01`: `approved`, bevorzugt; wasserreduziert / `sea-blue-01`: `pending`, Vergleich**. Keine neuen Orte oder veröffentlichten Platzierungen, keine Änderungen an `main`, kein Merge. Die Prüfung echter Spielmarkierungen und die bestehende offene Bildladefehlerbehandlung B6 aus PR #65 bleiben ausstehend.
 
 Der lokale Ordner `output/felsnadel-water/` bewahrt Originalquelle, Exportparameter, unabhängige Audit-Skripte, einzelne und vollständige Galerieaufnahmen sowie Testprotokolle. Die PNGs und Vergleichsbelege sind im PR-Branch enthalten.

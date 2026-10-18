@@ -267,13 +267,17 @@
       "assetId": "land-coast.island.h1.basalt-spire.v1",
       "backgroundId": "sea-blue-01",
       "status": "pending",
-      "notes": "Felsnadel prototype; technical checks do not constitute artistic or background approval. Human review pending."
+      "notes": "Wasserreduzierte Vergleichs- und Entwicklungsfassung; nicht bevorzugt, keine künstlerische oder Hintergrundfreigabe. Als eigenständiges Asset unverändert erhalten. Entscheidung vom 19.10.2026: docs/FELSNADEL-WATER-COMPARISON-65.md."
     },
     {
       "assetId": "land-coast.island.h1.basalt-spire-water.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Intentionally water-rich alternative of the same rock spire motif; artistic and background comparison pending. No preferred variant selected."
+      "status": "approved",
+      "notes": "Künstlerisch freigegeben und bevorzugte Felsnadel-Variante auf sea-blue-01 gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Referenz für unbefahrbare Einzelhex-Inseln; siehe docs/FELSNADEL-WATER-COMPARISON-65.md. Überlagerung mit echten Spielmarkierungen und Ortsnamen noch nicht geprüft. Keine universelle Hintergrundfreigabe und keine allgemeine verbindliche Wasserregel.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     }
   ]
 }
