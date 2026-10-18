@@ -164,7 +164,6 @@ function presentation(){
  for(const paragraph of puzzle.intro){const p=document.createElement('p');p.className='story';p.innerHTML=safeMarkup(paragraph);story.append(p);}
  select.value=puzzle.id;
  document.querySelectorAll('[data-rule-hours]').forEach(el=>el.textContent=puzzle.steps===6&&el.dataset.ruleHours!=='number'?(el.dataset.ruleHours==='capital'?'Sechs':'sechs'):String(puzzle.steps));
- document.querySelector('[data-rule-clues]').textContent=puzzle.clues.length===7?'sieben':String(puzzle.clues.length);
 }
 let request=0;
 select.addEventListener('change',async()=>{
