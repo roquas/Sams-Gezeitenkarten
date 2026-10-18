@@ -55,10 +55,12 @@ Der Bildmittelpunkt liegt auf dem arithmetischen Mittel **aller belegten Hexzent
 | `[[0,0]]` | 90 × 102 | **360 × 408** |
 | `[[0,0],[1,0]]` | 172 × 102 | **688 × 408** |
 | `[[0,0],[0,1]]` | 132 × 170 | **528 × 680** |
-| `[[0,0],[1,0],[0,1]]` | 172 × 192 | **688 × 768** |
+| `[[0,0],[1,0],[1,1]]` | 228 × 192 | **912 × 768** |
 | `[[0,0],[1,0],[2,0]]` | 254 × 102 | **1016 × 408** |
 
 Die alten Produktionsmaße 288 × 320 beziehungsweise 616 × 320 sind damit ersetzt. Die vier technischen PNGs sind reproduzierbar mit `python3 scripts/build-asset-fixtures.py` angepasst; die Zweierform zeigt eine durchgehende technische Verbindung über die frühere Lücke.
+
+Die asymmetrische Dreierform ist eine geknickte Kette `[[0,0],[1,0],[1,1]]` mit drei unterschiedlichen Zentrenabständen. Sie besitzt keine Spiegelachse; ihr arithmetischer Mittelpunkt weicht in beiden Achsen vom Mittelpunkt der geometrischen Bounding-Box ab.
 
 ### Reproduzierbare Zeichenschablonen
 

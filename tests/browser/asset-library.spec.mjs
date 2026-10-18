@@ -69,7 +69,7 @@ test('adjacent alpha masks render identically in either draw order on both row p
   const {drawAssetPlacements}=await import('/src/ui/asset-layer.mjs');
   const {HEXES}=await import('/src/ui/chart-geometry.mjs');
   const el=(tag,attrs={})=>{const n=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);return n;};
-  const forms={single:[[0,0]],'triple-asymmetric':[[0,0],[1,0],[0,1]]};
+  const forms={single:[[0,0]],'triple-asymmetric':[[0,0],[1,0],[1,1]]};
   const sources={};
   for(const name of Object.keys(forms)){
    const mask=new Image();mask.src='/docs/asset-templates/'+name+'.png';await mask.decode();

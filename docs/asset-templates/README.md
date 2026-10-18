@@ -7,7 +7,7 @@ Verbindliche Regel vom 18.10.2026: lückenlose Voronoi-Grafikzellen des tatsäch
 | Einzelhex | [single.png](single.png) | 360 × 408 | [single.json](single.json) |
 | Zweier Ost | [double-east.png](double-east.png) | 688 × 408 | [double-east.json](double-east.json) |
 | Zweier diagonal | [double-diagonal.png](double-diagonal.png) | 528 × 680 | [double-diagonal.json](double-diagonal.json) |
-| Asymmetrische Dreierform | [triple-asymmetric.png](triple-asymmetric.png) | 688 × 768 | [triple-asymmetric.json](triple-asymmetric.json) |
+| Asymmetrische Dreierform | [triple-asymmetric.png](triple-asymmetric.png) | 912 × 768 | [triple-asymmetric.json](triple-asymmetric.json) |
 
 PNG unverändert als Ebenenmaske bei 100 % verwenden. Weiß (Alpha 255) erlaubt ein vollständiges Pixel; Alpha 0 muss transparent bleiben. Die Maske nicht weichzeichnen, skalieren oder an den alten Spielhexen ausrichten. Auch Schatten, Brandung und Alpha-1-Pixel müssen passen. Einzelne quadratische Pixel können schräge Außenkanten nicht beliebig genau ausfüllen; die konservative Maske enthält exakt alle vollständig zulässigen Pixel. Sie ist kein Nachweis künstlerischer Freigabe.
 

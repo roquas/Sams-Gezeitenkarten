@@ -10,7 +10,7 @@ spec = importlib.util.spec_from_file_location('checker', ROOT / 'scripts/check-l
 checker = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(checker)
 SHAPES = {'single': [[0, 0]], 'double-east': [[0, 0], [1, 0]],
-          'double-diagonal': [[0, 0], [0, 1]], 'triple-asymmetric': [[0, 0], [1, 0], [0, 1]]}
+          'double-diagonal': [[0, 0], [0, 1]], 'triple-asymmetric': [[0, 0], [1, 0], [1, 1]]}
 
 
 def build():

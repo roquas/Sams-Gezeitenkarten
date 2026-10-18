@@ -8,7 +8,7 @@ import {containsPoint} from '../../src/ui/place-labels.mjs';
 import {reviewPositions} from '../../dev/review-positions.mjs';
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} != ${b}`);
 const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
-const forms=[[[0,0]],[[0,0],[1,0]],[[0,0],[0,1]],[[0,0],[1,0],[0,1]]];
+const forms=[[[0,0]],[[0,0],[1,0]],[[0,0],[0,1]],[[0,0],[1,0],[1,1]]];
 
 test('Voronoi bisectors use the stretched infinite lattice; cells tile without positive-area overlaps',()=>{
  close(polygonArea(GRAPHIC_CELL),82*68);
@@ -35,7 +35,7 @@ test('shared edges and vertices have one canonical axial owner regardless of enu
  assert.deepEqual(graphicOwner([41+1e-4,0]),[1,0]);
 });
 test('four production canvases and centroid placement agree at both row parities',()=>{
- assert.deepEqual(forms.map(c=>{const s=imageContract(c);return [s.pixelWidth,s.pixelHeight];}),[[360,408],[688,408],[528,680],[688,768]]);
+ assert.deepEqual(forms.map(c=>{const s=imageContract(c);return [s.pixelWidth,s.pixelHeight];}),[[360,408],[688,408],[528,680],[912,768]]);
  for(const cells of forms)for(const anchor of ['B2','B3']){
   const asset={id:'test',geometry:{cells}},rect=assetRectangle(asset,anchor,byId),contract=imageContract(cells);
   close(rect.x+rect.width/2,rect.cells.reduce((s,id)=>s+byId[id].center[0]/cells.length,0));
@@ -51,7 +51,15 @@ test('concave shapes and enclosed omissions remain unions, never a hull or a bou
  close(contract.polygons.reduce((sum,p)=>sum+polygonArea(p),0),ring.length*82*68);
  const center=ring.reduce((s,[q,r])=>[s[0]+(82*q+41*r)/6,s[1]+68*r/6],[0,0]);
  assert.ok(!contract.polygons.some(p=>containsPoint(p,[82-center[0],-center[1]])));
- assert.equal(imageContract(forms[3]).polygons.length,3);
+ const asymmetric=imageContract(forms[3]);
+ assert.equal(asymmetric.polygons.length,3);
+ // Three unequal center distances preclude reflection or rotational symmetry.
+ const centers=assetRectangle({id:'asymmetric',geometry:{cells:forms[3]}},'B2',byId).cells.map(id=>byId[id].center);
+ const distances=centers.map((a,i)=>Math.hypot(a[0]-centers[(i+1)%3][0],a[1]-centers[(i+1)%3][1]));
+ assert.equal(new Set(distances).size,3);
+ const points=asymmetric.polygons.flat(),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+ assert.ok(Math.abs(Math.min(...xs)+Math.max(...xs))>1);
+ assert.ok(Math.abs(Math.min(...ys)+Math.max(...ys))>1);
 });
 test('board cells retain the full-raster bisectors and the pre-existing geometric safety area',()=>{
  const triangles=triangulate(GRAPHIC_SAFETY);
