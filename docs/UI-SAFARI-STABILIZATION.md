@@ -83,7 +83,7 @@ Vorher/Nachher lokal unter `/workspace/artifacts/ui-safari/` bei identischer
 Route, Stunde und Notizen aufgenommen; Desktop- und Mobilbilder visuell
 verglichen. Die CI behält die neuen PNGs und Lifecycle-JSONs auch bei Erfolg:
 `ui-safari-review-chromium`, `ui-safari-review-deployment` und die bestehenden
-vier `webkit-timings-*`-Artefakte. Die ZIP-Prüfungen verwenden dieselben
+sechs `webkit-timings-*`-Artefakte. Die ZIP-Prüfungen verwenden dieselben
 Regressionen auf einem frisch außerhalb des Checkouts entpackten Release.
 
 ## Safari-Wiederaufnahme: Nachweisgrenzen und weitere Diagnose
@@ -126,8 +126,9 @@ ipad-WebKit. Drei bestehende bedingte Auslassungen pro Browserfamilie bleiben
 unverändert. Quell- und ZIP-Prüfungen sind absichtlich beide vorhanden.
 
 Vollständige GitHub-Läufe, letzter geprüfter Commit und endgültige lokale
-Ergebnisse werden mit Links im begleitenden PR dokumentiert. Die durch #53
-optimierte Vier-Shard-CI mit einem Worker je WebKit-Runner bleibt erhalten;
+Ergebnisse werden mit Links im begleitenden PR dokumentiert. Das durch #53
+optimierte Muster mit einem Worker je WebKit-Runner bleibt erhalten;
+die erweiterte Suite wird jetzt auf sechs statt vier Runner verteilt;
 zusätzlich werden nur die gezielten Review-Artefakte aufbewahrt. Keine höheren
 Retries, keine abgeschwächten Assertions oder neuen kostenpflichtigen Dienste.
 
@@ -197,3 +198,15 @@ aufgebraucht; erst der Retry bestand. Die Matrix läuft jetzt als 15 unabhängig
 Fälle (drei Breiten × fünf Modi), statt als drei Fälle mit je fünf Navigationen.
 Alle Modi, HTTP-/JS-Fehlerprüfungen, Geometrie-/Clippingassertions und PNGs
 bleiben erhalten. Kein Timeout und keine Retryzahl wurde angehoben.
+
+### Laufzeit der erweiterten Matrix
+
+Die Quellmatrix wächst von 318 auf 448 Fälle je Browserfamilie, die
+ZIP-Matrix von 59 auf 271. Der vollständig grüne Vier-Shard-Lauf `39111607421` brauchte
+21min 47s einschließlich Setup/Artefakten; der langsamste WebKit-Runner
+brauchte 20,9 Minuten reine Testzeit, während Shard 4 nach 3,9 Minuten
+reiner Testzeit fertig war. Daher werden dieselben 448 Fälle jetzt auf sechs
+parallele Jobs aufgeteilt. Ein Worker pro Runner bleibt wegen der bekannten
+Software-Rendering-/DPR-2-Konkurrenz bestehen. Sämtliche Fälle laufen genau
+einmal pro Browserprofil; keine Wiederholungs-/Timeout-/Assertionseinstellung
+wird geändert. Die abschließenden Messwerte beider Läufe stehen im PR.
