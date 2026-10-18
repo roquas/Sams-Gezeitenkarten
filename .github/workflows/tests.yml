@@ -45,6 +45,7 @@ jobs:
           name: ui-safari-review-chromium
           path: |
             test-results/**/ink-*.png
+            test-results/**/status-*.png
             test-results/**/resume-lifecycle.json
             test-results/**/cold-chart-timeline.json
           if-no-files-found: ignore
@@ -84,6 +85,7 @@ jobs:
           path: |
             webkit-results.json
             test-results/**/ink-*.png
+            test-results/**/status-*.png
             test-results/**/resume-lifecycle.json
             test-results/**/cold-chart-timeline.json
           if-no-files-found: error
@@ -133,6 +135,7 @@ jobs:
           name: ui-safari-review-deployment
           path: |
             deployment-test-results/**/ink-*.png
+            deployment-test-results/**/status-*.png
             deployment-test-results/**/resume-lifecycle.json
             deployment-test-results/**/cold-chart-timeline.json
           if-no-files-found: ignore

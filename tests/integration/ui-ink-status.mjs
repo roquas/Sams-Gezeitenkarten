@@ -8,7 +8,7 @@ const contrast=(a,b)=>{
 export function registerInkStatusTests(url){
  for(const width of [390,820,1440])test.describe(`UI stabilization ${width}px`,()=>{
   test.use({viewport:{width,height:1000},hasTouch:true});
-  for(const method of ['click','keyboard','touch'])test(`radar ${method} keeps a stable status slot and requires a fresh source`,async({page})=>{
+  for(const method of ['click','keyboard','touch'])test(`radar ${method} keeps a stable status slot and requires a fresh source`,async({page},info)=>{
    await page.goto(url);await expect(cell(page,'C1')).toBeVisible();
    const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
    const layout=()=>page.evaluate(()=>{
@@ -37,6 +37,10 @@ export function registerInkStatusTests(url){
    await expect(radar).toHaveAttribute('data-distance-state','waiting');
    await activate(cell(page,'A1'));await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');
    await expect(cell(page,'A1')).not.toContainText('✓');expect(await layout()).toEqual(before);
+   if(method==='touch'){
+    await status.scrollIntoViewIfNeeded();const path=info.outputPath(`status-${width}.png`);
+    await page.screenshot({path});await info.attach(`status-${width}`,{path,contentType:'image/png'});
+   }
    await activate(radar);await page.locator('#undo').click();await expect(page.locator('.distance-overlay')).toHaveCount(0);
    await page.reload();await expect(radar).toHaveAttribute('data-distance-state','inactive');
   });
