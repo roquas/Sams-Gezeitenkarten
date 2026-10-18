@@ -155,8 +155,8 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
     const angle=(state.layer-2)*Math.PI/3;
     const ax=x+36*Math.cos(angle-Math.PI/6),ay=y+36*Math.sin(angle-Math.PI/6);
     const bx=x+36*Math.cos(angle+Math.PI/6),by=y+36*Math.sin(angle+Math.PI/6);
-    g.append(el("path",{class:"active-hour-edge",d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#f6f0de","stroke-width":"1.9",opacity:".64","stroke-linecap":"round"}));
-    g.append(el("path",{class:"active-hour-edge",d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#8a795f","stroke-width":".8",opacity:".5","stroke-linecap":"round"}));
+    g.append(el("path",{class:"active-hour-edge edge-contour","data-active-hour":state.layer,d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#fff2d4","stroke-width":"4.6",opacity:".98","stroke-linecap":"round"}));
+    g.append(el("path",{class:"active-hour-edge edge-ink","data-active-hour":state.layer,d:`M ${ax} ${ay} L ${bx} ${by}`,fill:"none",stroke:"#70502e","stroke-width":"2.2",opacity:".98","stroke-linecap":"round"}));
   }
   // Active layer is encoded by the field's central fill and a small center glyph.
   if(m){
@@ -183,21 +183,21 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   svg.append(g);
  }
  // Handgezeichnete Route: weicher Schein + warmer Tintenstrich + feine Lichtkante.
- // Vergangene Etappen lesbar, zukünftige Etappen weiterhin sichtbar, aber blasser.
+ // Only the selected hour differs: other hours share the same readable ink.
  const selected=Number.isInteger(state.layer)?state.layer:state.route.length-1;
- const routeInk=el("g",{"pointer-events":"none","aria-hidden":"true"});
+ const routeInk=el("g",{class:"route-ink","pointer-events":"none","aria-hidden":"true"});
  for(let i=1;i<state.route.length;i++){
    const [x1,y1]=coords(byId[state.route[i-1]]),[x2,y2]=coords(byId[state.route[i]]);
-   const past=i<=selected, dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy),nx=-dy/len,ny=dx/len;
+   const current=i===selected, dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy),nx=-dy/len,ny=dx/len;
    // Leicht gebogener Pinselzug statt geometrisch steriler Gerade.
    const curve=`M ${x1} ${y1} Q ${(x1+x2)/2+nx*2.3} ${(y1+y2)/2+ny*2.3} ${x2} ${y2}`;
    const lines=[
-     {stroke:"#f9ebc7",width:past?12:8,opacity:past?.24:.11},
-     {stroke:"#ead0a0",width:past?7.5:5.8,opacity:past?.46:.19},
-     {stroke:past?"#83582f":"#816d58",width:past?3.5:2.6,opacity:past?.92:.36},
-     {stroke:"#fff1cb",width:past?1.1:.8,opacity:past?.58:.22,offset:-1.3}
+     {stroke:"#f9ebc7",width:current?10:7,opacity:.3},
+     {stroke:"#fff0ce",width:current?7:5.5,opacity:.94},
+     {stroke:current?"#79502f":"#496369",width:current?3.8:2.8,opacity:.96},
+     {stroke:"#fff1cb",width:current?1.1:.8,opacity:.55,offset:-1.3}
    ];
-   for(const l of lines){routeInk.append(el("path",{d:curve,fill:"none",stroke:l.stroke,"stroke-width":l.width,opacity:l.opacity,"stroke-linecap":"round","stroke-linejoin":"round",transform:l.offset?`translate(${(nx*l.offset).toFixed(2)} ${(ny*l.offset).toFixed(2)})`:""}))}
+   for(const [index,l] of lines.entries()){routeInk.append(el("path",{class:index===2?'route-stroke':index===1?'route-contour':'route-wash',"data-route-hour":i,"data-route-current":String(current),d:curve,fill:"none",stroke:l.stroke,"stroke-width":l.width,opacity:l.opacity,...(!current?{"stroke-dasharray":"8 5"}:{}),"stroke-linecap":"round","stroke-linejoin":"round",transform:l.offset?`translate(${(nx*l.offset).toFixed(2)} ${(ny*l.offset).toFixed(2)})`:""}))}
  }
  svg.append(routeInk);
  // Distinguish the actual departure point from the wreck's identical anchor icon.

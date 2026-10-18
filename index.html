@@ -32,9 +32,9 @@
 <button class="toolpick route-undo" id="routeBack" type="button" title="Letzte Etappe zurücknehmen" aria-label="Letzte Etappe zurücknehmen"><svg class="toolicon toolsvg" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30L14 21L20 25L28 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 8a10 10 0 1 1-1 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M16 7l5 1-2 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="toolcaption">Route zurück</span></button>
 </div>
 </div>
-<p id="distanceStatus" class="distance-status" role="status" aria-live="polite" hidden></p>
 <div class="mapbox"><svg id="map" viewBox="-24 -24 523 433" role="img" aria-label="Interaktive Hexkarte mit 25 Feldern"></svg></div>
 <div class="map-actions" id="mapActions" role="group" aria-label="Kartenaktionen und Anzeigeoptionen"></div>
+<p id="distanceStatus" class="distance-status" role="status" aria-live="polite" aria-atomic="true"></p>
 <section class="clue-carousel bordbook" aria-label="Hinweise aus dem Logbuch">
  <div class="book-spread">
   <div class="book-heading" aria-hidden="true"><span class="book-vignette"></span></div>

@@ -13,7 +13,7 @@ test('coordinate notation is shared and accessible across all outputs',async({pa
 });
 test('distance phases announce selection, cancel and preserve notes',async({page})=>{
  const button=page.locator('#toggleDistances');
- await expect(button).toHaveAttribute('data-distance-state','inactive');await expect(page.locator('#distanceStatus')).toBeHidden();
+ await expect(button).toHaveAttribute('data-distance-state','inactive');await expect(page.locator('#distanceStatus')).toBeEmpty();
  await button.focus();await page.keyboard.press('Enter');
  await expect(button).toHaveAttribute('data-distance-state','waiting');await expect(button).toHaveAttribute('aria-pressed','true');
  await expect(page.locator('#distanceStatus')).toContainText('Jetzt ein Feld auf der Karte wählen.');

@@ -10,9 +10,8 @@
 /* A waiting tool is amber; a completed distance selection is petrol. */
 #toggleDistances[data-distance-state="waiting"]::after{background:linear-gradient(140deg,#ffe8a0,#c49134 65%,#906220)}
 #toggleDistances[data-distance-state="waiting"]::before{border-color:#77521d;box-shadow:0 0 0 3px #dbb65d66,inset 0 1px #fff0bc}
-.distance-status{margin:0;padding:17px 15px 10px;background:#f4e4bb;border-left:2px solid #ad8441;border-right:2px solid #ad8441;color:#574021;font:600 15px/1.5 Georgia,serif}
-.distance-status[data-distance-state="showing"]{background:#e0e8dd;color:#163e43}
-.distance-status[hidden]{display:none}
+.distance-status{box-sizing:border-box;block-size:3.5rem;margin:0;padding:4px 8px;color:#574021;font:600 13px/1.4 Georgia,serif;align-content:center}
+.distance-status[data-distance-state="showing"]{color:#163e43}
 .cell.blocked-cell{cursor:default}
 .awaiting-distance .cell{cursor:crosshair}
 .mobile-view-nav{display:none}

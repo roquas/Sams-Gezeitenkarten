@@ -46,7 +46,7 @@ export function createToolbar(puzzle){
   toggle('toggleDistances',phase==='showing',phase==='waiting'?'Abstände: Jetzt ein Feld auf der Karte wählen. Erneut drücken zum Ausschalten.':phase==='showing'?'Abstände ausschalten':'Abstände einblenden');
   $('toggleDistances').dataset.distanceState=phase;
   $('toggleDistances').setAttribute('aria-pressed',String(state.distanceMode));
-  const status=$('distanceStatus');status.hidden=phase==='inactive';status.dataset.distanceState=phase;
+  const status=$('distanceStatus');status.dataset.distanceState=phase;
   const message=phase==='waiting'?'Jetzt ein Feld auf der Karte wählen.':phase==='showing'?'Abstände ab '+coordinateMarkup(state.distanceOrigin)+'. Radar schaltet aus.':'';
   // Repeated edits must not re-announce an unchanged instruction.
   if(status.innerHTML!==message)status.innerHTML=message;
