@@ -463,6 +463,44 @@
             "additionalProperties": false
           },
           "minItems": 0
+        },
+        "assetBackground": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$"
+        },
+        "assetPlacements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                "maxLength": 80
+              },
+              "assetId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                "maxLength": 80
+              },
+              "anchor": {
+                "type": "string",
+                "pattern": "^[A-E][1-5]$"
+              },
+              "placeId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                "maxLength": 80
+              }
+            },
+            "required": [
+              "id",
+              "assetId",
+              "anchor"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
         }
       },
       "required": [

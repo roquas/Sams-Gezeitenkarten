@@ -1,0 +1,601 @@
+{
+  "schemaVersion": 1,
+  "stage": "proposals-only",
+  "description": "Issue #45 design proposals. No image files are approved or available through this catalog.",
+  "coordinateSystem": "axial-relative",
+  "placement": "centroid-of-hex-centers",
+  "forms": {
+    "h1": [
+      [
+        0,
+        0
+      ]
+    ],
+    "h2-e": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "h2-se": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "h3-line": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "h3-bend": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "h4-arc": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        1
+      ]
+    ]
+  },
+  "assets": [
+    {
+      "id": "land-coast.island.h1.basalt-spire.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "landmark",
+      "passable": false,
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Dunkle hohe Basaltnadel, deutlich unbefahrbar",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "pilot",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "land-coast.island.h1.sandbar.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "landmark",
+      "passable": false,
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Breite helle Sandbank mit trockenem Rücken",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "land-coast.atoll.h1.closed-lagoon.v1",
+      "family": "land-coast",
+      "type": "atoll",
+      "role": "landmark",
+      "passable": false,
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Ringatoll ohne befahrbare Öffnung",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "land-coast.island.h2-e.crescent.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "landmark",
+      "passable": false,
+      "geometry": {
+        "form": "h2-e",
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "description": "Sichelförmige zusammenhängende Insel",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "land-coast.island.h2-se.forked-shore.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "landmark",
+      "passable": false,
+      "geometry": {
+        "form": "h2-se",
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "description": "Zerklüftete Küste mit zwei Zungen",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "land-coast.archipelago.h3-line.three-fingers.v1",
+      "family": "land-coast",
+      "type": "archipelago",
+      "role": "landmark",
+      "passable": false,
+      "geometry": {
+        "form": "h3-line",
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "description": "Dreifingerinsel, B3/C3/D3 als Geometriereferenz",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "pilot",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "land-coast.archipelago.h3-line.pearl-chain.v1",
+      "family": "land-coast",
+      "type": "archipelago",
+      "role": "landmark",
+      "passable": false,
+      "geometry": {
+        "form": "h3-line",
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "description": "Inselkette als ein zusammenhängendes logisches Hindernis",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "land-coast.island.h4-arc.broken-crown.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "landmark",
+      "passable": false,
+      "geometry": {
+        "form": "h4-arc",
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            1
+          ]
+        ]
+      },
+      "description": "Großer gebrochener Felsrücken",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "navigation.lighthouse.h1.needle-beacon.v1",
+      "family": "navigation",
+      "type": "lighthouse",
+      "role": "landmark",
+      "passable": true,
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Schmaler Leuchtturmfelsen, überwiegend offene Durchfahrt",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "pilot",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "navigation.lighthouse.h1.tiny-islet.v1",
+      "family": "navigation",
+      "type": "lighthouse",
+      "role": "landmark",
+      "passable": true,
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Kleine Inselbasis, freier Wasserraum",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "pilot",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "navigation.buoy.h1.bell-buoy.v1",
+      "family": "navigation",
+      "type": "buoy",
+      "role": "landmark",
+      "passable": true,
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Glockenboje mit Messingakzent",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "pilot",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "navigation.wreck.h1.half-sunk-sloop.v1",
+      "family": "navigation",
+      "type": "wreck",
+      "role": "landmark",
+      "passable": true,
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Halb versunkene Schaluppe mit sichtbarer Durchfahrt",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "pilot",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "navigation.anchorage.h1.mooring-post.v1",
+      "family": "navigation",
+      "type": "anchorage",
+      "role": "landmark",
+      "passable": true,
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Pfahlgruppe und Beiboot, offene Durchfahrt",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "navigation.ruins.h1.drowned-arch.v1",
+      "family": "navigation",
+      "type": "ruins",
+      "role": "landmark",
+      "passable": true,
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Versunkener Bogen und niedrige Mauern, Durchfahrt",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "decoration.fauna.h1.sea-serpent.v1",
+      "family": "decoration",
+      "type": "fauna",
+      "role": "decoration",
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Kleine schelmische Seeschlange",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "decoration.fauna.h1.gulls.v1",
+      "family": "decoration",
+      "type": "fauna",
+      "role": "decoration",
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Möwen über Wasser",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "decoration.flotsam.h1.odd-crate.v1",
+      "family": "decoration",
+      "type": "flotsam",
+      "role": "decoration",
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Treibende Kiste mit Versandetikett",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    },
+    {
+      "id": "decoration.cartography.h1.ink-note.v1",
+      "family": "decoration",
+      "type": "cartography",
+      "role": "decoration",
+      "geometry": {
+        "form": "h1",
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "description": "Handschriftliche Randnotiz ohne Rätselrelevanz",
+      "status": "proposed",
+      "image": null,
+      "backgroundReview": {
+        "seaBlue01": "pending"
+      },
+      "priority": "later",
+      "provenance": {
+        "status": "not-created",
+        "license": "pending"
+      }
+    }
+  ]
+}

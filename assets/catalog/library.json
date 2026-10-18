@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "backgrounds": [
+    {
+      "id": "sea-blue-01",
+      "family": "blue-sea",
+      "image": "assets/seekarte/sea-blue-01.webp"
+    },
+    {
+      "id": "legacy-parchment-sea",
+      "family": "parchment-sea",
+      "image": "assets/seekarte/meer-pergament.webp"
+    },
+    {
+      "id": "prototype-sea",
+      "family": "blue-sea",
+      "image": "assets/seekarte/meer-ohne-objekte-prototyp.webp"
+    }
+  ],
+  "assets": [
+    {
+      "id": "technical.single.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "geographic",
+      "stage": "technical-placeholder",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/technical-single.png",
+        "width": 288,
+        "height": 320
+      },
+      "provenance": {
+        "source": "scripts/build-asset-fixtures.py; schematic test fixture",
+        "rights": "Project-authored technical fixture; no final illustration"
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ],
+      "passable": false
+    },
+    {
+      "id": "technical.double.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "geographic",
+      "stage": "technical-placeholder",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/technical-double.png",
+        "width": 616,
+        "height": 320
+      },
+      "provenance": {
+        "source": "scripts/build-asset-fixtures.py; schematic test fixture",
+        "rights": "Project-authored technical fixture; no final illustration"
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ],
+      "passable": false
+    },
+    {
+      "id": "technical.lighthouse.v1",
+      "family": "navigation",
+      "type": "lighthouse",
+      "role": "geographic",
+      "stage": "technical-placeholder",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/technical-lighthouse.png",
+        "width": 288,
+        "height": 320
+      },
+      "provenance": {
+        "source": "scripts/build-asset-fixtures.py; schematic test fixture",
+        "rights": "Project-authored technical fixture; no final illustration"
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ],
+      "passable": true
+    },
+    {
+      "id": "technical.decoration.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "technical-placeholder",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/technical-decoration.png",
+        "width": 288,
+        "height": 320
+      },
+      "provenance": {
+        "source": "scripts/build-asset-fixtures.py; schematic test fixture",
+        "rights": "Project-authored technical fixture; no final illustration"
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "assetId": "technical.single.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.single.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.single.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.double.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.double.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.double.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.lighthouse.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.lighthouse.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.lighthouse.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.decoration.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.decoration.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "technical.decoration.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Technical placeholder; no artistic approval."
+    }
+  ]
+}

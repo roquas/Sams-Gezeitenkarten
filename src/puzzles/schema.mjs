@@ -7,6 +7,7 @@ const list=(items,minItems=0,extra={})=>({type:'array',items,minItems,...extra})
 const object=(properties,required=Object.keys(properties),additionalProperties=false)=>({type:'object',properties,required,additionalProperties});
 const dict=values=>({type:'object',propertyNames:id,additionalProperties:values});
 const hour=integer(0,6),hours=list(hour,2,{maxItems:2});
+export const placementSchema=object({id,assetId:id,anchor:cell,placeId:id},['id','assetId','anchor']);
 const clue=(type,properties)=>object({id,type:{const:type},...properties});
 export const puzzleSchema={
  $schema:'https://json-schema.org/draft/2020-12/schema',
@@ -29,8 +30,9 @@ export const puzzleSchema={
    ]},1)
   }),
   presentation:object({title:text,intro:list(text,1),places:dict(text),clues:dict(text),hints:list(text),background:{const:'meer-pergament'},
-   overlays:list(object({asset:text,cells:list(cell,1,{uniqueItems:true}),w:{type:'number',exclusiveMinimum:0,maximum:600},h:{type:'number',exclusiveMinimum:0,maximum:600},dx:{type:'number',minimum:-200,maximum:200},dy:{type:'number',minimum:-200,maximum:200},opacity:{type:'number',minimum:0,maximum:1}}))
-  }),
+   overlays:list(object({asset:text,cells:list(cell,1,{uniqueItems:true}),w:{type:'number',exclusiveMinimum:0,maximum:600},h:{type:'number',exclusiveMinimum:0,maximum:600},dx:{type:'number',minimum:-200,maximum:200},dy:{type:'number',minimum:-200,maximum:200},opacity:{type:'number',minimum:0,maximum:1}})),
+   assetBackground:{type:'string',pattern:'^[a-z0-9]+(?:[.-][a-z0-9]+)*$'},assetPlacements:list(placementSchema)
+  },['title','intro','places','clues','hints','background','overlays']),
   solution:list(cell,2,{uniqueItems:true}),
   resultTexts:object({correct:text,incorrect:text},[]),
   metadata:object({kind:{enum:['reference','test','editorial','historical']},source:text,difficulty:text},['kind','source'])

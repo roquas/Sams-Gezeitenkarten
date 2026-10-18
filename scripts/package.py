@@ -43,6 +43,12 @@ def collect(root):
     if (root / '.htaccess').is_file():
         add(root / '.htaccess')
     add(root / 'puzzles/manifest.json')
+    add(root / 'assets/catalog/library.json')
+    library = json.loads((root / 'assets/catalog/library.json').read_text(encoding='utf-8'))
+    for ref in [a['image']['path'] for a in library['assets']] + [b['image'] for b in library['backgrounds']]:
+        if not re.fullmatch(r'assets/[A-Za-z0-9_/-]+\.(png|webp)', ref):
+            raise ValueError(f'Unzulässiger Assetpfad: {ref}')
+        add(root / ref)
     manifest = json.loads((root / 'puzzles/manifest.json').read_text(encoding='utf-8'))
     registry = (root / 'src/puzzles/assets.mjs').read_text(encoding='utf-8')
     backgrounds = dict(re.findall(r"'([^']+)'\s*:\s*'(assets/[^']+)'", registry))
@@ -71,6 +77,13 @@ def collect(root):
             asset = overlay['asset']
             if asset not in motifs and asset not in omitted:
                 raise ValueError(f"Unbekanntes Kartenmotiv in {filename}: {asset}")
+        for placement in presentation.get('assetPlacements', []):
+            asset = next((a for a in library['assets'] if a['id'] == placement['assetId']), None)
+            bg = presentation.get('assetBackground')
+            reviews = {r['backgroundId']: r for r in library['reviews'] if r['assetId'] == placement['assetId']}
+            review = reviews.get(bg, reviews.get('*', {}))
+            if asset is None or asset['stage'] != 'illustration' or bg != 'sea-blue-01' or review.get('status') != 'approved':
+                raise ValueError(f"Nicht freigegebenes Kartenasset in {filename}: {placement['assetId']}")
     if manifest['defaultId'] not in ids:
         raise ValueError('Standardrätsel fehlt im Manifest')
     return sorted(files)

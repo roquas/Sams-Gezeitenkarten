@@ -1,15 +1,10 @@
 import {CHART_VIEWBOX as VIEWBOX,headingBand} from './chart-geometry.mjs';
 // Presentation references only; puzzle geometry and rules remain independent.
 export const CHART_BACKGROUND='assets/seekarte/meer-pergament.webp';
-import {MOTIFS as motifs} from '../puzzles/assets.mjs';
+import {legacyOverlay} from '../assets/legacy.mjs';
 export function chartOverlays(overlays){
  // The crab accent shares its location's island illustration for now.
- return overlays.filter(o=>o.asset!=='krabbe-01.png').map(o=>{
-  const motif=motifs[o.asset];
-  if(!motif)throw Error('Unmapped chart motif: '+o.asset);
-  const extent=o.cells.length>2?{w:o.w,h:o.h,dx:o.dx,dy:o.dy}:{};
-  return {...o,...motif,...extent,asset:'assets/seekarte/'+motif.asset};
- });
+ return overlays.map(legacyOverlay).filter(Boolean);
 }
 const FRAME_X=[-44,36,439,519],FRAME_Y=[-44,30,355,429];
 // Nine slices reuse the original watercolor border, widening only the parchment.

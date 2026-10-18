@@ -2,10 +2,11 @@ import {schemaErrors} from './schema.mjs';
 import {MOTIFS,BACKGROUNDS} from './assets.mjs';
 import {createRules} from '../engine/puzzle.mjs';
 import {solvePuzzle} from '../engine/solver.mjs';
+import {validatePlacements} from '../assets/library.mjs';
 export class PuzzleError extends Error{
  constructor(errors){super('Rätsel konnte nicht geladen werden: '+errors.join('; '));this.name='PuzzleError';this.errors=errors;}
 }
-export function validatePuzzle(document){
+export function validatePuzzle(document,{assetLibrary}={}){
  const errors=schemaErrors(document);
  if(errors.length)throw new PuzzleError(errors);
  const {logic,presentation}=document,rules=createRules(logic),known=new Set(rules.cells),blocked=rules.blocked;
@@ -28,6 +29,11 @@ export function validatePuzzle(document){
  }
  check(Object.hasOwn(BACKGROUNDS,presentation.background),'presentation.background','unbekanntes Asset');
  for(const [i,o] of presentation.overlays.entries())check(Object.hasOwn(MOTIFS,o.asset),`presentation.overlays[${i}].asset`,'unbekanntes Asset');
+ if(presentation.assetPlacements?.length){
+  if(!assetLibrary)errors.push('presentation.assetPlacements: asset library required');
+  else errors.push(...validatePlacements(presentation.assetPlacements,assetLibrary,logic,presentation.assetBackground));
+ }
+ if(presentation.assetBackground&&presentation.assetBackground!=='sea-blue-01')errors.push('presentation.assetBackground: game currently renders sea-blue-01 only');
  if(document.solution){
   check(rules.legal(document.solution),'solution','keine legale vollständige Route');
   if(!errors.length)check(logic.clues.every(c=>rules.matches(document.solution,c)),'solution','Sollroute widerspricht Hinweisen');
@@ -35,8 +41,8 @@ export function validatePuzzle(document){
  if(errors.length)throw new PuzzleError(errors);
  return document;
 }
-export function compilePuzzle(document){
- validatePuzzle(document);
+export function compilePuzzle(document,options={}){
+ validatePuzzle(document,options);
  const analysis=solvePuzzle(document.logic);
  if(analysis.status!=='unique')throw new PuzzleError([`logic: ${analysis.count} Lösungen (${analysis.status}); veröffentlicht werden nur eindeutige Rätsel`]);
  if(document.solution&&document.solution.some((cell,h)=>cell!==analysis.solutions[0][h]))throw new PuzzleError(['solution: Sollroute weicht von der unabhängig ermittelten Lösung ab']);
@@ -47,6 +53,7 @@ export function compilePuzzle(document){
   clues:logic.clues.map(c=>({...c,text:presentation.clues[c.id]})),
   title:presentation.title,intro:presentation.intro,hints:presentation.hints,
   background:{asset:BACKGROUNDS[presentation.background]},overlays:presentation.overlays,
+  ...(presentation.assetPlacements?.length?{assetPlacements:presentation.assetPlacements,assetLibrary:options.assetLibrary}:{}),
   solution:analysis.solutions[0],resultTexts:document.resultTexts??{},analysis
  };
 }

@@ -1,4 +1,5 @@
 import {CHART_BOUNDS} from './chart-geometry.mjs';
+import {drawAssetPlacements} from './asset-layer.mjs';
 import {frameMode,drawSea,drawFrame} from './parchment-frame.mjs';
 import {hexCenter,hexVertices,placeLabelLayout,startLabelLayout} from './place-labels.mjs';
 import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
@@ -30,7 +31,10 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
- const mode=frameStyle||frameMode(window.location.search);
+ const requestedMode=frameStyle||frameMode(window.location.search);
+ // New production placements are reviewed against the delivered blue sea.
+ // Historical frame experiments use other water; keep that exception local.
+ const mode=puzzle.assetPlacements?.length&&!['final','quiet'].includes(requestedMode)?'final':requestedMode;
  if(svg.dataset.frameMode!==mode)svg.dataset.frameMode=mode;
  const showArt=document.getElementById("showChart").checked;
  const cached=staticCharts.get(svg);
@@ -54,8 +58,9 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
  const overlays=chartOverlays(puzzle.overlays);
  for(const o of overlays){
   const [cx,cy]=artCenter(o.cells);
-  objects.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,"data-art-cells":o.cells.join(" "),preserveAspectRatio:o.cells.length>2?"none":"xMidYMid meet","pointer-events":"none"}));
+  objects.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,"data-art-cells":o.cells.join(" "),"data-asset-id":o.assetId,"data-legacy-asset":"true",preserveAspectRatio:o.cells.length>2?"none":"xMidYMid meet","pointer-events":"none"}));
  }
+ if(puzzle.assetPlacements?.length)drawAssetPlacements(el,objects,puzzle.assetPlacements,puzzle.assetLibrary,byId);
  if(mode!=='legacy')art.append(drawFrame(el,mode));
  // Island labels use connected land geometry; Start follows its ship.
  const drawLabel=(layout,t,start=false)=>{
