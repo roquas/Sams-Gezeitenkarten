@@ -3,6 +3,7 @@ import {HEXES,CHART_BOUNDS} from '../src/ui/chart-geometry.mjs';
 import {drawAssetPlacements} from '../src/ui/asset-layer.mjs';
 import {placedCells,placementContract,assetRectangle} from '../src/assets/geometry.mjs';
 import {reviewPositions} from './review-positions.mjs';
+import {renderPrototypeComparison} from './passable-prototypes.mjs';
 
 const el=(tag,attrs={},text)=>{
  const node=document.createElementNS('http://www.w3.org/2000/svg',tag);
@@ -21,18 +22,20 @@ const logic={grid:{columns:5,rows:5},blocked:['A1','B3','C3','E5'],places:{
  'twin-islands':{cells:['A1','E5']},'long-island':{cells:['B3','C3']},beacon:{cells:['D2']}
 }};
 try{
- const response=await fetch('../assets/catalog/library.json');
+ const response=await fetch(new URL('../assets/catalog/library.json',import.meta.url));
  if(!response.ok)throw Error('Catalog HTTP '+response.status);
  const library=validateLibrary(await response.json());
  const select=document.getElementById('background');
  for(const b of library.backgrounds){const o=document.createElement('option');o.value=b.id;o.textContent=b.id+' ('+b.family+')';select.append(o);}
  const reviewAsset=document.getElementById('reviewAsset');
  for(const a of library.assets){const o=document.createElement('option');o.value=a.id;o.textContent=a.id;reviewAsset.append(o);}
+ const requested=new URLSearchParams(location.search).get('asset');
+ if(library.assets.some(a=>a.id===requested))reviewAsset.value=requested;
  function draw(svg,instances){
   svg.replaceChildren();
   const bg=library.backgrounds.find(b=>b.id===select.value);
-  // Asset paths are relative to the deployment root; this page lives in dev/.
-  svg.append(el('image',{href:'../'+bg.image,...CHART_BOUNDS,preserveAspectRatio:'xMidYMid meet','data-gallery-layer':'sea'}));
+  // The document base is the project root, also used by the real map renderer.
+  svg.append(el('image',{href:bg.image,...CHART_BOUNDS,preserveAspectRatio:'xMidYMid meet','data-gallery-layer':'sea'}));
   const objects=el('g',{'data-gallery-layer':'objects','pointer-events':'none'});
   drawAssetPlacements(el,objects,instances,library,byId);
   svg.append(objects);
@@ -73,6 +76,7 @@ try{
    draw(svg,[{id:'review',assetId:selected.id,anchor}]);figure.append(svg);positions.append(figure);
   }
   document.getElementById('status').textContent='Technische Testansicht · '+select.value+' · Einzelprüfung: '+selected.id+' / '+compatibility(library,selected.id,select.value);
+  renderPrototypeComparison(library);
  }
- for(const id of ['background','reviewAsset','hexes','footprints'])document.getElementById(id).addEventListener('change',render);render();
+ for(const id of ['background','reviewAsset','hexes','footprints','prototypeMarks'])document.getElementById(id).addEventListener('change',render);render();
 }catch(error){document.getElementById('error').textContent=error.message;}

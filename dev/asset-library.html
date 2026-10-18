@@ -3,7 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Assetbibliothek – technische Abnahme</title>
-<link rel="stylesheet" href="asset-library.css">
+<base href="../">
+<link rel="stylesheet" href="dev/asset-library.css">
 <main>
  <h1>Assetbibliothek: technische Testansicht</h1>
  <p>Nur Entwicklung und visuelle Abnahme. Violette Symbole sind technische Platzhalter, keine endgültigen Illustrationen. Transparenz ist keine visuelle Freigabe.</p>
@@ -11,6 +12,14 @@
  <label><input type="checkbox" id="hexes" checked> Hexgrenzen anzeigen</label>
  <label><input type="checkbox" id="footprints" checked> Erlaubte Grafikfläche anzeigen (grün)</label>
  <p id="status" role="status"></p>
+ <section id="passable-prototypes" aria-labelledby="prototypeHeading">
+  <h2 id="prototypeHeading">Befahrbare Orte – drei Prototypen zur Abnahme</h2>
+  <p>Alle drei auf dem echten sea-blue-01 an B3, mit Nachbarfeldern und identischem Spielmaßstab. Künstlerisch noch nicht freigegeben (<strong>pending</strong>). Hexgrenzen oben schaltbar.</p>
+  <label><input type="checkbox" id="prototypeMarks" checked> Echte Spielmarkierungen anzeigen</label>
+  <input type="checkbox" id="showChart" checked hidden>
+  <div id="prototypeComparison"></div>
+  <p>Beispielzustand aus dem echten Kartenrenderer: Stunden 1–6 mit ✓ / ? / ×, aktive Stunde 2, Ortsring und Route A3–B3–C3. Keine veröffentlichten Rätseldaten. Der bestehende Renderer zeichnet Ortsnamensschilder nur auf gesperrten Landfeldern; hier stehen die Namen in den Bildunterschriften.</p>
+ </section>
  <svg id="gallery" viewBox="-37 -44.5 563 473" role="img" aria-label="Einzelhex, Mehrhex-Insel, befahrbarer Leuchtturm und Dekoration auf einer Testkarte"></svg>
  <div id="inventory"></div>
  <h2>Weitere Prüfpositionen</h2>
@@ -19,5 +28,5 @@
  <div id="positions"></div>
  <p id="error" role="alert"></p>
 </main>
-<script type="module" src="asset-library.mjs"></script>
+<script type="module" src="dev/asset-library.mjs"></script>
 </html>

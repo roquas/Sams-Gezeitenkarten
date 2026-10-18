@@ -129,3 +129,34 @@ test('adjacent alpha masks render identically in either draw order on both row p
   expect(await page.locator('#order-proof').screenshot()).toEqual(forward);
  }
 });
+
+test('passable prototypes share real sea, map scale and production notes with independent toggles',async({page},info)=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/dev/asset-library.html#passable-prototypes');
+ const cards=page.locator('#prototypeComparison svg');await expect(cards).toHaveCount(3);
+ for(const svg of await cards.all()){
+  await expect(svg.locator('[data-chart-layer="sea"] image')).toHaveAttribute('href','assets/seekarte/sea-blue-01.webp');
+  await expect(svg.locator('.cell')).toHaveCount(25);
+  await expect(svg.locator('.blocked-cell')).toHaveCount(0);
+  const b3=svg.locator('[data-id="B3"]');
+  await expect(b3.locator('circle')).toHaveCount(6);
+  await expect(b3).toContainText('×');await expect(b3).toContainText('✓');
+  await expect(svg.locator('.route-stroke')).toHaveCount(2);
+  const image=svg.locator('[data-placement-id="prototype"]');
+  await expect(image).toHaveAttribute('width','90');await expect(image).toHaveAttribute('height','102');
+  expect(await image.evaluate(n=>Boolean(n.compareDocumentPosition(n.closest('svg').querySelector('.cell'))&Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+ }
+ for(const id of ['navigation.lighthouse.h1.offcenter-beacon.v1','land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1']){
+  await page.locator('#reviewAsset').selectOption(id);await expect(page.locator('#status')).toContainText(id+' / pending');
+  await expect(page.locator('#positions [data-asset-id="'+id+'"]')).toHaveCount(4);
+ }
+ await page.locator('#prototypeMarks').uncheck();
+ await expect(page.locator('#prototypeComparison .cell circle')).toHaveCount(0);
+ await expect(page.locator('#prototypeComparison .route-stroke')).toHaveCount(0);
+ await page.locator('#hexes').uncheck();
+ for(const svg of await cards.all())await expect(svg.locator('[data-id="B3"] polygon')).toHaveAttribute('visibility','hidden');
+ await page.locator('#background').selectOption('prototype-sea');
+ for(const svg of await cards.all())await expect(svg.locator('[data-chart-layer="sea"] image')).toHaveAttribute('href','assets/seekarte/sea-blue-01.webp');
+ await expect(page.locator('#error')).toBeEmpty();expect(errors).toEqual([]);
+ await info.attach('passable-prototypes-'+info.project.name,{body:await page.locator('#prototypeComparison').screenshot(),contentType:'image/png'});
+});

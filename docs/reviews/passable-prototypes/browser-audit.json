@@ -1,0 +1,152 @@
+[
+  {
+    "name": "chromium",
+    "viewport": {
+      "width": 1120,
+      "height": 1000
+    },
+    "dpr": 1,
+    "geometry": [
+      {
+        "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "width": 90,
+        "height": 102,
+        "decoded": [
+          360,
+          408
+        ],
+        "scaleX": 1.6265625,
+        "scaleY": 1.6265625,
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "land-coast.atoll.h1.broken-passages.v1",
+        "width": 90,
+        "height": 102,
+        "decoded": [
+          360,
+          408
+        ],
+        "scaleX": 1.6265625,
+        "scaleY": 1.6265625,
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "navigation.wreck.h1.offcenter-sloop.v1",
+        "width": 90,
+        "height": 102,
+        "decoded": [
+          360,
+          408
+        ],
+        "scaleX": 1.626654411764706,
+        "scaleY": 1.626654411764706,
+        "transform": null,
+        "clip": null
+      }
+    ],
+    "errors": []
+  },
+  {
+    "name": "webkit",
+    "viewport": {
+      "width": 1120,
+      "height": 1000
+    },
+    "dpr": 1,
+    "geometry": [
+      {
+        "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "width": 90,
+        "height": 102,
+        "decoded": [
+          360,
+          408
+        ],
+        "scaleX": 1.6265625,
+        "scaleY": 1.6265625,
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "land-coast.atoll.h1.broken-passages.v1",
+        "width": 90,
+        "height": 102,
+        "decoded": [
+          360,
+          408
+        ],
+        "scaleX": 1.6265625,
+        "scaleY": 1.6265625,
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "navigation.wreck.h1.offcenter-sloop.v1",
+        "width": 90,
+        "height": 102,
+        "decoded": [
+          360,
+          408
+        ],
+        "scaleX": 1.6265625,
+        "scaleY": 1.6265625,
+        "transform": null,
+        "clip": null
+      }
+    ],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "dpr": 2,
+    "geometry": [
+      {
+        "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "width": 90,
+        "height": 102,
+        "decoded": [
+          360,
+          408
+        ],
+        "scaleX": 1.75,
+        "scaleY": 1.75,
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "land-coast.atoll.h1.broken-passages.v1",
+        "width": 90,
+        "height": 102,
+        "decoded": [
+          360,
+          408
+        ],
+        "scaleX": 1.75,
+        "scaleY": 1.75,
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "navigation.wreck.h1.offcenter-sloop.v1",
+        "width": 90,
+        "height": 102,
+        "decoded": [
+          360,
+          408
+        ],
+        "scaleX": 1.75,
+        "scaleY": 1.75,
+        "transform": null,
+        "clip": null
+      }
+    ],
+    "errors": []
+  }
+]

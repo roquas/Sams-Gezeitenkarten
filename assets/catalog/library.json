@@ -188,6 +188,90 @@
       "candidateFamilies": [
         "blue-sea"
       ]
+    },
+    {
+      "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+      "family": "navigation",
+      "type": "lighthouse",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": true,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/lighthouse-offcenter-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved water-rich spire as style reference; one generation per motif, uniform uncut RGBA authoring export. Prototype, artistic approval pending. See docs/PASSABLE-PROTOTYPES-65.md",
+        "rights": "AI-generated for this project using project style reference; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "land-coast.atoll.h1.broken-passages.v1",
+      "family": "land-coast",
+      "type": "atoll",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": true,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/atoll-broken-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved water-rich spire as style reference; one generation per motif, uniform uncut RGBA authoring export. Prototype, artistic approval pending. See docs/PASSABLE-PROTOTYPES-65.md",
+        "rights": "AI-generated for this project using project style reference; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "navigation.wreck.h1.offcenter-sloop.v1",
+      "family": "navigation",
+      "type": "wreck",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": true,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/wreck-offcenter-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved water-rich spire as style reference; one generation per motif, uniform uncut RGBA authoring export. Prototype, artistic approval pending. See docs/PASSABLE-PROTOTYPES-65.md",
+        "rights": "AI-generated for this project using project style reference; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
     }
   ],
   "reviews": [
@@ -278,6 +362,24 @@
       "date": "2026-10-19",
       "assetSha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd",
       "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+    },
+    {
+      "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Befahrbarer Prototyp, künstlerisch NICHT freigegeben. Kartenkontext mit echten Spielmarkierungen dient Nutzerabnahme; keine allgemeine Wasserregel. Siehe docs/PASSABLE-PROTOTYPES-65.md."
+    },
+    {
+      "assetId": "land-coast.atoll.h1.broken-passages.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Befahrbarer Prototyp, künstlerisch NICHT freigegeben. Kartenkontext mit echten Spielmarkierungen dient Nutzerabnahme; keine allgemeine Wasserregel. Siehe docs/PASSABLE-PROTOTYPES-65.md."
+    },
+    {
+      "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Befahrbarer Prototyp, künstlerisch NICHT freigegeben. Kartenkontext mit echten Spielmarkierungen dient Nutzerabnahme; keine allgemeine Wasserregel. Siehe docs/PASSABLE-PROTOTYPES-65.md."
     }
   ]
 }

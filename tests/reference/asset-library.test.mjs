@@ -40,6 +40,20 @@ test('catalog files, stable IDs, provenance and separated review catalog validat
  assert.equal(new Set(LEGACY_ASSETS.map(a=>a.id)).size,8);
  assert.ok(LEGACY_ASSETS.every(a=>a.stage==='legacy'&&a.exception));
 });
+test('three passable illustration prototypes remain pending and blocked from publication',()=>{
+ const c=validateAssetFiles(catalog());
+ const ids=['navigation.lighthouse.h1.offcenter-beacon.v1','land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1'];
+ for(const id of ids){
+  const a=c.assets.find(a=>a.id===id);
+  assert.equal(a.passable,true);assert.equal(a.stage,'illustration');
+  assert.deepEqual(a.geometry.cells,[[0,0]]);
+  const placements=[{id:'prototype',assetId:id,anchor:'B3',placeId:'test-place'}];
+  const logic={grid:{columns:5,rows:5},blocked:[],places:{'test-place':{cells:['B3']}}};
+  for(const b of c.backgrounds)assert.equal(compatibility(c,id,b.id),'pending');
+  assert.deepEqual(validatePlacements(placements,c,logic,'sea-blue-01',{development:true}),[]);
+  assert.ok(validatePlacements(placements,c,logic,'sea-blue-01').some(e=>e.includes('not visually approved')));
+ }
+});
 test('invalid/duplicate identities, file paths and unsupported metadata are rejected',()=>{
  for(const mutate of [c=>c.assets.push(c.assets[0]),c=>c.backgrounds.push(c.backgrounds[0]),c=>c.assets[0].id='Bad ID',c=>c.assets[0].image.path='../escape.png',c=>c.assets[0].rotation=60,c=>c.assets[0].image.width=1,c=>c.assets[0].provenance.rights='']){
   const c=catalog();mutate(c);assert.throws(()=>validateLibrary(c));
