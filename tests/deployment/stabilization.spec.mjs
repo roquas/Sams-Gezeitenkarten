@@ -1,5 +1,11 @@
 import {test,expect} from '@playwright/test';
 import {expectClueOnPaper} from './text-layout.mjs';
+import {registerInkStatusTests} from '../integration/ui-ink-status.mjs';
+import {registerChartScrollTests} from '../integration/chart-scroll.mjs';
+import {registerResumeTests} from '../integration/page-resume.mjs';
+registerInkStatusTests('./');
+registerChartScrollTests('./');
+registerResumeTests('./');
 const cell=(page,id)=>page.locator(`#map [data-id="${id}"]`);
 async function choose(page,id){
  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();

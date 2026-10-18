@@ -7,6 +7,7 @@ async function center(page,id){
  await cell(page,id).scrollIntoViewIfNeeded();
  const b=await cell(page,id).boundingBox();return {x:b.x+b.width/2,y:b.y+b.height/2};
 }
+const top=page=>page.evaluate(()=>{if(innerWidth<=880)document.getElementById('gameSurface').scrollTop=0;else scrollTo(0,0);});
 const scroll=page=>page.evaluate(()=>innerWidth<=880?document.getElementById('gameSurface').scrollTop:scrollY);
 async function verticalSwipe(page,browserName,point,info){
  if(browserName==='chromium'){
@@ -21,9 +22,10 @@ async function verticalSwipe(page,browserName,point,info){
   }finally{await session.detach();}
  }else{
   // Playwright WebKit exposes native taps, but no native touch-drag API.
-  // Prove event/default-action boundaries separately from real compositor
-  // scrolling. Never label DOM events as a native iOS swipe.
-  info.annotations.push({type:'touch-driver',description:'WebKit: DOM pointer boundary plus native wheel scrolling; physical iOS swipe remains a device check.'});
+  // Prove event/default-action boundaries separately from native keyboard
+  // scrolling (mobile WebKit also has no wheel API). Never label these DOM
+  // events or PageDown as a native iOS finger swipe.
+  info.annotations.push({type:'touch-driver',description:'WebKit: DOM pointer boundary plus native PageDown scrolling; physical iOS swipe remains a device check.'});
   const allowed=await page.evaluate(point=>{
    const target=document.elementFromPoint(point.x,point.y);
    const send=(type,y,buttons)=>target.dispatchEvent(new PointerEvent(type,{bubbles:true,cancelable:true,pointerType:'touch',isPrimary:true,pointerId:501,button:0,buttons,clientX:point.x,clientY:y}));
@@ -31,7 +33,8 @@ async function verticalSwipe(page,browserName,point,info){
    return down&&move;
   },point);
   expect(allowed).toBe(true);
-  await page.mouse.move(point.x,point.y);await page.mouse.wheel(0,120);
+  await page.evaluate(point=>document.elementFromPoint(point.x,point.y)?.closest('[data-id]')?.focus({preventScroll:true}),point);
+  await page.keyboard.press('PageDown');
  }
 }
 export function registerChartScrollTests(url){
@@ -41,12 +44,14 @@ export function registerChartScrollTests(url){
    await page.goto(url);await expect(cell(page,'D3')).toBeVisible();
    await expect(page.locator('#map')).toHaveCSS('touch-action','pan-y pinch-zoom');
    for(const id of ['D3','B3']){
+    await top(page);
     const point=await center(page,id),before=await scroll(page),saved=await state(page);
     await verticalSwipe(page,browserName,point,info);
     await expect.poll(()=>scroll(page)).toBeGreaterThan(before+20);
     expect(await state(page)).toEqual(saved);
    }
    const radar=page.locator('#toggleDistances');await radar.tap();
+   await top(page);
    const point=await center(page,'D3'),before=await scroll(page);
    await verticalSwipe(page,browserName,point,info);await expect.poll(()=>scroll(page)).toBeGreaterThan(before+20);
    await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
@@ -55,7 +60,7 @@ export function registerChartScrollTests(url){
    // The same native scroll container reaches the book, not an inert overlay.
    await page.locator('.bordbook').scrollIntoViewIfNeeded();await expect(page.locator('#clueViewport')).toBeVisible();
   });
-  test('tap, horizontal drawing, erasing and interrupted touches preserve one-step undo',async({page,browserName})=>{
+  test('native tap and horizontal touch drawing preserve one-step undo',async({page,browserName})=>{
    await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
    await cell(page,'A1').tap();expect((await state(page)).marks).toEqual({'1:A1':'maybe'});
    await page.locator('#undo').click();expect((await state(page)).marks).toEqual({});
@@ -63,6 +68,9 @@ export function registerChartScrollTests(url){
    await dragTouch(page,{browserName,from:first,to:second,pointer:true});
    expect((await state(page)).marks).toEqual({'1:A1':'maybe','1:B1':'maybe'});
    await page.locator('#undo').click();expect((await state(page)).marks).toEqual({});
+  });
+  test('cancelled, uncaptured and diagonal touches never make accidental notes',async({page})=>{
+   await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
    for(const end of ['pointercancel','lostpointercapture','second-finger']){
     const point=await center(page,'A1');
     await page.evaluate(({point,end})=>{
@@ -76,18 +84,23 @@ export function registerChartScrollTests(url){
     },{point,end});
     expect((await state(page)).marks).toEqual({});
    }
-   await cell(page,'A1').tap();await cell(page,'B1').tap();
-   await page.locator('[data-tool="erase"]').tap();
-   const from=await center(page,'A1'),to=await center(page,'B1');
-   await dragTouch(page,{browserName,from,to,pointer:true});expect((await state(page)).marks).toEqual({});
-   await page.locator('#undo').click();expect((await state(page)).marks).toEqual({'1:A1':'maybe','1:B1':'maybe'});
    // A near-vertical diagonal belongs to scrolling, even if it ends as a tap.
    const point=await center(page,'C1');
    await page.evaluate(point=>{
     const target=document.elementFromPoint(point.x,point.y);
     for(const [type,x,y] of [['pointerdown',0,0],['pointermove',14,-20],['pointerup',14,-20]])target.dispatchEvent(new PointerEvent(type,{bubbles:true,cancelable:true,pointerType:'touch',isPrimary:true,pointerId:801,button:0,buttons:type==='pointerup'?0:1,clientX:point.x+x,clientY:point.y+y}));
    },point);
-   expect((await state(page)).marks).toEqual({'1:A1':'maybe','1:B1':'maybe'});
+   expect((await state(page)).marks).toEqual({});
+   await cell(page,'A1').tap();expect((await state(page)).marks).toEqual({'1:A1':'maybe'});
+   await page.locator('#undo').click();expect((await state(page)).marks).toEqual({});
+  });
+  test('touch erasing is one undoable gesture',async({page,browserName})=>{
+   await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
+   await cell(page,'A1').tap();await cell(page,'B1').tap();
+   await page.locator('[data-tool="erase"]').tap();
+   const from=await center(page,'A1'),to=await center(page,'B1');
+   await dragTouch(page,{browserName,from,to,pointer:true});expect((await state(page)).marks).toEqual({});
+   await page.locator('#undo').click();expect((await state(page)).marks).toEqual({'1:A1':'maybe','1:B1':'maybe'});
   });
  });
 }
