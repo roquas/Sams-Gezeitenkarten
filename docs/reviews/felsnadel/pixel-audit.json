@@ -1,0 +1,43 @@
+{
+  "assetId": "land-coast.island.h1.basalt-spire.v1",
+  "image": "assets/library/basalt-spire-v1.png",
+  "sha256": "d68f277f4b6bec2b4950a6341f1fac7a0360abe3d638065b047fc5c39ca78ae0",
+  "format": "PNG",
+  "mode": "RGBA",
+  "size": [
+    360,
+    408
+  ],
+  "localCompletePixelSquares": "PASS",
+  "forbiddenVisiblePixels": 0,
+  "placementsCompletePixelSquares": {
+    "A1": "PASS",
+    "B1": "PASS",
+    "C1": "PASS",
+    "D1": "PASS",
+    "E1": "PASS",
+    "A2": "PASS",
+    "B2": "PASS",
+    "C2": "PASS",
+    "D2": "PASS",
+    "E2": "PASS",
+    "A3": "PASS",
+    "B3": "PASS",
+    "C3": "PASS",
+    "D3": "PASS",
+    "E3": "PASS",
+    "A4": "PASS",
+    "B4": "PASS",
+    "C4": "PASS",
+    "D4": "PASS",
+    "E4": "PASS",
+    "A5": "PASS",
+    "B5": "PASS",
+    "C5": "PASS",
+    "D5": "PASS",
+    "E5": "PASS"
+  },
+  "passable": false,
+  "visualApproval": "pending",
+  "note": "Every alpha > 0 pixel checked, including alpha 1; no masking, deletion, threshold or renderer clipping."
+}

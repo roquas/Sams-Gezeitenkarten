@@ -24,7 +24,13 @@ function approved(){
  return c;
 }
 test('catalog files, stable IDs, provenance and separated review catalog validate',()=>{
- const c=validateAssetFiles(catalog());assert.equal(c.assets.length,4);
+ const c=validateAssetFiles(catalog());
+ assert.equal(c.assets.filter(a=>a.stage==='technical-placeholder').length,4);
+ const spire=c.assets.find(a=>a.id==='land-coast.island.h1.basalt-spire.v1');
+ assert.equal(spire.passable,false);
+ assert.equal(spire.stage,'illustration');
+ assert.equal(compatibility(c,spire.id,'sea-blue-01'),'pending');
+ assert.ok(validatePlacements([{id:'spire',assetId:spire.id,anchor:'B3'}],c,source().logic,'sea-blue-01').some(e=>e.includes('not visually approved')));
  assert.equal(new Set(LEGACY_ASSETS.map(a=>a.id)).size,8);
  assert.ok(LEGACY_ASSETS.every(a=>a.stage==='legacy'&&a.exception));
 });

@@ -132,6 +132,34 @@
       "candidateFamilies": [
         "blue-sea"
       ]
+    },
+    {
+      "id": "land-coast.island.h1.basalt-spire.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/basalt-spire-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-18; user-provided watercolor studies, upper-right rock spire authoritative; deterministic PNG authoring export. See docs/FELSNADEL-PROTOTYPE-65.md",
+        "rights": "AI-generated derivative from user-supplied project references for this project; no third-party stock used or additional reuse license granted; reference rights remain with their respective rights holders."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
     }
   ],
   "reviews": [
@@ -206,6 +234,12 @@
       "backgroundId": "prototype-sea",
       "status": "pending",
       "notes": "Technical placeholder; no artistic approval."
+    },
+    {
+      "assetId": "land-coast.island.h1.basalt-spire.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Felsnadel prototype; technical checks do not constitute artistic or background approval. Human review pending."
     }
   ]
 }
