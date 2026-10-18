@@ -2,6 +2,7 @@ import {createMobileViews} from './mobile-views.mjs';
 import {createBordbook} from './bordbook.mjs';
 import {createToolbar} from './toolbar.mjs';
 import {drawMap} from './map.mjs';
+import {createChartGestures} from './chart-gestures.mjs';
 import {frameMode} from './parchment-frame.mjs';
 import {pretty, coordinateMarkup, coordinateTextMarkup} from './coordinates.mjs';
 import {createPuzzleLoader} from '../puzzles/loader.mjs';
@@ -53,7 +54,7 @@ let dragging=false,dragValue=null;
 const $=id=>document.getElementById(id);
 function save(){saveState(puzzle,state,storage)}
 function snapshot(){history.push(state)}
-function renderMap(){drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown:()=>{dragging=true;dragValue=null;},onActivate:apply,frameStyle})}
+function renderMap(){drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate:apply,frameStyle})}
 const renderToolbar=createToolbar({...puzzle,steps:6,rules});
 function render(){if(state.layer==="all")state.layer=1;
  renderToolbar(state,{...puzzle,rules});
@@ -83,23 +84,21 @@ function apply(id,first){
  if(dragValue===undefined)delete state.marks[k];else state.marks[k]=dragValue;
  render();
 }
-$("map").addEventListener("pointermove",e=>{
- if(!dragging||!["no","maybe","yes","erase"].includes(state.tool))return;
- const elem=document.elementFromPoint(e.clientX,e.clientY);
- const g=elem?.closest?.("[data-id]");
- if(g&&byId[g.dataset.id])apply(g.dataset.id,false);
+const cancelGesture=createChartGestures($("map"),{
+ mayStart:id=>!!byId[id]&&(!blocked.has(id)||distancePhase(state)==='waiting'),
+ start:id=>{dragging=true;dragValue=null;apply(id,true);},
+ move:id=>{if(dragging&&["no","maybe","yes","erase"].includes(state.tool)&&byId[id])apply(id,false);},
+ end:()=>{dragging=false;}
 });
-// Interrupted or released capture must not let later movement keep editing.
-for(const type of ['pointerup','pointercancel','lostpointercapture'])window.addEventListener(type,()=>dragging=false);
-$("hours").addEventListener("click",e=>{const b=e.target.closest("[data-hour]");if(!b)return;state.layer=Number(b.dataset.hour);render()});
+$("hours").addEventListener("click",e=>{const b=e.target.closest("[data-hour]");if(!b)return;cancelGesture();state.layer=Number(b.dataset.hour);render()});
 
 $("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>puzzle.steps)return;const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
 
-function selectTool(e){const b=e.target.closest('[data-tool]');if(!b)return;state=selectChartTool(state,b.dataset.tool);render();}
+function selectTool(e){const b=e.target.closest('[data-tool]');if(!b)return;cancelGesture();state=selectChartTool(state,b.dataset.tool);render();}
 for(const id of ['tools','mapActions'])$(id).addEventListener('click',selectTool);
-$("undo").onclick=()=>{state=history.undo(state);render()};
+$("undo").onclick=()=>{cancelGesture();state=history.undo(state);render()};
 $("toggleRouteNumbers").onclick=()=>{state.showRouteNumbers=!state.showRouteNumbers;render()};
-$("toggleDistances").onclick=()=>{state=toggleDistance(state);render()};
+$("toggleDistances").onclick=()=>{cancelGesture();state=toggleDistance(state);render()};
 $("hideRouteMarks").addEventListener("change",e=>{state.hideRouteMarks=e.target.checked;render()});
 $("clearLayer").onclick=()=>{snapshot();for(const k of Object.keys(state.marks))if(k.startsWith(state.layer+":"))delete state.marks[k];render()};
 $("routeBack").onclick=()=>{if(state.route.length>1){snapshot();state.route.pop();state.result="";render()}};
@@ -125,7 +124,7 @@ $("hint").onclick=()=>{
  state.help='<div class="notice"><strong>Denkanstoß '+state.hintCount+':</strong> '+escapeText(hints[idx]??'Lies die Hinweise gemeinsam und prüfe mögliche Nachbarfelder.')+'</div>';
  render();
 };
-$("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){state=initial();history.clear();render()}};
+$("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){cancelGesture();state=initial();history.clear();render()}};
 const bordbook=createBordbook({clues,getState:()=>state,markup:safeMarkup,toggleClue:id=>{
  snapshot();state.doneClues=state.doneClues.includes(id)?state.doneClues.filter(v=>v!==id):[...state.doneClues,id];save();
 }});
@@ -173,7 +172,7 @@ select.addEventListener('change',async()=>{
  try{
   const next=await loader.load(id);if(token!==request)return;
   save();puzzle=next;$('puzzleLoadError').hidden=true;rules=createRules(puzzle);blocked=rules.blocked;solution=puzzle.solution;hints=puzzle.hints;
-  state=loadState(puzzle,storage);history.clear();dragging=false;dragValue=null;
+  state=loadState(puzzle,storage);history.clear();cancelGesture();dragValue=null;
   presentation();bordbook.setClues(puzzle.clues.map(({id,text})=>[id,text]));render();
   try{storage?.setItem('gezeitenkarten-selected-puzzle',puzzle.id);}catch{}
   $('puzzleStatus').textContent='Geladen: '+puzzle.title+'. Spielstände bleiben getrennt gespeichert.';

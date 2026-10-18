@@ -17,7 +17,7 @@ function fitLabels(svg){
   if(measured>available)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*available/measured);
  }
 }
-export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDown,onActivate,frameStyle}){
+export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,frameStyle}){
  const $=id=>document.getElementById(id);
  const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;
  // Avoid repeated viewBox writes that can invalidate WebKit SVG layout,
@@ -178,7 +178,6 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onPointerDow
   // Blocked hexes are hit targets only for distance selection, never for notes
   // or route editing. Do not initiate a drag from a blocked hex in normal mode.
   const mayActivate=()=>!land||distancePhase(state)==='waiting';
-  g.addEventListener("pointerdown",e=>{if(e.button!==0||!mayActivate())return;e.preventDefault();onPointerDown();try{svg.setPointerCapture(e.pointerId)}catch{};onActivate(c.id,true)});
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();if(mayActivate())onActivate(c.id,true)}});
   svg.append(g);
  }
