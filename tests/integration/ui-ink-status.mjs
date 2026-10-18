@@ -1,6 +1,17 @@
 import {test,expect} from '@playwright/test';
 
 const cell=(page,id)=>page.locator(`#map [data-id="${id}"]`);
+const activate=async(page,method,locator)=>{
+ if(method==='keyboard'){await locator.focus();await page.keyboard.press('Space');}
+ else if(method==='touch')await locator.tap();else await locator.click();
+};
+const layout=page=>page.evaluate(()=>{
+ const parent=document.getElementById('chartPanel').getBoundingClientRect();
+ return ['.mapbox','#mapActions','#distanceStatus','.bordbook'].map(selector=>{
+  const r=document.querySelector(selector).getBoundingClientRect();return [r.x-parent.x,r.y-parent.y,r.width,r.height];
+ });
+});
+
 const contrast=(a,b)=>{
  const lum=hex=>hex.match(/[0-9a-f]{2}/gi).map(n=>parseInt(n,16)/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4).reduce((sum,n,i)=>sum+n*[.2126,.7152,.0722][i],0);
  const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);
@@ -8,43 +19,44 @@ const contrast=(a,b)=>{
 export function registerInkStatusTests(url){
  for(const width of [390,820,1440])test.describe(`UI stabilization ${width}px`,()=>{
   test.use({viewport:{width,height:1000},hasTouch:true});
-  for(const method of ['click','keyboard','touch'])test(`radar ${method} keeps a stable status slot and requires a fresh source`,async({page},info)=>{
-   await page.goto(url);await expect(cell(page,'C1')).toBeVisible();
-   const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
-   const layout=()=>page.evaluate(()=>{
-    const parent=document.getElementById('chartPanel').getBoundingClientRect();
-    return ['.mapbox','#mapActions','#distanceStatus','.bordbook'].map(selector=>{
-     const r=document.querySelector(selector).getBoundingClientRect();return [r.x-parent.x,r.y-parent.y,r.width,r.height];
-    });
+  for(const method of ['click','keyboard','touch']){
+   test(`radar ${method} selects and switches off without moving the status slot`,async({page})=>{
+    await page.goto(url);await expect(cell(page,'C1')).toBeVisible();
+    const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus'),before=await layout(page);
+    await expect(status).toHaveAttribute('role','status');await expect(status).toHaveAttribute('aria-atomic','true');await expect(status).toBeEmpty();
+    expect(before[2][1]).toBeGreaterThanOrEqual(before[1][1]+before[1][3]);
+    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','waiting');
+    await expect(page.locator('.distance-overlay')).toHaveCount(0);expect(await layout(page)).toEqual(before);
+    await activate(page,method,cell(page,'C1'));await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','C1');
+    expect(await layout(page)).toEqual(before);expect(await status.evaluate(el=>el.scrollHeight<=el.clientHeight)).toBe(true);
+    await page.locator('[data-tool="yes"]').click();await expect(radar).toHaveAttribute('data-distance-state','showing');await expect(radar).toHaveAccessibleName('Abstände ausschalten');
+    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');
+    await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
+    expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-reference-3.6-schema1-data1')).marks)).toEqual({});
    });
-   const before=await layout();
-   await expect(status).toHaveAttribute('role','status');await expect(status).toHaveAttribute('aria-atomic','true');
-   await expect(status).toBeEmpty();
-   expect(before[2][1]).toBeGreaterThanOrEqual(before[1][1]+before[1][3]);
-   const activate=async locator=>{
-    if(method==='keyboard'){await locator.focus();await page.keyboard.press('Space');}
-    else if(method==='touch')await locator.tap();else await locator.click();
-   };
-   await activate(radar);await expect(radar).toHaveAttribute('data-distance-state','waiting');
-   await expect(page.locator('.distance-overlay')).toHaveCount(0);expect(await layout()).toEqual(before);
-   await activate(cell(page,'C1'));await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','C1');
-   expect(await layout()).toEqual(before);expect(await status.evaluate(el=>el.scrollHeight<=el.clientHeight)).toBe(true);
-   await page.locator('[data-tool="yes"]').click();await expect(radar).toHaveAttribute('data-distance-state','showing');
-   await expect(radar).toHaveAccessibleName('Abstände ausschalten');
-   await activate(radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');
-   await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout()).toEqual(before);
-   await activate(radar);await expect(page.locator('.distance-overlay')).toHaveCount(0);
-   await expect(radar).toHaveAttribute('data-distance-state','waiting');
-   await activate(cell(page,'A1'));await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');
-   await expect(cell(page,'A1')).not.toContainText('✓');expect(await layout()).toEqual(before);
-   if(method==='touch'){
-    await status.scrollIntoViewIfNeeded();const path=info.outputPath(`status-${width}.png`);
-    await page.screenshot({path});await info.attach(`status-${width}`,{path,contentType:'image/png'});
-   }
-   await activate(radar);await page.locator('#undo').click();await expect(page.locator('.distance-overlay')).toHaveCount(0);
-   await page.reload();await expect(radar).toHaveAttribute('data-distance-state','inactive');
-  });
-  test('current route and hour edge remain readable over chart and paper',async({page},info)=>{
+   test(`radar ${method} starts a fresh source and stays off through undo and reload`,async({page},info)=>{
+    // This is exactly the completed-selection precondition of the preceding
+    // scenario. Keep the full input matrix while bounding each DPR-2 case.
+    await page.addInitScript(()=>{
+     if(!sessionStorage.getItem('radar-fixture-seeded')){
+      localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'C1'}));
+      sessionStorage.setItem('radar-fixture-seeded','true');
+     }
+    });
+    await page.goto(url);const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
+    await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','C1');const before=await layout(page);
+    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
+    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
+    await activate(page,method,cell(page,'A1'));await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');await expect(cell(page,'A1')).not.toContainText('✓');expect(await layout(page)).toEqual(before);
+    if(method==='touch'){
+     await status.scrollIntoViewIfNeeded();const path=info.outputPath(`status-${width}.png`);
+     await page.screenshot({path});await info.attach(`status-${width}`,{path,contentType:'image/png'});
+    }
+    await activate(page,method,radar);await page.locator('#undo').click();await expect(page.locator('.distance-overlay')).toHaveCount(0);
+    await page.reload();await expect(radar).toHaveAttribute('data-distance-state','inactive');
+   });
+  }
+  test('route contrast, equal other hours and active edges follow the selected hour',async({page})=>{
    await page.goto(url);await expect(cell(page,'D4')).toBeVisible();
    await page.locator('#routeTool').click();
    for(const id of ['E3','D2','C2','B2'])await cell(page,id).click();
@@ -60,14 +72,32 @@ export function registerInkStatusTests(url){
    await expect(page.locator('.edge-ink')).toHaveCount(22);
    const edge=page.locator('.edge-ink').first();await expect(edge).toHaveAttribute('data-active-hour','2');
    expect(contrast(await edge.getAttribute('stroke'),'#fff2d4')).toBeGreaterThan(4.5);
-   for(const art of [true,false]){
-    await page.locator('#showChart').evaluate((el,checked)=>{el.checked=checked;el.dispatchEvent(new Event('change'));},art);
-    await expect(page.locator('.route-stroke[data-route-current="true"]')).toHaveCount(1);
-    const name=`ink-${width}-${art?'chart':'paper'}`,path=info.outputPath(name+'.png');
-    await page.locator('.mapbox').screenshot({path});await info.attach(name,{path,contentType:'image/png'});
-   }
+   // Retain the original transition while the decorative chart is disabled.
+   await page.locator('#showChart').evaluate(el=>{el.checked=false;el.dispatchEvent(new Event('change'));});
    await page.locator('[data-hour="3"]').click();await expect(page.locator('.edge-ink').first()).toHaveAttribute('data-active-hour','3');
    await expect(page.locator('.route-stroke[data-route-current="true"]')).toHaveAttribute('data-route-hour','3');
   });
+  for(const art of [true,false])test(`route and edge screenshot on ${art?'chart':'paper'}`,async({page},info)=>{
+   // Pixel inspection is a separate rendering scenario. Interaction and
+   // transitions above still execute all real route/hour controls. Seeding a
+   // legal persisted route avoids repeating those edits in each image case.
+   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4','E3','D2','C2','B2'],layer:2,tool:'route'})));
+   await page.goto(url);await expect(page.locator('.route-stroke')).toHaveCount(4);
+   await expect(page.locator('.edge-ink').first()).toHaveAttribute('data-active-hour','2');
+   await page.locator('#showChart').evaluate((el,checked)=>{el.checked=checked;el.dispatchEvent(new Event('change'));},art);
+   await expect(page.locator('.route-stroke[data-route-current="true"]')).toHaveCount(1);
+   const map=page.locator('.mapbox');await map.scrollIntoViewIfNeeded();
+   const sizes=await page.locator('#map').evaluate(async svg=>{
+    await document.fonts.ready;
+    const sizes=await Promise.all([...svg.querySelectorAll('[data-chart-layer] image')].map(async image=>{
+     const decoded=new Image();decoded.src=image.href.baseVal;await decoded.decode();return [decoded.naturalWidth,decoded.naturalHeight];
+    }));
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));return sizes;
+   });
+   expect(sizes.length).toBeGreaterThanOrEqual(3);expect(sizes.every(([w,h])=>w>0&&h>0)).toBe(true);
+   const name=`ink-${width}-${art?'chart':'paper'}`,path=info.outputPath(name+'.png');
+   await map.screenshot({path});await info.attach(name,{path,contentType:'image/png'});
+  });
+
  });
 }

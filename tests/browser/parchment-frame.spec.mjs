@@ -90,7 +90,7 @@ async function chartView(page,width){
  if(width<881&&await page.locator('body').getAttribute('data-mobile-view')!=='chart')await page.locator('#chartTab').click();
 }
 async function decodedFrameScreenshot(svg){
- await svg.waitFor({state:'visible'});
+ await svg.waitFor({state:'visible'});await svg.scrollIntoViewIfNeeded();
  const sizes=await svg.evaluate(async node=>{
   await document.fonts.ready;
   const sizes=await Promise.all([...node.querySelectorAll('[data-chart-layer="frame"] image')].map(async image=>{

@@ -120,7 +120,7 @@ Gezielte lokale Prüfungen: 65 Unit-Tests, Puzzlevalidierung, sieben Pakettests,
 Radar-/Tastaturregressionen, native Chromium-Taps/-Drags/-Scrollen, Darstellung
 und Lifecycle-Fälle. Die Aufteilung langer neuer Eingabeszenarien in einzelne
 Tests erhält sämtliche Assertions; Timeouts und Retries bleiben unverändert.
-Die vollständigen Listen umfassen 370 Fälle je Browserfamilie sowie 163
+Die vollständigen Listen umfassen 400 Fälle je Browserfamilie sowie 223
 Deploymentfälle, einschließlich Desktop, Smartphone, iPhone-WebKit und
 ipad-WebKit. Drei bestehende bedingte Auslassungen pro Browserfamilie bleiben
 unverändert. Quell- und ZIP-Prüfungen sind absichtlich beide vorhanden.
@@ -153,3 +153,24 @@ Alle drei Playwright-Konfigurationen setzen im CI nun `failOnFlakyTests: true`:
 Der bestehende einzelne Diagnose-Retry bleibt erhalten, ein erst durch Retry
 geretteter Fall macht den Job trotzdem rot. Damit wird keine Flake mehr durch
 den grünen Gesamtstatus verborgen. Die CI prüft weiterhin alle Fälle und Shards.
+
+
+### WebKit-DPR-2-Budget des neuen Bildszenarios
+
+Der erste Lauf hatte außerdem im neuen kombinierten 820px-Fall zwei PNGs
+bereits korrekt erfasst, erreichte aber beim anschließenden Stundenwechsel
+30 Sekunden (auch im ursprünglichen Retry). Die Interaktions-/Kontrast-
+Assertions und der Stundenwechsel sind nun ein eigener Test; Seekarten- und
+Papieraufnahme je ein separater Test. Die Bildfälle laden eine legale
+persistierte Route, statt sämtliche bereits separat geprüften Eingaben zu
+wiederholen, warten auf echte Dekodierung und behalten native DPR-Auflösung.
+Keine Assertion entfällt, beide Bilder bleiben erhalten und die bestehenden
+Timeouts gelten unverändert. Die ausführlichen Listen umfassen deshalb jetzt
+400 statt ursprünglich 370 Fälle je Browserfamilie und 223 statt 163 ZIP-Fälle.
+
+Auch der kombinierte lokale DPR-2-Radarzyklus lag am Budget. Die komplette
+Maus-/Tastatur-/Touch-Matrix bleibt bestehen, jetzt getrennt in Auswahl/Ein-Klick-
+Aus und in Wiederaktivierung/Frischquelle/Undo/Reload. Der zweite Teil beginnt
+mit derselben gültigen, abgeschlossenen C1-Auswahl als gespeicherter Fixture;
+ein Sessionmarker verhindert ein erneutes Seeden beim getesteten Reload.
+Alle Layout-, Overlay-, Notiz- und Persistenzassertions bleiben erhalten.
