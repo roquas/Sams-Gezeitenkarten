@@ -53,7 +53,9 @@ test('blocked hexes can be chosen as radar distance origins, not route steps',as
  await page.reload();
  await expect(page.locator('#map .distance-overlay')).toHaveAttribute('data-distance-origin','B3');
  await expect(page.locator('#map [data-id="B3"]')).not.toContainText('?');
- // Selecting a new land target also works with keyboard.
+ // A single press switches off; reactivation chooses a fresh land target.
+ await page.locator('#toggleDistances').click();
+ await expect(page.locator('#map .distance-overlay')).toHaveCount(0);
  await page.locator('#toggleDistances').click();
  const next=page.locator('#map [data-id="C3"]');
  await next.focus();

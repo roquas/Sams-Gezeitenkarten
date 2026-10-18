@@ -16,16 +16,16 @@ async function shot(page,info,name,selector){
 test('independent distance selection, blocked land and unchanged editing work in the ZIP',async({page})=>{
  await page.goto('./');await expect(page.locator('#map .cell')).toHaveCount(25);
  const radar=page.locator('#toggleDistances'),overlay=page.locator('.distance-overlay');
- await radar.click();await cell(page,'B3').click();await expect(overlay).toHaveAttribute('data-distance-origin','B3');await radar.click();await expect(radar).toHaveAttribute('data-distance-state','waiting');
+ await radar.click();await cell(page,'B3').click();await expect(overlay).toHaveAttribute('data-distance-origin','B3');await radar.click();await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(overlay).toHaveCount(0);await radar.click();await expect(radar).toHaveAttribute('data-distance-state','waiting');
  await cell(page,'C1').click();await expect(overlay).toHaveAttribute('data-distance-origin','C1');
  for(const tool of ['maybe','yes','no','erase','clearAll']){
   await page.locator(`[data-tool="${tool}"]`).click();
   for(const id of ['A1','A2','D2']){await cell(page,id).click();await expect(overlay).toHaveAttribute('data-distance-origin','C1');await expect(page.locator(`[data-distance-cell="${id}"]`)).toHaveText('2');}
  }
- await radar.click();await radar.click();await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(overlay).toHaveCount(0);
+ await radar.click();await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(overlay).toHaveCount(0);
  await radar.click();await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(overlay).toHaveCount(0);
  await cell(page,'A1').click();await expect(overlay).toHaveAttribute('data-distance-origin','A1');
- await radar.click();await radar.click();await expect(overlay).toHaveCount(0);
+ await radar.click();await expect(overlay).toHaveCount(0);
  for(let hour=1;hour<=6;hour++){
   await page.locator(`[data-hour="${hour}"]`).click();
   await expect(page.locator('.blocked-cell .active-hour-edge')).toHaveCount(0);

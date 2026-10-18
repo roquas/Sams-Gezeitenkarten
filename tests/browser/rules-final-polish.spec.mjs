@@ -28,7 +28,7 @@ for(const width of [320,360,390,600,900,1440])test.describe(`controls viewport $
    if(state==='inactive')await page.locator('#toggleDistances').click();
    if(state==='waiting')await page.locator('#map [data-id="E3"]').click();
   }
-  await page.locator('#toggleDistances').click();await page.locator('#toggleDistances').click();
+  await page.locator('#toggleDistances').click();
  });
 });
 for(const width of [1440,390,320])test.describe(`rules screenshot viewport ${width}px`,()=>{
