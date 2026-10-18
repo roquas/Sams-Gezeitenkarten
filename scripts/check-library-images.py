@@ -21,6 +21,8 @@ def check_image(data, asset):
     image = Image.open(io.BytesIO(data))
     if image.format not in ('PNG', 'WEBP') or getattr(image, 'n_frames', 1) != 1:
         raise ValueError('expected a static PNG/WebP')
+    if image.getexif().get(274, 1) != 1:
+        raise ValueError('EXIF rotation/mirroring is not supported')
     contract = asset['contract']
     if image.size != (contract['pixelWidth'], contract['pixelHeight']):
         raise ValueError('actual image dimensions differ from geometry contract')

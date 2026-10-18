@@ -34,7 +34,6 @@ try{
   svg.append(el('image',{href:'../'+bg.image,...CHART_BOUNDS,preserveAspectRatio:'xMidYMid meet','data-gallery-layer':'sea'}));
   const objects=el('g',{'data-gallery-layer':'objects','pointer-events':'none'});
   drawAssetPlacements(el,objects,instances,library,byId);
-  for(const n of objects.children)n.setAttribute('href','../'+n.getAttribute('href'));
   svg.append(objects);
   const hexes=el('g',{'data-gallery-layer':'hexes',visibility:document.getElementById('hexes').checked?'visible':'hidden','pointer-events':'none'});
   for(const h of HEXES){

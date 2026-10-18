@@ -1,7 +1,7 @@
 import {schemaErrors,placementSchema} from '../puzzles/schema.mjs';
 import {geometryErrors,imageContract,placedCells} from './geometry.mjs';
 
-const id={type:'string',pattern:'^[a-z0-9]+(?:[.-][a-z0-9]+)*$',maxLength:120};
+const id={type:'string',pattern:'^[a-z0-9]+(?:[.-][a-z0-9]+)*$',maxLength:80};
 const text={type:'string',minLength:1};
 const list=items=>({type:'array',items});
 const obj=(properties,required=Object.keys(properties))=>({type:'object',properties,required,additionalProperties:false});

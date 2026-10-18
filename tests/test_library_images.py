@@ -18,7 +18,7 @@ class LibraryImageTests(unittest.TestCase):
 
     def data(self, image):
         output = io.BytesIO()
-        image.save(output, format='PNG')
+        image.save(output, format='PNG', exif=image.getexif())
         return output.getvalue()
 
     def test_inside_pixel_is_valid(self):
@@ -46,6 +46,12 @@ class LibraryImageTests(unittest.TestCase):
                               (Image.new('RGBA', (16, 16)), 'empty')]:
             with self.assertRaisesRegex(ValueError, reason):
                 checker.check_image(self.data(image), self.asset)
+
+    def test_exif_rotation_is_rejected(self):
+        image = Image.new('RGBA', (16, 16))
+        image.getexif()[274] = 6
+        with self.assertRaisesRegex(ValueError, 'EXIF'):
+            checker.check_image(self.data(image), self.asset)
 
 
 if __name__ == '__main__':
