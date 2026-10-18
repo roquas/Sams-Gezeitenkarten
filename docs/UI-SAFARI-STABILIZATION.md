@@ -130,3 +130,26 @@ Ergebnisse werden mit Links im begleitenden PR dokumentiert. Die durch #53
 optimierte Vier-Shard-CI mit einem Worker je WebKit-Runner bleibt erhalten;
 zusätzlich werden nur die gezielten Review-Artefakte aufbewahrt. Keine höheren
 Retries, keine abgeschwächten Assertions oder neuen kostenpflichtigen Dienste.
+
+### Zusätzlich gefundene Flake im bestehenden Rahmen-Bildvergleich
+
+Im ersten PR-Lauf `39107850478` hatte Chromium einen Flaky-Fall bei
+`visible frame choice works at 390px`: Die beiden PNGs waren im Erstversuch
+identisch, der unveränderte Retry bestand. Das ist kein Beleg für den
+Safari-Appwechsel aus #61. Nachgewiesen ist die fehlende explizite Bildbereitschaft
+im Test: SVG-Knoten entstehen nach asynchronem Puzzleladen, und HTML-Attribute
+sowie der Wechsel einer zuvor versteckten Ansicht garantieren noch keine
+abgeschlossene Rasterdekodierung.
+
+Der Vergleich wartet jetzt auf `Image.decode()` beider gelieferten Rahmen und
+zwei Paint-Takte, prüft zusätzlich deren volle 2252×1892-Dimensionen und vergleicht
+dann weiterhin die vollständigen PNGs mit derselben strengen Ungleichheits-
+Assertion. Beide Bilder werden zur Diagnose aufbewahrt. Kein Sleep, kein
+geänderter Timeout, keine weichere Pixelprüfung. Die genaue Ursache des einen
+stalen Captures lässt sich ohne dessen vollständige Bildartefakte nicht
+rückwirkend beweisen; daraus wird keine spekulative Produkt-Recovery abgeleitet.
+
+Alle drei Playwright-Konfigurationen setzen im CI nun `failOnFlakyTests: true`:
+Der bestehende einzelne Diagnose-Retry bleibt erhalten, ein erst durch Retry
+geretteter Fall macht den Job trotzdem rot. Damit wird keine Flake mehr durch
+den grünen Gesamtstatus verborgen. Die CI prüft weiterhin alle Fälle und Shards.

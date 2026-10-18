@@ -46,6 +46,7 @@ jobs:
           path: |
             test-results/**/ink-*.png
             test-results/**/status-*.png
+            test-results/**/frame-choice-*.png
             test-results/**/resume-lifecycle.json
             test-results/**/cold-chart-timeline.json
           if-no-files-found: ignore
@@ -86,6 +87,7 @@ jobs:
             webkit-results.json
             test-results/**/ink-*.png
             test-results/**/status-*.png
+            test-results/**/frame-choice-*.png
             test-results/**/resume-lifecycle.json
             test-results/**/cold-chart-timeline.json
           if-no-files-found: error

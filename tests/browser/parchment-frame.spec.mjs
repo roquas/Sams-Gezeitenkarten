@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {writeFile} from 'node:fs/promises';
 
 const geometry=page=>page.locator('#map .cell').evaluateAll(ns=>ns.map(n=>({
  id:n.dataset.id,points:n.querySelector('polygon').getAttribute('points'),
@@ -88,8 +89,23 @@ async function frameSettings(page,width){
 async function chartView(page,width){
  if(width<881&&await page.locator('body').getAttribute('data-mobile-view')!=='chart')await page.locator('#chartTab').click();
 }
+async function decodedFrameScreenshot(svg){
+ await svg.waitFor({state:'visible'});
+ const sizes=await svg.evaluate(async node=>{
+  await document.fonts.ready;
+  const sizes=await Promise.all([...node.querySelectorAll('[data-chart-layer="frame"] image')].map(async image=>{
+   const decoded=new Image();decoded.src=image.href.baseVal;await decoded.decode();return [decoded.naturalWidth,decoded.naturalHeight];
+  }));
+  // The game mounts SVG rasters after async puzzle loading. A matching DOM
+  // attribute alone does not establish decoded pixels after a hidden view.
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  return sizes;
+ });
+ expect(sizes).toEqual([[2252,1892],[2252,1892]]);
+ return svg.screenshot({animations:'disabled',scale:'css'});
+}
 for(const width of [1440,390]){
- test('visible frame choice works at '+width+'px without altering notes or geometry',async({page})=>{
+ test('visible frame choice works at '+width+'px without altering notes or geometry',async({page},info)=>{
   await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width,height:900});await page.goto('/');
   const svg=page.locator('#map');await expect(svg).toHaveAttribute('data-frame-mode','final');
   const illustrated=page.locator('#map [data-chart-layer="frame"] image[data-frame-variant="final"]');
@@ -106,12 +122,16 @@ for(const width of [1440,390]){
   await expect(page.locator('#map [data-chart-layer="frame"] image')).toHaveCount(2);
   expect(await geometry(page)).toEqual(geometryBefore);expect(await headings(page)).toEqual(headingsBefore);
   await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
-  await chartView(page,width);const quietScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
+  await chartView(page,width);const quietScreenshot=await decodedFrameScreenshot(svg);
   await frameSettings(page,width);await picker.selectOption('final');
   await expect(svg).toHaveAttribute('data-frame-mode','final');
   await expect(illustrated).toHaveAttribute('visibility','visible');await expect(quiet).toHaveAttribute('visibility','hidden');
   expect(new URL(page.url()).searchParams.get('frame')).toBe('final');
-  await chartView(page,width);const illustratedScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
+  await chartView(page,width);const illustratedScreenshot=await decodedFrameScreenshot(svg);
+  for(const [variant,body] of [['quiet',quietScreenshot],['illustrated',illustratedScreenshot]]){
+   const name=`frame-choice-${width}-${variant}`,path=info.outputPath(name+'.png');
+   await writeFile(path,body);await info.attach(name,{path,contentType:'image/png'});
+  }
   expect(quietScreenshot.equals(illustratedScreenshot)).toBe(false);
   await expect(page.locator('#map [data-id="E3"]')).toContainText('?');await page.evaluate(()=>localStorage.clear());
  });
