@@ -71,13 +71,14 @@ export function registerChartScrollTests(url){
   });
   test('cancelled, uncaptured and diagonal touches never make accidental notes',async({page})=>{
    await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
-   for(const end of ['pointercancel','lostpointercapture','second-finger']){
+   for(const end of ['pointercancel','lostpointercapture','second-finger','view-switch']){
     const point=await center(page,'A1');
     await page.evaluate(({point,end})=>{
      const map=document.getElementById('map'),target=document.elementFromPoint(point.x,point.y);
      const send=(node,type,options={})=>node.dispatchEvent(new PointerEvent(type,{bubbles:true,cancelable:true,pointerType:'touch',isPrimary:true,pointerId:701,button:0,buttons:1,clientX:point.x,clientY:point.y,...options}));
      send(target,'pointerdown');
      if(end==='second-finger')send(target,'pointerdown',{pointerId:702,isPrimary:false});
+     else if(end==='view-switch'){document.getElementById('logbookTab').click();document.getElementById('chartTab').click();}
      else if(end==='lostpointercapture')send(map,end);
      else send(target,end);
      send(map,'pointermove',{clientX:point.x+80});send(map,'pointerup',{buttons:0});

@@ -90,6 +90,7 @@ const cancelGesture=createChartGestures($("map"),{
  move:id=>{if(dragging&&["no","maybe","yes","erase"].includes(state.tool)&&byId[id])apply(id,false);},
  end:()=>{dragging=false;}
 });
+for(const id of ['chartTab','logbookTab'])$(id).addEventListener('click',cancelGesture);
 $("hours").addEventListener("click",e=>{const b=e.target.closest("[data-hour]");if(!b)return;cancelGesture();state.layer=Number(b.dataset.hour);render()});
 
 $("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.layer)||state.layer<1||state.layer>puzzle.steps)return;const h=new Set(state.hiddenHours||[]);if(h.has(state.layer))h.delete(state.layer);else h.add(state.layer);state.hiddenHours=[...h];render()});
