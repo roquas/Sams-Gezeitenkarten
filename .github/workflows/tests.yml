@@ -113,6 +113,8 @@ jobs:
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - name: Install mandatory publication image validator
+        run: python3 -m pip install --user Pillow
       - run: python3 tests/test_package.py
       - run: sh scripts/package.sh
       - name: Extract actual release ZIP outside the checkout
