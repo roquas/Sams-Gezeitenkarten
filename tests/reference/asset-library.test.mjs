@@ -49,8 +49,8 @@ test('graphic type has no implicit passability; decoration omits it',()=>{
  const d=catalog();d.assets[3].passable=true;assert.throws(()=>validateLibrary(d),/decoration/);
 });
 test('fixed canvas and centroid preserve the actual chart lattice at both row parities',()=>{
- assert.deepEqual([imageContract([[0,0]]).pixelWidth,imageContract([[0,0]]).pixelHeight],[288,320]);
- const a=catalog().assets[1];assert.equal(imageContract(a.geometry.cells).pixelWidth,616);
+ assert.deepEqual([imageContract([[0,0]]).pixelWidth,imageContract([[0,0]]).pixelHeight],[360,408]);
+ const a=catalog().assets[1];assert.equal(imageContract(a.geometry.cells).pixelWidth,688);
  for(const anchor of ['B2','B3']){
   const p=assetRectangle(a,anchor,byId),centers=p.cells.map(c=>byId[c].center);
   assert.equal(p.x+p.width/2,(centers[0][0]+centers[1][0])/2);
@@ -116,6 +116,30 @@ test('legacy migration preserves every historical presentation value across ever
 });
 test('file validation rejects a symlink escaping the asset root',()=>{
  const temp=fs.mkdtempSync(path.join(os.tmpdir(),'asset-library-'));
- try{const c=catalog();fs.mkdirSync(path.join(temp,'assets/library'),{recursive:true});fs.symlinkSync(new URL('../../README.md',import.meta.url),path.join(temp,c.assets[0].image.path));assert.throws(()=>validateAssetFiles(c,temp),/symlink/);}
+ try{const c=catalog();fs.mkdirSync(path.join(temp,'assets/library'),{recursive:true});fs.symlinkSync(new URL('../../README.md',import.meta.url),path.join(temp,c.assets[0].image.path));assert.throws(()=>validateAssetFiles(c,temp),/symlink/i);}
  finally{fs.rmSync(temp,{recursive:true,force:true});}
+});
+test('sea-blue-01 is bound to the exact file used by the renderer, even with the same ID',()=>{
+ const c=catalog();c.backgrounds[0].image='assets/seekarte/meer-pergament.webp';
+ assert.throws(()=>validateLibrary(c),/rendered background/);
+ const p=source();p.presentation.assetBackground='sea-blue-01';p.presentation.assetPlacements=[placement];
+ assert.throws(()=>compilePuzzle(p,{assetLibrary:c}),/rendered background/);
+});
+test('internal file aliases and symlink path components are unsupported',()=>{
+ for(const directory of [false,true]){
+  const temp=fs.mkdtempSync(path.join(os.tmpdir(),'asset-alias-'));
+  try{
+   const c=catalog();fs.mkdirSync(path.join(temp,'assets'),{recursive:true});
+   if(directory)fs.symlinkSync(new URL('../../assets/library/',import.meta.url),path.join(temp,'assets/library'));
+   else{
+    fs.mkdirSync(path.join(temp,'assets/library'));
+    fs.copyFileSync(new URL('../../assets/library/technical-single.png',import.meta.url),path.join(temp,'assets/library/original.png'));
+    fs.symlinkSync('original.png',path.join(temp,c.assets[0].image.path));
+   }
+   assert.throws(()=>validateAssetFiles(c,temp),/symlinks are not supported/);
+  }finally{fs.rmSync(temp,{recursive:true,force:true});}
+ }
+});
+test('decoration cannot claim cells already owned by another asset',()=>{
+ assert.ok(errors([placement,{id:'accent',assetId:'technical.decoration.v1',anchor:'B3'}]).some(e=>e.includes('overlapping asset footprints')));
 });

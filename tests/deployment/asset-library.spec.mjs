@@ -11,7 +11,7 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
  await interceptNewAssets(page);await page.goto('./');
  await expect(page.locator('#map [data-placement-id]')).toHaveCount(4);
  const sizes=await page.locator('#map [data-placement-id]').evaluateAll(async ns=>Promise.all(ns.map(async n=>{const i=new Image();i.src=n.getAttribute('href');await i.decode();return [i.naturalWidth,i.naturalHeight];})));
- expect(sizes).toEqual([[288,320],[616,320],[288,320],[288,320]]);
+ expect(sizes).toEqual([[360,408],[688,408],[360,408],[360,408]]);
  expect(requests.some(u=>u.includes('/gk/pr38/src/assets/library.js'))).toBe(true);
  expect(requests.some(u=>u.endsWith('.mjs'))).toBe(false);
  await page.locator('#map [data-id="D1"]').press('Enter');await expect(page.locator('#map [data-id="D1"]')).toContainText('?');

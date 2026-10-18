@@ -34,8 +34,8 @@
       },
       "image": {
         "path": "assets/library/technical-single.png",
-        "width": 288,
-        "height": 320
+        "width": 360,
+        "height": 408
       },
       "provenance": {
         "source": "scripts/build-asset-fixtures.py; schematic test fixture",
@@ -66,8 +66,8 @@
       },
       "image": {
         "path": "assets/library/technical-double.png",
-        "width": 616,
-        "height": 320
+        "width": 688,
+        "height": 408
       },
       "provenance": {
         "source": "scripts/build-asset-fixtures.py; schematic test fixture",
@@ -94,8 +94,8 @@
       },
       "image": {
         "path": "assets/library/technical-lighthouse.png",
-        "width": 288,
-        "height": 320
+        "width": 360,
+        "height": 408
       },
       "provenance": {
         "source": "scripts/build-asset-fixtures.py; schematic test fixture",
@@ -122,8 +122,8 @@
       },
       "image": {
         "path": "assets/library/technical-decoration.png",
-        "width": 288,
-        "height": 320
+        "width": 360,
+        "height": 408
       },
       "provenance": {
         "source": "scripts/build-asset-fixtures.py; schematic test fixture",

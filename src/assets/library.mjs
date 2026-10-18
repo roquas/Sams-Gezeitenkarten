@@ -1,5 +1,6 @@
 import {schemaErrors,placementSchema} from '../puzzles/schema.mjs';
 import {geometryErrors,imageContract,placedCells} from './geometry.mjs';
+import {CHART_ASSET_SPEC} from '../ui/chart-asset-contract.mjs';
 
 const id={type:'string',pattern:'^[a-z0-9]+(?:[.-][a-z0-9]+)*$',maxLength:80};
 const text={type:'string',minLength:1};
@@ -20,6 +21,7 @@ export function validateLibrary(value){
  if(errors.length)throw Error(errors.join('; '));
  const unique=(items,label)=>{const ids=items.map(i=>i.id);if(new Set(ids).size!==ids.length)errors.push('Duplicate '+label+' ID');};
  unique(value.assets,'asset');unique(value.backgrounds,'background');
+ if(value.backgrounds.find(b=>b.id==='sea-blue-01')?.image!==CHART_ASSET_SPEC.sea)errors.push('sea-blue-01 must reference the rendered background: '+CHART_ASSET_SPEC.sea);
  for(const a of value.assets){
   errors.push(...geometryErrors(a.geometry.cells).map(e=>a.id+': '+e));
   if(a.role==='decoration'?Object.hasOwn(a,'passable'):typeof a.passable!=='boolean')errors.push(a.id+': passable must be independent of type; decoration has no passable');
@@ -55,9 +57,10 @@ export function validatePlacements(placements,library,logic,backgroundId,{develo
   const cells=placedCells(a,p.anchor);
   if(cells.some(c=>!board.has(c)))errors.push(p.id+': outside chart');
   if(p.placeId&&(!logic.places[p.placeId]||cells.some(c=>!logic.places[p.placeId].cells.includes(c))))errors.push(p.id+': place membership mismatch');
+  // Graphic cells are exclusive even for decoration. Passability stays separate.
+  for(const c of cells){if(occupied.has(c))errors.push(p.id+': overlapping asset footprints');occupied.add(c);}
   if(a.role==='geographic'){
    if(cells.some(c=>logic.blocked.includes(c)===a.passable))errors.push(p.id+': passable conflicts with puzzle; logic is never changed');
-   for(const c of cells){if(occupied.has(c))errors.push(p.id+': overlapping geographic assets');occupied.add(c);}
   }else if(p.placeId)errors.push(p.id+': decoration cannot represent a logical place');
   if(!development&&(a.stage!=='illustration'||compatibility(library,a.id,backgroundId)!=='approved'))errors.push(p.id+': illustration/background not visually approved');
  }

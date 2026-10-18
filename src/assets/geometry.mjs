@@ -1,8 +1,10 @@
 import {axial} from '../engine/hex.mjs';
-import {hexVertices} from '../ui/place-labels.mjs';
+import {HEXES} from '../ui/chart-geometry.mjs';
+import {PROTECTION} from '../ui/chart-asset-contract.mjs';
+import {intersectConvex,polygonArea,triangulate} from './polygons.mjs';
 
 export const PIXELS_PER_UNIT=4;
-const neighbors=[[1,0],[0,1],[-1,1],[-1,0],[0,-1],[1,-1]];
+export const neighbors=[[1,0],[0,1],[-1,1],[-1,0],[0,-1],[1,-1]];
 const key=c=>c.join(',');
 export function geometryErrors(cells){
  if(!Array.isArray(cells)||!cells.length||cells.length>25)return ['geometry.cells: expected 1–25 axial cells'];
@@ -17,16 +19,46 @@ export function geometryErrors(cells){
  }
  return seen.size===cells.length?[]:['geometry.cells: cells must be edge-connected'];
 }
-// The archived chart has deliberate water gaps between its interactive hexes.
-// Use its actual center lattice (82 / 41 / 68), never a regular-hex bounding box.
+// Voronoi cell of the *infinite* actual center lattice, not the visible hex.
+// Bisectors: |x| <= 41 and +/-41*x +/-68*y <= (41²+68²)/2.
+// This stretched lattice is not regular. Each cell has area 82*68.
+const tip=(41**2+68**2)/(2*68),shoulder=tip-41**2/68;
+export const GRAPHIC_CELL=[[-41,-shoulder],[0,-tip],[41,-shoulder],[41,shoulder],[0,tip],[-41,shoulder]];
+export const graphicCell=([x,y])=>GRAPHIC_CELL.map(([dx,dy])=>[x+dx,y+dy]);
+// Zero-area common boundaries belong to the lexicographically first axial pair.
+// Pixel containment uses complete squares, so this tie can never authorize a
+// square straddling two different assets' footprints.
+export function graphicOwner([x,y]){
+ const r0=Math.floor(y/68),q0=Math.floor((x-41*y/68)/82),candidates=[];
+ for(let r=r0-2;r<=r0+2;r++)for(let q=q0-2;q<=q0+2;q++)candidates.push({q,r,d:(x-82*q-41*r)**2+(y-68*r)**2});
+ const min=Math.min(...candidates.map(c=>c.d));
+ const owner=candidates.filter(c=>Math.abs(c.d-min)<1e-8).sort((a,b)=>a.q-b.q||a.r-b.r)[0];
+ return [owner.q,owner.r];
+}
+// Board = union of its 25 infinite-lattice cells, intersected with the existing
+// 8-unit gameplay protection envelope. Derived only from grid geometry; never
+// from frame alpha or current artwork. No renderer clipping is performed.
+export const GRAPHIC_SAFETY=PROTECTION[0];
+const safeTriangles=triangulate(GRAPHIC_SAFETY);
+export function boardGraphicCell(center){
+ return safeTriangles.map(t=>intersectConvex(graphicCell(center),t)).filter(p=>polygonArea(p)>1e-9);
+}
+export const GRAPHIC_MAP_POLYGONS=HEXES.flatMap(h=>boardGraphicCell(h.center));
 export function imageContract(cells){
  const errors=geometryErrors(cells);if(errors.length)throw Error(errors.join('; '));
  const centers=cells.map(([q,r])=>[82*q+41*r,68*r]);
  const center=[0,1].map(i=>centers.reduce((sum,c)=>sum+c[i]/centers.length,0));
- const polygons=centers.map(c=>hexVertices(c[0]-center[0],c[1]-center[1]));
+ const polygons=centers.map(c=>graphicCell([c[0]-center[0],c[1]-center[1]]));
  const points=polygons.flat();
  const [width,height]=[0,1].map(i=>2*Math.ceil(Math.max(...points.map(p=>Math.abs(p[i])))+4));
  return {width,height,pixelWidth:width*PIXELS_PER_UNIT,pixelHeight:height*PIXELS_PER_UNIT,polygons};
+}
+// Same canvas, with the permitted footprint at a specific board position.
+// Files destined for the edge must already fit it; validation rejects overflow.
+export function placementContract(asset,anchor){
+ const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
+ const rect=assetRectangle(asset,anchor,byId),cx=rect.x+rect.width/2,cy=rect.y+rect.height/2;
+ return {...imageContract(asset.geometry.cells),polygons:rect.cells.flatMap(id=>boardGraphicCell(byId[id].center)).map(p=>p.map(([x,y])=>[x-cx,y-cy]))};
 }
 export function placedCells(asset,anchor){
  const [q,r]=axial(anchor);

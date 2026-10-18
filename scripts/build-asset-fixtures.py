@@ -20,6 +20,9 @@ if __name__ == '__main__':
         cx, cy = image.width/2, image.height/2
         if name in ('single', 'double'):
             centers = [cx] if shape == 0 else [cx-164, cx+164]
+            if shape == 1:
+                # A conspicuous technical bridge across the former water gap.
+                draw.rectangle((cx-164, cy-26, cx+164, cy+26), fill='#947cb5', outline='#49365f', width=8)
             for x in centers:
                 draw.regular_polygon((x, cy, 75), 6, fill='#947cb5', outline='#49365f', width=8)
                 draw.line((x-30, cy-25, x+30, cy+25), fill='white', width=8)

@@ -1,7 +1,8 @@
 import {validateLibrary,validatePlacements,compatibility} from '../src/assets/library.mjs';
 import {HEXES,CHART_BOUNDS} from '../src/ui/chart-geometry.mjs';
 import {drawAssetPlacements} from '../src/ui/asset-layer.mjs';
-import {placedCells} from '../src/assets/geometry.mjs';
+import {placedCells,placementContract,assetRectangle} from '../src/assets/geometry.mjs';
+import {reviewPositions} from './review-positions.mjs';
 
 const el=(tag,attrs={},text)=>{
  const node=document.createElementNS('http://www.w3.org/2000/svg',tag);
@@ -35,6 +36,14 @@ try{
   const objects=el('g',{'data-gallery-layer':'objects','pointer-events':'none'});
   drawAssetPlacements(el,objects,instances,library,byId);
   svg.append(objects);
+  const footprints=el('g',{'data-gallery-layer':'footprints',visibility:document.getElementById('footprints').checked?'visible':'hidden','pointer-events':'none'});
+  for(const p of instances){
+   const a=library.assets.find(a=>a.id===p.assetId),rect=assetRectangle(a,p.anchor,byId);
+   for(const polygon of placementContract(a,p.anchor).polygons){
+    footprints.append(el('polygon',{points:polygon.map(([x,y])=>[x+rect.x+rect.width/2,y+rect.y+rect.height/2].join(',')).join(' '),fill:'#48ddb9','fill-opacity':.14,'data-footprint':p.id}));
+   }
+  }
+  svg.append(footprints);
   const hexes=el('g',{'data-gallery-layer':'hexes',visibility:document.getElementById('hexes').checked?'visible':'hidden','pointer-events':'none'});
   for(const h of HEXES){
    hexes.append(el('polygon',{points:h.polygon.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#fff4d5','stroke-width':1}));
@@ -57,13 +66,13 @@ try{
   inventory.append(table);
   const positions=document.getElementById('positions');positions.replaceChildren();
   const selected=library.assets.find(a=>a.id===reviewAsset.value);
-  const anchors=HEXES.filter(h=>placedCells(selected,h.id).every(c=>byId[c])).map(h=>h.id);
-  for(const anchor of [anchors[0],anchors[Math.floor(anchors.length/2)],anchors.at(-1)]){
-   if(!anchor)continue;
-   const svg=el('svg',{viewBox:'-37 -44.5 563 473',role:'img','aria-label':'Weitere Asset-Prüfpositionen'});
-   draw(svg,[{id:'review',assetId:selected.id,anchor}]);positions.append(svg);
+  for(const {anchor,parity,location} of reviewPositions(selected)){
+   const figure=document.createElement('figure'),caption=document.createElement('figcaption');
+   caption.textContent=anchor+' · '+parity+' Zeile · '+location;figure.append(caption);
+   const svg=el('svg',{viewBox:'-37 -44.5 563 473',role:'img','aria-label':caption.textContent,'data-anchor':anchor,'data-row-parity':parity,'data-position':location});
+   draw(svg,[{id:'review',assetId:selected.id,anchor}]);figure.append(svg);positions.append(figure);
   }
   document.getElementById('status').textContent='Technische Testansicht · '+select.value+' · Einzelprüfung: '+selected.id+' / '+compatibility(library,selected.id,select.value);
  }
- select.addEventListener('change',render);reviewAsset.addEventListener('change',render);document.getElementById('hexes').addEventListener('change',render);render();
+ for(const id of ['background','reviewAsset','hexes','footprints'])document.getElementById(id).addEventListener('change',render);render();
 }catch(error){document.getElementById('error').textContent=error.message;}
