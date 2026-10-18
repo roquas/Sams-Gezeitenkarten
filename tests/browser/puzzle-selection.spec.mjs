@@ -96,7 +96,9 @@ test('data-defined four-hour puzzle adapts hours, notes and verification without
  await choose(page,other);await expect(page.locator('#hours [data-hour]:visible')).toHaveCount(4);
  await expect(page.locator('#gameRules')).toContainText('sechs Hexfelder');
  await expect(page.locator('#gameRules')).toContainText('4 Stunden');
- await expect(page.locator('#gameRules')).toContainText('4 Beobachtungen');
+ await expect(page.locator('#gameRules')).toContainText('ein Logbuch voller Beobachtungen');
+ await expect(page.locator('#allClues [data-clue]')).toHaveCount(4);
+ await expect(page.locator('#gameRules')).not.toContainText('sieben Beobachtungen');
  await page.locator('[data-hour="4"]').click();await page.locator('#map [data-id="E5"]').click();expect((await saved(page,other)).marks['4:E5']).toBe('maybe');
  await page.locator('#routeTool').click();for(const id of ['B5','C5','D5','E5'])await page.locator(`#map [data-id="${id}"]`).click();
  await expect(page.locator('#verify')).toBeEnabled();await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig!');

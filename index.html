@@ -32,9 +32,9 @@
 <button class="toolpick route-undo" id="routeBack" type="button" title="Letzte Etappe zurücknehmen" aria-label="Letzte Etappe zurücknehmen"><svg class="toolicon toolsvg" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30L14 21L20 25L28 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 8a10 10 0 1 1-1 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M16 7l5 1-2 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="toolcaption">Route zurück</span></button>
 </div>
 </div>
-<p id="distanceStatus" class="distance-status" role="status" aria-live="polite" hidden></p>
 <div class="mapbox"><svg id="map" viewBox="-24 -24 523 433" role="img" aria-label="Interaktive Hexkarte mit 25 Feldern"></svg></div>
 <div class="map-actions" id="mapActions" role="group" aria-label="Kartenaktionen und Anzeigeoptionen"></div>
+<p id="distanceStatus" class="distance-status" role="status" aria-live="polite" aria-atomic="true"></p>
 <section class="clue-carousel bordbook" aria-label="Hinweise aus dem Logbuch">
  <div class="book-spread">
   <div class="book-heading" aria-hidden="true"><span class="book-vignette"></span></div>
@@ -58,11 +58,12 @@
 <dt>⌫ · ⌫∀</dt><dd>In der gewählten Stunde radieren oder das Feld in allen Stunden leeren.</dd>
 <dt>Routenlinie · Routenpfeil zurück</dt><dd>Ab Start benachbarte Wasserfelder verbinden oder die letzte Etappe zurücknehmen.</dd>
 <dt>↶ Rückgängig</dt><dd>Letzte Bearbeitung zurücknehmen. Anzeigeoptionen und bezahlte Denkanstöße bleiben bestehen.</dd>
-<dt>Radar</dt><dd>Aktivieren und ein Ursprungsfeld (auch Land) wählen. Die Zahlen bleiben beim Markieren sichtbar. Erneut aktivieren und ein Feld wählen ändert den Ursprung; zweimal drücken schaltet die Anzeige aus.</dd>
+<dt>Radar</dt><dd>Aktivieren und ein Ursprungsfeld (auch Land) wählen. Die Zahlen bleiben beim Markieren sichtbar. Ein weiterer Druck auf das Radar schaltet die Anzeige sofort aus. Danach erneut aktivieren und einen neuen Ursprung wählen.</dd>
 <dt>Auge im Hexagon</dt><dd>Markierungen der aktuellen Stunde ein- oder ausblenden. Die dicke Kante folgt der Stundenwahl.</dd>
 <dt>Auge mit ①②③</dt><dd>Routennummern ein- oder ausblenden.</dd>
 <dt>Route mit Haken</dt><dd>Die Route anhand der Hinweise überprüfen. Erst nach sechs gültigen Etappen verfügbar.</dd></dl>
-<p>Petrol und ein gedrückter Button zeigen das aktive Werkzeug beziehungsweise die eingeschaltete Anzeige. Ein durchgestrichenes Auge bedeutet ausgeblendete Stundenmarkierungen. Alle Buttons sind per Tab und Enter oder Leertaste bedienbar.</p></details>
+<p>Petrol und ein gedrückter Button zeigen das aktive Werkzeug beziehungsweise die eingeschaltete Anzeige. Ein durchgestrichenes Auge bedeutet ausgeblendete Stundenmarkierungen. Alle Buttons sind per Tab und Enter oder Leertaste bedienbar.</p>
+<p>Auf dem Touchscreen: Tippen markiert ein Feld, seitliches Ziehen mehrere Felder mit einem Undo-Schritt. Vertikales oder überwiegend vertikales Wischen scrollt die Buchseite, ohne Notizen zu ändern. Mit Maus oder Stift kannst Du in jede Richtung zeichnen.</p></details>
 <div class="stat"><span class="muted" id="count">0 Markierungen auf dieser Karte</span></div>
 <hr class="line">
 
@@ -90,7 +91,7 @@
 <h4>Die Karte lesen</h4>
 <p>Die Seekarte besteht aus <strong>Hexfeldern</strong>. Benachbarte Hexfelder teilen eine gemeinsame <strong>Seite</strong>.</p>
 <p><strong>Koordinaten:</strong> Die Spalten heißen Alpha, Beta, Gamma, Delta und Epsilon; die Zeilen Cyan, Magenta, Violett, Blau und Orange. Beispiel: <strong>Gamma / Violett</strong>. Am Pergamentrand helfen Beschriftungen und geschwungene Hilfslinien bei der Orientierung. Die kompakte Symbolnotation in Hinweisen und Route meint dieselben Koordinaten.</p>
-<p><strong>Richtungen:</strong> Ost, Südost, Südwest, West, Nordwest und Nordost. Ein Kurswechsel bezieht sich auf die <strong>unmittelbar vorherige</strong> Fahrtrichtung. Von Ost aus bedeutet 60° rechts <strong>Südost</strong>, 60° links <strong>Nordost</strong>. Die erste Stunde hat noch keine vorherige Fahrtrichtung.</p>
+<p><strong>Richtungen und Stundenmarkierungen:</strong> Nordost (Stunde 1), Ost (Stunde 2), Südost (Stunde 3), Südwest (Stunde 4), West (Stunde 5) und Nordwest (Stunde 6). Die sechs Hexseiten bieten jeweils Platz für die Notizen einer Stunde. Kleine Zeichen an der entsprechenden Seite zeigen Deine Markierungen; eine kräftige Doppelkante hebt die gerade gewählte Stunde hervor. Diese Anordnung hilft beim Sortieren Deiner Notizen – sie schreibt Sam keinen Kurs vor. Ein Kurswechsel bezieht sich auf die <strong>unmittelbar vorherige</strong> Fahrtrichtung. Von Ost aus bedeutet 60° rechts <strong>Südost</strong>, 60° links <strong>Nordost</strong>. Die erste Stunde hat noch keine vorherige Fahrtrichtung.</p>
 <p><strong>Abstände:</strong> Gemessen wird die <strong>Hexdistanz</strong>, also die kürzeste Schrittzahl auf einem ungehinderten Hexraster. Direkte Nachbarn haben Abstand 1. <strong>Landhindernisse verlängern diese geometrische Distanz nicht</strong>; der tatsächlich befahrbare Umweg kann länger sein.</p>
 <p><strong>Küste:</strong> Als <em>Küste von Tesoro</em> zählen <strong>beispielsweise</strong> alle befahrbaren Wasserfelder, die mit der Insel eine gemeinsame Hexseite besitzen. Dieselbe Regel gilt bei anderen Inseln.</p>
 <h4>Mit den Stundenkarten arbeiten</h4>
@@ -106,11 +107,11 @@
 <p>Wenn Du eine plausible Fahrt hast, wähle das <strong>Routenwerkzeug unterhalb der Karte</strong> und tippe die Positionen der Reihe nach an. Die Route beginnt am vorgegebenen Start. Jeder neue Schritt muss auf ein benachbartes befahrbares Feld führen. Mit <strong>„Route eins zurück“</strong> entfernst Du den letzten Schritt. Die <strong>„Rekonstruierte Route“</strong> zeigt die gewählten Positionen. Nach <span data-rule-hours="word">sechs</span> Etappen kannst Du <strong>„Prüfen“</strong> verwenden. Eine falsche Route verrät die Lösung nicht.</p>
 <p>Mit den Anzeigeoptionen <strong>unterhalb der Karte</strong> kannst Du Dir auf Deiner rekonstruierten Route die <strong>Schritte nummerieren</strong> lassen. „S“ kennzeichnet den Start; die Zahlen 1 bis <span data-rule-hours="number">6</span> zeigen die gewählten Etappen. Die Nummerierung setzt keine Route, sondern beschriftet die von Dir eingezeichnete Fahrt.</p>
 <h4>Wenn Du feststeckst</h4>
-<ul><li><strong>Abstandsanzeige (unter der Karte):</strong> Das Radar aktivieren, dann ein Ursprungsfeld (auch Land) auf der Karte antippen. Geometrische Hexabstände werden angezeigt; <strong>kostenlos</strong>. Die Zahlen bleiben sichtbar, während Du mit den oberen Werkzeugen markierst oder radierst. Für einen anderen Ursprung erneut das Radar aktivieren und ein Feld auswählen. Zweimal auf das Radar drücken schaltet die Anzeige aus.</li><li><strong>Notizprüfung (hier in der Hilfe weiter unten, „Notizen prüfen“):</strong> Prüft sichere und ausgeschlossene Markierungen auf Widersprüche und nennt deren Anzahl, nicht ihre Position; <strong>5 Strafpunkte</strong>. „Möglich“-Notizen werden ignoriert.</li><li><strong>Denkanstoß (hier in der Hilfe weiter unten, „Passenden Tipp“):</strong> Zusätzliche Hilfe gegen <strong>10 Strafpunkte</strong>.</li></ul>
+<ul><li><strong>Abstandsanzeige (unter der Karte):</strong> Das Radar aktivieren, dann ein Ursprungsfeld (auch Land) auf der Karte antippen. Geometrische Hexabstände werden angezeigt; <strong>kostenlos</strong>. Die Zahlen bleiben sichtbar, während Du mit den oberen Werkzeugen markierst oder radierst. Ein weiterer Druck auf das Radar schaltet die Anzeige sofort aus, ohne dass Du ein Feld wählen musst. Beim nächsten Einschalten wählst Du einen neuen Ursprung.</li><li><strong>Notizprüfung (hier in der Hilfe weiter unten, „Notizen prüfen“):</strong> Prüft sichere und ausgeschlossene Markierungen auf Widersprüche und nennt deren Anzahl, nicht ihre Position; <strong>5 Strafpunkte</strong>. „Möglich“-Notizen werden ignoriert.</li><li><strong>Denkanstoß (hier in der Hilfe weiter unten, „Passenden Tipp“):</strong> Zusätzliche Hilfe gegen <strong>10 Strafpunkte</strong>.</li></ul>
 <p>Du kannst einzelne Logbucheinträge durchblättern, alle Hinweise in der Übersicht lesen und erledigte Hinweise abhaken.</p>
 <h4>Und jetzt?</h4>
 <p>Lies das Logbuch, wähle die erste Stunde und beginne mit dem, was Du sicher weißt. Du musst nicht sofort die ganze Route sehen. Es reicht, wenn nach jedem Hinweis ein paar Möglichkeiten weniger übrig bleiben.</p>
-<p><strong><span data-rule-hours="capital">Sechs</span> Stunden, eine Route und <span data-rule-clues>sieben</span> Beobachtungen.</strong> Robin hat immerhin alles aufgeschrieben. Jetzt müssen wir nur noch herausfinden, was er damit gemeint hat.</p>
+<p><strong><span data-rule-hours="capital">Sechs</span> Stunden, eine Route und ein Logbuch voller Beobachtungen.</strong> Robin hat immerhin alles aufgeschrieben. Jetzt müssen wir nur noch herausfinden, was er damit gemeint hat.</p>
 </article></details></section>
 <section class="logbook-section"><details><summary>Aus Robins Logbuch</summary><p class="muted">Auch hier kannst Du die Hinweise abhaken.</p><div id="allClues" class="all-clues"></div></details></section>
 <section class="logbook-section"><details><summary>Hilfe</summary><p class="muted">Die Abstandsanzeige unter der Karte ist kostenlos. Rätselhilfen kosten Punkte. Deine Notizen werden nicht automatisch verändert.</p>

@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {writeFile} from 'node:fs/promises';
 
 const geometry=page=>page.locator('#map .cell').evaluateAll(ns=>ns.map(n=>({
  id:n.dataset.id,points:n.querySelector('polygon').getAttribute('points'),
@@ -35,11 +36,12 @@ test('all variants preserve geometry, coordinates and usable SVG targets',async(
  }
 });
 
-for(const width of [1440,390,320])test(`render matrix at ${width}px has no errors, clipping or distortion`,async({page},testInfo)=>{
+for(const width of [1440,390,320])for(const mode of ['legacy','raster','modular','final','quiet'])test(`render matrix ${mode} at ${width}px has no errors, clipping or distortion`,async({page},testInfo)=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{if(r.status()>=400)errors.push(r.url());});
- for(const mode of ['legacy','raster','modular','final','quiet']){
-  await page.setViewportSize({width,height:1100});await page.goto('/?frame='+mode);
+ // Each independent frame mode gets its own unchanged timeout budget.
+ // No cross-mode state is asserted here; every geometry/error/image check stays.
+ await page.setViewportSize({width,height:1100});await page.goto('/?frame='+mode);
   await page.waitForSelector('#map .cell');await page.evaluate(()=>document.fonts.ready);
   const map=page.locator('#map');expect(await map.getAttribute('viewBox')).toBe('-37 -44.5 563 473');
   const scale=await map.evaluate(n=>{const m=n.getScreenCTM();return [m.a,m.d];});
@@ -49,7 +51,6 @@ for(const width of [1440,390,320])test(`render matrix at ${width}px has no error
   const labels=await page.locator('[data-margin-side]').evaluateAll(ns=>ns.map(n=>{const b=n.getBBox();return [b.x,b.y,b.x+b.width,b.y+b.height];}));
   expect(labels.every(([x,y,r,b])=>x>=-37&&y>=-44.5&&r<=526&&b<=428.5)).toBe(true);
   await testInfo.attach(`${mode}-${width}`,{body:await map.screenshot(),contentType:'image/png'});
- }
  expect(errors).toEqual([]);
 });
 
@@ -88,8 +89,23 @@ async function frameSettings(page,width){
 async function chartView(page,width){
  if(width<881&&await page.locator('body').getAttribute('data-mobile-view')!=='chart')await page.locator('#chartTab').click();
 }
+async function decodedFrameScreenshot(svg){
+ await svg.waitFor({state:'visible'});await svg.scrollIntoViewIfNeeded();
+ const sizes=await svg.evaluate(async node=>{
+  await document.fonts.ready;
+  const sizes=await Promise.all([...node.querySelectorAll('[data-chart-layer="frame"] image')].map(async image=>{
+   const decoded=new Image();decoded.src=image.href.baseVal;await decoded.decode();return [decoded.naturalWidth,decoded.naturalHeight];
+  }));
+  // The game mounts SVG rasters after async puzzle loading. A matching DOM
+  // attribute alone does not establish decoded pixels after a hidden view.
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  return sizes;
+ });
+ expect(sizes).toEqual([[2252,1892],[2252,1892]]);
+ return svg.screenshot({animations:'disabled',scale:'css'});
+}
 for(const width of [1440,390]){
- test('visible frame choice works at '+width+'px without altering notes or geometry',async({page})=>{
+ test('visible frame choice works at '+width+'px without altering notes or geometry',async({page},info)=>{
   await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width,height:900});await page.goto('/');
   const svg=page.locator('#map');await expect(svg).toHaveAttribute('data-frame-mode','final');
   const illustrated=page.locator('#map [data-chart-layer="frame"] image[data-frame-variant="final"]');
@@ -106,12 +122,16 @@ for(const width of [1440,390]){
   await expect(page.locator('#map [data-chart-layer="frame"] image')).toHaveCount(2);
   expect(await geometry(page)).toEqual(geometryBefore);expect(await headings(page)).toEqual(headingsBefore);
   await expect(page.locator('#map [data-id="E3"]')).toContainText('?');
-  await chartView(page,width);const quietScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
+  await chartView(page,width);const quietScreenshot=await decodedFrameScreenshot(svg);
   await frameSettings(page,width);await picker.selectOption('final');
   await expect(svg).toHaveAttribute('data-frame-mode','final');
   await expect(illustrated).toHaveAttribute('visibility','visible');await expect(quiet).toHaveAttribute('visibility','hidden');
   expect(new URL(page.url()).searchParams.get('frame')).toBe('final');
-  await chartView(page,width);const illustratedScreenshot=await svg.screenshot({animations:'disabled',scale:'css'});
+  await chartView(page,width);const illustratedScreenshot=await decodedFrameScreenshot(svg);
+  for(const [variant,body] of [['quiet',quietScreenshot],['illustrated',illustratedScreenshot]]){
+   const name=`frame-choice-${width}-${variant}`,path=info.outputPath(name+'.png');
+   await writeFile(path,body);await info.attach(name,{path,contentType:'image/png'});
+  }
   expect(quietScreenshot.equals(illustratedScreenshot)).toBe(false);
   await expect(page.locator('#map [data-id="E3"]')).toContainText('?');await page.evaluate(()=>localStorage.clear());
  });

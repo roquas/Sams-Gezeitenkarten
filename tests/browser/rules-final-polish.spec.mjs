@@ -10,6 +10,13 @@ test('editorial rules remain collapsed and offer the complete structured introdu
  await expect(rules.locator('h4')).toHaveCount(8);
  await expect(rules).toContainText('Landhindernisse verlängern diese geometrische Distanz nicht');
  await expect(rules).toContainText('5 Strafpunkte');await expect(rules).toContainText('10 Strafpunkte');
+ await expect(rules).toContainText('Nordost (Stunde 1), Ost (Stunde 2), Südost (Stunde 3), Südwest (Stunde 4), West (Stunde 5) und Nordwest (Stunde 6)');
+ await expect(rules).toContainText('sie schreibt Sam keinen Kurs vor');
+ await expect(rules).toContainText('eine kräftige Doppelkante hebt die gerade gewählte Stunde hervor');
+ await expect(rules).toContainText('Ein weiterer Druck auf das Radar schaltet die Anzeige sofort aus');
+ await expect(rules).not.toContainText('Zweimal');
+ await expect(rules).toContainText('ein Logbuch voller Beobachtungen');
+ await expect(rules).not.toContainText('sieben Beobachtungen');
  await expect(rules.locator('ol li')).toHaveCount(6);
  await expect(rules).not.toContainText('Bildplatzhalter');
  await rules.locator('summary').focus();await page.keyboard.press('Enter');await expect(rules).not.toHaveAttribute('open','');
@@ -28,7 +35,7 @@ for(const width of [320,360,390,600,900,1440])test.describe(`controls viewport $
    if(state==='inactive')await page.locator('#toggleDistances').click();
    if(state==='waiting')await page.locator('#map [data-id="E3"]').click();
   }
-  await page.locator('#toggleDistances').click();await page.locator('#toggleDistances').click();
+  await page.locator('#toggleDistances').click();
  });
 });
 for(const width of [1440,390,320])test.describe(`rules screenshot viewport ${width}px`,()=>{
