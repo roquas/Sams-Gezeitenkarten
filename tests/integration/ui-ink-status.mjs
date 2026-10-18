@@ -34,7 +34,7 @@ export function registerInkStatusTests(url){
     await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
     expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-reference-3.6-schema1-data1')).marks)).toEqual({});
    });
-   test(`radar ${method} starts a fresh source and stays off through undo and reload`,async({page},info)=>{
+   test(`radar ${method} starts a fresh source without marking it`,async({page},info)=>{
     // This is exactly the completed-selection precondition of the preceding
     // scenario. Keep the full input matrix while bounding each DPR-2 case.
     await page.addInitScript(()=>{
@@ -48,7 +48,21 @@ export function registerInkStatusTests(url){
     await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
     await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
     await activate(page,method,cell(page,'A1'));await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');await expect(cell(page,'A1')).not.toContainText('✓');expect(await layout(page)).toEqual(before);
-    await activate(page,method,radar);await page.locator('#undo').click();await expect(page.locator('.distance-overlay')).toHaveCount(0);
+   });
+   test(`radar ${method} stays off through undo and reload`,async({page})=>{
+    // Continue from the fresh A1 selection in a separate browser context;
+    // reload must consume the real saved off state, never reseed this fixture.
+    await page.addInitScript(()=>{
+     if(!sessionStorage.getItem('radar-fixture-seeded')){
+      localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'A1'}));
+      sessionStorage.setItem('radar-fixture-seeded','true');
+     }
+    });
+    await page.goto(url);const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
+    await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');const before=await layout(page);
+    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');
+    await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
+    await page.locator('#undo').click();await expect(page.locator('.distance-overlay')).toHaveCount(0);
     await page.reload();await expect(radar).toHaveAttribute('data-distance-state','inactive');
    });
   }
