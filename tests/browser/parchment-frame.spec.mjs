@@ -36,11 +36,12 @@ test('all variants preserve geometry, coordinates and usable SVG targets',async(
  }
 });
 
-for(const width of [1440,390,320])test(`render matrix at ${width}px has no errors, clipping or distortion`,async({page},testInfo)=>{
+for(const width of [1440,390,320])for(const mode of ['legacy','raster','modular','final','quiet'])test(`render matrix ${mode} at ${width}px has no errors, clipping or distortion`,async({page},testInfo)=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{if(r.status()>=400)errors.push(r.url());});
- for(const mode of ['legacy','raster','modular','final','quiet']){
-  await page.setViewportSize({width,height:1100});await page.goto('/?frame='+mode);
+ // Each independent frame mode gets its own unchanged timeout budget.
+ // No cross-mode state is asserted here; every geometry/error/image check stays.
+ await page.setViewportSize({width,height:1100});await page.goto('/?frame='+mode);
   await page.waitForSelector('#map .cell');await page.evaluate(()=>document.fonts.ready);
   const map=page.locator('#map');expect(await map.getAttribute('viewBox')).toBe('-37 -44.5 563 473');
   const scale=await map.evaluate(n=>{const m=n.getScreenCTM();return [m.a,m.d];});
@@ -50,7 +51,6 @@ for(const width of [1440,390,320])test(`render matrix at ${width}px has no error
   const labels=await page.locator('[data-margin-side]').evaluateAll(ns=>ns.map(n=>{const b=n.getBBox();return [b.x,b.y,b.x+b.width,b.y+b.height];}));
   expect(labels.every(([x,y,r,b])=>x>=-37&&y>=-44.5&&r<=526&&b<=428.5)).toBe(true);
   await testInfo.attach(`${mode}-${width}`,{body:await map.screenshot(),contentType:'image/png'});
- }
  expect(errors).toEqual([]);
 });
 

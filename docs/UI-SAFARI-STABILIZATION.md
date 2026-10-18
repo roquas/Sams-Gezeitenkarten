@@ -120,7 +120,7 @@ Gezielte lokale Prüfungen: 65 Unit-Tests, Puzzlevalidierung, sieben Pakettests,
 Radar-/Tastaturregressionen, native Chromium-Taps/-Drags/-Scrollen, Darstellung
 und Lifecycle-Fälle. Die Aufteilung langer neuer Eingabeszenarien in einzelne
 Tests erhält sämtliche Assertions; Timeouts und Retries bleiben unverändert.
-Die vollständigen Listen umfassen 424 Fälle je Browserfamilie sowie 271
+Die vollständigen Listen umfassen 448 Fälle je Browserfamilie sowie 271
 Deploymentfälle, einschließlich Desktop, Smartphone, iPhone-WebKit und
 ipad-WebKit. Drei bestehende bedingte Auslassungen pro Browserfamilie bleiben
 unverändert. Quell- und ZIP-Prüfungen sind absichtlich beide vorhanden.
@@ -166,12 +166,13 @@ persistierte Route, statt sämtliche bereits separat geprüften Eingaben zu
 wiederholen, warten auf echte Dekodierung und behalten native DPR-Auflösung.
 Keine Assertion entfällt, beide Bilder bleiben erhalten und die bestehenden
 Timeouts gelten unverändert. Die ausführlichen Listen umfassen deshalb jetzt
-424 statt ursprünglich 370 Fälle je Browserfamilie und 271 statt 163 ZIP-Fälle.
+448 statt ursprünglich 370 Fälle je Browserfamilie und 271 statt 163 ZIP-Fälle.
 
 Auch der kombinierte lokale DPR-2-Radarzyklus lag am Budget. Die komplette
 Maus-/Tastatur-/Touch-Matrix bleibt bestehen, jetzt getrennt in Auswahl/Ein-Klick-
-Aus, Wiederaktivierung/Frischquelle sowie Ein-Klick-Aus/Undo/Reload. Die Folgeteile beginnen
-mit derselben gültigen, abgeschlossenen C1-Auswahl als gespeicherter Fixture;
+Aus, Wiederaktivierung/Frischquelle sowie Ein-Klick-Aus/Undo/Reload. Die Frischquellenprüfung beginnt
+mit der gültigen C1-Auswahl; die Persistenzprüfung mit dem daraus entstandenen
+A1-Spielstand als gespeicherter Fixture;
 ein Sessionmarker verhindert ein erneutes Seeden beim getesteten Reload.
 Alle Layout-, Overlay-, Notiz- und Persistenzassertions bleiben erhalten.
 
@@ -186,3 +187,13 @@ Auch Frischquelle und anschließende Persistenzprüfung sind getrennte Szenarien
 da der vollständige Zyklus auf dem lokalen Software-Renderer bei DPR 2
 weiterhin 30s erreichte. Beide Folgeszenarien beginnen mit exakt dem gültigen
 Spielstand des vorherigen Endzustands; kein Timebudget wurde angehoben.
+
+### Durch den Flaky-Guard gefundene bestehende Rahmenmatrix
+
+Lauf `39110301957` bestand alle neuen UI-Fälle, schlug aber wegen eines
+bestehenden Flaky-Tests fehl: Die 1440px-Rahmenmatrix lud fünf Modi in einem
+einzigen 30s-Fall. Beim fünften `page.goto(...quiet)` war das gemeinsame Budget
+aufgebraucht; erst der Retry bestand. Die Matrix läuft jetzt als 15 unabhängige
+Fälle (drei Breiten × fünf Modi), statt als drei Fälle mit je fünf Navigationen.
+Alle Modi, HTTP-/JS-Fehlerprüfungen, Geometrie-/Clippingassertions und PNGs
+bleiben erhalten. Kein Timeout und keine Retryzahl wurde angehoben.
