@@ -10,7 +10,7 @@ Arbeitsleitplanken: vorhandene Namen bevorzugen; Quellenwissen von Erfindungen t
 
 ## Tesoro: aktuelle Ortsreferenz
 
-Die [Tesoro-Weltreferenz](TESORO-WORLD-REFERENCE.md) ergänzt die allgemeine Quellenarbeit um die Ankunft aus Kapitel 06 Episode 01 und die anschließend ausdrücklich bestätigte Erzählerergänzung vom 19.10.2026. Maßgeblich sind der Zugang **an einem Stadtende durch die zweigeschossige Wirtschaft**, die Plattformen und Hängebrücken, einzelne Untergeschosse und die gegenüberliegende Klippe mit Schneeweg zum hinter dem Gipfel hervorschauenden Leuchtturm. Die Gebäudezahl ist frei. Diese Angaben bleiben getrennt von Audio-ASR-Belegen. [Aktueller Vierhex-Prototyp v3, künstlerische Freigabe ausstehend](TESORO-V3-65.md).
+Die [Tesoro-Weltreferenz](TESORO-WORLD-REFERENCE.md) ergänzt die allgemeine Quellenarbeit um die Ankunft aus Kapitel 06 Episode 01 und die anschließend ausdrücklich bestätigte Erzählerergänzung vom 19.10.2026. Maßgeblich sind der Zugang **an einem Stadtende durch die zweigeschossige Wirtschaft**, die Plattformen und Hängebrücken, einzelne Untergeschosse und die gegenüberliegende Klippe mit Schneeweg zum hinter dem Gipfel hervorschauenden Leuchtturm. Die Gebäudezahl ist frei. Diese Angaben bleiben getrennt von Audio-ASR-Belegen. [Aktueller Vierhex-Prototyp v4, künstlerische Freigabe ausstehend](TESORO-V4-65.md).
 
 
 ## Verbindliche Gestaltungsregel: Ortsnamen auf Pergamentrollen

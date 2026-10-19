@@ -1,0 +1,73 @@
+[
+  {
+    "key": "tesoro",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "image": "assets/library/tesoro-h4-v4.png",
+    "sourceSha256": "da39b4b1498f655959995de896a30b6ad3c05b0c8f22695d446a350fd92797a9",
+    "assetSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+    "sourceSize": [
+      1407,
+      1118
+    ],
+    "sampleSize": [
+      676,
+      537
+    ],
+    "paddingLeftTop": [
+      110,
+      87
+    ],
+    "nominalPercent": 79,
+    "canvas": [
+      856,
+      680
+    ],
+    "visiblePixels": 235196,
+    "alphaOnePixels": 2316,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 1233,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false,
+    "minimumVisiblePixelsPerCell": 35000,
+    "visiblePixelsPerCell": [
+      42820,
+      55246,
+      70681,
+      61536
+    ]
+  }
+]

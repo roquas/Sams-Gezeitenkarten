@@ -37,8 +37,9 @@ class MultihexExportTests(unittest.TestCase):
             'land-coast.island.h4.crab-claw.v2',
             'land-coast.settlement.h4.tesoro.v1',
             'land-coast.settlement.h4.tesoro.v2',
-            'land-coast.settlement.h4.tesoro.v3'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
-        self.assertEqual(len(assets),13)
+            'land-coast.settlement.h4.tesoro.v3',
+            'land-coast.settlement.h4.tesoro.v4'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
+        self.assertEqual(len(assets),14)
         shapes = dict(exporter.SHAPES)
         shapes.update({a['key']+'-round2':a['cells'] for a in json.loads((ROOT/'dev/multihex-round2.json').read_text())})
         original_shapes = exporter.SHAPES

@@ -764,6 +764,46 @@
       "candidateFamilies": [
         "blue-sea"
       ]
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v4",
+      "family": "land-coast",
+      "type": "settlement",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/tesoro-h4-v4.png",
+        "width": 856,
+        "height": 680
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen edit, 2026-10-19; more prominent lighthouse behind mountain and naturally relaxed ship perimeter per user revision. Source categories preserved; see docs/TESORO-V4-65.md.",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
     }
   ],
   "reviews": [
@@ -1146,6 +1186,24 @@
       "backgroundId": "prototype-sea",
       "status": "pending",
       "notes": "Tesoro v3: umgekehrte Komposition, chaotischer Schiffsteppich in beiden unteren Hexen, unregelmäßige Anbauten und Segelrollen. Alle vier Zellen unbefahrbar. Künstlerische Nutzerfreigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-V3-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v4",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Tesoro v4: prominenterer Leuchtturm hinter der Bergflanke und freierer Bootsrand statt maximaler Hexfüllung. Alle vier Felder unbefahrbar. Keine künstlerische Freigabe oder Freigabe-Hashes. Siehe docs/TESORO-V4-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v4",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Tesoro v4: prominenterer Leuchtturm hinter der Bergflanke und freierer Bootsrand statt maximaler Hexfüllung. Alle vier Felder unbefahrbar. Keine künstlerische Freigabe oder Freigabe-Hashes. Siehe docs/TESORO-V4-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v4",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Tesoro v4: prominenterer Leuchtturm hinter der Bergflanke und freierer Bootsrand statt maximaler Hexfüllung. Alle vier Felder unbefahrbar. Keine künstlerische Freigabe oder Freigabe-Hashes. Siehe docs/TESORO-V4-65.md."
     }
   ]
 }

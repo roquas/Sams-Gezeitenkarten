@@ -26,7 +26,7 @@ try{
   enlarged.setAttribute('viewBox',[+image.getAttribute('x')-20,+image.getAttribute('y')-20,+image.getAttribute('width')+40,+image.getAttribute('height')+40].join(' '));
   enlarged.querySelector('.island-label').setAttribute('visibility',document.getElementById('detailLabels').checked?'visible':'hidden');
   const history=document.getElementById('tesoroHistory');history.replaceChildren();
-  for(const key of ['tesoro-v1','tesoro-v2']){
+  for(const key of ['tesoro-v1','tesoro-v2','tesoro-v3']){
    const p=multihexPrototypes.find(p=>p.key===key),svg=card(history,p,'B3',null,true);
    svg.parentElement.querySelector('figcaption').textContent='Tesoro · '+key.split('-')[1]+' historisch · keine künstlerische Freigabe';
   }

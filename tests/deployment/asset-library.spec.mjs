@@ -24,7 +24,8 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
   ['land-coast.island.h4.crab-claw.v2',[856,680],4],
   ['land-coast.settlement.h4.tesoro.v1',[856,680],4],
   ['land-coast.settlement.h4.tesoro.v2',[856,680],4],
-  ['land-coast.settlement.h4.tesoro.v3',[856,680],4]
+  ['land-coast.settlement.h4.tesoro.v3',[856,680],4],
+  ['land-coast.settlement.h4.tesoro.v4',[856,680],4]
  ]){
   const a=library.assets.find(a=>a.id===id);
   expect(a).toMatchObject({stage:'illustration',passable:false});

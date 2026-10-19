@@ -55,3 +55,6 @@ Der vorhandene farbenfrohe, plastische Aquarell-Abenteuerstil und `sea-blue-01.w
 
 
 **[gestalterische Interpretation nach Nutzerauftrag, v3]** Die aktuelle Komposition kehrt die Anordnung um: Klippe/Leuchtturm links oben, Eingangswirtschaft rechts unten. Die früheren Links-/Rechtsangaben der Entwürfe v1/v2 gelten nicht als Weltgeografie. Beide unteren Hexfelder werden mit einem unregelmäßigen Schiffsteppich belegt; nur einzelne asymmetrische Untergeschosse und verschieden geborgene Segel bleiben. Die belegte Raumfolge und die Trennung der Quellen ändern sich nicht. Siehe [Tesoro v3](TESORO-V3-65.md).
+
+
+**[gestalterische Interpretation nach Nutzerauftrag, v4]** Der Leuchtturm darf größer und prominenter hinter der Bergflanke hervorschauen; der untere Turmfuß bleibt verdeckt. Der Bootsrand soll freier und weniger eng an den Hexspitzen ausgerichtet sein. Das ersetzt die vorherige gestalterische Priorität möglichst hoher Flächendeckung; Befahrbarkeit und belegte Raumfolge ändern sich nicht. Siehe [Tesoro v4](TESORO-V4-65.md).

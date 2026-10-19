@@ -1,5 +1,7 @@
 # Tesoro v3 – umgekehrte Komposition und chaotischer Schiffsteppich
 
+**Historischer Entwurf:** Aktuell ist [Tesoro v4 mit prominenterem Leuchtturm und freierem Bootsrand](TESORO-V4-65.md). Die folgenden Bilder und Messergebnisse dokumentieren v3.
+
 Stand 19.10.2026, Branch `feature/asset-library-integration`, Ausgangsstand `c78abf6`. **Künstlerische Nutzerfreigabe ausstehend.** Kein Freigabe-Hash, kein Merge nach main.
 
 ## Gestaltungsauftrag und Weltreferenz

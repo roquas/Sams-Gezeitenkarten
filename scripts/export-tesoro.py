@@ -11,7 +11,7 @@ exporter = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(exporter)
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--version', choices=['v1', 'v2', 'v3'], default='v3')
+    parser.add_argument('--version', choices=['v1', 'v2', 'v3', 'v4'], default='v4')
     version = parser.parse_args().version
     folder = 'tesoro' if version == 'v1' else f'tesoro-{version}'
     plan = json.loads((ROOT/f'docs/reviews/{folder}/composition-plan.json').read_text())
