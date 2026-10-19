@@ -1,5 +1,16 @@
 # Teststrategie – Entwurf
 
+## Getrennte Prüfdienste und öffentliche Projektion (F03)
+
+Vertrag, Beispiele und Grenzen: [PUZZLE-SERVICES-F03.md](PUZZLE-SERVICES-F03.md).
+`tests/reference/puzzle-services.test.mjs` enthält 20 gezielte Tests mit bekannten
+Lösungsmengen und unabhängigen Archivprädikaten für Einzelweglassprüfungen.
+Die vollständigen internen/öffentlichen Fixtures stehen in `tests/fixtures/puzzle-services/`.
+Die Tests prüfen auch Budgetfehler, vorzeitigen Mehrdeutigkeitsnachweis,
+Positivlisten gegen zukünftige Privatfelder, Versionsdispatch und F02-Identitäten.
+`node scripts/check-puzzle-services.mjs --benchmark` liefert eine schreibfreie
+Prüfung samt optionaler Messung. Produktion und Paketierung bleiben unverändert.
+
 ## Veröffentlichungsarchiv v1 (F02)
 
 Vertrag und historische Zuordnung: [PUBLICATION-ARCHIVE-V1.md](PUBLICATION-ARCHIVE-V1.md).

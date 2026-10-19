@@ -1,0 +1,246 @@
+{
+  "baselineCommit": "dc91712ac5b076b39b947e82840d1ea3c393784c",
+  "environment": {
+    "node": "v24.19.0",
+    "python": "3.12.14"
+  },
+  "historicalFilesAndContracts": {
+    "puzzles/reference-3.6.json": {
+      "sha256": "18a4cf44653bd577e0cac9d7bdb504551df11411e875fbd925edd7ac52e12b65",
+      "baselineSha256": "18a4cf44653bd577e0cac9d7bdb504551df11411e875fbd925edd7ac52e12b65",
+      "byteIdentical": true
+    },
+    "puzzles/test-navigation.json": {
+      "sha256": "bb6716ecf5ea0698ac23cca606bba4f461ef3fd93db5d1065eb5df4dda0fbc9a",
+      "baselineSha256": "bb6716ecf5ea0698ac23cca606bba4f461ef3fd93db5d1065eb5df4dda0fbc9a",
+      "byteIdentical": true
+    },
+    "puzzles/quittung-nombreo.json": {
+      "sha256": "3817cdaeb066644468af0f1d45935f0c00864e7b7270d6e444142ae58c864d50",
+      "baselineSha256": "3817cdaeb066644468af0f1d45935f0c00864e7b7270d6e444142ae58c864d50",
+      "byteIdentical": true
+    },
+    "puzzles/ankerbuch-tesoro.json": {
+      "sha256": "5ceea6cf37c4cbc19d831aa8a91c7e95b653932ce04b89304e2a70321cc1530a",
+      "baselineSha256": "5ceea6cf37c4cbc19d831aa8a91c7e95b653932ce04b89304e2a70321cc1530a",
+      "byteIdentical": true
+    },
+    "puzzles/manifest.json": {
+      "sha256": "8d6278fa9c07dab6b2c25b8774e338ae3aa3c480040088c291a54b1b94412652",
+      "baselineSha256": "8d6278fa9c07dab6b2c25b8774e338ae3aa3c480040088c291a54b1b94412652",
+      "byteIdentical": true
+    },
+    "archive/publications-v1.json": {
+      "sha256": "4da57c5c30e2d0f4cc16d75174c0abc3b1ca41148ce446acc083aceb52f978b8",
+      "baselineSha256": "4da57c5c30e2d0f4cc16d75174c0abc3b1ca41148ce446acc083aceb52f978b8",
+      "byteIdentical": true
+    },
+    "scripts/lib/publication-archive.mjs": {
+      "sha256": "1da436df66b7e8aadfbcd9bb18e46bab63df6603da052f31cf5ee0fd9a3a1e63",
+      "baselineSha256": "1da436df66b7e8aadfbcd9bb18e46bab63df6603da052f31cf5ee0fd9a3a1e63",
+      "byteIdentical": true
+    }
+  },
+  "deploymentZip": {
+    "sha256": "84e2d3c3fbde4db5bff06e7cd539dc3069638a75e4a4ce4bc67559c450dd45e0",
+    "baselineSha256": "84e2d3c3fbde4db5bff06e7cd539dc3069638a75e4a4ce4bc67559c450dd45e0",
+    "byteIdentical": true,
+    "runtimeFiles": 54
+  },
+  "localTests": {
+    "unitReference": 120,
+    "newServiceTests": 20,
+    "historicalPuzzles": 4,
+    "packageTests": 7,
+    "deploymentBrowser": 12
+  },
+  "serviceResults": {
+    "historical": [
+      {
+        "id": "reference-3.6",
+        "validation": {
+          "rulesVersion": "gezeitenkarten-1",
+          "schemaVersion": 1,
+          "dataVersion": 1,
+          "structural": true,
+          "semantic": true,
+          "targetRoute": "valid"
+        },
+        "status": "unique",
+        "count": 1,
+        "target": "match",
+        "irredundant": false,
+        "diagnostics": [
+          {
+            "code": "redundant-clue",
+            "clueId": "I"
+          }
+        ],
+        "identity": {
+          "instanceId": "inst-historical-reference-3.6",
+          "mapStructureId": "map-historical-reference-3.6",
+          "sourcePublicationId": "pub-historical-reference-3.6-r1",
+          "variantId": "var-historical-reference-3.6"
+        }
+      },
+      {
+        "id": "test-navigation",
+        "validation": {
+          "rulesVersion": "gezeitenkarten-1",
+          "schemaVersion": 1,
+          "dataVersion": 1,
+          "structural": true,
+          "semantic": true,
+          "targetRoute": "valid"
+        },
+        "status": "unique",
+        "count": 1,
+        "target": "match",
+        "irredundant": false,
+        "diagnostics": [
+          {
+            "code": "redundant-clue",
+            "clueId": "T1"
+          },
+          {
+            "code": "redundant-clue",
+            "clueId": "T2"
+          },
+          {
+            "code": "redundant-clue",
+            "clueId": "T3"
+          },
+          {
+            "code": "redundant-clue",
+            "clueId": "T4"
+          },
+          {
+            "code": "redundant-clue",
+            "clueId": "T5"
+          }
+        ],
+        "identity": {
+          "instanceId": "inst-historical-test-navigation",
+          "mapStructureId": "map-historical-test-navigation",
+          "sourcePublicationId": "pub-historical-test-navigation-r1",
+          "variantId": "var-historical-test-navigation"
+        }
+      },
+      {
+        "id": "quittung-nombreo",
+        "validation": {
+          "rulesVersion": "gezeitenkarten-1",
+          "schemaVersion": 1,
+          "dataVersion": 1,
+          "structural": true,
+          "semantic": true,
+          "targetRoute": "valid"
+        },
+        "status": "unique",
+        "count": 1,
+        "target": "match",
+        "irredundant": false,
+        "diagnostics": [
+          {
+            "code": "redundant-clue",
+            "clueId": "H1"
+          },
+          {
+            "code": "redundant-clue",
+            "clueId": "H2"
+          }
+        ],
+        "identity": {
+          "instanceId": "inst-historical-quittung-nombreo",
+          "mapStructureId": "map-historical-quittung-nombreo",
+          "sourcePublicationId": "pub-historical-quittung-nombreo-r1",
+          "variantId": "var-historical-quittung-nombreo"
+        }
+      },
+      {
+        "id": "ankerbuch-tesoro",
+        "validation": {
+          "rulesVersion": "gezeitenkarten-1",
+          "schemaVersion": 1,
+          "dataVersion": 1,
+          "structural": true,
+          "semantic": true,
+          "targetRoute": "valid"
+        },
+        "status": "unique",
+        "count": 1,
+        "target": "match",
+        "irredundant": true,
+        "diagnostics": [],
+        "identity": {
+          "instanceId": "inst-historical-ankerbuch-tesoro",
+          "mapStructureId": "map-historical-ankerbuch-tesoro",
+          "sourcePublicationId": "pub-historical-ankerbuch-tesoro-r1",
+          "variantId": "var-historical-ankerbuch-tesoro"
+        }
+      }
+    ],
+    "benchmark": [
+      {
+        "name": "ambiguous",
+        "detailed": false,
+        "iterations": 100,
+        "milliseconds": 12.196643999999992,
+        "status": "ambiguous",
+        "count": 2,
+        "countExact": false,
+        "search": {
+          "strategy": "engine-stream",
+          "completed": false,
+          "nodesVisited": 9,
+          "legalRoutesVisited": 2,
+          "clueEvaluations": 2
+        }
+      },
+      {
+        "name": "ambiguous",
+        "detailed": true,
+        "iterations": 100,
+        "milliseconds": 187.33519099999995,
+        "status": "ambiguous",
+        "count": 519,
+        "countExact": true,
+        "search": {
+          "strategy": "existing-solver",
+          "completed": true,
+          "legalRoutesVisited": 519
+        }
+      },
+      {
+        "name": "irredundant",
+        "detailed": false,
+        "iterations": 100,
+        "milliseconds": 290.056908,
+        "status": "unique",
+        "count": 1,
+        "countExact": true,
+        "search": {
+          "strategy": "engine-stream",
+          "completed": true,
+          "nodesVisited": 961,
+          "legalRoutesVisited": 519,
+          "clueEvaluations": 1502
+        }
+      },
+      {
+        "name": "irredundant",
+        "detailed": true,
+        "iterations": 100,
+        "milliseconds": 417.183276,
+        "status": "unique",
+        "count": 1,
+        "countExact": true,
+        "search": {
+          "strategy": "existing-solver",
+          "completed": true,
+          "legalRoutesVisited": 519
+        }
+      }
+    ]
+  }
+}
