@@ -1,5 +1,7 @@
 # Tesoro v2 – Überarbeitung für PR #65
 
+**Historischer Entwurf:** Aktuell ist [Tesoro v3 mit umgekehrter Komposition](TESORO-V3-65.md). Die folgenden Bilder und Ergebnisse dokumentieren v2.
+
 Stand 19.10.2026, aufbauend auf `5a8be54`, Branch `feature/asset-library-integration`. **Künstlerische Freigabe ausstehend.** Kein Freigabe-Hash und kein Merge nach main.
 
 ## Nutzerauftrag und Quellen

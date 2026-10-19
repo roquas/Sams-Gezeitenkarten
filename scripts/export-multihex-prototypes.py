@@ -70,7 +70,7 @@ def prepare_source(original):
     return Image.fromarray(pixels), int(np.count_nonzero(residue))
 
 
-def export(sources, report_path=None, *, min_visible_per_cell=0):
+def export(sources, report_path=None, *, min_visible_per_cell=0, min_visible_by_cell=None):
     reports = []
     for (name, cells), data in zip(SHAPES.items(), contracts()):
         c = data['contract']; w, h = c['pixelWidth'], c['pixelHeight']
@@ -86,7 +86,13 @@ def export(sources, report_path=None, *, min_visible_per_cell=0):
         # Optional authoring quality gate: choose an uncut placement that uses
         # every declared cell. Default zero preserves all earlier exports.
         cell_masks = []
-        if min_visible_per_cell:
+        # Per-cell authoring overrides allow dense foreground lobes while
+        # leaving the existing uniform defaults and runtime geometry intact.
+        minimums = (min_visible_by_cell if min_visible_by_cell is not None
+                    else [min_visible_per_cell]*len(c['polygons']))
+        if len(minimums) != len(c['polygons']):
+            raise ValueError(name+': one coverage minimum required per cell')
+        if any(minimums):
             yy, xx = np.mgrid[:h, :w]
             x, y = (xx+.5)/4-c['width']/2, (yy+.5)/4-c['height']/2
             for polygon in c['polygons']:
@@ -110,7 +116,8 @@ def export(sources, report_path=None, *, min_visible_per_cell=0):
                 if not np.any(alpha & ~allowed[top:top+size[1],left:left+size[0]]):
                     if cell_masks:
                         visible = np.asarray(sample.getchannel('A')) >= 16
-                        if any(np.count_nonzero(visible & mask[top:top+size[1],left:left+size[0]]) < min_visible_per_cell for mask in cell_masks):
+                        if any(np.count_nonzero(visible & mask[top:top+size[1],left:left+size[0]]) < minimum
+                               for mask, minimum in zip(cell_masks, minimums)):
                             continue
                     found = (sample, left, top, percent); break
             if found: break
@@ -134,6 +141,8 @@ def export(sources, report_path=None, *, min_visible_per_cell=0):
         if cell_masks:
             final_visible = np.asarray(result.getchannel('A')) >= 16
             report['minimumVisiblePixelsPerCell'] = min_visible_per_cell
+            if min_visible_by_cell is not None:
+                report['minimumVisiblePixelsByCell'] = minimums
             report['visiblePixelsPerCell'] = [int(np.count_nonzero(mask & final_visible)) for mask in cell_masks]
         reports.append(report); print(json.dumps(report), flush=True)
     (report_path or ROOT/'docs/reviews/multihex/pixel-audit.json').write_text(json.dumps(reports,indent=2)+'\n')

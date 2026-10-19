@@ -5,7 +5,7 @@ try{
  const response=await fetch('assets/catalog/library.json');if(!response.ok)throw Error('Catalog HTTP '+response.status);
  const library=validateLibrary(await response.json());
  const select=document.getElementById('multihexAsset');
- for(const p of multihexPrototypes){const o=document.createElement('option');o.value=p.key;o.textContent=p.name+(p.historical?' · historisch':'');select.append(o);}
+ for(const p of multihexPrototypes){const o=document.createElement('option');o.value=p.key;o.textContent=p.name+(p.key.startsWith('tesoro-v')?' · '+p.key.split('-')[1]:'')+(p.historical?' · historisch':'');select.append(o);}
  const requested=new URLSearchParams(location.search).get('asset');
  select.value=multihexPrototypes.some(p=>p.key===requested)?requested:'tesoro';
  function render(){
@@ -26,7 +26,10 @@ try{
   enlarged.setAttribute('viewBox',[+image.getAttribute('x')-20,+image.getAttribute('y')-20,+image.getAttribute('width')+40,+image.getAttribute('height')+40].join(' '));
   enlarged.querySelector('.island-label').setAttribute('visibility',document.getElementById('detailLabels').checked?'visible':'hidden');
   const history=document.getElementById('tesoroHistory');history.replaceChildren();
-  card(history,multihexPrototypes.find(p=>p.key==='tesoro-v1'),'B3',null,true);
+  for(const key of ['tesoro-v1','tesoro-v2']){
+   const p=multihexPrototypes.find(p=>p.key===key),svg=card(history,p,'B3',null,true);
+   svg.parentElement.querySelector('figcaption').textContent='Tesoro · '+key.split('-')[1]+' historisch · keine künstlerische Freigabe';
+  }
   const approved=document.getElementById('multihexApproved');approved.replaceChildren();
   for(const p of multihexPrototypes.filter(p=>p.round===1))card(approved,p,'B3',null,true);
   const geometry=document.getElementById('clawGeometry');geometry.replaceChildren();

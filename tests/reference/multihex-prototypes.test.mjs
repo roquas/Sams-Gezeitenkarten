@@ -10,7 +10,7 @@ import {placeLabelLayout,labelFootprint,hexVertices,hexCenter,polygonsOverlap,co
 const library=JSON.parse(fs.readFileSync(new URL('../../assets/catalog/library.json',import.meta.url)));
 const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
 const board=new Set(HEXES.map(h=>h.id));
-const counts={tropical:20,volcano:16,archipelago:14,harbor:16,smuggler:14,sand:10,claw:14,temple:14,tesoro:14,'tesoro-v1':14};
+const counts={tropical:20,volcano:16,archipelago:14,harbor:16,smuggler:14,sand:10,claw:14,temple:14,tesoro:14,'tesoro-v1':14,'tesoro-v2':14};
 for(const p of multihexPrototypes)test(p.key+': single whole image, explicit review, every occupied hex blocked and labels safe at every valid anchor',()=>{
  const asset=library.assets.find(a=>a.id===p.id);
  assert.equal(asset.passable,false);assert.equal(asset.stage,'illustration');
@@ -59,8 +59,9 @@ test('historical claws retain their identities and exact footprints while Tesoro
  const tesoro=multihexPrototypes.find(p=>p.key==='tesoro');
  assert.equal(multihexCandidates.some(p=>p.key==='claw'),false);
  assert.ok(multihexCandidates.includes(tesoro));assert.equal(tesoro.approved,undefined);
- assert.equal(tesoro.id,'land-coast.settlement.h4.tesoro.v2');
+ assert.equal(tesoro.id,'land-coast.settlement.h4.tesoro.v3');
  const previous=multihexPrototypes.find(p=>p.key==='tesoro-v1');
+ assert.equal(multihexPrototypes.find(p=>p.key==='tesoro-v2').historical,true);
  assert.equal(previous.historical,true);assert.equal(previous.id,'land-coast.settlement.h4.tesoro.v1');
  const asset=library.assets.find(a=>a.id===tesoro.id);
  assert.deepEqual(asset.geometry.cells,[[0,0],[1,0],[0,1],[1,1]]);

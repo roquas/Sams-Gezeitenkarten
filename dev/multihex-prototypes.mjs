@@ -62,8 +62,15 @@ export const multihexPrototypes=[
   "historical": true
  },
  {
-  "key": "tesoro",
+  "key": "tesoro-v2",
   "id": "land-coast.settlement.h4.tesoro.v2",
+  "name": "Tesoro",
+  "round": 3,
+  "historical": true
+ },
+ {
+  "key": "tesoro",
+  "id": "land-coast.settlement.h4.tesoro.v3",
   "name": "Tesoro",
   "round": 3
  },

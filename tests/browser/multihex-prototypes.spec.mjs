@@ -10,11 +10,11 @@ test('whole multihex sprites use production sea, labels, blocked cells and uncha
  await expect(page.locator('#multihexApproved svg')).toHaveCount(2);
  await expect(page.locator('#error')).toBeEmpty();
  await expect(page.locator('#multihexAsset')).toHaveValue('tesoro');
- const tesoro=page.locator('#multihexComparison svg[data-asset="land-coast.settlement.h4.tesoro.v2"]');
+ const tesoro=page.locator('#multihexComparison svg[data-asset="land-coast.settlement.h4.tesoro.v3"]');
  await expect(tesoro.locator('.blocked-cell')).toHaveCount(4);
  await expect(page.locator('#multihexComparison svg[data-asset*="crab-claw"]')).toHaveCount(0);
  const enlarged=page.locator('#tesoroDetail svg');
- await expect(enlarged).toHaveAttribute('data-asset','land-coast.settlement.h4.tesoro.v2');
+ await expect(enlarged).toHaveAttribute('data-asset','land-coast.settlement.h4.tesoro.v3');
  const artGeometry=svg=>svg.locator('[data-placement-id]').evaluate(n=>['href','x','y','width','height','transform','clip-path'].map(k=>n.getAttribute(k)));
  expect(await artGeometry(enlarged)).toEqual(await artGeometry(tesoro));
  await expect(enlarged.locator('.island-label text')).toHaveText('Tesoro');
@@ -29,8 +29,8 @@ test('whole multihex sprites use production sea, labels, blocked cells and uncha
  const captions=await page.locator('#multihexComparison figcaption').allTextContents();
  expect(captions.filter(t=>t.endsWith('approved'))).toHaveLength(5);
  expect(captions.filter(t=>t.endsWith('pending'))).toHaveLength(1);
- await expect(page.locator('#tesoroHistory svg')).toHaveAttribute('data-asset','land-coast.settlement.h4.tesoro.v1');
- await expect(page.locator('#tesoroHistory [data-placement-id]')).toHaveAttribute('href',new URL('/assets/library/tesoro-h4-v1.png',page.url()).href);
+ await expect(page.locator('#tesoroHistory svg')).toHaveCount(2);
+ for(const v of ['v1','v2'])await expect(page.locator('#tesoroHistory svg[data-asset="land-coast.settlement.h4.tesoro.'+v+'"] [data-placement-id]')).toHaveAttribute('href',new URL('/assets/library/tesoro-h4-'+v+'.png',page.url()).href);
  await expect(page.locator('#clawGeometry svg')).toHaveCount(2);
  for(const version of ['v1','v2']){
   const svg=page.locator('#clawGeometry svg[data-asset="land-coast.island.h4.crab-claw.'+version+'"]');

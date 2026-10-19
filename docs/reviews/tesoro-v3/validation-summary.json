@@ -1,0 +1,158 @@
+{
+  "baseCommit": "c78abf663394671bafd1d77e82f15c53eec95c30",
+  "artisticStatus": "pending; no artistic approval or approval hashes",
+  "selectedGeneration": 6,
+  "perspective": "steep aerial; low-angle interim layouts rejected for lower-cell density",
+  "technicalImageSha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285",
+  "checks": {
+    "unit": {
+      "passed": 104,
+      "failed": 0
+    },
+    "puzzles": {
+      "unique": 4
+    },
+    "catalog": {
+      "assets": 22,
+      "backgrounds": 3,
+      "approvedPairs": 11
+    },
+    "exportRegressions": {
+      "passed": 5,
+      "minimumVisiblePixelsByCell": [
+        35000,
+        35000,
+        62500,
+        62500
+      ],
+      "independentLowerCellMinimumFraction": 0.7,
+      "noOpaqueSourceCanvasCutoff": true
+    },
+    "strictFinalPixelValidation": {
+      "anchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "A2",
+        "B2",
+        "C2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "A4",
+        "B4",
+        "C4"
+      ],
+      "outsidePixels": 0,
+      "crop": false,
+      "rotation": false
+    },
+    "finalGalleryBrowserRegressions": {
+      "passed": 4,
+      "engines": [
+        "Chromium desktop",
+        "Chromium mobile",
+        "WebKit desktop",
+        "WebKit mobile"
+      ]
+    },
+    "visualCapture": {
+      "imageSha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285",
+      "engines": [
+        "Chromium desktop",
+        "WebKit desktop",
+        "Chromium smartphone/DPR2"
+      ]
+    },
+    "zipPublicationValidator": {
+      "passed": true,
+      "files": 82,
+      "catalogImagesByteIdentical": 22
+    },
+    "fullImageFixtureSuite": {
+      "rerun": false,
+      "note": "Final v3 checked independently at all 14 anchors; all previous image bytes unchanged; full publication validator completed. Previous fixture suite not recounted."
+    },
+    "fullPackagingRegressionSuite": {
+      "rerun": false,
+      "note": "Full 27-case packaging suite not claimed; full final publication validator completed."
+    },
+    "githubUnitDependency": {
+      "status": "known separate open issue; no workflow changes",
+      "reason": "Missing Pillow in merged PR unit CI; workflow patch requires unavailable OAuth workflow scope",
+      "patch": "docs/reviews/tesoro-v2/unit-ci-pillow.patch"
+    },
+    "zipBrowserDeployment": {
+      "passed": 4,
+      "devices": [
+        "Desktop Chromium",
+        "Smartphone Chromium",
+        "iPhone WebKit",
+        "iPad WebKit"
+      ]
+    }
+  },
+  "coverage": {
+    "alphaThreshold": 16,
+    "cellAreas": [
+      89216,
+      89216,
+      89216,
+      89216
+    ],
+    "versions": {
+      "v1": {
+        "visiblePixels": 181992,
+        "visiblePixelsPerCell": [
+          42375,
+          65007,
+          42040,
+          32570
+        ],
+        "fractionPerCell": [
+          0.475,
+          0.7286,
+          0.4712,
+          0.3651
+        ]
+      },
+      "v2": {
+        "visiblePixels": 200770,
+        "visiblePixelsPerCell": [
+          39686,
+          56034,
+          56020,
+          49030
+        ],
+        "fractionPerCell": [
+          0.4448,
+          0.6281,
+          0.6279,
+          0.5496
+        ]
+      },
+      "v3": {
+        "visiblePixels": 243862,
+        "visiblePixelsPerCell": [
+          50349,
+          57433,
+          71778,
+          64302
+        ],
+        "fractionPerCell": [
+          0.5643,
+          0.6438,
+          0.8045,
+          0.7207
+        ]
+      }
+    }
+  },
+  "visualReview": {
+    "status": "ready_for_user_review",
+    "observed": "NW partly occluded lighthouse and snowy cliff, irregular town on high platforms, SE two-storey tavern with rope ladder, two broad chaotic chained ship lobes with varied furled sails and complete natural ends. Sparse asymmetrical under-platform rooms.",
+    "limits": "Coverage counts include rigging and entrance town, not only semantically classified hull pixels; artistic approval remains outstanding."
+  }
+}

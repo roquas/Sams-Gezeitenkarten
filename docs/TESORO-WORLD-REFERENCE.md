@@ -52,3 +52,6 @@ Der dicht belegte Schiffsteppich und die erhöhten Bauten prägen die Silhouette
 Der vorhandene farbenfrohe, plastische Aquarell-Abenteuerstil und `sea-blue-01.webp` bestimmen die Bildsprache. Schnee begrenzt sich auf Gipfel und Bergweg; er macht Tesoro nicht nachträglich zu einer vollständig verschneiten Stadt. Keine fest eingebauten Namen oder Schriftzüge.
 
 **[gestalterische Interpretation nach Nutzerauftrag, Überarbeitung v2]** Mehr Bebauung links oben/rechts unten und mehr Schiffe links unten verbessern die Flächennutzung. Kühles verwittertes Pfahl-/Gebäudeholz hebt sich von warmbraunen Schiffsrümpfen ab; die Schiffe tragen sichtbar zusammengerollte Segel. Dies sind Vorgaben der künstlerischen Überarbeitung, keine zusätzlichen Audiobelege. Siehe [Tesoro v2](TESORO-REVISION-65.md).
+
+
+**[gestalterische Interpretation nach Nutzerauftrag, v3]** Die aktuelle Komposition kehrt die Anordnung um: Klippe/Leuchtturm links oben, Eingangswirtschaft rechts unten. Die früheren Links-/Rechtsangaben der Entwürfe v1/v2 gelten nicht als Weltgeografie. Beide unteren Hexfelder werden mit einem unregelmäßigen Schiffsteppich belegt; nur einzelne asymmetrische Untergeschosse und verschieden geborgene Segel bleiben. Die belegte Raumfolge und die Trennung der Quellen ändern sich nicht. Siehe [Tesoro v3](TESORO-V3-65.md).

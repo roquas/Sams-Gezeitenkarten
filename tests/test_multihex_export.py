@@ -36,8 +36,9 @@ class MultihexExportTests(unittest.TestCase):
             'land-coast.archipelago.h3.bent-reefs.v1',
             'land-coast.island.h4.crab-claw.v2',
             'land-coast.settlement.h4.tesoro.v1',
-            'land-coast.settlement.h4.tesoro.v2'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
-        self.assertEqual(len(assets),12)
+            'land-coast.settlement.h4.tesoro.v2',
+            'land-coast.settlement.h4.tesoro.v3'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
+        self.assertEqual(len(assets),13)
         shapes = dict(exporter.SHAPES)
         shapes.update({a['key']+'-round2':a['cells'] for a in json.loads((ROOT/'dev/multihex-round2.json').read_text())})
         original_shapes = exporter.SHAPES
@@ -59,7 +60,7 @@ class MultihexExportTests(unittest.TestCase):
                 count = np.count_nonzero(inside & (alpha>=16))
                 self.assertGreater(count,4500,asset['id'])
                 if asset['id'].startswith('land-coast.settlement.h4.tesoro.'):
-                    minimum = 35000 if asset['id'].endswith('.v2') else 15000
+                    minimum = 15000 if asset['id'].endswith('.v1') else 35000
                     self.assertGreaterEqual(count,minimum,asset['id'])
 
     def test_tesoro_revision_expands_all_three_requested_outer_regions(self):
@@ -76,6 +77,27 @@ class MultihexExportTests(unittest.TestCase):
             self.assertGreater(np.count_nonzero(current & region),
                                np.count_nonzero(old & region), name)
         self.assertGreaterEqual(np.count_nonzero(current), np.count_nonzero(old)*1.1)
+
+    def test_tesoro_v3_densely_occupies_both_lower_cells_without_source_cutoff(self):
+        original_shapes = exporter.SHAPES
+        try:
+            exporter.SHAPES = {'tesoro': [[0,0],[1,0],[0,1],[1,1]]}
+            c = exporter.contracts()[0]['contract']
+        finally:
+            exporter.SHAPES = original_shapes
+        alpha = np.asarray(Image.open(ROOT/'assets/library/tesoro-h4-v3.png').getchannel('A')) >= 16
+        yy, xx = np.indices(alpha.shape)
+        x, y = (xx+.5)/4-c['width']/2, (yy+.5)/4-c['height']/2
+        for index in [2, 3]:
+            polygon = c['polygons'][index]
+            inside = np.ones(alpha.shape,dtype=bool)
+            for a,b in zip(polygon,polygon[1:]+polygon[:1]):
+                inside &= (b[0]-a[0])*(y-a[1])-(b[1]-a[1])*(x-a[0]) >= 0
+            self.assertGreaterEqual(np.count_nonzero(alpha & inside)/np.count_nonzero(inside), .70,
+                                    'Tesoro v3 lower cell '+str(index))
+        source = np.asarray(Image.open(ROOT/'docs/reviews/tesoro-v3/tesoro-master.png').getchannel('A'))
+        for edge in [source[0,:],source[-1,:],source[:,0],source[:,-1]]:
+            self.assertFalse(np.any(edge >= 16),'Source must not cut opaque illustration at its canvas edge')
 
     def test_recomposed_claw_reaches_outer_southwest_and_northeast_regions(self):
         cells = [[0, 0], [1, 0], [0, 1], [-1, 1]]
