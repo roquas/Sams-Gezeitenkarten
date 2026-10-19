@@ -34,5 +34,5 @@ for(const [i,p] of multihexPrototypes.entries())test(p.key+': single whole image
   assert.ok(validatePlacements(puzzle.assetPlacements,library,logic,'sea-blue-01').some(e=>e.includes('not visually approved')));
   for(const omitted of cells)assert.ok(validatePlacements(puzzle.assetPlacements,library,{...logic,blocked:cells.filter(c=>c!==omitted)},'sea-blue-01',{development:true}).some(e=>e.includes('passable conflicts')));
  }
- assert.ok(checked>=12);
+ assert.equal(checked,[20,16,14][i]);
 });

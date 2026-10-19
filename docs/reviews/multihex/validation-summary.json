@@ -18,7 +18,7 @@
   },
   "pixelRegression": {
     "passed": 13,
-    "newAssetValidAnchors": 49,
+    "newAssetValidAnchors": 50,
     "outsideVisiblePixels": 0
   },
   "exportAndCellCoverage": {

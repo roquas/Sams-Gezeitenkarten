@@ -10,7 +10,7 @@ Stand 19.10.2026, bestehender PR #65, Branch `feature/asset-library-integration`
 |---|---|---|---|---|
 | Palmenbuchten: lange tropische West–Ost-Insel mit Buchten, Hügeln und dichter Vegetation | [tropical-bays-h2-v1.png](../assets/library/tropical-bays-h2-v1.png) | `[[0,0],[1,0]]` | 688×408 | 20 |
 | Glutberg: massive zusammenhängende Vulkaninsel, dominanter plastischer Kegel, dunkler Basalt, tropische Basis, kleiner Kraterrauch | [massive-volcano-h3-v1.png](../assets/library/massive-volcano-h3-v1.png) | `[[0,0],[1,0],[1,-1]]` | 688×768 | 16 |
-| Splitterriffe: gebogene Gruppe aus getrennten Inseln, Klippen, Riffen und offenen Wasserpassagen | [bent-reefs-h3-v1.png](../assets/library/bent-reefs-h3-v1.png) | `[[0,0],[1,0],[1,1]]` | 912×768 | 13 |
+| Splitterriffe: gebogene Gruppe aus getrennten Inseln, Klippen, Riffen und offenen Wasserpassagen | [bent-reefs-h3-v1.png](../assets/library/bent-reefs-h3-v1.png) | `[[0,0],[1,0],[1,1]]` | 912×768 | 14 |
 
 Die drei stabilen IDs lauten `land-coast.island.h2.tropical-bays.v1`, `land-coast.island.h3.massive-volcano.v1` und `land-coast.archipelago.h3.bent-reefs.v1`. Jede Platzierung erzeugt **genau ein `<image>` für die gesamte Gruppe**. Kein Zerlegen in Einzelhexdateien, keine inneren Masken, keine individuellen Laufzeit-Transforms, Drehungen, Ausschnitte oder Skalierungsparameter. Die feste Quelldichte beträgt wie zuvor vier Pixel je SVG-Einheit; nur die gesamte responsive Karte skaliert gemeinsam.
 
@@ -18,7 +18,7 @@ Untersucht wurden `src/assets/geometry.mjs`, `src/assets/library.mjs`, `src/ui/a
 
 Die Vorlagen wurden je Form direkt aus diesem Vertrag erzeugt: [West–Ost](reviews/multihex/geometry-tropical.png), [Vulkan mit nördlicher Spitze](reviews/multihex/geometry-volcano.png), [gebogener Archipel](reviews/multihex/geometry-archipelago.png). Die Vulkanform verwendet bewusst ein nördliches Feld für den Kegel und zwei südliche für die breite Basis. Das ist eine feste axiale Geometrie, keine Drehung eines anderen Assets.
 
-Es gibt im bestehenden Schema **keine automatische Auswahl positionsspezifischer Bilddateien**. Derselbe PNG-Export muss deshalb an jedem für die Form gültigen Anker passen. Die Galerie deckt für jede Form alle vier Kombinationen aus gerader/ungerader Zeile und Rand/Innenbereich ab. Die Pixelregression prüft darüber hinaus sämtliche 49 gültigen Anker, einschließlich rechts/unten; nicht passende Anker, bei denen eine Zelle außerhalb der Karte läge, sind keine zulässigen Platzierungen.
+Es gibt im bestehenden Schema **keine automatische Auswahl positionsspezifischer Bilddateien**. Derselbe PNG-Export muss deshalb an jedem für die Form gültigen Anker passen. Die Galerie deckt für jede Form alle vier Kombinationen aus gerader/ungerader Zeile und Rand/Innenbereich ab. Die Pixelregression prüft darüber hinaus sämtliche 50 gültigen Anker, einschließlich rechts/unten; nicht passende Anker, bei denen eine Zelle außerhalb der Karte läge, sind keine zulässigen Platzierungen.
 
 ## Spielregel und produktive Beschriftung
 
@@ -65,7 +65,7 @@ Eingebautes **image_gen** mit echtem transparentem Hintergrund; Stilreferenz war
 ## Prüfergebnisse
 
 - **93/93 Unit-Tests** bestanden, einschließlich aller gültigen Anker, vollständiger Sperrflächen, sicherer Labelpositionen und Ablehnung produktiver Nutzung ohne Freigabe. Vier Rätsel weiterhin mit jeweils genau einer Lösung.
-- **12 Katalogbilder / drei Hintergründe** validiert; exakt die vier bisherigen Freigabepaare mit gültigen Hashes. **13/13 Bildregressionen** und **2/2 Export-/Zellabdeckungstests** bestanden. Alle neuen PNGs an sämtlichen **49 gültigen Ankern** ohne unzulässige sichtbare Pixel; vollständige Pixelquadrate, auch Alpha 1.
+- **12 Katalogbilder / drei Hintergründe** validiert; exakt die vier bisherigen Freigabepaare mit gültigen Hashes. **13/13 Bildregressionen** und **2/2 Export-/Zellabdeckungstests** bestanden. Alle neuen PNGs an sämtlichen **50 gültigen Ankern** ohne unzulässige sichtbare Pixel; vollständige Pixelquadrate, auch Alpha 1.
 - **16/16 Chromium-Galeriefälle** und **16/16 WebKit-Galeriefälle**, jeweils Desktop und Mobil, bestanden. Das umfasst die bestehende Assetgalerie sowie die neue Mehrhex-Galerie, echte Schriftmaße, drei gemeinsame Ortsnamen, Markierungsunterdrückung auf Land, unveränderte Bildgeometrie und Schalter für Hexlinien/Markierungen.
 - **27/27 Paketregressionen** bestanden; anschließend **4/4 Asset-Deploymentfälle** des frisch erzeugten ZIPs unter `/gk/pr38/` bestanden: Desktop, Smartphone, iPhone/WebKit, iPad/WebKit. Die drei PNGs im ZIP wurden zusätzlich bytegleich mit den geprüften Dateien verglichen. Galerie und Autorierungswerkzeug bleiben außerhalb des Laufzeitpakets.
 - Visuelle Kontrolle und Rasterdekodierung auf Chromium Desktop, WebKit Desktop und Chromium Smartphone bei DPR 2: keine JavaScript- oder Bildladefehler. [Browserbericht](reviews/multihex/browser-audit.json). Die bestehende Ringentfernung, alle bisherigen Illustrationen und sämtliche produktiven Geometrie-/Rendererdateien wurden gegen `49f8f28` bytegleich kontrolliert.
