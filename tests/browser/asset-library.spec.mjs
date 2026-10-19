@@ -141,7 +141,7 @@ test('passable prototypes share real sea, map scale and production notes with in
   await expect(svg.locator('.blocked-cell')).toHaveCount(0);
   const b3=svg.locator('[data-id="B3"]');
   await expect(b3.locator('circle')).toHaveCount(6);
-  await expect(b3.locator('[data-place-ring]')).toHaveCount(2);
+  await expect(b3.locator('[data-place-ring]')).toHaveCount(0);
   await expect(svg.locator('.island-label')).toHaveCount(0);
   await expect(b3).toContainText('×');await expect(b3).toContainText('✓');
   await expect(svg.locator('.route-stroke')).toHaveCount(2);
@@ -155,7 +155,7 @@ test('passable prototypes share real sea, map scale and production notes with in
  }
  await page.locator('#prototypeMarks').uncheck();
  await expect(page.locator('#prototypeComparison .cell circle')).toHaveCount(0);
- await expect(page.locator('#prototypeComparison [data-place-ring]')).toHaveCount(6);
+ await expect(page.locator('#prototypeComparison [data-place-ring]')).toHaveCount(0);
  await expect(page.locator('#prototypeComparison .route-stroke')).toHaveCount(0);
  await page.locator('#hexes').uncheck();
  for(const svg of await cards.all())await expect(svg.locator('[data-id="B3"] polygon')).toHaveAttribute('visibility','hidden');
@@ -165,7 +165,7 @@ test('passable prototypes share real sea, map scale and production notes with in
  await info.attach('passable-prototypes-'+info.project.name,{body:await page.locator('#prototypeComparison').screenshot(),contentType:'image/png'});
 });
 
-test('usage comparison renders real parchment, persistent rings and Flavor for selectable assets',async({page},info)=>{
+test('usage comparison keeps named passable places and Flavor free of permanent marks while preserving land labels',async({page},info)=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{if(r.status()>=400)errors.push(r.url());});
  await page.goto('/dev/asset-library.html#usage-previews');
@@ -189,15 +189,17 @@ test('usage comparison renders real parchment, persistent rings and Flavor for s
  }
  for(const id of ['navigation.lighthouse.h1.offcenter-beacon.v1','land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1']){
   for(const state of ['named-passable','flavor'])await page.locator('#usageAsset-'+state).selectOption(id);
-  await expect(passable.locator('[data-place-ring="B3"]')).toHaveCount(2);
+  await expect(passable.locator('[data-place-ring="B3"]')).toHaveCount(0);
   await expect(passable.locator('.island-label')).toHaveCount(0);
   await expect(flavor.locator('[data-place-ring],.island-label')).toHaveCount(0);
   await expect(flavor.locator('[data-id="B3"]')).toHaveClass('cell');
   const geometry=svg=>svg.locator('[data-placement-id="prototype"]').evaluate(n=>['href','x','y','width','height'].map(k=>n.getAttribute(k)));
   expect(await geometry(passable)).toEqual(await geometry(flavor));
+  const drawing=svg=>svg.evaluate(n=>[...n.querySelectorAll('[data-chart-layer="objects"],.cell,.route-ink')].map(el=>el.outerHTML));
+  expect(await drawing(passable)).toEqual(await drawing(flavor));
  }
  await page.locator('#prototypeMarks').uncheck();
- await expect(passable.locator('[data-place-ring]')).toHaveCount(2);
+ await expect(passable.locator('[data-place-ring]')).toHaveCount(0);
  await expect(passable.locator('.cell circle,.route-stroke')).toHaveCount(0);
  await expect(blocked.locator('.island-label')).toHaveCount(1);
  await page.locator('#usageAsset-flavor').selectOption('land-coast.island.h1.basalt-spire-water.v1');

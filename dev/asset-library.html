@@ -18,11 +18,11 @@
   <label><input type="checkbox" id="prototypeMarks"> Echte Stundenzeichen und Route anzeigen (auch im Verwendungsvergleich)</label>
   <input type="checkbox" id="showChart" checked hidden>
   <div id="prototypeComparison"></div>
-  <p>Beispielzustand aus dem echten Kartenrenderer: Stunden 1–6 mit ✓ / ? / ×, aktive Stunde 2 und Route A3–B3–C3. Der Ortsring bleibt auch ohne Spielmarkierungen sichtbar. Die Überdeckung der Illustrationen durch Spielmarkierungen ist akzeptiert.</p>
+  <p>Beispielzustand aus dem echten Kartenrenderer: Stunden 1–6 mit ✓ / ? / ×, aktive Stunde 2 und Route A3–B3–C3. Permanente Ortsringe werden nicht angezeigt. Die Überdeckung der Illustrationen durch Spielmarkierungen ist akzeptiert.</p>
  </section>
  <section id="usage-previews" aria-labelledby="usageHeading">
   <h2 id="usageHeading">Verwendung im Rätsel vergleichen</h2>
-  <p>Benannte unbefahrbare Orte erhalten einen Pergament-Ortsnamen; benannte befahrbare Orte den orange/goldenen Kartografenring ohne Pergamentschild. Das ist die beabsichtigte UI-Regel, keine Rendererbeschränkung. Flavor zeigt nur die Illustration, ohne Ring und ohne Pergamentschild.</p>
+  <p>Benannte unbefahrbare Orte erhalten weiterhin eine Pergamentrolle mit Ortsnamen. Benannte befahrbare Orte und Flavor zeigen nur die Illustration, ohne Ortsring und ohne Pergamentschild. Die Unterscheidung zwischen benannten Orten und Flavor bleibt in den Rätseldaten erhalten.</p>
   <p>„Benannt“ oder „Flavor“ gehört zur Platzierung im Rätsel, nicht zur Assetklasse. Die Auswahl bewahrt die Befahrbarkeit jedes Assets. Zum Vergleich desselben Motivs den passenden benannten Zustand und Flavor wählen. Alle Ansichten verwenden den echten Kartenrenderer auf sea-blue-01; die Schalter für Hexgrenzen und Spielmarkierungen gelten auch hier.</p>
   <div id="usageComparison">
    <figure>
@@ -34,7 +34,7 @@
    <figure>
     <figcaption>Benannter befahrbarer Ort</figcaption>
     <label>Asset <select id="usageAsset-named-passable"></select></label>
-    <svg data-usage="named-passable" role="img" aria-label="Benannter befahrbarer Ort mit Kartografenring ohne Pergamentschild"></svg>
+    <svg data-usage="named-passable" role="img" aria-label="Benannter befahrbarer Ort nur mit Illustration, ohne Ortsring und Pergamentschild"></svg>
     <p id="usageStatus-named-passable"></p>
    </figure>
    <figure>

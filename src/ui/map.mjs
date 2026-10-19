@@ -147,13 +147,6 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
   g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#d6c59a":"#ece3c1","stroke-width":"1.05","stroke-opacity":land?".62":".56",...(land?{"stroke-dasharray":"4 3"}:{}),"stroke-linejoin":"round","pointer-events":"all"}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
-  // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
-  if(!land && Object.values(puzzle.places).some(place=>place.cells.includes(c.id))){
-    // Unregelmäßiger handgezeichneter Kartografenring, nicht anklickbar.
-    const ring=Array.from({length:33},(_,i)=>{const a=i*Math.PI/16;const rr=24+1.15*Math.sin(i*2.4)+.7*Math.cos(i*1.3);return `${i?'L':'M'} ${(x+rr*Math.cos(a)).toFixed(1)} ${(y+rr*Math.sin(a)).toFixed(1)}`}).join(' ');
-    g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
-    g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#a57739","stroke-width":"1.35",opacity:".79","stroke-linecap":"round","stroke-linejoin":"round"}));
-  }
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
   // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
   if(!land && Number.isInteger(state.layer) && state.layer>=1 && state.layer<=puzzle.steps){

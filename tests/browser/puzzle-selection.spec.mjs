@@ -20,8 +20,7 @@ test('switch and reload isolate notes, routes, overlays and undo',async({page})=
  await expect(page.locator('h1')).toHaveText('Technischer Testfall – Navigation');
  await expect(page.locator('#map .blocked-cell')).toHaveCount(3);
  await expect(page.locator('#map [data-id="E1"]')).toHaveClass(/blocked-cell/);
- await expect(page.locator('#map [data-place-ring="A1"]')).toHaveCount(2);
- await expect(page.locator('#map [data-place-ring="C1"]')).toHaveCount(0);
+ await expect(page.locator('#map [data-place-ring]')).toHaveCount(0);
  await expect(page.locator('.distance-overlay')).toHaveCount(0);
  await expect(page.locator('#cluePosition')).toHaveText('T1 / T6');
  await page.locator('#map [data-id="B5"]').click();await page.locator('#undo').click();
