@@ -2,6 +2,11 @@
 
 Diese Spezifikation ist aus dem HTML-Quellcode des unveränderten Originalarchivs rekonstruiert. Die implementierten Referenzprädikate stehen in [reference-rules.mjs](../tests/reference/reference-rules.mjs), die Regressionstests in [reference-rules.test.mjs](../tests/reference/reference-rules.test.mjs).
 
+Der [Regelvertrag `gezeitenkarten-1`](RULESET-GEZEITENKARTEN-1.md) hält den heutigen
+modularen Regelstand einschließlich aller sieben Hinweistypen und ihrer
+Parametergrenzen fest. Diese Datei bleibt die historische Rekonstruktion des
+Referenzfalls; dessen Daten und Hinweise werden dadurch nicht verändert.
+
 ## Koordinaten
 
 - `A1` bis `E5`: Spalten `q=0..4`, Reihen `r=0..4`.
