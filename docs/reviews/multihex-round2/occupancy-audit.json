@@ -1,0 +1,279 @@
+[
+  {
+    "key": "archipelago",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "substantialAlpha16PixelsPerCell": [
+      54331,
+      38940,
+      40716
+    ],
+    "sourceEdgeAlpha2Pixels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "allValidAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4"
+    ]
+  },
+  {
+    "key": "harbor",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "substantialAlpha16PixelsPerCell": [
+      53319,
+      52456,
+      47308
+    ],
+    "sourceEdgeAlpha2Pixels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "allValidAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "D4"
+    ]
+  },
+  {
+    "key": "smuggler",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -1
+      ]
+    ],
+    "substantialAlpha16PixelsPerCell": [
+      46201,
+      63590,
+      46065
+    ],
+    "sourceEdgeAlpha2Pixels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "allValidAnchors": [
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "A5",
+      "B5",
+      "C5",
+      "D5"
+    ]
+  },
+  {
+    "key": "sand",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ]
+    ],
+    "substantialAlpha16PixelsPerCell": [
+      25283,
+      31876,
+      32296,
+      26011
+    ],
+    "sourceEdgeAlpha2Pixels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "allValidAnchors": [
+      "A1",
+      "B1",
+      "A2",
+      "B2",
+      "A3",
+      "B3",
+      "A4",
+      "B4",
+      "A5",
+      "B5"
+    ]
+  },
+  {
+    "key": "claw",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        1
+      ]
+    ],
+    "substantialAlpha16PixelsPerCell": [
+      54994,
+      43530,
+      37094,
+      13819
+    ],
+    "sourceEdgeAlpha2Pixels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "allValidAnchors": [
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "D4"
+    ]
+  },
+  {
+    "key": "temple",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "substantialAlpha16PixelsPerCell": [
+      38237,
+      52771,
+      59958,
+      56557
+    ],
+    "sourceEdgeAlpha2Pixels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "allValidAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4"
+    ]
+  }
+]

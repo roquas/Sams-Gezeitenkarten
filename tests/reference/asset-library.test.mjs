@@ -39,7 +39,8 @@ test('catalog files, stable IDs, provenance and separated review catalog validat
  }
  assert.deepEqual(c.reviews.filter(r=>r.status==='approved').map(r=>[r.assetId,r.backgroundId]),[
   'land-coast.island.h1.basalt-spire-water.v1','navigation.lighthouse.h1.offcenter-beacon.v1',
-  'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1'
+  'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1',
+  'land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1'
  ].map(id=>[id,'sea-blue-01']));
  assert.equal(new Set(LEGACY_ASSETS.map(a=>a.id)).size,8);
  assert.ok(LEGACY_ASSETS.every(a=>a.stage==='legacy'&&a.exception));

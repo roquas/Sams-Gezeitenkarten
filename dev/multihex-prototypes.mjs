@@ -5,9 +5,48 @@ import {validatePlacements,compatibility} from '../src/assets/library.mjs';
 import {adjacent,distance} from '../src/engine/hex.mjs';
 
 export const multihexPrototypes=[
- {key:'tropical',id:'land-coast.island.h2.tropical-bays.v1',name:'Palmenbuchten'},
- {key:'volcano',id:'land-coast.island.h3.massive-volcano.v1',name:'Glutberg'},
- {key:'archipelago',id:'land-coast.archipelago.h3.bent-reefs.v1',name:'Splitterriffe'}
+ {
+  "key": "tropical",
+  "id": "land-coast.island.h2.tropical-bays.v1",
+  "name": "Palmenbuchten",
+  "approved": true
+ },
+ {
+  "key": "volcano",
+  "id": "land-coast.island.h3.massive-volcano.v1",
+  "name": "Glutberg",
+  "approved": true
+ },
+ {
+  "key": "archipelago",
+  "id": "land-coast.archipelago.h3.sand-reefs.v2",
+  "name": "Sandriffbogen"
+ },
+ {
+  "key": "harbor",
+  "id": "land-coast.island.h3.south-harbor.v1",
+  "name": "Südhafen"
+ },
+ {
+  "key": "smuggler",
+  "id": "land-coast.island.h3.smuggler-cove.v1",
+  "name": "Schmugglerbucht"
+ },
+ {
+  "key": "sand",
+  "id": "land-coast.island.h4.long-sand.v1",
+  "name": "Langer Strand"
+ },
+ {
+  "key": "claw",
+  "id": "land-coast.island.h4.crab-claw.v1",
+  "name": "Krabbenzange"
+ },
+ {
+  "key": "temple",
+  "id": "land-coast.island.h4.jungle-temple.v1",
+  "name": "Tempel der Gezeiten"
+ }
 ];
 const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
 export function multihexFixture(library,prototype,anchor){
@@ -32,7 +71,7 @@ export function renderMultihex(svg,library,prototype,anchor,{marked=false,hexes=
  }finally{svg.removeAttribute('id');}
  if(detail){
   const r=assetRectangle(library.assets.find(a=>a.id===prototype.id),anchor,byId);
-  svg.setAttribute('viewBox',[r.x+r.width/2-150,r.y+r.height/2-125,300,250].join(' '));
+  svg.setAttribute('viewBox',[r.x+r.width/2-190,r.y+r.height/2-150,380,300].join(' '));
  }
  svg.dataset.asset=prototype.id;svg.dataset.anchor=anchor;
  for(const cell of svg.querySelectorAll('.cell')){

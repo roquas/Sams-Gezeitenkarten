@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import fs from 'node:fs';
 import {interceptNewAssets} from '../integration/asset-library.mjs';
 
 test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules under a subpath',async({page,request},info)=>{
@@ -14,24 +15,26 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
   const size=await page.evaluate(async url=>{const i=new Image();i.src=url;await i.decode();return [i.naturalWidth,i.naturalHeight];},new URL('../../'+asset.image.path,response.url()).href);
   expect(size).toEqual([360,408]);
  }
- // Pending multihex images ship whole and decode from the actual subpath ZIP.
+ // Approved references and pending multihex images ship whole through the actual subpath ZIP.
  for(const [id,size,cells] of [
   ['land-coast.island.h2.tropical-bays.v1',[688,408],2],
   ['land-coast.island.h3.massive-volcano.v1',[688,768],3],
-  ['land-coast.archipelago.h3.bent-reefs.v1',[912,768],3]
+  ['land-coast.archipelago.h3.bent-reefs.v1',[912,768],3],
+  ...JSON.parse(fs.readFileSync(new URL('../../docs/reviews/multihex-round2/composition-plan.json',import.meta.url))).map(a=>[a.id,a.canvas,a.cells.length])
  ]){
   const a=library.assets.find(a=>a.id===id);
   expect(a).toMatchObject({stage:'illustration',passable:false});
   expect(a.geometry.cells).toHaveLength(cells);
-  expect(library.reviews.filter(r=>r.assetId===id).every(r=>r.status==='pending')).toBe(true);
+  for(const b of library.backgrounds)expect(library.reviews.find(r=>r.assetId===id&&r.backgroundId===b.id)?.status).toBe(b.id==='sea-blue-01'&&['land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1'].includes(id)?'approved':'pending');
   const decoded=await page.evaluate(async url=>{const im=new Image();im.src=url;await im.decode();return [im.naturalWidth,im.naturalHeight];},new URL('../../'+a.image.path,response.url()).href);
   expect(decoded).toEqual(size);
  }
  expect(library.reviews.filter(r=>r.status==='approved').map(r=>[r.assetId,r.backgroundId])).toEqual([
   'land-coast.island.h1.basalt-spire-water.v1','navigation.lighthouse.h1.offcenter-beacon.v1',
-  'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1'
+  'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1',
+  'land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1'
  ].map(id=>[id,'sea-blue-01']));
- expect(library.reviews.filter(r=>r.status==='pending')).toHaveLength(library.reviews.length-4);
+ expect(library.reviews.filter(r=>r.status==='pending')).toHaveLength(library.reviews.length-6);
  const errors=[],requests=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{requests.push(r.url());if(r.status()>=400)errors.push(r.url());});

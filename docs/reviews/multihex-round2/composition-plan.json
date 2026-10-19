@@ -1,0 +1,270 @@
+[
+  {
+    "key": "archipelago",
+    "name": "Sandriffbogen",
+    "id": "land-coast.archipelago.h3.sand-reefs.v2",
+    "file": "sand-reefs-h3-v2.png",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "composition": "The shape bends from WEST across the NORTH into the SOUTHEAST. One broad flat sand island spans the two upper cells, fragments into curving sandbars and tiny bush islets toward the southeast. Many reefs and shallows visually connect everything. Broad ivory beaches dominate, low shrubs, only a few palms, scattered small rounded rocks, tiny thatched hut and short wooden boat jetty. Continuous sweeping composition, irregular sizes, visible transparent water channels. NO mountains, NO tall cliffs, NO three equal separate island icons.",
+    "prompt": "Use case: stylized-concept. Asset: ONE entire transparent RGBA multihex board-game map illustration. Reference 1 is approved STYLE ONLY (do not copy its subject); reference 2 is the exact composition envelope, NOT artwork. Paint a lively colorful sculptural detailed adventure board-game watercolor illustration with crisp readable silhouettes, rich foliage, sunlit ivory sand, warm stone, vivid teal coastal shallows and white foam, matching reference 1. Elevated oblique map view from south, consistent light from upper left. Everything belongs to ONE integrated geographic scene. Follow the bent or long footprint in reference 2, with transparent negative space in omitted cells. Keep ALL pigment, coastline, foam and shadows INSIDE the light envelope with generous safety margin. No visible hex outlines, guide labels, frame, ground plane, text, watermark, white backdrop, rectangular ocean or detached decoration. Genuine transparent background; local shallows feather to transparency. Do not crop any detail.  Composition: The shape bends from WEST across the NORTH into the SOUTHEAST. One broad flat sand island spans the two upper cells, fragments into curving sandbars and tiny bush islets toward the southeast. Many reefs and shallows visually connect everything. Broad ivory beaches dominate, low shrubs, only a few palms, scattered small rounded rocks, tiny thatched hut and short wooden boat jetty. Continuous sweeping composition, irregular sizes, visible transparent water channels. NO mountains, NO tall cliffs, NO three equal separate island icons.",
+    "status": "pending",
+    "canvas": [
+      912,
+      768
+    ],
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4"
+    ]
+  },
+  {
+    "key": "harbor",
+    "name": "Südhafen",
+    "id": "land-coast.island.h3.south-harbor.v1",
+    "file": "south-harbor-h3-v1.png",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "composition": "Mandatory silhouette: TWO cells side by side at NORTH, ONE centered below at SOUTH. Broad lush tropical main island spans both upper cells; protected deep harbor inlet opens SOUTH. A massive long timber pier reaches south down the center of the lower cell; one large sailing brig and one small coastal sloop moor along its sides. The lower cell is primarily the imposing pier, ships and turquoise harbor water. Low hills only on north shore, sandy crescent coast and a few harbor huts; richly detailed timber structures. NOT the north-pointing volcano triangle.",
+    "prompt": "Use case: stylized-concept. Asset: ONE entire transparent RGBA multihex board-game map illustration. Reference 1 is approved STYLE ONLY (do not copy its subject); reference 2 is the exact composition envelope, NOT artwork. Paint a lively colorful sculptural detailed adventure board-game watercolor illustration with crisp readable silhouettes, rich foliage, sunlit ivory sand, warm stone, vivid teal coastal shallows and white foam, matching reference 1. Elevated oblique map view from south, consistent light from upper left. Everything belongs to ONE integrated geographic scene. Follow the bent or long footprint in reference 2, with transparent negative space in omitted cells. Keep ALL pigment, coastline, foam and shadows INSIDE the light envelope with generous safety margin. No visible hex outlines, guide labels, frame, ground plane, text, watermark, white backdrop, rectangular ocean or detached decoration. Genuine transparent background; local shallows feather to transparency. Do not crop any detail.  Composition: Mandatory silhouette: TWO cells side by side at NORTH, ONE centered below at SOUTH. Broad lush tropical main island spans both upper cells; protected deep harbor inlet opens SOUTH. A massive long timber pier reaches south down the center of the lower cell; one large sailing brig and one small coastal sloop moor along its sides. The lower cell is primarily the imposing pier, ships and turquoise harbor water. Low hills only on north shore, sandy crescent coast and a few harbor huts; richly detailed timber structures. NOT the north-pointing volcano triangle.",
+    "status": "pending",
+    "canvas": [
+      688,
+      768
+    ],
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "D4"
+    ]
+  },
+  {
+    "key": "smuggler",
+    "name": "Schmugglerbucht",
+    "id": "land-coast.island.h3.smuggler-cove.v1",
+    "file": "smuggler-cove-h3-v1.png",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -1
+      ]
+    ],
+    "composition": "A mirrored bent silhouette: lower WEST headland curves up through upper CENTER and across to upper EAST. A long continuous rugged crescent coastline encloses a deep sheltered bay opening SOUTHWEST. Distinct overhanging low limestone cliffs with a dark hidden sea-cave at the inner cliff, tiny wooden skiff, stacked smugglers crates near the cave, luxuriant tangled vegetation. Asymmetrical, sheltered mysterious turquoise bay. One geographic body, not three equal islands. NOT a volcano, not a harbor with large ships.",
+    "prompt": "Use case: stylized-concept. Asset: ONE entire transparent RGBA multihex board-game map illustration. Reference 1 is approved STYLE ONLY (do not copy its subject); reference 2 is the exact composition envelope, NOT artwork. Paint a lively colorful sculptural detailed adventure board-game watercolor illustration with crisp readable silhouettes, rich foliage, sunlit ivory sand, warm stone, vivid teal coastal shallows and white foam, matching reference 1. Elevated oblique map view from south, consistent light from upper left. Everything belongs to ONE integrated geographic scene. Follow the bent or long footprint in reference 2, with transparent negative space in omitted cells. Keep ALL pigment, coastline, foam and shadows INSIDE the light envelope with generous safety margin. No visible hex outlines, guide labels, frame, ground plane, text, watermark, white backdrop, rectangular ocean or detached decoration. Genuine transparent background; local shallows feather to transparency. Do not crop any detail.  Composition: A mirrored bent silhouette: lower WEST headland curves up through upper CENTER and across to upper EAST. A long continuous rugged crescent coastline encloses a deep sheltered bay opening SOUTHWEST. Distinct overhanging low limestone cliffs with a dark hidden sea-cave at the inner cliff, tiny wooden skiff, stacked smugglers crates near the cave, luxuriant tangled vegetation. Asymmetrical, sheltered mysterious turquoise bay. One geographic body, not three equal islands. NOT a volcano, not a harbor with large ships.",
+    "status": "pending",
+    "canvas": [
+      912,
+      768
+    ],
+    "validAnchors": [
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "A5",
+      "B5",
+      "C5",
+      "D5"
+    ]
+  },
+  {
+    "key": "sand",
+    "name": "Langer Strand",
+    "id": "land-coast.island.h4.long-sand.v1",
+    "file": "long-sand-h4-v1.png",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ]
+    ],
+    "composition": "Extremely long very low tropical sand island stretching WEST to EAST across FOUR horizontal cells. Huge unbroken pale ivory beach, serpentine sandspit tips, shallow gently rolling dunes, sparse beach grass and just a few widely separated palms. Delicate turquoise shallows hugging the shoreline. Entire shape is about 4.8 times wider than tall, almost horizontal, airy and elegant. ONE continuous long island, no separate repeated tiles, no mountains, no tall rocks, no buildings.",
+    "prompt": "Use case: stylized-concept. Asset: ONE entire transparent RGBA multihex board-game map illustration. Reference 1 is approved STYLE ONLY (do not copy its subject); reference 2 is the exact composition envelope, NOT artwork. Paint a lively colorful sculptural detailed adventure board-game watercolor illustration with crisp readable silhouettes, rich foliage, sunlit ivory sand, warm stone, vivid teal coastal shallows and white foam, matching reference 1. Elevated oblique map view from south, consistent light from upper left. Everything belongs to ONE integrated geographic scene. Follow the bent or long footprint in reference 2, with transparent negative space in omitted cells. Keep ALL pigment, coastline, foam and shadows INSIDE the light envelope with generous safety margin. No visible hex outlines, guide labels, frame, ground plane, text, watermark, white backdrop, rectangular ocean or detached decoration. Genuine transparent background; local shallows feather to transparency. Do not crop any detail.  Composition: Extremely long very low tropical sand island stretching WEST to EAST across FOUR horizontal cells. Huge unbroken pale ivory beach, serpentine sandspit tips, shallow gently rolling dunes, sparse beach grass and just a few widely separated palms. Delicate turquoise shallows hugging the shoreline. Entire shape is about 4.8 times wider than tall, almost horizontal, airy and elegant. ONE continuous long island, no separate repeated tiles, no mountains, no tall rocks, no buildings.",
+    "status": "pending",
+    "canvas": [
+      1344,
+      408
+    ],
+    "validAnchors": [
+      "A1",
+      "B1",
+      "A2",
+      "B2",
+      "A3",
+      "B3",
+      "A4",
+      "B4",
+      "A5",
+      "B5"
+    ]
+  },
+  {
+    "key": "claw",
+    "name": "Krabbenzange",
+    "id": "land-coast.island.h4.crab-claw.v1",
+    "file": "crab-claw-h4-v1.png",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        1
+      ]
+    ],
+    "composition": "A broad C-shaped island like a giant CRAB CLAW, centered on a luminous lagoon that opens to the SOUTHWEST. Upper rocky arm reaches EAST from the northwestern root and curves toward southeast, lower sandy arm reaches WEST across the southern cells; the two unequal hooked headlands almost embrace the lagoon. Continuous forested root joins arms on northeast side. Small weathered shipwreck in the shallow inner bay. Some low layered warm rocks, sand, vivid jungle patches. Strong negative-space lagoon; not a simple oval island or atoll ring, no crab animal.",
+    "prompt": "Use case: stylized-concept. Asset: ONE entire transparent RGBA multihex board-game map illustration. Reference 1 is approved STYLE ONLY (do not copy its subject); reference 2 is the exact composition envelope, NOT artwork. Paint a lively colorful sculptural detailed adventure board-game watercolor illustration with crisp readable silhouettes, rich foliage, sunlit ivory sand, warm stone, vivid teal coastal shallows and white foam, matching reference 1. Elevated oblique map view from south, consistent light from upper left. Everything belongs to ONE integrated geographic scene. Follow the bent or long footprint in reference 2, with transparent negative space in omitted cells. Keep ALL pigment, coastline, foam and shadows INSIDE the light envelope with generous safety margin. No visible hex outlines, guide labels, frame, ground plane, text, watermark, white backdrop, rectangular ocean or detached decoration. Genuine transparent background; local shallows feather to transparency. Do not crop any detail.  Composition: A broad C-shaped island like a giant CRAB CLAW, centered on a luminous lagoon that opens to the SOUTHWEST. Upper rocky arm reaches EAST from the northwestern root and curves toward southeast, lower sandy arm reaches WEST across the southern cells; the two unequal hooked headlands almost embrace the lagoon. Continuous forested root joins arms on northeast side. Small weathered shipwreck in the shallow inner bay. Some low layered warm rocks, sand, vivid jungle patches. Strong negative-space lagoon; not a simple oval island or atoll ring, no crab animal.",
+    "status": "pending",
+    "canvas": [
+      856,
+      680
+    ],
+    "validAnchors": [
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "D4"
+    ]
+  },
+  {
+    "key": "temple",
+    "name": "Tempel der Gezeiten",
+    "id": "land-coast.island.h4.jungle-temple.v1",
+    "file": "jungle-temple-h4-v1.png",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "composition": "Compact lush jungle island with a dominant ancient MAYA-INSPIRED STEPPED STONE PYRAMID, steep central stair and ruined shrine on top. Overgrown terraces, weathered ancient American stone reliefs, broken monumental carved stones, hanging vines, giant tropical leaves and palms. Indiana-Jones-style adventure mystery, subtle fictional ritual site with small wooden talismans and a discreet altar, no people. Sandy coves around thick jungle base. Monument centered high on island, ruins distributed organically. Explicitly NO medieval castle, NO European coastal fort, NO battlements, NO Gothic towers, NO European architecture.",
+    "prompt": "Use case: stylized-concept. Asset: ONE entire transparent RGBA multihex board-game map illustration. Reference 1 is approved STYLE ONLY (do not copy its subject); reference 2 is the exact composition envelope, NOT artwork. Paint a lively colorful sculptural detailed adventure board-game watercolor illustration with crisp readable silhouettes, rich foliage, sunlit ivory sand, warm stone, vivid teal coastal shallows and white foam, matching reference 1. Elevated oblique map view from south, consistent light from upper left. Everything belongs to ONE integrated geographic scene. Follow the bent or long footprint in reference 2, with transparent negative space in omitted cells. Keep ALL pigment, coastline, foam and shadows INSIDE the light envelope with generous safety margin. No visible hex outlines, guide labels, frame, ground plane, text, watermark, white backdrop, rectangular ocean or detached decoration. Genuine transparent background; local shallows feather to transparency. Do not crop any detail.  Composition: Compact lush jungle island with a dominant ancient MAYA-INSPIRED STEPPED STONE PYRAMID, steep central stair and ruined shrine on top. Overgrown terraces, weathered ancient American stone reliefs, broken monumental carved stones, hanging vines, giant tropical leaves and palms. Indiana-Jones-style adventure mystery, subtle fictional ritual site with small wooden talismans and a discreet altar, no people. Sandy coves around thick jungle base. Monument centered high on island, ruins distributed organically. Explicitly NO medieval castle, NO European coastal fort, NO battlements, NO Gothic towers, NO European architecture.",
+    "status": "pending",
+    "canvas": [
+      856,
+      680
+    ],
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4"
+    ]
+  }
+]

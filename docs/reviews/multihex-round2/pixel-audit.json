@@ -1,0 +1,372 @@
+[
+  {
+    "key": "archipelago",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "image": "assets/library/sand-reefs-h3-v2.png",
+    "sourceSha256": "a73197abaf2bb29888542e0f2982a3779b37c268732bff22a0259e01fcada906",
+    "assetSha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e",
+    "sourceSize": [
+      1367,
+      1151
+    ],
+    "sampleSize": [
+      866,
+      729
+    ],
+    "paddingLeftTop": [
+      3,
+      35
+    ],
+    "nominalPercent": 95,
+    "canvas": [
+      912,
+      768
+    ],
+    "visiblePixels": 144063,
+    "alphaOnePixels": 5343,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 581,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "harbor",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "image": "assets/library/south-harbor-h3-v1.png",
+    "sourceSha256": "534ebfc544370aed067d6169f6e94ad4a0e18a9a752dfe366933c29b4d3e1ae4",
+    "assetSha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62",
+    "sourceSize": [
+      1337,
+      1176
+    ],
+    "sampleSize": [
+      571,
+      502
+    ],
+    "paddingLeftTop": [
+      50,
+      133
+    ],
+    "nominalPercent": 83,
+    "canvas": [
+      688,
+      768
+    ],
+    "visiblePixels": 158751,
+    "alphaOnePixels": 3090,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "D4"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 7904,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "smuggler",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -1
+      ]
+    ],
+    "image": "assets/library/smuggler-cove-h3-v1.png",
+    "sourceSha256": "1532bedc6333eb57443a7946309e3979c62352f9d7ebc4a42683f1e7a48a6376",
+    "assetSha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+    "sourceSize": [
+      1367,
+      1151
+    ],
+    "sampleSize": [
+      784,
+      660
+    ],
+    "paddingLeftTop": [
+      72,
+      70
+    ],
+    "nominalPercent": 86,
+    "canvas": [
+      912,
+      768
+    ],
+    "visiblePixels": 165826,
+    "alphaOnePixels": 5554,
+    "validAnchors": [
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "A5",
+      "B5",
+      "C5",
+      "D5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 7756,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "sand",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ]
+    ],
+    "image": "assets/library/long-sand-h4-v1.png",
+    "sourceSha256": "9bd935c9ada58c6e5aa98daf17a6f10a34a417433ac7ff81a2e1815c5255ce9e",
+    "assetSha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130",
+    "sourceSize": [
+      2172,
+      724
+    ],
+    "sampleSize": [
+      1151,
+      384
+    ],
+    "paddingLeftTop": [
+      96,
+      0
+    ],
+    "nominalPercent": 94,
+    "canvas": [
+      1344,
+      408
+    ],
+    "visiblePixels": 127551,
+    "alphaOnePixels": 5944,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "A2",
+      "B2",
+      "A3",
+      "B3",
+      "A4",
+      "B4",
+      "A5",
+      "B5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 3846,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "claw",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        1
+      ]
+    ],
+    "image": "assets/library/crab-claw-h4-v1.png",
+    "sourceSha256": "4868c61d8953bf782ad5755f5c2d6bb03f2d14e9231e867060533ea8db314fef",
+    "assetSha256": "f1d1d7c237820b89306cc40d7d54e7ca8570ba1b9311c3ccd9fb3441d9e5d81e",
+    "sourceSize": [
+      1407,
+      1118
+    ],
+    "sampleSize": [
+      590,
+      469
+    ],
+    "paddingLeftTop": [
+      153,
+      37
+    ],
+    "nominalPercent": 69,
+    "canvas": [
+      856,
+      680
+    ],
+    "visiblePixels": 153933,
+    "alphaOnePixels": 2149,
+    "validAnchors": [
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "D4"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 1054,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "temple",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "image": "assets/library/jungle-temple-h4-v1.png",
+    "sourceSha256": "c8d9e4e870e6d5d5dacf2842f26ef7733cd4bbd6f50a90cb89b14ecf2dddfb27",
+    "assetSha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254",
+    "sourceSize": [
+      1407,
+      1118
+    ],
+    "sampleSize": [
+      693,
+      551
+    ],
+    "paddingLeftTop": [
+      97,
+      84
+    ],
+    "nominalPercent": 81,
+    "canvas": [
+      856,
+      680
+    ],
+    "visiblePixels": 214892,
+    "alphaOnePixels": 3976,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 1866,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  }
+]

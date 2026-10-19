@@ -7,7 +7,7 @@ try{
  const select=document.getElementById('multihexAsset');
  for(const p of multihexPrototypes){const o=document.createElement('option');o.value=p.key;o.textContent=p.name;select.append(o);}
  const requested=new URLSearchParams(location.search).get('asset');
- if(multihexPrototypes.some(p=>p.key===requested))select.value=requested;
+ select.value=multihexPrototypes.some(p=>p.key===requested)?requested:'archipelago';
  function render(){
   const options={marked:document.getElementById('marks').checked,hexes:document.getElementById('hexes').checked};
   function card(container,prototype,anchor,position,detail){
@@ -18,7 +18,9 @@ try{
    figure.append(svg);container.append(figure);renderMultihex(svg,library,prototype,anchor,{...options,detail});
   }
   const comparison=document.getElementById('multihexComparison');comparison.replaceChildren();
-  for(const p of multihexPrototypes)card(comparison,p,'B3',null,true);
+  for(const p of multihexPrototypes.filter(p=>!p.approved))card(comparison,p,'B3',null,true);
+  const approved=document.getElementById('multihexApproved');approved.replaceChildren();
+  for(const p of multihexPrototypes.filter(p=>p.approved))card(approved,p,'B3',null,true);
   const positions=document.getElementById('multihexPositions');positions.replaceChildren();
   const p=multihexPrototypes.find(p=>p.key===select.value),asset=library.assets.find(a=>a.id===p.id);
   for(const position of reviewPositions(asset))card(positions,p,position.anchor,position,false);

@@ -70,7 +70,7 @@ def prepare_source(original):
     return Image.fromarray(pixels), int(np.count_nonzero(residue))
 
 
-def export(sources):
+def export(sources, report_path=None):
     reports = []
     for (name, cells), data in zip(SHAPES.items(), contracts()):
         c = data['contract']; w, h = c['pixelWidth'], c['pixelHeight']
@@ -117,7 +117,8 @@ def export(sources):
                   'alphaPolicy':'Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved',
                   'crop':False,'rotation':False}
         reports.append(report); print(json.dumps(report), flush=True)
-    (ROOT/'docs/reviews/multihex/pixel-audit.json').write_text(json.dumps(reports,indent=2)+'\n')
+    (report_path or ROOT/'docs/reviews/multihex/pixel-audit.json').write_text(json.dumps(reports,indent=2)+'\n')
+    return reports
 
 
 if __name__ == '__main__':

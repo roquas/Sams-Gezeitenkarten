@@ -1,3 +1,5 @@
+> Historischer Stand der ersten Runde. Aktueller Beschluss vom 19.10.2026: Palmenbuchten und Glutberg unverändert für sea-blue-01 freigegeben; alter Archipel NICHT freigegeben. [Zweite Runde und aktuelle Prüfung](MULTIHEX-ROUND2-65.md). Die nachstehenden Pending-Aussagen beschreiben den damaligen Stand.
+
 # Drei unbefahrbare Mehrhex-Prototypen – pending
 
 Stand 19.10.2026, bestehender PR #65, Branch `feature/asset-library-integration`. **Keine künstlerische Freigabe.** Alle drei neuen Illustrationen und alle neun Hintergrundkombinationen stehen ausdrücklich auf `pending`. Die vier vorher freigegebenen Kombinationen einschließlich ihrer Bildhashes bleiben erhalten. Keine produktiven Rätseldaten oder neuen Spielfunktionen.

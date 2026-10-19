@@ -33,9 +33,16 @@ class MultihexExportTests(unittest.TestCase):
         assets = [a for a in catalog['assets'] if a['id'] in {
             'land-coast.island.h2.tropical-bays.v1',
             'land-coast.island.h3.massive-volcano.v1',
-            'land-coast.archipelago.h3.bent-reefs.v1'}]
-        self.assertEqual(len(assets),3)
-        contracts = {tuple(map(tuple,cells)): data for cells,data in zip(exporter.SHAPES.values(),exporter.contracts())}
+            'land-coast.archipelago.h3.bent-reefs.v1'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
+        self.assertEqual(len(assets),9)
+        shapes = dict(exporter.SHAPES)
+        shapes.update({a['key']+'-round2':a['cells'] for a in json.loads((ROOT/'dev/multihex-round2.json').read_text())})
+        original_shapes = exporter.SHAPES
+        try:
+            exporter.SHAPES = shapes
+            contracts = {tuple(map(tuple,cells)): data for cells,data in zip(shapes.values(),exporter.contracts())}
+        finally:
+            exporter.SHAPES = original_shapes
         for asset in assets:
             c = contracts[tuple(map(tuple,asset['geometry']['cells']))]['contract']
             alpha = np.asarray(Image.open(ROOT/asset['image']['path']).getchannel('A'))

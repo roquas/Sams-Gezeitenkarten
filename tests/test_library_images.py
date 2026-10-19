@@ -150,7 +150,8 @@ class LibraryImageTests(unittest.TestCase):
         self.assertNotEqual(assets[0]['image']['path'], assets[1]['image']['path'])
         for asset in assets:
             with self.subTest(asset=asset['id']):
-                self.assertGreaterEqual(len(asset['placements']), 12)
+                expected = {'land-coast.island.h4.long-sand.v1': 10}
+                self.assertGreaterEqual(len(asset['placements']), expected.get(asset['id'], 12))
                 if len(asset['geometry']['cells']) == 1:
                     self.assertEqual(len(asset['placements']), 25)
                 checker.check_image((ROOT / asset['image']['path']).read_bytes(), asset)

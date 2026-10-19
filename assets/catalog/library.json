@@ -376,6 +376,234 @@
       "candidateFamilies": [
         "blue-sea"
       ]
+    },
+    {
+      "id": "land-coast.archipelago.h3.sand-reefs.v2",
+      "family": "land-coast",
+      "type": "archipelago",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/sand-reefs-h3-v2.png",
+        "width": 912,
+        "height": 768
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved Palmenbuchten style and actual Voronoi geometry guide. Whole-canvas proportional RGBA export, no cropping/rotation/masking. See docs/MULTIHEX-ROUND2-65.md",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "land-coast.island.h3.south-harbor.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/south-harbor-h3-v1.png",
+        "width": 688,
+        "height": 768
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved Palmenbuchten style and actual Voronoi geometry guide. Whole-canvas proportional RGBA export, no cropping/rotation/masking. See docs/MULTIHEX-ROUND2-65.md",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "land-coast.island.h3.smuggler-cove.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            2,
+            -1
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/smuggler-cove-h3-v1.png",
+        "width": 912,
+        "height": 768
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved Palmenbuchten style and actual Voronoi geometry guide. Whole-canvas proportional RGBA export, no cropping/rotation/masking. See docs/MULTIHEX-ROUND2-65.md",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "land-coast.island.h4.long-sand.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/long-sand-h4-v1.png",
+        "width": 1344,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved Palmenbuchten style and actual Voronoi geometry guide. Whole-canvas proportional RGBA export, no cropping/rotation/masking. See docs/MULTIHEX-ROUND2-65.md",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "land-coast.island.h4.crab-claw.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            1
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/crab-claw-h4-v1.png",
+        "width": 856,
+        "height": 680
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved Palmenbuchten style and actual Voronoi geometry guide. Whole-canvas proportional RGBA export, no cropping/rotation/masking. See docs/MULTIHEX-ROUND2-65.md",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "land-coast.island.h4.jungle-temple.v1",
+      "family": "land-coast",
+      "type": "island",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/jungle-temple-h4-v1.png",
+        "width": 856,
+        "height": 680
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved Palmenbuchten style and actual Voronoi geometry guide. Whole-canvas proportional RGBA export, no cropping/rotation/masking. See docs/MULTIHEX-ROUND2-65.md",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
     }
   ],
   "reviews": [
@@ -500,8 +728,12 @@
     {
       "assetId": "land-coast.island.h2.tropical-bays.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Mehrhex-Prototyp; künstlerisch NICHT freigegeben. Geometrische Prüfung ist keine künstlerische Freigabe. Alle belegten Felder unbefahrbar, auch offene Wasserpassagen des Archipels."
+      "status": "approved",
+      "notes": "Ausdrückliche künstlerische Nutzerfreigabe für die unveränderten Palmenbuchten / Glutberg ausschließlich auf sea-blue-01, Auftrag zur zweiten Mehrhex-Runde vom 19.10.2026. Keine Freigabe weiterer Motive oder Hintergründe. Siehe docs/MULTIHEX-ROUND2-65.md.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "land-coast.island.h2.tropical-bays.v1",
@@ -518,8 +750,12 @@
     {
       "assetId": "land-coast.island.h3.massive-volcano.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Mehrhex-Prototyp; künstlerisch NICHT freigegeben. Geometrische Prüfung ist keine künstlerische Freigabe. Alle belegten Felder unbefahrbar, auch offene Wasserpassagen des Archipels."
+      "status": "approved",
+      "notes": "Ausdrückliche künstlerische Nutzerfreigabe für die unveränderten Palmenbuchten / Glutberg ausschließlich auf sea-blue-01, Auftrag zur zweiten Mehrhex-Runde vom 19.10.2026. Keine Freigabe weiterer Motive oder Hintergründe. Siehe docs/MULTIHEX-ROUND2-65.md.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "land-coast.island.h3.massive-volcano.v1",
@@ -537,19 +773,127 @@
       "assetId": "land-coast.archipelago.h3.bent-reefs.v1",
       "backgroundId": "sea-blue-01",
       "status": "pending",
-      "notes": "Mehrhex-Prototyp; künstlerisch NICHT freigegeben. Geometrische Prüfung ist keine künstlerische Freigabe. Alle belegten Felder unbefahrbar, auch offene Wasserpassagen des Archipels."
+      "notes": "Vom Nutzer ausdrücklich NICHT freigegeben: drei zu steile Einzelinseln. Historischer Vergleich unverändert erhalten; ersetzt im aktiven Mehrhex-Vergleich durch sand-reefs.v2. Keine künstlerische Freigabe."
     },
     {
       "assetId": "land-coast.archipelago.h3.bent-reefs.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Mehrhex-Prototyp; künstlerisch NICHT freigegeben. Geometrische Prüfung ist keine künstlerische Freigabe. Alle belegten Felder unbefahrbar, auch offene Wasserpassagen des Archipels."
+      "notes": "Vom Nutzer ausdrücklich NICHT freigegeben: drei zu steile Einzelinseln. Historischer Vergleich unverändert erhalten; ersetzt im aktiven Mehrhex-Vergleich durch sand-reefs.v2. Keine künstlerische Freigabe."
     },
     {
       "assetId": "land-coast.archipelago.h3.bent-reefs.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Mehrhex-Prototyp; künstlerisch NICHT freigegeben. Geometrische Prüfung ist keine künstlerische Freigabe. Alle belegten Felder unbefahrbar, auch offene Wasserpassagen des Archipels."
+      "notes": "Vom Nutzer ausdrücklich NICHT freigegeben: drei zu steile Einzelinseln. Historischer Vergleich unverändert erhalten; ersetzt im aktiven Mehrhex-Vergleich durch sand-reefs.v2. Keine künstlerische Freigabe."
+    },
+    {
+      "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h3.south-harbor.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h3.south-harbor.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h3.south-harbor.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h3.smuggler-cove.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h3.smuggler-cove.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h3.smuggler-cove.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h4.long-sand.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h4.long-sand.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h4.long-sand.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h4.crab-claw.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h4.crab-claw.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h4.crab-claw.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h4.jungle-temple.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h4.jungle-temple.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.island.h4.jungle-temple.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
     }
   ]
 }

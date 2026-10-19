@@ -10,15 +10,16 @@ import {placeLabelLayout,labelFootprint,hexVertices,hexCenter,polygonsOverlap,co
 const library=JSON.parse(fs.readFileSync(new URL('../../assets/catalog/library.json',import.meta.url)));
 const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
 const board=new Set(HEXES.map(h=>h.id));
-for(const [i,p] of multihexPrototypes.entries())test(p.key+': single whole image, pending approval, every occupied hex blocked and labels safe at every valid anchor',()=>{
+const counts={tropical:20,volcano:16,archipelago:14,harbor:16,smuggler:14,sand:10,claw:14,temple:14};
+for(const p of multihexPrototypes)test(p.key+': single whole image, explicit review, every occupied hex blocked and labels safe at every valid anchor',()=>{
  const asset=library.assets.find(a=>a.id===p.id);
  assert.equal(asset.passable,false);assert.equal(asset.stage,'illustration');
- assert.equal(asset.geometry.cells.length,i===0?2:3);
+ assert.equal(asset.geometry.cells.length,p.key==='tropical'?2:['volcano','archipelago','harbor','smuggler'].includes(p.key)?3:4);
  const contract=imageContract(asset.geometry.cells);
  assert.deepEqual([asset.image.width,asset.image.height],[contract.pixelWidth,contract.pixelHeight]);
- for(const bg of library.backgrounds)assert.equal(compatibility(library,p.id,bg.id),'pending');
+ for(const bg of library.backgrounds)assert.equal(compatibility(library,p.id,bg.id),p.approved&&bg.id==='sea-blue-01'?'approved':'pending');
  const positions=reviewPositions(asset);
- assert.deepEqual(positions.map(p=>[p.parity,p.location]),[['ungerade','Rand'],['ungerade','Innen'],['gerade','Rand'],['gerade','Innen']]);
+ assert.deepEqual(positions.map(p=>[p.parity,p.location]),p.key==='sand'?[['ungerade','Rand'],['gerade','Rand']]:[['ungerade','Rand'],['ungerade','Innen'],['gerade','Rand'],['gerade','Innen']]);
  let checked=0;
  for(const h of HEXES){
   const cells=placedCells(asset,h.id);if(!cells.every(id=>board.has(id)))continue;checked++;
@@ -31,8 +32,18 @@ for(const [i,p] of multihexPrototypes.entries())test(p.key+': single whole image
   assert.ok(footprint.every(v=>containsPoint(label.polygon,v)));
   for(const water of HEXES.filter(c=>!blocked.has(c.id)))assert.equal(polygonsOverlap(footprint,hexVertices(...hexCenter(water))),false);
   const logic={grid:{columns:5,rows:5},blocked:cells,places:puzzle.places};
-  assert.ok(validatePlacements(puzzle.assetPlacements,library,logic,'sea-blue-01').some(e=>e.includes('not visually approved')));
+  assert.equal(validatePlacements(puzzle.assetPlacements,library,logic,'sea-blue-01').some(e=>e.includes('not visually approved')),!p.approved);
   for(const omitted of cells)assert.ok(validatePlacements(puzzle.assetPlacements,library,{...logic,blocked:cells.filter(c=>c!==omitted)},'sea-blue-01',{development:true}).some(e=>e.includes('passable conflicts')));
  }
- assert.equal(checked,[20,16,14][i]);
+ assert.equal(checked,counts[p.key]);
+});
+
+test('round-two contract preserves south harbor, mirrored bend and four-cell identities',()=>{
+ const a=key=>library.assets.find(a=>a.id===multihexPrototypes.find(p=>p.key===key).id);
+ assert.deepEqual(a('harbor').geometry.cells,[[0,0],[1,0],[0,1]]);
+ assert.deepEqual(a('smuggler').geometry.cells,[[0,0],[1,-1],[2,-1]]);
+ assert.deepEqual(a('sand').geometry.cells,[[0,0],[1,0],[2,0],[3,0]]);
+ assert.equal(new Set(multihexPrototypes.filter(p=>!p.approved).map(p=>a(p.key).image.path)).size,6);
+ const old=library.reviews.filter(r=>r.assetId==='land-coast.archipelago.h3.bent-reefs.v1');
+ assert.ok(old.every(r=>r.status==='pending'));
 });
