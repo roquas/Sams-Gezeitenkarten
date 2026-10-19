@@ -809,7 +809,7 @@
       "id": "sea-life.accent.h1.barrels.v1",
       "family": "sea-life",
       "type": "accent",
-      "role": "decoration",
+      "role": "geographic",
       "stage": "illustration",
       "geometry": {
         "cells": [
@@ -830,13 +830,14 @@
       },
       "candidateFamilies": [
         "blue-sea"
-      ]
+      ],
+      "passable": true
     },
     {
       "id": "sea-life.accent.h1.buoy.v1",
       "family": "sea-life",
       "type": "accent",
-      "role": "decoration",
+      "role": "geographic",
       "stage": "illustration",
       "geometry": {
         "cells": [
@@ -857,7 +858,8 @@
       },
       "candidateFamilies": [
         "blue-sea"
-      ]
+      ],
+      "passable": true
     },
     {
       "id": "sea-life.accent.h1.gulls.v1",
@@ -917,7 +919,7 @@
       "id": "sea-life.accent.h1.rowboat.v1",
       "family": "sea-life",
       "type": "accent",
-      "role": "decoration",
+      "role": "geographic",
       "stage": "illustration",
       "geometry": {
         "cells": [
@@ -938,13 +940,14 @@
       },
       "candidateFamilies": [
         "blue-sea"
-      ]
+      ],
+      "passable": true
     },
     {
       "id": "sea-life.accent.h1.crate.v1",
       "family": "sea-life",
       "type": "accent",
-      "role": "decoration",
+      "role": "geographic",
       "stage": "illustration",
       "geometry": {
         "cells": [
@@ -965,7 +968,8 @@
       },
       "candidateFamilies": [
         "blue-sea"
-      ]
+      ],
+      "passable": true
     },
     {
       "id": "sea-life.accent.h1.foam.v1",
@@ -998,7 +1002,7 @@
       "id": "sea-life.accent.h1.bottle.v1",
       "family": "sea-life",
       "type": "accent",
-      "role": "decoration",
+      "role": "geographic",
       "stage": "illustration",
       "geometry": {
         "cells": [
@@ -1019,13 +1023,14 @@
       },
       "candidateFamilies": [
         "blue-sea"
-      ]
+      ],
+      "passable": true
     },
     {
       "id": "sea-life.accent.h1.driftwood.v1",
       "family": "sea-life",
       "type": "accent",
-      "role": "decoration",
+      "role": "geographic",
       "stage": "illustration",
       "geometry": {
         "cells": [
@@ -1046,7 +1051,8 @@
       },
       "candidateFamilies": [
         "blue-sea"
-      ]
+      ],
+      "passable": true
     },
     {
       "id": "sea-life.accent.h1.turtle.v1",
@@ -1070,6 +1076,195 @@
       "provenance": {
         "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
         "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.gulls.v2",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-gulls-v2.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; sea-blue-01 watercolor reference, revised birds/dolphins with original v1 reference. Small off-center whole-canvas RGBA authoring via established geometry masks and full-alpha validator. See docs/CARD-MOTIFS-FINALE-65.md and docs/reviews/water-finale/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.dolphins.v2",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-dolphins-v2.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; sea-blue-01 watercolor reference, revised birds/dolphins with original v1 reference. Small off-center whole-canvas RGBA authoring via established geometry masks and full-alpha validator. See docs/CARD-MOTIFS-FINALE-65.md and docs/reviews/water-finale/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.foam-flecks.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-foam-flecks-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; sea-blue-01 watercolor reference, revised birds/dolphins with original v1 reference. Small off-center whole-canvas RGBA authoring via established geometry masks and full-alpha validator. See docs/CARD-MOTIFS-FINALE-65.md and docs/reviews/water-finale/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.current-arc.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-current-arc-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; sea-blue-01 watercolor reference, revised birds/dolphins with original v1 reference. Small off-center whole-canvas RGBA authoring via established geometry masks and full-alpha validator. See docs/CARD-MOTIFS-FINALE-65.md and docs/reviews/water-finale/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.spray.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-spray-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; sea-blue-01 watercolor reference, revised birds/dolphins with original v1 reference. Small off-center whole-canvas RGBA authoring via established geometry masks and full-alpha validator. See docs/CARD-MOTIFS-FINALE-65.md and docs/reviews/water-finale/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.foam-trail.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-foam-trail-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; sea-blue-01 watercolor reference, revised birds/dolphins with original v1 reference. Small off-center whole-canvas RGBA authoring via established geometry masks and full-alpha validator. See docs/CARD-MOTIFS-FINALE-65.md and docs/reviews/water-finale/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.cross-ripples.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-cross-ripples-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; sea-blue-01 watercolor reference, revised birds/dolphins with original v1 reference. Small off-center whole-canvas RGBA authoring via established geometry masks and full-alpha validator. See docs/CARD-MOTIFS-FINALE-65.md and docs/reviews/water-finale/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned references; no third-party stock used."
       },
       "candidateFamilies": [
         "blue-sea"
@@ -1482,182 +1677,336 @@
     {
       "assetId": "sea-life.accent.h1.barrels.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "status": "approved",
+      "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "sea-life.accent.h1.barrels.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.barrels.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.buoy.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "status": "approved",
+      "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "sea-life.accent.h1.buoy.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.buoy.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.gulls.v1",
       "backgroundId": "sea-blue-01",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
     },
     {
       "assetId": "sea-life.accent.h1.gulls.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
     },
     {
       "assetId": "sea-life.accent.h1.gulls.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
     },
     {
       "assetId": "sea-life.accent.h1.dolphins.v1",
       "backgroundId": "sea-blue-01",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
     },
     {
       "assetId": "sea-life.accent.h1.dolphins.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
     },
     {
       "assetId": "sea-life.accent.h1.dolphins.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
     },
     {
       "assetId": "sea-life.accent.h1.rowboat.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "status": "approved",
+      "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "sea-life.accent.h1.rowboat.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.rowboat.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.crate.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "status": "approved",
+      "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "sea-life.accent.h1.crate.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.crate.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.foam.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "status": "approved",
+      "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Freies, unbenanntes, befahrbares Kartenmotiv ohne Hinweisreferenz; Rolle decoration. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "sea-life.accent.h1.foam.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Freies Kartenmotiv ohne Hinweisreferenz."
     },
     {
       "assetId": "sea-life.accent.h1.foam.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Freies Kartenmotiv ohne Hinweisreferenz."
     },
     {
       "assetId": "sea-life.accent.h1.bottle.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "status": "approved",
+      "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "sea-life.accent.h1.bottle.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.bottle.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.driftwood.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "status": "approved",
+      "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "sea-life.accent.h1.driftwood.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.driftwood.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
     },
     {
       "assetId": "sea-life.accent.h1.turtle.v1",
       "backgroundId": "sea-blue-01",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Vom Nutzer zurückgestellt: nicht Teil aktuell verwendeter statischer Kartenmotive. Eventuell später für bewegliche Objekte. Keine künstlerische Freigabe oder Hashfreigabe."
     },
     {
       "assetId": "sea-life.accent.h1.turtle.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Vom Nutzer zurückgestellt: nicht Teil aktuell verwendeter statischer Kartenmotive. Eventuell später für bewegliche Objekte. Keine künstlerische Freigabe oder Hashfreigabe."
     },
     {
       "assetId": "sea-life.accent.h1.turtle.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+      "notes": "Vom Nutzer zurückgestellt: nicht Teil aktuell verwendeter statischer Kartenmotive. Eventuell später für bewegliche Objekte. Keine künstlerische Freigabe oder Hashfreigabe."
+    },
+    {
+      "assetId": "sea-life.accent.h1.gulls.v2",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.gulls.v2",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.gulls.v2",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.dolphins.v2",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.dolphins.v2",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.dolphins.v2",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam-flecks.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam-flecks.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam-flecks.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.current-arc.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.current-arc.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.current-arc.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.spray.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.spray.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.spray.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam-trail.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam-trail.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam-trail.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.cross-ripples.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.cross-ripples.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.cross-ripples.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
     }
   ]
 }

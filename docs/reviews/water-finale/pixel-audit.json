@@ -1,0 +1,557 @@
+[
+  {
+    "key": "gulls",
+    "version": 2,
+    "image": "assets/library/flavor-gulls-v2.png",
+    "sourceSha256": "9479d0632ce34320f3dcba5549ee55dcb71509855077d1c00cb50a7e04b71bf4",
+    "assetSha256": "5ea6df2c8396d82b249f9b2336e2ce56643375a0cffda5e467d08a617c2df33f",
+    "sourceSize": [
+      1178,
+      1335
+    ],
+    "sampleSize": [
+      171,
+      194
+    ],
+    "paddingLeftTop": [
+      0,
+      50
+    ],
+    "canvas": [
+      360,
+      408
+    ],
+    "requestedSubstantialSize": [
+      78,
+      57
+    ],
+    "requestedCenter": [
+      89,
+      139
+    ],
+    "nominalPercent": 83,
+    "substantialAlphaBBox": [
+      57,
+      115,
+      120,
+      163
+    ],
+    "substantialBBoxCenter": [
+      88.5,
+      139.0
+    ],
+    "distanceFromHexCenterPixels": 112.23747146118359,
+    "visiblePixelsAlpha16": 747,
+    "allNonzeroAlphaPixels": 997,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 332,
+    "alphaPolicy": "Existing prepare_source: only detached alpha=1 residue removed, meaningful alpha and fringe preserved",
+    "crop": false,
+    "rotation": false,
+    "runtimeTransform": false,
+    "canvasFractionFullyTransparent": 0.9932121459694989,
+    "widthRelativeToHistoricalV1": 0.23684210526315788
+  },
+  {
+    "key": "dolphins",
+    "version": 2,
+    "image": "assets/library/flavor-dolphins-v2.png",
+    "sourceSha256": "0dc10e5d669ec2ba158447a6a85a8ce1aa16ae3b096c14a78bb9a7b3a59a8938",
+    "assetSha256": "089a5d2c6fab7b9b487d0fdb23740163987e9d95cba38d8f1438fd50d8eb06c5",
+    "sourceSize": [
+      1178,
+      1335
+    ],
+    "sampleSize": [
+      202,
+      229
+    ],
+    "paddingLeftTop": [
+      154,
+      152
+    ],
+    "canvas": [
+      360,
+      408
+    ],
+    "requestedSubstantialSize": [
+      88,
+      63
+    ],
+    "requestedCenter": [
+      265,
+      267
+    ],
+    "nominalPercent": 100,
+    "substantialAlphaBBox": [
+      221,
+      240,
+      309,
+      294
+    ],
+    "substantialBBoxCenter": [
+      265.0,
+      267.0
+    ],
+    "distanceFromHexCenterPixels": 105.80170130957252,
+    "visiblePixelsAlpha16": 1056,
+    "allNonzeroAlphaPixels": 1320,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 432,
+    "alphaPolicy": "Existing prepare_source: only detached alpha=1 residue removed, meaningful alpha and fringe preserved",
+    "crop": false,
+    "rotation": false,
+    "runtimeTransform": false,
+    "canvasFractionFullyTransparent": 0.9910130718954249,
+    "widthRelativeToHistoricalV1": 0.4251207729468599
+  },
+  {
+    "key": "foam-flecks",
+    "version": 1,
+    "image": "assets/library/flavor-foam-flecks-v1.png",
+    "sourceSha256": "75d4061a604093ae9ba3a669606ec7451a622c386fd8c72c1b1715df647366e6",
+    "assetSha256": "91915baf42d8f1a7712f3735c6c51633311a9512c663d312b17fb93d16e6f6ca",
+    "sourceSize": [
+      1369,
+      1149
+    ],
+    "sampleSize": [
+      154,
+      129
+    ],
+    "paddingLeftTop": [
+      175,
+      70
+    ],
+    "canvas": [
+      360,
+      408
+    ],
+    "requestedSubstantialSize": [
+      108,
+      53
+    ],
+    "requestedCenter": [
+      253,
+      137
+    ],
+    "nominalPercent": 100,
+    "substantialAlphaBBox": [
+      199,
+      114,
+      308,
+      160
+    ],
+    "substantialBBoxCenter": [
+      253.5,
+      137.0
+    ],
+    "distanceFromHexCenterPixels": 99.45476358626568,
+    "visiblePixelsAlpha16": 1011,
+    "allNonzeroAlphaPixels": 1491,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 1671,
+    "alphaPolicy": "Existing prepare_source: only detached alpha=1 residue removed, meaningful alpha and fringe preserved",
+    "crop": false,
+    "rotation": false,
+    "runtimeTransform": false,
+    "canvasFractionFullyTransparent": 0.9898488562091503
+  },
+  {
+    "key": "current-arc",
+    "version": 1,
+    "image": "assets/library/flavor-current-arc-v1.png",
+    "sourceSha256": "7ca3af97c26585d815303af4dfc1766a60a1ab76beb32f3f0c9684eb212ec9ee",
+    "assetSha256": "30e7dd5fd164f17e940144dc9e95651acf457accb263164d096832fdb9a0c47f",
+    "sourceSize": [
+      1227,
+      1282
+    ],
+    "sampleSize": [
+      105,
+      110
+    ],
+    "paddingLeftTop": [
+      51,
+      225
+    ],
+    "canvas": [
+      360,
+      408
+    ],
+    "requestedSubstantialSize": [
+      118,
+      70
+    ],
+    "requestedCenter": [
+      104,
+      279
+    ],
+    "nominalPercent": 100,
+    "substantialAlphaBBox": [
+      58,
+      244,
+      150,
+      314
+    ],
+    "substantialBBoxCenter": [
+      104.0,
+      279.0
+    ],
+    "distanceFromHexCenterPixels": 106.77546534667971,
+    "visiblePixelsAlpha16": 964,
+    "allNonzeroAlphaPixels": 1517,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 8827,
+    "alphaPolicy": "Existing prepare_source: only detached alpha=1 residue removed, meaningful alpha and fringe preserved",
+    "crop": false,
+    "rotation": false,
+    "runtimeTransform": false,
+    "canvasFractionFullyTransparent": 0.9896718409586057
+  },
+  {
+    "key": "spray",
+    "version": 1,
+    "image": "assets/library/flavor-spray-v1.png",
+    "sourceSha256": "86b743cab3c7ac2be19702e29328a5b1ad57a22a5becdfdf1905db879754dd7e",
+    "assetSha256": "dabf581f2af9178751030670dd42a8d69bb4592c583638457ab24965f1da0de6",
+    "sourceSize": [
+      1227,
+      1282
+    ],
+    "sampleSize": [
+      121,
+      127
+    ],
+    "paddingLeftTop": [
+      207,
+      155
+    ],
+    "canvas": [
+      360,
+      408
+    ],
+    "requestedSubstantialSize": [
+      67,
+      78
+    ],
+    "requestedCenter": [
+      269,
+      218
+    ],
+    "nominalPercent": 100,
+    "substantialAlphaBBox": [
+      236,
+      196,
+      302,
+      242
+    ],
+    "substantialBBoxCenter": [
+      269.0,
+      219.0
+    ],
+    "distanceFromHexCenterPixels": 90.2551937563706,
+    "visiblePixelsAlpha16": 608,
+    "allNonzeroAlphaPixels": 1035,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 4449,
+    "alphaPolicy": "Existing prepare_source: only detached alpha=1 residue removed, meaningful alpha and fringe preserved",
+    "crop": false,
+    "rotation": false,
+    "runtimeTransform": false,
+    "canvasFractionFullyTransparent": 0.992953431372549
+  },
+  {
+    "key": "foam-trail",
+    "version": 1,
+    "image": "assets/library/flavor-foam-trail-v1.png",
+    "sourceSha256": "ae48c3e4ddd7124e41deaf40065649dbd96424ebe028ade2f9ccd76c09bc15fe",
+    "assetSha256": "8fec13011b297882e4610da08e0ce1391b41d39d5801022d34e83dc6124eac00",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "sampleSize": [
+      154,
+      102
+    ],
+    "paddingLeftTop": [
+      101,
+      59
+    ],
+    "canvas": [
+      360,
+      408
+    ],
+    "requestedSubstantialSize": [
+      130,
+      45
+    ],
+    "requestedCenter": [
+      180,
+      112
+    ],
+    "nominalPercent": 100,
+    "substantialAlphaBBox": [
+      115,
+      98,
+      245,
+      126
+    ],
+    "substantialBBoxCenter": [
+      180.0,
+      112.0
+    ],
+    "distanceFromHexCenterPixels": 92.0,
+    "visiblePixelsAlpha16": 962,
+    "allNonzeroAlphaPixels": 1482,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 2819,
+    "alphaPolicy": "Existing prepare_source: only detached alpha=1 residue removed, meaningful alpha and fringe preserved",
+    "crop": false,
+    "rotation": false,
+    "runtimeTransform": false,
+    "canvasFractionFullyTransparent": 0.9899101307189543
+  },
+  {
+    "key": "cross-ripples",
+    "version": 1,
+    "image": "assets/library/flavor-cross-ripples-v1.png",
+    "sourceSha256": "5c002613822db47827d7e441b057374b59371db2c1eaefacb6c70c8b3bb97721",
+    "assetSha256": "195102aa117db5829486f89f29c69bca5f53c80e2e72d8e24543e26b78be3a9a",
+    "sourceSize": [
+      1227,
+      1282
+    ],
+    "sampleSize": [
+      119,
+      124
+    ],
+    "paddingLeftTop": [
+      177,
+      226
+    ],
+    "canvas": [
+      360,
+      408
+    ],
+    "requestedSubstantialSize": [
+      93,
+      92
+    ],
+    "requestedCenter": [
+      240,
+      288
+    ],
+    "nominalPercent": 100,
+    "substantialAlphaBBox": [
+      194,
+      256,
+      286,
+      319
+    ],
+    "substantialBBoxCenter": [
+      240.0,
+      287.5
+    ],
+    "distanceFromHexCenterPixels": 102.82144717907835,
+    "visiblePixelsAlpha16": 1512,
+    "allNonzeroAlphaPixels": 2160,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 13332,
+    "alphaPolicy": "Existing prepare_source: only detached alpha=1 residue removed, meaningful alpha and fringe preserved",
+    "crop": false,
+    "rotation": false,
+    "runtimeTransform": false,
+    "canvasFractionFullyTransparent": 0.9852941176470589
+  }
+]

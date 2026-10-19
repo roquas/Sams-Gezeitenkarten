@@ -41,7 +41,7 @@ test('catalog files, stable IDs, provenance and separated review catalog validat
   'land-coast.island.h1.basalt-spire-water.v1','navigation.lighthouse.h1.offcenter-beacon.v1',
   'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1',
   'land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1',
-  'land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1','land-coast.settlement.h4.tesoro.v4'
+  'land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1','land-coast.settlement.h4.tesoro.v4','sea-life.accent.h1.barrels.v1','sea-life.accent.h1.buoy.v1','sea-life.accent.h1.rowboat.v1','sea-life.accent.h1.crate.v1','sea-life.accent.h1.foam.v1','sea-life.accent.h1.bottle.v1','sea-life.accent.h1.driftwood.v1'
  ].map(id=>[id,'sea-blue-01']));
  assert.equal(new Set(LEGACY_ASSETS.map(a=>a.id)).size,8);
  assert.ok(LEGACY_ASSETS.every(a=>a.stage==='legacy'&&a.exception));

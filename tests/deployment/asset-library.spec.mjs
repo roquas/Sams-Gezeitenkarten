@@ -38,17 +38,20 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
   'land-coast.island.h1.basalt-spire-water.v1','navigation.lighthouse.h1.offcenter-beacon.v1',
   'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1',
   'land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1',
-  'land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1','land-coast.settlement.h4.tesoro.v4'
+  'land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1','land-coast.settlement.h4.tesoro.v4','sea-life.accent.h1.barrels.v1','sea-life.accent.h1.buoy.v1','sea-life.accent.h1.rowboat.v1','sea-life.accent.h1.crate.v1','sea-life.accent.h1.foam.v1','sea-life.accent.h1.bottle.v1','sea-life.accent.h1.driftwood.v1'
  ].map(id=>[id,'sea-blue-01']));
- expect(library.reviews.filter(r=>r.status==='pending')).toHaveLength(library.reviews.length-12);
+ expect(library.reviews.filter(r=>r.status==='pending')).toHaveLength(library.reviews.length-19);
  const flavors=library.assets.filter(a=>a.id.startsWith('sea-life.accent.h1.'));
- expect(flavors).toHaveLength(10);
+ expect(flavors).toHaveLength(17);
  for(const a of flavors){
-  expect(a).toMatchObject({role:'decoration',type:'accent',stage:'illustration',geometry:{cells:[[0,0]]},image:{width:360,height:408}});
-  expect(Object.hasOwn(a,'passable')).toBe(false);
+  const place=['barrels','buoy','rowboat','crate','bottle','driftwood'].some(key=>a.id==='sea-life.accent.h1.'+key+'.v1');
+  const artApproved=place||a.id==='sea-life.accent.h1.foam.v1';
+  expect(a).toMatchObject({role:place?'geographic':'decoration',type:'accent',stage:'illustration',geometry:{cells:[[0,0]]},image:{width:360,height:408}});
+  expect(Object.hasOwn(a,'passable')).toBe(place);if(place)expect(a.passable).toBe(true);
   for(const r of library.reviews.filter(r=>r.assetId===a.id)){
-   expect(r.status).toBe('pending');
-   for(const key of ['reviewer','date','assetSha256','backgroundSha256'])expect(Object.hasOwn(r,key)).toBe(false);
+   const approved=artApproved&&r.backgroundId==='sea-blue-01';
+   expect(r.status).toBe(approved?'approved':'pending');
+   for(const key of ['reviewer','date','assetSha256','backgroundSha256'])expect(Object.hasOwn(r,key)).toBe(approved);
   }
   const png=await request.get(a.image.path);expect(png.ok()).toBe(true);
   expect(Buffer.from(await png.body())).toEqual(fs.readFileSync(new URL('../../'+a.image.path,import.meta.url)));

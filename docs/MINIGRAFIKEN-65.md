@@ -1,5 +1,7 @@
 # Erste Minigrafik-Runde – PR #65
 
+> Historischer Stand bis Commit 70487e9. Der aktuelle Abschluss mit sechs neu eingeordneten Ortsmotiven, freier Schaumströmung und letzter Wasserillustrationsrunde steht in [CARD-MOTIFS-FINALE-65.md](CARD-MOTIFS-FINALE-65.md); alle aktuellen Rollen/Freigaben in [ASSET-INVENTORY-65.md](ASSET-INVENTORY-65.md).
+
 19.10.2026 · Branch `feature/asset-library-integration` · kein Merge.
 
 Der [Freigabeabgleich](ART-APPROVAL-AUDIT-65.md) ist abgeschlossen: elf bestehende Freigaben stimmen exakt mit ihren ursprünglichen Freigabecommits und aktuellen Bildern überein; Tesoro v4 erhält nach ausdrücklicher Nutzerentscheidung die zwölfte Freigabe, ausschließlich für die unveränderte Version von `sea-blue-01`. Andere Varianten und Hintergründe erhalten keine Freigabe.

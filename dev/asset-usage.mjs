@@ -1,3 +1,4 @@
+import {flavorPrototypes} from './asset-curation.mjs';
 import {drawMap} from '../src/ui/map.mjs';
 import {HEXES} from '../src/ui/chart-geometry.mjs';
 import {validatePlacements,compatibility} from '../src/assets/library.mjs';
@@ -7,7 +8,7 @@ const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
 export const usageStates=[
  {id:'named-blocked',label:'Benannter unbefahrbarer Ort',asset:'land-coast.island.h1.basalt-spire-water.v1'},
  {id:'named-passable',label:'Benannter befahrbarer Ort',asset:'navigation.lighthouse.h1.offcenter-beacon.v1'},
- {id:'flavor',label:'Flavor – nur Illustration',asset:'navigation.lighthouse.h1.offcenter-beacon.v1'}
+ {id:'flavor',label:'Freies Kartenmotiv – keine Hinweisreferenz',asset:'sea-life.accent.h1.foam.v1'}
 ];
 
 // Naming belongs to the puzzle placement. Never change an asset's role or
@@ -47,7 +48,7 @@ export function renderAssetPreview(svg,library,assetId,usage,name,{marked=false,
 export function setupUsageComparison(library){
  for(const state of usageStates){
   const select=document.getElementById('usageAsset-'+state.id);
-  for(const asset of library.assets.filter(a=>state.id==='flavor'||a.role==='geographic'&&a.passable===(state.id==='named-passable'))){
+  for(const asset of library.assets.filter(a=>(state.id==='flavor'?flavorPrototypes.some(p=>p.id===a.id):a.role==='geographic'&&a.passable===(state.id==='named-passable')))){
    const option=document.createElement('option');option.value=asset.id;option.textContent=asset.id;select.append(option);
   }
   select.value=state.asset;

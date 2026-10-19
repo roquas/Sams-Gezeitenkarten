@@ -10,7 +10,7 @@ Arbeitsleitplanken: vorhandene Namen bevorzugen; Quellenwissen von Erfindungen t
 
 ## Tesoro: aktuelle Ortsreferenz
 
-Die [Tesoro-Weltreferenz](TESORO-WORLD-REFERENCE.md) ergänzt die allgemeine Quellenarbeit um die Ankunft aus Kapitel 06 Episode 01 und die anschließend ausdrücklich bestätigte Erzählerergänzung vom 19.10.2026. Maßgeblich sind der Zugang **an einem Stadtende durch die zweigeschossige Wirtschaft**, die Plattformen und Hängebrücken, einzelne Untergeschosse und die gegenüberliegende Klippe mit Schneeweg zum hinter dem Gipfel hervorschauenden Leuchtturm. Die Gebäudezahl ist frei. Diese Angaben bleiben getrennt von Audio-ASR-Belegen. [Aktueller Vierhex-Prototyp v4, künstlerische Freigabe ausstehend](TESORO-V4-65.md).
+Die [Tesoro-Weltreferenz](TESORO-WORLD-REFERENCE.md) ergänzt die allgemeine Quellenarbeit um die Ankunft aus Kapitel 06 Episode 01 und die anschließend ausdrücklich bestätigte Erzählerergänzung vom 19.10.2026. Maßgeblich sind der Zugang **an einem Stadtende durch die zweigeschossige Wirtschaft**, die Plattformen und Hängebrücken, einzelne Untergeschosse und die gegenüberliegende Klippe mit Schneeweg zum hinter dem Gipfel hervorschauenden Leuchtturm. Die Gebäudezahl ist frei. Diese Angaben bleiben getrennt von Audio-ASR-Belegen. [Tesoro v4, inzwischen exakt auf sea-blue-01 freigegeben](ASSET-INVENTORY-65.md).
 
 
 ## Verbindliche Gestaltungsregel: Ortsnamen auf Pergamentrollen
@@ -30,3 +30,19 @@ Mögliche Verkürzungen als unverbindliche Beispiele:
 | Schmugglerbucht | Gaunerbucht |
 
 Die Beispiele sind **keine Umbenennungsbeschlüsse**. Bestehende Ortsnamen, Puzzledefinitionen und Logbuchtexte bleiben unverändert. Eine systematische Überarbeitung vorhandener Namen ist ein separater späterer Auftrag. Auch längere Alternativen in dieser Beispieltabelle benötigen die Lesbarkeitsprüfung; sie sind keine pauschalen Ausnahmen von der Regel.
+
+## Verbindliche Einordnung der Kartenmotive (Abschluss PR #65)
+
+| Fachliche Bedeutung | Technische Abbildung | Verwendung |
+|---|---|---|
+| Unbefahrbarer Ort: Insel, Fels, Stadt usw. | bestehende Rolle `geographic`, `passable=false`, Einzelhex oder Mehrhex | logischer Ort; belegte Zellen vollständig gesperrt |
+| Befahrbarer Ort: Leuchtturm, Boje, Wrack, Fässer, Ruderboot, Kiste, Flaschenpost, Treibholz usw. | bestehende Rolle `geographic`, `passable=true`, hier jeweils ein Hex | kann als Bezugspunkt eines Rätselhinweises dienen |
+| Freies Kartenmotiv: Schaum, Wellen, kleine Vögel oder beiläufige Delfine | bestehende Rolle `decoration`, kein eigenes `passable`-Feld, Einzelhex | unbenannt, befahrbar, keine Regelwirkung und niemals logische Hinweisreferenz |
+
+Das sind **fachliche Verwendungsweisen, keine drei neuen technischen Assettypen**. Bestehende `type`-Werte und feste Geometrien bleiben maßgeblich. Insbesondere dürfen bereits vorhandene `accent`-Illustrationen befahrbare Orte sein; ihre Spielbedeutung folgt der Rolle und `passable`, nicht Dateiname oder Typbezeichnung.
+
+Pro Karte sollen später **höchstens 0–3 freie Kartenmotive** sparsam eingesetzt werden. Sie dürfen dezentral beinahe zwischen Hexfeldern erscheinen, aber kein Alphapixel darf die eigene zulässige Grafik-/Sicherheitsfläche verlassen. Das wird beim Authoring geprüft; der Renderer verschiebt, beschneidet, dreht oder skaliert kein einzelnes Motiv zur Laufzeit. Es wird jetzt weder Zufallsplatzierung noch Generatorlogik eingeführt. Namen im Review sind Besprechungstitel; freie Motive werden nie zu logischen Orten.
+
+Befahrbare Orte können logisch benannt werden, erhalten hier aber **keine neuen permanenten Ortsbeschriftungen oder Ringe**. Das Konzept kontextueller Ortslabels aus Issue #68 bleibt unverändert. Die bisherige Regel für lesbare Pergamentnamen gilt weiter dort, wo der bestehende Renderer bereits Ortsnamen zeigt.
+
+Aktuell: [vollständiger Katalogstatus einschließlich Hashbindungen](ASSET-INVENTORY-65.md) und [letzte Wasserillustrationsrunde](CARD-MOTIFS-FINALE-65.md). Zurückgestellte Schildkröte und historische Vögel-/Delfinfassungen sind keine aktuellen statischen Empfehlungen.

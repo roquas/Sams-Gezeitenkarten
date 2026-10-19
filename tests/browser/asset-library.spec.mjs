@@ -165,7 +165,7 @@ test('passable prototypes share real sea, map scale and production notes with in
  await info.attach('passable-prototypes-'+info.project.name,{body:await page.locator('#prototypeComparison').screenshot(),contentType:'image/png'});
 });
 
-test('usage comparison keeps named passable places and Flavor free of permanent marks while preserving land labels',async({page},info)=>{
+test('usage comparison keeps named passable places and free motifs without permanent marks while preserving land labels',async({page},info)=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{if(r.status()>=400)errors.push(r.url());});
  await page.goto('/dev/asset-library.html#usage-previews');
@@ -188,22 +188,23 @@ test('usage comparison keeps named passable places and Flavor free of permanent 
   await expect(svg.locator('[data-placement-id="prototype"]')).toHaveAttribute('width','90');
  }
  for(const id of ['navigation.lighthouse.h1.offcenter-beacon.v1','land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1']){
-  for(const state of ['named-passable','flavor'])await page.locator('#usageAsset-'+state).selectOption(id);
+  await page.locator('#usageAsset-named-passable').selectOption(id);
+  expect(await page.locator('#usageAsset-flavor option').evaluateAll(ns=>ns.map(n=>n.value))).not.toContain(id);
   await expect(passable.locator('[data-place-ring="B3"]')).toHaveCount(0);
   await expect(passable.locator('.island-label')).toHaveCount(0);
   await expect(flavor.locator('[data-place-ring],.island-label')).toHaveCount(0);
   await expect(flavor.locator('[data-id="B3"]')).toHaveClass('cell');
   const geometry=svg=>svg.locator('[data-placement-id="prototype"]').evaluate(n=>['href','x','y','width','height'].map(k=>n.getAttribute(k)));
-  expect(await geometry(passable)).toEqual(await geometry(flavor));
-  const drawing=svg=>svg.evaluate(n=>[...n.querySelectorAll('[data-chart-layer="objects"],.cell,.route-ink')].map(el=>el.outerHTML));
+  expect((await geometry(passable)).slice(1)).toEqual((await geometry(flavor)).slice(1));
+  const drawing=svg=>svg.evaluate(n=>[...n.querySelectorAll('.cell,.route-ink')].map(el=>el.outerHTML));
   expect(await drawing(passable)).toEqual(await drawing(flavor));
  }
  await page.locator('#prototypeMarks').uncheck();
  await expect(passable.locator('[data-place-ring]')).toHaveCount(0);
  await expect(passable.locator('.cell circle,.route-stroke')).toHaveCount(0);
  await expect(blocked.locator('.island-label')).toHaveCount(1);
- await page.locator('#usageAsset-flavor').selectOption('land-coast.island.h1.basalt-spire-water.v1');
- await expect(flavor.locator('[data-id="B3"]')).toHaveClass('cell blocked-cell');
+ expect(await page.locator('#usageAsset-flavor option').evaluateAll(ns=>ns.map(n=>n.value))).not.toContain('land-coast.island.h1.basalt-spire-water.v1');
+ await expect(flavor.locator('[data-id="B3"]')).toHaveClass('cell');
  await expect(flavor.locator('[data-place-ring],.island-label')).toHaveCount(0);
  // Multihex land uses the existing connected-label layout without changing geometry.
  await page.locator('#usageAsset-named-blocked').selectOption('technical.double.v1');

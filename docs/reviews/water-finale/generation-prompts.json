@@ -1,0 +1,115 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-19",
+  "transparentBackground": true,
+  "background": "assets/seekarte/sea-blue-01.webp",
+  "prompts": [
+    {
+      "key": "gulls",
+      "version": 2,
+      "name": "Kleine Seevögel",
+      "size": [
+        78,
+        57
+      ],
+      "center": [
+        89,
+        139
+      ],
+      "ref": "assets/library/flavor-gulls-v1.png",
+      "subject": "Replace the old dominant bird group with exactly TWO distant SMALL sea gulls, seen mostly from ABOVE, banking diagonally toward upper-left. Short white wings with blue-grey tips, just enough dimensional feather shaping to read as birds at a tiny size. One slightly smaller and farther behind. No dominant foreground bird, no close-up faces, no golden outline, no water splash or shadow. A light loose asymmetrical whisper of birdlife.",
+      "prompt": "Use case: stylized-concept. Asset type: transparent atmospheric sea illustration for a watercolor sailing adventure map, NOT a landmark or symbol. Reference sea-blue-01 is STYLE AND COLOR ONLY, the other reference is an OLD composition to improve where supplied. Rich but restrained blue/turquoise watercolor adventure-book brushwork, overhead three-quarter map perspective. Actual transparent RGBA background, no horizon, sky, paper, rectangle, hexagon, tile, outline, text, border, icon, arrows, closed rings or point of interest. Paint only a small sparse cluster of the requested subject with isolated thin ivory highlights; most water between the strokes must be genuinely transparent, not filled by a colored water disk or sticker-shaped pool. Soft broken alpha tips blending into the existing textured sea. Keep every faint fringe well inside a wide empty transparent canvas. Main cluster within central 45% width and 40% height of portrait canvas for safe authoring; final production export will make it VERY SMALL and deliberately off-center near a hex edge. Do not make an elaborate centerpiece, wave wall, dark vortex, danger sign, compass glyph, X symbol, equal repeated pattern, glow or scenic diorama. Never add land, boats or objects. Replace the old dominant bird group with exactly TWO distant SMALL sea gulls, seen mostly from ABOVE, banking diagonally toward upper-left. Short white wings with blue-grey tips, just enough dimensional feather shaping to read as birds at a tiny size. One slightly smaller and farther behind. No dominant foreground bird, no close-up faces, no golden outline, no water splash or shadow. A light loose asymmetrical whisper of birdlife."
+    },
+    {
+      "key": "dolphins",
+      "version": 2,
+      "name": "Beiläufige Delfine",
+      "size": [
+        88,
+        63
+      ],
+      "center": [
+        265,
+        267
+      ],
+      "ref": "assets/library/flavor-dolphins-v1.png",
+      "subject": "Replace the old leaping animal centerpiece with exactly TWO small distant dolphins observed from ABOVE near the surface. One subtle blue-grey curved back and a readable dorsal fin with its narrow nose just showing; a smaller second back farther away. NOT leaping upright, no smiling face, no full exposed belly, no tall splash. Only two tiny broken pale turquoise and ivory contact ripples, mostly transparent sea between them. Quiet incidental wildlife.",
+      "prompt": "Use case: stylized-concept. Asset type: transparent atmospheric sea illustration for a watercolor sailing adventure map, NOT a landmark or symbol. Reference sea-blue-01 is STYLE AND COLOR ONLY, the other reference is an OLD composition to improve where supplied. Rich but restrained blue/turquoise watercolor adventure-book brushwork, overhead three-quarter map perspective. Actual transparent RGBA background, no horizon, sky, paper, rectangle, hexagon, tile, outline, text, border, icon, arrows, closed rings or point of interest. Paint only a small sparse cluster of the requested subject with isolated thin ivory highlights; most water between the strokes must be genuinely transparent, not filled by a colored water disk or sticker-shaped pool. Soft broken alpha tips blending into the existing textured sea. Keep every faint fringe well inside a wide empty transparent canvas. Main cluster within central 45% width and 40% height of portrait canvas for safe authoring; final production export will make it VERY SMALL and deliberately off-center near a hex edge. Do not make an elaborate centerpiece, wave wall, dark vortex, danger sign, compass glyph, X symbol, equal repeated pattern, glow or scenic diorama. Never add land, boats or objects. Replace the old leaping animal centerpiece with exactly TWO small distant dolphins observed from ABOVE near the surface. One subtle blue-grey curved back and a readable dorsal fin with its narrow nose just showing; a smaller second back farther away. NOT leaping upright, no smiling face, no full exposed belly, no tall splash. Only two tiny broken pale turquoise and ivory contact ripples, mostly transparent sea between them. Quiet incidental wildlife."
+    },
+    {
+      "key": "foam-flecks",
+      "version": 1,
+      "name": "Lockere Schaumkronen",
+      "size": [
+        108,
+        53
+      ],
+      "center": [
+        253,
+        137
+      ],
+      "subject": "Exactly three unequal, widely separated short low ivory whitecaps, nearly horizontal with softly curved tips and tiny turquoise undersides. Fine broken brushstrokes and a handful of pinprick foam dots. No large solid water area, no crest wall, no large wave curling upward. Airy sparse asymmetrical horizontal arrangement.",
+      "prompt": "Use case: stylized-concept. Asset type: transparent atmospheric sea illustration for a watercolor sailing adventure map, NOT a landmark or symbol. Reference sea-blue-01 is STYLE AND COLOR ONLY, the other reference is an OLD composition to improve where supplied. Rich but restrained blue/turquoise watercolor adventure-book brushwork, overhead three-quarter map perspective. Actual transparent RGBA background, no horizon, sky, paper, rectangle, hexagon, tile, outline, text, border, icon, arrows, closed rings or point of interest. Paint only a small sparse cluster of the requested subject with isolated thin ivory highlights; most water between the strokes must be genuinely transparent, not filled by a colored water disk or sticker-shaped pool. Soft broken alpha tips blending into the existing textured sea. Keep every faint fringe well inside a wide empty transparent canvas. Main cluster within central 45% width and 40% height of portrait canvas for safe authoring; final production export will make it VERY SMALL and deliberately off-center near a hex edge. Do not make an elaborate centerpiece, wave wall, dark vortex, danger sign, compass glyph, X symbol, equal repeated pattern, glow or scenic diorama. Never add land, boats or objects. Exactly three unequal, widely separated short low ivory whitecaps, nearly horizontal with softly curved tips and tiny turquoise undersides. Fine broken brushstrokes and a handful of pinprick foam dots. No large solid water area, no crest wall, no large wave curling upward. Airy sparse asymmetrical horizontal arrangement."
+    },
+    {
+      "key": "current-arc",
+      "version": 1,
+      "name": "Sanfter Strömungsbogen",
+      "size": [
+        118,
+        70
+      ],
+      "center": [
+        104,
+        279
+      ],
+      "subject": "One shallow OPEN diagonal current arc, composed of two very thin discontinuous pale turquoise strokes with a few ivory glints, curving from lower-left toward upper-right. Short partial secondary ripple, unequal lengths. Mostly transparent inside and around the arc. Never a closed circle, whirlpool, arrow, crescent icon or raised wave.",
+      "prompt": "Use case: stylized-concept. Asset type: transparent atmospheric sea illustration for a watercolor sailing adventure map, NOT a landmark or symbol. Reference sea-blue-01 is STYLE AND COLOR ONLY, the other reference is an OLD composition to improve where supplied. Rich but restrained blue/turquoise watercolor adventure-book brushwork, overhead three-quarter map perspective. Actual transparent RGBA background, no horizon, sky, paper, rectangle, hexagon, tile, outline, text, border, icon, arrows, closed rings or point of interest. Paint only a small sparse cluster of the requested subject with isolated thin ivory highlights; most water between the strokes must be genuinely transparent, not filled by a colored water disk or sticker-shaped pool. Soft broken alpha tips blending into the existing textured sea. Keep every faint fringe well inside a wide empty transparent canvas. Main cluster within central 45% width and 40% height of portrait canvas for safe authoring; final production export will make it VERY SMALL and deliberately off-center near a hex edge. Do not make an elaborate centerpiece, wave wall, dark vortex, danger sign, compass glyph, X symbol, equal repeated pattern, glow or scenic diorama. Never add land, boats or objects. One shallow OPEN diagonal current arc, composed of two very thin discontinuous pale turquoise strokes with a few ivory glints, curving from lower-left toward upper-right. Short partial secondary ripple, unequal lengths. Mostly transparent inside and around the arc. Never a closed circle, whirlpool, arrow, crescent icon or raised wave."
+    },
+    {
+      "key": "spray",
+      "version": 1,
+      "name": "Feines Gischtfeld",
+      "size": [
+        67,
+        78
+      ],
+      "center": [
+        269,
+        218
+      ],
+      "subject": "A small irregular loose patch of delicate sea foam flecks, five to nine tiny ivory painted dashes and dots with two faint turquoise ripple fragments. A tapered gently diagonal scatter, more empty transparent space than marks. Flat surface texture, not a splash erupting upward, no raised spray plume, no solid turquoise pool.",
+      "prompt": "Use case: stylized-concept. Asset type: transparent atmospheric sea illustration for a watercolor sailing adventure map, NOT a landmark or symbol. Reference sea-blue-01 is STYLE AND COLOR ONLY, the other reference is an OLD composition to improve where supplied. Rich but restrained blue/turquoise watercolor adventure-book brushwork, overhead three-quarter map perspective. Actual transparent RGBA background, no horizon, sky, paper, rectangle, hexagon, tile, outline, text, border, icon, arrows, closed rings or point of interest. Paint only a small sparse cluster of the requested subject with isolated thin ivory highlights; most water between the strokes must be genuinely transparent, not filled by a colored water disk or sticker-shaped pool. Soft broken alpha tips blending into the existing textured sea. Keep every faint fringe well inside a wide empty transparent canvas. Main cluster within central 45% width and 40% height of portrait canvas for safe authoring; final production export will make it VERY SMALL and deliberately off-center near a hex edge. Do not make an elaborate centerpiece, wave wall, dark vortex, danger sign, compass glyph, X symbol, equal repeated pattern, glow or scenic diorama. Never add land, boats or objects. A small irregular loose patch of delicate sea foam flecks, five to nine tiny ivory painted dashes and dots with two faint turquoise ripple fragments. A tapered gently diagonal scatter, more empty transparent space than marks. Flat surface texture, not a splash erupting upward, no raised spray plume, no solid turquoise pool."
+    },
+    {
+      "key": "foam-trail",
+      "version": 1,
+      "name": "Schmale Schaumspur",
+      "size": [
+        130,
+        45
+      ],
+      "center": [
+        180,
+        112
+      ],
+      "subject": "A slender broken sea foam trail, long low gently sinuous line running mostly left-to-right with a slight rise, made of unequal wispy ivory segments and two tiny muted turquoise touches. A second shorter offset wisp at one end. Open flowing line, not a symbol, not a ship wake with a boat, not a solid white ribbon, not a wall of surf.",
+      "prompt": "Use case: stylized-concept. Asset type: transparent atmospheric sea illustration for a watercolor sailing adventure map, NOT a landmark or symbol. Reference sea-blue-01 is STYLE AND COLOR ONLY, the other reference is an OLD composition to improve where supplied. Rich but restrained blue/turquoise watercolor adventure-book brushwork, overhead three-quarter map perspective. Actual transparent RGBA background, no horizon, sky, paper, rectangle, hexagon, tile, outline, text, border, icon, arrows, closed rings or point of interest. Paint only a small sparse cluster of the requested subject with isolated thin ivory highlights; most water between the strokes must be genuinely transparent, not filled by a colored water disk or sticker-shaped pool. Soft broken alpha tips blending into the existing textured sea. Keep every faint fringe well inside a wide empty transparent canvas. Main cluster within central 45% width and 40% height of portrait canvas for safe authoring; final production export will make it VERY SMALL and deliberately off-center near a hex edge. Do not make an elaborate centerpiece, wave wall, dark vortex, danger sign, compass glyph, X symbol, equal repeated pattern, glow or scenic diorama. Never add land, boats or objects. A slender broken sea foam trail, long low gently sinuous line running mostly left-to-right with a slight rise, made of unequal wispy ivory segments and two tiny muted turquoise touches. A second shorter offset wisp at one end. Open flowing line, not a symbol, not a ship wake with a boat, not a solid white ribbon, not a wall of surf."
+    },
+    {
+      "key": "cross-ripples",
+      "version": 1,
+      "name": "Kreuzende Wellenzüge",
+      "size": [
+        93,
+        92
+      ],
+      "center": [
+        240,
+        288
+      ],
+      "subject": "Two loose groups of small low surface ripples at different oblique angles, gently passing through one another like ordinary crossing water currents. Each group consists of two unequal short broken curved lines, mostly muted turquoise with sparse ivory glints. Avoid a literal X/cross mark and avoid a grid or symmetrical knot. Flat gentle water, no high crests, no enclosed whirlpool, no solid backing patch.",
+      "prompt": "Use case: stylized-concept. Asset type: transparent atmospheric sea illustration for a watercolor sailing adventure map, NOT a landmark or symbol. Reference sea-blue-01 is STYLE AND COLOR ONLY, the other reference is an OLD composition to improve where supplied. Rich but restrained blue/turquoise watercolor adventure-book brushwork, overhead three-quarter map perspective. Actual transparent RGBA background, no horizon, sky, paper, rectangle, hexagon, tile, outline, text, border, icon, arrows, closed rings or point of interest. Paint only a small sparse cluster of the requested subject with isolated thin ivory highlights; most water between the strokes must be genuinely transparent, not filled by a colored water disk or sticker-shaped pool. Soft broken alpha tips blending into the existing textured sea. Keep every faint fringe well inside a wide empty transparent canvas. Main cluster within central 45% width and 40% height of portrait canvas for safe authoring; final production export will make it VERY SMALL and deliberately off-center near a hex edge. Do not make an elaborate centerpiece, wave wall, dark vortex, danger sign, compass glyph, X symbol, equal repeated pattern, glow or scenic diorama. Never add land, boats or objects. Two loose groups of small low surface ripples at different oblique angles, gently passing through one another like ordinary crossing water currents. Each group consists of two unequal short broken curved lines, mostly muted turquoise with sparse ivory glints. Avoid a literal X/cross mark and avoid a grid or symmetrical knot. Flat gentle water, no high crests, no enclosed whirlpool, no solid backing patch."
+    }
+  ]
+}

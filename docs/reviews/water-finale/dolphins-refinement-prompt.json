@@ -1,0 +1,5 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Edit target: the two distant dolphins near the surface in this image. Remove every painted sea-water patch, foam streak, wake, ripple and splash surrounding them, to actual zero alpha. Preserve only the TWO visible dolphin backs, curved heads with narrow snouts and their dorsal fins, fully intact. Keep their quiet near-surface, overhead observation posture; do not make them leap or expose a belly. Keep two animals at their present positions and keep watercolor texture. Make the small back silhouettes distinct blue-grey with restrained pale edge highlights so they remain identifiable when tiny. No surrounding water, no shadows or background. Actual transparent RGBA everywhere except the two partial dolphin bodies.",
+  "purpose": "Improve tiny quiet dolphin silhouette by removing broad surrounding water patches before final authoring export."
+}

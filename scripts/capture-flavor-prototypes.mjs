@@ -4,11 +4,13 @@ import {createHash} from 'node:crypto';
 import {chromium,webkit} from '@playwright/test';
 import {flavorPrototypes} from '../dev/flavor-prototypes.mjs';
 
-const directory='docs/reviews/minigrafiken';
+const directory='docs/reviews/water-finale';
+const library=JSON.parse(fs.readFileSync('assets/catalog/library.json'));
+const byId=new Map(library.assets.map(a=>[a.id,a]));
 const url=process.argv[2]||'http://127.0.0.1:4184/dev/asset-library.html#minigrafiken';
 fs.mkdirSync(directory,{recursive:true});
 const hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
-const files=flavorPrototypes.map(p=>({key:p.key,assetSha256:hash('assets/library/flavor-'+p.key+'-v1.png')}));
+const files=flavorPrototypes.map(p=>({key:p.key,assetSha256:hash(byId.get(p.id).image.path)}));
 const reports=[];
 for(const [name,engine,viewport,dpr] of [
  ['chromium',chromium,{width:1440,height:1100},1],
@@ -33,6 +35,9 @@ for(const [name,engine,viewport,dpr] of [
   await page.locator('#hexes').uncheck();
   if(name==='chromium'){
    await page.locator('#flavorComparison').screenshot({path:directory+'/round-normal-clean.png'});
+   await page.locator('#smallPlacesComparison').screenshot({path:directory+'/approved-places-normal.png'});
+   for(const index of ['0','1','2']){await page.locator('#flavorMapPage').selectOption(index);await page.locator('#flavorMap').screenshot({path:directory+'/map-'+index+'-normal.png'});}
+   await page.locator('#flavorMapPage').selectOption('0');
    await page.locator('#flavorMap').screenshot({path:directory+'/map-normal-clean.png'});
    for(const p of flavorPrototypes){
     await page.locator('#flavorAsset').selectOption(p.key);
@@ -42,6 +47,7 @@ for(const [name,engine,viewport,dpr] of [
    await page.locator('#flavorComparison').screenshot({path:directory+'/round-normal-hexes.png'});
    await page.locator('#prototypeMarks').check();
    await page.locator('#flavorComparison').screenshot({path:directory+'/round-normal-overlays.png'});
+   await page.locator('#smallPlacesComparison').screenshot({path:directory+'/approved-places-overlays.png'});
    await page.locator('#flavorMap').screenshot({path:directory+'/map-normal-overlays.png'});
   }
   if(name==='mobile'||name==='iphone')await page.locator('#flavorMap').screenshot({path:directory+'/map-'+name+'.png'});
@@ -50,4 +56,4 @@ for(const [name,engine,viewport,dpr] of [
  }finally{await browser.close();}
 }
 fs.writeFileSync(directory+'/browser-audit.json',JSON.stringify(reports,null,2)+'\n');
-console.log('Flavor: exact catalog images, 1:1 context, enlarged sea, complete map, overlays, Chromium/WebKit desktop and mobile captured.');
+console.log('Final water round: current exact catalog images, 1:1 and enlarged, six approved places, sparse 2/3-motif maps, Chromium/WebKit desktop and mobile captured.');

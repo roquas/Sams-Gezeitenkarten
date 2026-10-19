@@ -1,5 +1,7 @@
 # Freigabeabgleich PR #65 – 19.10.2026
 
+> Historischer Stand bis Commit 70487e9. Der aktuelle Abschluss mit sechs neu eingeordneten Ortsmotiven, freier Schaumströmung und letzter Wasserillustrationsrunde steht in [CARD-MOTIFS-FINALE-65.md](CARD-MOTIFS-FINALE-65.md); alle aktuellen Rollen/Freigaben in [ASSET-INVENTORY-65.md](ASSET-INVENTORY-65.md).
+
 Ausgangsstand `ea4ae412e1c4838da8b9e498556430c933f82b9b`, identisch mit GitHub-PR-Head nach Abruf. Branch `feature/asset-library-integration`; kein Merge. Technischer Katalogeintrag und bestandene Tests sind keine künstlerische Freigabe. Maßgeblich sind die ausdrücklichen Nutzerentscheidungen im aktuellen Auftrag.
 
 `sea-blue-01.webp`: SHA-256 `e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582`, bytegleich seit `f1192b4`. Sämtliche elf bisherigen Freigabepaare passen zu den tatsächlichen aktuellen Bildbytes. Alle betreffenden Illustrationen sind zusätzlich gegen ihre erste Hashfreigabe in der Commit-Historie bytegleich geprüft; die damaligen Freigabecommits stehen in den Auditdaten. Tesoro v4 ist bytegleich mit `ea4ae41` sowie den vorhandenen Pixel-/Browserbelegen; nur dafür wird die zwölfte Freigabe ergänzt. Andere Hintergründe bleiben ungeprüft.

@@ -1,0 +1,14 @@
+{
+  "baseline": "70487e9940da5a7ce8d657e5e736a279bd044f7a",
+  "preservedPNGs": 33,
+  "preservedBackgroundEntriesAndBytes": 3,
+  "previousApprovalRecordsFullyPreserved": 12,
+  "onlyExistingAssetMetadataChanges": "Exactly six explicit small place entries: role geographic, passable true; original IDs, type, geometry, image and provenance unchanged",
+  "newExplicitApprovals": 7,
+  "newPlaceApprovals": 6,
+  "newFreeMotifApprovals": 1,
+  "totalApprovedPairs": 19,
+  "addedPendingAssetVersions": 7,
+  "newVersionsArtApprovalCount": 0,
+  "runtimeAndPuzzleGeneratorFilesChanged": []
+}

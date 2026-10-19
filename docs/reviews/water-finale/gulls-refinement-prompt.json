@@ -1,0 +1,5 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Edit target: the newly generated two small gulls and water fragment image. Remove ALL painted water, foam, teal streaks, wave strokes and splashes completely to actual zero alpha. Preserve ONLY exactly the two gulls, their full bodies, beaks and wings, both fully intact. Do not add any water, background, shadows, shapes or objects. Keep their current size, placement and watercolor colors. Transparent RGBA background everywhere except the two birds. This is a strict background extraction of the birds, not a new composition. The birds will later be exported much smaller and off-center by our asset pipeline.",
+  "purpose": "Remove unwanted painted water from gull composition; final master contains only two birds, then whole-canvas authoring export."
+}

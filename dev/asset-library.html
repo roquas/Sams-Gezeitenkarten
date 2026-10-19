@@ -14,14 +14,21 @@
  <label><input type="checkbox" id="footprints" checked> Erlaubte Grafikfläche anzeigen (grün)</label>
  <p id="status" role="status"></p>
  <section id="minigrafiken" aria-labelledby="flavorHeading">
-  <h2 id="flavorHeading">Zehn Minigrafiken · künstlerische Freigabe ausstehend</h2>
-  <p>Befahrbare Einzelhex-Dekorationen: viel offenes Meer, keine Ortsnamen oder permanenten Marker. Alle zehn sind <strong>pending</strong>, ohne Freigabe-Hashes. Die Namen stehen nur hier zur Besprechung. <a href="docs/ART-APPROVAL-AUDIT-65.md">Freigabeabgleich der bisherigen Motive</a>.</p>
-  <p>Übersicht in 1:1-Kartengröße: eine Karteneinheit entspricht einem Bildschirmpixel. Darunter dieselbe Szene vergrößert. Hexgrenzen und echte Spielmarkierungen sind über die vorhandenen Schalter steuerbar.</p>
-  <svg id="flavorMap" role="img" aria-label="Zehn befahrbare Minigrafiken auf der vollständigen Seekarte"></svg>
+  <h2 id="flavorHeading">Abschlussrunde · freie Wasserillustrationen</h2>
+  <p>Unbenannt, befahrbar und niemals Hinweisreferenzen. Die bestehende Schaumströmung ist freigegeben; <strong>zwei überarbeitete und fünf neue Motive bleiben pending</strong>. Alle Bezeichnungen hier dienen nur der Besprechung. <a href="docs/CARD-MOTIFS-FINALE-65.md">Einordnung, Freigaben und Prüfbericht</a> · <a href="docs/ASSET-INVENTORY-65.md">vollständige Assetübersicht</a>.</p>
+  <p>Die Einzelansichten zeigen alle acht freien Motive bei 1:1-Kartengröße mit Nachbarmeer. Die Beispielkarte verwendet bewusst nur zwei oder drei Motive: künftig höchstens 0–3 freie Kartenmotive pro Karte, sparsam und ohne Hinweisfunktion.</p>
+  <label>Beispielkarte <select id="flavorMapPage"></select></label>
+  <svg id="flavorMap" role="img" aria-label="Sparsame Beispielkarte mit höchstens drei freien Wasserillustrationen"></svg>
   <div id="flavorComparison"></div>
-  <label>Motiv vergrößern <select id="flavorAsset"></select></label>
-  <svg id="flavorDetail" role="img" aria-label="Minigrafik vergrößert auf sea-blue-01"></svg>
-  <p>Die Illustration behält immer das feste Rechteck 90×102 Karteneinheiten (Quelldatei 360×408). Vergrößert wird die gesamte Szene. Alle Rand-/Innenpositionen können unten unter „Weitere Prüfpositionen“ ausgewählt werden.</p>
+  <label>Freies Kartenmotiv vergrößern <select id="flavorAsset"></select></label>
+  <svg id="flavorDetail" role="img" aria-label="Freies Wasserillustrationsmotiv vergrößert auf sea-blue-01"></svg>
+  <p>Das feste Bildrechteck bleibt 90×102 Karteneinheiten (360×408 RGBA PNG). Nur die gesamte Szene wird vergrößert. Die kleinen Motive liegen absichtlich dezentral; sämtliche Alpharänder bleiben innerhalb der zulässigen Sicherheitsflächen.</p>
+  <h3>Sechs neu freigegebene befahrbare Ortsmotive</h3>
+  <p>Fässer, Boje, Ruderboot, Kiste, Flaschenpost sowie Treibholz und Seetang können als Bezugspunkte in Rätselhinweisen dienen. Sie verwenden die bestehende Rolle geographic und passable=true. Es gibt keine zusätzliche siebte Ortsfreigabe. Keine permanenten Ortslabels oder Ringe.</p>
+  <div id="smallPlacesComparison"></div>
+  <details><summary>Historische Tiere und zurückgestellte Schildkröte</summary>
+  <p>Die früheren dominanten <a href="assets/library/flavor-gulls-v1.png">Seevögel v1</a> und <a href="assets/library/flavor-dolphins-v1.png">Delfine v1</a> sind nicht freigegeben und bleiben nur historisch erhalten. Die <a href="assets/library/flavor-turtle-v1.png">Schildkröte</a> ist für einen möglichen späteren Einsatz als bewegliches Objekt zurückgestellt und gehört nicht zu den aktuellen statischen Kartenmotiven.</p>
+  </details>
  </section>
  <section id="passable-prototypes" aria-labelledby="prototypeHeading">
   <h2 id="prototypeHeading">Befahrbare Orte – drei freigegebene Illustrationen</h2>
@@ -33,8 +40,8 @@
  </section>
  <section id="usage-previews" aria-labelledby="usageHeading">
   <h2 id="usageHeading">Verwendung im Rätsel vergleichen</h2>
-  <p>Benannte unbefahrbare Orte erhalten weiterhin eine Pergamentrolle mit Ortsnamen. Benannte befahrbare Orte und Flavor zeigen nur die Illustration, ohne Ortsring und ohne Pergamentschild. Die Unterscheidung zwischen benannten Orten und Flavor bleibt in den Rätseldaten erhalten.</p>
-  <p>„Benannt“ oder „Flavor“ gehört zur Platzierung im Rätsel, nicht zur Assetklasse. Die Auswahl bewahrt die Befahrbarkeit jedes Assets. Zum Vergleich desselben Motivs den passenden benannten Zustand und Flavor wählen. Alle Ansichten verwenden den echten Kartenrenderer auf sea-blue-01; die Schalter für Hexgrenzen und Spielmarkierungen gelten auch hier.</p>
+  <p>Benannte unbefahrbare Orte erhalten weiterhin eine Pergamentrolle mit Ortsnamen. Befahrbare Orte und freie Kartenmotive zeigen nur die Illustration, ohne Ortsring und ohne Pergamentschild. Orte können logische Hinweisreferenzen sein; freie Kartenmotive erhalten niemals einen logischen Ort.</p>
+  <p>Die bestehenden technischen Rollen bleiben erhalten. Befahrbare Orte sind geographic mit passable=true, freie Kartenmotive sind decoration ohne eigenes Befahrbarkeitsfeld und ohne Regelwirkung. Die freien Motive in dieser Auswahl sind ausschließlich die kuratierte aktuelle Serie. Alle Ansichten verwenden den echten Kartenrenderer auf sea-blue-01; die Schalter für Hexgrenzen und Spielmarkierungen gelten auch hier.</p>
   <div id="usageComparison">
    <figure>
     <figcaption>Benannter unbefahrbarer Ort</figcaption>
@@ -49,7 +56,7 @@
     <p id="usageStatus-named-passable"></p>
    </figure>
    <figure>
-    <figcaption>Flavor – nur Illustration</figcaption>
+    <figcaption>Freies Kartenmotiv – keine Hinweisreferenz</figcaption>
     <label>Asset <select id="usageAsset-flavor"></select></label>
     <svg data-usage="flavor" role="img" aria-label="Flavor-Illustration ohne Ortsring und Pergamentschild"></svg>
     <p id="usageStatus-flavor"></p>
@@ -58,6 +65,7 @@
  </section>
  <svg id="gallery" viewBox="-37 -44.5 563 473" role="img" aria-label="Einzelhex, Mehrhex-Insel, befahrbarer Leuchtturm und Dekoration auf einer Testkarte"></svg>
  <div id="inventory"></div>
+ <details id="allAssets"><summary>Vollständige Katalogübersicht: Rollen, Dateien und Freigabe-Hashes</summary><p id="fullInventoryStatus"></p><div id="fullInventory"></div></details>
  <h2>Weitere Prüfpositionen</h2>
  <label>Asset zur Einzelprüfung <select id="reviewAsset"></select></label>
  <p>Dieselben Grafiken an Rand- und Innenpositionen für gerade und ungerade Zeilen, soweit die Form sie erlaubt. Grün zeigt die tatsächliche Grafikfläche einschließlich Randbegrenzung. Die Bilddateien werden nicht beschnitten. Alle Ansichten verwenden dieselben Maße wie die Spielkarte.</p>

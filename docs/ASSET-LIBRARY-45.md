@@ -12,7 +12,7 @@ Erster Integrationsstand auf `main` nach PR #63 (`1f968b0`). Grundlage sind die 
 
 Der Puzzleloader lädt den JSON-Katalog erst, wenn ein Rätsel neue Platzierungen verwendet. `validatePuzzle` überprüft deren Übereinstimmung mit der bestehenden `logic.blocked` und der Ortszugehörigkeit. Es erzeugt oder verändert keine Landfelder. Ein Ort darf mehrere getrennte Assets enthalten. Bestehende JSON-Rätsel, `dataVersion`, Speicherstände, Lösungen und Solver bleiben unverändert; das v1-Schema erhält ausschließlich optionale Präsentationsfelder.
 
-Der Katalog enthält aktuell **19 Bilder** (vier schematische technische Platzhalter und 15 Illustrationen) und drei Meerhintergründe. Nach ausdrücklichen Nutzerentscheidungen sind **elf Kombinationen ausschließlich auf `sea-blue-01` hashgebunden freigegeben**: wasserreiche Felsnadel, Leuchtturm, aufgebrochenes Atoll, Wrack, Palmenbuchten, Glutberg, Sandriffbogen, Südhafen, Schmugglerbucht, Langer Strand und Tempel der Gezeiten. Die neue Krabbenzange v2 bleibt pending; v1 ist als historische Referenz erhalten. Technische Platzhalter, wasserreduzierte Felsnadel, ursprünglicher steiler Archipel und ungeprüfte Hintergründe bleiben pending. [Aktueller Abschluss mit Freigabehashes, Versionsvergleich und Prüfbelegen](MULTIHEX-COMPLETION-65.md). Die [Galerie mit Verwendungszuständen](PASSABLE-PROTOTYPES-65.md#drei-verwendungszustände-vergleichen) zeigt Pergament-Ortsnamen auf benannten unbefahrbaren Orten sowie reine Illustrationen für benannte befahrbare Orte und Flavor mit dem produktiven Renderer. Keine neue produktive Platzierung. Die Meer-/Rahmendateien aus #49 bleiben unverändert.
+Der aktuelle Katalog enthält **40 Bilder** (vier technische Platzhalter und 36 Illustrationen) sowie drei Meerhintergründe. **19 exakte Kombinationen sind ausschließlich auf sea-blue-01 hashgebunden freigegeben**: die zwölf bereits bestätigten Motive einschließlich Tesoro v4, sechs ausdrücklich bestätigte kleine befahrbare Ortsmotive und die freie Schaumströmung. Es gibt keine zusätzliche siebte Ortsfreigabe. Sieben neue/überarbeitete Wasserillustrationen bleiben pending. Beide Krabbenzangen, frühere Vögel-/Delfinvarianten und ältere Tesoro-Fassungen bleiben historisch ungefreigegeben; die Schildkröte ist zurückgestellt. [Vollständige Übersicht aller Dateien, Rollen und Approval-Hashes](ASSET-INVENTORY-65.md) · [aktuelle Sichtungsrunde](CARD-MOTIFS-FINALE-65.md). Keine neuen produktiven Rätselplatzierungen; Meer-/Rahmendateien bleiben unverändert.
 
 ## Formate, Maße und Koordinaten
 
@@ -164,7 +164,7 @@ Die vier veröffentlichten Rätsel verwenden diese Legacyregistrierungen ohne Da
 - Tatsächliches Dateiformat, Pixelmaße, Alpha, nichtleerer Inhalt und vollständige lokale Polygonbegrenzung.
 - Unabhängige Befahrbarkeit, unveränderte Landfelder, Ortszugehörigkeit, mehrere getrennte Assets je Ort, Kartenrand und Zeilenparität.
 - Hintergrund-/Freigabereferenzen, ausstehende/abgelehnte Freigaben, keine automatische Familienfreigabe und keine veralteten Freigabehashes.
-- Alle bisherigen Unit-, Lösungs-, Browser-, WebKit- und Deploymenttests bleiben erhalten. Neue Browsertests verwenden auch abgefangene, ausdrücklich testinterne Freigabedaten; der echte Katalog enthält genau vier ausdrücklich freigegebene Paare auf `sea-blue-01` (wasserreiche Felsnadel, Leuchtturm, aufgebrochenes Atoll, Wrack).
+- Alle bisherigen Unit-, Lösungs-, Browser-, WebKit- und Deploymenttests bleiben erhalten. Neue Browsertests verwenden auch abgefangene, ausdrücklich testinterne Freigabedaten; der echte Katalog enthält aktuell 19 ausdrücklich freigegebene Paare ausschließlich auf `sea-blue-01`; vollständige Zuordnung im [Inventar](ASSET-INVENTORY-65.md).
 - Deterministisches, vollständiges Deployment-ZIP; Entwicklungsgalerie ausgeschlossen. Beide Exporteinstiege erzwingen dieselben JS-Validatoren und den Bildvalidator, einschließlich Dekodierung aller ausgelieferten PNG/WebP-Dateien. Kein paralleler Teilvalidator für Freigaben im Python-Exporter. Bei Fehler: verständliche Meldung, Fehlerstatus und unverändertes letztes ZIP.
 - Die konkreten Regressionen und Prüfbefehle stehen im [Testplan](TESTPLAN.md#assetbibliothek-und-grafikzellen-18102026).
 
@@ -182,3 +182,19 @@ Für die ersten **separat** zu erstellenden Bilder: Einzelhex-Insel **360 × 408
 Leuchtturm, aufgebrochenes Atoll und Segelschiffswrack sind als befahrbare Einzelhex-Illustrationen registriert und gemäß Nutzerentscheidung künstlerisch ausschließlich für `sea-blue-01` freigegeben (`approved`). Die vorhandenen PNGs und IDs bleiben erhalten, einschließlich des etwas felsigen Atolls. Überdeckung durch Spielmarkierungen ist akzeptiert.
 
 Die Galerie zeigt neben dem Motivvergleich drei wählbare Verwendungszustände: benannter unbefahrbarer Ort mit bestehendem Pergament-Ortsnamen, benannter befahrbarer Ort nur mit Illustration **ohne Ortsring und ohne Pergamentschild**, Flavor ebenfalls nur mit Illustration. Die Entscheidung vom 19.10.2026 hebt die vorherige permanente Ringmarkierung auf. „Benannt vs. Flavor“ gehört zur Rätselplatzierung (`placeId`/`places`), nicht zum Asset. Die Assetbefahrbarkeit wird nicht umgeschrieben. Die produktive `drawMap`-Logik zeichnet alle Ansichten ohne permanente Ortsringe auf dem echten Meer; keine neue Label-Architektur oder Spielmechanik. [Vergleich, Freigaben und Prüfbelege](PASSABLE-PROTOTYPES-65.md).
+
+## Verbindliche Einordnung der Kartenmotive (Abschluss PR #65)
+
+| Fachliche Bedeutung | Technische Abbildung | Verwendung |
+|---|---|---|
+| Unbefahrbarer Ort: Insel, Fels, Stadt usw. | bestehende Rolle `geographic`, `passable=false`, Einzelhex oder Mehrhex | logischer Ort; belegte Zellen vollständig gesperrt |
+| Befahrbarer Ort: Leuchtturm, Boje, Wrack, Fässer, Ruderboot, Kiste, Flaschenpost, Treibholz usw. | bestehende Rolle `geographic`, `passable=true`, hier jeweils ein Hex | kann als Bezugspunkt eines Rätselhinweises dienen |
+| Freies Kartenmotiv: Schaum, Wellen, kleine Vögel oder beiläufige Delfine | bestehende Rolle `decoration`, kein eigenes `passable`-Feld, Einzelhex | unbenannt, befahrbar, keine Regelwirkung und niemals logische Hinweisreferenz |
+
+Das sind **fachliche Verwendungsweisen, keine drei neuen technischen Assettypen**. Bestehende `type`-Werte und feste Geometrien bleiben maßgeblich. Insbesondere dürfen bereits vorhandene `accent`-Illustrationen befahrbare Orte sein; ihre Spielbedeutung folgt der Rolle und `passable`, nicht Dateiname oder Typbezeichnung.
+
+Pro Karte sollen später **höchstens 0–3 freie Kartenmotive** sparsam eingesetzt werden. Sie dürfen dezentral beinahe zwischen Hexfeldern erscheinen, aber kein Alphapixel darf die eigene zulässige Grafik-/Sicherheitsfläche verlassen. Das wird beim Authoring geprüft; der Renderer verschiebt, beschneidet, dreht oder skaliert kein einzelnes Motiv zur Laufzeit. Es wird jetzt weder Zufallsplatzierung noch Generatorlogik eingeführt. Namen im Review sind Besprechungstitel; freie Motive werden nie zu logischen Orten.
+
+Befahrbare Orte können logisch benannt werden, erhalten hier aber **keine neuen permanenten Ortsbeschriftungen oder Ringe**. Das Konzept kontextueller Ortslabels aus Issue #68 bleibt unverändert. Die bisherige Regel für lesbare Pergamentnamen gilt weiter dort, wo der bestehende Renderer bereits Ortsnamen zeigt.
+
+Aktuell: [vollständiger Katalogstatus einschließlich Hashbindungen](ASSET-INVENTORY-65.md) und [letzte Wasserillustrationsrunde](CARD-MOTIFS-FINALE-65.md). Zurückgestellte Schildkröte und historische Vögel-/Delfinfassungen sind keine aktuellen statischen Empfehlungen.

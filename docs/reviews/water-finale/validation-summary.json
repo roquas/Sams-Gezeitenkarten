@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-19",
+  "baseline": "70487e9940da5a7ce8d657e5e736a279bd044f7a",
+  "branch": "feature/asset-library-integration",
+  "local": {
+    "unit": {
+      "passed": 108,
+      "failed": 0
+    },
+    "puzzlesUnique": 4,
+    "catalogFilesAndApprovalBindings": {
+      "assets": 40,
+      "backgrounds": 3,
+      "exactApprovedPairs": 19,
+      "valid": true
+    },
+    "fullAlphaImageValidation": {
+      "passedImages": 40
+    },
+    "imageRegression": {
+      "passed": 13,
+      "failed": 0,
+      "seconds": 421.909
+    },
+    "exportCoverageRegression": {
+      "passed": 5,
+      "failed": 0
+    },
+    "quietWaterQualityRegression": {
+      "passed": 2,
+      "failed": 0
+    },
+    "newSpriteAnchors": {
+      "sprites": 7,
+      "anchorsEach": 25,
+      "total": 175,
+      "outsideAlphaPixels": 0
+    },
+    "galleryBrowser": {
+      "chromiumDesktopAndMobile": {
+        "passed": 20,
+        "failed": 0
+      },
+      "webkitDesktopAndMobileFinal": {
+        "passed": 20,
+        "failed": 0
+      },
+      "workers": 1
+    },
+    "screenshotConfigurations": 4,
+    "zipBrowser": {
+      "passed": 4,
+      "failed": 0
+    },
+    "package": {
+      "zipSha256": "1f0e400fdfd4f425ec3c895fb1815d23e15b356c22cf8c6b34d942775b388c7b",
+      "files": 100,
+      "catalogPNGsByteIdentical": 40,
+      "backgrounds": 3,
+      "newWaterSprites": 7,
+      "catalogArtApprovals": 19,
+      "newWaterApprovals": 0,
+      "developmentFilesExcluded": true
+    }
+  },
+  "firstWebkitRun": {
+    "passed": 18,
+    "failed": 2,
+    "observation": "Timeouts in existing technical gallery and usage comparison cases; new final-series and curation cases all passed. Full unchanged second run passes 20/20. Assertions and timeouts unchanged."
+  },
+  "curation": {
+    "explicitNewPlaceApprovals": 6,
+    "explicitNewFreeMotifApprovals": 1,
+    "inferredSeventhPlace": false,
+    "priorApprovalRecordsFullyPreserved": 12,
+    "newAndRevisedPendingFiles": 7,
+    "activeFreeMotifs": 8,
+    "demoCardCounts": [
+      3,
+      3,
+      2
+    ],
+    "turtle": "deferred, absent from active static cards",
+    "oldBirdsAndDolphins": "historical and pending"
+  },
+  "notRepeated": [
+    "27 package negative fixtures",
+    "all unrelated UI tests"
+  ],
+  "ci": "Post-push live status is documented separately in PR #65 and the final response; local checks do not imply CI success."
+}

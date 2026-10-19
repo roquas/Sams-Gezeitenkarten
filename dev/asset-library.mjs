@@ -2,6 +2,8 @@ import {validateLibrary,validatePlacements,compatibility} from '../src/assets/li
 import {HEXES,CHART_BOUNDS} from '../src/ui/chart-geometry.mjs';
 import {drawAssetPlacements} from '../src/ui/asset-layer.mjs';
 import {placedCells,placementContract,assetRectangle} from '../src/assets/geometry.mjs';
+import {renderAssetInventory} from './asset-inventory.mjs';
+import {availability} from './asset-curation.mjs';
 import {reviewPositions} from './review-positions.mjs';
 import {setupFlavorComparison,renderFlavorComparison} from './flavor-prototypes.mjs';
 import {renderPrototypeComparison} from './passable-prototypes.mjs';
@@ -32,7 +34,7 @@ try{
  const select=document.getElementById('background');
  for(const b of library.backgrounds){const o=document.createElement('option');o.value=b.id;o.textContent=b.id+' ('+b.family+')';select.append(o);}
  const reviewAsset=document.getElementById('reviewAsset');
- for(const a of library.assets){const o=document.createElement('option');o.value=a.id;o.textContent=a.id;reviewAsset.append(o);}
+ for(const a of library.assets){const o=document.createElement('option');o.value=a.id;o.textContent=a.id+' · '+availability(a);reviewAsset.append(o);}
  const requested=new URLSearchParams(location.search).get('asset');
  if(library.assets.some(a=>a.id===requested))reviewAsset.value=requested;
  function draw(svg,instances){
@@ -80,9 +82,10 @@ try{
    draw(svg,[{id:'review',assetId:selected.id,anchor}]);figure.append(svg);positions.append(figure);
   }
   document.getElementById('status').textContent='Technische Testansicht · '+select.value+' · Einzelprüfung: '+selected.id+' / '+compatibility(library,selected.id,select.value);
+  renderAssetInventory(library,select.value);
   renderFlavorComparison(library);
   renderPrototypeComparison(library);
   renderUsageComparison(library);
  }
- for(const id of ['background','reviewAsset','flavorAsset','hexes','footprints','prototypeMarks',...usageStates.map(s=>'usageAsset-'+s.id)])document.getElementById(id).addEventListener('change',render);render();
+ for(const id of ['background','reviewAsset','flavorAsset','flavorMapPage','hexes','footprints','prototypeMarks',...usageStates.map(s=>'usageAsset-'+s.id)])document.getElementById(id).addEventListener('change',render);render();
 }catch(error){document.getElementById('error').textContent=error.message;}
