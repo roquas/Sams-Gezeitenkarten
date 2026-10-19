@@ -22,7 +22,8 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
   ['land-coast.archipelago.h3.bent-reefs.v1',[912,768],3],
   ...JSON.parse(fs.readFileSync(new URL('../../docs/reviews/multihex-round2/composition-plan.json',import.meta.url))).map(a=>[a.id,a.canvas,a.cells.length]),
   ['land-coast.island.h4.crab-claw.v2',[856,680],4],
-  ['land-coast.settlement.h4.tesoro.v1',[856,680],4]
+  ['land-coast.settlement.h4.tesoro.v1',[856,680],4],
+  ['land-coast.settlement.h4.tesoro.v2',[856,680],4]
  ]){
   const a=library.assets.find(a=>a.id===id);
   expect(a).toMatchObject({stage:'illustration',passable:false});

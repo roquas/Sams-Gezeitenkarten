@@ -35,8 +35,9 @@ class MultihexExportTests(unittest.TestCase):
             'land-coast.island.h3.massive-volcano.v1',
             'land-coast.archipelago.h3.bent-reefs.v1',
             'land-coast.island.h4.crab-claw.v2',
-            'land-coast.settlement.h4.tesoro.v1'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
-        self.assertEqual(len(assets),11)
+            'land-coast.settlement.h4.tesoro.v1',
+            'land-coast.settlement.h4.tesoro.v2'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
+        self.assertEqual(len(assets),12)
         shapes = dict(exporter.SHAPES)
         shapes.update({a['key']+'-round2':a['cells'] for a in json.loads((ROOT/'dev/multihex-round2.json').read_text())})
         original_shapes = exporter.SHAPES
@@ -57,8 +58,24 @@ class MultihexExportTests(unittest.TestCase):
                 # Reject a tiny central sprite that nominally claims distant cells.
                 count = np.count_nonzero(inside & (alpha>=16))
                 self.assertGreater(count,4500,asset['id'])
-                if asset['id'] == 'land-coast.settlement.h4.tesoro.v1':
-                    self.assertGreaterEqual(count,15000,asset['id'])
+                if asset['id'].startswith('land-coast.settlement.h4.tesoro.'):
+                    minimum = 35000 if asset['id'].endswith('.v2') else 15000
+                    self.assertGreaterEqual(count,minimum,asset['id'])
+
+    def test_tesoro_revision_expands_all_three_requested_outer_regions(self):
+        versions = [np.asarray(Image.open(ROOT/f'assets/library/tesoro-h4-{v}.png').getchannel('A')) >= 16
+                    for v in ['v1', 'v2']]
+        old, current = versions
+        self.assertEqual(old.shape, current.shape)
+        yy, xx = np.indices(old.shape)
+        # Fixed map-canvas regions, independent of exporter scale or padding.
+        regions = {'upper left': (xx < 310) & (yy < 210),
+                   'lower left': (xx < 440) & (yy > 400),
+                   'lower right': (xx > 590) & (yy > 400)}
+        for name, region in regions.items():
+            self.assertGreater(np.count_nonzero(current & region),
+                               np.count_nonzero(old & region), name)
+        self.assertGreaterEqual(np.count_nonzero(current), np.count_nonzero(old)*1.1)
 
     def test_recomposed_claw_reaches_outer_southwest_and_northeast_regions(self):
         cells = [[0, 0], [1, 0], [0, 1], [-1, 1]]

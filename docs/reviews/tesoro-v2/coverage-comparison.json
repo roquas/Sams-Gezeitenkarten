@@ -1,0 +1,40 @@
+{
+  "alphaThreshold": 16,
+  "zones": {
+    "upperLeft": "x<310, y<210",
+    "lowerLeft": "x<440, y>400",
+    "lowerRight": "x>590, y>400"
+  },
+  "versions": {
+    "v1": {
+      "visiblePixels": 181992,
+      "visiblePixelsPerCell": [
+        42375,
+        65007,
+        42040,
+        32570
+      ],
+      "outerZones": {
+        "upperLeft": 12785,
+        "lowerLeft": 16334,
+        "lowerRight": 11645
+      },
+      "illustratedFractionOfLocalUnion": 0.51
+    },
+    "v2": {
+      "visiblePixels": 200770,
+      "visiblePixelsPerCell": [
+        39686,
+        56034,
+        56020,
+        49030
+      ],
+      "outerZones": {
+        "upperLeft": 13394,
+        "lowerLeft": 25890,
+        "lowerRight": 21373
+      },
+      "illustratedFractionOfLocalUnion": 0.5626
+    }
+  }
+}

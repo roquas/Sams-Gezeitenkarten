@@ -684,6 +684,46 @@
       "candidateFamilies": [
         "blue-sea"
       ]
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v2",
+      "family": "land-coast",
+      "type": "settlement",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/tesoro-h4-v2.png",
+        "width": 856,
+        "height": 680
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen edit, 2026-10-19; expanded Tesoro composition, cool town timber / warm ship hulls and furled sails per user revision. Audio-ASR and narrator supplement remain separate. See docs/TESORO-REVISION-65.md.",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
     }
   ],
   "reviews": [
@@ -1030,6 +1070,24 @@
       "backgroundId": "prototype-sea",
       "status": "pending",
       "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v2",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Tesoro v2 nach Nutzerwünschen: Ausdehnung links oben/rechts unten, mehr Schiffe links unten, getrennte Holzfarben und gereffte Segel. Alle vier Zellen unbefahrbar. Künstlerische Freigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-REVISION-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v2",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Tesoro v2 nach Nutzerwünschen: Ausdehnung links oben/rechts unten, mehr Schiffe links unten, getrennte Holzfarben und gereffte Segel. Alle vier Zellen unbefahrbar. Künstlerische Freigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-REVISION-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v2",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Tesoro v2 nach Nutzerwünschen: Ausdehnung links oben/rechts unten, mehr Schiffe links unten, getrennte Holzfarben und gereffte Segel. Alle vier Zellen unbefahrbar. Künstlerische Freigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-REVISION-65.md."
     }
   ]
 }

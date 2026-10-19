@@ -1,4 +1,6 @@
-# Tesoro – integrierter Vierhex-Prototyp für PR #65
+# Tesoro – erster integrierter Vierhex-Prototyp für PR #65
+
+**Historische Fassung v1:** Die nachfolgenden Angaben und Bilder dokumentieren den ersten Entwurf unverändert. Aktuell ist die [Überarbeitung v2](TESORO-REVISION-65.md) in der bestehenden Galerie. Beide Fassungen sind weiterhin ohne künstlerische Freigabe.
 
 Stand 19.10.2026 · Branch `feature/asset-library-integration` · Ausgangsstand `86bba51`. **Künstlerische Nutzerfreigabe ausstehend.** Kein Freigabe-Hash, keine Kennzeichnung als genehmigt, kein Merge nach main.
 

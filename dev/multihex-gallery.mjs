@@ -25,6 +25,8 @@ try{
   const image=enlarged.querySelector('[data-placement-id]');
   enlarged.setAttribute('viewBox',[+image.getAttribute('x')-20,+image.getAttribute('y')-20,+image.getAttribute('width')+40,+image.getAttribute('height')+40].join(' '));
   enlarged.querySelector('.island-label').setAttribute('visibility',document.getElementById('detailLabels').checked?'visible':'hidden');
+  const history=document.getElementById('tesoroHistory');history.replaceChildren();
+  card(history,multihexPrototypes.find(p=>p.key==='tesoro-v1'),'B3',null,true);
   const approved=document.getElementById('multihexApproved');approved.replaceChildren();
   for(const p of multihexPrototypes.filter(p=>p.round===1))card(approved,p,'B3',null,true);
   const geometry=document.getElementById('clawGeometry');geometry.replaceChildren();

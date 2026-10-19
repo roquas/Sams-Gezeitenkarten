@@ -3,8 +3,8 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {chromium,webkit} from '@playwright/test';
 const url=process.argv[2]||'http://127.0.0.1:4183/dev/multihex-prototypes.html?asset=tesoro';
-const directory='docs/reviews/tesoro';fs.mkdirSync(directory,{recursive:true});
-const assetSha256=createHash('sha256').update(fs.readFileSync('assets/library/tesoro-h4-v1.png')).digest('hex');
+const directory='docs/reviews/tesoro-v2';fs.mkdirSync(directory,{recursive:true});
+const assetSha256=createHash('sha256').update(fs.readFileSync('assets/library/tesoro-h4-v2.png')).digest('hex');
 const reports=[];
 for(const [name,engine,viewport,dpr] of [
  ['chromium',chromium,{width:1440,height:1100},1],
@@ -25,7 +25,7 @@ for(const [name,engine,viewport,dpr] of [
   const detail=page.locator('#tesoroDetail svg');
   if(name==='chromium'){
    await normal.screenshot({path:directory+'/tesoro-map.png'});
-   await page.locator('#multihexComparison figure').filter({has:page.locator('svg[data-asset="land-coast.settlement.h4.tesoro.v1"]')}).screenshot({path:directory+'/tesoro-normal.png'});
+   await page.locator('#multihexComparison figure').filter({has:page.locator('svg[data-asset="land-coast.settlement.h4.tesoro.v2"]')}).screenshot({path:directory+'/tesoro-normal.png'});
    await detail.screenshot({path:directory+'/tesoro-enlarged.png'});
    await page.locator('#multihexPositions').screenshot({path:directory+'/tesoro-positions.png'});
    await page.locator('#multihexComparison').screenshot({path:directory+'/comparison.png'});
@@ -40,7 +40,7 @@ for(const [name,engine,viewport,dpr] of [
    await normal.screenshot({path:directory+'/tesoro-mobile.png'});
    await detail.screenshot({path:directory+'/tesoro-detail-mobile.png'});
   }
-  const geometry=await page.locator('#multihexComparison svg[data-asset="land-coast.settlement.h4.tesoro.v1"],#tesoroDetail svg,#multihexPositions svg').evaluateAll(nodes=>nodes.map(svg=>{
+  const geometry=await page.locator('#multihexComparison svg[data-asset="land-coast.settlement.h4.tesoro.v2"],#tesoroDetail svg,#multihexPositions svg').evaluateAll(nodes=>nodes.map(svg=>{
    const im=svg.querySelector('[data-placement-id]'),label=svg.querySelector('.island-label text');
    return {asset:svg.dataset.asset,anchor:svg.dataset.anchor,viewBox:svg.getAttribute('viewBox'),cssWidth:svg.getBoundingClientRect().width,
     rectangle:['x','y','width','height'].map(k=>+im.getAttribute(k)),transform:im.getAttribute('transform'),clip:im.getAttribute('clip-path'),
