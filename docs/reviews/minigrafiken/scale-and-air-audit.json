@@ -1,0 +1,112 @@
+[
+  {
+    "key": "barrels",
+    "alphaBBox": [
+      67,
+      127,
+      296,
+      286
+    ],
+    "visiblePixelsAlpha16": 20043,
+    "transparentFootprintFraction": 0.7548
+  },
+  {
+    "key": "buoy",
+    "alphaBBox": [
+      88,
+      92,
+      261,
+      311
+    ],
+    "visiblePixelsAlpha16": 15784,
+    "transparentFootprintFraction": 0.8076
+  },
+  {
+    "key": "gulls",
+    "alphaBBox": [
+      29,
+      69,
+      299,
+      333
+    ],
+    "visiblePixelsAlpha16": 17179,
+    "transparentFootprintFraction": 0.7842
+  },
+  {
+    "key": "dolphins",
+    "alphaBBox": [
+      74,
+      112,
+      285,
+      301
+    ],
+    "visiblePixelsAlpha16": 18618,
+    "transparentFootprintFraction": 0.7663
+  },
+  {
+    "key": "rowboat",
+    "alphaBBox": [
+      89,
+      107,
+      275,
+      310
+    ],
+    "visiblePixelsAlpha16": 21669,
+    "transparentFootprintFraction": 0.7399
+  },
+  {
+    "key": "crate",
+    "alphaBBox": [
+      67,
+      136,
+      291,
+      291
+    ],
+    "visiblePixelsAlpha16": 19314,
+    "transparentFootprintFraction": 0.7699
+  },
+  {
+    "key": "foam",
+    "alphaBBox": [
+      39,
+      86,
+      336,
+      333
+    ],
+    "visiblePixelsAlpha16": 24284,
+    "transparentFootprintFraction": 0.6362
+  },
+  {
+    "key": "bottle",
+    "alphaBBox": [
+      77,
+      116,
+      278,
+      303
+    ],
+    "visiblePixelsAlpha16": 21115,
+    "transparentFootprintFraction": 0.75
+  },
+  {
+    "key": "driftwood",
+    "alphaBBox": [
+      74,
+      125,
+      294,
+      301
+    ],
+    "visiblePixelsAlpha16": 20102,
+    "transparentFootprintFraction": 0.7528
+  },
+  {
+    "key": "turtle",
+    "alphaBBox": [
+      64,
+      112,
+      302,
+      320
+    ],
+    "visiblePixelsAlpha16": 29068,
+    "transparentFootprintFraction": 0.6444
+  }
+]

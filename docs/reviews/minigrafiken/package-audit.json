@@ -1,0 +1,9 @@
+{
+  "zip": "dist/Sams-Gezeitenkarten.zip",
+  "zipSha256": "b3503511f4c62ec733219a228b94db430892b05d2dcfeecd411131a3845b65ad",
+  "files": 93,
+  "byteIdenticalCatalogPNGs": 33,
+  "newPNGs": 10,
+  "catalogMatches": true,
+  "developmentFilesExcluded": true
+}

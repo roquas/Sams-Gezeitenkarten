@@ -1,0 +1,219 @@
+{
+  "baseline": "ea4ae412e1c4838da8b9e498556430c933f82b9b",
+  "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+  "backgroundLastChange": "f1192b4",
+  "before": [
+    {
+      "id": "technical.single.v1",
+      "file": "assets/library/technical-single.png",
+      "assetSha256": "a12180babf645da4cd91efd15146324af474c6bdf7308a6c245b6c507cfe6923",
+      "lastImageCommit": "e22176a28b8bdb32b9d825356dad451d58860982",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "technical.double.v1",
+      "file": "assets/library/technical-double.png",
+      "assetSha256": "a818f0e6670097fd54fb7c30b5101c770795f6312731af815f80b7a7db347be8",
+      "lastImageCommit": "e22176a28b8bdb32b9d825356dad451d58860982",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "technical.lighthouse.v1",
+      "file": "assets/library/technical-lighthouse.png",
+      "assetSha256": "b84d1a3191409c40c6e5ee7b86a1f4f6d634ff167a26db58d9571aa54e7a6470",
+      "lastImageCommit": "e22176a28b8bdb32b9d825356dad451d58860982",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "technical.decoration.v1",
+      "file": "assets/library/technical-decoration.png",
+      "assetSha256": "a8ffb6c11467331652a2da413dd01187e7de5fbf9a090b6c1dbef4a6a96f12ef",
+      "lastImageCommit": "e22176a28b8bdb32b9d825356dad451d58860982",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "land-coast.island.h1.basalt-spire.v1",
+      "file": "assets/library/basalt-spire-v1.png",
+      "assetSha256": "d68f277f4b6bec2b4950a6341f1fac7a0360abe3d638065b047fc5c39ca78ae0",
+      "lastImageCommit": "d7ebeda10b399b311e731d4280e280079977ad37",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "land-coast.island.h1.basalt-spire-water.v1",
+      "file": "assets/library/basalt-spire-water-v1.png",
+      "assetSha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd",
+      "lastImageCommit": "6a8635a5e4514a5dacd741747e73625a7834b609",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "63f24d2971ba9acf0d68abd96845be9515d4f04c",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+      "file": "assets/library/lighthouse-offcenter-v1.png",
+      "assetSha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
+      "lastImageCommit": "0a329c0a2ca8220a21bc48a37d595268f1c10ebd",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "469d3bf36621097267a585a59cd1d2aa4a1e9830",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "land-coast.atoll.h1.broken-passages.v1",
+      "file": "assets/library/atoll-broken-v1.png",
+      "assetSha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2",
+      "lastImageCommit": "0a329c0a2ca8220a21bc48a37d595268f1c10ebd",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "469d3bf36621097267a585a59cd1d2aa4a1e9830",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "navigation.wreck.h1.offcenter-sloop.v1",
+      "file": "assets/library/wreck-offcenter-v1.png",
+      "assetSha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec",
+      "lastImageCommit": "0a329c0a2ca8220a21bc48a37d595268f1c10ebd",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "469d3bf36621097267a585a59cd1d2aa4a1e9830",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "land-coast.island.h2.tropical-bays.v1",
+      "file": "assets/library/tropical-bays-h2-v1.png",
+      "assetSha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+      "lastImageCommit": "218909002c583b3095478a3e8208c92a396e60dd",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "5e3991f27ce50df21693aa6a053c749639db26e6",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "land-coast.island.h3.massive-volcano.v1",
+      "file": "assets/library/massive-volcano-h3-v1.png",
+      "assetSha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+      "lastImageCommit": "218909002c583b3095478a3e8208c92a396e60dd",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "5e3991f27ce50df21693aa6a053c749639db26e6",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "land-coast.archipelago.h3.bent-reefs.v1",
+      "file": "assets/library/bent-reefs-h3-v1.png",
+      "assetSha256": "98918ab4ad5d584d3c68b0b26a548e6f458f599f54cab289df7689a69d2c2436",
+      "lastImageCommit": "218909002c583b3095478a3e8208c92a396e60dd",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "land-coast.archipelago.h3.sand-reefs.v2",
+      "file": "assets/library/sand-reefs-h3-v2.png",
+      "assetSha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e",
+      "lastImageCommit": "5e3991f27ce50df21693aa6a053c749639db26e6",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "86bba51a1405de55a189c037bf3365cec42cd33b",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "land-coast.island.h3.south-harbor.v1",
+      "file": "assets/library/south-harbor-h3-v1.png",
+      "assetSha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62",
+      "lastImageCommit": "5e3991f27ce50df21693aa6a053c749639db26e6",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "86bba51a1405de55a189c037bf3365cec42cd33b",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "land-coast.island.h3.smuggler-cove.v1",
+      "file": "assets/library/smuggler-cove-h3-v1.png",
+      "assetSha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+      "lastImageCommit": "5e3991f27ce50df21693aa6a053c749639db26e6",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "86bba51a1405de55a189c037bf3365cec42cd33b",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "land-coast.island.h4.long-sand.v1",
+      "file": "assets/library/long-sand-h4-v1.png",
+      "assetSha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130",
+      "lastImageCommit": "5e3991f27ce50df21693aa6a053c749639db26e6",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "86bba51a1405de55a189c037bf3365cec42cd33b",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "land-coast.island.h4.crab-claw.v1",
+      "file": "assets/library/crab-claw-h4-v1.png",
+      "assetSha256": "f1d1d7c237820b89306cc40d7d54e7ca8570ba1b9311c3ccd9fb3441d9e5d81e",
+      "lastImageCommit": "5e3991f27ce50df21693aa6a053c749639db26e6",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "land-coast.island.h4.jungle-temple.v1",
+      "file": "assets/library/jungle-temple-h4-v1.png",
+      "assetSha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254",
+      "lastImageCommit": "5e3991f27ce50df21693aa6a053c749639db26e6",
+      "status": "approved",
+      "hashesMatch": true,
+      "firstApprovalCommit": "86bba51a1405de55a189c037bf3365cec42cd33b",
+      "byteIdenticalSinceApproval": true
+    },
+    {
+      "id": "land-coast.island.h4.crab-claw.v2",
+      "file": "assets/library/crab-claw-h4-v2.png",
+      "assetSha256": "fb419e1eed3f97cd6a30db2246b02b6dff4f8227548aacc9f00a556a4fb76d95",
+      "lastImageCommit": "86bba51a1405de55a189c037bf3365cec42cd33b",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v1",
+      "file": "assets/library/tesoro-h4-v1.png",
+      "assetSha256": "3e2495530ecf8b0dc884313187c6e4018c24d1a4f9a17e375250424671ddcd5d",
+      "lastImageCommit": "5a8be54677ced0a620392912ce057f2ee395376c",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v2",
+      "file": "assets/library/tesoro-h4-v2.png",
+      "assetSha256": "9715a2c1d4d7e3b8d062c5c645d06966e93996f7ca6c7789d5eeca3500d9ea22",
+      "lastImageCommit": "c78abf663394671bafd1d77e82f15c53eec95c30",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v3",
+      "file": "assets/library/tesoro-h4-v3.png",
+      "assetSha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285",
+      "lastImageCommit": "71c218c5b867ad2447ba1e8f2633e18d5fafe9f0",
+      "status": "pending",
+      "hashesMatch": false
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v4",
+      "file": "assets/library/tesoro-h4-v4.png",
+      "assetSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+      "lastImageCommit": "ea4ae412e1c4838da8b9e498556430c933f82b9b",
+      "status": "pending",
+      "hashesMatch": false
+    }
+  ],
+  "tesoroV4Evidence": {
+    "assetSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+    "matchesCommittedImage": true,
+    "matchesPixelAndBrowserEvidence": true
+  },
+  "result": "12 exact approvals on sea-blue-01; no other approvals added"
+}

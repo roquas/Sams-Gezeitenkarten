@@ -804,6 +804,276 @@
       "candidateFamilies": [
         "blue-sea"
       ]
+    },
+    {
+      "id": "sea-life.accent.h1.barrels.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-barrels-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.buoy.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-buoy-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.gulls.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-gulls-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.dolphins.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-dolphins-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.rowboat.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-rowboat-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.crate.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-crate-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.foam.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-foam-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.bottle.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-bottle-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.driftwood.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-driftwood-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.turtle.v1",
+      "family": "sea-life",
+      "type": "accent",
+      "role": "decoration",
+      "stage": "illustration",
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/flavor-turtle-v1.png",
+        "width": 360,
+        "height": 408
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved lighthouse/wreck style and sea-blue-01 compositing references. One generation per motif, whole-canvas proportional RGBA export via existing strict pipeline; no geometry clipping or runtime transforms. See docs/MINIGRAFIKEN-65.md and docs/reviews/minigrafiken/generation-prompts.json",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
     }
   ],
   "reviews": [
@@ -899,7 +1169,7 @@
       "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
       "backgroundId": "sea-blue-01",
       "status": "approved",
-      "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte erhalten bewusst nur den Kartografenring ohne Pergamentschild; keine Rendererbeschränkung. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md.",
+      "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte zeigen nur die Illustration ohne permanenten Ortsring und ohne Pergamentschild; spätere Nutzerentscheidung zur Ringentfernung bleibt erhalten. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md.",
       "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
       "date": "2026-10-19",
       "assetSha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
@@ -909,7 +1179,7 @@
       "assetId": "land-coast.atoll.h1.broken-passages.v1",
       "backgroundId": "sea-blue-01",
       "status": "approved",
-      "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte erhalten bewusst nur den Kartografenring ohne Pergamentschild; keine Rendererbeschränkung. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md. Das etwas felsige aufgebrochene Atoll ausdrücklich unverändert behalten; keine Umbenennung oder Neugenerierung.",
+      "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte zeigen nur die Illustration ohne permanenten Ortsring und ohne Pergamentschild; spätere Nutzerentscheidung zur Ringentfernung bleibt erhalten. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md. Das etwas felsige aufgebrochene Atoll ausdrücklich unverändert behalten; keine Umbenennung oder Neugenerierung.",
       "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
       "date": "2026-10-19",
       "assetSha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2",
@@ -919,7 +1189,7 @@
       "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
       "backgroundId": "sea-blue-01",
       "status": "approved",
-      "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte erhalten bewusst nur den Kartografenring ohne Pergamentschild; keine Rendererbeschränkung. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md.",
+      "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte zeigen nur die Illustration ohne permanenten Ortsring und ohne Pergamentschild; spätere Nutzerentscheidung zur Ringentfernung bleibt erhalten. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md.",
       "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
       "date": "2026-10-19",
       "assetSha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec",
@@ -1079,19 +1349,19 @@
       "assetId": "land-coast.island.h4.crab-claw.v1",
       "backgroundId": "sea-blue-01",
       "status": "pending",
-      "notes": "Historische Krabbenzange v1 bleibt pending; laut Nutzer gestalterisch gelungen, Vierhexfläche aber unzureichend genutzt. Im bevorzugten Prototypvergleich durch neu komponierte v2 ersetzt; keine Freigabe."
+      "notes": "Historische Krabbenzange v1: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
     },
     {
       "assetId": "land-coast.island.h4.crab-claw.v1",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Historische Krabbenzange v1 bleibt pending; laut Nutzer gestalterisch gelungen, Vierhexfläche aber unzureichend genutzt. Im bevorzugten Prototypvergleich durch neu komponierte v2 ersetzt; keine Freigabe."
+      "notes": "Historische Krabbenzange v1: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
     },
     {
       "assetId": "land-coast.island.h4.crab-claw.v1",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Historische Krabbenzange v1 bleibt pending; laut Nutzer gestalterisch gelungen, Vierhexfläche aber unzureichend genutzt. Im bevorzugten Prototypvergleich durch neu komponierte v2 ersetzt; keine Freigabe."
+      "notes": "Historische Krabbenzange v1: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
     },
     {
       "assetId": "land-coast.island.h4.jungle-temple.v1",
@@ -1119,19 +1389,19 @@
       "assetId": "land-coast.island.h4.crab-claw.v2",
       "backgroundId": "sea-blue-01",
       "status": "pending",
-      "notes": "Neu komponierte Krabbenzange v2 mit verlängerten weit geöffneten Armen. Erneute künstlerische Nutzerbegutachtung ausstehend; alle vier Zellen einschließlich Lagune unbefahrbar. Technische Prüfung ist keine Freigabe."
+      "notes": "Historische Krabbenzange v2: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
     },
     {
       "assetId": "land-coast.island.h4.crab-claw.v2",
       "backgroundId": "legacy-parchment-sea",
       "status": "pending",
-      "notes": "Neu komponierte Krabbenzange v2 mit verlängerten weit geöffneten Armen. Erneute künstlerische Nutzerbegutachtung ausstehend; alle vier Zellen einschließlich Lagune unbefahrbar. Technische Prüfung ist keine Freigabe."
+      "notes": "Historische Krabbenzange v2: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
     },
     {
       "assetId": "land-coast.island.h4.crab-claw.v2",
       "backgroundId": "prototype-sea",
       "status": "pending",
-      "notes": "Neu komponierte Krabbenzange v2 mit verlängerten weit geöffneten Armen. Erneute künstlerische Nutzerbegutachtung ausstehend; alle vier Zellen einschließlich Lagune unbefahrbar. Technische Prüfung ist keine Freigabe."
+      "notes": "Historische Krabbenzange v2: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
     },
     {
       "assetId": "land-coast.settlement.h4.tesoro.v1",
@@ -1190,8 +1460,12 @@
     {
       "assetId": "land-coast.settlement.h4.tesoro.v4",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Tesoro v4: prominenterer Leuchtturm hinter der Bergflanke und freierer Bootsrand statt maximaler Hexfüllung. Alle vier Felder unbefahrbar. Keine künstlerische Freigabe oder Freigabe-Hashes. Siehe docs/TESORO-V4-65.md."
+      "status": "approved",
+      "notes": "Ausdrückliche Nutzerfreigabe für Tesoro v4 im Folgeauftrag zu „Visuellen Stil festlegen“. Exakte Bildbytes aus ea4ae41, identisch mit Pixel- und Browserbelegen; sea-blue-01 unverändert seit f1192b4. Keine Übertragung auf frühere Tesoro-Versionen oder andere Hintergründe. Siehe docs/ART-APPROVAL-AUDIT-65.md.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "land-coast.settlement.h4.tesoro.v4",
@@ -1204,6 +1478,186 @@
       "backgroundId": "prototype-sea",
       "status": "pending",
       "notes": "Tesoro v4: prominenterer Leuchtturm hinter der Bergflanke und freierer Bootsrand statt maximaler Hexfüllung. Alle vier Felder unbefahrbar. Keine künstlerische Freigabe oder Freigabe-Hashes. Siehe docs/TESORO-V4-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.barrels.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.barrels.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.barrels.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.gulls.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.gulls.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.gulls.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.dolphins.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.dolphins.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.dolphins.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.rowboat.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.rowboat.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.rowboat.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.crate.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.crate.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.crate.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.bottle.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.bottle.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.bottle.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.driftwood.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.driftwood.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.driftwood.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.turtle.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.turtle.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
+    },
+    {
+      "assetId": "sea-life.accent.h1.turtle.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erste Minigrafik-Runde: befahrbare Einzelhex-Dekoration ohne logischen Ort, permanente Namen, Marker oder Regelbedeutung. Künstlerische Nutzerfreigabe ausstehend. Technische Prüfungen und Kandidatenfamilie ersetzen keine Freigabe; keine Approval-Hashes. Siehe docs/MINIGRAFIKEN-65.md."
     }
   ]
 }

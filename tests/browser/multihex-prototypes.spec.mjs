@@ -27,8 +27,8 @@ test('whole multihex sprites use production sea, labels, blocked cells and uncha
  await expect(tesoro.locator('.island-label')).toBeVisible();
  if(info.project.name==='chromium')expect(await enlarged.evaluate(n=>n.getBoundingClientRect().width)).toBeGreaterThan(await tesoro.evaluate(n=>n.getBoundingClientRect().width));
  const captions=await page.locator('#multihexComparison figcaption').allTextContents();
- expect(captions.filter(t=>t.endsWith('approved'))).toHaveLength(5);
- expect(captions.filter(t=>t.endsWith('pending'))).toHaveLength(1);
+ expect(captions.filter(t=>t.endsWith('approved'))).toHaveLength(6);
+ expect(captions.filter(t=>t.endsWith('pending'))).toHaveLength(0);
  await expect(page.locator('#tesoroHistory svg')).toHaveCount(3);
  for(const v of ['v1','v2','v3'])await expect(page.locator('#tesoroHistory svg[data-asset="land-coast.settlement.h4.tesoro.'+v+'"] [data-placement-id]')).toHaveAttribute('href',new URL('/assets/library/tesoro-h4-'+v+'.png',page.url()).href);
  await expect(page.locator('#clawGeometry svg')).toHaveCount(2);

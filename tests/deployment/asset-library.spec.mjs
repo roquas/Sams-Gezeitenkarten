@@ -30,7 +30,7 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
   const a=library.assets.find(a=>a.id===id);
   expect(a).toMatchObject({stage:'illustration',passable:false});
   expect(a.geometry.cells).toHaveLength(cells);
-  for(const b of library.backgrounds)expect(library.reviews.find(r=>r.assetId===id&&r.backgroundId===b.id)?.status).toBe(b.id==='sea-blue-01'&&['land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1','land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1'].includes(id)?'approved':'pending');
+  for(const b of library.backgrounds)expect(library.reviews.find(r=>r.assetId===id&&r.backgroundId===b.id)?.status).toBe(b.id==='sea-blue-01'&&['land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1','land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1','land-coast.settlement.h4.tesoro.v4'].includes(id)?'approved':'pending');
   const decoded=await page.evaluate(async url=>{const im=new Image();im.src=url;await im.decode();return [im.naturalWidth,im.naturalHeight];},new URL('../../'+a.image.path,response.url()).href);
   expect(decoded).toEqual(size);
  }
@@ -38,9 +38,23 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
   'land-coast.island.h1.basalt-spire-water.v1','navigation.lighthouse.h1.offcenter-beacon.v1',
   'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1',
   'land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1',
-  'land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1'
+  'land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1','land-coast.settlement.h4.tesoro.v4'
  ].map(id=>[id,'sea-blue-01']));
- expect(library.reviews.filter(r=>r.status==='pending')).toHaveLength(library.reviews.length-11);
+ expect(library.reviews.filter(r=>r.status==='pending')).toHaveLength(library.reviews.length-12);
+ const flavors=library.assets.filter(a=>a.id.startsWith('sea-life.accent.h1.'));
+ expect(flavors).toHaveLength(10);
+ for(const a of flavors){
+  expect(a).toMatchObject({role:'decoration',type:'accent',stage:'illustration',geometry:{cells:[[0,0]]},image:{width:360,height:408}});
+  expect(Object.hasOwn(a,'passable')).toBe(false);
+  for(const r of library.reviews.filter(r=>r.assetId===a.id)){
+   expect(r.status).toBe('pending');
+   for(const key of ['reviewer','date','assetSha256','backgroundSha256'])expect(Object.hasOwn(r,key)).toBe(false);
+  }
+  const png=await request.get(a.image.path);expect(png.ok()).toBe(true);
+  expect(Buffer.from(await png.body())).toEqual(fs.readFileSync(new URL('../../'+a.image.path,import.meta.url)));
+  const size=await page.evaluate(async url=>{const i=new Image();i.src=url;await i.decode();return [i.naturalWidth,i.naturalHeight];},new URL('../../'+a.image.path,response.url()).href);
+  expect(size).toEqual([360,408]);
+ }
  const errors=[],requests=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{requests.push(r.url());if(r.status()>=400)errors.push(r.url());});

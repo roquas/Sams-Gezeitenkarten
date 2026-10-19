@@ -48,7 +48,7 @@ test('round-two contract preserves south harbor, mirrored bend and four-cell ide
  assert.ok(old.every(r=>r.status==='pending'));
 });
 
-test('historical claws retain their identities and exact footprints while Tesoro becomes the active pending candidate',()=>{
+test('historical claws retain their identities and exact footprints while Tesoro v4 has an exact sea-blue approval',()=>{
  const p=multihexPrototypes.find(p=>p.key==='claw');assert.equal(p.id,'land-coast.island.h4.crab-claw.v2');
  assert.equal(p.approved,undefined);
  assert.equal(p.historical,true);
@@ -58,7 +58,7 @@ test('historical claws retain their identities and exact footprints while Tesoro
  assert.equal(multihexPrototypes.some(p=>p.id===old.id),false);
  const tesoro=multihexPrototypes.find(p=>p.key==='tesoro');
  assert.equal(multihexCandidates.some(p=>p.key==='claw'),false);
- assert.ok(multihexCandidates.includes(tesoro));assert.equal(tesoro.approved,undefined);
+ assert.ok(multihexCandidates.includes(tesoro));assert.equal(tesoro.approved,true);
  assert.equal(tesoro.id,'land-coast.settlement.h4.tesoro.v4');
  const previous=multihexPrototypes.find(p=>p.key==='tesoro-v1');
  assert.equal(multihexPrototypes.find(p=>p.key==='tesoro-v2').historical,true);
@@ -69,7 +69,8 @@ test('historical claws retain their identities and exact footprints while Tesoro
  const reviews=library.reviews.filter(r=>r.assetId===tesoro.id);
  assert.equal(reviews.length,library.backgrounds.length);
  for(const review of reviews){
-  assert.equal(review.status,'pending');
-  for(const key of ['reviewer','date','assetSha256','backgroundSha256'])assert.equal(Object.hasOwn(review,key),false);
+  const approved=review.backgroundId==='sea-blue-01';
+  assert.equal(review.status,approved?'approved':'pending');
+  for(const key of ['reviewer','date','assetSha256','backgroundSha256'])assert.equal(Object.hasOwn(review,key),approved);
  }
 });

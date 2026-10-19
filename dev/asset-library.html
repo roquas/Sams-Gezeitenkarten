@@ -13,6 +13,16 @@
  <label><input type="checkbox" id="hexes" checked> Hexgrenzen anzeigen</label>
  <label><input type="checkbox" id="footprints" checked> Erlaubte Grafikfläche anzeigen (grün)</label>
  <p id="status" role="status"></p>
+ <section id="minigrafiken" aria-labelledby="flavorHeading">
+  <h2 id="flavorHeading">Zehn Minigrafiken · künstlerische Freigabe ausstehend</h2>
+  <p>Befahrbare Einzelhex-Dekorationen: viel offenes Meer, keine Ortsnamen oder permanenten Marker. Alle zehn sind <strong>pending</strong>, ohne Freigabe-Hashes. Die Namen stehen nur hier zur Besprechung. <a href="docs/ART-APPROVAL-AUDIT-65.md">Freigabeabgleich der bisherigen Motive</a>.</p>
+  <p>Übersicht in 1:1-Kartengröße: eine Karteneinheit entspricht einem Bildschirmpixel. Darunter dieselbe Szene vergrößert. Hexgrenzen und echte Spielmarkierungen sind über die vorhandenen Schalter steuerbar.</p>
+  <svg id="flavorMap" role="img" aria-label="Zehn befahrbare Minigrafiken auf der vollständigen Seekarte"></svg>
+  <div id="flavorComparison"></div>
+  <label>Motiv vergrößern <select id="flavorAsset"></select></label>
+  <svg id="flavorDetail" role="img" aria-label="Minigrafik vergrößert auf sea-blue-01"></svg>
+  <p>Die Illustration behält immer das feste Rechteck 90×102 Karteneinheiten (Quelldatei 360×408). Vergrößert wird die gesamte Szene. Alle Rand-/Innenpositionen können unten unter „Weitere Prüfpositionen“ ausgewählt werden.</p>
+ </section>
  <section id="passable-prototypes" aria-labelledby="prototypeHeading">
   <h2 id="prototypeHeading">Befahrbare Orte – drei freigegebene Illustrationen</h2>
   <p>Leuchtturm, aufgebrochenes Atoll und Wrack sind künstlerisch für <strong>sea-blue-01 freigegeben (approved)</strong>, einschließlich des etwas felsigen Atolls. Alle drei an B3 mit Nachbarfeldern und identischem Spielmaßstab. Andere Hintergründe bleiben pending. Hexgrenzen oben schaltbar.</p>
