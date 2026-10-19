@@ -43,6 +43,8 @@ Archivprädikate und kleine bekannte Lösungsmengen geprüft.
 `requireContract` registriert zunächst genau `gezeitenkarten-1`, Puzzle-Schema 1
 und Inhaltsrevision `dataVersion: 1`, den gesamten heutigen Bestand. Unbekannte
 Regel-/Schema-/Datenversionen werden abgewiesen, niemals auf diesen Stand umgedeutet.
+Eine widersprechende Regelkennung in einem angereicherten Eingabeobjekt wird
+ebenfalls abgewiesen; der Aufrufkontext überschreibt sie nicht stillschweigend.
 `dataVersion` bleibt eine Inhaltsrevision, keine neue Regelkennung: weitere
 bekannte Inhaltsrevisionen müssen vor ihrer Annahme ausdrücklich registriert
 werden. Keine hypothetische zweite Regelversion ist implementiert.

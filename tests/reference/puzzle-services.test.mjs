@@ -61,7 +61,7 @@ test('validation identifies structure, semantics and target failures separately'
 });
 
 test('all new interfaces reject unknown rules, schemas and data revisions instead of falling back',()=>{
- for(const mutate of [d=>d.schemaVersion=2,d=>d.dataVersion=2]){
+ for(const mutate of [d=>d.schemaVersion=2,d=>d.dataVersion=2,d=>d.rulesVersion='gezeitenkarten-2']){
   const d=clone(fixture);mutate(d);
   for(const fn of [()=>validateDefinition(d,options),()=>validateLogicDefinition(d,options),()=>analyzeDefinition(d,options),()=>projectPublicPuzzle(d,projectionOptions)])assert.throws(fn,/version:/);
  }

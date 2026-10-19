@@ -38,7 +38,7 @@ export function validatePublicPuzzle(value){
  return value;
 }
 export function projectPublicPuzzle(internal,{rulesVersion,identity}={}){
- requireContract({rulesVersion,schemaVersion:internal?.schemaVersion,dataVersion:internal?.dataVersion});
+ requireContract({rulesVersion,schemaVersion:internal?.schemaVersion,dataVersion:internal?.dataVersion,declaredRulesVersion:internal?.rulesVersion});
  const puzzle=pick(internal,['schemaVersion','dataVersion','id']);
  puzzle.logic=publicLogic(internal.logic);puzzle.presentation=publicPresentation(internal.presentation);
  if(Object.hasOwn(internal,'resultTexts'))puzzle.resultTexts=internal.resultTexts&&typeof internal.resultTexts==='object'&&!Array.isArray(internal.resultTexts)?
