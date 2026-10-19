@@ -137,19 +137,22 @@ class LibraryImageTests(unittest.TestCase):
                 for x in range(mask.width):
                     self.assertEqual(mask.getpixel((x, y))[3] > 0, footprint.contains(x, y))
 
-    def test_all_illustrations_fit_all_25_board_positions(self):
+    def test_all_illustrations_fit_every_valid_board_position(self):
         source = """import fs from 'node:fs';
-        import {imageContract,placementContract} from './src/assets/geometry.mjs';
+        import {imageContract,placementContract,placedCells} from './src/assets/geometry.mjs';
         import {HEXES} from './src/ui/chart-geometry.mjs';
         const catalog=JSON.parse(fs.readFileSync('assets/catalog/library.json'));
         console.log(JSON.stringify(catalog.assets.filter(a=>a.stage==='illustration').map(a=>{
-        return {...a,contract:imageContract(a.geometry.cells),placements:HEXES.map(h=>({
+        const board=new Set(HEXES.map(h=>h.id));
+        return {...a,contract:imageContract(a.geometry.cells),placements:HEXES.filter(h=>placedCells(a,h.id).every(id=>board.has(id))).map(h=>({
         id:'review-'+h.id,anchor:h.id,contract:placementContract(a,h.id)}))};})));"""
         assets = json.loads(subprocess.check_output(['node', '--input-type=module', '-e', source], cwd=ROOT))
         self.assertNotEqual(assets[0]['image']['path'], assets[1]['image']['path'])
         for asset in assets:
             with self.subTest(asset=asset['id']):
-                self.assertEqual(len(asset['placements']), 25)
+                self.assertGreaterEqual(len(asset['placements']), 12)
+                if len(asset['geometry']['cells']) == 1:
+                    self.assertEqual(len(asset['placements']), 25)
                 checker.check_image((ROOT / asset['image']['path']).read_bytes(), asset)
 
 

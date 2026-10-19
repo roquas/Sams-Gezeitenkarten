@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mehrhex-Inseln – künstlerische Prüfung ausstehend</title>
+<base href="../"><link rel="stylesheet" href="dev/asset-library.css">
+<style>
+main{max-width:1280px}#multihexComparison,#multihexPositions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}figure{margin:0;min-width:0}figcaption{font-size:.9rem;min-height:4em;padding:8px 0}#multihexPositions{grid-template-columns:repeat(2,minmax(0,1fr))}svg{background:#5f9fae}@media(max-width:700px){#multihexComparison,#multihexPositions{grid-template-columns:1fr}}
+</style>
+<main>
+<h1>Drei Mehrhex-Prototypen · pending</h1>
+<p>Je Inselgruppe genau eine transparente RGBA-Grafik. Noch keine künstlerische Freigabe. Alle zwei bzw. drei belegten Hexfelder sind vollständig unbefahrbar, auch das offene Wasser zwischen den Splitterriffen.</p>
+<p><a href="dev/asset-library.html">Zur Assetbibliothek</a> · sea-blue-01 · produktiver Kartenrenderer mit echten Hexgrenzen und Pergament-Ortsnamen.</p>
+<label><input id="hexes" type="checkbox" checked> Hexgrenzen anzeigen</label>
+<label><input id="marks" type="checkbox"> Stundenzeichen und Route auf Nachbarfeldern</label>
+<input id="showChart" type="checkbox" checked hidden>
+<div id="multihexComparison"></div>
+<p>Vergleich an B3 im identischen Kartenmaßstab. Gestrichelte Hexgrenzen kennzeichnen die gesperrten Felder. Markierungen und Route bleiben auf befahrbaren Nachbarfeldern; auf den Inselgruppen werden sie unterdrückt. Der Archipel bleibt trotz sichtbarer Wasserpassagen vollständig gesperrt. Ob dies grafisch eindeutig genug ist, bleibt ausdrücklich Teil der künstlerischen Prüfung.</p>
+<h2>Positionen und Beschriftung auf der vollständigen Karte</h2>
+<label>Motiv <select id="multihexAsset"></select></label>
+<p>Rand und Innenbereich, gerade und ungerade Zeilen. Dieselbe Datei und dieselben festen Bildmaße an allen Positionen. Ortsnamen werden vom produktiven Mehrhex-Labelverfahren gesetzt.</p>
+<div id="multihexPositions"></div><p id="error" role="alert"></p>
+</main><script type="module" src="dev/multihex-gallery.mjs"></script>
+</html>

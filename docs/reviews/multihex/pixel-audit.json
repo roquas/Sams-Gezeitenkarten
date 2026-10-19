@@ -1,0 +1,186 @@
+[
+  {
+    "key": "tropical",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "image": "assets/library/tropical-bays-h2-v1.png",
+    "sourceSha256": "ff6478e9e273b01f5f44ae14293a7f105fc65bf91c76fc00b4158f010462c189",
+    "assetSha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+    "sourceSize": [
+      1629,
+      965
+    ],
+    "sampleSize": [
+      660,
+      391
+    ],
+    "paddingLeftTop": [
+      14,
+      4
+    ],
+    "nominalPercent": 96,
+    "canvas": [
+      688,
+      408
+    ],
+    "visiblePixels": 104241,
+    "alphaOnePixels": 2480,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "A5",
+      "B5",
+      "C5",
+      "D5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 6715,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "volcano",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "image": "assets/library/massive-volcano-h3-v1.png",
+    "sourceSha256": "8c687d91f2f8aa387edb569150d23c86f3be6a567acde6930fa4fb7ccc5dda72",
+    "assetSha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+    "sourceSize": [
+      1187,
+      1326
+    ],
+    "sampleSize": [
+      577,
+      645
+    ],
+    "paddingLeftTop": [
+      47,
+      13
+    ],
+    "nominalPercent": 84,
+    "canvas": [
+      688,
+      768
+    ],
+    "visiblePixels": 172542,
+    "alphaOnePixels": 4213,
+    "validAnchors": [
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "A5",
+      "B5",
+      "C5",
+      "D5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 11116,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "archipelago",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "image": "assets/library/bent-reefs-h3-v1.png",
+    "sourceSha256": "0eaa8a8d321727de574313c19fd4a6ce9cf90539c87fd35db29d25854c54812d",
+    "assetSha256": "98918ab4ad5d584d3c68b0b26a548e6f458f599f54cab289df7689a69d2c2436",
+    "sourceSize": [
+      1367,
+      1151
+    ],
+    "sampleSize": [
+      839,
+      706
+    ],
+    "paddingLeftTop": [
+      0,
+      47
+    ],
+    "nominalPercent": 92,
+    "canvas": [
+      912,
+      768
+    ],
+    "visiblePixels": 103060,
+    "alphaOnePixels": 5990,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 12360,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  }
+]

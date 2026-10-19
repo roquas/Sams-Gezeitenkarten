@@ -14,6 +14,19 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
   const size=await page.evaluate(async url=>{const i=new Image();i.src=url;await i.decode();return [i.naturalWidth,i.naturalHeight];},new URL('../../'+asset.image.path,response.url()).href);
   expect(size).toEqual([360,408]);
  }
+ // Pending multihex images ship whole and decode from the actual subpath ZIP.
+ for(const [id,size,cells] of [
+  ['land-coast.island.h2.tropical-bays.v1',[688,408],2],
+  ['land-coast.island.h3.massive-volcano.v1',[688,768],3],
+  ['land-coast.archipelago.h3.bent-reefs.v1',[912,768],3]
+ ]){
+  const a=library.assets.find(a=>a.id===id);
+  expect(a).toMatchObject({stage:'illustration',passable:false});
+  expect(a.geometry.cells).toHaveLength(cells);
+  expect(library.reviews.filter(r=>r.assetId===id).every(r=>r.status==='pending')).toBe(true);
+  const decoded=await page.evaluate(async url=>{const im=new Image();im.src=url;await im.decode();return [im.naturalWidth,im.naturalHeight];},new URL('../../'+a.image.path,response.url()).href);
+  expect(decoded).toEqual(size);
+ }
  expect(library.reviews.filter(r=>r.status==='approved').map(r=>[r.assetId,r.backgroundId])).toEqual([
   'land-coast.island.h1.basalt-spire-water.v1','navigation.lighthouse.h1.offcenter-beacon.v1',
   'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1'
