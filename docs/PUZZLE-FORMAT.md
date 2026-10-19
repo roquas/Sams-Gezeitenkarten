@@ -41,6 +41,10 @@ Stunden müssen innerhalb der Routenlänge liegen; Bereiche sind aufsteigend. Hi
 
 ## Loader und Solver
 
+Die separaten [Offline-Prüfdienste und die öffentliche Projektion (F03)](PUZZLE-SERVICES-F03.md)
+ergänzen diesen Vertrag. Der vorhandene Loader und `compilePuzzle()` bleiben
+unverändert; das neue öffentliche DTO wird noch nicht produktiv ausgeliefert.
+
 - `validatePuzzle(document)` prüft Schema und semantische Referenzen; wirft `PuzzleError` mit `errors` und lesbarer Nachricht. Validität bedeutet noch keine Eindeutigkeit.
 - `solvePuzzle(logic, {maxNodes=250000, metrics=true})` arbeitet ohne DOM, Fetch, Speicherung oder Sollroute. Es enumeriert legale Routen über die bestehende Engine und liefert `status` (`unique`, `ambiguous`, `unsolvable`), exakte `count`, `solutions`, `legalRouteCount` und optional `metrics`. Beim überschrittenen Suchbudget wird abgebrochen/geworfen; niemals „eindeutig“ behauptet.
 - Metriken: Kandidaten nach jedem Hinweis, Kandidaten beim Weglassen jedes Hinweises (Redundanz), erzwungene Positionen und frühe Schritte, Hinweisvielfalt und erklärende Zählungen. Schwierigkeit ist ausdrücklich nur eine **vorläufige Enumerationsheuristik**, kein menschlicher Lösungs- oder Schwierigkeitsbeweis.
