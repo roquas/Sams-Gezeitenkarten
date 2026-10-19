@@ -18,10 +18,19 @@ export const historicalIds=new Set([
  'land-coast.island.h4.crab-claw.v1','land-coast.island.h4.crab-claw.v2',
  'land-coast.settlement.h4.tesoro.v1','land-coast.settlement.h4.tesoro.v2','land-coast.settlement.h4.tesoro.v3'
 ]);
-export const deferredIds=new Set(['sea-life.accent.h1.turtle.v1']);
+export const deferredIds=new Set([...flavorPrototypes.map(a=>a.id),'sea-life.accent.h1.turtle.v1']);
 export function availability(asset){
- return asset.stage==='technical-placeholder'?'Technischer Platzhalter':deferredIds.has(asset.id)?'Zurückgestellt':historicalIds.has(asset.id)?'Historisch':'Aktuell / zur Prüfung';
+ return asset.stage==='technical-placeholder'?'Technischer Platzhalter':({enabled:'Für Produktion vorgesehen',draft:'Entwurf / erneut zu prüfen',historical:'Historisch',deferred:'Zurückgestellt'})[asset.production]??'Nicht für Produktion vorgesehen';
 }
 export function conceptualRole(asset){
- return deferredIds.has(asset.id)?'Tiermotiv für möglichen späteren beweglichen Einsatz':asset.role==='decoration'?'Freies Kartenmotiv':asset.passable?'Befahrbarer Ort':'Unbefahrbarer Ort';
+ return asset.id==='sea-life.accent.h1.turtle.v1'?'Tiermotiv für möglichen späteren beweglichen Einsatz':asset.role==='decoration'?'Freies Kartenmotiv':asset.passable?'Befahrbarer Ort':'Unbefahrbarer Ort';
+}
+
+export function motifName(asset){
+ const technical={'technical.single.v1':'Technischer Einzelhex-Platzhalter','technical.double.v1':'Technischer Zweierhex-Platzhalter','technical.lighthouse.v1':'Technischer Leuchtturm-Platzhalter','technical.decoration.v1':'Technischer Dekorations-Platzhalter'};
+ if(technical[asset.id])return technical[asset.id];
+ const curated=[...passableSmallPlaces,...flavorPrototypes].find(p=>p.id===asset.id);
+ if(curated)return curated.name;
+ const key=asset.id.split('.').slice(-2).join('.');
+ return ({'basalt-spire.v1':'Reduzierte Felsnadel','basalt-spire-water.v1':'Wasserreiche Felsnadel (Original)','offcenter-beacon.v1':'Leuchtturm','broken-passages.v1':'Zerbrochenes Atoll','offcenter-sloop.v1':'Versunkenes Wrack','tropical-bays.v1':'Palmenbuchten','massive-volcano.v1':'Glutberg','bent-reefs.v1':'Sandriffbogen – früher Entwurf','sand-reefs.v2':'Sandriffbogen','south-harbor.v1':'Südhafen','smuggler-cove.v1':'Schmugglerbucht','long-sand.v1':'Langer Strand','jungle-temple.v1':'Tempel der Gezeiten','crab-claw.v1':'Krabbenzange v1','crab-claw.v2':'Krabbenzange v2','tesoro.v1':'Tesoro v1','tesoro.v2':'Tesoro v2','tesoro.v3':'Tesoro v3','tesoro.v4':'Tesoro v4','gulls.v1':'Seevögel v1','dolphins.v1':'Delfine v1','turtle.v1':'Meeresschildkröte'})[key]??asset.id;
 }

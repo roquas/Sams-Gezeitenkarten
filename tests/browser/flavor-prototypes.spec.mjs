@@ -6,6 +6,7 @@ test('flavor round uses complete fixed sprites on actual navigable sea at 1:1 an
  page.on('response',r=>{if(r.status()>=400)errors.push(r.url());});
  await page.goto('/dev/asset-library.html#minigrafiken');
  await expect(page.locator('#flavorComparison svg')).toHaveCount(8);
+ await expect(page.locator('#flavorHeading')).toContainText('Zurückgestellte');
  await expect(page.locator('#error')).toBeEmpty();
  const geometry=svg=>svg.locator('[data-placement-id]').evaluate(n=>['href','x','y','width','height','transform','clip-path'].map(k=>n.getAttribute(k)));
  for(const p of flavorPrototypes){
@@ -66,7 +67,11 @@ test('six approved reference places, sparse review maps and complete inventory k
  await expect(turtle).toContainText('Zurückgestellt');await expect(turtle).toContainText('pending');
  const barrel=page.locator('#fullInventory tr[data-catalog-asset="sea-life.accent.h1.barrels.v1"]');
  await expect(barrel).toContainText('Befahrbarer Ort');await expect(barrel).toContainText('geographic');await expect(barrel).toContainText('approved');
+ await expect(barrel.locator('td').nth(4)).toHaveText('Ja');
+ const foam=page.locator('#fullInventory tr[data-catalog-asset="sea-life.accent.h1.foam.v1"]');
+ await expect(foam).toContainText('approved');await expect(foam.locator('td').nth(4)).toContainText('Nein · Zurückgestellt');
  await page.locator('#background').selectOption('prototype-sea');await expect(barrel).toContainText('pending');
+ await expect(barrel.locator('td').nth(4)).toContainText('Nein');
  await expect(page.locator('#fullInventoryStatus')).toContainText('prototype-sea');
  await expect(page.locator('#error')).toBeEmpty();
 });

@@ -31,7 +31,7 @@ test('eight curated free motifs never represent hints; seven revised/new files s
   const a=library.assets.find(a=>a.id===p.id),approved=p.key==='foam';
   assert.equal(a.role,'decoration');assert.equal(a.type,'accent');assert.equal(Object.hasOwn(a,'passable'),false);
   assert.deepEqual(a.geometry.cells,[[0,0]]);assert.deepEqual([a.image.width,a.image.height],[360,408]);
-  assert.equal(historicalIds.has(a.id)||deferredIds.has(a.id),false);
+  assert.equal(historicalIds.has(a.id),false);assert.ok(deferredIds.has(a.id));assert.equal(a.production,'deferred');
   for(const b of library.backgrounds){
    const expected=approved&&b.id==='sea-blue-01';assert.equal(compatibility(library,a.id,b.id),expected?'approved':'pending');
    const r=library.reviews.find(r=>r.assetId===a.id&&r.backgroundId===b.id);
@@ -41,6 +41,7 @@ test('eight curated free motifs never represent hints; seven revised/new files s
   for(const h of HEXES){
    const placement=[{id:'free',assetId:a.id,anchor:h.id}],logic={grid:{columns:5,rows:5},blocked:[],places:{}};
    assert.deepEqual(validatePlacements(placement,library,logic,'sea-blue-01',{development:true}),[]);
+   assert.ok(validatePlacements(placement,library,logic,'sea-blue-01').some(e=>e.includes('not enabled for production')));
    assert.equal(validatePlacements(placement,library,logic,'sea-blue-01').some(e=>e.includes('not visually approved')),!approved);
    assert.ok(validatePlacements([{...placement[0],placeId:'clue'}],library,{...logic,places:{clue:{cells:[h.id]}}},'sea-blue-01',{development:true}).some(e=>e.includes('decoration cannot represent')));
   }
@@ -52,8 +53,8 @@ test('curation keeps old animal variants historical and turtle deferred; fixed d
  for(const id of ['sea-life.accent.h1.gulls.v1','sea-life.accent.h1.dolphins.v1'])assert.ok(historicalIds.has(id));
  assert.ok(deferredIds.has('sea-life.accent.h1.turtle.v1'));
  for(const id of [...historicalIds,...deferredIds]){
-  assert.equal(active.has(id),false);
-  assert.ok(library.reviews.filter(r=>r.assetId===id).every(r=>r.status==='pending'));
+  if(!flavorPrototypes.some(p=>p.id===id))assert.equal(active.has(id),false);
+  assert.ok(library.reviews.filter(r=>r.assetId===id).every(r=>r.status===(id==='sea-life.accent.h1.foam.v1'&&r.backgroundId==='sea-blue-01'?'approved':'pending')));
  }
  const keys=new Set();for(const page of freeMotifReviewPages){assert.ok(page.length<=3);for(const key of page){assert.ok(flavorPrototypes.some(p=>p.key===key));keys.add(key);}}
  assert.equal(keys.size,8);

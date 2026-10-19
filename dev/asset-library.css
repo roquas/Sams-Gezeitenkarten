@@ -6,8 +6,8 @@ body{margin:0;background:#f3ede0;color:#302b27;font:16px/1.5 system-ui,sans-seri
 #usageComparison select{width:100%;font-size:.8rem}#usageComparison label{display:block;margin-right:0}#usageComparison p{font-size:.85rem}
 @media(max-width:640px){#prototypeComparison,#usageComparison{grid-template-columns:1fr;max-width:360px;margin:auto}}
 
-#flavorComparison,#smallPlacesComparison{display:grid;grid-template-columns:repeat(auto-fit,200px);gap:18px 0;justify-content:space-between;margin-bottom:24px}
-#flavorComparison figure,#smallPlacesComparison figure{margin:0;width:200px}#flavorComparison figcaption,#smallPlacesComparison figcaption{font-size:.86rem;min-height:3em}
+#flavorComparison,#smallPlacesComparison{display:grid;grid-template-columns:repeat(auto-fit,200px);gap:18px 16px;justify-content:space-between;margin-bottom:24px}
+#flavorComparison figure,#smallPlacesComparison figure{margin:0;width:200px}#flavorComparison figcaption,#smallPlacesComparison figcaption{font-size:.86rem;min-height:6em}
 #flavorComparison svg,#smallPlacesComparison svg{width:200px;height:170px}#flavorDetail{width:600px;max-width:100%;height:auto}
 @media(max-width:460px){#flavorComparison,#smallPlacesComparison{justify-content:center}}
 

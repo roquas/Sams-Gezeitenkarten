@@ -103,6 +103,7 @@ Dieses Beispiel beschreibt die spätere Produktion. Die genannte Datei existiert
   "role": "geographic",
   "passable": true,
   "stage": "illustration",
+  "production": "draft",
   "geometry": {"cells": [[0, 0]]},
   "image": {"path": "assets/library/needle-beacon-v1.png", "width": 360, "height": 408},
   "provenance": {"source": "Hier tatsächlichen Urheber/Produktionsbeleg eintragen", "rights": "Hier tatsächliche Nutzungsrechte eintragen"},
@@ -198,3 +199,9 @@ Pro Karte sollen später **höchstens 0–3 freie Kartenmotive** sparsam eingese
 Befahrbare Orte können logisch benannt werden, erhalten hier aber **keine neuen permanenten Ortsbeschriftungen oder Ringe**. Das Konzept kontextueller Ortslabels aus Issue #68 bleibt unverändert. Die bisherige Regel für lesbare Pergamentnamen gilt weiter dort, wo der bestehende Renderer bereits Ortsnamen zeigt.
 
 Aktuell: [vollständiger Katalogstatus einschließlich Hashbindungen](ASSET-INVENTORY-65.md) und [letzte Wasserillustrationsrunde](CARD-MOTIFS-FINALE-65.md). Zurückgestellte Schildkröte und historische Vögel-/Delfinfassungen sind keine aktuellen statischen Empfehlungen.
+
+## Abschlussentscheidung PR #65 (20.10.2026)
+
+Die künstlerische Produktion ist vorerst beendet. Maßgeblich sind das [vollständige Inventar](ASSET-INVENTORY-65.md) und der [Abschlussbericht](ASSET-CONSOLIDATION-65.md). 18 Ortsillustrationen sind auf `sea-blue-01.webp` produktiv vorgesehen. Die sanfte Schaumströmung behält ihre exakte künstlerische Freigabe, ist jedoch zusammen mit allen anderen atmosphärischen Entwürfen produktiv zurückgestellt ([Issue #70](https://github.com/roquas/Sams-Gezeitenkarten/issues/70)). Die Schildkröte bleibt für einen möglichen späteren beweglichen Einsatz zurückgestellt. Historische Fassungen und reduzierte Felsnadel bleiben ungefreigegeben. Frühere Sichtungsaufrufe und Flavor-Pläne sind historische Arbeitsstände.
+
+`production` trennt die aktuelle Verwendungsentscheidung von der künstlerischen Freigabe: `enabled`, `draft`, `historical`, `deferred`. Dies ist kein technischer Assettyp. Die Produktivprüfung verlangt zusätzlich eine Illustration und eine Freigabe für den konkreten Hintergrund; fehlende Angaben werden abgewiesen. Die Entwicklungsansichten dürfen Entwürfe ausdrücklich anzeigen. Ob ein befahrbarer Ort tatsächlich als Hinweisreferenz verwendet wird, entscheidet ausschließlich die Karteninstanz beziehungsweise der Rätselgenerator. Dieser Auftrag implementiert weder Flavor-Platzierung noch Änderungen am Generator oder an Issue #68.

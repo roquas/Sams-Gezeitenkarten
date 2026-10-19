@@ -36,7 +36,7 @@ if __name__ == '__main__':
         ref = f'assets/library/technical-{name}.png'
         image.save(ROOT / ref)
         a = dict(id=f'technical.{name}.v1', family=family, type=kind, role='decoration' if passable is None else 'geographic',
-                 stage='technical-placeholder', geometry=dict(cells=[[0, 0]] if shape == 0 else [[0, 0], [1, 0]]),
+                 stage='technical-placeholder', production='draft', geometry=dict(cells=[[0, 0]] if shape == 0 else [[0, 0], [1, 0]]),
                  image=dict(path=ref, width=image.width, height=image.height),
                  provenance=dict(source='scripts/build-asset-fixtures.py; schematic test fixture', rights='Project-authored technical fixture; no final illustration'),
                  candidateFamilies=['blue-sea'])

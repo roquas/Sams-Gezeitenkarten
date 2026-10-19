@@ -62,6 +62,14 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
  page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{requests.push(r.url());if(r.status()>=400)errors.push(r.url());});
  await interceptNewAssets(page);await page.goto('./');
+ const releasePolicy=await page.evaluate(async({url,library})=>{
+  const {productionEnabled,validatePlacements}=await import(url);
+  return {enabled:library.assets.filter(a=>productionEnabled(library,a.id,'sea-blue-01')).map(a=>a.id),
+   foamErrors:validatePlacements([{id:'foam',assetId:'sea-life.accent.h1.foam.v1',anchor:'A1'}],library,{grid:{columns:5,rows:5},blocked:[],places:{}},'sea-blue-01')};
+ },{url:new URL('../../src/assets/library.js',response.url()).href,library});
+ expect(releasePolicy.enabled).toHaveLength(18);
+ expect(releasePolicy.enabled).not.toContain('sea-life.accent.h1.foam.v1');
+ expect(releasePolicy.foamErrors.join('; ')).toContain('not enabled for production');
  await expect(page.locator('#map [data-placement-id]')).toHaveCount(4);
  const sizes=await page.locator('#map [data-placement-id]').evaluateAll(async ns=>Promise.all(ns.map(async n=>{const i=new Image();i.src=n.getAttribute('href');await i.decode();return [i.naturalWidth,i.naturalHeight];})));
  expect(sizes).toEqual([[360,408],[688,408],[360,408],[360,408]]);

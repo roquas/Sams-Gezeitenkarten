@@ -1,5 +1,7 @@
 # Abschluss der kleinen Kartenmotive – PR #65
 
+> Historischer Bericht der Gestaltungsrunde. Die Produktion ist beendet; aktuelle Verwendungsentscheidungen und Prüfergebnisse stehen im [Konsolidierungsbericht](ASSET-CONSOLIDATION-65.md). Die offenen Wasserillustrationen werden gemäß Issue #70 zurückgestellt.
+
 19.10.2026 · Branch `feature/asset-library-integration` · Ausgangsstand `70487e9` · kein Merge.
 
 ## Verbindliche Verwendung

@@ -21,7 +21,7 @@ export function renderFlavorComparison(library){
  const seaReviews=JSON.stringify(library.reviews.filter(r=>r.backgroundId==='sea-blue-01'));
  function card(container,p,usage){
   const figure=document.createElement('figure'),caption=document.createElement('figcaption');
-  caption.textContent=p.name+' · '+compatibility(library,p.id,'sea-blue-01');
+  caption.textContent=p.name+' · '+compatibility(library,p.id,'sea-blue-01')+(library.assets.find(a=>a.id===p.id).production==='deferred'?' · zurückgestellt / nicht produktiv':'');
   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
   svg.dataset.flavor=p.key;svg.setAttribute('role','img');svg.setAttribute('aria-label',caption.textContent);
   figure.append(caption,svg);container.append(figure);

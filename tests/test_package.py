@@ -131,6 +131,7 @@ class PackagingTests(unittest.TestCase):
         def approve(c):
             for a in c['assets']:
                 a['stage'] = 'illustration'
+                a['production'] = 'enabled'
             for r in c['reviews']:
                 a = next(a for a in c['assets'] if a['id'] == r['assetId'])
                 b = next(b for b in c['backgrounds'] if b['id'] == r['backgroundId'])
@@ -157,6 +158,12 @@ class PackagingTests(unittest.TestCase):
         self.approve_fixture()
         with contextlib.redirect_stdout(io.StringIO()):
             self.assertTrue(packager.package(self.root).is_file())
+
+    def test_artistically_approved_deferred_foam_preserves_previous_release(self):
+        self.update_json('puzzles/reference-3.6.json', lambda p: p['presentation'].update(
+            assetBackground='sea-blue-01',
+            assetPlacements=[dict(id='foam', assetId='sea-life.accent.h1.foam.v1', anchor='A1')]))
+        self.rejected_release('not enabled for production')
 
     def test_wrong_asset_and_background_approval_hashes(self):
         self.approve_fixture()

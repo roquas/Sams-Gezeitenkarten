@@ -13,7 +13,7 @@ export async function interceptNewAssets(page){
   {id:'light',assetId:'technical.lighthouse.v1',anchor:'C1',placeId:'lighthouse'},
   {id:'decoration',assetId:'technical.decoration.v1',anchor:'D1'}
  ];
- for(const a of library.assets)a.stage='illustration';
+ for(const a of library.assets){a.stage='illustration';a.production='enabled';}
  for(const r of library.reviews)Object.assign(r,{status:'approved',reviewer:'Automated intercepted fixture only',date:'2026-10-18',assetSha256:'0'.repeat(64),backgroundSha256:'0'.repeat(64)});
  await page.route('**/puzzles/reference-3.6.json',r=>r.fulfill({json:document}));
  await page.route('**/assets/catalog/library.json',r=>r.fulfill({json:library}));

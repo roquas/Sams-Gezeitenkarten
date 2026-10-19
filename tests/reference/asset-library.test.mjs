@@ -20,7 +20,7 @@ const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
 const placement={id:'island',assetId:'technical.single.v1',anchor:'B3',placeId:'tesoro'};
 const errors=(placements=[placement],library=catalog(),logic=source().logic)=>validatePlacements(placements,library,logic,'sea-blue-01',{development:true});
 function approved(){
- const c=catalog();c.assets[0].stage='illustration';
+ const c=catalog();c.assets[0].stage='illustration';c.assets[0].production='enabled';
  Object.assign(c.reviews[0],{status:'approved',reviewer:'Test fixture only',date:'2026-10-18',assetSha256:'0'.repeat(64),backgroundSha256:'0'.repeat(64)});
  return c;
 }
@@ -136,7 +136,7 @@ test('review statuses are explicit, hash-bound, and family candidates never appr
  c.reviews[0].status='rejected';assert.equal(compatibility(c,placement.assetId,'sea-blue-01'),'rejected');
  c.reviews.push({...c.reviews[0],backgroundId:'*',status:'approved'});
  assert.equal(compatibility(c,placement.assetId,'sea-blue-01'),'rejected');
- assert.equal(compatibility(c,placement.assetId,'sea-blue-02'),'approved');
+ assert.throws(()=>validateLibrary(c),/concrete hash-bound background/);
  delete c.reviews.at(-1).reviewer;assert.throws(()=>validateLibrary(c),/reviewer/);
  assert.throws(()=>validateAssetFiles(approved()),/Stale visual approval/);
 });

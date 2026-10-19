@@ -11,10 +11,10 @@ const sha={type:'string',pattern:'^[a-f0-9]{64}$'};
 const review=obj({assetId:id,backgroundId:{type:'string'},status:{enum:['pending','approved','rejected']},reviewer:text,date:{type:'string',pattern:'^[0-9]{4}-[0-9]{2}-[0-9]{2}$'},assetSha256:sha,backgroundSha256:sha,notes:text},['assetId','backgroundId','status','notes']);
 export const librarySchema=obj({schemaVersion:{const:1},backgrounds:list(obj({id,family:id,image:path})),assets:list(obj({
  id,family:id,type:id,role:{enum:['geographic','decoration']},passable:{type:'boolean'},
- stage:{enum:['technical-placeholder','illustration']},geometry:obj({cells:list(list({type:'integer'}))}),
+ stage:{enum:['technical-placeholder','illustration']},production:{enum:['enabled','draft','historical','deferred']},geometry:obj({cells:list(list({type:'integer'}))}),
  image:obj({path,width:{type:'integer',minimum:1},height:{type:'integer',minimum:1}}),
  provenance:obj({source:text,rights:text}),candidateFamilies:list(id)
-},['id','family','type','role','stage','geometry','image','provenance','candidateFamilies'])),reviews:list(review)});
+},['id','family','type','role','stage','production','geometry','image','provenance','candidateFamilies'])),reviews:list(review)});
 
 export function validateLibrary(value){
  const errors=schemaErrors(value,librarySchema,'assetLibrary');
@@ -34,6 +34,7 @@ export function validateLibrary(value){
   if(pairs.has(pair))errors.push('Duplicate review: '+pair);pairs.add(pair);
   if(!value.assets.some(a=>a.id===r.assetId)||!(r.backgroundId==='*'||value.backgrounds.some(b=>b.id===r.backgroundId)))errors.push('Unknown review reference: '+pair);
   if(r.status==='approved'&&(!r.reviewer||!r.date||!r.assetSha256||(r.backgroundId!=='*'&&!r.backgroundSha256)))errors.push('Approval requires reviewer, date and file hashes: '+pair);
+  if(r.status==='approved'&&r.backgroundId==='*')errors.push('Approval requires one concrete hash-bound background: '+pair);
  }
  if(errors.length)throw Error(errors.join('; '));
  return value;
@@ -42,6 +43,11 @@ export function compatibility(library,assetId,backgroundId){
  if(!library.backgrounds.some(b=>b.id===backgroundId))return 'pending';
  // An explicit rejection/pending decision takes precedence over universal approval.
  return library.reviews.find(r=>r.assetId===assetId&&r.backgroundId===backgroundId)?.status??library.reviews.find(r=>r.assetId===assetId&&r.backgroundId==='*')?.status??'pending';
+}
+// Artistic approval is preserved independently of the current release decision.
+export function productionEnabled(library,assetId,backgroundId){
+ const asset=library.assets.find(a=>a.id===assetId);
+ return asset?.stage==='illustration'&&asset.production==='enabled'&&library.backgrounds.some(b=>b.id===backgroundId)&&library.reviews.some(r=>r.assetId===assetId&&r.backgroundId===backgroundId&&r.status==='approved');
 }
 export function validatePlacements(placements,library,logic,backgroundId,{development=false}={}){
  validateLibrary(library);
@@ -62,6 +68,7 @@ export function validatePlacements(placements,library,logic,backgroundId,{develo
   if(a.role==='geographic'){
    if(cells.some(c=>logic.blocked.includes(c)===a.passable))errors.push(p.id+': passable conflicts with puzzle; logic is never changed');
   }else if(p.placeId)errors.push(p.id+': decoration cannot represent a logical place');
+  if(!development&&a.production!=='enabled')errors.push(p.id+': asset not enabled for production ('+a.production+')');
   if(!development&&(a.stage!=='illustration'||compatibility(library,a.id,backgroundId)!=='approved'))errors.push(p.id+': illustration/background not visually approved');
  }
  return errors;

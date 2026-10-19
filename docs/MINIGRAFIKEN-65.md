@@ -1,6 +1,6 @@
 # Erste Minigrafik-Runde – PR #65
 
-> Historischer Stand bis Commit 70487e9. Der aktuelle Abschluss mit sechs neu eingeordneten Ortsmotiven, freier Schaumströmung und letzter Wasserillustrationsrunde steht in [CARD-MOTIFS-FINALE-65.md](CARD-MOTIFS-FINALE-65.md); alle aktuellen Rollen/Freigaben in [ASSET-INVENTORY-65.md](ASSET-INVENTORY-65.md).
+> Historischer Stand bis Commit 70487e9. Die abschließende Konsolidierung und die Zurückstellung der atmosphärischen Motive stehen in [ASSET-CONSOLIDATION-65.md](ASSET-CONSOLIDATION-65.md); alle aktuellen Rollen/Freigaben in [ASSET-INVENTORY-65.md](ASSET-INVENTORY-65.md).
 
 19.10.2026 · Branch `feature/asset-library-integration` · kein Merge.
 
