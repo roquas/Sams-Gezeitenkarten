@@ -1,5 +1,15 @@
 # Teststrategie – Entwurf
 
+## Veröffentlichungsarchiv v1 (F02)
+
+Vertrag und historische Zuordnung: [PUBLICATION-ARCHIVE-V1.md](PUBLICATION-ARCHIVE-V1.md).
+`tests/reference/publication-archive.test.mjs` prüft Kanonisierungsvektoren,
+Identitätsgrenzen, Snapshotintegrität am gepinnten Gitstand, widersprüchliche
+Referenzen, unveränderliche Veröffentlichungen, Darstellungsrevisionen,
+Legacyauflösung, bytegleiche historische Dateien und unveränderte Paketgrenzen.
+Die Tests laufen über den bestehenden Unit-Glob; die Unit-CI lädt dafür die
+Git-Historie. `node scripts/validate-archive.mjs` prüft das interne Archiv separat.
+
 ## Regelvertrag `gezeitenkarten-1` (F01/I01)
 
 Der [eingefrorene Regelvertrag](RULESET-GEZEITENKARTEN-1.md) dokumentiert den
