@@ -90,7 +90,7 @@ Webserver nach `.js` umbenannt. Details: [Deployment](docs/DEPLOYMENT.md),
 - [Koordinaten, Kartenlabels und mobile Ansichten #26/#27/#29](docs/CHART-UX-26-27-29.md)
 - [Materialgestaltung, Browserbilder und Grenzen](docs/MATERIAL-DESIGN.md)
 - [Umsetzung und Prüfstand 0.1](docs/IMPLEMENTATION-0.1.md)
-- [Anforderungen](docs/REQUIREMENTS.md), [Entscheidungen](docs/DECISIONS.md)
+- [Anforderungen](docs/REQUIREMENTS.md), [Entscheidungen](docs/DECISIONS.md), [Welt-/Styleguide und Ortsnamen](docs/WORLD-AND-STYLE.md)
 
 Diese Version lädt vier feste Rätsel aus einem statischen JSON-Manifest. Generator, Tagesrätsel, Highscores
 und Backend gehören zu späteren Schritten. Die Darstellung ist auf die bestehende

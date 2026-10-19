@@ -20,21 +20,23 @@ test('actual ZIP serves JSON catalog and fixed PNGs through rewritten modules un
   ['land-coast.island.h2.tropical-bays.v1',[688,408],2],
   ['land-coast.island.h3.massive-volcano.v1',[688,768],3],
   ['land-coast.archipelago.h3.bent-reefs.v1',[912,768],3],
-  ...JSON.parse(fs.readFileSync(new URL('../../docs/reviews/multihex-round2/composition-plan.json',import.meta.url))).map(a=>[a.id,a.canvas,a.cells.length])
+  ...JSON.parse(fs.readFileSync(new URL('../../docs/reviews/multihex-round2/composition-plan.json',import.meta.url))).map(a=>[a.id,a.canvas,a.cells.length]),
+  ['land-coast.island.h4.crab-claw.v2',[856,680],4]
  ]){
   const a=library.assets.find(a=>a.id===id);
   expect(a).toMatchObject({stage:'illustration',passable:false});
   expect(a.geometry.cells).toHaveLength(cells);
-  for(const b of library.backgrounds)expect(library.reviews.find(r=>r.assetId===id&&r.backgroundId===b.id)?.status).toBe(b.id==='sea-blue-01'&&['land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1'].includes(id)?'approved':'pending');
+  for(const b of library.backgrounds)expect(library.reviews.find(r=>r.assetId===id&&r.backgroundId===b.id)?.status).toBe(b.id==='sea-blue-01'&&['land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1','land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1'].includes(id)?'approved':'pending');
   const decoded=await page.evaluate(async url=>{const im=new Image();im.src=url;await im.decode();return [im.naturalWidth,im.naturalHeight];},new URL('../../'+a.image.path,response.url()).href);
   expect(decoded).toEqual(size);
  }
  expect(library.reviews.filter(r=>r.status==='approved').map(r=>[r.assetId,r.backgroundId])).toEqual([
   'land-coast.island.h1.basalt-spire-water.v1','navigation.lighthouse.h1.offcenter-beacon.v1',
   'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1',
-  'land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1'
+  'land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1',
+  'land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1'
  ].map(id=>[id,'sea-blue-01']));
- expect(library.reviews.filter(r=>r.status==='pending')).toHaveLength(library.reviews.length-6);
+ expect(library.reviews.filter(r=>r.status==='pending')).toHaveLength(library.reviews.length-11);
  const errors=[],requests=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{requests.push(r.url());if(r.status()>=400)errors.push(r.url());});

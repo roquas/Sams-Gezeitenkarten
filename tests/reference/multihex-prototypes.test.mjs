@@ -43,7 +43,16 @@ test('round-two contract preserves south harbor, mirrored bend and four-cell ide
  assert.deepEqual(a('harbor').geometry.cells,[[0,0],[1,0],[0,1]]);
  assert.deepEqual(a('smuggler').geometry.cells,[[0,0],[1,-1],[2,-1]]);
  assert.deepEqual(a('sand').geometry.cells,[[0,0],[1,0],[2,0],[3,0]]);
- assert.equal(new Set(multihexPrototypes.filter(p=>!p.approved).map(p=>a(p.key).image.path)).size,6);
+ assert.equal(new Set(multihexPrototypes.filter(p=>p.round===2).map(p=>a(p.key).image.path)).size,6);
  const old=library.reviews.filter(r=>r.assetId==='land-coast.archipelago.h3.bent-reefs.v1');
  assert.ok(old.every(r=>r.status==='pending'));
+});
+
+test('preferred claw is recomposed v2; historical v1 retains its identical four-cell footprint',()=>{
+ const p=multihexPrototypes.find(p=>p.key==='claw');assert.equal(p.id,'land-coast.island.h4.crab-claw.v2');
+ assert.equal(p.approved,undefined);
+ const old=library.assets.find(a=>a.id==='land-coast.island.h4.crab-claw.v1'),current=library.assets.find(a=>a.id===p.id);
+ assert.deepEqual(current.geometry,old.geometry);assert.notEqual(current.image.path,old.image.path);
+ assert.equal(multihexPrototypes.filter(p=>p.round===2&&p.approved).length,5);
+ assert.equal(multihexPrototypes.some(p=>p.id===old.id),false);
 });

@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-19",
+  "baseline": "5e3991f",
+  "branch": "feature/asset-library-integration",
+  "newApprovedAssets": [
+    "Sandriffbogen",
+    "Südhafen",
+    "Schmugglerbucht",
+    "Langer Strand",
+    "Tempel der Gezeiten"
+  ],
+  "approvedPairs": 11,
+  "newPreferredClaw": "land-coast.island.h4.crab-claw.v2",
+  "newClawStatus": "pending",
+  "historicalClawStatus": "pending",
+  "unit": {
+    "passed": 101,
+    "failed": 0
+  },
+  "puzzles": {
+    "count": 4,
+    "solutionsEach": 1
+  },
+  "catalog": {
+    "images": 19,
+    "backgrounds": 3,
+    "approvalHashesValid": true
+  },
+  "imageRegression": {
+    "passed": 13,
+    "failed": 0
+  },
+  "exportRegression": {
+    "passed": 3,
+    "failed": 0
+  },
+  "clawValidAnchors": 14,
+  "chromiumGallery": {
+    "successfulCases": 16,
+    "lastBatchPassed": 15,
+    "lastBatchInitialStartupFailure": 1,
+    "focusedRerunPassed": 1,
+    "initialFailure": "Mobile map not ready within the existing five-second expectation; unchanged assertion passed on focused rerun."
+  },
+  "webkitGallery": {
+    "passed": 16,
+    "failed": 0
+  },
+  "packageRegression": {
+    "passed": 27,
+    "failed": 0
+  },
+  "zipAssetDevices": [
+    "desktop",
+    "smartphone",
+    "iphone-webkit",
+    "ipad-webkit"
+  ],
+  "zipCases": {
+    "passed": 4,
+    "failed": 0
+  },
+  "all19PngsByteIdenticalInZip": true,
+  "unchangedNamesAndProductionTrees": [
+    "src",
+    "puzzles",
+    "assets/seekarte",
+    "assets/ui"
+  ],
+  "ci": "Full unchanged GitHub Actions matrix runs on pushed PR head; see PR #65 Checks."
+}

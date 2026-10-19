@@ -1,0 +1,422 @@
+[
+  {
+    "name": "chromium",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "dpr": 1,
+    "errors": [],
+    "geometry": [
+      {
+        "id": "land-coast.archipelago.h3.sand-reefs.v2",
+        "anchor": "B3",
+        "viewBox": "20.333333333333314 64.66666666666669 380 300",
+        "rectangle": [
+          96.33333333333331,
+          118.66666666666669,
+          228,
+          192
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Sandriffbogen",
+        "labelWidth": 48.328125,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "C4"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h3.south-harbor.v1",
+        "anchor": "B3",
+        "viewBox": "-7 64.66666666666669 380 300",
+        "rectangle": [
+          97,
+          118.66666666666669,
+          172,
+          192
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Südhafen",
+        "labelWidth": 48.359375,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h3.smuggler-cove.v1",
+        "anchor": "B3",
+        "viewBox": "6.666666666666686 -3.3333333333333144 380 300",
+        "rectangle": [
+          82.66666666666669,
+          50.666666666666686,
+          228,
+          192
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Schmugglerbucht",
+        "labelWidth": 48.359375,
+        "blockedCells": [
+          "B2",
+          "C2",
+          "B3"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h4.long-sand.v1",
+        "anchor": "B3",
+        "viewBox": "75 42 380 300",
+        "rectangle": [
+          97,
+          141,
+          336,
+          102
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Langer Strand",
+        "labelWidth": 48.3125,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "D3",
+          "E3"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v2",
+        "anchor": "B3",
+        "viewBox": "-27.5 76 380 300",
+        "rectangle": [
+          55.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Krabbenzange",
+        "labelWidth": 48.328125,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "A4",
+          "B4"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h4.jungle-temple.v1",
+        "anchor": "B3",
+        "viewBox": "13.5 76 380 300",
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Tempel der Gezeiten",
+        "labelWidth": 48.328125,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "cssWidth": 380
+      }
+    ]
+  },
+  {
+    "name": "webkit",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "dpr": 1,
+    "errors": [],
+    "geometry": [
+      {
+        "id": "land-coast.archipelago.h3.sand-reefs.v2",
+        "anchor": "B3",
+        "viewBox": "20.333333333333314 64.66666666666669 380 300",
+        "rectangle": [
+          96.33333333333331,
+          118.66666666666669,
+          228,
+          192
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Sandriffbogen",
+        "labelWidth": 48.35382843017578,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "C4"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h3.south-harbor.v1",
+        "anchor": "B3",
+        "viewBox": "-7 64.66666666666669 380 300",
+        "rectangle": [
+          97,
+          118.66666666666669,
+          172,
+          192
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Südhafen",
+        "labelWidth": 48.35382843017578,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h3.smuggler-cove.v1",
+        "anchor": "B3",
+        "viewBox": "6.666666666666686 -3.3333333333333144 380 300",
+        "rectangle": [
+          82.66666666666669,
+          50.666666666666686,
+          228,
+          192
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Schmugglerbucht",
+        "labelWidth": 48.35382843017578,
+        "blockedCells": [
+          "B2",
+          "C2",
+          "B3"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h4.long-sand.v1",
+        "anchor": "B3",
+        "viewBox": "75 42 380 300",
+        "rectangle": [
+          97,
+          141,
+          336,
+          102
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Langer Strand",
+        "labelWidth": 48.35382843017578,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "D3",
+          "E3"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v2",
+        "anchor": "B3",
+        "viewBox": "-27.5 76 380 300",
+        "rectangle": [
+          55.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Krabbenzange",
+        "labelWidth": 48.35382843017578,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "A4",
+          "B4"
+        ],
+        "cssWidth": 380
+      },
+      {
+        "id": "land-coast.island.h4.jungle-temple.v1",
+        "anchor": "B3",
+        "viewBox": "13.5 76 380 300",
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Tempel der Gezeiten",
+        "labelWidth": 48.35383605957031,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "cssWidth": 380
+      }
+    ]
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "dpr": 2,
+    "errors": [],
+    "geometry": [
+      {
+        "id": "land-coast.archipelago.h3.sand-reefs.v2",
+        "anchor": "B3",
+        "viewBox": "20.333333333333314 64.66666666666669 380 300",
+        "rectangle": [
+          96.33333333333331,
+          118.66666666666669,
+          228,
+          192
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Sandriffbogen",
+        "labelWidth": 48.29789733886719,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "C4"
+        ],
+        "cssWidth": 350
+      },
+      {
+        "id": "land-coast.island.h3.south-harbor.v1",
+        "anchor": "B3",
+        "viewBox": "-7 64.66666666666669 380 300",
+        "rectangle": [
+          97,
+          118.66666666666669,
+          172,
+          192
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Südhafen",
+        "labelWidth": 48.34878921508789,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4"
+        ],
+        "cssWidth": 350
+      },
+      {
+        "id": "land-coast.island.h3.smuggler-cove.v1",
+        "anchor": "B3",
+        "viewBox": "6.666666666666686 -3.3333333333333144 380 300",
+        "rectangle": [
+          82.66666666666669,
+          50.666666666666686,
+          228,
+          192
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Schmugglerbucht",
+        "labelWidth": 48.28093338012695,
+        "blockedCells": [
+          "B2",
+          "C2",
+          "B3"
+        ],
+        "cssWidth": 350
+      },
+      {
+        "id": "land-coast.island.h4.long-sand.v1",
+        "anchor": "B3",
+        "viewBox": "75 42 380 300",
+        "rectangle": [
+          97,
+          141,
+          336,
+          102
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Langer Strand",
+        "labelWidth": 48.34878921508789,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "D3",
+          "E3"
+        ],
+        "cssWidth": 350
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v2",
+        "anchor": "B3",
+        "viewBox": "-27.5 76 380 300",
+        "rectangle": [
+          55.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Krabbenzange",
+        "labelWidth": 48.34878921508789,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "A4",
+          "B4"
+        ],
+        "cssWidth": 350
+      },
+      {
+        "id": "land-coast.island.h4.jungle-temple.v1",
+        "anchor": "B3",
+        "viewBox": "13.5 76 380 300",
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "label": "Tempel der Gezeiten",
+        "labelWidth": 48.331825256347656,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "cssWidth": 350
+      }
+    ]
+  }
+]

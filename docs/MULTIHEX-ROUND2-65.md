@@ -1,3 +1,5 @@
+> Historischer Stand der zweiten Runde bei `5e3991f`. Aktueller Abschluss: [fünf zusätzliche Freigaben, Krabbenzange v2 und Namensregel](MULTIHEX-COMPLETION-65.md). Die nachfolgenden Pending-Aussagen beschreiben den damaligen Stand.
+
 # Zweite Mehrhex-Entwicklungsrunde – sechs einzigartige Orte, alle pending
 
 Stand 19.10.2026 · bestehender PR #65 · ausschließlich `feature/asset-library-integration`. Kein Merge. Die produktiven Renderer-, Geometrie-, Spiel- und Rätseldateien bleiben gegenüber `e74fd9c` unverändert; damit bleibt insbesondere die Entfernung permanenter orangefarbener Ortsringe aus `49f8f28` erhalten.

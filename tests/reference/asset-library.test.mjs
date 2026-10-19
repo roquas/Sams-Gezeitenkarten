@@ -40,7 +40,8 @@ test('catalog files, stable IDs, provenance and separated review catalog validat
  assert.deepEqual(c.reviews.filter(r=>r.status==='approved').map(r=>[r.assetId,r.backgroundId]),[
   'land-coast.island.h1.basalt-spire-water.v1','navigation.lighthouse.h1.offcenter-beacon.v1',
   'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1',
-  'land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1'
+  'land-coast.island.h2.tropical-bays.v1','land-coast.island.h3.massive-volcano.v1',
+  'land-coast.archipelago.h3.sand-reefs.v2','land-coast.island.h3.south-harbor.v1','land-coast.island.h3.smuggler-cove.v1','land-coast.island.h4.long-sand.v1','land-coast.island.h4.jungle-temple.v1'
  ].map(id=>[id,'sea-blue-01']));
  assert.equal(new Set(LEGACY_ASSETS.map(a=>a.id)).size,8);
  assert.ok(LEGACY_ASSETS.every(a=>a.stage==='legacy'&&a.exception));
@@ -194,4 +195,25 @@ test('internal file aliases and symlink path components are unsupported',()=>{
 });
 test('decoration cannot claim cells already owned by another asset',()=>{
  assert.ok(errors([placement,{id:'accent',assetId:'technical.decoration.v1',anchor:'B3'}]).some(e=>e.includes('overlapping asset footprints')));
+});
+
+test('five explicitly approved round-two images retain exact bytes and sea-blue-01 hash binding',()=>{
+ const c=validateAssetFiles(catalog());
+ const records=read('docs/reviews/multihex-completion/approval-preservation-audit.json');
+ assert.equal(records.length,5);
+ for(const record of records){
+  const a=c.assets.find(a=>a.id===record.id),reviews=c.reviews.filter(r=>r.assetId===a.id);
+  assert.equal(a.image.path,record.image);
+  for(const r of reviews){
+   assert.equal(r.status,r.backgroundId==='sea-blue-01'?'approved':'pending');
+   if(r.status==='approved'){
+    assert.equal(r.assetSha256,record.assetSha256);assert.equal(r.backgroundSha256,record.backgroundSha256);
+    assert.match(r.reviewer,/roquas/);
+   }
+  }
+  const changed=catalog();changed.reviews.find(r=>r.assetId===a.id&&r.status==='approved').assetSha256='0'.repeat(64);
+  assert.throws(()=>validateAssetFiles(changed),/Stale visual approval/);
+ }
+ for(const id of ['land-coast.island.h4.crab-claw.v1','land-coast.island.h4.crab-claw.v2'])
+  assert.ok(c.reviews.filter(r=>r.assetId===id).every(r=>r.status==='pending'));
 });

@@ -1,6 +1,6 @@
 import {drawMap} from '../src/ui/map.mjs';
 import {HEXES} from '../src/ui/chart-geometry.mjs';
-import {assetRectangle,placedCells} from '../src/assets/geometry.mjs';
+import {assetRectangle,placedCells,imageContract} from '../src/assets/geometry.mjs';
 import {validatePlacements,compatibility} from '../src/assets/library.mjs';
 import {adjacent,distance} from '../src/engine/hex.mjs';
 
@@ -9,43 +9,56 @@ export const multihexPrototypes=[
   "key": "tropical",
   "id": "land-coast.island.h2.tropical-bays.v1",
   "name": "Palmenbuchten",
-  "approved": true
+  "approved": true,
+  "round": 1
  },
  {
   "key": "volcano",
   "id": "land-coast.island.h3.massive-volcano.v1",
   "name": "Glutberg",
-  "approved": true
+  "approved": true,
+  "round": 1
  },
  {
   "key": "archipelago",
   "id": "land-coast.archipelago.h3.sand-reefs.v2",
-  "name": "Sandriffbogen"
+  "name": "Sandriffbogen",
+  "round": 2,
+  "approved": true
  },
  {
   "key": "harbor",
   "id": "land-coast.island.h3.south-harbor.v1",
-  "name": "Südhafen"
+  "name": "Südhafen",
+  "round": 2,
+  "approved": true
  },
  {
   "key": "smuggler",
   "id": "land-coast.island.h3.smuggler-cove.v1",
-  "name": "Schmugglerbucht"
+  "name": "Schmugglerbucht",
+  "round": 2,
+  "approved": true
  },
  {
   "key": "sand",
   "id": "land-coast.island.h4.long-sand.v1",
-  "name": "Langer Strand"
+  "name": "Langer Strand",
+  "round": 2,
+  "approved": true
  },
  {
   "key": "claw",
-  "id": "land-coast.island.h4.crab-claw.v1",
-  "name": "Krabbenzange"
+  "id": "land-coast.island.h4.crab-claw.v2",
+  "name": "Krabbenzange",
+  "round": 2
  },
  {
   "key": "temple",
   "id": "land-coast.island.h4.jungle-temple.v1",
-  "name": "Tempel der Gezeiten"
+  "name": "Tempel der Gezeiten",
+  "round": 2,
+  "approved": true
  }
 ];
 const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
@@ -82,4 +95,20 @@ export function renderMultihex(svg,library,prototype,anchor,{marked=false,hexes=
 export function multihexCaption(library,prototype,anchor){
  const {blocked}=multihexFixture(library,prototype,anchor);
  return prototype.name+' · '+[...blocked].join(' / ')+' · vollständig unbefahrbar · '+compatibility(library,prototype.id,'sea-blue-01');
+}
+
+// Development-only diagnostic: actual uncut Voronoi graphic cells, not a mask.
+export function drawGraphicFootprint(svg,asset,anchor,visible=true){
+ const rect=assetRectangle(asset,anchor,byId),cx=rect.x+rect.width/2,cy=rect.y+rect.height/2;
+ const group=document.createElementNS('http://www.w3.org/2000/svg','g');
+ group.dataset.graphicFootprint=asset.id;group.setAttribute('pointer-events','none');
+ group.setAttribute('visibility',visible?'visible':'hidden');
+ for(const polygon of imageContract(asset.geometry.cells).polygons){
+  const node=document.createElementNS(group.namespaceURI,'polygon');
+  node.setAttribute('points',polygon.map(([x,y])=>[x+cx,y+cy].join(',')).join(' '));
+  node.setAttribute('fill','#e5dcff');node.setAttribute('fill-opacity','.13');
+  node.setAttribute('stroke','#eee4ff');node.setAttribute('stroke-width','1');
+  node.setAttribute('stroke-dasharray','3 2');group.append(node);
+ }
+ svg.append(group);
 }

@@ -31,3 +31,8 @@ Beschlossen: Benannte befahrbare Orte und Flavor zeigen nur ihre Illustration, o
 ## Spätere Idee: Referenzorte eines Logbuchhinweises
 
 **Nur vorgemerkt, nicht implementiert und noch nicht im Detail entschieden:** Beim Auswählen eines Logbuchhinweises könnten ausschließlich dessen ausdrücklich genannte Referenzorte vorübergehend dezent auf der Karte hervorgehoben werden. Dabei dürfen keine zusätzlichen Rätselinformationen verraten werden: keine abgeleiteten Orte, Kandidatenfelder, Entfernungen oder Lösungen anzeigen. Die Unterscheidung benannter Orte und Flavor bleibt als Datenbasis erhalten. Diese Idee führt jetzt weder neue Interaktionen noch neue Hervorhebungen ein.
+
+
+## Kurze, lesbare Ortsnamen (19.10.2026, PR #65)
+
+Beschlossen für künftige Assetgestaltung und Benennung: bevorzugt ein charakteristisches Wort mit etwa 6–12 Zeichen, längere Namen nur nach Prüfung in tatsächlicher Kartengröße; keine extreme automatische Schriftverkleinerung. Humor und klare Unterscheidbarkeit passen zu „Plötzlich Pirat:in“. [Verbindliche Namensregel und unverbindliche Beispiele](WORLD-AND-STYLE.md#verbindliche-gestaltungsregel-ortsnamen-auf-pergamentrollen). Bestehende Namen, Rätseldaten und Logbuchtexte werden damit nicht umbenannt; die Labelarchitektur bleibt unverändert.

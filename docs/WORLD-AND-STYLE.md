@@ -7,3 +7,22 @@ Eine ausführliche Stil- und Weltreferenz wurde am 11.10.2026 im Projekt erarbei
 **Die vollständige Referenz wurde noch nicht ins Repository übernommen.** Vor einer Übernahme werden Quelleninventar, Spoiler und gewünschter Umfang abgestimmt. Dieser Kurztext ist keine vollständige kanonische Dokumentation.
 
 Arbeitsleitplanken: vorhandene Namen bevorzugen; Quellenwissen von Erfindungen trennen; konkrete Situationskomik statt generischer Piratenfloskeln.
+
+
+## Verbindliche Gestaltungsregel: Ortsnamen auf Pergamentrollen
+
+Beschlossen am 19.10.2026 im Abschlussauftrag zu PR #65. Die Regel gilt für die künftige Assetgestaltung und Benennung.
+
+**Ortsnamen sollen kurz, charakteristisch und auf der Pergamentrolle bei tatsächlicher Spielgröße gut lesbar sein.** Bevorzugt wird ein einzelnes Wort mit etwa **6–12 Zeichen**. Längere Namen sind nur geeignet, wenn ihre Lesbarkeit in der tatsächlichen Kartendarstellung geprüft wurde, einschließlich der vorgesehenen Smartphoneansicht. Zeichenlänge ist eine Orientierung; die sichtbare Lesbarkeit entscheidet.
+
+Keine automatische extreme Schriftverkleinerung, um überlange Namen unterzubringen. Bei künftigen Entwürfen zuerst einen kürzeren, prägnanten Namen wählen. Humorvolle oder ungewöhnliche Namen passen zur Welt von „Plötzlich Pirat:in“; verschiedene Orte müssen dabei gut unterscheidbar bleiben. Diese Leitplanke ändert den bestehenden Labelrenderer nicht.
+
+Mögliche Verkürzungen als unverbindliche Beispiele:
+
+| Bestehender Name | Mögliche Alternative |
+|---|---|
+| Tempel der Gezeiten | Gezeitentempel |
+| Sandriffbogen | Sandriff |
+| Schmugglerbucht | Gaunerbucht |
+
+Die Beispiele sind **keine Umbenennungsbeschlüsse**. Bestehende Ortsnamen, Puzzledefinitionen und Logbuchtexte bleiben unverändert. Eine systematische Überarbeitung vorhandener Namen ist ein separater späterer Auftrag. Auch längere Alternativen in dieser Beispieltabelle benötigen die Lesbarkeitsprüfung; sie sind keine pauschalen Ausnahmen von der Regel.

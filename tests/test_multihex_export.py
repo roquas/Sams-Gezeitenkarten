@@ -33,8 +33,9 @@ class MultihexExportTests(unittest.TestCase):
         assets = [a for a in catalog['assets'] if a['id'] in {
             'land-coast.island.h2.tropical-bays.v1',
             'land-coast.island.h3.massive-volcano.v1',
-            'land-coast.archipelago.h3.bent-reefs.v1'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
-        self.assertEqual(len(assets),9)
+            'land-coast.archipelago.h3.bent-reefs.v1',
+            'land-coast.island.h4.crab-claw.v2'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
+        self.assertEqual(len(assets),10)
         shapes = dict(exporter.SHAPES)
         shapes.update({a['key']+'-round2':a['cells'] for a in json.loads((ROOT/'dev/multihex-round2.json').read_text())})
         original_shapes = exporter.SHAPES
@@ -54,6 +55,36 @@ class MultihexExportTests(unittest.TestCase):
                     inside &= (b[0]-a[0])*(y-a[1])-(b[1]-a[1])*(x-a[0]) >= 0
                 # Reject a tiny central sprite that nominally claims distant cells.
                 self.assertGreater(np.count_nonzero(inside & (alpha>=16)),4500,asset['id'])
+
+    def test_recomposed_claw_reaches_outer_southwest_and_northeast_regions(self):
+        cells = [[0, 0], [1, 0], [0, 1], [-1, 1]]
+        original_shapes = exporter.SHAPES
+        try:
+            exporter.SHAPES = {'claw': cells}
+            c = exporter.contracts()[0]['contract']
+        finally:
+            exporter.SHAPES = original_shapes
+        yy, xx = np.mgrid[:c['pixelHeight'], :c['pixelWidth']]
+        x, y = (xx+.5)/4-c['width']/2, (yy+.5)/4-c['height']/2
+        versions = {}
+        for version in ['v1', 'v2']:
+            alpha = np.asarray(Image.open(ROOT/f'assets/library/crab-claw-h4-{version}.png').getchannel('A'))
+            coords = np.argwhere(alpha >= 128)
+            outer = []
+            # Areas away from the group's middle: west of the SW cell and
+            # east of the NE cell. v1 left both of these regions empty.
+            for index, dx in [(3, -20), (1, 15)]:
+                polygon = c['polygons'][index]
+                cx = np.mean(polygon, axis=0)[0]
+                inside = np.ones(alpha.shape, dtype=bool)
+                for a, b in zip(polygon, polygon[1:]+polygon[:1]):
+                    inside &= (b[0]-a[0])*(y-a[1])-(b[1]-a[1])*(x-a[0]) >= 0
+                region = inside & ((x < cx+dx) if dx < 0 else (x > cx+dx))
+                outer.append(int(np.count_nonzero(region & (alpha >= 16))))
+            versions[version] = {'span': int(coords[:, 1].max()-coords[:, 1].min()+1), 'outer': outer}
+        self.assertGreaterEqual(versions['v2']['span'], versions['v1']['span']*1.25)
+        for old, current in zip(versions['v1']['outer'], versions['v2']['outer']):
+            self.assertGreater(current, old+1000)
 
 if __name__ == '__main__':
     unittest.main()

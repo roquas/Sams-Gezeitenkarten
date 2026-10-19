@@ -77,10 +77,10 @@ test('normal map renders the shared asset layer beneath hexes, labels and notes 
  await info.attach('integrated-assets-'+info.project.name,{body:await page.locator('#map').screenshot(),contentType:'image/png'});
 });
 
-test('DPR-2 tablet preserves uniform map and image scale',async({browser},info)=>{
- const context=await browser.newContext({viewport:{width:820,height:1180},deviceScaleFactor:2,isMobile:true,hasTouch:true});
+test('DPR-2 tablet preserves uniform map and image scale',async({browser,baseURL},info)=>{
+ const context=await browser.newContext({baseURL,viewport:{width:820,height:1180},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  try{
-  const page=await context.newPage();await interceptNewAssets(page);await page.goto('http://127.0.0.1:4173/');
+  const page=await context.newPage();await interceptNewAssets(page);await page.goto('/');
   await expect(page.locator('#map [data-placement-id]')).toHaveCount(4);
   const scale=await page.locator('#map').evaluate(n=>{const m=n.getScreenCTM();return [m.a,m.b,m.c,m.d];});
   expect(scale[0]).toBeCloseTo(scale[3],8);expect(scale[1]).toBe(0);expect(scale[2]).toBe(0);

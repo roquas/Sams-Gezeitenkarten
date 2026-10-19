@@ -9,6 +9,22 @@ test('whole multihex sprites use production sea, labels, blocked cells and uncha
  const cards=page.locator('#multihexComparison svg');await expect(cards).toHaveCount(6);
  await expect(page.locator('#multihexApproved svg')).toHaveCount(2);
  await expect(page.locator('#error')).toBeEmpty();
+ await expect(page.locator('#multihexAsset')).toHaveValue('claw');
+ const captions=await page.locator('#multihexComparison figcaption').allTextContents();
+ expect(captions.filter(t=>t.endsWith('approved'))).toHaveLength(5);
+ expect(captions.filter(t=>t.endsWith('pending'))).toHaveLength(1);
+ await expect(page.locator('#clawGeometry svg')).toHaveCount(2);
+ for(const version of ['v1','v2']){
+  const svg=page.locator('#clawGeometry svg[data-asset="land-coast.island.h4.crab-claw.'+version+'"]');
+  await expect(svg.locator('[data-placement-id]')).toHaveCount(1);
+  await expect(svg.locator('.blocked-cell')).toHaveCount(4);
+  await expect(svg.locator('[data-graphic-footprint] polygon')).toHaveCount(4);
+  await expect(svg.locator('[data-placement-id]')).not.toHaveAttribute('clip-path');
+ }
+ const clawGeometry=()=>page.locator('#clawGeometry [data-placement-id]').evaluateAll(ns=>ns.map(n=>['href','x','y','width','height','transform','clip-path'].map(k=>n.getAttribute(k))));
+ const clawBefore=await clawGeometry();await page.locator('#footprint').uncheck();
+ for(const g of await page.locator('#clawGeometry [data-graphic-footprint]').all())await expect(g).toHaveAttribute('visibility','hidden');
+ expect(await clawGeometry()).toEqual(clawBefore);await page.locator('#footprint').check();
  for(const svg of await page.locator('#multihexComparison svg,#multihexApproved svg').all()){
   const id=await svg.getAttribute('data-asset'),asset=library.assets.find(a=>a.id===id);
   const size=[asset.image.width,asset.image.height],cells=asset.geometry.cells.length;
