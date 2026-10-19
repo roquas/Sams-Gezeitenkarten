@@ -24,7 +24,7 @@ test('reference transfer retains route, every clue, text, geometry and original 
 test('every manifest puzzle is present and uniquely solvable; assets actually exist',()=>{
  const m=validateManifest(read('puzzles/manifest.json'));
  for(const path of [...Object.values(BACKGROUNDS),...Object.values(MOTIFS).filter(Boolean).map(m=>'assets/seekarte/'+m.asset)])assert.ok(fs.existsSync(new URL('../../'+path,import.meta.url)),path);
- for(const entry of m.puzzles){const d=read('puzzles/'+entry.path),p=compilePuzzle(d);assert.equal(d.id,entry.id);assert.equal(p.analysis.status,'unique');}
+ for(const entry of m.puzzles){const d=read('puzzles/'+entry.path),p=compilePuzzle(d);assert.equal(d.id,entry.id);assert.equal(p.analysis.status,'unique');if(d.solution)assert.deepEqual(p.analysis.solutions,[d.solution]);}
 });
 test('both optional result texts may independently be absent; logic remains identical',()=>{
  for(const resultTexts of [undefined,{}, {correct:'Gut!'}, {incorrect:'Noch nicht.'},{correct:'Gut!',incorrect:'Noch nicht.'}]){
