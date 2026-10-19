@@ -4,6 +4,11 @@ Implementierung für [#18](https://github.com/roquas/Sams-Gezeitenkarten/issues/
 
 ## Transport und Grenzen
 
+Das separate interne [Veröffentlichungsarchiv v1 (F02)](PUBLICATION-ARCHIVE-V1.md)
+ordnet die vier Bestandsdateien stabilen Karten-, Instanz-, Varianten- und
+Veröffentlichungs-IDs zu. Dieses Format und der bestehende Browserkatalog bleiben
+unverändert; das Archiv gehört nicht zur statischen Auslieferung.
+
 Ein JSON-Dokument enthält `schemaVersion: 1`, eine stabile `id`, `dataVersion` (positive ganze Zahl), `logic` und `presentation`. [JSON Schema](../puzzles/schema/puzzle-v1.schema.json), [verlustfreies Referenzbeispiel](../puzzles/reference-3.6.json), [explizit technischer Testfall](../puzzles/test-navigation.json).
 
 Schema 1 unterstützt bewusst die bestehende **5×5-Karte**, die dokumentierte Even-row-Hexgeometrie und **1–6 Stunden**. Andere Abmessungen oder mehr als sechs Stunden werden abgewiesen, nicht stillschweigend falsch gezeichnet. Größere Geometrien erfordern einen neuen geprüften Darstellungs-/Schemaausbau. Die Hinweisanzahl ist variabel und hat keine Obergrenze; mindestens ein Hinweis wird verlangt.

@@ -1,0 +1,341 @@
+{
+  "archiveSchemaVersion": 1,
+  "canonicalizationVersion": 1,
+  "snapshots": [
+    {
+      "snapshotId": "snapshot-historical-main-f01",
+      "commit": "66b3a569c5c0e2c0798b0eb9c83f3c37f840111d",
+      "files": [
+        {
+          "path": ".htaccess",
+          "sha256": "df789cf4d09e705a3c0ff6ed7b886b8fbfeffb5aefad613572d89447bdf2ff76"
+        },
+        {
+          "path": "assets/seekarte/frame-parchment-01.webp",
+          "sha256": "fdd2f12c2b703b78f1f1ec31926c60d11c4cc65b79bec2cbaedb23a93ee9630a"
+        },
+        {
+          "path": "assets/seekarte/frame-parchment-02.webp",
+          "sha256": "6b491107f57e40354b91c8605b075ee8faadb6dd32e382137e9b9f04445982b7"
+        },
+        {
+          "path": "assets/seekarte/leuchtturm.png",
+          "sha256": "3d5b3da6361ad2c8ee81e58e6d3ab1895c87a7cef239d7aac050e0e2ad8706a4"
+        },
+        {
+          "path": "assets/seekarte/meer-ohne-objekte-prototyp.webp",
+          "sha256": "80ca03802c5d72e3133c7aa18e07b4850f95ac0ca7adfe29d5bbb4d714e6c6e1"
+        },
+        {
+          "path": "assets/seekarte/meer-pergament.webp",
+          "sha256": "7c8a65c7940de276df5db76c95ed86989f06f6cec7897729920ece684ec14fb5"
+        },
+        {
+          "path": "assets/seekarte/pergament-rahmen-prototyp.webp",
+          "sha256": "07cd4dcbfc6be24c2960075478e84dadba0c3ab9da03fdf4abfd0fe358f9e63a"
+        },
+        {
+          "path": "assets/seekarte/sea-blue-01.webp",
+          "sha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "path": "assets/seekarte/segelschiff.png",
+          "sha256": "c5b5e9e58aaa37cfa7d415c06081e75ab4c19a1c8f6426ff51a3b6b7086442dd"
+        },
+        {
+          "path": "assets/seekarte/tesoro.png",
+          "sha256": "4a4bf25734c4c372c413d1bf72bbcf4c90695871df1fb44722b4ac85650925ce"
+        },
+        {
+          "path": "assets/ui/brass-bezel.webp",
+          "sha256": "56e4e12582e2711b676304c74d09095e57eaa8f6fb2dcd972e1190d1d2097896"
+        },
+        {
+          "path": "assets/ui/brass-rail.webp",
+          "sha256": "51cbc41325b1ad1327420f0140422f70cb49bb37aaf4bbb6d7a6fb6424e29d90"
+        },
+        {
+          "path": "assets/ui/brass-strip.webp",
+          "sha256": "ed4d3f20b6977519575926a2b3522eadeacf37a0770bea2a3baa67791693ca20"
+        },
+        {
+          "path": "assets/ui/hourglass.webp",
+          "sha256": "435522626094f41d66f5bb8b8c9efe98c71a3f4c540ae3b3c694fab7e2f44685"
+        },
+        {
+          "path": "assets/ui/logbook-chart.svg",
+          "sha256": "72822e0bb18a69754f1e05878be920ebc0e040f1e1a0e7b8943272b61c142c40"
+        },
+        {
+          "path": "assets/ui/open-bordbook.webp",
+          "sha256": "57df6bcab49f6d60659d6641746789993fac0e2de6ff094f3f64f837d9499924"
+        },
+        {
+          "path": "assets/ui/paper-grain.webp",
+          "sha256": "97e2dcf2dddd06fe03f628eaf8d23044e9938decf35351ef5c49178231f082be"
+        },
+        {
+          "path": "assets/ui/ship-wheel.webp",
+          "sha256": "e19a8ec8ca99e7ed4f371573e7bb18368ba2b800312bfcbb6b6f1930ed709edf"
+        },
+        {
+          "path": "assets/ui/tool-atlas.webp",
+          "sha256": "7086b66651d48c80f92bf3eeafa96b8edeaaedebe360dafaddb6c098d7974c08"
+        },
+        {
+          "path": "assets/ui/tool-refinements.webp",
+          "sha256": "de616dd976ee247800ba12e9263ad084a413d07aa16ec5973999bb642bc02793"
+        },
+        {
+          "path": "index.html",
+          "sha256": "50679fd310af81680155dc85c972964b4cee516722960a701f831b5731ffb2cb"
+        },
+        {
+          "path": "puzzles/ankerbuch-tesoro.json",
+          "sha256": "5ceea6cf37c4cbc19d831aa8a91c7e95b653932ce04b89304e2a70321cc1530a"
+        },
+        {
+          "path": "puzzles/manifest.json",
+          "sha256": "8d6278fa9c07dab6b2c25b8774e338ae3aa3c480040088c291a54b1b94412652"
+        },
+        {
+          "path": "puzzles/quittung-nombreo.json",
+          "sha256": "3817cdaeb066644468af0f1d45935f0c00864e7b7270d6e444142ae58c864d50"
+        },
+        {
+          "path": "puzzles/reference-3.6.json",
+          "sha256": "18a4cf44653bd577e0cac9d7bdb504551df11411e875fbd925edd7ac52e12b65"
+        },
+        {
+          "path": "puzzles/test-navigation.json",
+          "sha256": "bb6716ecf5ea0698ac23cca606bba4f461ef3fd93db5d1065eb5df4dda0fbc9a"
+        },
+        {
+          "path": "src/engine/hex.mjs",
+          "sha256": "7854533abe9609afcd10b81949e7652359abaedb632758c0812efe7d3e7ed268"
+        },
+        {
+          "path": "src/engine/puzzle.mjs",
+          "sha256": "3e566bf90bfe1da5bc5311c471eafabf111e20c25031bb895f6e50f9f82c3157"
+        },
+        {
+          "path": "src/engine/solver.mjs",
+          "sha256": "674b79e93b11e6a8f9355a844900ded0a60a4b7071baf055b145a0d8282b452d"
+        },
+        {
+          "path": "src/persistence/storage.mjs",
+          "sha256": "7755e1d9bebaa26ebe72459493068e0d5099b02e2015353968273604c5a70ffc"
+        },
+        {
+          "path": "src/puzzles/assets.mjs",
+          "sha256": "f1e2b313152b85e5a16d66079b9beba93ed3bacee4ae5a96281f9e122ba45e43"
+        },
+        {
+          "path": "src/puzzles/loader.mjs",
+          "sha256": "5b64f6c092e931bdcc133d063b2c14203882c9bd289950ee9ac8e3e2f8354c79"
+        },
+        {
+          "path": "src/puzzles/schema.mjs",
+          "sha256": "466208775271b18093be52b47c352796eac748aa92a1168d031c83aa3741471d"
+        },
+        {
+          "path": "src/puzzles/validate.mjs",
+          "sha256": "df5115e7d59a97dc28abb8da9dc0219bbccb85c5477ef0e34abe5c2a34c23252"
+        },
+        {
+          "path": "src/state/distance-overlay.mjs",
+          "sha256": "0693f88d5826c189bc372d8bf366c59b996aef55e3733404daf9de10d9577754"
+        },
+        {
+          "path": "src/state/game-state.mjs",
+          "sha256": "2ec5149406b474a58876f4421579373c186ffad759e7b91e232f1dd9c4d05dc5"
+        },
+        {
+          "path": "src/ui/bordbook.mjs",
+          "sha256": "e7e941af5416abd1acffd1e7683c928039deb7c514229022c76c7c0741905cad"
+        },
+        {
+          "path": "src/ui/chart-art.mjs",
+          "sha256": "108c4798304a7e75695b6999546f461998964c3c3f40ed6c5bd54080cbb85a99"
+        },
+        {
+          "path": "src/ui/chart-asset-contract.mjs",
+          "sha256": "3afb2e3c7e1dd26cf2d7c26a12fb973d2dfbc9b23a7dcf31437dbba6c25dffbb"
+        },
+        {
+          "path": "src/ui/chart-frame.css",
+          "sha256": "7674326913f4e4d15ae41be7c660e1cb2b921c32f6add0b52916cb4986b9c168"
+        },
+        {
+          "path": "src/ui/chart-geometry.mjs",
+          "sha256": "19b51c3324874e88108a168e8fda84cdb107591970958f3679ce59d47e097d13"
+        },
+        {
+          "path": "src/ui/chart-gestures.mjs",
+          "sha256": "1f49787157b16dc971581f8f69a9c313264eb95f9bdbb60ff89db1f9700f0aae"
+        },
+        {
+          "path": "src/ui/chart-ux.css",
+          "sha256": "568883aecc6d25ad58d7e7fed4b09dddbcb0f9d595f3dad68d7cac7215490f82"
+        },
+        {
+          "path": "src/ui/coordinates.mjs",
+          "sha256": "39bc6b8dfcd6e82257e941ff6f0ab20e3edbe686dc448cd46db7979ff6beb00d"
+        },
+        {
+          "path": "src/ui/game.css",
+          "sha256": "aa8a45af765150c3f664125828309d6fe882681beec4960538b6ecbd50beeb62"
+        },
+        {
+          "path": "src/ui/game.mjs",
+          "sha256": "30e0bffe20b778d4dd2844ceb4793b37f8a681a73830e923ef2c7bcee5eef34c"
+        },
+        {
+          "path": "src/ui/layout-polish.css",
+          "sha256": "98edfe8459aa909719d7c29fab975fffcfe8e0cc1f38e9ff4717f0887ea1eb55"
+        },
+        {
+          "path": "src/ui/map.mjs",
+          "sha256": "d9feff096c4c265473fdbd33bb8ea9b73f1e48e61220a58e7e11036d3a31429a"
+        },
+        {
+          "path": "src/ui/material-icons.mjs",
+          "sha256": "790766d552464b64673e4d0b1fe969a4b968f34a514cf16a9c2a0546389202cc"
+        },
+        {
+          "path": "src/ui/materials.css",
+          "sha256": "b4917c895c5216c52d430180577a5c76199d7dd9732715864a56e18181b27286"
+        },
+        {
+          "path": "src/ui/mobile-views.mjs",
+          "sha256": "b6807afc380f461ee805722107384ed8d3fad823018b944bec2bd86d76af441d"
+        },
+        {
+          "path": "src/ui/parchment-frame.mjs",
+          "sha256": "7bcddb6f4b49c6815537515c01ada86ec20175eadcf52b386464f418ea7aedc7"
+        },
+        {
+          "path": "src/ui/place-labels.mjs",
+          "sha256": "5e3b7866fd7604d21171b125c4e3414980c2db741b099334b741c64e6e7e8a87"
+        },
+        {
+          "path": "src/ui/toolbar.mjs",
+          "sha256": "5a80ffe998e2ae74af75026e457a1403266d5f0823733d9407497cff9596b270"
+        }
+      ],
+      "fingerprint": "gk-snapshot-v1-sha256:09c6757a3b80bd5c8ac435208b94b4b547d21e2b0a94f76c5e6017332338c8a7"
+    }
+  ],
+  "publications": [
+    {
+      "publicationId": "pub-historical-reference-3.6-r1",
+      "mapStructureId": "map-historical-reference-3.6",
+      "instanceId": "inst-historical-reference-3.6",
+      "variantId": "var-historical-reference-3.6",
+      "rulesVersion": "gezeitenkarten-1",
+      "revision": 1,
+      "schemaVersion": 1,
+      "dataVersion": 1,
+      "source": {
+        "path": "puzzles/reference-3.6.json",
+        "sha256": "18a4cf44653bd577e0cac9d7bdb504551df11411e875fbd925edd7ac52e12b65"
+      },
+      "snapshotId": "snapshot-historical-main-f01",
+      "fingerprints": {
+        "mapStructure": "gk-map-v1-sha256:6c0ac809965ebb399e1781722c543c1eecfb0d62132918584aa678b1d4eeacfd",
+        "instance": "gk-instance-v1-sha256:d4e0b61e63274c59ca084fdc2b68d923ae4f64d0240da1aab5818dbc92a5e3b7",
+        "variant": "gk-variant-v1-sha256:8bc5929c67927599dfb76cd7c70149e0d6f4f52aa2d81f2a32063218c137a85d",
+        "publication": "gk-publication-v1-sha256:ff2bf67a19deb68fdf3473abbca836f84241c780876220d1d6a9c49aa70dc383"
+      }
+    },
+    {
+      "publicationId": "pub-historical-test-navigation-r1",
+      "mapStructureId": "map-historical-test-navigation",
+      "instanceId": "inst-historical-test-navigation",
+      "variantId": "var-historical-test-navigation",
+      "rulesVersion": "gezeitenkarten-1",
+      "revision": 1,
+      "schemaVersion": 1,
+      "dataVersion": 1,
+      "source": {
+        "path": "puzzles/test-navigation.json",
+        "sha256": "bb6716ecf5ea0698ac23cca606bba4f461ef3fd93db5d1065eb5df4dda0fbc9a"
+      },
+      "snapshotId": "snapshot-historical-main-f01",
+      "fingerprints": {
+        "mapStructure": "gk-map-v1-sha256:8702dc8e417d8a43e861365095e1c87877ee0d73852203b626634b72aeea9000",
+        "instance": "gk-instance-v1-sha256:eec036db63c207a34eefd9003ca10e5a80d888cedc4449f9cb7bb784b768a072",
+        "variant": "gk-variant-v1-sha256:d437259118a7131d210361411b4949deefcd459c8ebfa96bf47a976061f2021b",
+        "publication": "gk-publication-v1-sha256:0d8d14ac0d174e622cb290a086bc8615ad4610107c92a9718ed0cf915ae4fd11"
+      }
+    },
+    {
+      "publicationId": "pub-historical-quittung-nombreo-r1",
+      "mapStructureId": "map-historical-quittung-nombreo",
+      "instanceId": "inst-historical-quittung-nombreo",
+      "variantId": "var-historical-quittung-nombreo",
+      "rulesVersion": "gezeitenkarten-1",
+      "revision": 1,
+      "schemaVersion": 1,
+      "dataVersion": 1,
+      "source": {
+        "path": "puzzles/quittung-nombreo.json",
+        "sha256": "3817cdaeb066644468af0f1d45935f0c00864e7b7270d6e444142ae58c864d50"
+      },
+      "snapshotId": "snapshot-historical-main-f01",
+      "fingerprints": {
+        "mapStructure": "gk-map-v1-sha256:2112f98c96caa14717f4b67212520b4ec43c217617bfeb1743034c724cae49e4",
+        "instance": "gk-instance-v1-sha256:036de1fba0ffcfa077d866f89e0ab12e2531b525531f8eebb6bb813778883e17",
+        "variant": "gk-variant-v1-sha256:0b005baab545f158a8af44414a33b651fa056390b463570c985c7d6bd284a856",
+        "publication": "gk-publication-v1-sha256:95186527b561c0cad85c28053a5d510364a41230493efbff15d43e98223d3a49"
+      }
+    },
+    {
+      "publicationId": "pub-historical-ankerbuch-tesoro-r1",
+      "mapStructureId": "map-historical-ankerbuch-tesoro",
+      "instanceId": "inst-historical-ankerbuch-tesoro",
+      "variantId": "var-historical-ankerbuch-tesoro",
+      "rulesVersion": "gezeitenkarten-1",
+      "revision": 1,
+      "schemaVersion": 1,
+      "dataVersion": 1,
+      "source": {
+        "path": "puzzles/ankerbuch-tesoro.json",
+        "sha256": "5ceea6cf37c4cbc19d831aa8a91c7e95b653932ce04b89304e2a70321cc1530a"
+      },
+      "snapshotId": "snapshot-historical-main-f01",
+      "fingerprints": {
+        "mapStructure": "gk-map-v1-sha256:ade46f7a51051cc8ca34aa2c00ec6bc7023213d14f1803bcce4c403d53752b2e",
+        "instance": "gk-instance-v1-sha256:4b04ac8c82a5d37c16e3accc6898c9c8be518a9787987aa1b16cebe302a33869",
+        "variant": "gk-variant-v1-sha256:51dbd068ef5c2c81707c6b51e3939b7002b377eb7ee67da896100385b8399c86",
+        "publication": "gk-publication-v1-sha256:c7174eef639af1f370c6c53fc93fc76d9322a6a18f9c3e83f0845e23bd0b40e5"
+      }
+    }
+  ],
+  "legacyAliases": [
+    {
+      "id": "reference-3.6",
+      "schemaVersion": 1,
+      "dataVersion": 1,
+      "publicationId": "pub-historical-reference-3.6-r1"
+    },
+    {
+      "id": "test-navigation",
+      "schemaVersion": 1,
+      "dataVersion": 1,
+      "publicationId": "pub-historical-test-navigation-r1"
+    },
+    {
+      "id": "quittung-nombreo",
+      "schemaVersion": 1,
+      "dataVersion": 1,
+      "publicationId": "pub-historical-quittung-nombreo-r1"
+    },
+    {
+      "id": "ankerbuch-tesoro",
+      "schemaVersion": 1,
+      "dataVersion": 1,
+      "publicationId": "pub-historical-ankerbuch-tesoro-r1"
+    }
+  ]
+}
