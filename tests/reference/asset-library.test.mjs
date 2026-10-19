@@ -11,6 +11,7 @@ import {chartOverlays} from '../../src/ui/chart-art.mjs';
 import {HEXES} from '../../src/ui/chart-geometry.mjs';
 import {compilePuzzle} from '../../src/puzzles/validate.mjs';
 import {createPuzzleLoader} from '../../src/puzzles/loader.mjs';
+import {previewFixture} from '../../dev/asset-usage.mjs';
 
 const read=ref=>JSON.parse(fs.readFileSync(new URL('../../'+ref,import.meta.url)));
 const catalog=()=>read('assets/catalog/library.json');
@@ -36,11 +37,14 @@ test('catalog files, stable IDs, provenance and separated review catalog validat
   assert.equal(validatePlacements([{id:'spire',assetId:spire.id,anchor:'B3'}],c,source().logic,'sea-blue-01').some(e=>e.includes('not visually approved')),!isWaterRich);
   for(const background of c.backgrounds.filter(b=>b.id!=='sea-blue-01'))assert.equal(compatibility(c,spire.id,background.id),'pending');
  }
- assert.deepEqual(c.reviews.filter(r=>r.status==='approved').map(r=>[r.assetId,r.backgroundId]),[['land-coast.island.h1.basalt-spire-water.v1','sea-blue-01']]);
+ assert.deepEqual(c.reviews.filter(r=>r.status==='approved').map(r=>[r.assetId,r.backgroundId]),[
+  'land-coast.island.h1.basalt-spire-water.v1','navigation.lighthouse.h1.offcenter-beacon.v1',
+  'land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1'
+ ].map(id=>[id,'sea-blue-01']));
  assert.equal(new Set(LEGACY_ASSETS.map(a=>a.id)).size,8);
  assert.ok(LEGACY_ASSETS.every(a=>a.stage==='legacy'&&a.exception));
 });
-test('three passable illustration prototypes remain pending and blocked from publication',()=>{
+test('three passable illustrations are hash-approved only on sea-blue-01',()=>{
  const c=validateAssetFiles(catalog());
  const ids=['navigation.lighthouse.h1.offcenter-beacon.v1','land-coast.atoll.h1.broken-passages.v1','navigation.wreck.h1.offcenter-sloop.v1'];
  for(const id of ids){
@@ -49,10 +53,31 @@ test('three passable illustration prototypes remain pending and blocked from pub
   assert.deepEqual(a.geometry.cells,[[0,0]]);
   const placements=[{id:'prototype',assetId:id,anchor:'B3',placeId:'test-place'}];
   const logic={grid:{columns:5,rows:5},blocked:[],places:{'test-place':{cells:['B3']}}};
-  for(const b of c.backgrounds)assert.equal(compatibility(c,id,b.id),'pending');
+  for(const b of c.backgrounds){
+   assert.equal(compatibility(c,id,b.id),b.id==='sea-blue-01'?'approved':'pending');
+   if(b.id!=='sea-blue-01')assert.ok(validatePlacements(placements,c,logic,b.id).some(e=>e.includes('not visually approved')));
+  }
   assert.deepEqual(validatePlacements(placements,c,logic,'sea-blue-01',{development:true}),[]);
-  assert.ok(validatePlacements(placements,c,logic,'sea-blue-01').some(e=>e.includes('not visually approved')));
+  assert.deepEqual(validatePlacements(placements,c,logic,'sea-blue-01'),[]);
+  const changed=catalog();changed.reviews.find(r=>r.assetId===id).assetSha256='0'.repeat(64);
+  assert.throws(()=>validateAssetFiles(changed),/Stale visual approval/);
  }
+});
+test('gallery naming is a placement state; Flavor preserves asset metadata and blocked cells',()=>{
+ const c=catalog(),before=structuredClone(c);
+ for(const asset of c.assets){
+  const flavor=previewFixture(c,asset.id,'flavor','Prüfort');
+  assert.deepEqual(flavor.puzzle.places,{});
+  assert.equal(Object.hasOwn(flavor.puzzle.assetPlacements[0],'placeId'),false);
+  if(asset.role==='geographic'){
+   const usage=asset.passable?'named-passable':'named-blocked';
+   const named=previewFixture(c,asset.id,usage,'Prüfort');
+   assert.deepEqual(named.blocked,flavor.blocked);
+   assert.deepEqual(named.puzzle.places['review-place'].cells,placedCells(asset,'B3'));
+   assert.throws(()=>previewFixture(c,asset.id,asset.passable?'named-blocked':'named-passable','Prüfort'),/passability/);
+  }else assert.throws(()=>previewFixture(c,asset.id,'named-passable','Prüfort'),/passability/);
+ }
+ assert.deepEqual(c,before);
 });
 test('invalid/duplicate identities, file paths and unsupported metadata are rejected',()=>{
  for(const mutate of [c=>c.assets.push(c.assets[0]),c=>c.backgrounds.push(c.backgrounds[0]),c=>c.assets[0].id='Bad ID',c=>c.assets[0].image.path='../escape.png',c=>c.assets[0].rotation=60,c=>c.assets[0].image.width=1,c=>c.assets[0].provenance.rights='']){

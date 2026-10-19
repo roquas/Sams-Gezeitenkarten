@@ -210,7 +210,7 @@
         "height": 408
       },
       "provenance": {
-        "source": "OpenAI built-in image_gen, 2026-10-19; approved water-rich spire as style reference; one generation per motif, uniform uncut RGBA authoring export. Prototype, artistic approval pending. See docs/PASSABLE-PROTOTYPES-65.md",
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved water-rich spire as style reference; one generation per motif, uniform uncut RGBA authoring export. See docs/PASSABLE-PROTOTYPES-65.md",
         "rights": "AI-generated for this project using project style reference; no third-party stock used."
       },
       "candidateFamilies": [
@@ -238,7 +238,7 @@
         "height": 408
       },
       "provenance": {
-        "source": "OpenAI built-in image_gen, 2026-10-19; approved water-rich spire as style reference; one generation per motif, uniform uncut RGBA authoring export. Prototype, artistic approval pending. See docs/PASSABLE-PROTOTYPES-65.md",
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved water-rich spire as style reference; one generation per motif, uniform uncut RGBA authoring export. See docs/PASSABLE-PROTOTYPES-65.md",
         "rights": "AI-generated for this project using project style reference; no third-party stock used."
       },
       "candidateFamilies": [
@@ -266,7 +266,7 @@
         "height": 408
       },
       "provenance": {
-        "source": "OpenAI built-in image_gen, 2026-10-19; approved water-rich spire as style reference; one generation per motif, uniform uncut RGBA authoring export. Prototype, artistic approval pending. See docs/PASSABLE-PROTOTYPES-65.md",
+        "source": "OpenAI built-in image_gen, 2026-10-19; approved water-rich spire as style reference; one generation per motif, uniform uncut RGBA authoring export. See docs/PASSABLE-PROTOTYPES-65.md",
         "rights": "AI-generated for this project using project style reference; no third-party stock used."
       },
       "candidateFamilies": [
@@ -366,20 +366,32 @@
     {
       "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Befahrbarer Prototyp, künstlerisch NICHT freigegeben. Kartenkontext mit echten Spielmarkierungen dient Nutzerabnahme; keine allgemeine Wasserregel. Siehe docs/PASSABLE-PROTOTYPES-65.md."
+      "status": "approved",
+      "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte erhalten bewusst nur den Kartografenring ohne Pergamentschild; keine Rendererbeschränkung. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "land-coast.atoll.h1.broken-passages.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Befahrbarer Prototyp, künstlerisch NICHT freigegeben. Kartenkontext mit echten Spielmarkierungen dient Nutzerabnahme; keine allgemeine Wasserregel. Siehe docs/PASSABLE-PROTOTYPES-65.md."
+      "status": "approved",
+      "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte erhalten bewusst nur den Kartografenring ohne Pergamentschild; keine Rendererbeschränkung. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md. Das etwas felsige aufgebrochene Atoll ausdrücklich unverändert behalten; keine Umbenennung oder Neugenerierung.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     },
     {
       "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
       "backgroundId": "sea-blue-01",
-      "status": "pending",
-      "notes": "Befahrbarer Prototyp, künstlerisch NICHT freigegeben. Kartenkontext mit echten Spielmarkierungen dient Nutzerabnahme; keine allgemeine Wasserregel. Siehe docs/PASSABLE-PROTOTYPES-65.md."
+      "status": "approved",
+      "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte erhalten bewusst nur den Kartografenring ohne Pergamentschild; keine Rendererbeschränkung. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md.",
+      "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+      "date": "2026-10-19",
+      "assetSha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
     }
   ]
 }

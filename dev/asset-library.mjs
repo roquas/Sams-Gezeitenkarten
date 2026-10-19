@@ -4,6 +4,7 @@ import {drawAssetPlacements} from '../src/ui/asset-layer.mjs';
 import {placedCells,placementContract,assetRectangle} from '../src/assets/geometry.mjs';
 import {reviewPositions} from './review-positions.mjs';
 import {renderPrototypeComparison} from './passable-prototypes.mjs';
+import {setupUsageComparison,renderUsageComparison,usageStates} from './asset-usage.mjs';
 
 const el=(tag,attrs={},text)=>{
  const node=document.createElementNS('http://www.w3.org/2000/svg',tag);
@@ -25,6 +26,7 @@ try{
  const response=await fetch(new URL('../assets/catalog/library.json',import.meta.url));
  if(!response.ok)throw Error('Catalog HTTP '+response.status);
  const library=validateLibrary(await response.json());
+ setupUsageComparison(library);
  const select=document.getElementById('background');
  for(const b of library.backgrounds){const o=document.createElement('option');o.value=b.id;o.textContent=b.id+' ('+b.family+')';select.append(o);}
  const reviewAsset=document.getElementById('reviewAsset');
@@ -77,6 +79,7 @@ try{
   }
   document.getElementById('status').textContent='Technische Testansicht · '+select.value+' · Einzelprüfung: '+selected.id+' / '+compatibility(library,selected.id,select.value);
   renderPrototypeComparison(library);
+  renderUsageComparison(library);
  }
- for(const id of ['background','reviewAsset','hexes','footprints','prototypeMarks'])document.getElementById(id).addEventListener('change',render);render();
+ for(const id of ['background','reviewAsset','hexes','footprints','prototypeMarks',...usageStates.map(s=>'usageAsset-'+s.id)])document.getElementById(id).addEventListener('change',render);render();
 }catch(error){document.getElementById('error').textContent=error.message;}

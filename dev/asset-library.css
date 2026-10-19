@@ -1,6 +1,7 @@
 body{margin:0;background:#f3ede0;color:#302b27;font:16px/1.5 system-ui,sans-serif}main{max-width:1000px;margin:auto;padding:20px}h1{font-size:1.5rem}label{display:inline-block;margin:0 18px 12px 0}select{font:inherit;max-width:100%}svg{display:block;width:100%;height:auto;background:#e9d5b0}table{border-collapse:collapse;width:100%;margin:16px 0;font-size:.88rem;overflow-wrap:anywhere}td,th{text-align:left;padding:8px;border-bottom:1px solid #b7aa91}#inventory{overflow-x:auto}#positions{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}#error{color:#8b2e31}
 #positions figure{margin:0;min-width:0}#positions figcaption{font-size:.88rem;padding:6px 0}
-#prototypeComparison{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-#prototypeComparison figure{margin:0;min-width:0}
-#prototypeComparison figcaption{font-size:.88rem;padding:6px 0;min-height:3em}
-@media(max-width:640px){#prototypeComparison{grid-template-columns:1fr;max-width:360px;margin:auto}}
+#prototypeComparison,#usageComparison{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#prototypeComparison figure,#usageComparison figure{margin:0;min-width:0}
+#prototypeComparison figcaption,#usageComparison figcaption{font-size:.88rem;padding:6px 0;min-height:3em}
+#usageComparison select{width:100%;font-size:.8rem}#usageComparison label{display:block;margin-right:0}#usageComparison p{font-size:.85rem}
+@media(max-width:640px){#prototypeComparison,#usageComparison{grid-template-columns:1fr;max-width:360px;margin:auto}}

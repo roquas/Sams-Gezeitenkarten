@@ -1,6 +1,6 @@
-# Drei befahrbare Einzelhex-Prototypen zur Nutzerabnahme
+# Drei freigegebene befahrbare Einzelhex-Illustrationen
 
-Stand **19.10.2026**, bestehender PR #65, Branch `feature/asset-library-integration`. Alle drei Motive sind **Prototypen, künstlerisch nicht freigegeben**: `stage: illustration`, `passable: true`, `geometry.cells: [[0,0]]`, Hintergrundprüfung `sea-blue-01: pending`. Bestandene technische Tests ersetzen keine Nutzerabnahme. Die bestehende Freigabe der wasserreichen Felsnadel gilt weiterhin ausschließlich für diese Felsnadel auf `sea-blue-01`.
+Stand **19.10.2026**, bestehender PR #65, Branch `feature/asset-library-integration`. Leuchtturm, aufgebrochenes Atoll und Wrack sind gemäß ausdrücklicher Nutzerentscheidung **künstlerisch erhaltenswert und für `sea-blue-01` freigegeben**: `stage: illustration`, `passable: true`, `geometry.cells: [[0,0]]`, Hintergrundprüfung `sea-blue-01: approved`. Das etwas felsige Atoll wird ausdrücklich unverändert behalten, weder umbenannt noch neu generiert. Die drei Freigaben in `assets/catalog/library.json` enthalten Prüfer, Datum sowie SHA-256 von Asset und konkretem Hintergrund. Andere Hintergründe bleiben `pending`; keine globale oder Familienfreigabe. Die wasserreiche Felsnadel bleibt auf `sea-blue-01` freigegeben, die wasserreduzierte Fassung bleibt `pending`. Alle fünf PNGs sind unverändert.
 
 ## Gemeinsamer Vergleich im Kartenkontext
 
@@ -11,11 +11,11 @@ Alle drei stehen für den direkten Vergleich jeweils an **B3** im selben Origina
 
 Die Bildrechtecke betragen durchgehend **90×102 SVG-Einheiten**, ohne individuellen Transform, Zuschnitt oder Clip. Der Ausschnitt `42 107 200 170` zeigt B3 und Nachbarn. Bei 1120 px Browserbreite erscheinen die drei vollständigen Assetleinwände jeweils rund **146×166 CSS-Pixel** groß; auf dem Smartphone rund **158×179 CSS-Pixel**. Das entspricht dem Kartenmaßstab einer ungefähr 916–985 px breiten Gesamtkarte. Die folgenden rund 1000 px breiten Vergleichsbilder sind Screenshots dieser Galerie bei DPR 1, keine isolierten Assets und keine nachträglich vergrößerten Motive. Auf schmalen Bildschirmen stehen die drei Karten untereinander.
 
-**Mit echten Hexgrenzen, ohne Markierungen:**
+**Mit echten Hexgrenzen, ohne Stundenzeichen/Route (Ortsring bleibt sichtbar):**
 
 ![Leuchtturm, Atoll und Wrack an B3 auf sea-blue-01 mit Nachbarhexen](reviews/passable-prototypes/comparison-hexes.png)
 
-**Ohne Hexlinien und ohne Markierungen:**
+**Ohne Hexlinien und ohne Stundenzeichen/Route (Ortsring bleibt sichtbar):**
 
 ![Derselbe Vergleich ohne Hexlinien](reviews/passable-prototypes/comparison-clean.png)
 
@@ -23,9 +23,19 @@ Die Bildrechtecke betragen durchgehend **90×102 SVG-Einheiten**, ohne individue
 
 ![Derselbe Vergleich mit Stundenzeichen, Ortsring und Route](reviews/passable-prototypes/comparison-overlays.png)
 
-Der ausdrücklich beschriftete **Entwicklungs-Beispielzustand** zeigt an B3 Stunden 1–6 (`✓ / ? / × / ✓ / ? / ×`), die aktive Stunde 2, den echten Kartografenring und die Route A3–B3–C3. Er ändert keine Rätseldaten und erteilt keine Freigabe. „Echte Spielmarkierungen anzeigen“ schaltet diesen Zustand; „Hexgrenzen anzeigen“ schaltet zusätzlich die normalen Zellpolygone. Die Stundenrandmarkierung gehört zum Beispielzustand. Der Vergleich bleibt absichtlich auf `sea-blue-01`, auch wenn für die darunterliegende technische Galerie ein anderer Hintergrund gewählt wird. Die grüne Grafikflächenprüfung beeinflusst den gemeinsamen Vergleich nicht.
+Der ausdrücklich beschriftete **Entwicklungs-Beispielzustand** zeigt an B3 Stunden 1–6 (`✓ / ? / × / ✓ / ? / ×`), die aktive Stunde 2, den echten Kartografenring und die Route A3–B3–C3. Er ändert keine veröffentlichten Rätseldaten; die Freigabe stammt aus der Nutzerentscheidung. „Echte Stundenzeichen und Route anzeigen“ schaltet Stundenzeichen, aktive Stunde und Route, lässt aber die Ortskennzeichnung bestehen; „Hexgrenzen anzeigen“ schaltet zusätzlich die normalen Zellpolygone. Die Stundenrandmarkierung gehört zum Beispielzustand. Anfangs sind Stundenzeichen und Route ausgeschaltet, damit sich Ring und Flavor klar vergleichen lassen. Der Vergleich bleibt absichtlich auf `sea-blue-01`, auch wenn für die darunterliegende technische Galerie ein anderer Hintergrund gewählt wird. Die grüne Grafikflächenprüfung beeinflusst den gemeinsamen Vergleich nicht.
 
-**Einschränkung:** Der vorhandene Kartenrenderer zeichnet Ortsnamensschilder nur auf gesperrten Landfeldern. Für diese befahrbaren Orte erscheinen daher echte Ortsringe, aber keine Ortsnamensschilder im Hex. Die Namen stehen als Bildunterschrift; es wird keine neue Namensplatzierungslogik eingeführt. Route, zentrale Fragezeichen und Stundenkreise überdecken sichtbar Teile der Motive. Das ist der tatsächliche Ebenenaufbau und ausdrücklich Teil der noch offenen visuellen Abnahme. Der Beispielzustand ist keine Prüfung sämtlicher möglicher Spielzustände.
+**Beabsichtigte UI-Regel, keine Rendererbeschränkung:** Benannte unbefahrbare Orte erhalten die bestehende Pergament-Ortsnamensdarstellung; benannte befahrbare Orte ausschließlich den orange/goldenen Kartografenring **ohne Pergamentschild**. Flavor erhält weder Ring noch Ortsnamensschild. Die frühere Bezeichnung als „Einschränkung“ war falsch. Route, zentrale Fragezeichen und Stundenkreise dürfen die Illustrationen überdecken; das ist vom Nutzer ausdrücklich akzeptiert. Der Beispielzustand ist keine Prüfung sämtlicher möglicher Spielzustände.
+
+### Drei Verwendungszustände vergleichen
+
+[Verwendungsvergleich in der Galerie](http://127.0.0.1:4173/dev/asset-library.html#usage-previews): drei nebeneinander vergleichbare Ansichten, jeweils mit Assetauswahl, auf dem echten `sea-blue-01`. Standard: wasserreiche Felsnadel mit Pergamentname, Leuchtturm mit Ring und derselbe Leuchtturm als Flavor. Alle drei befahrbaren Motive sind sowohl im benannten befahrbaren Zustand als auch als Flavor wählbar. Die Auswahl für unbefahrbare benannte Orte enthält nur entsprechend klassifizierte Assets. Die bestehende Mehrhex-Geometrie wird ebenfalls unterstützt.
+
+„Benannt vs. Flavor“ ist ausschließlich eine **Eigenschaft der Platzierung im Rätsel**, keine neue Assetklasse und kein Assetflag. Die Entwicklungsfixtures setzen für benannte Verwendung `placeId` und `puzzle.places`, für Flavor lassen sie beides weg. Assetrolle, Befahrbarkeit, Bilddatei und Katalogobjekt bleiben unverändert; ein unbefahrbares Asset bleibt auch ohne Ortsnamen gesperrt. Der Beispielname „Prüfort“ gehört nur zum Galeriefixture.
+
+Alle drei Zustände laufen über den unveränderten produktiven `drawMap` einschließlich `placeLabelLayout`, realem Meer, Pergamenttextur und Ringpfaden. Es werden keine Symbole nachgebaut oder nachträglich entfernt. Hexlinien und Stundenzeichen/Route sind unabhängig von der Ortskennzeichnung schaltbar; auf gesperrten Feldern werden keine Segelroute oder Stundenzeichen vorgespiegelt. Einzel- und Mehrhex-Pergamentlayouts funktionieren mit den vollständigen `HEXES`/`byId` und den zum Asset passenden `blocked`-Zellen. Keine Korrektur an Produktionsrenderer, Layoutfunktionen, Spielmechanik oder Label-Architektur war erforderlich.
+
+![Drei Verwendungszustände aus dem echten Kartenrenderer](reviews/passable-prototypes/usage-comparison.png)
 
 ## Motive und Einordnung
 
@@ -35,7 +45,7 @@ Der ausdrücklich beschriftete **Entwicklungs-Beispielzustand** zeigt an B3 Stun
 | Atoll · `land-coast.atoll.h1.broken-passages.v1` | [atoll-broken-v1.png](../assets/library/atoll-broken-v1.png) | Drei asymmetrische, getrennte Sand-/Korallenstücke mit Felsen und Palmen. Breite Öffnungen verbinden Innenraum und Außenmeer; kein fast geschlossener Ring. |
 | Wrack · `navigation.wreck.h1.offcenter-sloop.v1` | [wreck-offcenter-v1.png](../assets/library/wreck-offcenter-v1.png) | Diagonaler halb versunkener Holzrumpf mit gebrochenem Mast und Segelresten, nach links versetzt; freie See rechts. |
 
-Der größere Atollteil ist in diesem ersten Durchgang felsiger und höher ausgefallen als eine flache Sandbank. Die drei Wasserpassagen bleiben im realen Kartenkontext sichtbar. Beim Wrack macht die etwas kleinere Einpassung die Rechtsdurchfahrt deutlicher. Diese gestalterischen Eigenschaften sind Prüfgegenstand, keine erklärte künstlerische Freigabe. Befahrbarkeit ist die explizite logische Klassifikation des gesamten Einzelhexes; es wird kein neues pixelgenaues Schiffs-Kollisionsmodell eingeführt.
+Der größere Atollteil ist in diesem ersten Durchgang felsiger und höher ausgefallen als eine flache Sandbank. Die drei Wasserpassagen bleiben im realen Kartenkontext sichtbar. Beim Wrack macht die etwas kleinere Einpassung die Rechtsdurchfahrt deutlicher. Diese gestalterischen Eigenschaften einschließlich des felsigeren Atolls sind vom Nutzer akzeptiert und für `sea-blue-01` freigegeben. Befahrbarkeit ist die explizite logische Klassifikation des gesamten Einzelhexes; es wird kein neues pixelgenaues Schiffs-Kollisionsmodell eingeführt.
 
 ## Herstellung und technischer Export
 
@@ -55,8 +65,12 @@ Der Wrackexport setzt die komplette abgetastete Quelle beim Authoring **28 px we
 
 - **Alle drei jeweils 25/25 Positionen A1–E5 bestanden**, zusätzlich lokaler Voronoi-Vertrag und Originalmaske `single.png`: **0 unzulässige sichtbare Pixel**, einschließlich Alpha 1. Geprüft werden vollständige ¼×¼-SVG-Pixelquadrate mit dem unveränderten `check_image` / `PixelFootprint` aus `scripts/check-library-images.py`. [Vollständiger Pixelbericht mit SHA-256](reviews/passable-prototypes/pixel-audit.json).
 - Der vorhandene Bildregressionstest prüft jetzt **alle Illustrationen** automatisch an allen 25 Ankern. Die ursprünglichen beiden Felsnadeldateien und ihre Freigabehashes bleiben unverändert.
-- Katalog: neun Assets, drei Hintergründe, weiterhin genau eine freigegebene Kombination. Neue Prototypen bleiben für ungeprüfte produktive Platzierungen gesperrt; der Unit-Test prüft diese Sperre und erlaubt ausschließlich die Entwicklungsansicht.
-- Lokal: **89/89 Unit-Tests**, vier Rätsel mit weiterhin jeweils genau einer Lösung, **13/13 Bildregressionen**, **12/12 Chromium-Galeriefälle und 12/12 WebKit-Galeriefälle**. Die Browserfälle prüfen den echten Meerpfad, drei befahrbare B3-Felder, Stundenzeichen, Route, Ebenenreihenfolge und beide Schalter. Ergänzende Aufnahmen: Chromium/WebKit Desktop und Chromium Smartphone mit DPR 2, ohne Bildlade- oder JavaScriptfehler; [Browserbericht](reviews/passable-prototypes/browser-audit.json).
-- Lokal zusätzlich **27/27 Pakettests und 4/4 Asset-Deploymenttests** des frisch erzeugten ZIPs bestanden (Desktop, Smartphone, iPhone/WebKit, iPad/WebKit, jeweils im Unterpfad). Die vollständige bestehende CI wird für den gepushten Stand über [PR #65 / Checks](https://github.com/roquas/Sams-Gezeitenkarten/pull/65/checks) nachvollziehbar. Die Deploymentregression dekodiert alle fünf Illustrationen aus dem tatsächlich erzeugten ZIP, einschließlich der drei neuen befahrbaren Prototypen.
+- Katalog: neun Assets, drei Hintergründe, **genau vier freigegebene Kombinationen**, sämtlich auf `sea-blue-01`: wasserreiche Felsnadel, Leuchtturm, aufgebrochenes Atoll und Wrack. Der Unit-Test prüft exakte Freigabepaare, gültige Hashes, Verwerfung geänderter Hashes und die fortbestehende Sperre aller anderen Hintergründe. Keine produktive Rätselplatzierung wird hinzugefügt.
+- Frühere Produktionsprüfung vor Nutzerfreigabe: **89/89 Unit-Tests**, vier Rätsel mit weiterhin jeweils genau einer Lösung, **13/13 Bildregressionen**, **12/12 Chromium-Galeriefälle und 12/12 WebKit-Galeriefälle**. Die Browserfälle prüfen den echten Meerpfad, drei befahrbare B3-Felder, Stundenzeichen, Route, Ebenenreihenfolge und beide Schalter. Ergänzende Aufnahmen: Chromium/WebKit Desktop und Chromium Smartphone mit DPR 2, ohne Bildlade- oder JavaScriptfehler; [Browserbericht](reviews/passable-prototypes/browser-audit.json).
+- Frühere Produktionsprüfung zusätzlich **27/27 Pakettests und 4/4 Asset-Deploymenttests** des frisch erzeugten ZIPs bestanden (Desktop, Smartphone, iPhone/WebKit, iPad/WebKit, jeweils im Unterpfad). Die vollständige bestehende CI wird für den gepushten Stand über [PR #65 / Checks](https://github.com/roquas/Sams-Gezeitenkarten/pull/65/checks) nachvollziehbar. Die Deploymentregression dekodiert alle fünf Illustrationen aus dem tatsächlich erzeugten ZIP, einschließlich der drei neuen befahrbaren Prototypen.
+
+### Prüfung dieser Aktualisierung
+
+Die aktuellen Galerieprüfungen testen alle drei befahrbaren Motive als benannten Ort und als Flavor, echte Pergamenttextur für unbefahrbare Orte, unveränderte Bildgeometrie, Mehrhex-Ortsnamen, echten Meerpfad und Ortskennzeichnung bei ausgeschalteten Stundenzeichen/Route. Ein Unit-Test prüft zusätzlich, dass dieselbe Illustration als Flavor weder `placeId` noch Ortseintrag benötigt und dabei Katalogdaten sowie Befahrbarkeit unverändert bleiben. Die Deploymentprüfung erwartet genau die vier freigegebenen Paare im erzeugten ZIP. **Ergebnisse dieser Aktualisierung:** 90/90 Unit-Tests, vier Rätsel mit jeweils genau einer Lösung, Katalog-/Hashprüfung und 13/13 Bildregressionen, 14/14 Chromium-Galeriefälle und 14/14 WebKit-Galeriefälle (je Desktop und Mobil), 27/27 Pakettests und 4/4 Asset-Deploymentfälle am frisch erzeugten ZIP. Ergänzende [visuelle Kontrolle auf drei Browser-/Gerätekonfigurationen](reviews/passable-prototypes/usage-browser-audit.json) ohne Bildlade- oder JavaScriptfehler. Beim ersten lokalen parallelen Browserstart wurden zwei Modulabrufe durch Verbindungsabbrüche unterbrochen; die vollständige lokale Galerieprüfung mit einem Worker besteht ohne Wiederholungsversuche. Die bestehende CI-Konfiguration bleibt unverändert. [CI des PR](https://github.com/roquas/Sams-Gezeitenkarten/pull/65/checks).
 
 Keine veröffentlichten Platzierungen, keine Änderung von Spielmechanik, Produktionsrenderer, Voronoi-Geometrie, `main` oder Architektur; kein Merge. Die ursprünglichen offenen Punkte B4/B6 bleiben im bestehenden PR dokumentiert.

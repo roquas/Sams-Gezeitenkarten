@@ -13,12 +13,37 @@
  <label><input type="checkbox" id="footprints" checked> Erlaubte Grafikfläche anzeigen (grün)</label>
  <p id="status" role="status"></p>
  <section id="passable-prototypes" aria-labelledby="prototypeHeading">
-  <h2 id="prototypeHeading">Befahrbare Orte – drei Prototypen zur Abnahme</h2>
-  <p>Alle drei auf dem echten sea-blue-01 an B3, mit Nachbarfeldern und identischem Spielmaßstab. Künstlerisch noch nicht freigegeben (<strong>pending</strong>). Hexgrenzen oben schaltbar.</p>
-  <label><input type="checkbox" id="prototypeMarks" checked> Echte Spielmarkierungen anzeigen</label>
+  <h2 id="prototypeHeading">Befahrbare Orte – drei freigegebene Illustrationen</h2>
+  <p>Leuchtturm, aufgebrochenes Atoll und Wrack sind künstlerisch für <strong>sea-blue-01 freigegeben (approved)</strong>, einschließlich des etwas felsigen Atolls. Alle drei an B3 mit Nachbarfeldern und identischem Spielmaßstab. Andere Hintergründe bleiben pending. Hexgrenzen oben schaltbar.</p>
+  <label><input type="checkbox" id="prototypeMarks"> Echte Stundenzeichen und Route anzeigen (auch im Verwendungsvergleich)</label>
   <input type="checkbox" id="showChart" checked hidden>
   <div id="prototypeComparison"></div>
-  <p>Beispielzustand aus dem echten Kartenrenderer: Stunden 1–6 mit ✓ / ? / ×, aktive Stunde 2, Ortsring und Route A3–B3–C3. Keine veröffentlichten Rätseldaten. Der bestehende Renderer zeichnet Ortsnamensschilder nur auf gesperrten Landfeldern; hier stehen die Namen in den Bildunterschriften.</p>
+  <p>Beispielzustand aus dem echten Kartenrenderer: Stunden 1–6 mit ✓ / ? / ×, aktive Stunde 2 und Route A3–B3–C3. Der Ortsring bleibt auch ohne Spielmarkierungen sichtbar. Die Überdeckung der Illustrationen durch Spielmarkierungen ist akzeptiert.</p>
+ </section>
+ <section id="usage-previews" aria-labelledby="usageHeading">
+  <h2 id="usageHeading">Verwendung im Rätsel vergleichen</h2>
+  <p>Benannte unbefahrbare Orte erhalten einen Pergament-Ortsnamen; benannte befahrbare Orte den orange/goldenen Kartografenring ohne Pergamentschild. Das ist die beabsichtigte UI-Regel, keine Rendererbeschränkung. Flavor zeigt nur die Illustration, ohne Ring und ohne Pergamentschild.</p>
+  <p>„Benannt“ oder „Flavor“ gehört zur Platzierung im Rätsel, nicht zur Assetklasse. Die Auswahl bewahrt die Befahrbarkeit jedes Assets. Zum Vergleich desselben Motivs den passenden benannten Zustand und Flavor wählen. Alle Ansichten verwenden den echten Kartenrenderer auf sea-blue-01; die Schalter für Hexgrenzen und Spielmarkierungen gelten auch hier.</p>
+  <div id="usageComparison">
+   <figure>
+    <figcaption>Benannter unbefahrbarer Ort</figcaption>
+    <label>Asset <select id="usageAsset-named-blocked"></select></label>
+    <svg data-usage="named-blocked" role="img" aria-label="Benannter unbefahrbarer Ort mit Pergament-Ortsname"></svg>
+    <p id="usageStatus-named-blocked"></p>
+   </figure>
+   <figure>
+    <figcaption>Benannter befahrbarer Ort</figcaption>
+    <label>Asset <select id="usageAsset-named-passable"></select></label>
+    <svg data-usage="named-passable" role="img" aria-label="Benannter befahrbarer Ort mit Kartografenring ohne Pergamentschild"></svg>
+    <p id="usageStatus-named-passable"></p>
+   </figure>
+   <figure>
+    <figcaption>Flavor – nur Illustration</figcaption>
+    <label>Asset <select id="usageAsset-flavor"></select></label>
+    <svg data-usage="flavor" role="img" aria-label="Flavor-Illustration ohne Ortsring und Pergamentschild"></svg>
+    <p id="usageStatus-flavor"></p>
+   </figure>
+  </div>
  </section>
  <svg id="gallery" viewBox="-37 -44.5 563 473" role="img" aria-label="Einzelhex, Mehrhex-Insel, befahrbarer Leuchtturm und Dekoration auf einer Testkarte"></svg>
  <div id="inventory"></div>
