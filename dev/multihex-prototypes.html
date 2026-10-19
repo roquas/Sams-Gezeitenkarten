@@ -5,20 +5,27 @@
 <base href="../"><link rel="stylesheet" href="dev/asset-library.css">
 <style>
 main{max-width:1280px}#multihexComparison,#multihexApproved,#multihexPositions,#clawGeometry{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}figure{margin:0;min-width:0}figcaption{font-size:.9rem;min-height:4em;padding:8px 0}#multihexApproved,#multihexPositions,#clawGeometry{grid-template-columns:repeat(2,minmax(0,1fr))}svg{background:#5f9fae}#multihexComparison svg,#multihexApproved svg,#clawGeometry svg{max-width:380px}@media(max-width:700px){#multihexComparison,#multihexApproved,#multihexPositions,#clawGeometry{grid-template-columns:1fr}}
+#tesoroDetail{max-width:1100px;margin:auto}#tesoroDetail svg{max-width:none}#tesoroDetail figcaption{min-height:0}details>summary{cursor:pointer;font-weight:600;margin:18px 0}
 </style>
 <main>
-<h1>Mehrhex-Bibliothek · fünf neue Freigaben, Krabbenzange v2 pending</h1>
-<p>Sandriffbogen, Südhafen, Schmugglerbucht, Langer Strand und Tempel der Gezeiten sind unverändert für sea-blue-01 freigegeben. Die neu komponierte Krabbenzange v2 wartet auf Deine künstlerische Begutachtung. Je Objekt eine vollständige transparente RGBA-Grafik. Sämtliche drei bzw. vier belegten Hexfelder bleiben vollständig unbefahrbar, einschließlich Wasserpassagen, Hafenbecken und Lagunen.</p>
+<h1>Mehrhex-Bibliothek · Tesoro zur künstlerischen Begutachtung</h1>
+<p>Tesoro ist der neue zusammenhängende Vierhex-Kandidat: Schiffsteppich, Eingangswirtschaft, Pfahlstadt, Hängebrücken und Schneegipfel. Deine künstlerische Freigabe steht aus. Sandriffbogen, Südhafen, Schmugglerbucht, Langer Strand und Tempel der Gezeiten bleiben unverändert für sea-blue-01 freigegeben. Sämtliche belegten Hexfelder sind vollständig unbefahrbar.</p>
 <p><a href="dev/asset-library.html">Zur Assetbibliothek</a> · sea-blue-01 · produktiver Kartenrenderer mit echten Hexgrenzen und Pergament-Ortsnamen.</p>
 <label><input id="hexes" type="checkbox" checked> Hexgrenzen anzeigen</label>
 <label><input id="marks" type="checkbox"> Stundenzeichen und Route auf Nachbarfeldern</label>
 <input id="showChart" type="checkbox" checked hidden>
 <div id="multihexComparison"></div>
-<p>Vergleich an B3 im identischen Kartenmaßstab (380×300 SVG-Einheiten je Ausschnitt, keine Bildbeschneidung). Gestrichelte Hexgrenzen kennzeichnen die gesperrten Felder. Markierungen und Route bleiben auf befahrbaren Nachbarfeldern; auf den Inselgruppen werden sie unterdrückt. Der Archipel bleibt trotz sichtbarer Wasserpassagen vollständig gesperrt. Diese fünf Ansichten sind freigegeben. Bei der neuen Krabbenzange bleiben die Flächennutzung und die Lesbarkeit der gesperrten Lagune Teil der erneuten künstlerischen Begutachtung.</p>
-<h2>Krabbenzange · verlängerte Arme auf tatsächlicher Grafikfläche</h2>
-<p>Links die historische v1, rechts der neu komponierte bevorzugte Prüfkandidat v2. Beide bleiben pending. Die hellvioletten Konturen zeigen die tatsächlichen vereinigten Voronoi-Grafikzellen; sie sind eine Entwicklungshilfe und beschneiden die PNGs nicht. Die normalen Spielhexe sind kleiner.</p>
+<p>Vergleich an B3 im identischen Kartenmaßstab. Gestrichelte Hexgrenzen kennzeichnen die gesperrten Felder. Markierungen und Route bleiben auf befahrbaren Nachbarfeldern. Die fünf bisherigen Motive sind freigegeben, Tesoro bleibt pending.</p>
+<h2 id="tesoro">Tesoro · vergrößerte Ansicht</h2>
+<p>Dieselbe vollständige Illustration mit dem echten Meeresuntergrund und Pergamentnamen. Nur die gesamte Vorschau wird größer dargestellt; das Asset selbst erhält keine abweichenden Bildmaße. Der Zugang liegt am linken Stadtende und führt durch die zweigeschossige Wirtschaft. Schneeweg und Leuchtturm jenseits des Gipfels folgen der ergänzten Erzählerreferenz.</p>
+<label><input id="detailLabels" type="checkbox"> Ortsname in der Vergrößerung anzeigen</label>
+<div id="tesoroDetail"></div>
+<p><a href="docs/reviews/tesoro/tesoro-master.png" target="_blank" rel="noopener">Tesoro-Malvorlage in voller Auflösung öffnen</a> · ebenfalls noch ohne künstlerische Freigabe.</p>
+<details open><summary>Historische Krabbenzangen · v1 und v2, beide ohne künstlerische Freigabe</summary>
+<p>Tesoro übernimmt den aktuellen Vierhex-Prüfplatz. Die hellvioletten Konturen zeigen die tatsächlichen Grafikflächen der früheren Entwürfe; sie beschneiden keine PNG.</p>
 <label><input id="footprint" type="checkbox" checked> Tatsächliche Grafikflächen im Versionsvergleich anzeigen</label>
 <div id="clawGeometry"></div>
+</details>
 <h2>Bereits freigegebene Stilreferenzen · sea-blue-01</h2>
 <p>Palmenbuchten und Glutberg unverändert, mit hashgebundener ausdrücklicher Nutzerfreigabe.</p><div id="multihexApproved"></div>
 <h2>Positionen und Beschriftung auf der vollständigen Karte</h2>

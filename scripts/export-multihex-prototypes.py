@@ -70,7 +70,7 @@ def prepare_source(original):
     return Image.fromarray(pixels), int(np.count_nonzero(residue))
 
 
-def export(sources, report_path=None):
+def export(sources, report_path=None, *, min_visible_per_cell=0):
     reports = []
     for (name, cells), data in zip(SHAPES.items(), contracts()):
         c = data['contract']; w, h = c['pixelWidth'], c['pixelHeight']
@@ -83,6 +83,17 @@ def export(sources, report_path=None):
         source = sources/(name+'-source.png')
         original = Image.open(source).convert('RGBA')
         prepared, residue_count = prepare_source(original)
+        # Optional authoring quality gate: choose an uncut placement that uses
+        # every declared cell. Default zero preserves all earlier exports.
+        cell_masks = []
+        if min_visible_per_cell:
+            yy, xx = np.mgrid[:h, :w]
+            x, y = (xx+.5)/4-c['width']/2, (yy+.5)/4-c['height']/2
+            for polygon in c['polygons']:
+                inside = np.ones((h, w), dtype=bool)
+                for a, b in zip(polygon, polygon[1:]+polygon[:1]):
+                    inside &= (b[0]-a[0])*(y-a[1])-(b[1]-a[1])*(x-a[0]) >= 0
+                cell_masks.append(inside)
         nominal = min(w/original.width, h/original.height)
         found = None
         # Prefer large whole-canvas exports; fixed search order makes this reproducible.
@@ -97,6 +108,10 @@ def export(sources, report_path=None):
                 if left < 0 or top < 0 or left+size[0] > w or top+size[1] > h:
                     continue
                 if not np.any(alpha & ~allowed[top:top+size[1],left:left+size[0]]):
+                    if cell_masks:
+                        visible = np.asarray(sample.getchannel('A')) >= 16
+                        if any(np.count_nonzero(visible & mask[top:top+size[1],left:left+size[0]]) < min_visible_per_cell for mask in cell_masks):
+                            continue
                     found = (sample, left, top, percent); break
             if found: break
         if not found: raise ValueError(name+': no uncut proportional fit')
@@ -116,6 +131,10 @@ def export(sources, report_path=None):
                   'outsidePixels':0,'detachedAlphaOneResiduePixels':residue_count,
                   'alphaPolicy':'Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved',
                   'crop':False,'rotation':False}
+        if cell_masks:
+            final_visible = np.asarray(result.getchannel('A')) >= 16
+            report['minimumVisiblePixelsPerCell'] = min_visible_per_cell
+            report['visiblePixelsPerCell'] = [int(np.count_nonzero(mask & final_visible)) for mask in cell_masks]
         reports.append(report); print(json.dumps(report), flush=True)
     (report_path or ROOT/'docs/reviews/multihex/pixel-audit.json').write_text(json.dumps(reports,indent=2)+'\n')
     return reports

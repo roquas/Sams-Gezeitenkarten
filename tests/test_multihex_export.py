@@ -34,8 +34,9 @@ class MultihexExportTests(unittest.TestCase):
             'land-coast.island.h2.tropical-bays.v1',
             'land-coast.island.h3.massive-volcano.v1',
             'land-coast.archipelago.h3.bent-reefs.v1',
-            'land-coast.island.h4.crab-claw.v2'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
-        self.assertEqual(len(assets),10)
+            'land-coast.island.h4.crab-claw.v2',
+            'land-coast.settlement.h4.tesoro.v1'} or any(a['id']==r['id'] for r in json.loads((ROOT/'dev/multihex-round2.json').read_text()))]
+        self.assertEqual(len(assets),11)
         shapes = dict(exporter.SHAPES)
         shapes.update({a['key']+'-round2':a['cells'] for a in json.loads((ROOT/'dev/multihex-round2.json').read_text())})
         original_shapes = exporter.SHAPES
@@ -54,7 +55,10 @@ class MultihexExportTests(unittest.TestCase):
                 for a,b in zip(polygon,polygon[1:]+polygon[:1]):
                     inside &= (b[0]-a[0])*(y-a[1])-(b[1]-a[1])*(x-a[0]) >= 0
                 # Reject a tiny central sprite that nominally claims distant cells.
-                self.assertGreater(np.count_nonzero(inside & (alpha>=16)),4500,asset['id'])
+                count = np.count_nonzero(inside & (alpha>=16))
+                self.assertGreater(count,4500,asset['id'])
+                if asset['id'] == 'land-coast.settlement.h4.tesoro.v1':
+                    self.assertGreaterEqual(count,15000,asset['id'])
 
     def test_recomposed_claw_reaches_outer_southwest_and_northeast_regions(self):
         cells = [[0, 0], [1, 0], [0, 1], [-1, 1]]

@@ -1,7 +1,7 @@
 /** Capture the existing gallery with the real map renderer; no separate viewer. */
 import fs from 'node:fs';
 import {chromium,webkit} from '@playwright/test';
-import {multihexPrototypes} from '../dev/multihex-prototypes.mjs';
+import {multihexCandidates} from '../dev/multihex-prototypes.mjs';
 const url=process.argv[2]||'http://127.0.0.1:4179/dev/multihex-prototypes.html';
 const directory=process.argv[3]||'docs/reviews/multihex-completion';
 fs.mkdirSync(directory,{recursive:true});
@@ -26,7 +26,7 @@ for(const [name,engine,viewport,dpr] of [['chromium',chromium,{width:1440,height
    await page.locator('#clawGeometry').screenshot({path:directory+'/claw-versions-clean.png'});
    await page.locator('#footprint').check();
    await page.locator('#multihexApproved').screenshot({path:directory+'/approved-references.png'});
-   for(const p of multihexPrototypes.filter(p=>p.round===2)){
+   for(const p of multihexCandidates){
     await page.locator('#multihexAsset').selectOption(p.key);await decode();
     await page.locator('#multihexPositions').screenshot({path:directory+'/positions-'+p.key+'.png'});
     await page.locator('#multihexComparison svg[data-asset="'+p.id+'"]').screenshot({path:directory+'/detail-'+p.key+'.png'});

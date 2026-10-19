@@ -1,0 +1,50 @@
+{
+  "key": "tesoro",
+  "name": "Tesoro",
+  "id": "land-coast.settlement.h4.tesoro.v1",
+  "file": "tesoro-h4-v1.png",
+  "cells": [
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "canvas": [
+    856,
+    680
+  ],
+  "validAnchors": [
+    "A1",
+    "B1",
+    "C1",
+    "D1",
+    "A2",
+    "B2",
+    "C2",
+    "A3",
+    "B3",
+    "C3",
+    "D3",
+    "A4",
+    "B4",
+    "C4"
+  ],
+  "status": "pending",
+  "source": "output/tesoro/tesoro-source.png",
+  "composition": "Sea and dense chained ship carpet in foreground; stone stairs and rope ladder at far west end into two-storey gateway tavern; only rear tavern exit leads to elevated platforms and rope bridges across town; under-platform rooms; opposite northeast end abuts high cliff; snowy summit with difficult trail wrapping behind peak, small lighthouse peeking from its far side. Building count free.",
+  "provenance": "Audio-ASR reference plus narrator-confirmed user supplement, 2026-10-19; supplement supersedes former middle-entrance and ten-to-eleven-house assumptions.",
+  "master": "docs/reviews/tesoro/tesoro-master.png",
+  "finalPrompt": "docs/reviews/tesoro/generation-access-correction.json"
+}

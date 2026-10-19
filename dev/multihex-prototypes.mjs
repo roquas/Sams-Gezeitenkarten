@@ -51,7 +51,14 @@ export const multihexPrototypes=[
   "key": "claw",
   "id": "land-coast.island.h4.crab-claw.v2",
   "name": "Krabbenzange",
-  "round": 2
+  "round": 2,
+  "historical": true
+ },
+ {
+  "key": "tesoro",
+  "id": "land-coast.settlement.h4.tesoro.v1",
+  "name": "Tesoro",
+  "round": 3
  },
  {
   "key": "temple",
@@ -61,6 +68,7 @@ export const multihexPrototypes=[
   "approved": true
  }
 ];
+export const multihexCandidates=multihexPrototypes.filter(p=>p.round>=2&&!p.historical);
 const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
 export function multihexFixture(library,prototype,anchor){
  const asset=library.assets.find(a=>a.id===prototype.id);

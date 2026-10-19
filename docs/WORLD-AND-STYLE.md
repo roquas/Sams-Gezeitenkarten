@@ -8,6 +8,10 @@ Eine ausführliche Stil- und Weltreferenz wurde am 11.10.2026 im Projekt erarbei
 
 Arbeitsleitplanken: vorhandene Namen bevorzugen; Quellenwissen von Erfindungen trennen; konkrete Situationskomik statt generischer Piratenfloskeln.
 
+## Tesoro: aktuelle Ortsreferenz
+
+Die [Tesoro-Weltreferenz](TESORO-WORLD-REFERENCE.md) ergänzt die allgemeine Quellenarbeit um die Ankunft aus Kapitel 06 Episode 01 und die anschließend ausdrücklich bestätigte Erzählerergänzung vom 19.10.2026. Maßgeblich sind der Zugang **an einem Stadtende durch die zweigeschossige Wirtschaft**, die Plattformen und Hängebrücken, einzelne Untergeschosse und die gegenüberliegende Klippe mit Schneeweg zum hinter dem Gipfel hervorschauenden Leuchtturm. Die Gebäudezahl ist frei. Diese Angaben bleiben getrennt von Audio-ASR-Belegen. [Integrierter Vierhex-Prototyp, künstlerische Freigabe ausstehend](TESORO-PROTOTYPE-65.md).
+
 
 ## Verbindliche Gestaltungsregel: Ortsnamen auf Pergamentrollen
 

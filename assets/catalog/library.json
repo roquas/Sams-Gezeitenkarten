@@ -644,6 +644,46 @@
       "candidateFamilies": [
         "blue-sea"
       ]
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v1",
+      "family": "land-coast",
+      "type": "settlement",
+      "role": "geographic",
+      "stage": "illustration",
+      "passable": false,
+      "geometry": {
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "image": {
+        "path": "assets/library/tesoro-h4-v1.png",
+        "width": 856,
+        "height": 680
+      },
+      "provenance": {
+        "source": "OpenAI built-in image_gen, 2026-10-19; Tesoro audio-ASR research plus separately documented narrator-confirmed supplement. Project-owned style, exact compact 2x2 guide, existing whole-canvas export. See docs/TESORO-PROTOTYPE-65.md",
+        "rights": "AI-generated for this project using project-owned style references; no third-party stock used."
+      },
+      "candidateFamilies": [
+        "blue-sea"
+      ]
     }
   ],
   "reviews": [
@@ -972,6 +1012,24 @@
       "backgroundId": "prototype-sea",
       "status": "pending",
       "notes": "Neu komponierte Krabbenzange v2 mit verlängerten weit geöffneten Armen. Erneute künstlerische Nutzerbegutachtung ausstehend; alle vier Zellen einschließlich Lagune unbefahrbar. Technische Prüfung ist keine Freigabe."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
     }
   ]
 }

@@ -2,6 +2,8 @@
 
 Stand 19.10.2026 · bestehender PR #65 · ausschließlich `feature/asset-library-integration` · Ausgangsstand `5e3991f`. Kein Merge, keine Änderung an main. Der bestehende produktive Kartenrenderer, Geometrievertrag, Rätseldaten und Logbuchtexte bleiben unverändert. Die Entfernung permanenter orangefarbener Kartografenringe bleibt erhalten.
 
+**Nachfolgender Auftrag:** [Tesoro](TESORO-PROTOTYPE-65.md) übernimmt den aktuellen Vierhex-Prüfplatz der Galerie. Beide Krabbenzangen sind jetzt historische, weiterhin nicht freigegebene Entwürfe. Die folgenden Aussagen zur bevorzugten v2 und ihren Screenshots dokumentieren den damaligen Stand bei `86bba51`; sie sind keine aktuelle Motivauswahl oder neue Freigabe.
+
 ## Fünf ausdrückliche künstlerische Freigaben
 
 Der Nutzer hat folgende **unveränderten Bildversionen ausschließlich für die geprüfte Hintergrundversion `sea-blue-01`** freigegeben. Die Katalogreviews nennen roquas, Datum und SHA-256 beider konkreten Dateien.
