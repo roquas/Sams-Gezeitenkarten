@@ -1,10 +1,16 @@
 name: Diagnose WebKit regressions
 on:
   workflow_dispatch:
+    inputs:
+      actionability:
+        description: Compare unchanged selection assertions and frame timing on Linux WebKit
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   diagnose:
+    if: ${{ !inputs.actionability }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,4 +32,25 @@ jobs:
             webkit-smoke-results/
             webkit-viewport-results/
           if-no-files-found: ignore
+          retention-days: 3
+  actionability:
+    if: ${{ inputs.actionability }}
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [baseline, frames, reduced-motion, dpr1, single-load]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps webkit
+      - run: node scripts/diagnose-webkit-actionability.mjs ${{ matrix.variant }}
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: actionability-${{ matrix.variant }}
+          path: actionability-results/
+          if-no-files-found: error
           retention-days: 3
