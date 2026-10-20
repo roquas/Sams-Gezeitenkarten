@@ -1,0 +1,434 @@
+[
+  {
+    "name": "chromium",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "dpr": 1,
+    "assetSha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285",
+    "errors": [],
+    "geometry": [
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B3",
+        "viewBox": "13.5 76 380 300",
+        "cssWidth": 380,
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.421875
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B3",
+        "viewBox": "76.5 121 254 210",
+        "cssWidth": 1100,
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.4354362487793
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "A1",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 632,
+        "rectangle": [
+          14.5,
+          5,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "A1",
+          "B1",
+          "A2",
+          "B2"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.43290710449219
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B3",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 632,
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.43290710449219
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "A2",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 632,
+        "rectangle": [
+          55.5,
+          73,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "A2",
+          "B2",
+          "B3",
+          "C3"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.43290710449219
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B2",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 632,
+        "rectangle": [
+          137.5,
+          73,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B2",
+          "C2",
+          "C3",
+          "D3"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.43290710449219
+      }
+    ]
+  },
+  {
+    "name": "webkit",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "dpr": 1,
+    "assetSha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285",
+    "errors": [],
+    "geometry": [
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B3",
+        "viewBox": "13.5 76 380 300",
+        "cssWidth": 380,
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.439998626708984
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B3",
+        "viewBox": "76.5 121 254 210",
+        "cssWidth": 1100,
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.439998626708984
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "A1",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 632,
+        "rectangle": [
+          14.5,
+          5,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "A1",
+          "B1",
+          "A2",
+          "B2"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.439998626708984
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B3",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 632,
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.439998626708984
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "A2",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 632,
+        "rectangle": [
+          55.5,
+          73,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "A2",
+          "B2",
+          "B3",
+          "C3"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.439998626708984
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B2",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 632,
+        "rectangle": [
+          137.5,
+          73,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B2",
+          "C2",
+          "C3",
+          "D3"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.439998626708984
+      }
+    ]
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "dpr": 2,
+    "assetSha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285",
+    "errors": [],
+    "geometry": [
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B3",
+        "viewBox": "13.5 76 380 300",
+        "cssWidth": 350,
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.44243240356445
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B3",
+        "viewBox": "76.5 121 254 210",
+        "cssWidth": 350,
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.42815399169922
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "A1",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 350,
+        "rectangle": [
+          14.5,
+          5,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "A1",
+          "B1",
+          "A2",
+          "B2"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.41038513183594
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B3",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 350,
+        "rectangle": [
+          96.5,
+          141,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B3",
+          "C3",
+          "B4",
+          "C4"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.41038513183594
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "A2",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 350,
+        "rectangle": [
+          55.5,
+          73,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "A2",
+          "B2",
+          "B3",
+          "C3"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.41038513183594
+      },
+      {
+        "asset": "land-coast.settlement.h4.tesoro.v3",
+        "anchor": "B2",
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 350,
+        "rectangle": [
+          137.5,
+          73,
+          214,
+          170
+        ],
+        "transform": null,
+        "clip": null,
+        "blockedCells": [
+          "B2",
+          "C2",
+          "C3",
+          "D3"
+        ],
+        "label": "Tesoro",
+        "labelWidth": 39.41038513183594
+      }
+    ]
+  }
+]

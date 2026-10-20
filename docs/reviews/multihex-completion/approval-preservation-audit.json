@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Sandriffbogen",
+    "id": "land-coast.archipelago.h3.sand-reefs.v2",
+    "image": "assets/library/sand-reefs-h3-v2.png",
+    "assetSha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e",
+    "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+    "byteIdenticalTo": "5e3991f"
+  },
+  {
+    "name": "Südhafen",
+    "id": "land-coast.island.h3.south-harbor.v1",
+    "image": "assets/library/south-harbor-h3-v1.png",
+    "assetSha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62",
+    "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+    "byteIdenticalTo": "5e3991f"
+  },
+  {
+    "name": "Schmugglerbucht",
+    "id": "land-coast.island.h3.smuggler-cove.v1",
+    "image": "assets/library/smuggler-cove-h3-v1.png",
+    "assetSha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+    "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+    "byteIdenticalTo": "5e3991f"
+  },
+  {
+    "name": "Langer Strand",
+    "id": "land-coast.island.h4.long-sand.v1",
+    "image": "assets/library/long-sand-h4-v1.png",
+    "assetSha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130",
+    "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+    "byteIdenticalTo": "5e3991f"
+  },
+  {
+    "name": "Tempel der Gezeiten",
+    "id": "land-coast.island.h4.jungle-temple.v1",
+    "image": "assets/library/jungle-temple-h4-v1.png",
+    "assetSha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254",
+    "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+    "byteIdenticalTo": "5e3991f"
+  }
+]

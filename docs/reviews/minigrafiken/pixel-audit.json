@@ -1,0 +1,632 @@
+[
+  {
+    "key": "barrels",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-barrels-v1.png",
+    "sourceSha256": "b66970e68e43e86dbee2e4d9aa97608828806ab1c5fd05f342fcb8ffaa63b270",
+    "assetSha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795",
+    "sourceSize": [
+      1178,
+      1335
+    ],
+    "sampleSize": [
+      360,
+      408
+    ],
+    "paddingLeftTop": [
+      0,
+      0
+    ],
+    "nominalPercent": 100,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 21744,
+    "alphaOnePixels": 725,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 3447,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "buoy",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-buoy-v1.png",
+    "sourceSha256": "9a39d23d4bd752180e8085406dd1efb6e70252df45aaeeb822ad85a5e1c261b7",
+    "assetSha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4",
+    "sourceSize": [
+      1178,
+      1335
+    ],
+    "sampleSize": [
+      360,
+      408
+    ],
+    "paddingLeftTop": [
+      0,
+      0
+    ],
+    "nominalPercent": 100,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 17063,
+    "alphaOnePixels": 554,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 96,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "gulls",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-gulls-v1.png",
+    "sourceSha256": "82dff4067aaf238fc818b5f17e92e476cec9dd8d30b246c1faabc60fd072740a",
+    "assetSha256": "78ab079b04347aa1ee7298a13a94be7f26e6b0390c41bd84bb1c5bc7d39d8af0",
+    "sourceSize": [
+      1178,
+      1335
+    ],
+    "sampleSize": [
+      317,
+      359
+    ],
+    "paddingLeftTop": [
+      5,
+      24
+    ],
+    "nominalPercent": 88,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 19138,
+    "alphaOnePixels": 689,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 1688,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "dolphins",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-dolphins-v1.png",
+    "sourceSha256": "7df8971c1adeca551632e4c7587eaea652f23d17d10daa7e2b6bfa1ef5b3a4cb",
+    "assetSha256": "3269363dbe4c4a9c948d629d083052bfa430737338d2c046cbd23fda53879270",
+    "sourceSize": [
+      1177,
+      1336
+    ],
+    "sampleSize": [
+      359,
+      408
+    ],
+    "paddingLeftTop": [
+      0,
+      0
+    ],
+    "nominalPercent": 100,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 20730,
+    "alphaOnePixels": 837,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 826,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "rowboat",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-rowboat-v1.png",
+    "sourceSha256": "fc83eda10ed6746fe646c94c3bdc464e79d8d68181e3b38e39a67f76427a5061",
+    "assetSha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b",
+    "sourceSize": [
+      1177,
+      1336
+    ],
+    "sampleSize": [
+      359,
+      408
+    ],
+    "paddingLeftTop": [
+      0,
+      0
+    ],
+    "nominalPercent": 100,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 23074,
+    "alphaOnePixels": 622,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 365,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "crate",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-crate-v1.png",
+    "sourceSha256": "2ff73d0f90606b2811730c1aa26d3b0453bdd68a0c94d00be7c1fa80a81438bd",
+    "assetSha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180",
+    "sourceSize": [
+      1177,
+      1336
+    ],
+    "sampleSize": [
+      359,
+      408
+    ],
+    "paddingLeftTop": [
+      0,
+      0
+    ],
+    "nominalPercent": 100,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 20413,
+    "alphaOnePixels": 505,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 984,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "foam",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-foam-v1.png",
+    "sourceSha256": "dfda5c4a9f22c9d7054c6cd058a522b4ee9f59fefad2118e7c42694e1f13e1f3",
+    "assetSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b",
+    "sourceSize": [
+      1178,
+      1335
+    ],
+    "sampleSize": [
+      349,
+      396
+    ],
+    "paddingLeftTop": [
+      1,
+      10
+    ],
+    "nominalPercent": 97,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 32270,
+    "alphaOnePixels": 2568,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 11036,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "bottle",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-bottle-v1.png",
+    "sourceSha256": "a1364bcbe9319e0eeaac1233da0fda422e99e3902df5a2709f67c2b0a472ee66",
+    "assetSha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150",
+    "sourceSize": [
+      1178,
+      1335
+    ],
+    "sampleSize": [
+      360,
+      408
+    ],
+    "paddingLeftTop": [
+      0,
+      0
+    ],
+    "nominalPercent": 100,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 22173,
+    "alphaOnePixels": 415,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 816,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "driftwood",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-driftwood-v1.png",
+    "sourceSha256": "afbb4940022663ea6c4ac3c8e2aab2fcc043f6a73ccdc1e5e12fcb9e8d5eb5d9",
+    "assetSha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378",
+    "sourceSize": [
+      1178,
+      1335
+    ],
+    "sampleSize": [
+      360,
+      408
+    ],
+    "paddingLeftTop": [
+      0,
+      0
+    ],
+    "nominalPercent": 100,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 21922,
+    "alphaOnePixels": 837,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 1575,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  },
+  {
+    "key": "turtle",
+    "cells": [
+      [
+        0,
+        0
+      ]
+    ],
+    "image": "assets/library/flavor-turtle-v1.png",
+    "sourceSha256": "389043f867bce2a2efba064cfbff6904280c81558068c2be4c658a0cdcb007d5",
+    "assetSha256": "10f4d8f5e81b3dec7f219291a813dfe53fc066402deaa11129c4f663cf04e78f",
+    "sourceSize": [
+      1178,
+      1335
+    ],
+    "sampleSize": [
+      360,
+      408
+    ],
+    "paddingLeftTop": [
+      0,
+      0
+    ],
+    "nominalPercent": 100,
+    "canvas": [
+      360,
+      408
+    ],
+    "visiblePixels": 31542,
+    "alphaOnePixels": 1018,
+    "validAnchors": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "E2",
+      "A3",
+      "B3",
+      "C3",
+      "D3",
+      "E3",
+      "A4",
+      "B4",
+      "C4",
+      "D4",
+      "E4",
+      "A5",
+      "B5",
+      "C5",
+      "D5",
+      "E5"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 14096,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  }
+]

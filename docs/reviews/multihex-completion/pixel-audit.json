@@ -1,0 +1,66 @@
+[
+  {
+    "key": "claw-v2",
+    "cells": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        1
+      ]
+    ],
+    "image": "assets/library/crab-claw-h4-v2.png",
+    "sourceSha256": "c983f0df9144e2058bb64cc3464a1ee76696fde56d71e8febc237a3463811ec7",
+    "assetSha256": "fb419e1eed3f97cd6a30db2246b02b6dff4f8227548aacc9f00a556a4fb76d95",
+    "sourceSize": [
+      1407,
+      1118
+    ],
+    "sampleSize": [
+      745,
+      592
+    ],
+    "paddingLeftTop": [
+      47,
+      24
+    ],
+    "nominalPercent": 87,
+    "canvas": [
+      856,
+      680
+    ],
+    "visiblePixels": 139570,
+    "alphaOnePixels": 5999,
+    "validAnchors": [
+      "B1",
+      "C1",
+      "D1",
+      "A2",
+      "B2",
+      "C2",
+      "D2",
+      "B3",
+      "C3",
+      "D3",
+      "A4",
+      "B4",
+      "C4",
+      "D4"
+    ],
+    "outsidePixels": 0,
+    "detachedAlphaOneResiduePixels": 35982,
+    "alphaPolicy": "Only detached alpha=1 residue farther than 8 source pixels from alpha>=2 removed; all artwork and soft fringe preserved",
+    "crop": false,
+    "rotation": false
+  }
+]

@@ -9,7 +9,7 @@ export default defineConfig({
  projects:[
   {name:'desktop',use:{...devices['Desktop Chrome']}},
   {name:'smartphone',use:{...devices['Pixel 7'],viewport:{width:360,height:800}}},
-  {name:'iphone-webkit',testMatch:['**/startup.spec.mjs','**/stabilization.spec.mjs','**/blocked-hex.spec.mjs'],use:{...devices['iPhone 13'],deviceScaleFactor:1}},
+  {name:'iphone-webkit',testMatch:['**/startup.spec.mjs','**/stabilization.spec.mjs','**/blocked-hex.spec.mjs','**/asset-library.spec.mjs'],use:{...devices['iPhone 13'],deviceScaleFactor:1}},
   {name:'ipad-webkit',use:{...devices['iPad (gen 7)'],deviceScaleFactor:1}}
  ],
  webServer:[{command:'python3 tests/deployment/static_host.py',url:'http://127.0.0.1:4174/gk/pr38/',reuseExistingServer:false,timeout:20000},...(process.env.BASELINE_ROOT?[{command:'python3 tests/deployment/static_host.py',env:{DEPLOY_ROOT:process.env.BASELINE_ROOT,DEPLOY_PORT:'4175'},url:'http://127.0.0.1:4175/gk/pr38/',reuseExistingServer:false,timeout:20000}]:[]),...(process.env.LAND_BASELINE_ROOT?[{command:'python3 tests/deployment/static_host.py',env:{DEPLOY_ROOT:process.env.LAND_BASELINE_ROOT,DEPLOY_PORT:'4176'},url:'http://127.0.0.1:4176/gk/pr38/',reuseExistingServer:false,timeout:20000}]:[])]

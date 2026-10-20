@@ -1,0 +1,1802 @@
+[
+  {
+    "name": "chromium",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "errors": [],
+    "records": [
+      {
+        "id": "technical.single.v1",
+        "columns": [
+          "Technischer Einzelhex-Platzhalter · technical.single.v1assets/library/technical-single.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.double.v1",
+        "columns": [
+          "Technischer Zweierhex-Platzhalter · technical.double.v1assets/library/technical-double.png",
+          "geographic / island / 2 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.lighthouse.v1",
+        "columns": [
+          "Technischer Leuchtturm-Platzhalter · technical.lighthouse.v1assets/library/technical-lighthouse.png",
+          "geographic / lighthouse / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.decoration.v1",
+        "columns": [
+          "Technischer Dekorations-Platzhalter · technical.decoration.v1assets/library/technical-decoration.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h1.basalt-spire.v1",
+        "columns": [
+          "Reduzierte Felsnadel · land-coast.island.h1.basalt-spire.v1assets/library/basalt-spire-v1.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Entwurf / erneut zu prüfen",
+          "pending",
+          "Nein · Entwurf / erneut zu prüfen",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h1.basalt-spire-water.v1",
+        "columns": [
+          "Wasserreiche Felsnadel (Original) · land-coast.island.h1.basalt-spire-water.v1assets/library/basalt-spire-water-v1.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "columns": [
+          "Leuchtturm · navigation.lighthouse.h1.offcenter-beacon.v1assets/library/lighthouse-offcenter-v1.png",
+          "geographic / lighthouse / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.atoll.h1.broken-passages.v1",
+        "columns": [
+          "Zerbrochenes Atoll · land-coast.atoll.h1.broken-passages.v1assets/library/atoll-broken-v1.png",
+          "geographic / atoll / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "navigation.wreck.h1.offcenter-sloop.v1",
+        "columns": [
+          "Versunkenes Wrack · navigation.wreck.h1.offcenter-sloop.v1assets/library/wreck-offcenter-v1.png",
+          "geographic / wreck / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h2.tropical-bays.v1",
+        "columns": [
+          "Palmenbuchten · land-coast.island.h2.tropical-bays.v1assets/library/tropical-bays-h2-v1.png",
+          "geographic / island / 2 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.massive-volcano.v1",
+        "columns": [
+          "Glutberg · land-coast.island.h3.massive-volcano.v1assets/library/massive-volcano-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.archipelago.h3.bent-reefs.v1",
+        "columns": [
+          "Sandriffbogen – früher Entwurf · land-coast.archipelago.h3.bent-reefs.v1assets/library/bent-reefs-h3-v1.png",
+          "geographic / archipelago / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.archipelago.h3.sand-reefs.v2",
+        "columns": [
+          "Sandriffbogen · land-coast.archipelago.h3.sand-reefs.v2assets/library/sand-reefs-h3-v2.png",
+          "geographic / archipelago / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.south-harbor.v1",
+        "columns": [
+          "Südhafen · land-coast.island.h3.south-harbor.v1assets/library/south-harbor-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.smuggler-cove.v1",
+        "columns": [
+          "Schmugglerbucht · land-coast.island.h3.smuggler-cove.v1assets/library/smuggler-cove-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.long-sand.v1",
+        "columns": [
+          "Langer Strand · land-coast.island.h4.long-sand.v1assets/library/long-sand-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v1",
+        "columns": [
+          "Krabbenzange v1 · land-coast.island.h4.crab-claw.v1assets/library/crab-claw-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.jungle-temple.v1",
+        "columns": [
+          "Tempel der Gezeiten · land-coast.island.h4.jungle-temple.v1assets/library/jungle-temple-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v2",
+        "columns": [
+          "Krabbenzange v2 · land-coast.island.h4.crab-claw.v2assets/library/crab-claw-h4-v2.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v1",
+        "columns": [
+          "Tesoro v1 · land-coast.settlement.h4.tesoro.v1assets/library/tesoro-h4-v1.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v2",
+        "columns": [
+          "Tesoro v2 · land-coast.settlement.h4.tesoro.v2assets/library/tesoro-h4-v2.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v3",
+        "columns": [
+          "Tesoro v3 · land-coast.settlement.h4.tesoro.v3assets/library/tesoro-h4-v3.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v4",
+        "columns": [
+          "Tesoro v4 · land-coast.settlement.h4.tesoro.v4assets/library/tesoro-h4-v4.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.barrels.v1",
+        "columns": [
+          "Treibende Fässer · sea-life.accent.h1.barrels.v1assets/library/flavor-barrels-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.buoy.v1",
+        "columns": [
+          "Einzelne Boje · sea-life.accent.h1.buoy.v1assets/library/flavor-buoy-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.gulls.v1",
+        "columns": [
+          "Seevögel v1 · sea-life.accent.h1.gulls.v1assets/library/flavor-gulls-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.dolphins.v1",
+        "columns": [
+          "Delfine v1 · sea-life.accent.h1.dolphins.v1assets/library/flavor-dolphins-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.rowboat.v1",
+        "columns": [
+          "Ruderboot · sea-life.accent.h1.rowboat.v1assets/library/flavor-rowboat-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.crate.v1",
+        "columns": [
+          "Treibende Kiste · sea-life.accent.h1.crate.v1assets/library/flavor-crate-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam.v1",
+        "columns": [
+          "Sanfte Schaumströmung · sea-life.accent.h1.foam.v1assets/library/flavor-foam-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "approved",
+          "Nein · Zurückgestellt",
+          "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.bottle.v1",
+        "columns": [
+          "Flaschenpost · sea-life.accent.h1.bottle.v1assets/library/flavor-bottle-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.driftwood.v1",
+        "columns": [
+          "Treibholz und Seetang · sea-life.accent.h1.driftwood.v1assets/library/flavor-driftwood-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.turtle.v1",
+        "columns": [
+          "Meeresschildkröte · sea-life.accent.h1.turtle.v1assets/library/flavor-turtle-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Tiermotiv für möglichen späteren beweglichen Einsatz · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.gulls.v2",
+        "columns": [
+          "Kleine Seevögel · sea-life.accent.h1.gulls.v2assets/library/flavor-gulls-v2.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.dolphins.v2",
+        "columns": [
+          "Beiläufige Delfine · sea-life.accent.h1.dolphins.v2assets/library/flavor-dolphins-v2.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam-flecks.v1",
+        "columns": [
+          "Lockere Schaumkronen · sea-life.accent.h1.foam-flecks.v1assets/library/flavor-foam-flecks-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.current-arc.v1",
+        "columns": [
+          "Sanfter Strömungsbogen · sea-life.accent.h1.current-arc.v1assets/library/flavor-current-arc-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.spray.v1",
+        "columns": [
+          "Feines Gischtfeld · sea-life.accent.h1.spray.v1assets/library/flavor-spray-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam-trail.v1",
+        "columns": [
+          "Schmale Schaumspur · sea-life.accent.h1.foam-trail.v1assets/library/flavor-foam-trail-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.cross-ripples.v1",
+        "columns": [
+          "Kreuzende Wellenzüge · sea-life.accent.h1.cross-ripples.v1assets/library/flavor-cross-ripples-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "webkit",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "errors": [],
+    "records": [
+      {
+        "id": "technical.single.v1",
+        "columns": [
+          "Technischer Einzelhex-Platzhalter · technical.single.v1assets/library/technical-single.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.double.v1",
+        "columns": [
+          "Technischer Zweierhex-Platzhalter · technical.double.v1assets/library/technical-double.png",
+          "geographic / island / 2 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.lighthouse.v1",
+        "columns": [
+          "Technischer Leuchtturm-Platzhalter · technical.lighthouse.v1assets/library/technical-lighthouse.png",
+          "geographic / lighthouse / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.decoration.v1",
+        "columns": [
+          "Technischer Dekorations-Platzhalter · technical.decoration.v1assets/library/technical-decoration.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h1.basalt-spire.v1",
+        "columns": [
+          "Reduzierte Felsnadel · land-coast.island.h1.basalt-spire.v1assets/library/basalt-spire-v1.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Entwurf / erneut zu prüfen",
+          "pending",
+          "Nein · Entwurf / erneut zu prüfen",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h1.basalt-spire-water.v1",
+        "columns": [
+          "Wasserreiche Felsnadel (Original) · land-coast.island.h1.basalt-spire-water.v1assets/library/basalt-spire-water-v1.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "columns": [
+          "Leuchtturm · navigation.lighthouse.h1.offcenter-beacon.v1assets/library/lighthouse-offcenter-v1.png",
+          "geographic / lighthouse / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.atoll.h1.broken-passages.v1",
+        "columns": [
+          "Zerbrochenes Atoll · land-coast.atoll.h1.broken-passages.v1assets/library/atoll-broken-v1.png",
+          "geographic / atoll / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "navigation.wreck.h1.offcenter-sloop.v1",
+        "columns": [
+          "Versunkenes Wrack · navigation.wreck.h1.offcenter-sloop.v1assets/library/wreck-offcenter-v1.png",
+          "geographic / wreck / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h2.tropical-bays.v1",
+        "columns": [
+          "Palmenbuchten · land-coast.island.h2.tropical-bays.v1assets/library/tropical-bays-h2-v1.png",
+          "geographic / island / 2 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.massive-volcano.v1",
+        "columns": [
+          "Glutberg · land-coast.island.h3.massive-volcano.v1assets/library/massive-volcano-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.archipelago.h3.bent-reefs.v1",
+        "columns": [
+          "Sandriffbogen – früher Entwurf · land-coast.archipelago.h3.bent-reefs.v1assets/library/bent-reefs-h3-v1.png",
+          "geographic / archipelago / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.archipelago.h3.sand-reefs.v2",
+        "columns": [
+          "Sandriffbogen · land-coast.archipelago.h3.sand-reefs.v2assets/library/sand-reefs-h3-v2.png",
+          "geographic / archipelago / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.south-harbor.v1",
+        "columns": [
+          "Südhafen · land-coast.island.h3.south-harbor.v1assets/library/south-harbor-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.smuggler-cove.v1",
+        "columns": [
+          "Schmugglerbucht · land-coast.island.h3.smuggler-cove.v1assets/library/smuggler-cove-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.long-sand.v1",
+        "columns": [
+          "Langer Strand · land-coast.island.h4.long-sand.v1assets/library/long-sand-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v1",
+        "columns": [
+          "Krabbenzange v1 · land-coast.island.h4.crab-claw.v1assets/library/crab-claw-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.jungle-temple.v1",
+        "columns": [
+          "Tempel der Gezeiten · land-coast.island.h4.jungle-temple.v1assets/library/jungle-temple-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v2",
+        "columns": [
+          "Krabbenzange v2 · land-coast.island.h4.crab-claw.v2assets/library/crab-claw-h4-v2.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v1",
+        "columns": [
+          "Tesoro v1 · land-coast.settlement.h4.tesoro.v1assets/library/tesoro-h4-v1.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v2",
+        "columns": [
+          "Tesoro v2 · land-coast.settlement.h4.tesoro.v2assets/library/tesoro-h4-v2.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v3",
+        "columns": [
+          "Tesoro v3 · land-coast.settlement.h4.tesoro.v3assets/library/tesoro-h4-v3.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v4",
+        "columns": [
+          "Tesoro v4 · land-coast.settlement.h4.tesoro.v4assets/library/tesoro-h4-v4.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.barrels.v1",
+        "columns": [
+          "Treibende Fässer · sea-life.accent.h1.barrels.v1assets/library/flavor-barrels-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.buoy.v1",
+        "columns": [
+          "Einzelne Boje · sea-life.accent.h1.buoy.v1assets/library/flavor-buoy-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.gulls.v1",
+        "columns": [
+          "Seevögel v1 · sea-life.accent.h1.gulls.v1assets/library/flavor-gulls-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.dolphins.v1",
+        "columns": [
+          "Delfine v1 · sea-life.accent.h1.dolphins.v1assets/library/flavor-dolphins-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.rowboat.v1",
+        "columns": [
+          "Ruderboot · sea-life.accent.h1.rowboat.v1assets/library/flavor-rowboat-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.crate.v1",
+        "columns": [
+          "Treibende Kiste · sea-life.accent.h1.crate.v1assets/library/flavor-crate-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam.v1",
+        "columns": [
+          "Sanfte Schaumströmung · sea-life.accent.h1.foam.v1assets/library/flavor-foam-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "approved",
+          "Nein · Zurückgestellt",
+          "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.bottle.v1",
+        "columns": [
+          "Flaschenpost · sea-life.accent.h1.bottle.v1assets/library/flavor-bottle-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.driftwood.v1",
+        "columns": [
+          "Treibholz und Seetang · sea-life.accent.h1.driftwood.v1assets/library/flavor-driftwood-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.turtle.v1",
+        "columns": [
+          "Meeresschildkröte · sea-life.accent.h1.turtle.v1assets/library/flavor-turtle-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Tiermotiv für möglichen späteren beweglichen Einsatz · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.gulls.v2",
+        "columns": [
+          "Kleine Seevögel · sea-life.accent.h1.gulls.v2assets/library/flavor-gulls-v2.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.dolphins.v2",
+        "columns": [
+          "Beiläufige Delfine · sea-life.accent.h1.dolphins.v2assets/library/flavor-dolphins-v2.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam-flecks.v1",
+        "columns": [
+          "Lockere Schaumkronen · sea-life.accent.h1.foam-flecks.v1assets/library/flavor-foam-flecks-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.current-arc.v1",
+        "columns": [
+          "Sanfter Strömungsbogen · sea-life.accent.h1.current-arc.v1assets/library/flavor-current-arc-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.spray.v1",
+        "columns": [
+          "Feines Gischtfeld · sea-life.accent.h1.spray.v1assets/library/flavor-spray-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam-trail.v1",
+        "columns": [
+          "Schmale Schaumspur · sea-life.accent.h1.foam-trail.v1assets/library/flavor-foam-trail-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.cross-ripples.v1",
+        "columns": [
+          "Kreuzende Wellenzüge · sea-life.accent.h1.cross-ripples.v1assets/library/flavor-cross-ripples-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "errors": [],
+    "records": [
+      {
+        "id": "technical.single.v1",
+        "columns": [
+          "Technischer Einzelhex-Platzhalter · technical.single.v1assets/library/technical-single.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.double.v1",
+        "columns": [
+          "Technischer Zweierhex-Platzhalter · technical.double.v1assets/library/technical-double.png",
+          "geographic / island / 2 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.lighthouse.v1",
+        "columns": [
+          "Technischer Leuchtturm-Platzhalter · technical.lighthouse.v1assets/library/technical-lighthouse.png",
+          "geographic / lighthouse / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.decoration.v1",
+        "columns": [
+          "Technischer Dekorations-Platzhalter · technical.decoration.v1assets/library/technical-decoration.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h1.basalt-spire.v1",
+        "columns": [
+          "Reduzierte Felsnadel · land-coast.island.h1.basalt-spire.v1assets/library/basalt-spire-v1.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Entwurf / erneut zu prüfen",
+          "pending",
+          "Nein · Entwurf / erneut zu prüfen",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h1.basalt-spire-water.v1",
+        "columns": [
+          "Wasserreiche Felsnadel (Original) · land-coast.island.h1.basalt-spire-water.v1assets/library/basalt-spire-water-v1.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "columns": [
+          "Leuchtturm · navigation.lighthouse.h1.offcenter-beacon.v1assets/library/lighthouse-offcenter-v1.png",
+          "geographic / lighthouse / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.atoll.h1.broken-passages.v1",
+        "columns": [
+          "Zerbrochenes Atoll · land-coast.atoll.h1.broken-passages.v1assets/library/atoll-broken-v1.png",
+          "geographic / atoll / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "navigation.wreck.h1.offcenter-sloop.v1",
+        "columns": [
+          "Versunkenes Wrack · navigation.wreck.h1.offcenter-sloop.v1assets/library/wreck-offcenter-v1.png",
+          "geographic / wreck / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h2.tropical-bays.v1",
+        "columns": [
+          "Palmenbuchten · land-coast.island.h2.tropical-bays.v1assets/library/tropical-bays-h2-v1.png",
+          "geographic / island / 2 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.massive-volcano.v1",
+        "columns": [
+          "Glutberg · land-coast.island.h3.massive-volcano.v1assets/library/massive-volcano-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.archipelago.h3.bent-reefs.v1",
+        "columns": [
+          "Sandriffbogen – früher Entwurf · land-coast.archipelago.h3.bent-reefs.v1assets/library/bent-reefs-h3-v1.png",
+          "geographic / archipelago / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.archipelago.h3.sand-reefs.v2",
+        "columns": [
+          "Sandriffbogen · land-coast.archipelago.h3.sand-reefs.v2assets/library/sand-reefs-h3-v2.png",
+          "geographic / archipelago / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.south-harbor.v1",
+        "columns": [
+          "Südhafen · land-coast.island.h3.south-harbor.v1assets/library/south-harbor-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.smuggler-cove.v1",
+        "columns": [
+          "Schmugglerbucht · land-coast.island.h3.smuggler-cove.v1assets/library/smuggler-cove-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.long-sand.v1",
+        "columns": [
+          "Langer Strand · land-coast.island.h4.long-sand.v1assets/library/long-sand-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v1",
+        "columns": [
+          "Krabbenzange v1 · land-coast.island.h4.crab-claw.v1assets/library/crab-claw-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.jungle-temple.v1",
+        "columns": [
+          "Tempel der Gezeiten · land-coast.island.h4.jungle-temple.v1assets/library/jungle-temple-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v2",
+        "columns": [
+          "Krabbenzange v2 · land-coast.island.h4.crab-claw.v2assets/library/crab-claw-h4-v2.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v1",
+        "columns": [
+          "Tesoro v1 · land-coast.settlement.h4.tesoro.v1assets/library/tesoro-h4-v1.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v2",
+        "columns": [
+          "Tesoro v2 · land-coast.settlement.h4.tesoro.v2assets/library/tesoro-h4-v2.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v3",
+        "columns": [
+          "Tesoro v3 · land-coast.settlement.h4.tesoro.v3assets/library/tesoro-h4-v3.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v4",
+        "columns": [
+          "Tesoro v4 · land-coast.settlement.h4.tesoro.v4assets/library/tesoro-h4-v4.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.barrels.v1",
+        "columns": [
+          "Treibende Fässer · sea-life.accent.h1.barrels.v1assets/library/flavor-barrels-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.buoy.v1",
+        "columns": [
+          "Einzelne Boje · sea-life.accent.h1.buoy.v1assets/library/flavor-buoy-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.gulls.v1",
+        "columns": [
+          "Seevögel v1 · sea-life.accent.h1.gulls.v1assets/library/flavor-gulls-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.dolphins.v1",
+        "columns": [
+          "Delfine v1 · sea-life.accent.h1.dolphins.v1assets/library/flavor-dolphins-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.rowboat.v1",
+        "columns": [
+          "Ruderboot · sea-life.accent.h1.rowboat.v1assets/library/flavor-rowboat-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.crate.v1",
+        "columns": [
+          "Treibende Kiste · sea-life.accent.h1.crate.v1assets/library/flavor-crate-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam.v1",
+        "columns": [
+          "Sanfte Schaumströmung · sea-life.accent.h1.foam.v1assets/library/flavor-foam-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "approved",
+          "Nein · Zurückgestellt",
+          "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.bottle.v1",
+        "columns": [
+          "Flaschenpost · sea-life.accent.h1.bottle.v1assets/library/flavor-bottle-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.driftwood.v1",
+        "columns": [
+          "Treibholz und Seetang · sea-life.accent.h1.driftwood.v1assets/library/flavor-driftwood-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.turtle.v1",
+        "columns": [
+          "Meeresschildkröte · sea-life.accent.h1.turtle.v1assets/library/flavor-turtle-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Tiermotiv für möglichen späteren beweglichen Einsatz · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.gulls.v2",
+        "columns": [
+          "Kleine Seevögel · sea-life.accent.h1.gulls.v2assets/library/flavor-gulls-v2.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.dolphins.v2",
+        "columns": [
+          "Beiläufige Delfine · sea-life.accent.h1.dolphins.v2assets/library/flavor-dolphins-v2.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam-flecks.v1",
+        "columns": [
+          "Lockere Schaumkronen · sea-life.accent.h1.foam-flecks.v1assets/library/flavor-foam-flecks-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.current-arc.v1",
+        "columns": [
+          "Sanfter Strömungsbogen · sea-life.accent.h1.current-arc.v1assets/library/flavor-current-arc-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.spray.v1",
+        "columns": [
+          "Feines Gischtfeld · sea-life.accent.h1.spray.v1assets/library/flavor-spray-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam-trail.v1",
+        "columns": [
+          "Schmale Schaumspur · sea-life.accent.h1.foam-trail.v1assets/library/flavor-foam-trail-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.cross-ripples.v1",
+        "columns": [
+          "Kreuzende Wellenzüge · sea-life.accent.h1.cross-ripples.v1assets/library/flavor-cross-ripples-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "iphone",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "errors": [],
+    "records": [
+      {
+        "id": "technical.single.v1",
+        "columns": [
+          "Technischer Einzelhex-Platzhalter · technical.single.v1assets/library/technical-single.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.double.v1",
+        "columns": [
+          "Technischer Zweierhex-Platzhalter · technical.double.v1assets/library/technical-double.png",
+          "geographic / island / 2 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.lighthouse.v1",
+        "columns": [
+          "Technischer Leuchtturm-Platzhalter · technical.lighthouse.v1assets/library/technical-lighthouse.png",
+          "geographic / lighthouse / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "technical.decoration.v1",
+        "columns": [
+          "Technischer Dekorations-Platzhalter · technical.decoration.v1assets/library/technical-decoration.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Technischer Platzhalter",
+          "pending",
+          "Nein · Technischer Platzhalter",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h1.basalt-spire.v1",
+        "columns": [
+          "Reduzierte Felsnadel · land-coast.island.h1.basalt-spire.v1assets/library/basalt-spire-v1.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Entwurf / erneut zu prüfen",
+          "pending",
+          "Nein · Entwurf / erneut zu prüfen",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h1.basalt-spire-water.v1",
+        "columns": [
+          "Wasserreiche Felsnadel (Original) · land-coast.island.h1.basalt-spire-water.v1assets/library/basalt-spire-water-v1.png",
+          "geographic / island / 1 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "columns": [
+          "Leuchtturm · navigation.lighthouse.h1.offcenter-beacon.v1assets/library/lighthouse-offcenter-v1.png",
+          "geographic / lighthouse / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.atoll.h1.broken-passages.v1",
+        "columns": [
+          "Zerbrochenes Atoll · land-coast.atoll.h1.broken-passages.v1assets/library/atoll-broken-v1.png",
+          "geographic / atoll / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "navigation.wreck.h1.offcenter-sloop.v1",
+        "columns": [
+          "Versunkenes Wrack · navigation.wreck.h1.offcenter-sloop.v1assets/library/wreck-offcenter-v1.png",
+          "geographic / wreck / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h2.tropical-bays.v1",
+        "columns": [
+          "Palmenbuchten · land-coast.island.h2.tropical-bays.v1assets/library/tropical-bays-h2-v1.png",
+          "geographic / island / 2 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.massive-volcano.v1",
+        "columns": [
+          "Glutberg · land-coast.island.h3.massive-volcano.v1assets/library/massive-volcano-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.archipelago.h3.bent-reefs.v1",
+        "columns": [
+          "Sandriffbogen – früher Entwurf · land-coast.archipelago.h3.bent-reefs.v1assets/library/bent-reefs-h3-v1.png",
+          "geographic / archipelago / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.archipelago.h3.sand-reefs.v2",
+        "columns": [
+          "Sandriffbogen · land-coast.archipelago.h3.sand-reefs.v2assets/library/sand-reefs-h3-v2.png",
+          "geographic / archipelago / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.south-harbor.v1",
+        "columns": [
+          "Südhafen · land-coast.island.h3.south-harbor.v1assets/library/south-harbor-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h3.smuggler-cove.v1",
+        "columns": [
+          "Schmugglerbucht · land-coast.island.h3.smuggler-cove.v1assets/library/smuggler-cove-h3-v1.png",
+          "geographic / island / 3 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.long-sand.v1",
+        "columns": [
+          "Langer Strand · land-coast.island.h4.long-sand.v1assets/library/long-sand-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v1",
+        "columns": [
+          "Krabbenzange v1 · land-coast.island.h4.crab-claw.v1assets/library/crab-claw-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.jungle-temple.v1",
+        "columns": [
+          "Tempel der Gezeiten · land-coast.island.h4.jungle-temple.v1assets/library/jungle-temple-h4-v1.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "land-coast.island.h4.crab-claw.v2",
+        "columns": [
+          "Krabbenzange v2 · land-coast.island.h4.crab-claw.v2assets/library/crab-claw-h4-v2.png",
+          "geographic / island / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v1",
+        "columns": [
+          "Tesoro v1 · land-coast.settlement.h4.tesoro.v1assets/library/tesoro-h4-v1.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v2",
+        "columns": [
+          "Tesoro v2 · land-coast.settlement.h4.tesoro.v2assets/library/tesoro-h4-v2.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v3",
+        "columns": [
+          "Tesoro v3 · land-coast.settlement.h4.tesoro.v3assets/library/tesoro-h4-v3.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "land-coast.settlement.h4.tesoro.v4",
+        "columns": [
+          "Tesoro v4 · land-coast.settlement.h4.tesoro.v4assets/library/tesoro-h4-v4.png",
+          "geographic / settlement / 4 Hex · unbefahrbar",
+          "Unbefahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.barrels.v1",
+        "columns": [
+          "Treibende Fässer · sea-life.accent.h1.barrels.v1assets/library/flavor-barrels-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.buoy.v1",
+        "columns": [
+          "Einzelne Boje · sea-life.accent.h1.buoy.v1assets/library/flavor-buoy-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.gulls.v1",
+        "columns": [
+          "Seevögel v1 · sea-life.accent.h1.gulls.v1assets/library/flavor-gulls-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.dolphins.v1",
+        "columns": [
+          "Delfine v1 · sea-life.accent.h1.dolphins.v1assets/library/flavor-dolphins-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Historisch",
+          "pending",
+          "Nein · Historisch",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.rowboat.v1",
+        "columns": [
+          "Ruderboot · sea-life.accent.h1.rowboat.v1assets/library/flavor-rowboat-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.crate.v1",
+        "columns": [
+          "Treibende Kiste · sea-life.accent.h1.crate.v1assets/library/flavor-crate-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam.v1",
+        "columns": [
+          "Sanfte Schaumströmung · sea-life.accent.h1.foam.v1assets/library/flavor-foam-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "approved",
+          "Nein · Zurückgestellt",
+          "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.bottle.v1",
+        "columns": [
+          "Flaschenpost · sea-life.accent.h1.bottle.v1assets/library/flavor-bottle-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.driftwood.v1",
+        "columns": [
+          "Treibholz und Seetang · sea-life.accent.h1.driftwood.v1assets/library/flavor-driftwood-v1.png",
+          "geographic / accent / 1 Hex · befahrbar",
+          "Befahrbarer Ort · Für Produktion vorgesehen",
+          "approved",
+          "Ja",
+          "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378 / e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.turtle.v1",
+        "columns": [
+          "Meeresschildkröte · sea-life.accent.h1.turtle.v1assets/library/flavor-turtle-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Tiermotiv für möglichen späteren beweglichen Einsatz · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.gulls.v2",
+        "columns": [
+          "Kleine Seevögel · sea-life.accent.h1.gulls.v2assets/library/flavor-gulls-v2.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.dolphins.v2",
+        "columns": [
+          "Beiläufige Delfine · sea-life.accent.h1.dolphins.v2assets/library/flavor-dolphins-v2.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam-flecks.v1",
+        "columns": [
+          "Lockere Schaumkronen · sea-life.accent.h1.foam-flecks.v1assets/library/flavor-foam-flecks-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.current-arc.v1",
+        "columns": [
+          "Sanfter Strömungsbogen · sea-life.accent.h1.current-arc.v1assets/library/flavor-current-arc-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.spray.v1",
+        "columns": [
+          "Feines Gischtfeld · sea-life.accent.h1.spray.v1assets/library/flavor-spray-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.foam-trail.v1",
+        "columns": [
+          "Schmale Schaumspur · sea-life.accent.h1.foam-trail.v1assets/library/flavor-foam-trail-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      },
+      {
+        "id": "sea-life.accent.h1.cross-ripples.v1",
+        "columns": [
+          "Kreuzende Wellenzüge · sea-life.accent.h1.cross-ripples.v1assets/library/flavor-cross-ripples-v1.png",
+          "decoration / accent / 1 Hex · befahrbar, ohne Regelwirkung",
+          "Freies Kartenmotiv · Zurückgestellt",
+          "pending",
+          "Nein · Zurückgestellt",
+          "—"
+        ]
+      }
+    ]
+  }
+]

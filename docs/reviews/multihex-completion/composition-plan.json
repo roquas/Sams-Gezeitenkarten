@@ -1,0 +1,48 @@
+{
+  "key": "claw-v2",
+  "name": "Krabbenzange",
+  "id": "land-coast.island.h4.crab-claw.v2",
+  "file": "crab-claw-h4-v2.png",
+  "cells": [
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      -1,
+      1
+    ]
+  ],
+  "canvas": [
+    856,
+    680
+  ],
+  "validAnchors": [
+    "B1",
+    "C1",
+    "D1",
+    "A2",
+    "B2",
+    "C2",
+    "D2",
+    "B3",
+    "C3",
+    "D3",
+    "A4",
+    "B4",
+    "C4",
+    "D4"
+  ],
+  "source": "output/multihex-completion/claw-v2-source.png",
+  "status": "pending",
+  "prompt": "Use case: stylized-concept. Create ONE complete transparent RGBA adventure boardgame map asset. Reference1 is the old claw island for STYLE AND MOTIF ONLY, not its compact layout. Reference2 is the PRECISE new composition sketch; match its positions, full aspect ratio and dramatically extended two arms. Recompose the landscape completely; do NOT simply enlarge the old island. Replace green/buff strokes with richly detailed irregular tropical limestone headlands, sandy beaches, layered low cliffs, lush shrubs and palms. Upper long arm extends west across BOTH northern cells, from the broad eastern root at 82% canvas width /28% height toward a narrow jagged hook at29%width /27%height. Lower arm stretches far west across BOTH southern cells, all the way to a claw tip at10%width /75%height. Two uneven narrow arms are very far apart vertically, embracing a spacious luminous lagoon around45%width /53%height. The connection follows the EASTERN rim diagonally from northeast cell to southeast cell. Both headlands end in long pointed curved tips opening toward the WEST-SOUTHWEST like a giant WIDELY OPEN CRAB CLAW. Use nearly the whole technical footprint through the four outer regions, while keeping ALL pigment inside the light envelope with safety margin. Narrow surf/reef fringe only, delicate small rocks within the lagoon; small wooden shipwreck near the lagoon's east side. Strong dominant open negative-space bay, no compact round island and no closed atoll ring. Preserve lively sculptural colorful detail-rich watercolor Adventure boardgame style of reference1, warm sunlit rock, deep saturated jungle green, ivory sand and turquoise shallows. Elevated oblique overhead map view ~65 degrees, so arm length and vertical separation are not foreshortened. Technical sketch pale green/dark blue background and thin hex lines must become genuine TRANSPARENCY; do not depict hex shapes or guide strokes. All coastline, foam, foliage and shipwreck fully visible; do not crop any detail. No rectangular sea, no words, no label, no watermark, no crab animal.",
+  "decision": "Same four-cell geometry; newly composed long separate western arms and eastern root. No enlargement of v1."
+}

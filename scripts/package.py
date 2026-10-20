@@ -1,7 +1,9 @@
-"""Deterministic, dependency-checked static deployment. Python 3 standard library only."""
+"""Deterministic static deployment; publication requires Node.js and Pillow."""
 import json
+import argparse
 import re
 import sys
+import subprocess
 import zipfile
 from pathlib import Path
 
@@ -13,6 +15,11 @@ def collect(root):
     files = set()
 
     def add(path):
+        component = root
+        for part in path.relative_to(root).parts:
+            component = component / part
+            if component.is_symlink():
+                raise ValueError(f'Symbolische Links werden nicht unterstützt: {component}')
         path = path.resolve()
         if not path.is_relative_to(root) or not path.is_file():
             raise ValueError(f"Fehlende oder unzulässige Laufzeitdatei: {path}")
@@ -43,6 +50,12 @@ def collect(root):
     if (root / '.htaccess').is_file():
         add(root / '.htaccess')
     add(root / 'puzzles/manifest.json')
+    add(root / 'assets/catalog/library.json')
+    library = json.loads((root / 'assets/catalog/library.json').read_text(encoding='utf-8'))
+    for ref in [a['image']['path'] for a in library['assets']] + [b['image'] for b in library['backgrounds']]:
+        if not re.fullmatch(r'assets/[A-Za-z0-9_/-]+\.(png|webp)', ref):
+            raise ValueError(f'Unzulässiger Assetpfad: {ref}')
+        add(root / ref)
     manifest = json.loads((root / 'puzzles/manifest.json').read_text(encoding='utf-8'))
     registry = (root / 'src/puzzles/assets.mjs').read_text(encoding='utf-8')
     backgrounds = dict(re.findall(r"'([^']+)'\s*:\s*'(assets/[^']+)'", registry))
@@ -73,7 +86,22 @@ def collect(root):
                 raise ValueError(f"Unbekanntes Kartenmotiv in {filename}: {asset}")
     if manifest['defaultId'] not in ids:
         raise ValueError('Standardrätsel fehlt im Manifest')
+    validate_release(root, files)
     return sorted(files)
+
+
+def validate_release(root, files):
+    # Use the application validators, including the independent solver. Python
+    # only collects dependencies and writes bytes; it does not reimplement rules.
+    for command in [['node', str(ROOT / 'scripts/validate-puzzles.mjs')],
+                    [sys.executable, str(ROOT / 'scripts/check-library-images.py'),
+                     *[arg for ref in sorted(files) if Path(ref).suffix in ('.png', '.webp')
+                       for arg in ('--runtime-file', ref)]]]:
+        result = subprocess.run([*command, '--root', str(root)], cwd=ROOT,
+                                capture_output=True, text=True)
+        if result.returncode:
+            raise ValueError('Vollständige Veröffentlichungsvalidierung fehlgeschlagen:\n' +
+                             (result.stderr.strip() or result.stdout.strip()))
 
 
 def deployment_name(name):
@@ -111,7 +139,10 @@ def package(root=ROOT):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--root', type=Path, default=ROOT, help='Source tree to validate and export')
+    args = parser.parse_args()
     try:
-        package()
+        package(args.root.resolve())
     except (ValueError, KeyError, OSError) as error:
         sys.exit(f'Export fehlgeschlagen: {error}')

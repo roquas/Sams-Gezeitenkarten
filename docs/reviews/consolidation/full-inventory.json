@@ -1,0 +1,1594 @@
+{
+  "baseline": "ad575f727ad530fe5ec80faa2adbe965bbca612f",
+  "backgroundApprovalPolicy": "Exact image/background pairs only; fileSha256 is an audit digest and is not an artistic approval",
+  "catalog": [
+    {
+      "id": "technical.single.v1",
+      "name": "Technischer Einzelhex-Platzhalter",
+      "production": "draft",
+      "productive": false,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "technical-placeholder",
+      "cells": 1,
+      "passable": false,
+      "availability": "Technischer Platzhalter",
+      "file": "assets/library/technical-single.png",
+      "fileSha256": "a12180babf645da4cd91efd15146324af474c6bdf7308a6c245b6c507cfe6923",
+      "reviews": [
+        {
+          "assetId": "technical.single.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        },
+        {
+          "assetId": "technical.single.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        },
+        {
+          "assetId": "technical.single.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        }
+      ]
+    },
+    {
+      "id": "technical.double.v1",
+      "name": "Technischer Zweierhex-Platzhalter",
+      "production": "draft",
+      "productive": false,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "technical-placeholder",
+      "cells": 2,
+      "passable": false,
+      "availability": "Technischer Platzhalter",
+      "file": "assets/library/technical-double.png",
+      "fileSha256": "a818f0e6670097fd54fb7c30b5101c770795f6312731af815f80b7a7db347be8",
+      "reviews": [
+        {
+          "assetId": "technical.double.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        },
+        {
+          "assetId": "technical.double.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        },
+        {
+          "assetId": "technical.double.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        }
+      ]
+    },
+    {
+      "id": "technical.lighthouse.v1",
+      "name": "Technischer Leuchtturm-Platzhalter",
+      "production": "draft",
+      "productive": false,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "lighthouse",
+      "stage": "technical-placeholder",
+      "cells": 1,
+      "passable": true,
+      "availability": "Technischer Platzhalter",
+      "file": "assets/library/technical-lighthouse.png",
+      "fileSha256": "b84d1a3191409c40c6e5ee7b86a1f4f6d634ff167a26db58d9571aa54e7a6470",
+      "reviews": [
+        {
+          "assetId": "technical.lighthouse.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        },
+        {
+          "assetId": "technical.lighthouse.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        },
+        {
+          "assetId": "technical.lighthouse.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        }
+      ]
+    },
+    {
+      "id": "technical.decoration.v1",
+      "name": "Technischer Dekorations-Platzhalter",
+      "production": "draft",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "technical-placeholder",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Technischer Platzhalter",
+      "file": "assets/library/technical-decoration.png",
+      "fileSha256": "a8ffb6c11467331652a2da413dd01187e7de5fbf9a090b6c1dbef4a6a96f12ef",
+      "reviews": [
+        {
+          "assetId": "technical.decoration.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        },
+        {
+          "assetId": "technical.decoration.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        },
+        {
+          "assetId": "technical.decoration.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Technical placeholder; no artistic approval."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h1.basalt-spire.v1",
+      "name": "Reduzierte Felsnadel",
+      "production": "draft",
+      "productive": false,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": false,
+      "availability": "Entwurf / erneut zu prüfen",
+      "file": "assets/library/basalt-spire-v1.png",
+      "fileSha256": "d68f277f4b6bec2b4950a6341f1fac7a0360abe3d638065b047fc5c39ca78ae0",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h1.basalt-spire.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Wasserreduzierte Vergleichs- und Entwicklungsfassung; nicht bevorzugt, keine künstlerische oder Hintergrundfreigabe. Als eigenständiges Asset unverändert erhalten. Entscheidung vom 19.10.2026: docs/FELSNADEL-WATER-COMPARISON-65.md."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h1.basalt-spire-water.v1",
+      "name": "Wasserreiche Felsnadel (Original)",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": false,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/basalt-spire-water-v1.png",
+      "fileSha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Künstlerisch freigegeben und bevorzugte Felsnadel-Variante auf sea-blue-01 gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Referenz für unbefahrbare Einzelhex-Inseln; siehe docs/FELSNADEL-WATER-COMPARISON-65.md. Überlagerung mit echten Spielmarkierungen und Ortsnamen noch nicht geprüft. Keine universelle Hintergrundfreigabe und keine allgemeine verbindliche Wasserregel.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        }
+      ]
+    },
+    {
+      "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+      "name": "Leuchtturm",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "lighthouse",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": true,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/lighthouse-offcenter-v1.png",
+      "fileSha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
+      "reviews": [
+        {
+          "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte zeigen nur die Illustration ohne permanenten Ortsring und ohne Pergamentschild; spätere Nutzerentscheidung zur Ringentfernung bleibt erhalten. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        }
+      ]
+    },
+    {
+      "id": "land-coast.atoll.h1.broken-passages.v1",
+      "name": "Zerbrochenes Atoll",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "atoll",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": true,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/atoll-broken-v1.png",
+      "fileSha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2",
+      "reviews": [
+        {
+          "assetId": "land-coast.atoll.h1.broken-passages.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte zeigen nur die Illustration ohne permanenten Ortsring und ohne Pergamentschild; spätere Nutzerentscheidung zur Ringentfernung bleibt erhalten. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md. Das etwas felsige aufgebrochene Atoll ausdrücklich unverändert behalten; keine Umbenennung oder Neugenerierung.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        }
+      ]
+    },
+    {
+      "id": "navigation.wreck.h1.offcenter-sloop.v1",
+      "name": "Versunkenes Wrack",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "wreck",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": true,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/wreck-offcenter-v1.png",
+      "fileSha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec",
+      "reviews": [
+        {
+          "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Künstlerisch erhaltenswert und ausschließlich auf sea-blue-01 freigegeben gemäß ausdrücklicher Nutzerentscheidung vom 19.10.2026. Überdeckung durch echte Spielmarkierungen akzeptiert. Benannte befahrbare Orte zeigen nur die Illustration ohne permanenten Ortsring und ohne Pergamentschild; spätere Nutzerentscheidung zur Ringentfernung bleibt erhalten. Keine globale oder Familienfreigabe. Siehe docs/PASSABLE-PROTOTYPES-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h2.tropical-bays.v1",
+      "name": "Palmenbuchten",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 2,
+      "passable": false,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/tropical-bays-h2-v1.png",
+      "fileSha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h2.tropical-bays.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche künstlerische Nutzerfreigabe für die unveränderten Palmenbuchten / Glutberg ausschließlich auf sea-blue-01, Auftrag zur zweiten Mehrhex-Runde vom 19.10.2026. Keine Freigabe weiterer Motive oder Hintergründe. Siehe docs/MULTIHEX-ROUND2-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "land-coast.island.h2.tropical-bays.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Mehrhex-Prototyp; künstlerisch NICHT freigegeben. Geometrische Prüfung ist keine künstlerische Freigabe. Alle belegten Felder unbefahrbar, auch offene Wasserpassagen des Archipels."
+        },
+        {
+          "assetId": "land-coast.island.h2.tropical-bays.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Mehrhex-Prototyp; künstlerisch NICHT freigegeben. Geometrische Prüfung ist keine künstlerische Freigabe. Alle belegten Felder unbefahrbar, auch offene Wasserpassagen des Archipels."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h3.massive-volcano.v1",
+      "name": "Glutberg",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 3,
+      "passable": false,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/massive-volcano-h3-v1.png",
+      "fileSha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h3.massive-volcano.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche künstlerische Nutzerfreigabe für die unveränderten Palmenbuchten / Glutberg ausschließlich auf sea-blue-01, Auftrag zur zweiten Mehrhex-Runde vom 19.10.2026. Keine Freigabe weiterer Motive oder Hintergründe. Siehe docs/MULTIHEX-ROUND2-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "land-coast.island.h3.massive-volcano.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Mehrhex-Prototyp; künstlerisch NICHT freigegeben. Geometrische Prüfung ist keine künstlerische Freigabe. Alle belegten Felder unbefahrbar, auch offene Wasserpassagen des Archipels."
+        },
+        {
+          "assetId": "land-coast.island.h3.massive-volcano.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Mehrhex-Prototyp; künstlerisch NICHT freigegeben. Geometrische Prüfung ist keine künstlerische Freigabe. Alle belegten Felder unbefahrbar, auch offene Wasserpassagen des Archipels."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.archipelago.h3.bent-reefs.v1",
+      "name": "Sandriffbogen – früher Entwurf",
+      "production": "historical",
+      "productive": false,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "archipelago",
+      "stage": "illustration",
+      "cells": 3,
+      "passable": false,
+      "availability": "Historisch",
+      "file": "assets/library/bent-reefs-h3-v1.png",
+      "fileSha256": "98918ab4ad5d584d3c68b0b26a548e6f458f599f54cab289df7689a69d2c2436",
+      "reviews": [
+        {
+          "assetId": "land-coast.archipelago.h3.bent-reefs.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Vom Nutzer ausdrücklich NICHT freigegeben: drei zu steile Einzelinseln. Historischer Vergleich unverändert erhalten; ersetzt im aktiven Mehrhex-Vergleich durch sand-reefs.v2. Keine künstlerische Freigabe."
+        },
+        {
+          "assetId": "land-coast.archipelago.h3.bent-reefs.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Vom Nutzer ausdrücklich NICHT freigegeben: drei zu steile Einzelinseln. Historischer Vergleich unverändert erhalten; ersetzt im aktiven Mehrhex-Vergleich durch sand-reefs.v2. Keine künstlerische Freigabe."
+        },
+        {
+          "assetId": "land-coast.archipelago.h3.bent-reefs.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Vom Nutzer ausdrücklich NICHT freigegeben: drei zu steile Einzelinseln. Historischer Vergleich unverändert erhalten; ersetzt im aktiven Mehrhex-Vergleich durch sand-reefs.v2. Keine künstlerische Freigabe."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.archipelago.h3.sand-reefs.v2",
+      "name": "Sandriffbogen",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "archipelago",
+      "stage": "illustration",
+      "cells": 3,
+      "passable": false,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/sand-reefs-h3-v2.png",
+      "fileSha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e",
+      "reviews": [
+        {
+          "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche künstlerische Nutzerfreigabe im Abschlussauftrag zu PR #65 vom 19.10.2026; Bild unverändert zu 5e3991f. Ausschließlich die geprüfte hashgebundene Version von sea-blue-01. Keine Freigabe der Krabbenzange oder anderer Hintergründe. Siehe docs/MULTIHEX-COMPLETION-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        },
+        {
+          "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h3.south-harbor.v1",
+      "name": "Südhafen",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 3,
+      "passable": false,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/south-harbor-h3-v1.png",
+      "fileSha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h3.south-harbor.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche künstlerische Nutzerfreigabe im Abschlussauftrag zu PR #65 vom 19.10.2026; Bild unverändert zu 5e3991f. Ausschließlich die geprüfte hashgebundene Version von sea-blue-01. Keine Freigabe der Krabbenzange oder anderer Hintergründe. Siehe docs/MULTIHEX-COMPLETION-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "land-coast.island.h3.south-harbor.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        },
+        {
+          "assetId": "land-coast.island.h3.south-harbor.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h3.smuggler-cove.v1",
+      "name": "Schmugglerbucht",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 3,
+      "passable": false,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/smuggler-cove-h3-v1.png",
+      "fileSha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h3.smuggler-cove.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche künstlerische Nutzerfreigabe im Abschlussauftrag zu PR #65 vom 19.10.2026; Bild unverändert zu 5e3991f. Ausschließlich die geprüfte hashgebundene Version von sea-blue-01. Keine Freigabe der Krabbenzange oder anderer Hintergründe. Siehe docs/MULTIHEX-COMPLETION-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "land-coast.island.h3.smuggler-cove.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        },
+        {
+          "assetId": "land-coast.island.h3.smuggler-cove.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h4.long-sand.v1",
+      "name": "Langer Strand",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 4,
+      "passable": false,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/long-sand-h4-v1.png",
+      "fileSha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h4.long-sand.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche künstlerische Nutzerfreigabe im Abschlussauftrag zu PR #65 vom 19.10.2026; Bild unverändert zu 5e3991f. Ausschließlich die geprüfte hashgebundene Version von sea-blue-01. Keine Freigabe der Krabbenzange oder anderer Hintergründe. Siehe docs/MULTIHEX-COMPLETION-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "land-coast.island.h4.long-sand.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        },
+        {
+          "assetId": "land-coast.island.h4.long-sand.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h4.crab-claw.v1",
+      "name": "Krabbenzange v1",
+      "production": "historical",
+      "productive": false,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 4,
+      "passable": false,
+      "availability": "Historisch",
+      "file": "assets/library/crab-claw-h4-v1.png",
+      "fileSha256": "f1d1d7c237820b89306cc40d7d54e7ca8570ba1b9311c3ccd9fb3441d9e5d81e",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h4.crab-claw.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Historische Krabbenzange v1: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
+        },
+        {
+          "assetId": "land-coast.island.h4.crab-claw.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Historische Krabbenzange v1: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
+        },
+        {
+          "assetId": "land-coast.island.h4.crab-claw.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Historische Krabbenzange v1: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h4.jungle-temple.v1",
+      "name": "Tempel der Gezeiten",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 4,
+      "passable": false,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/jungle-temple-h4-v1.png",
+      "fileSha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h4.jungle-temple.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche künstlerische Nutzerfreigabe im Abschlussauftrag zu PR #65 vom 19.10.2026; Bild unverändert zu 5e3991f. Ausschließlich die geprüfte hashgebundene Version von sea-blue-01. Keine Freigabe der Krabbenzange oder anderer Hintergründe. Siehe docs/MULTIHEX-COMPLETION-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "land-coast.island.h4.jungle-temple.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        },
+        {
+          "assetId": "land-coast.island.h4.jungle-temple.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Zweite Mehrhex-Entwicklungsrunde; künstlerische Nutzerfreigabe ausstehend. Alle belegten Zellen vollständig unbefahrbar, einschließlich sichtbarer Wasserflächen. Technische Prüfungen ersetzen keine Freigabe."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.island.h4.crab-claw.v2",
+      "name": "Krabbenzange v2",
+      "production": "historical",
+      "productive": false,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "island",
+      "stage": "illustration",
+      "cells": 4,
+      "passable": false,
+      "availability": "Historisch",
+      "file": "assets/library/crab-claw-h4-v2.png",
+      "fileSha256": "fb419e1eed3f97cd6a30db2246b02b6dff4f8227548aacc9f00a556a4fb76d95",
+      "reviews": [
+        {
+          "assetId": "land-coast.island.h4.crab-claw.v2",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Historische Krabbenzange v2: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
+        },
+        {
+          "assetId": "land-coast.island.h4.crab-claw.v2",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Historische Krabbenzange v2: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
+        },
+        {
+          "assetId": "land-coast.island.h4.crab-claw.v2",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Historische Krabbenzange v2: vom Nutzer ausdrücklich NICHT künstlerisch freigegeben. Kein aktuell empfohlener Kandidat, keine Freigabe-Hashes. Unverändert als historischer Vergleich erhalten. Siehe docs/ART-APPROVAL-AUDIT-65.md."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v1",
+      "name": "Tesoro v1",
+      "production": "historical",
+      "productive": false,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "settlement",
+      "stage": "illustration",
+      "cells": 4,
+      "passable": false,
+      "availability": "Historisch",
+      "file": "assets/library/tesoro-h4-v1.png",
+      "fileSha256": "3e2495530ecf8b0dc884313187c6e4018c24d1a4f9a17e375250424671ddcd5d",
+      "reviews": [
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
+        },
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
+        },
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v2",
+      "name": "Tesoro v2",
+      "production": "historical",
+      "productive": false,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "settlement",
+      "stage": "illustration",
+      "cells": 4,
+      "passable": false,
+      "availability": "Historisch",
+      "file": "assets/library/tesoro-h4-v2.png",
+      "fileSha256": "9715a2c1d4d7e3b8d062c5c645d06966e93996f7ca6c7789d5eeca3500d9ea22",
+      "reviews": [
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v2",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Tesoro v2 nach Nutzerwünschen: Ausdehnung links oben/rechts unten, mehr Schiffe links unten, getrennte Holzfarben und gereffte Segel. Alle vier Zellen unbefahrbar. Künstlerische Freigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-REVISION-65.md."
+        },
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v2",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Tesoro v2 nach Nutzerwünschen: Ausdehnung links oben/rechts unten, mehr Schiffe links unten, getrennte Holzfarben und gereffte Segel. Alle vier Zellen unbefahrbar. Künstlerische Freigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-REVISION-65.md."
+        },
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v2",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Tesoro v2 nach Nutzerwünschen: Ausdehnung links oben/rechts unten, mehr Schiffe links unten, getrennte Holzfarben und gereffte Segel. Alle vier Zellen unbefahrbar. Künstlerische Freigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-REVISION-65.md."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v3",
+      "name": "Tesoro v3",
+      "production": "historical",
+      "productive": false,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "settlement",
+      "stage": "illustration",
+      "cells": 4,
+      "passable": false,
+      "availability": "Historisch",
+      "file": "assets/library/tesoro-h4-v3.png",
+      "fileSha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285",
+      "reviews": [
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v3",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Tesoro v3: umgekehrte Komposition, chaotischer Schiffsteppich in beiden unteren Hexen, unregelmäßige Anbauten und Segelrollen. Alle vier Zellen unbefahrbar. Künstlerische Nutzerfreigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-V3-65.md."
+        },
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v3",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Tesoro v3: umgekehrte Komposition, chaotischer Schiffsteppich in beiden unteren Hexen, unregelmäßige Anbauten und Segelrollen. Alle vier Zellen unbefahrbar. Künstlerische Nutzerfreigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-V3-65.md."
+        },
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v3",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Tesoro v3: umgekehrte Komposition, chaotischer Schiffsteppich in beiden unteren Hexen, unregelmäßige Anbauten und Segelrollen. Alle vier Zellen unbefahrbar. Künstlerische Nutzerfreigabe ausstehend; keine Freigabe-Hashes. Siehe docs/TESORO-V3-65.md."
+        }
+      ]
+    },
+    {
+      "id": "land-coast.settlement.h4.tesoro.v4",
+      "name": "Tesoro v4",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Unbefahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "settlement",
+      "stage": "illustration",
+      "cells": 4,
+      "passable": false,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/tesoro-h4-v4.png",
+      "fileSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+      "reviews": [
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v4",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche Nutzerfreigabe für Tesoro v4 im Folgeauftrag zu „Visuellen Stil festlegen“. Exakte Bildbytes aus ea4ae41, identisch mit Pixel- und Browserbelegen; sea-blue-01 unverändert seit f1192b4. Keine Übertragung auf frühere Tesoro-Versionen oder andere Hintergründe. Siehe docs/ART-APPROVAL-AUDIT-65.md.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v4",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Tesoro v4: prominenterer Leuchtturm hinter der Bergflanke und freierer Bootsrand statt maximaler Hexfüllung. Alle vier Felder unbefahrbar. Keine künstlerische Freigabe oder Freigabe-Hashes. Siehe docs/TESORO-V4-65.md."
+        },
+        {
+          "assetId": "land-coast.settlement.h4.tesoro.v4",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Tesoro v4: prominenterer Leuchtturm hinter der Bergflanke und freierer Bootsrand statt maximaler Hexfüllung. Alle vier Felder unbefahrbar. Keine künstlerische Freigabe oder Freigabe-Hashes. Siehe docs/TESORO-V4-65.md."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.barrels.v1",
+      "name": "Treibende Fässer",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": true,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/flavor-barrels-v1.png",
+      "fileSha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.barrels.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "sea-life.accent.h1.barrels.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        },
+        {
+          "assetId": "sea-life.accent.h1.barrels.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.buoy.v1",
+      "name": "Einzelne Boje",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": true,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/flavor-buoy-v1.png",
+      "fileSha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        },
+        {
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.gulls.v1",
+      "name": "Seevögel v1",
+      "production": "historical",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Historisch",
+      "file": "assets/library/flavor-gulls-v1.png",
+      "fileSha256": "78ab079b04347aa1ee7298a13a94be7f26e6b0390c41bd84bb1c5bc7d39d8af0",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.gulls.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
+        },
+        {
+          "assetId": "sea-life.accent.h1.gulls.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
+        },
+        {
+          "assetId": "sea-life.accent.h1.gulls.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.dolphins.v1",
+      "name": "Delfine v1",
+      "production": "historical",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Historisch",
+      "file": "assets/library/flavor-dolphins-v1.png",
+      "fileSha256": "3269363dbe4c4a9c948d629d083052bfa430737338d2c046cbd23fda53879270",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.dolphins.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
+        },
+        {
+          "assetId": "sea-life.accent.h1.dolphins.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
+        },
+        {
+          "assetId": "sea-life.accent.h1.dolphins.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Bisherige dominante v1 ausdrücklich nicht freigegeben; ausschließlich historisch erhalten. Überarbeitete kleine dezentrale v2 wird separat zur Sichtung vorgelegt. Keine Hashfreigabe."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.rowboat.v1",
+      "name": "Ruderboot",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": true,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/flavor-rowboat-v1.png",
+      "fileSha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        },
+        {
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.crate.v1",
+      "name": "Treibende Kiste",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": true,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/flavor-crate-v1.png",
+      "fileSha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.crate.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "sea-life.accent.h1.crate.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        },
+        {
+          "assetId": "sea-life.accent.h1.crate.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.foam.v1",
+      "name": "Sanfte Schaumströmung",
+      "production": "deferred",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Zurückgestellt",
+      "file": "assets/library/flavor-foam-v1.png",
+      "fileSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.foam.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Freies, unbenanntes, befahrbares Kartenmotiv ohne Hinweisreferenz; Rolle decoration. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "sea-life.accent.h1.foam.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Freies Kartenmotiv ohne Hinweisreferenz."
+        },
+        {
+          "assetId": "sea-life.accent.h1.foam.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Freies Kartenmotiv ohne Hinweisreferenz."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.bottle.v1",
+      "name": "Flaschenpost",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": true,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/flavor-bottle-v1.png",
+      "fileSha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        },
+        {
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.driftwood.v1",
+      "name": "Treibholz und Seetang",
+      "production": "enabled",
+      "productive": true,
+      "concept": "Befahrbarer Ort",
+      "technicalRole": "geographic",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": true,
+      "availability": "Für Produktion vorgesehen",
+      "file": "assets/library/flavor-driftwood-v1.png",
+      "fileSha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "approved",
+          "notes": "Ausdrückliche Nutzerfreigabe im Abschlussauftrag zu PR #65 für genau die unveränderten v1-Bildbytes aus 70487e9 auf aktuellem sea-blue-01. Befahrbarer Einzelhex-Ort, als Hinweisreferenz verwendbar; vorhandener Typ accent, Rolle geographic, passable=true. Siehe docs/CARD-MOTIFS-FINALE-65.md. Keine Übertragung auf andere Hintergründe oder Varianten.",
+          "reviewer": "roquas (Projektverantwortlicher; ausdrückliche Nutzerfreigabe)",
+          "date": "2026-10-19",
+          "assetSha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378",
+          "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        {
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        },
+        {
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Andere Hintergrundkombination weiterhin künstlerisch ungeprüft; keine Freigabe-Hashes. Befahrbarer Einzelhex-Ort; kann als Hinweisreferenz dienen."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.turtle.v1",
+      "name": "Meeresschildkröte",
+      "production": "deferred",
+      "productive": false,
+      "concept": "Tiermotiv für möglichen späteren beweglichen Einsatz",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Zurückgestellt",
+      "file": "assets/library/flavor-turtle-v1.png",
+      "fileSha256": "10f4d8f5e81b3dec7f219291a813dfe53fc066402deaa11129c4f663cf04e78f",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.turtle.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Vom Nutzer zurückgestellt: nicht Teil aktuell verwendeter statischer Kartenmotive. Eventuell später für bewegliche Objekte. Keine künstlerische Freigabe oder Hashfreigabe."
+        },
+        {
+          "assetId": "sea-life.accent.h1.turtle.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Vom Nutzer zurückgestellt: nicht Teil aktuell verwendeter statischer Kartenmotive. Eventuell später für bewegliche Objekte. Keine künstlerische Freigabe oder Hashfreigabe."
+        },
+        {
+          "assetId": "sea-life.accent.h1.turtle.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Vom Nutzer zurückgestellt: nicht Teil aktuell verwendeter statischer Kartenmotive. Eventuell später für bewegliche Objekte. Keine künstlerische Freigabe oder Hashfreigabe."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.gulls.v2",
+      "name": "Kleine Seevögel",
+      "production": "deferred",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Zurückgestellt",
+      "file": "assets/library/flavor-gulls-v2.png",
+      "fileSha256": "5ea6df2c8396d82b249f9b2336e2ce56643375a0cffda5e467d08a617c2df33f",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.gulls.v2",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.gulls.v2",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.gulls.v2",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.dolphins.v2",
+      "name": "Beiläufige Delfine",
+      "production": "deferred",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Zurückgestellt",
+      "file": "assets/library/flavor-dolphins-v2.png",
+      "fileSha256": "089a5d2c6fab7b9b487d0fdb23740163987e9d95cba38d8f1438fd50d8eb06c5",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.dolphins.v2",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.dolphins.v2",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.dolphins.v2",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.foam-flecks.v1",
+      "name": "Lockere Schaumkronen",
+      "production": "deferred",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Zurückgestellt",
+      "file": "assets/library/flavor-foam-flecks-v1.png",
+      "fileSha256": "91915baf42d8f1a7712f3735c6c51633311a9512c663d312b17fb93d16e6f6ca",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.foam-flecks.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.foam-flecks.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.foam-flecks.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.current-arc.v1",
+      "name": "Sanfter Strömungsbogen",
+      "production": "deferred",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Zurückgestellt",
+      "file": "assets/library/flavor-current-arc-v1.png",
+      "fileSha256": "30e7dd5fd164f17e940144dc9e95651acf457accb263164d096832fdb9a0c47f",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.current-arc.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.current-arc.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.current-arc.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.spray.v1",
+      "name": "Feines Gischtfeld",
+      "production": "deferred",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Zurückgestellt",
+      "file": "assets/library/flavor-spray-v1.png",
+      "fileSha256": "dabf581f2af9178751030670dd42a8d69bb4592c583638457ab24965f1da0de6",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.spray.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.spray.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.spray.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.foam-trail.v1",
+      "name": "Schmale Schaumspur",
+      "production": "deferred",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Zurückgestellt",
+      "file": "assets/library/flavor-foam-trail-v1.png",
+      "fileSha256": "8fec13011b297882e4610da08e0ce1391b41d39d5801022d34e83dc6124eac00",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.foam-trail.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.foam-trail.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.foam-trail.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        }
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.cross-ripples.v1",
+      "name": "Kreuzende Wellenzüge",
+      "production": "deferred",
+      "productive": false,
+      "concept": "Freies Kartenmotiv",
+      "technicalRole": "decoration",
+      "type": "accent",
+      "stage": "illustration",
+      "cells": 1,
+      "passable": "no rule effect",
+      "availability": "Zurückgestellt",
+      "file": "assets/library/flavor-cross-ripples-v1.png",
+      "fileSha256": "195102aa117db5829486f89f29c69bca5f53c80e2e72d8e24543e26b78be3a9a",
+      "reviews": [
+        {
+          "assetId": "sea-life.accent.h1.cross-ripples.v1",
+          "backgroundId": "sea-blue-01",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.cross-ripples.v1",
+          "backgroundId": "legacy-parchment-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        },
+        {
+          "assetId": "sea-life.accent.h1.cross-ripples.v1",
+          "backgroundId": "prototype-sea",
+          "status": "pending",
+          "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
+        }
+      ]
+    }
+  ],
+  "legacy": [
+    {
+      "id": "legacy.insel-zweier-01",
+      "reference": "insel-zweier-01.png",
+      "file": "assets/seekarte/tesoro.png",
+      "fileSha256": "4a4bf25734c4c372c413d1bf72bbcf4c90695871df1fb44722b4ac85650925ce",
+      "type": "island",
+      "stage": "legacy",
+      "status": "Legacy unverändert; keine moderne hashgebundene Katalogfreigabe",
+      "exception": "Historical size/offset/footprint retained; replace with separately approved illustration."
+    },
+    {
+      "id": "legacy.insel-einzeln-01",
+      "reference": "insel-einzeln-01.png",
+      "file": "assets/seekarte/tesoro.png",
+      "fileSha256": "4a4bf25734c4c372c413d1bf72bbcf4c90695871df1fb44722b4ac85650925ce",
+      "type": "island",
+      "stage": "legacy",
+      "status": "Legacy unverändert; keine moderne hashgebundene Katalogfreigabe",
+      "exception": "Historical size/offset/footprint retained; replace with separately approved illustration."
+    },
+    {
+      "id": "legacy.insel-einzeln-02",
+      "reference": "insel-einzeln-02.png",
+      "file": "assets/seekarte/tesoro.png",
+      "fileSha256": "4a4bf25734c4c372c413d1bf72bbcf4c90695871df1fb44722b4ac85650925ce",
+      "type": "island",
+      "stage": "legacy",
+      "status": "Legacy unverändert; keine moderne hashgebundene Katalogfreigabe",
+      "exception": "Historical size/offset/footprint retained; replace with separately approved illustration."
+    },
+    {
+      "id": "legacy.riff-01",
+      "reference": "riff-01.png",
+      "file": "assets/seekarte/tesoro.png",
+      "fileSha256": "4a4bf25734c4c372c413d1bf72bbcf4c90695871df1fb44722b4ac85650925ce",
+      "type": "island",
+      "stage": "legacy",
+      "status": "Legacy unverändert; keine moderne hashgebundene Katalogfreigabe",
+      "exception": "Historical size/offset/footprint retained; replace with separately approved illustration."
+    },
+    {
+      "id": "legacy.segelboot-01",
+      "reference": "segelboot-01.png",
+      "file": "assets/seekarte/segelschiff.png",
+      "fileSha256": "c5b5e9e58aaa37cfa7d415c06081e75ab4c19a1c8f6426ff51a3b6b7086442dd",
+      "type": "ship",
+      "stage": "legacy",
+      "status": "Legacy unverändert; keine moderne hashgebundene Katalogfreigabe",
+      "exception": "Historical size/offset/footprint retained; replace with separately approved illustration."
+    },
+    {
+      "id": "legacy.segelboot-02",
+      "reference": "segelboot-02.png",
+      "file": "assets/seekarte/segelschiff.png",
+      "fileSha256": "c5b5e9e58aaa37cfa7d415c06081e75ab4c19a1c8f6426ff51a3b6b7086442dd",
+      "type": "ship",
+      "stage": "legacy",
+      "status": "Legacy unverändert; keine moderne hashgebundene Katalogfreigabe",
+      "exception": "Historical size/offset/footprint retained; replace with separately approved illustration."
+    },
+    {
+      "id": "legacy.leuchtturm-01",
+      "reference": "leuchtturm-01.png",
+      "file": "assets/seekarte/leuchtturm.png",
+      "fileSha256": "3d5b3da6361ad2c8ee81e58e6d3ab1895c87a7cef239d7aac050e0e2ad8706a4",
+      "type": "lighthouse",
+      "stage": "legacy",
+      "status": "Legacy unverändert; keine moderne hashgebundene Katalogfreigabe",
+      "exception": "Historical size/offset/footprint retained; replace with separately approved illustration."
+    },
+    {
+      "id": "legacy.krabbe-01",
+      "reference": "krabbe-01.png",
+      "file": null,
+      "fileSha256": null,
+      "type": "accent",
+      "stage": "legacy",
+      "status": "Legacy unverändert; keine moderne hashgebundene Katalogfreigabe",
+      "exception": "Crab accent historically omitted; retain associated island."
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "sea-blue-01",
+      "family": "blue-sea",
+      "image": "assets/seekarte/sea-blue-01.webp",
+      "fileSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "approvedPairCount": 19
+    },
+    {
+      "id": "legacy-parchment-sea",
+      "family": "parchment-sea",
+      "image": "assets/seekarte/meer-pergament.webp",
+      "fileSha256": "7c8a65c7940de276df5db76c95ed86989f06f6cec7897729920ece684ec14fb5",
+      "approvedPairCount": 0
+    },
+    {
+      "id": "prototype-sea",
+      "family": "blue-sea",
+      "image": "assets/seekarte/meer-ohne-objekte-prototyp.webp",
+      "fileSha256": "80ca03802c5d72e3133c7aa18e07b4850f95ac0ca7adfe29d5bbb4d714e6c6e1",
+      "approvedPairCount": 0
+    }
+  ],
+  "otherRasters": [
+    {
+      "file": "assets/seekarte/frame-parchment-01.webp",
+      "fileSha256": "fdd2f12c2b703b78f1f1ec31926c60d11c4cc65b79bec2cbaedb23a93ee9630a",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/seekarte/frame-parchment-02.webp",
+      "fileSha256": "6b491107f57e40354b91c8605b075ee8faadb6dd32e382137e9b9f04445982b7",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/seekarte/pergament-rahmen-prototyp.webp",
+      "fileSha256": "07cd4dcbfc6be24c2960075478e84dadba0c3ab9da03fdf4abfd0fe358f9e63a",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/brass-bezel.webp",
+      "fileSha256": "56e4e12582e2711b676304c74d09095e57eaa8f6fb2dcd972e1190d1d2097896",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/brass-rail.webp",
+      "fileSha256": "51cbc41325b1ad1327420f0140422f70cb49bb37aaf4bbb6d7a6fb6424e29d90",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/brass-strip.webp",
+      "fileSha256": "ed4d3f20b6977519575926a2b3522eadeacf37a0770bea2a3baa67791693ca20",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/hourglass.webp",
+      "fileSha256": "435522626094f41d66f5bb8b8c9efe98c71a3f4c540ae3b3c694fab7e2f44685",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/logbook-chart.svg",
+      "fileSha256": "72822e0bb18a69754f1e05878be920ebc0e040f1e1a0e7b8943272b61c142c40",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/open-bordbook.webp",
+      "fileSha256": "57df6bcab49f6d60659d6641746789993fac0e2de6ff094f3f64f837d9499924",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/paper-grain.webp",
+      "fileSha256": "97e2dcf2dddd06fe03f628eaf8d23044e9938decf35351ef5c49178231f082be",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/ship-wheel.webp",
+      "fileSha256": "e19a8ec8ca99e7ed4f371573e7bb18368ba2b800312bfcbb6b6f1930ed709edf",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/tool-atlas.webp",
+      "fileSha256": "7086b66651d48c80f92bf3eeafa96b8edeaaedebe360dafaddb6c098d7974c08",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    },
+    {
+      "file": "assets/ui/tool-refinements.webp",
+      "fileSha256": "de616dd976ee247800ba12e9263ad084a413d07aa16ec5973999bb642bc02793",
+      "status": "Außerhalb des Illustrationskatalogs; keine neue Bewertung oder Freigabe in diesem Auftrag"
+    }
+  ]
+}

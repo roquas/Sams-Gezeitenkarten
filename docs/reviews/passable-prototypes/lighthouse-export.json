@@ -1,0 +1,33 @@
+{
+  "source": "lighthouse-source.png",
+  "sourceWidth": 1177,
+  "sourceHeight": 1336,
+  "authoringExport": {
+    "kernel": "lanczos3",
+    "sampledWidth": 313,
+    "sampledHeight": 355,
+    "scale": 0.2659303313508921,
+    "left": 23,
+    "top": 33,
+    "crop": false,
+    "maskApplied": false,
+    "commonBoardPositions": 25,
+    "alphaThresholdApplied": false,
+    "note": "Full source canvas uniformly sampled and padded; alpha preserved. Renderer unchanged."
+  },
+  "result": {
+    "width": 360,
+    "height": 408,
+    "visible": 24679,
+    "semiTransparent": 24556,
+    "fullyTransparent": 122201,
+    "forbiddenVisiblePixels": 0,
+    "inclusiveAlphaBounds": [
+      26,
+      59,
+      321,
+      357
+    ]
+  },
+  "sourceSha256": "68cd4d1e92553a355feede4dad7e3d4cacbbef402a6a3def5982d7ce3b04ede7"
+}

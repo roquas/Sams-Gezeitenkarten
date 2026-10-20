@@ -1,0 +1,143 @@
+[
+  {
+    "name": "chromium",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "dpr": 1,
+    "errors": [],
+    "geometry": [
+      {
+        "id": "land-coast.island.h2.tropical-bays.v1",
+        "cells": "B3 C3",
+        "rectangle": [
+          97,
+          141,
+          172,
+          102
+        ],
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "land-coast.island.h3.massive-volcano.v1",
+        "cells": "B3 C3 B2",
+        "rectangle": [
+          97,
+          73.33333333333334,
+          172,
+          192
+        ],
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "land-coast.archipelago.h3.bent-reefs.v1",
+        "cells": "B3 C3 C4",
+        "rectangle": [
+          96.33333333333331,
+          118.66666666666669,
+          228,
+          192
+        ],
+        "transform": null,
+        "clip": null
+      }
+    ]
+  },
+  {
+    "name": "webkit",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "dpr": 1,
+    "errors": [],
+    "geometry": [
+      {
+        "id": "land-coast.island.h2.tropical-bays.v1",
+        "cells": "B3 C3",
+        "rectangle": [
+          97,
+          141,
+          172,
+          102
+        ],
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "land-coast.island.h3.massive-volcano.v1",
+        "cells": "B3 C3 B2",
+        "rectangle": [
+          97,
+          73.33333333333334,
+          172,
+          192
+        ],
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "land-coast.archipelago.h3.bent-reefs.v1",
+        "cells": "B3 C3 C4",
+        "rectangle": [
+          96.33333333333331,
+          118.66666666666669,
+          228,
+          192
+        ],
+        "transform": null,
+        "clip": null
+      }
+    ]
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "dpr": 2,
+    "errors": [],
+    "geometry": [
+      {
+        "id": "land-coast.island.h2.tropical-bays.v1",
+        "cells": "B3 C3",
+        "rectangle": [
+          97,
+          141,
+          172,
+          102
+        ],
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "land-coast.island.h3.massive-volcano.v1",
+        "cells": "B3 C3 B2",
+        "rectangle": [
+          97,
+          73.33333333333334,
+          172,
+          192
+        ],
+        "transform": null,
+        "clip": null
+      },
+      {
+        "id": "land-coast.archipelago.h3.bent-reefs.v1",
+        "cells": "B3 C3 C4",
+        "rectangle": [
+          96.33333333333331,
+          118.66666666666669,
+          228,
+          192
+        ],
+        "transform": null,
+        "clip": null
+      }
+    ]
+  }
+]

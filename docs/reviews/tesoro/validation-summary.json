@@ -1,0 +1,95 @@
+{
+  "baseCommit": "86bba51a1405de55a189c037bf3365cec42cd33b",
+  "artisticStatus": "pending; user approval outstanding",
+  "technicalImageSha256": "3e2495530ecf8b0dc884313187c6e4018c24d1a4f9a17e375250424671ddcd5d",
+  "checks": {
+    "unit": {
+      "passed": 102,
+      "failed": 0
+    },
+    "puzzles": {
+      "unique": 4
+    },
+    "catalog": {
+      "assets": 20,
+      "backgrounds": 3,
+      "approvedPairs": 11
+    },
+    "imageRegressions": {
+      "passed": 13,
+      "note": "Geometry/alpha fixtures and integration checked; final bytes separately pass all-position export and full ZIP publication validator."
+    },
+    "exportRegressions": {
+      "passed": 3,
+      "finalTesoroMinPixelsPerCell": 15000,
+      "finalTesoroVisiblePixelsPerCell": [
+        42375,
+        65007,
+        42040,
+        32570
+      ]
+    },
+    "finalAllPositionPixelValidation": {
+      "anchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "A2",
+        "B2",
+        "C2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "A4",
+        "B4",
+        "C4"
+      ],
+      "outsidePixels": 0,
+      "crop": false,
+      "rotation": false
+    },
+    "browserIntegration": {
+      "passed": 32,
+      "engines": [
+        "Chromium desktop",
+        "Chromium mobile",
+        "WebKit desktop",
+        "WebKit mobile"
+      ]
+    },
+    "finalTesoroBrowserRegression": {
+      "passed": 4,
+      "includes": "Exact final PNG, complete occupied cells, normal/enlarged geometry, label toggle and all review positions"
+    },
+    "zipPublicationValidator": {
+      "status": "passed",
+      "files": 80,
+      "imagesByteIdentical": 20
+    },
+    "zipBrowserDeployment": {
+      "passed": 4,
+      "devices": [
+        "Desktop Chromium",
+        "Smartphone Chromium",
+        "iPhone WebKit",
+        "iPad WebKit"
+      ]
+    },
+    "fullLocalPackagingRegressionSuite": {
+      "status": "not_completed",
+      "note": "The full 27-case local run was interrupted and is not counted as passed. The final ZIP passed the unmodified publication validator and four browser deployment cases. The full CI packaging suite remains unchanged."
+    }
+  },
+  "visualReview": {
+    "status": "ready_for_user_review",
+    "observed": "Dense ship carpet with narrow seams, two-storey gateway at left, high timber platforms and under-platform rooms, rope bridges, snowy cliff/peak and partially occluded small lighthouse. Interior passage and far-side path partly hidden by perspective."
+  },
+  "preservation": {
+    "oldCatalogImagesUnchanged": 19,
+    "oldReviewRecordsUnchanged": 47,
+    "productionRuntimeChanged": false
+  },
+  "ci": "Full existing GitHub workflow runs separately on push; its result is not included in these local passing counts."
+}

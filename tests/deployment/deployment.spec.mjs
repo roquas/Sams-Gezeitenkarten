@@ -32,9 +32,10 @@ for(const id of ids)test(`packaged ${id}: data, graphics, clues, hint, route and
  for(const paragraph of data.presentation.intro)await expect(page.locator('#puzzleStory')).toContainText(paragraph);
  await expect(page.locator('#map .blocked-cell')).toHaveCount(data.logic.blocked.length);
  for(const blocked of data.logic.blocked)await expect(page.locator(`#map [data-id="${blocked}"]`)).toHaveClass(/blocked-cell/);
+ await expect(page.locator('#map [data-place-ring]')).toHaveCount(0);
  for(const [placeId,place] of Object.entries(data.logic.places)){
   if(place.kind==='island')await expect(page.locator('#map')).toContainText(data.presentation.places[placeId]);
-  else for(const cell of place.cells)await expect(page.locator(`#map [data-place-ring="${cell}"]`)).toHaveCount(2);
+  else for(const cell of place.cells)await expect(page.locator(`#map .island-label[data-label-cell="${cell}"]`)).toHaveCount(0);
  }
  for(const text of Object.values(data.presentation.clues))await expect(page.locator('#allClues')).toContainText(displayed(text));
  for(const clue of data.logic.clues){

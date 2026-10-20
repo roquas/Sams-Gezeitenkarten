@@ -1,0 +1,1026 @@
+[
+  {
+    "name": "chromium",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "dpr": 1,
+    "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+    "files": [
+      {
+        "key": "foam",
+        "assetSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b"
+      },
+      {
+        "key": "gulls",
+        "assetSha256": "5ea6df2c8396d82b249f9b2336e2ce56643375a0cffda5e467d08a617c2df33f"
+      },
+      {
+        "key": "dolphins",
+        "assetSha256": "089a5d2c6fab7b9b487d0fdb23740163987e9d95cba38d8f1438fd50d8eb06c5"
+      },
+      {
+        "key": "foam-flecks",
+        "assetSha256": "91915baf42d8f1a7712f3735c6c51633311a9512c663d312b17fb93d16e6f6ca"
+      },
+      {
+        "key": "current-arc",
+        "assetSha256": "30e7dd5fd164f17e940144dc9e95651acf457accb263164d096832fdb9a0c47f"
+      },
+      {
+        "key": "spray",
+        "assetSha256": "dabf581f2af9178751030670dd42a8d69bb4592c583638457ab24965f1da0de6"
+      },
+      {
+        "key": "foam-trail",
+        "assetSha256": "8fec13011b297882e4610da08e0ce1391b41d39d5801022d34e83dc6124eac00"
+      },
+      {
+        "key": "cross-ripples",
+        "assetSha256": "195102aa117db5829486f89f29c69bca5f53c80e2e72d8e24543e26b78be3a9a"
+      }
+    ],
+    "errors": [],
+    "geometry": [
+      {
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 563,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam.v1",
+            "rect": [
+              138,
+              73,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          },
+          {
+            "id": "sea-life.accent.h1.gulls.v2",
+            "rect": [
+              261,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          },
+          {
+            "id": "sea-life.accent.h1.foam-flecks.v1",
+            "rect": [
+              138,
+              209,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "gulls",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.gulls.v2",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "dolphins",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.dolphins.v2",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam-flecks",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam-flecks.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "current-arc",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.current-arc.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "spray",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.spray.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam-trail",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam-trail.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "cross-ripples",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.cross-ripples.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "webkit",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "dpr": 1,
+    "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+    "files": [
+      {
+        "key": "foam",
+        "assetSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b"
+      },
+      {
+        "key": "gulls",
+        "assetSha256": "5ea6df2c8396d82b249f9b2336e2ce56643375a0cffda5e467d08a617c2df33f"
+      },
+      {
+        "key": "dolphins",
+        "assetSha256": "089a5d2c6fab7b9b487d0fdb23740163987e9d95cba38d8f1438fd50d8eb06c5"
+      },
+      {
+        "key": "foam-flecks",
+        "assetSha256": "91915baf42d8f1a7712f3735c6c51633311a9512c663d312b17fb93d16e6f6ca"
+      },
+      {
+        "key": "current-arc",
+        "assetSha256": "30e7dd5fd164f17e940144dc9e95651acf457accb263164d096832fdb9a0c47f"
+      },
+      {
+        "key": "spray",
+        "assetSha256": "dabf581f2af9178751030670dd42a8d69bb4592c583638457ab24965f1da0de6"
+      },
+      {
+        "key": "foam-trail",
+        "assetSha256": "8fec13011b297882e4610da08e0ce1391b41d39d5801022d34e83dc6124eac00"
+      },
+      {
+        "key": "cross-ripples",
+        "assetSha256": "195102aa117db5829486f89f29c69bca5f53c80e2e72d8e24543e26b78be3a9a"
+      }
+    ],
+    "errors": [],
+    "geometry": [
+      {
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 563,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam.v1",
+            "rect": [
+              138,
+              73,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          },
+          {
+            "id": "sea-life.accent.h1.gulls.v2",
+            "rect": [
+              261,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          },
+          {
+            "id": "sea-life.accent.h1.foam-flecks.v1",
+            "rect": [
+              138,
+              209,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "gulls",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.gulls.v2",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "dolphins",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.dolphins.v2",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam-flecks",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam-flecks.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "current-arc",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.current-arc.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "spray",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.spray.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam-trail",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam-trail.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "cross-ripples",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.cross-ripples.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "dpr": 2,
+    "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+    "files": [
+      {
+        "key": "foam",
+        "assetSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b"
+      },
+      {
+        "key": "gulls",
+        "assetSha256": "5ea6df2c8396d82b249f9b2336e2ce56643375a0cffda5e467d08a617c2df33f"
+      },
+      {
+        "key": "dolphins",
+        "assetSha256": "089a5d2c6fab7b9b487d0fdb23740163987e9d95cba38d8f1438fd50d8eb06c5"
+      },
+      {
+        "key": "foam-flecks",
+        "assetSha256": "91915baf42d8f1a7712f3735c6c51633311a9512c663d312b17fb93d16e6f6ca"
+      },
+      {
+        "key": "current-arc",
+        "assetSha256": "30e7dd5fd164f17e940144dc9e95651acf457accb263164d096832fdb9a0c47f"
+      },
+      {
+        "key": "spray",
+        "assetSha256": "dabf581f2af9178751030670dd42a8d69bb4592c583638457ab24965f1da0de6"
+      },
+      {
+        "key": "foam-trail",
+        "assetSha256": "8fec13011b297882e4610da08e0ce1391b41d39d5801022d34e83dc6124eac00"
+      },
+      {
+        "key": "cross-ripples",
+        "assetSha256": "195102aa117db5829486f89f29c69bca5f53c80e2e72d8e24543e26b78be3a9a"
+      }
+    ],
+    "errors": [],
+    "geometry": [
+      {
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 350,
+        "scale": 0.6216696269982238,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam.v1",
+            "rect": [
+              138,
+              73,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          },
+          {
+            "id": "sea-life.accent.h1.gulls.v2",
+            "rect": [
+              261,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          },
+          {
+            "id": "sea-life.accent.h1.foam-flecks.v1",
+            "rect": [
+              138,
+              209,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "gulls",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.gulls.v2",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "dolphins",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.dolphins.v2",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam-flecks",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam-flecks.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "current-arc",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.current-arc.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "spray",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.spray.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam-trail",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam-trail.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "cross-ripples",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.cross-ripples.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "iphone",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "dpr": 2,
+    "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+    "files": [
+      {
+        "key": "foam",
+        "assetSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b"
+      },
+      {
+        "key": "gulls",
+        "assetSha256": "5ea6df2c8396d82b249f9b2336e2ce56643375a0cffda5e467d08a617c2df33f"
+      },
+      {
+        "key": "dolphins",
+        "assetSha256": "089a5d2c6fab7b9b487d0fdb23740163987e9d95cba38d8f1438fd50d8eb06c5"
+      },
+      {
+        "key": "foam-flecks",
+        "assetSha256": "91915baf42d8f1a7712f3735c6c51633311a9512c663d312b17fb93d16e6f6ca"
+      },
+      {
+        "key": "current-arc",
+        "assetSha256": "30e7dd5fd164f17e940144dc9e95651acf457accb263164d096832fdb9a0c47f"
+      },
+      {
+        "key": "spray",
+        "assetSha256": "dabf581f2af9178751030670dd42a8d69bb4592c583638457ab24965f1da0de6"
+      },
+      {
+        "key": "foam-trail",
+        "assetSha256": "8fec13011b297882e4610da08e0ce1391b41d39d5801022d34e83dc6124eac00"
+      },
+      {
+        "key": "cross-ripples",
+        "assetSha256": "195102aa117db5829486f89f29c69bca5f53c80e2e72d8e24543e26b78be3a9a"
+      }
+    ],
+    "errors": [],
+    "geometry": [
+      {
+        "viewBox": "-37 -44.5 563 473",
+        "cssWidth": 350,
+        "scale": 0.6216696269982238,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam.v1",
+            "rect": [
+              138,
+              73,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          },
+          {
+            "id": "sea-life.accent.h1.gulls.v2",
+            "rect": [
+              261,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          },
+          {
+            "id": "sea-life.accent.h1.foam-flecks.v1",
+            "rect": [
+              138,
+              209,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "gulls",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.gulls.v2",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "dolphins",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.dolphins.v2",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam-flecks",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam-flecks.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "current-arc",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.current-arc.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "spray",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.spray.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "foam-trail",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.foam-trail.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      },
+      {
+        "flavor": "cross-ripples",
+        "viewBox": "42 107 200 170",
+        "cssWidth": 200,
+        "scale": 1,
+        "blocked": 0,
+        "labels": 0,
+        "images": [
+          {
+            "id": "sea-life.accent.h1.cross-ripples.v1",
+            "rect": [
+              97,
+              141,
+              90,
+              102
+            ],
+            "transform": null,
+            "clip": null
+          }
+        ]
+      }
+    ]
+  }
+]

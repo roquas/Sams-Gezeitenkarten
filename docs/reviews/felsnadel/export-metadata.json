@@ -1,0 +1,32 @@
+{
+  "source": "felsnadel-generated-source.png",
+  "sourceWidth": 1177,
+  "sourceHeight": 1336,
+  "authoringExport": {
+    "kernel": "lanczos3",
+    "sampledWidth": 265,
+    "sampledHeight": 301,
+    "scale": 0.22514868309260833,
+    "left": 47,
+    "top": 57,
+    "crop": false,
+    "maskApplied": false,
+    "commonBoardPositions": 25,
+    "alphaThresholdApplied": false,
+    "note": "Full source canvas uniformly sampled and padded; alpha preserved. Renderer unchanged."
+  },
+  "result": {
+    "width": 360,
+    "height": 408,
+    "visible": 33860,
+    "semiTransparent": 33102,
+    "fullyTransparent": 113020,
+    "forbiddenVisiblePixels": 0,
+    "inclusiveAlphaBounds": [
+      58,
+      73,
+      309,
+      337
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+--- a/tests/reference/publication-archive.test.mjs
++++ b/tests/reference/publication-archive.test.mjs
+@@ -237,7 +237,14 @@
+  // Keep the existing packager as the source of deployment dependency discovery.
+  const files=JSON.parse(execFileSync('python3',['-c',script],{cwd:root,encoding:'utf8'}));
+  assert.ok(files.every(path=>!path.startsWith('archive/')&&!path.startsWith('scripts/')));
+- assert.deepEqual(files,archive.snapshots[0].files.map(f=>f.path));
++ // The frozen publication inventory remains unchanged. PR #65 adds the
++ // explicitly registered library and its fixed runtime modules to today's ZIP.
++ const library=JSON.parse(read('assets/catalog/library.json'));
++ const expected=new Set(archive.snapshots[0].files.map(f=>f.path));
++ for(const file of ['assets/catalog/library.json',...library.assets.map(a=>a.image.path),
++  ...library.backgrounds.map(b=>b.image),'src/assets/geometry.mjs','src/assets/legacy.mjs',
++  'src/assets/library.mjs','src/assets/polygons.mjs','src/ui/asset-layer.mjs'])expected.add(file);
++ assert.deepEqual(files,[...expected].sort());
+ });
+ 
+ test('the unchanged browser loader still resolves all four historical IDs through the original manifest',async()=>{

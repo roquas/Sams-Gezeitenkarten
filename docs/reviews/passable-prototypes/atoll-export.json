@@ -1,0 +1,33 @@
+{
+  "source": "atoll-source.png",
+  "sourceWidth": 1177,
+  "sourceHeight": 1336,
+  "authoringExport": {
+    "kernel": "lanczos3",
+    "sampledWidth": 247,
+    "sampledHeight": 280,
+    "scale": 0.20985556499575192,
+    "left": 56,
+    "top": 72,
+    "crop": false,
+    "maskApplied": false,
+    "commonBoardPositions": 25,
+    "alphaThresholdApplied": false,
+    "note": "Full source canvas uniformly sampled and padded; alpha preserved. Renderer unchanged."
+  },
+  "result": {
+    "width": 360,
+    "height": 408,
+    "visible": 29308,
+    "semiTransparent": 29102,
+    "fullyTransparent": 117572,
+    "forbiddenVisiblePixels": 0,
+    "inclusiveAlphaBounds": [
+      68,
+      75,
+      301,
+      344
+    ]
+  },
+  "sourceSha256": "c7fe52f4a17ed8dd8d3ef7928dcf58cf7579808c280bc99bf8be52cf037f1b14"
+}

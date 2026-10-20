@@ -1,4 +1,5 @@
 import {CHART_BOUNDS} from './chart-geometry.mjs';
+import {drawAssetPlacements} from './asset-layer.mjs';
 import {frameMode,drawSea,drawFrame} from './parchment-frame.mjs';
 import {hexCenter,hexVertices,placeLabelLayout,startLabelLayout} from './place-labels.mjs';
 import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
@@ -30,7 +31,10 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
  const el=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n};
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
- const mode=frameStyle||frameMode(window.location.search);
+ const requestedMode=frameStyle||frameMode(window.location.search);
+ // New production placements are reviewed against the delivered blue sea.
+ // Historical frame experiments use other water; keep that exception local.
+ const mode=puzzle.assetPlacements?.length&&!['final','quiet'].includes(requestedMode)?'final':requestedMode;
  if(svg.dataset.frameMode!==mode)svg.dataset.frameMode=mode;
  const showArt=document.getElementById("showChart").checked;
  const cached=staticCharts.get(svg);
@@ -54,8 +58,9 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
  const overlays=chartOverlays(puzzle.overlays);
  for(const o of overlays){
   const [cx,cy]=artCenter(o.cells);
-  objects.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,"data-art-cells":o.cells.join(" "),preserveAspectRatio:o.cells.length>2?"none":"xMidYMid meet","pointer-events":"none"}));
+  objects.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,"data-art-cells":o.cells.join(" "),"data-asset-id":o.assetId,"data-legacy-asset":"true",preserveAspectRatio:o.cells.length>2?"none":"xMidYMid meet","pointer-events":"none"}));
  }
+ if(puzzle.assetPlacements?.length)drawAssetPlacements(el,objects,puzzle.assetPlacements,puzzle.assetLibrary,byId);
  if(mode!=='legacy')art.append(drawFrame(el,mode));
  // Island labels use connected land geometry; Start follows its ship.
  const drawLabel=(layout,t,start=false)=>{
@@ -142,13 +147,6 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
   g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#d6c59a":"#ece3c1","stroke-width":"1.05","stroke-opacity":land?".62":".56",...(land?{"stroke-dasharray":"4 3"}:{}),"stroke-linejoin":"round","pointer-events":"all"}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
-  // Landmarken: wiedererkennbarer goldener Kartografenring statt zusätzlichem Emoji.
-  if(!land && Object.values(puzzle.places).some(place=>place.cells.includes(c.id))){
-    // Unregelmäßiger handgezeichneter Kartografenring, nicht anklickbar.
-    const ring=Array.from({length:33},(_,i)=>{const a=i*Math.PI/16;const rr=24+1.15*Math.sin(i*2.4)+.7*Math.cos(i*1.3);return `${i?'L':'M'} ${(x+rr*Math.cos(a)).toFixed(1)} ${(y+rr*Math.sin(a)).toFixed(1)}`}).join(' ');
-    g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#f1db9d","stroke-width":"3.2",opacity:".43","stroke-linecap":"round","stroke-linejoin":"round"}));
-    g.append(el("path",{transform:`translate(0 ${y*(1-Math.SQRT1_2)}) scale(1 ${Math.SQRT1_2})`,"data-place-ring":c.id,d:ring,fill:"none",stroke:"#a57739","stroke-width":"1.35",opacity:".79","stroke-linecap":"round","stroke-linejoin":"round"}));
-  }
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
   // Hex vertices lie at 30°, 90°, ...; edge midpoints at 0°, 60°, ...
   if(!land && Number.isInteger(state.layer) && state.layer>=1 && state.layer<=puzzle.steps){

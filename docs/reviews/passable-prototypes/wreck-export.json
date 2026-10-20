@@ -1,0 +1,34 @@
+{
+  "source": "wreck-source.png",
+  "sourceWidth": 1177,
+  "sourceHeight": 1336,
+  "authoringExport": {
+    "kernel": "lanczos3",
+    "sampledWidth": 218,
+    "sampledHeight": 247,
+    "scale": 0.18521665250637212,
+    "left": 43,
+    "top": 91,
+    "crop": false,
+    "maskApplied": false,
+    "commonBoardPositions": 25,
+    "alphaThresholdApplied": false,
+    "note": "Full source canvas uniformly sampled and padded; alpha preserved. Renderer unchanged.",
+    "compositionShiftLeftPixels": 28
+  },
+  "result": {
+    "width": 360,
+    "height": 408,
+    "visible": 23706,
+    "semiTransparent": 23474,
+    "fullyTransparent": 123174,
+    "forbiddenVisiblePixels": 0,
+    "inclusiveAlphaBounds": [
+      43,
+      92,
+      255,
+      333
+    ]
+  },
+  "sourceSha256": "4942699fd03a70f1a12ca01dcbb2301edb2a9adf18a10ebbb13df7a3e8a29a59"
+}

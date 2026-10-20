@@ -1,0 +1,6 @@
+{
+  "mode": "built-in image_gen local edit",
+  "input": "Fifth generation, material-corrected aerial layout",
+  "transparentBackground": true,
+  "prompt": "Precise tiny local correction to this painting: at the LOWER RIGHT entrance tavern, restore the essential ROPE LADDER. Replace the UPPER HALF of the stone steps immediately below the tavern's arched entry with a short clearly visible hanging rope ladder with rope side rails and uneven wooden rungs, descending to the lower stone landing and the nearest ship deck. The lower compact steep stone steps can remain. The ladder is the only way to reach the two-storey gateway tavern; the rear suspension bridge carries the route through the building toward town.\nChange only this small entry detail. Keep EVERYTHING ELSE unchanged: exact full canvas, exact four-lobed silhouette and both southern tips/notch, current steep aerial perspective, every ship hull position and chaotic orientations, furled irregular sail bundles, cool grey city timber, warm varied hulls, sparse under-platform rooms, mountain snow/path and partly occluded lighthouse upper left. Keep all structures complete with natural ends, no clipping. Preserve true transparent background. No text, symbols or border. Same high resolution."
+}

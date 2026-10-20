@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assetbibliothek – technische Abnahme</title>
+<base href="../">
+<link rel="stylesheet" href="dev/asset-library.css">
+<main>
+ <h1>Assetbibliothek: technische Testansicht</h1>
+ <p>Nur Entwicklung und visuelle Abnahme. Violette Symbole sind technische Platzhalter, keine endgültigen Illustrationen. Transparenz ist keine visuelle Freigabe.</p>
+ <p><a href="dev/multihex-prototypes.html?asset=tesoro#tesoro">Mehrhex-Galerie: Tesoro begutachten, freigegebene Motive und historische Entwürfe</a></p>
+ <label>Meereshintergrund <select id="background"></select></label>
+ <label><input type="checkbox" id="hexes" checked> Hexgrenzen anzeigen</label>
+ <label><input type="checkbox" id="footprints" checked> Erlaubte Grafikfläche anzeigen (grün)</label>
+ <p id="status" role="status"></p>
+ <section id="minigrafiken" aria-labelledby="flavorHeading">
+  <h2 id="flavorHeading">Zurückgestellte Wasserillustrationen · Archiv</h2>
+  <p><strong>Alle atmosphärischen Illustrationen sind vorerst für die Produktion gesperrt.</strong> Die sanfte Schaumströmung bleibt künstlerisch freigegeben; Seevögel, Delfine sowie weitere Wasserentwürfe bleiben ungefreigegeben. Diese Ansichten dokumentieren nur die abgeschlossene Gestaltungsrunde. <a href="https://github.com/roquas/Sams-Gezeitenkarten/issues/70">Zurückstellung in Issue #70</a>. <a href="docs/ASSET-CONSOLIDATION-65.md">Einordnung, Freigaben und Prüfbericht</a> · <a href="docs/ASSET-INVENTORY-65.md">vollständige Assetübersicht</a>.</p>
+  <p>Die Einzelansichten zeigen alle acht freien Motive bei 1:1-Kartengröße mit Nachbarmeer. Die fest hinterlegten Beispielkarten bleiben als historische Gestaltungstests erhalten. Eine produktive Platzierung oder Flavor-Funktion wird hier nicht umgesetzt.</p>
+  <label>Beispielkarte <select id="flavorMapPage"></select></label>
+  <svg id="flavorMap" role="img" aria-label="Sparsame Beispielkarte mit höchstens drei freien Wasserillustrationen"></svg>
+  <div id="flavorComparison"></div>
+  <label>Freies Kartenmotiv vergrößern <select id="flavorAsset"></select></label>
+  <svg id="flavorDetail" role="img" aria-label="Freies Wasserillustrationsmotiv vergrößert auf sea-blue-01"></svg>
+  <p>Das feste Bildrechteck bleibt 90×102 Karteneinheiten (360×408 RGBA PNG). Nur die gesamte Szene wird vergrößert. Die kleinen Motive liegen absichtlich dezentral; sämtliche Alpharänder bleiben innerhalb der zulässigen Sicherheitsflächen.</p>
+  <h3>Sechs freigegebene befahrbare Ortsmotive</h3>
+  <p>Fässer, Boje, Ruderboot, Kiste, Flaschenpost sowie Treibholz und Seetang sind befahrbare Orte. Ob sie in einem Rätselhinweis verwendet werden, entscheidet die Karteninstanz beziehungsweise der Rätselgenerator. Sie verwenden die bestehende Rolle geographic und passable=true. Es gibt keine zusätzliche siebte Ortsfreigabe. Keine permanenten Ortslabels oder Ringe.</p>
+  <div id="smallPlacesComparison"></div>
+  <details><summary>Historische Tiere und zurückgestellte Schildkröte</summary>
+  <p>Die früheren dominanten <a href="assets/library/flavor-gulls-v1.png">Seevögel v1</a> und <a href="assets/library/flavor-dolphins-v1.png">Delfine v1</a> sind nicht freigegeben und bleiben nur historisch erhalten. Die <a href="assets/library/flavor-turtle-v1.png">Schildkröte</a> ist für einen möglichen späteren Einsatz als bewegliches Objekt zurückgestellt und gehört nicht zu den aktuellen statischen Kartenmotiven.</p>
+  </details>
+ </section>
+ <section id="passable-prototypes" aria-labelledby="prototypeHeading">
+  <h2 id="prototypeHeading">Befahrbare Orte – drei freigegebene Illustrationen</h2>
+  <p>Leuchtturm, aufgebrochenes Atoll und Wrack sind künstlerisch für <strong>sea-blue-01 freigegeben (approved)</strong>, einschließlich des etwas felsigen Atolls. Alle drei an B3 mit Nachbarfeldern und identischem Spielmaßstab. Andere Hintergründe bleiben pending. Hexgrenzen oben schaltbar.</p>
+  <label><input type="checkbox" id="prototypeMarks"> Echte Stundenzeichen und Route anzeigen (auch im Verwendungsvergleich)</label>
+  <input type="checkbox" id="showChart" checked hidden>
+  <div id="prototypeComparison"></div>
+  <p>Beispielzustand aus dem echten Kartenrenderer: Stunden 1–6 mit ✓ / ? / ×, aktive Stunde 2 und Route A3–B3–C3. Permanente Ortsringe werden nicht angezeigt. Die Überdeckung der Illustrationen durch Spielmarkierungen ist akzeptiert.</p>
+ </section>
+ <section id="usage-previews" aria-labelledby="usageHeading">
+  <h2 id="usageHeading">Verwendung im Rätsel vergleichen</h2>
+  <p>Benannte unbefahrbare Orte erhalten weiterhin eine Pergamentrolle mit Ortsnamen. Befahrbare Orte und freie Kartenmotive zeigen nur die Illustration, ohne Ortsring und ohne Pergamentschild. Orte können logische Hinweisreferenzen sein; freie Kartenmotive erhalten niemals einen logischen Ort.</p>
+  <p>Die bestehenden technischen Rollen bleiben erhalten. Befahrbare Orte sind geographic mit passable=true, freie Kartenmotive sind decoration ohne eigenes Befahrbarkeitsfeld und ohne Regelwirkung. Die freien Motive in dieser Entwicklungsansicht sind zurückgestellte Prototypen und produktiv gesperrt. Alle Ansichten verwenden den echten Kartenrenderer auf sea-blue-01; die Schalter für Hexgrenzen und Spielmarkierungen gelten auch hier.</p>
+  <div id="usageComparison">
+   <figure>
+    <figcaption>Benannter unbefahrbarer Ort</figcaption>
+    <label>Asset <select id="usageAsset-named-blocked"></select></label>
+    <svg data-usage="named-blocked" role="img" aria-label="Benannter unbefahrbarer Ort mit Pergament-Ortsname"></svg>
+    <p id="usageStatus-named-blocked"></p>
+   </figure>
+   <figure>
+    <figcaption>Benannter befahrbarer Ort</figcaption>
+    <label>Asset <select id="usageAsset-named-passable"></select></label>
+    <svg data-usage="named-passable" role="img" aria-label="Benannter befahrbarer Ort nur mit Illustration, ohne Ortsring und Pergamentschild"></svg>
+    <p id="usageStatus-named-passable"></p>
+   </figure>
+   <figure>
+    <figcaption>Zurückgestelltes Kartenmotiv – nur Archiv</figcaption>
+    <label>Asset <select id="usageAsset-flavor"></select></label>
+    <svg data-usage="flavor" role="img" aria-label="Flavor-Illustration ohne Ortsring und Pergamentschild"></svg>
+    <p id="usageStatus-flavor"></p>
+   </figure>
+  </div>
+ </section>
+ <svg id="gallery" viewBox="-37 -44.5 563 473" role="img" aria-label="Einzelhex, Mehrhex-Insel, befahrbarer Leuchtturm und Dekoration auf einer Testkarte"></svg>
+ <div id="inventory"></div>
+ <details id="allAssets"><summary>Vollständige Katalogübersicht: Rollen, Dateien, Freigaben und produktive Verwendbarkeit</summary><p id="fullInventoryStatus"></p><div id="fullInventory"></div></details>
+ <h2>Weitere Prüfpositionen</h2>
+ <label>Asset zur Einzelprüfung <select id="reviewAsset"></select></label>
+ <p>Dieselben Grafiken an Rand- und Innenpositionen für gerade und ungerade Zeilen, soweit die Form sie erlaubt. Grün zeigt die tatsächliche Grafikfläche einschließlich Randbegrenzung. Die Bilddateien werden nicht beschnitten. Alle Ansichten verwenden dieselben Maße wie die Spielkarte.</p>
+ <div id="positions"></div>
+ <p id="error" role="alert"></p>
+</main>
+<script type="module" src="dev/asset-library.mjs"></script>
+</html>

@@ -1,0 +1,24 @@
+{
+  "approvedImages": [
+    {
+      "id": "land-coast.island.h2.tropical-bays.v1",
+      "image": "assets/library/tropical-bays-h2-v1.png",
+      "sha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+      "byteIdenticalTo": "e74fd9c"
+    },
+    {
+      "id": "land-coast.island.h3.massive-volcano.v1",
+      "image": "assets/library/massive-volcano-h3-v1.png",
+      "sha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+      "byteIdenticalTo": "e74fd9c"
+    }
+  ],
+  "unchangedTrees": [
+    "src",
+    "puzzles",
+    "assets/seekarte",
+    "assets/ui"
+  ],
+  "baseline": "e74fd9c",
+  "permanentPlaceRingRemovalPreserved": true
+}

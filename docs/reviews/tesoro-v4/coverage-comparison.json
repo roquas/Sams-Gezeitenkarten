@@ -1,0 +1,71 @@
+{
+  "alphaThreshold": 16,
+  "cellAreas": [
+    89216,
+    89216,
+    89216,
+    89216
+  ],
+  "versions": {
+    "v1": {
+      "visiblePixels": 181992,
+      "visiblePixelsPerCell": [
+        42375,
+        65007,
+        42040,
+        32570
+      ],
+      "fractionPerCell": [
+        0.475,
+        0.7286,
+        0.4712,
+        0.3651
+      ]
+    },
+    "v2": {
+      "visiblePixels": 200770,
+      "visiblePixelsPerCell": [
+        39686,
+        56034,
+        56020,
+        49030
+      ],
+      "fractionPerCell": [
+        0.4448,
+        0.6281,
+        0.6279,
+        0.5496
+      ]
+    },
+    "v3": {
+      "visiblePixels": 243862,
+      "visiblePixelsPerCell": [
+        50349,
+        57433,
+        71778,
+        64302
+      ],
+      "fractionPerCell": [
+        0.5643,
+        0.6438,
+        0.8045,
+        0.7207
+      ]
+    },
+    "v4": {
+      "visiblePixels": 230283,
+      "visiblePixelsPerCell": [
+        42820,
+        55246,
+        70681,
+        61536
+      ],
+      "fractionPerCell": [
+        0.48,
+        0.6192,
+        0.7922,
+        0.6897
+      ]
+    }
+  }
+}

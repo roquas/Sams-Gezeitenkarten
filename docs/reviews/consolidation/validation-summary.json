@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-20",
+  "branch": "feature/asset-library-integration",
+  "baseline": "ad575f727ad530fe5ec80faa2adbe965bbca612f",
+  "noArtChanges": true,
+  "artApprovalsPreserved": 19,
+  "reviewRecordsPreserved": 110,
+  "productivePlaces": 18,
+  "tests": [
+    {
+      "check": "node --test tests/reference/*.test.mjs",
+      "passed": 112,
+      "failed": 0
+    },
+    {
+      "check": "node scripts/validate-puzzles.mjs",
+      "uniquePuzzles": 4,
+      "failed": 0
+    },
+    {
+      "check": "node scripts/validate-assets.mjs",
+      "assets": 40,
+      "backgrounds": 3,
+      "exactApprovals": 19
+    },
+    {
+      "check": "python3 scripts/check-library-images.py",
+      "images": 40,
+      "result": "passed"
+    },
+    {
+      "check": "python3 tests/test_library_images.py",
+      "passed": 13,
+      "failed": 0,
+      "allLegalAnchors": true,
+      "seconds": 550.783
+    },
+    {
+      "check": "python3 tests/test_multihex_export.py",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "check": "python3 tests/test_water_finale.py",
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "check": "python3 tests/test_package.py",
+      "passed": 28,
+      "failed": 0,
+      "seconds": 831.456
+    },
+    {
+      "check": "gallery browser tests; Chromium/WebKit desktop/mobile",
+      "passed": 40,
+      "failed": 0
+    },
+    {
+      "check": "affected gallery tests after caption layout correction",
+      "passed": 8,
+      "failed": 0
+    },
+    {
+      "check": "actual ZIP browser tests; desktop/smartphone/iPhone/iPad",
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "check": "browser inventory capture; Chromium/WebKit desktop/mobile",
+      "configurations": 4,
+      "entriesEach": 40,
+      "enabledEach": 18,
+      "browserErrors": 0
+    },
+    {
+      "check": "alpha normalizer self-test; sea/frames contract; developer HTTP no-cache self-test",
+      "result": "passed",
+      "localSocketPermissionRetry": true
+    },
+    {
+      "check": "previous Chromium 820px scroll flake; unchanged targeted local rerun",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "check": "main archive tests with prepared exact closure integration patch in temporary directory",
+      "passed": 21,
+      "failed": 0,
+      "mainCommit": "64cd60065471daaa76281ef096b2f188e3165ea1",
+      "appliedToPrBranch": false
+    }
+  ],
+  "remainingIntegrationBlocker": "main-only publication archive test expects old ZIP closure; reviewed exact union patch prepared; no main merge or branch rewrite performed",
+  "ciStatusLocation": "PR description with final pushed commit and workflow link"
+}

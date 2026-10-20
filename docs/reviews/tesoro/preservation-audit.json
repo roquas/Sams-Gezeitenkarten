@@ -1,0 +1,124 @@
+{
+  "baseCommit": "86bba51a1405de55a189c037bf3365cec42cd33b",
+  "unchangedImages": [
+    {
+      "path": "assets/library/technical-single.png",
+      "sha256": "a12180babf645da4cd91efd15146324af474c6bdf7308a6c245b6c507cfe6923",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/technical-double.png",
+      "sha256": "a818f0e6670097fd54fb7c30b5101c770795f6312731af815f80b7a7db347be8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/technical-lighthouse.png",
+      "sha256": "b84d1a3191409c40c6e5ee7b86a1f4f6d634ff167a26db58d9571aa54e7a6470",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/technical-decoration.png",
+      "sha256": "a8ffb6c11467331652a2da413dd01187e7de5fbf9a090b6c1dbef4a6a96f12ef",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/basalt-spire-v1.png",
+      "sha256": "d68f277f4b6bec2b4950a6341f1fac7a0360abe3d638065b047fc5c39ca78ae0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/basalt-spire-water-v1.png",
+      "sha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/lighthouse-offcenter-v1.png",
+      "sha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/atoll-broken-v1.png",
+      "sha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/wreck-offcenter-v1.png",
+      "sha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/tropical-bays-h2-v1.png",
+      "sha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/massive-volcano-h3-v1.png",
+      "sha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/bent-reefs-h3-v1.png",
+      "sha256": "98918ab4ad5d584d3c68b0b26a548e6f458f599f54cab289df7689a69d2c2436",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/sand-reefs-h3-v2.png",
+      "sha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/south-harbor-h3-v1.png",
+      "sha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/smuggler-cove-h3-v1.png",
+      "sha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/long-sand-h4-v1.png",
+      "sha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/crab-claw-h4-v1.png",
+      "sha256": "f1d1d7c237820b89306cc40d7d54e7ca8570ba1b9311c3ccd9fb3441d9e5d81e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/jungle-temple-h4-v1.png",
+      "sha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254",
+      "unchanged": true
+    },
+    {
+      "path": "assets/library/crab-claw-h4-v2.png",
+      "sha256": "fb419e1eed3f97cd6a30db2246b02b6dff4f8227548aacc9f00a556a4fb76d95",
+      "unchanged": true
+    }
+  ],
+  "allPreviousReviewRecordsUnchanged": true,
+  "previousReviewCount": 47,
+  "approvedPairs": 11,
+  "newTesoroReviews": [
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v1",
+      "backgroundId": "sea-blue-01",
+      "status": "pending",
+      "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v1",
+      "backgroundId": "legacy-parchment-sea",
+      "status": "pending",
+      "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v1",
+      "backgroundId": "prototype-sea",
+      "status": "pending",
+      "notes": "Erster Tesoro-Vierhex-Prototyp nach Audio-ASR und ergänzter Erzählerreferenz. Alle vier Zellen unbefahrbar. Technisch geprüft bedeutet keine künstlerische Freigabe; kein Freigabe-Hash gesetzt. Siehe docs/TESORO-PROTOTYPE-65.md."
+    }
+  ],
+  "changedProductRuntimePaths": []
+}

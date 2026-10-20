@@ -1,10 +1,16 @@
 name: Diagnose WebKit regressions
 on:
   workflow_dispatch:
+    inputs:
+      actionability:
+        description: Compare unchanged selection assertions and frame timing on Linux WebKit
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   diagnose:
+    if: ${{ !inputs.actionability }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,4 +32,32 @@ jobs:
             webkit-smoke-results/
             webkit-viewport-results/
           if-no-files-found: ignore
+          retention-days: 3
+  actionability:
+    if: ${{ inputs.actionability }}
+    strategy:
+      fail-fast: false
+      matrix:
+        order: [dpr2-first, dpr1-first]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps webkit
+      - if: ${{ matrix.order == 'dpr2-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs warm-browser
+      - if: ${{ matrix.order == 'dpr1-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs warm-dpr1
+      - if: ${{ always() && matrix.order == 'dpr2-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs warm-dpr1
+      - if: ${{ always() && matrix.order == 'dpr1-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs warm-browser
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: actionability-${{ matrix.order }}
+          path: actionability-results/
+          if-no-files-found: error
           retention-days: 3

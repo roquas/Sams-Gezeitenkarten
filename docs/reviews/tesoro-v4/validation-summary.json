@@ -1,0 +1,171 @@
+{
+  "baseCommit": "71c218c5b867ad2447ba1e8f2633e18d5fafe9f0",
+  "artisticStatus": "pending; no approval hashes",
+  "technicalImageSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+  "mode": "built-in image_gen precise-object-edit",
+  "prompt": "docs/reviews/tesoro-v4/generation-prompt.json",
+  "checks": {
+    "unit": {
+      "passed": 105,
+      "failed": 0
+    },
+    "puzzles": {
+      "unique": 4
+    },
+    "catalog": {
+      "assets": 23,
+      "backgrounds": 3,
+      "approvedPairs": 11
+    },
+    "exportRegressions": {
+      "passed": 5,
+      "historicalV3DensityTestPreserved": true,
+      "v4MinimumVisiblePixelsPerCell": 35000,
+      "v4NoMaximalLowerCellCoverageTarget": true
+    },
+    "strictFinalPixelValidation": {
+      "anchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "A2",
+        "B2",
+        "C2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "A4",
+        "B4",
+        "C4"
+      ],
+      "outsidePixels": 0,
+      "crop": false,
+      "rotation": false
+    },
+    "sourceCanvasEdges": {
+      "noOpaqueImageCutoff": true
+    },
+    "finalGalleryBrowserRegressions": {
+      "passed": 4,
+      "engines": [
+        "Chromium desktop",
+        "Chromium mobile",
+        "WebKit desktop",
+        "WebKit mobile"
+      ]
+    },
+    "visualCapture": {
+      "imageSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+      "engines": [
+        "Chromium desktop",
+        "WebKit desktop",
+        "Chromium smartphone/DPR2"
+      ]
+    },
+    "zipPublicationValidator": {
+      "passed": true,
+      "files": 83,
+      "catalogImagesByteIdentical": 23
+    },
+    "zipBrowserDeployment": {
+      "passed": 4,
+      "devices": [
+        "Desktop Chromium",
+        "Smartphone Chromium",
+        "iPhone WebKit",
+        "iPad WebKit"
+      ]
+    },
+    "fullImageFixtureSuite": {
+      "rerun": false,
+      "note": "Final v4 validated independently at all 14 anchors and by the full publication validator; all prior image bytes unchanged. Earlier full fixture suite is not counted again."
+    },
+    "fullPackagingRegressionSuite": {
+      "rerun": false,
+      "note": "Full 27-case packaging suite not claimed; actual final ZIP validation and four deployment cases completed."
+    },
+    "githubUnitDependency": {
+      "status": "known separate open issue; no workflow changes",
+      "reason": "Pillow missing in merged PR unit CI; prepared workflow patch needs unavailable OAuth workflow scope",
+      "patch": "docs/reviews/tesoro-v2/unit-ci-pillow.patch"
+    }
+  },
+  "coverage": {
+    "alphaThreshold": 16,
+    "cellAreas": [
+      89216,
+      89216,
+      89216,
+      89216
+    ],
+    "versions": {
+      "v1": {
+        "visiblePixels": 181992,
+        "visiblePixelsPerCell": [
+          42375,
+          65007,
+          42040,
+          32570
+        ],
+        "fractionPerCell": [
+          0.475,
+          0.7286,
+          0.4712,
+          0.3651
+        ]
+      },
+      "v2": {
+        "visiblePixels": 200770,
+        "visiblePixelsPerCell": [
+          39686,
+          56034,
+          56020,
+          49030
+        ],
+        "fractionPerCell": [
+          0.4448,
+          0.6281,
+          0.6279,
+          0.5496
+        ]
+      },
+      "v3": {
+        "visiblePixels": 243862,
+        "visiblePixelsPerCell": [
+          50349,
+          57433,
+          71778,
+          64302
+        ],
+        "fractionPerCell": [
+          0.5643,
+          0.6438,
+          0.8045,
+          0.7207
+        ]
+      },
+      "v4": {
+        "visiblePixels": 230283,
+        "visiblePixelsPerCell": [
+          42820,
+          55246,
+          70681,
+          61536
+        ],
+        "fractionPerCell": [
+          0.48,
+          0.6192,
+          0.7922,
+          0.6897
+        ]
+      }
+    }
+  },
+  "visualReview": {
+    "status": "ready_for_user_review",
+    "observed": "Larger upper-left lantern/stone shaft peeks from behind mountain; staggered perimeter hulls and breathing gaps create a less angular and less strictly field-filling ship outline. Two-storey SE gateway and rope ladder retained.",
+    "limits": "Natural silhouette takes precedence over earlier maximal-coverage target; all four cells remain blocked regardless of visible water gaps."
+  }
+}

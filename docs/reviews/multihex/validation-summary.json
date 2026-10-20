@@ -1,0 +1,41 @@
+{
+  "unit": {
+    "passed": 93
+  },
+  "puzzles": {
+    "uniqueSolutions": [
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "catalog": {
+    "assets": 12,
+    "backgrounds": 3,
+    "existingApprovedPairs": 4,
+    "newPendingPairs": 9
+  },
+  "pixelRegression": {
+    "passed": 13,
+    "newAssetValidAnchors": 50,
+    "outsideVisiblePixels": 0
+  },
+  "exportAndCellCoverage": {
+    "passed": 2
+  },
+  "chromiumGallery": {
+    "passed": 16
+  },
+  "webkitGallery": {
+    "passed": 16
+  },
+  "zipAssetDeployment": {
+    "passed": 4
+  },
+  "productionBasePreserved": "49f8f28",
+  "packageRegression": {
+    "passed": 27
+  },
+  "ci": "Full existing GitHub Actions matrix to be verified after push; see PR #65 checks"
+}

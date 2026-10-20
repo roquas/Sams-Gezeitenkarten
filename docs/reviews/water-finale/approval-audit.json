@@ -1,0 +1,79 @@
+{
+  "baseline": "70487e9940da5a7ce8d657e5e736a279bd044f7a",
+  "explicitPlaceApprovals": 6,
+  "explicitFreeMotifApprovals": 1,
+  "noSeventhPlaceInferred": true,
+  "rows": [
+    {
+      "id": "sea-life.accent.h1.barrels.v1",
+      "image": "assets/library/flavor-barrels-v1.png",
+      "assetSha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "byteIdenticalToBaseline": true,
+      "newRole": "geographic",
+      "passable": true,
+      "explicitUserApproval": true
+    },
+    {
+      "id": "sea-life.accent.h1.buoy.v1",
+      "image": "assets/library/flavor-buoy-v1.png",
+      "assetSha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "byteIdenticalToBaseline": true,
+      "newRole": "geographic",
+      "passable": true,
+      "explicitUserApproval": true
+    },
+    {
+      "id": "sea-life.accent.h1.rowboat.v1",
+      "image": "assets/library/flavor-rowboat-v1.png",
+      "assetSha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "byteIdenticalToBaseline": true,
+      "newRole": "geographic",
+      "passable": true,
+      "explicitUserApproval": true
+    },
+    {
+      "id": "sea-life.accent.h1.crate.v1",
+      "image": "assets/library/flavor-crate-v1.png",
+      "assetSha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "byteIdenticalToBaseline": true,
+      "newRole": "geographic",
+      "passable": true,
+      "explicitUserApproval": true
+    },
+    {
+      "id": "sea-life.accent.h1.bottle.v1",
+      "image": "assets/library/flavor-bottle-v1.png",
+      "assetSha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "byteIdenticalToBaseline": true,
+      "newRole": "geographic",
+      "passable": true,
+      "explicitUserApproval": true
+    },
+    {
+      "id": "sea-life.accent.h1.driftwood.v1",
+      "image": "assets/library/flavor-driftwood-v1.png",
+      "assetSha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "byteIdenticalToBaseline": true,
+      "newRole": "geographic",
+      "passable": true,
+      "explicitUserApproval": true
+    },
+    {
+      "id": "sea-life.accent.h1.foam.v1",
+      "image": "assets/library/flavor-foam-v1.png",
+      "assetSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "byteIdenticalToBaseline": true,
+      "newRole": "decoration",
+      "passable": null,
+      "explicitUserApproval": true
+    }
+  ],
+  "previousApprovedPairsPreserved": 12
+}

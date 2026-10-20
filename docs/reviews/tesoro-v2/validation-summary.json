@@ -1,0 +1,139 @@
+{
+  "baseCommit": "5a8be54677ced0a620392912ce057f2ee395376c",
+  "artisticStatus": "pending; no user approval and no approval hashes",
+  "selectedGeneration": 4,
+  "rejectedGeneration": {
+    "number": 5,
+    "reason": "Uncut export became smaller; upper-left outer coverage fell below v1. No test weakened."
+  },
+  "technicalImageSha256": "9715a2c1d4d7e3b8d062c5c645d06966e93996f7ca6c7789d5eeca3500d9ea22",
+  "checks": {
+    "unit": {
+      "passed": 103,
+      "failed": 0
+    },
+    "puzzles": {
+      "unique": 4
+    },
+    "catalog": {
+      "assets": 21,
+      "backgrounds": 3,
+      "approvedPairs": 11
+    },
+    "exportRegressions": {
+      "passed": 4,
+      "minimumVisiblePixelsPerCell": 35000
+    },
+    "strictFinalPixelValidation": {
+      "anchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "A2",
+        "B2",
+        "C2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "A4",
+        "B4",
+        "C4"
+      ],
+      "outsidePixels": 0,
+      "crop": false,
+      "rotation": false
+    },
+    "finalGalleryBrowserRegressions": {
+      "passed": 4,
+      "engines": [
+        "Chromium desktop",
+        "Chromium mobile",
+        "WebKit desktop",
+        "WebKit mobile"
+      ]
+    },
+    "visualBrowserCapture": {
+      "engines": [
+        "Chromium desktop",
+        "WebKit desktop",
+        "Chromium smartphone/DPR2"
+      ],
+      "source": "scripts/capture-tesoro.mjs",
+      "imageSha256": "9715a2c1d4d7e3b8d062c5c645d06966e93996f7ca6c7789d5eeca3500d9ea22"
+    },
+    "zipPublicationValidator": {
+      "passed": true,
+      "files": 81,
+      "catalogImagesByteIdentical": 21
+    },
+    "fullImageFixtureSuite": {
+      "rerun": false,
+      "note": "Final new PNG checked independently at all 14 anchors by exporter; existing image bytes unchanged; full publication validator completed. The earlier 13 fixture tests are not counted again."
+    },
+    "fullPackagingRegressionSuite": {
+      "rerun": false,
+      "note": "Full 27-case packaging regression not claimed; actual final ZIP publication validation completed."
+    },
+    "zipBrowserDeployment": {
+      "passed": 4,
+      "devices": [
+        "Desktop Chromium",
+        "Smartphone Chromium",
+        "iPhone WebKit",
+        "iPad WebKit"
+      ]
+    },
+    "githubUnitDependency": {
+      "status": "open; workflow fix not applied",
+      "previousFailure": "ModuleNotFoundError: No module named 'PIL'",
+      "pushBlock": "OAuth App missing workflow scope; art-only push retained",
+      "preparedPatch": "docs/reviews/tesoro-v2/unit-ci-pillow.patch"
+    }
+  },
+  "coverage": {
+    "alphaThreshold": 16,
+    "zones": {
+      "upperLeft": "x<310, y<210",
+      "lowerLeft": "x<440, y>400",
+      "lowerRight": "x>590, y>400"
+    },
+    "versions": {
+      "v1": {
+        "visiblePixels": 181992,
+        "visiblePixelsPerCell": [
+          42375,
+          65007,
+          42040,
+          32570
+        ],
+        "outerZones": {
+          "upperLeft": 12785,
+          "lowerLeft": 16334,
+          "lowerRight": 11645
+        },
+        "illustratedFractionOfLocalUnion": 0.51
+      },
+      "v2": {
+        "visiblePixels": 200770,
+        "visiblePixelsPerCell": [
+          39686,
+          56034,
+          56020,
+          49030
+        ],
+        "outerZones": {
+          "upperLeft": 13394,
+          "lowerLeft": 25890,
+          "lowerRight": 21373
+        },
+        "illustratedFractionOfLocalUnion": 0.5626
+      }
+    }
+  },
+  "limitations": [
+    "Not a full edge-to-edge painting of the four cells; artistic review remains open.",
+    "Audio-ASR and narrator supplement stay distinct; no new direct listening claim."
+  ]
+}

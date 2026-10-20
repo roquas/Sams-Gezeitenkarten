@@ -8,8 +8,8 @@ export function validateManifest(value){
  if(new Set(ids).size!==ids.length||!ids.includes(value.defaultId))throw new PuzzleError(['manifest: doppelte IDs oder fehlendes Standardrätsel']);
  return value;
 }
-export function createPuzzleLoader({manifestUrl=new URL('../../puzzles/manifest.json',import.meta.url),fetcher=globalThis.fetch}={}){
- let manifest;
+export function createPuzzleLoader({manifestUrl=new URL('../../puzzles/manifest.json',import.meta.url),assetLibraryUrl=new URL('../assets/catalog/library.json',manifestUrl),fetcher=globalThis.fetch}={}){
+ let manifest,assetLibrary;
  async function json(url){
   try{const response=await fetcher(url);if(!response.ok)throw Error(`HTTP ${response.status}`);return await response.json();}
   catch(error){throw new PuzzleError([`Datei ${new URL(url).pathname}: ${error.message}`]);}
@@ -22,7 +22,8 @@ export function createPuzzleLoader({manifestUrl=new URL('../../puzzles/manifest.
    if(!entry)throw new PuzzleError(['manifest: unbekannte Rätsel-ID']);
    const document=await json(new URL(entry.path,manifestUrl));
    if(document.id!==id)throw new PuzzleError(['id: Datei stimmt nicht mit Manifest überein']);
-   return compilePuzzle(document);
+   if(document.presentation?.assetPlacements?.length)assetLibrary??=await json(assetLibraryUrl);
+   return compilePuzzle(document,{assetLibrary});
   }
  };
 }

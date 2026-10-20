@@ -1,4 +1,6 @@
-import {test,expect} from '@playwright/test';
+import {test,expect,selectionUse} from '../integration/webkit-startup.mjs';
+// Keep the first failed attempt: a passing retry cannot explain a CI timeout.
+test.use(selectionUse);
 const ref='reference-3.6',other='test-navigation';
 const key=id=>`gezeitenkarten-${id}-schema1-data1`;
 const saved=(page,id)=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),key(id));
@@ -20,8 +22,7 @@ test('switch and reload isolate notes, routes, overlays and undo',async({page})=
  await expect(page.locator('h1')).toHaveText('Technischer Testfall – Navigation');
  await expect(page.locator('#map .blocked-cell')).toHaveCount(3);
  await expect(page.locator('#map [data-id="E1"]')).toHaveClass(/blocked-cell/);
- await expect(page.locator('#map [data-place-ring="A1"]')).toHaveCount(2);
- await expect(page.locator('#map [data-place-ring="C1"]')).toHaveCount(0);
+ await expect(page.locator('#map [data-place-ring]')).toHaveCount(0);
  await expect(page.locator('.distance-overlay')).toHaveCount(0);
  await expect(page.locator('#cluePosition')).toHaveText('T1 / T6');
  await page.locator('#map [data-id="B5"]').click();await page.locator('#undo').click();
@@ -76,6 +77,28 @@ test('failed load keeps the previous puzzle and editable state',async({page})=>{
  await expect(page.locator('#puzzleStatus')).toContainText('HTTP 404');await expect(page.locator('#puzzleSelect')).toHaveValue(ref);
  await chart(page);await page.locator('#map [data-id="D3"]').click();
  expect((await saved(page,ref)).marks).toEqual({'1:E3':'maybe','1:D3':'maybe'});
+});
+test('switch waits for the requested puzzle response before publishing the new UI',async({page})=>{
+ let release;
+ const responseGate=new Promise(resolve=>{release=resolve;});
+ let requested;
+ const requestSeen=new Promise(resolve=>{requested=resolve;});
+ await page.route('**/puzzles/test-navigation.json',async route=>{
+  requested();await responseGate;await route.continue();
+ });
+ await settings(page);await page.locator('#puzzleSelect').selectOption(other);
+ try{
+  await requestSeen;
+  await expect(page.locator('#puzzleSelect')).toBeDisabled();
+  await expect(page.locator('#puzzleStatus')).toHaveText('Rätsel wird geladen …');
+  await expect(page.locator('h1')).toHaveText('Der verschwundene Kompass');
+ }finally{release();}
+ await expect(page.locator('#puzzleStatus')).toContainText('Geladen: Technischer Testfall – Navigation');
+ await expect(page.locator('#puzzleSelect')).toBeEnabled();
+ await expect(page.locator('h1')).toHaveText('Technischer Testfall – Navigation');
+ await expect(page.locator('#map .blocked-cell')).toHaveCount(3);
+ await chart(page);await page.locator('#map [data-id="B5"]').click();
+ expect((await saved(page,other)).marks['1:B5']).toBe('maybe');
 });
 test('native select is keyboard operable and text is rendered without executing HTML',async({page})=>{
  await page.route('**/puzzles/test-navigation.json',async route=>{const response=await route.fetch();const data=await response.json();data.presentation.intro=['<img src=x onerror="window.bad=true">'];data.presentation.clues.T1='<img src=x onerror="window.bad=true">';await route.fulfill({json:data});});

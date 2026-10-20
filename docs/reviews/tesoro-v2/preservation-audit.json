@@ -1,0 +1,10 @@
+{
+  "baseCommit": "5a8be54677ced0a620392912ce057f2ee395376c",
+  "previousImagesUnchanged": 20,
+  "previousAssetsUnchanged": 20,
+  "previousReviewsUnchanged": 50,
+  "newPendingReviews": 3,
+  "approvalFieldsOnNewReviews": false,
+  "approvedPairsPreserved": 11,
+  "runtimeSourceOrPuzzlesChanged": false
+}

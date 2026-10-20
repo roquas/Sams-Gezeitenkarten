@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-19",
+  "baseline": "ea4ae412e1c4838da8b9e498556430c933f82b9b",
+  "branch": "feature/asset-library-integration",
+  "local": {
+    "unit": {
+      "passed": 106,
+      "failed": 0
+    },
+    "puzzles": {
+      "unique": 4
+    },
+    "catalogFilesAndApprovalHashes": {
+      "assets": 33,
+      "backgrounds": 3,
+      "approvedExactPairs": 12,
+      "valid": true
+    },
+    "fullAlphaLibraryCheck": {
+      "passedImages": 33
+    },
+    "imageRegressionSuite": {
+      "passed": 13,
+      "failed": 0,
+      "seconds": 449.621
+    },
+    "exportCoverageRegressionSuite": {
+      "passed": 5,
+      "failed": 0
+    },
+    "newSpriteEveryAnchor": {
+      "sprites": 10,
+      "anchorsEach": 25,
+      "outsidePixels": 0
+    },
+    "galleryBrowser": {
+      "chromiumDesktopAndMobile": 18,
+      "webkitDesktopAndMobile": 18,
+      "finalFailed": 0,
+      "finalChromiumWorkers": 1,
+      "webkitWorkers": 1
+    },
+    "screenshotConfigurations": 4,
+    "zipBrowserCases": {
+      "passed": 4,
+      "failed": 0,
+      "platforms": [
+        "desktop",
+        "smartphone",
+        "iphone-webkit",
+        "ipad-webkit"
+      ]
+    },
+    "package": {
+      "zip": "dist/Sams-Gezeitenkarten.zip",
+      "zipSha256": "b3503511f4c62ec733219a228b94db430892b05d2dcfeecd411131a3845b65ad",
+      "files": 93,
+      "byteIdenticalCatalogPNGs": 33,
+      "newPNGs": 10,
+      "catalogMatches": true,
+      "developmentFilesExcluded": true
+    }
+  },
+  "earlyLocalBrowserRuns": [
+    {
+      "passed": 17,
+      "failed": 1,
+      "observation": "Incomplete ES module response, network status -1, existing server."
+    },
+    {
+      "passed": 16,
+      "failed": 2,
+      "observation": "Incomplete ES module responses while several engines ran concurrently on dedicated server."
+    }
+  ],
+  "browserResolution": "Final full Chromium run uses one worker with no simultaneous WebKit process: 18/18. WebKit full run 18/18. No assertions or timeouts weakened. New flavor test passed in all runs.",
+  "notRerun": [
+    "27 package failure fixtures",
+    "all unrelated browser suites"
+  ],
+  "artisticStatus": {
+    "existingExactApprovals": 11,
+    "tesoroV4NewExplicitApproval": true,
+    "newFlavorApprovals": 0,
+    "newFlavorPending": 10
+  },
+  "ci": {
+    "baselineKnownFailure": "Unit: Pillow missing for publication-archive package validation",
+    "baselineJob": "https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39312851963/job/118266668009",
+    "postPush": "Reported separately in PR #65 and final response; no assumption from local results."
+  }
+}

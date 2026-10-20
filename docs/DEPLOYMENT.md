@@ -6,7 +6,7 @@ Im Repository-Hauptverzeichnis auf macOS oder Linux:
 sh scripts/package.sh
 ```
 
-Voraussetzung: Python **3.9 oder neuer**, keine npm-/npx-Installation. Ergebnis:
+Voraussetzung: Python **3.9 oder neuer** mit **Pillow** (`python3 -m pip install Pillow`) und **Node.js 22 oder neuer**. Der Export braucht keine npm-/npx-Installation. Ergebnis:
 `dist/Sams-Gezeitenkarten.zip`. Das ZIP enthält `index.html` direkt an der Wurzel.
 Die Dateien in ein leeres Webverzeichnis entpacken und auf Uberspace statisch
 über HTTP(S) ausliefern. Es gibt weder Backend noch Datenbank oder Buildframework.
@@ -42,8 +42,14 @@ Pfadausbrüche, reproduzierbaren Inhalt und den Ausschluss von Entwicklungsdatei
 python3 tests/test_package.py
 ```
 
-Der Export selbst ersetzt keine inhaltliche Solverprüfung. Vor Veröffentlichung
-laufen zusätzlich `npm run test:unit` und `npm run test:puzzles` in CI.
+Beide Exporteinstiege (`package.sh` und `package.py`) erzwingen die gemeinsamen
+Asset-/Freigabevalidatoren, die vollständige Puzzlevalidierung einschließlich Solver
+und die strenge Bildflächenprüfung. Auch interne Symlinks und symbolische
+Pfadkomponenten sind verboten. Alle ausgelieferten Rasterdateien werden dekodiert.
+Ungültige Freigabehashes, Transformationen, Randplatzierungen, Geometrien oder
+beschädigte Bilder brechen vor dem Schreiben ab. Die Entwicklungsumgebung kann
+mit `--root /pfad/zum/quellbaum` explizit gewählt werden.
+Zusätzlich laufen `npm run test:unit` und `npm run test:puzzles` in CI.
 Die Regeln und Schnittstellen stehen in [PUZZLE-FORMAT.md](PUZZLE-FORMAT.md).
 Siehe [PR #38](https://github.com/roquas/Sams-Gezeitenkarten/pull/38),
 [Rätselauswahl #33](https://github.com/roquas/Sams-Gezeitenkarten/issues/33)

@@ -1,0 +1,339 @@
+[
+  {
+    "nativeScreenshot": {
+      "width": 2252,
+      "height": 1892,
+      "svgScale": 4,
+      "assetScreenPixels": [
+        360,
+        408
+      ],
+      "crop": {
+        "left": 336,
+        "top": 586,
+        "width": 760,
+        "height": 720
+      }
+    }
+  },
+  {
+    "name": "chromium-desktop",
+    "viewport": {
+      "width": 1280,
+      "height": 1000
+    },
+    "dpr": 1,
+    "sourceSize": [
+      360,
+      408
+    ],
+    "geometry": [
+      {
+        "anchor": "A1",
+        "parity": "ungerade",
+        "location": "Rand",
+        "x": 15,
+        "y": 5,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.5730708245243129,
+        "scaleY": 0.5730708245243129
+      },
+      {
+        "anchor": "B3",
+        "parity": "ungerade",
+        "location": "Innen",
+        "x": 97,
+        "y": 141,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.5731038583509513,
+        "scaleY": 0.5731038583509513
+      },
+      {
+        "anchor": "A2",
+        "parity": "gerade",
+        "location": "Rand",
+        "x": 56,
+        "y": 73,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.5730708245243129,
+        "scaleY": 0.5730708245243129
+      },
+      {
+        "anchor": "B2",
+        "parity": "gerade",
+        "location": "Innen",
+        "x": 138,
+        "y": 73,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.5730708245243129,
+        "scaleY": 0.5730708245243129
+      }
+    ],
+    "errors": [],
+    "status": "PASS"
+  },
+  {
+    "name": "chromium-mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "dpr": 2,
+    "sourceSize": [
+      360,
+      408
+    ],
+    "geometry": [
+      {
+        "anchor": "A1",
+        "parity": "ungerade",
+        "location": "Rand",
+        "x": 15,
+        "y": 5,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.6216635835095138,
+        "scaleY": 0.6216635835095138
+      },
+      {
+        "anchor": "B3",
+        "parity": "ungerade",
+        "location": "Innen",
+        "x": 97,
+        "y": 141,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.6216635835095138,
+        "scaleY": 0.6216635835095138
+      },
+      {
+        "anchor": "A2",
+        "parity": "gerade",
+        "location": "Rand",
+        "x": 56,
+        "y": 73,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.6216635835095138,
+        "scaleY": 0.6216635835095138
+      },
+      {
+        "anchor": "B2",
+        "parity": "gerade",
+        "location": "Innen",
+        "x": 138,
+        "y": 73,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.6216635835095138,
+        "scaleY": 0.6216635835095138
+      }
+    ],
+    "errors": [],
+    "status": "PASS"
+  },
+  {
+    "name": "webkit-desktop",
+    "viewport": {
+      "width": 1280,
+      "height": 1000
+    },
+    "dpr": 1,
+    "sourceSize": [
+      360,
+      408
+    ],
+    "geometry": [
+      {
+        "anchor": "A1",
+        "parity": "ungerade",
+        "location": "Rand",
+        "x": 15,
+        "y": 5,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.5730708245243129,
+        "scaleY": 0.5730708245243129
+      },
+      {
+        "anchor": "B3",
+        "parity": "ungerade",
+        "location": "Innen",
+        "x": 97,
+        "y": 141,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.5731038583509513,
+        "scaleY": 0.5731038583509513
+      },
+      {
+        "anchor": "A2",
+        "parity": "gerade",
+        "location": "Rand",
+        "x": 56,
+        "y": 73,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.5731038583509513,
+        "scaleY": 0.5731038583509513
+      },
+      {
+        "anchor": "B2",
+        "parity": "gerade",
+        "location": "Innen",
+        "x": 138,
+        "y": 73,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.5730708245243129,
+        "scaleY": 0.5730708245243129
+      }
+    ],
+    "errors": [],
+    "status": "PASS"
+  },
+  {
+    "name": "webkit-tablet",
+    "viewport": {
+      "width": 820,
+      "height": 1180
+    },
+    "dpr": 2,
+    "sourceSize": [
+      360,
+      408
+    ],
+    "geometry": [
+      {
+        "anchor": "A1",
+        "parity": "ungerade",
+        "location": "Rand",
+        "x": 15,
+        "y": 5,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.6784817653276956,
+        "scaleY": 0.6784817653276956
+      },
+      {
+        "anchor": "B3",
+        "parity": "ungerade",
+        "location": "Innen",
+        "x": 97,
+        "y": 141,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.6784817653276956,
+        "scaleY": 0.6784817653276956
+      },
+      {
+        "anchor": "A2",
+        "parity": "gerade",
+        "location": "Rand",
+        "x": 56,
+        "y": 73,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.6784817653276956,
+        "scaleY": 0.6784817653276956
+      },
+      {
+        "anchor": "B2",
+        "parity": "gerade",
+        "location": "Innen",
+        "x": 138,
+        "y": 73,
+        "width": 90,
+        "height": 102,
+        "transform": null,
+        "clipPath": null,
+        "ancestorClip": false,
+        "preserveAspectRatio": "xMidYMid meet",
+        "source": "http://127.0.0.1:8126/assets/library/basalt-spire-v1.png",
+        "scaleX": 0.6784817653276956,
+        "scaleY": 0.6784817653276956
+      }
+    ],
+    "errors": [],
+    "status": "PASS"
+  }
+]

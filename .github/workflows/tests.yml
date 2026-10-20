@@ -15,6 +15,8 @@ jobs:
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - name: Install image validation dependency for publication unit checks
+        run: python3 -m pip install --user Pillow
       - name: Verify no-cache development HTTP semantics
         run: python3 scripts/dev-server.py --self-test
       - run: npm run test:unit
@@ -31,6 +33,10 @@ jobs:
       - name: Validate sea and both parchment frames
         run: |
           python3 scripts/check-chart-assets.py
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Validate asset catalog, approval hashes and local image footprints
+        run: npm run test:assets
   browser:
     runs-on: ubuntu-latest
     steps:
@@ -111,6 +117,8 @@ jobs:
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - name: Install mandatory publication image validator
+        run: python3 -m pip install --user Pillow
       - run: python3 tests/test_package.py
       - run: sh scripts/package.sh
       - name: Extract actual release ZIP outside the checkout

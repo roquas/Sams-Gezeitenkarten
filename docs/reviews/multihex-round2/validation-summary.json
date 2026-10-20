@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-19",
+  "baseline": "e74fd9c",
+  "branch": "feature/asset-library-integration",
+  "newMotifs": 6,
+  "newMotifArtisticStatus": "pending",
+  "approvedPairs": 6,
+  "unit": {
+    "passed": 99,
+    "failed": 0
+  },
+  "puzzles": {
+    "count": 4,
+    "solutionsEach": 1
+  },
+  "catalog": {
+    "images": 18,
+    "backgrounds": 3,
+    "approvalHashesValid": true
+  },
+  "imageRegression": {
+    "passed": 13,
+    "failed": 0
+  },
+  "exportRegression": {
+    "passed": 2,
+    "failed": 0
+  },
+  "newMotifValidAnchors": 82,
+  "chromiumGallery": {
+    "passed": 16,
+    "failed": 0
+  },
+  "webkitGallery": {
+    "passed": 16,
+    "failed": 0
+  },
+  "finalChromiumMultihex": {
+    "passed": 2,
+    "failed": 0
+  },
+  "packageRegression": {
+    "passed": 27,
+    "failed": 0
+  },
+  "zipBrowser": {
+    "passed": 64,
+    "failed": 0,
+    "skipped": 1,
+    "skipReason": "Optional historical baseline screenshot requires BASELINE_ROOT; unchanged test"
+  },
+  "zipAssetDevices": [
+    "desktop",
+    "smartphone",
+    "iphone-webkit",
+    "ipad-webkit"
+  ],
+  "newPngsByteIdenticalInZip": true,
+  "productionTreesUnchanged": [
+    "src",
+    "puzzles",
+    "assets/seekarte",
+    "assets/ui"
+  ],
+  "ci": "Full unmodified GitHub Actions matrix runs on pushed PR head; see PR #65 Checks."
+}

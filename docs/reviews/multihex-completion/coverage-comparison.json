@@ -1,0 +1,49 @@
+{
+  "interpretation": "Alpha-based coverage includes land, reefs, shallows and foam; it does not prove artistic quality or classify land pixels.",
+  "versions": [
+    {
+      "version": "v1",
+      "alpha16PerCell": [
+        54994,
+        43530,
+        37094,
+        13819
+      ],
+      "opaqueBounds": [
+        177,
+        71,
+        726,
+        481
+      ],
+      "opaqueWidth": 549,
+      "opaqueHeight": 410,
+      "outerRegionAlpha16Pixels": {
+        "southwestCellWestOfCenterBy20Units": 0,
+        "northeastCellEastOfCenterBy15Units": 0
+      }
+    },
+    {
+      "version": "v2",
+      "alpha16PerCell": [
+        25470,
+        42720,
+        37682,
+        23719
+      ],
+      "opaqueBounds": [
+        65,
+        109,
+        786,
+        536
+      ],
+      "opaqueWidth": 721,
+      "opaqueHeight": 427,
+      "outerRegionAlpha16Pixels": {
+        "southwestCellWestOfCenterBy20Units": 1296,
+        "northeastCellEastOfCenterBy15Units": 5312
+      }
+    }
+  ],
+  "opaqueWidthRatioV2V1": 1.313296903460838,
+  "southwestCellVisiblePixelRatioV2V1": 1.7164049497069251
+}
