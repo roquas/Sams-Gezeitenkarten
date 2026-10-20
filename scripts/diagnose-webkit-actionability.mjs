@@ -9,14 +9,14 @@ import {spawnSync} from 'node:child_process';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const variant=process.argv[2]||'baseline';
-const variants=['baseline','frames','reduced-motion','dpr1','single-load','warm-browser'];
+const variants=['baseline','frames','reduced-motion','dpr1','single-load','warm-browser','warm-dpr1'];
 if(!variants.includes(variant))throw Error('Unknown variant: '+variant);
 const output=resolve(root,'actionability-results',variant);
 mkdirSync(output,{recursive:true});
 const temp=mkdtempSync(join(tmpdir(),'gk-actionability-'));
 const require=createRequire(import.meta.url);
 const testModule=pathToFileURL(join(dirname(require.resolve('@playwright/test')),'index.mjs')).href;
-const settings={variant,monitor:variant!=='baseline',dpr:variant==='dpr1'?1:2,
+const settings={variant,monitor:variant!=='baseline',dpr:variant.includes('dpr1')?1:2,
  motion:variant==='reduced-motion'?'reduce':'no-preference'};
 writeFileSync(join(output,'environment.json'),JSON.stringify({settings,platform:platform(),arch:arch(),node:process.version,
  cpu:cpus()[0]?.model,parallelism:availableParallelism(),load:loadavg()},null,2));
@@ -28,7 +28,7 @@ export {expect};
 export const test=base.extend({
  bootstrap:[async({browser},use,workerInfo)=>{
   const start=Date.now(),meta={worker:workerInfo.workerIndex,variant:${JSON.stringify(variant)}};
-  if(meta.variant==='warm-browser'){
+  if(meta.variant.startsWith('warm-')){
    const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:2});
    try{
     const page=await context.newPage();

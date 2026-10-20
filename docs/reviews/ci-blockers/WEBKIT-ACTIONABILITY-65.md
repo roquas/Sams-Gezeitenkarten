@@ -106,3 +106,17 @@ Die tiefere Ursache der unterschiedlichen WebProcess-/Software-Rendering-
 Latenzen auf verschiedenen GitHub-Runnern ist nicht abschließend geklärt.
 Die Korrektur beschleunigt nicht pauschal den Produktionsrenderer, sondern
 trennt Browserbereitschaft von den unverändert strengen Funktionstests.
+
+## Weiterer Volltest: leere Initialisierung allein reicht nicht
+
+[Lauf 39400464751](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39400464751)
+auf `39870d9` meldet erneut den ersten Auswahltest als flaky. Der Renderer wird
+zwar getrennt initialisiert, der erste reale Kartenklick benötigt dennoch
+6.747 ms und der Radar-Klick 4.067 ms. Das Budget endet später im Test als
+zuvor, reicht aber weiterhin nicht zuverlässig. Damit ist die leere
+Initialisierung **keine ausreichende Stabilisierung**. Die obigen positiven
+Vergleiche werden nicht als endgültiger Behebungsnachweis gewertet.
+
+Als nächster kontrollierter Vergleich werden deshalb nach identischer leerer
+Initialisierung DPR 2 und DPR 1 auf demselben Runner in beiden Reihenfolgen
+geprüft. Diese Untersuchung ändert noch keine reguläre Testkonfiguration.

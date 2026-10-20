@@ -38,7 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        order: [baseline-first, warm-first]
+        order: [dpr2-first, dpr1-first]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -46,14 +46,14 @@ jobs:
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
-      - if: ${{ matrix.order == 'baseline-first' }}
-        run: node scripts/diagnose-webkit-actionability.mjs baseline
-      - if: ${{ matrix.order == 'warm-first' }}
+      - if: ${{ matrix.order == 'dpr2-first' }}
         run: node scripts/diagnose-webkit-actionability.mjs warm-browser
-      - if: ${{ always() && matrix.order == 'baseline-first' }}
+      - if: ${{ matrix.order == 'dpr1-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs warm-dpr1
+      - if: ${{ always() && matrix.order == 'dpr2-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs warm-dpr1
+      - if: ${{ always() && matrix.order == 'dpr1-first' }}
         run: node scripts/diagnose-webkit-actionability.mjs warm-browser
-      - if: ${{ always() && matrix.order == 'warm-first' }}
-        run: node scripts/diagnose-webkit-actionability.mjs baseline
       - if: always()
         uses: actions/upload-artifact@v4
         with:
