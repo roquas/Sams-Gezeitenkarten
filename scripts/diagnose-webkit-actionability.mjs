@@ -72,7 +72,8 @@ export const test=base.extend({
 }});
 `);
 let source=readFileSync(join(root,'tests/browser/puzzle-selection.spec.mjs'),'utf8')
- .replace("from '@playwright/test'", "from './fixture.mjs'");
+ .replace(/from '(?:@playwright\/test|\.\.\/integration\/webkit-startup.mjs)'/, "from './fixture.mjs'");
+if(!source.includes("from './fixture.mjs'"))throw Error('Selection fixture import changed; review the diagnostic substitution');
 if(variant==='single-load'){
  const original="await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();";
  if(!source.includes(original))throw Error('Selection setup changed; review the diagnostic substitution');
