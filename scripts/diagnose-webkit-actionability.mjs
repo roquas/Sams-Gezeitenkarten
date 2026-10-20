@@ -25,6 +25,8 @@ writeFileSync(join(temp,'fixture.mjs'),`
 import {test as base,expect} from ${JSON.stringify(testModule)};
 import {writeFileSync} from 'node:fs';
 export {expect};
+// Diagnostic variants control density in the generated project configuration.
+export const selectionUse={trace:'retain-on-failure'};
 export const test=base.extend({
  bootstrap:[async({browser},use,workerInfo)=>{
   const start=Date.now(),meta={worker:workerInfo.workerIndex,variant:${JSON.stringify(variant)}};

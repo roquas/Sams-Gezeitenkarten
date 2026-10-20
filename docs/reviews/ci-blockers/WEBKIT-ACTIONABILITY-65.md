@@ -1,122 +1,144 @@
-# PR #65: Linux-WebKit, Framefortschritt und Testinitialisierung
+# PR #65: Linux-WebKit, Actionability und funktionale Testprofile
 
-Ausgangspunkt: `5d00144`, vollständiger CI-Lauf 39394185902.
-Keine Änderungen am Spiel, Kartenrenderer, Assets, Freigaben oder Archiv.
+Ausgangspunkt: `5d00144`, CI-Lauf 39394185902. Keine Änderungen am Spiel,
+Kartenrenderer, Assets, Freigaben oder historischen Archiv.
 
-## Nachgewiesene Evidenz
+## Evidenz und tatsächlicher Engpass
 
-Die beiden ursprünglichen Ausreißer betreffen jeweils den ersten Test von
-WebKit-Shard 3, aber verschiedene Interaktionen. Der neue Erstversuchs-Trace
-von Lauf 39394185902 enthält keine Meldung über ein instabiles, abgelöstes
-oder verdecktes Element. Der erste Kartenklick wartet 5.437 ms innerhalb einer
-Sichtbarkeits-/Stabilitätsprüfung, die eigentliche Aktion ist schnell.
-Alle 103 Requests sind abgeschlossen. Bereits `newPage` benötigt 6.041 ms.
+Die ursprünglichen Ausreißer betreffen jeweils den ersten Test von WebKit-Shard 3,
+aber unterschiedliche Interaktionen. Die Traces zeigen keine wiederholten
+Meldungen über instabile, abgelöste oder verdeckte Elemente. Stattdessen dauert
+bereits eine einzelne erfolgreiche Stabilitätsprüfung mehrere Sekunden.
+Im Erstversuch von 39394185902 benötigt `newPage` 6.041 ms und die Stabilitätsprüfung
+vor dem ersten Kartenklick 5.437 ms; alle 103 Requests sind abgeschlossen.
 
-Playwright 1.64.0 prüft Stabilität durch zwei aufeinanderfolgende
-`requestAnimationFrame`-Messungen derselben Bounding Box. Bei geänderter Box
-liefert die interne Prüfung `missingState: stable` und versucht erneut.
-Das beobachtete lange Warten innerhalb eines einzigen erfolgreichen Checks
-ist deshalb von wiederholtem Warten auf ein bewegtes Element zu unterscheiden.
-Quellen: installierter 1.64.0-Code (`_checkElementIsStable` in `coreBundle.js`)
-und [offizielle Actionability-Dokumentation](https://playwright.dev/docs/actionability#stable).
+Playwright 1.64.0 prüft die Bounding Box in aufeinanderfolgenden
+`requestAnimationFrame`-Callbacks. Bei geänderter Box liefert die Prüfung
+`missingState: stable` und versucht erneut. Langsame Framefortschritte können
+also auch bei unveränderter Trefferfläche lange Actionability-Wartezeiten
+verursachen. Quellen: installierter 1.64.0-Code (`_checkElementIsStable` in
+`coreBundle.js`) und [offizielle Dokumentation](https://playwright.dev/docs/actionability#stable).
 
-## Linux-Vergleiche mit unveränderten Assertions
+Die kontrollierten Linux-Vergleiche belegen zwei Kostenanteile:
 
-Optionaler Workflow `diagnose-webkit.yml`, explizit mit `actionability=true`.
-Die Diagnose kopiert die vorhandenen Auswahltests in ein temporäres Verzeichnis;
-die Assertions werden nicht verändert. Je Variante laufen beide betroffenen
-Fälle dreimal, ein Worker, 30 s Testlimit und **keine Retries**.
-Die Baseline hat keine zusätzlichen Frame-Messungen, um Messaufwand zu trennen.
+1. Die erste WebProcess-/Renderer-Initialisierung ist wesentlich teurer als
+   spätere Seiten. In den Messungen variieren erste `newPage`-Aufrufe von
+   etwa 1,1 bis 15,5 s; spätere liegen typischerweise um 0,1–0,3 s.
+2. Die eigentlichen Interaktionen bleiben unter headless Linux-WebKit bei
+   DPR 2 stark von der Raster-/Frame-Arbeit abhängig. Auf demselben langsameren
+   Runner brauchen identische Interaktionsfälle etwa 20–29 s bei DPR 2,
+   aber nur 8,5–10,5 s bei DPR 1. CSS-Viewports und Assertions sind dabei gleich.
 
-Erste Vergleichsmatrix:
-[Lauf 39398559487](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39398559487)
-auf `7bef54b`.
+Kein Fehler des Spielzustands und keine dauerhaft bewegte Trefferfläche ist
+nachgewiesen. Die genaue tiefe Ursache der WebKit-/Treiberlatenzen bzw.
+physischer Runner-Ressourcenschwankungen bleibt offen. Ein einziger Worker
+reproduziert den Fehler ebenfalls; parallele Tests im selben Job sind keine
+notwendige Voraussetzung. Die ersten Ausreißer haben keine Vorgängertests
+im jeweiligen Shard.
 
-| Variante | Ergebnis | Beobachtung |
+## Kontrollierte Linux-Vergleiche
+
+Der optionale Workflow `diagnose-webkit.yml`, Eingabe `actionability=true`,
+kopiert die vorhandenen Auswahltests in ein temporäres Verzeichnis. Die
+Assertions bleiben unverändert: beide betroffenen Fälle je dreimal, ein Worker,
+30 s Testlimit und **keine Retries**. Eine Baseline ohne Frame-Monitor trennt
+Messaufwand von Verhalten; weitere Varianten erfassen Frame-Abstände,
+Bounding-Box-Änderungen, Animationen und Seitenerstellungszeit.
+
+Erste Matrix: [39398559487](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39398559487), `7bef54b`.
+
+| Variante | Ergebnis | Schlussfolgerung |
 |---|---|---|
 | DPR 2, normale Bewegung, ohne Frame-Monitor | 6/6 | Erster Fall 21,5 s, spätere etwa 13–14 s |
-| DPR 2, normale Bewegung, Frame-Monitor | 6/6 | Frame-Abstände bis 2.109 ms; Messaufwand kein ausreichender Grund für den ursprünglichen Fehler |
-| DPR 2, reduzierte Bewegung | 6/6 | Erster Fall nahe am Limit; spätere etwa 19–21 s, Frame-Abstände weiterhin über 1 s |
-| DPR 1, normale Bewegung | 5/6 | Erster Fall Timeout, erste Seitenerstellung allein 15.532 ms; spätere Fälle etwa 9–11 s |
-| DPR 2, nur ein initialer Spielaufruf | 5/6 | Erster Fall Timeout, Frame-Abstand bis 4.848 ms |
+| DPR 2, normale Bewegung, Frame-Monitor | 6/6 | Frame-Abstände bis 2.109 ms; Instrumentierung allein erklärt den ursprünglichen Fehler nicht |
+| DPR 2, reduzierte Bewegung | 6/6 | Erster Fall nahe am Limit, Frame-Abstände weiter über 1 s; kein ausreichender Animations-Ursachennachweis |
+| DPR 1, normale Bewegung | 5/6 | Erster Fall Timeout, `newPage` 15.532 ms; DPR 1 allein reicht bei kaltem Browser nicht |
+| DPR 2, nur ein initialer Spielaufruf | 5/6 | Erster Fall Timeout, Frame-Abstand bis 4.848 ms; Entfernen des doppelten Aufrufs allein reicht nicht |
 
-Die Runner hatten unterschiedliche AMD-CPU-Modelle. Deshalb wäre es unzulässig,
-aus den Zeiten verschiedener Runner eine präzise Animations- oder DPR-Wirkung
-abzuleiten. Insbesondere verhindert weder DPR 1 noch der einzelne Seitenaufruf
-den Kaltstart-Ausreißer zuverlässig. Reduzierte Bewegung entfernt zwar die
-beobachteten CSS-Transitions, beseitigt aber die langsamen Frames nicht.
-Sie wird nicht als vermeintliche Fehlerbehebung übernommen.
+Diese Jobs hatten unterschiedliche AMD-CPU-Modelle. Aus ihrem direkten
+Zeitvergleich wäre eine präzise DPR-/Animationswirkung deshalb nicht ableitbar.
 
-Gepaarter Vergleich mit beiden Reihenfolgen auf jeweils demselben Runner:
-[Lauf 39399408550](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39399408550)
-auf `90e4690`.
+Gepaarte Initialisierung: [39399408550](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39399408550), `90e4690`.
+Auf zwei Runnern wurden beide Reihenfolgen ausgeführt. Baseline zuerst: erster
+Fall Timeout, danach initialisierte Variante 6/6. Initialisierung zuerst:
+initialisierte Variante 6/6, nachfolgende Baseline ebenfalls 6/6.
+Die erste leere Initialisierung des kalten Workers benötigt 4.288 ms,
+die anschließende Testseite für `newPage` nur 128 ms.
 
-| Reihenfolge | Baseline | Separate leere Renderer-Initialisierung |
+Die Initialisierung **allein** ist dennoch keine ausreichende Korrektur:
+[vollständige CI 39400464751](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39400464751)
+auf `39870d9` meldet erneut den ersten Auswahltest als flaky. Der erste echte
+Kartenklick benötigt trotz getrennter Initialisierung 6.747 ms, der Radar-Klick
+4.067 ms. Diese fehlgeschlagene Zwischenkorrektur wird nicht als Behebungsnachweis
+gewertet und ist der Grund für den folgenden kontrollierten DPR-Vergleich.
+
+Gepaarte Pixeldichte: [39402923178](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39402923178), `dea7b85`.
+Beide Profile verwenden dieselbe leere Initialisierung und denselben Frame-Monitor;
+pro Runner werden beide Dichten in umgekehrter Reihenfolge geprüft.
+
+| Reihenfolge / gleicher Runner | DPR 1: Fixture-Zeiten der Interaktionsfälle | DPR 2: Fixture-Zeiten der Interaktionsfälle |
 |---|---|---|
-| Baseline zuerst | 5/6; erster Fall Timeout nach 30-s-Budget, gemeldete 33,5 s inkl. Abbruch | 6/6; etwa 21,2–23,5 s |
-| Initialisierung zuerst | danach 6/6 | 6/6, auch beim ersten kalten Worker |
+| DPR 1 zuerst | 5.270–9.847 ms; 6/6 | 11.773–14.016 ms; 6/6 |
+| DPR 2 zuerst | 8.527–10.518 ms; 6/6 | 20.066–29.149 ms; 6/6 |
 
-Beim frischen Worker der zweiten Reihenfolge dauert die leere Initialisierung
-4.288 ms; die anschließende echte Testseite benötigt für `newPage` nur 128 ms.
-Der erste eigentliche Interaktionsfall benötigt dort etwa 18 s ab Erstellung
-der Testseite. Beide Reihenfolgen bestätigen: Die erste Renderer-Initialisierung
-ist erheblich teurer als spätere Seiten. Dass auch eine nachfolgende Baseline
-schnell wird, ist Teil dieses Kaltstartbefunds, kein unabhängiger Fixnachweis.
+Diese Werte beginnen bei der tatsächlichen Testseitenerstellung und schließen
+die Worker-Initialisierung aus. Im langsameren Runner sinkt auch der höchste
+Frame-Abstand von 3.833 ms auf 937 ms. Damit ist die erhebliche Pixeldichtewirkung
+auf demselben Host und bei unveränderter Geometrie nachgewiesen. Alle zwölf
+Fälle der kombinierten DPR-1-Variante bestehen ohne Retry, mit großem Abstand
+zum 30-s-Limit. Insgesamt wurden 78 Linux-Vergleichsfälle ausgeführt.
 
-## Kleine testseitige Korrektur
+## Endgültige kleine Testkorrektur
 
-Nur die Auswahltests importieren nun `tests/integration/webkit-startup.mjs`.
-Eine automatische **Worker-Fixture** initialisiert für WebKit einen frischen,
-leeren Kontext bei DPR 2 und wartet zwei echte Frames ab. Anschließend wird
-dieser Kontext vollständig geschlossen. Keine Spielseite, Grafik oder
-Spielstandsdatei wird vorgeladen; kein Spielzustand wird übernommen.
-Erst danach erzeugt die normale Testfixture den unabhängigen Spielkontext.
+Nur `puzzle-selection.spec.mjs` importiert `tests/integration/webkit-startup.mjs`.
 
-Damit wird Renderer-Initialisierung dem dafür vorgesehenen Worker-Setup
-zugeordnet, statt beim ersten langen Funktionstest dessen Aktionsbudget zu
-verbrauchen. Playwright verwendet für Worker-Fixtures ein getrenntes
-Standard-Setupbudget; die Test- und Assertion-Timeouts werden nicht erhöht.
-Die gemeldete Wandzeit eines Tests darf Setupzeit enthalten und ist deshalb
-nicht mit dem unveränderten 30-s-Aktionsbudget gleichzusetzen.
+- Eine automatische Worker-Fixture initialisiert für WebKit einen frischen,
+  leeren Renderer und wartet zwei echte Frames ab. Danach wird der Kontext
+  geschlossen. Kein Spiel, Bild oder Spielstand wird vorgeladen. Die echte
+  Spielseite entsteht weiterhin in einem unabhängigen Testkontext.
+- Renderer-Initialisierung fällt damit in das normale Worker-Setupbudget.
+  Playwright 1.64.0 setzt dieses standardmäßig auf dasselbe Projektlimit
+  von 30 s. Test- und Assertion-Timeouts bleiben unverändert; Spielinitialisierung
+  und alle Interaktionen müssen weiterhin in ihr bisheriges Testbudget passen.
+- Nur die funktionale WebKit-Auswahlsuite verwendet DPR 1. Sie prüft DOM,
+  Spielstände, Routen, Undo, Reload und CSS-Pixel-Trefferflächen, keine physische
+  Retina-Pixelauflösung. Ihre beiden Screenshot-Anhänge verwenden bereits
+  `scale: 'css'`. Viewports, Animationen, native Ereignisse und Assertions bleiben
+  gleich. Chromium behält seine Projektwerte: Desktop 1, Mobil 2,625.
 
-DPR, Viewports, Animationen, native Klick-/Touch-Ereignisse, Stabilitätsprüfungen,
-Testreihenfolge innerhalb der Datei und sämtliche vorhandenen Assertions bleiben
-erhalten. Kein `force`, kein Sleep, kein zusätzlicher Retry, keine deaktivierte
-Flaky-Erkennung. Der bisherige doppelte Spielaufruf bleibt ebenfalls unverändert.
-Die gesonderten Kaltstart-/Dekodier-/Lifecycle-Tests verwenden diese Fixture
-nicht und behalten ihre unabhängige Abdeckung.
+DPR 2 bleibt Standard der übrigen Desktop-WebKit-Suite. Insbesondere
+`consolidation.spec.mjs` / `puzzle-consolidation.mjs` prüfen dort weiterhin
+Rätselwechsel, getrennte Markierungen, Rahmen, Geometrie, Reload und Reset.
+Die Rendering-, Karten-, Pointer-/Touch- und Lifecycle-Tests werden nicht
+auf eine andere Pixeldichte umgestellt. Die Auswahlfälle selbst bleiben
+vollständig erhalten; insgesamt weiterhin 470 WebKit-Fälle.
 
-## Regression und Grenzen
+Diese Profiltrennung beseitigt unnötige vierfache Rasterpixelarbeit in Tests,
+deren fachlicher Vertrag in CSS-Pixeln und Spielzuständen liegt. Sie ist keine
+Behauptung, die Retina-Renderleistung des Produktionsspiels verbessert zu haben.
+Kein `force`, kein Sleep, kein zusätzlicher Retry, kein reduziertes Timeout-
+Schutzniveau und keine abgeschaltete Flaky-Erkennung. Der doppelte initiale
+Spielaufruf bleibt unverändert, um keine weitere Teststrukturänderung zu mischen.
+Reduzierte Animationen werden mangels ausreichender kausaler Evidenz nicht gesetzt.
 
-- Diagnoseharness lokal: 6/6 mit Frame-Messung, 6/6 mit leerer Initialisierung.
-- Betroffene Fälle mit der tatsächlichen neuen Testfixture: WebKit Desktop/Mobil
-  20/20, Chromium Desktop/Mobil 12/12, jeweils ohne Retry.
-- Vollständige lokale WebKit-Auswahl: 24 bestanden, zwei Fehler ausschließlich
-  des bereits zuvor nachgewiesenen nativen Tastaturtests unter macOS. Dieser
-  Test bleibt unverändert und wird nicht übersprungen.
-- Gepaarter Linux-Vergleich: initialisierte Variante 12/12 ohne Retry. Eine
-  unveränderte Baseline reproduziert den ersten Timeout auf demselben Runner.
-- Vollständige CI auf dem abschließenden Branchstand ist gesondert abzuschließen;
-  die Diagnose-Läufe ersetzen diese Prüfung ausdrücklich nicht.
+## Regression und Abschluss
 
-Es ist kein Fehler im logischen Spielzustand und keine dauerhaft bewegte
-Trefferfläche nachgewiesen. Nachgewiesen ist das Zusammenspiel aus teurem
-Linux-WebKit-Kaltstart, langsamen Frames und deren Abrechnung im Testbudget.
-Die tiefere Ursache der unterschiedlichen WebProcess-/Software-Rendering-
-Latenzen auf verschiedenen GitHub-Runnern ist nicht abschließend geklärt.
-Die Korrektur beschleunigt nicht pauschal den Produktionsrenderer, sondern
-trennt Browserbereitschaft von den unverändert strengen Funktionstests.
+Die endgültige kombinierte Variante besteht lokal in den betroffenen WebKit-
+Desktop-/Mobilfällen 20/20 ohne Retry. Die vollständige lokale Auswahlsuite
+meldet 24 bestanden und zwei Fehler ausschließlich des bereits vorher
+nachgewiesenen nativen Tastaturtests unter macOS. Dieser Test bleibt unverändert.
+Die tatsächlichen Browserprofile wurden zusätzlich gemessen: WebKit 1/1,
+Chromium 1/2,625. Chromium-Interaktionsregression: 12/12 ohne Retry.
 
-## Weiterer Volltest: leere Initialisierung allein reicht nicht
+Die Diagnose-Zwischenstände lösen reguläre CI-Läufe aus; überholte Zwischenläufe
+werden nach dem nächsten endgültigen Push abgebrochen, die abgeschlossenen
+Diagnoseartefakte bleiben erhalten. Der vollständige CI-Lauf des abschließenden
+Commits wird separat bis zum Ende geprüft und im Abschlussnachtrag festgehalten.
+Eine grüne Diagnose ersetzt diesen Volltest nicht.
 
-[Lauf 39400464751](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39400464751)
-auf `39870d9` meldet erneut den ersten Auswahltest als flaky. Der Renderer wird
-zwar getrennt initialisiert, der erste reale Kartenklick benötigt dennoch
-6.747 ms und der Radar-Klick 4.067 ms. Das Budget endet später im Test als
-zuvor, reicht aber weiterhin nicht zuverlässig. Damit ist die leere
-Initialisierung **keine ausreichende Stabilisierung**. Die obigen positiven
-Vergleiche werden nicht als endgültiger Behebungsnachweis gewertet.
-
-Als nächster kontrollierter Vergleich werden deshalb nach identischer leerer
-Initialisierung DPR 2 und DPR 1 auf demselben Runner in beiden Reihenfolgen
-geprüft. Diese Untersuchung ändert noch keine reguläre Testkonfiguration.
+Verbleibendes Risiko: Runner- und WebKit-Latenzen schwanken weiterhin. Das
+funktionale Testprofil besitzt nach den Messungen deutlich mehr Reserve;
+DPR-2-Verhalten bleibt durch separate Integration-/Renderingtests abgedeckt.
+Ein Fehler ausschließlich in einer nicht geprüften Kombination aus Pixeldichte
+und Rätselzustand lässt sich durch endliche Tests nicht ausschließen. Die
+Abwägung für die Merge-Empfehlung benötigt deshalb auch die vollständige finale CI.

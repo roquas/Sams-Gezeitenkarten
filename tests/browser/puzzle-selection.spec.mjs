@@ -1,6 +1,6 @@
-import {test,expect} from '../integration/webkit-startup.mjs';
+import {test,expect,selectionUse} from '../integration/webkit-startup.mjs';
 // Keep the first failed attempt: a passing retry cannot explain a CI timeout.
-test.use({trace:'retain-on-failure'});
+test.use(selectionUse);
 const ref='reference-3.6',other='test-navigation';
 const key=id=>`gezeitenkarten-${id}-schema1-data1`;
 const saved=(page,id)=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),key(id));
