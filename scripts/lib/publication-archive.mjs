@@ -2,6 +2,7 @@
 import {createHash} from 'node:crypto';
 import {schemaErrors} from '../../src/puzzles/schema.mjs';
 import {validatePuzzle} from '../../src/puzzles/validate.mjs';
+import {validateAssetBytes} from '../validate-assets.mjs';
 
 const compare=(a,b)=>a<b?-1:a>b?1:0;
 const assert=(ok,message)=>{if(!ok)throw new Error(`archive: ${message}`);};
@@ -25,8 +26,8 @@ export function contentFingerprint(domain,value){
  return `gk-${domain}-v1-sha256:${sha256('gezeitenkarten-content/v1/'+domain+'\0'+canonicalJson(value))}`;
 }
 
-export function logicalFingerprints(document,rulesVersion='gezeitenkarten-1'){
- validatePuzzle(document);
+export function logicalFingerprints(document,rulesVersion='gezeitenkarten-1',{assetLibrary}={}){
+ validatePuzzle(document,{assetLibrary});
  assert(document.solution,'explicit internal target route required');
  assert(/^gezeitenkarten-[1-9][0-9]*$/.test(rulesVersion),'invalid rules version');
  const {logic}=document;
@@ -39,6 +40,20 @@ export function logicalFingerprints(document,rulesVersion='gezeitenkarten-1'){
  const clues=logic.clues.map(({id,...parameters})=>parameters).sort((a,b)=>compare(canonicalJson(a),canonicalJson(b)));
  const variant=contentFingerprint('variant',{instance,clues});
  return {mapStructure,instance,variant};
+}
+
+// Never consult today's catalog: every catalog/image byte must belong to this
+// snapshot's inventory and match its pinned hash, including approval hashes.
+export function snapshotAssetLibrary(snapshot,readBytes){
+ const read=path=>{
+  const file=snapshot.files.find(f=>f.path===path);
+  assert(file,`asset file absent from snapshot: ${path}`);
+  const bytes=readBytes(path,snapshot.commit);
+  assert(sha256(bytes)===file.sha256,`snapshot bytes changed: ${path}`);
+  return bytes;
+ };
+ const library=JSON.parse(Buffer.from(read('assets/catalog/library.json')).toString('utf8'));
+ return validateAssetBytes(library,read);
 }
 
 export function snapshotFingerprint(snapshot){
@@ -119,7 +134,9 @@ export function validateArchive(manifest,{readBytes,previous}={}){
   assert(sha256(bytes)===entry.source.sha256,`source fingerprint mismatch: ${entry.source.path}`);
   const document=JSON.parse(Buffer.from(bytes).toString('utf8'));
   assert(document.schemaVersion===entry.schemaVersion&&document.dataVersion===entry.dataVersion,'source versions disagree');
-  const actual=logicalFingerprints(document,entry.rulesVersion);
+  const assetLibrary=document.presentation?.assetPlacements?.length?
+   snapshotAssetLibrary(snapshot,path=>bytesBySnapshot.get(snapshot.snapshotId).get(path)):undefined;
+  const actual=logicalFingerprints(document,entry.rulesVersion,{assetLibrary});
   for(const [domain,field] of [['mapStructure','mapStructureId'],['instance','instanceId'],['variant','variantId']]){
    assert(actual[domain]===entry.fingerprints[domain],`${domain} fingerprint mismatch`);
    identity(domain,entry[field],actual[domain]);
