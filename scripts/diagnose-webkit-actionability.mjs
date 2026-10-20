@@ -9,7 +9,7 @@ import {spawnSync} from 'node:child_process';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const variant=process.argv[2]||'baseline';
-const variants=['baseline','frames','reduced-motion','dpr1','single-load'];
+const variants=['baseline','frames','reduced-motion','dpr1','single-load','warm-browser'];
 if(!variants.includes(variant))throw Error('Unknown variant: '+variant);
 const output=resolve(root,'actionability-results',variant);
 mkdirSync(output,{recursive:true});
@@ -25,12 +25,28 @@ writeFileSync(join(temp,'fixture.mjs'),`
 import {test as base,expect} from ${JSON.stringify(testModule)};
 import {writeFileSync} from 'node:fs';
 export {expect};
-export const test=base.extend({page:async({context},use,testInfo)=>{
+export const test=base.extend({
+ bootstrap:[async({browser},use,workerInfo)=>{
+  const start=Date.now(),meta={worker:workerInfo.workerIndex,variant:${JSON.stringify(variant)}};
+  if(meta.variant==='warm-browser'){
+   const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:2});
+   try{
+    const page=await context.newPage();
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+   }finally{await context.close();}
+  }
+  meta.elapsedMs=Date.now()-start;
+  writeFileSync(${JSON.stringify(output)}+'/worker-'+workerInfo.workerIndex+'.json',JSON.stringify(meta));
+  await use();
+ },{scope:'worker',auto:true}],
+ page:async({context},use,testInfo)=>{
  const started=Date.now(),page=await context.newPage();
  const meta={title:testInfo.title,repeat:testInfo.repeatEachIndex,worker:testInfo.workerIndex,
   pageCreationMs:Date.now()-started,fixtureStartedAt:started,settings:${JSON.stringify(settings)}};
  if(meta.settings.monitor)await page.addInitScript(()=>{
   const data=window.__actionability={frames:[],rectChanges:[],mutations:0,animations:[]};
+  const stored=JSON.parse(sessionStorage.getItem('__gkActionability')||'[]');
+  addEventListener('pagehide',()=>sessionStorage.setItem('__gkActionability',JSON.stringify([...stored,data])));
   const previous=new Map();let last;
   new MutationObserver(records=>data.mutations+=records.length).observe(document,{subtree:true,childList:true,attributes:true});
   function frame(now){
@@ -49,7 +65,7 @@ export const test=base.extend({page:async({context},use,testInfo)=>{
   requestAnimationFrame(frame);
  });
  try{await use(page);}finally{
-  try{meta.documents=await page.evaluate(()=>({url:location.href,timing:performance.getEntriesByType('navigation')[0]?.toJSON(),metrics:window.__actionability}));}catch(e){meta.collectionError=e.message;}
+  try{meta.documents=await page.evaluate(()=>({url:location.href,timing:performance.getEntriesByType('navigation')[0]?.toJSON(),metrics:window.__actionability,history:JSON.parse(sessionStorage.getItem('__gkActionability')||'[]')}));}catch(e){meta.collectionError=e.message;}
   meta.elapsedMs=Date.now()-started;
   writeFileSync(testInfo.outputPath('actionability.json'),JSON.stringify(meta,null,2));
  }

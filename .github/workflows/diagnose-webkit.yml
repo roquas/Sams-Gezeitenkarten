@@ -38,7 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        variant: [baseline, frames, reduced-motion, dpr1, single-load]
+        order: [baseline-first, warm-first]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -46,11 +46,18 @@ jobs:
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
-      - run: node scripts/diagnose-webkit-actionability.mjs ${{ matrix.variant }}
+      - if: ${{ matrix.order == 'baseline-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs baseline
+      - if: ${{ matrix.order == 'warm-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs warm-browser
+      - if: ${{ always() && matrix.order == 'baseline-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs warm-browser
+      - if: ${{ always() && matrix.order == 'warm-first' }}
+        run: node scripts/diagnose-webkit-actionability.mjs baseline
       - if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: actionability-${{ matrix.variant }}
+          name: actionability-${{ matrix.order }}
           path: actionability-results/
           if-no-files-found: error
           retention-days: 3
