@@ -1,5 +1,52 @@
 # Teststrategie – Entwurf
 
+## Getrennte Prüfdienste und öffentliche Projektion (F03)
+
+Vertrag, Beispiele und Grenzen: [PUZZLE-SERVICES-F03.md](PUZZLE-SERVICES-F03.md).
+`tests/reference/puzzle-services.test.mjs` enthält 20 gezielte Tests mit bekannten
+Lösungsmengen und unabhängigen Archivprädikaten für Einzelweglassprüfungen.
+Die vollständigen internen/öffentlichen Fixtures stehen in `tests/fixtures/puzzle-services/`.
+Die Tests prüfen auch Budgetfehler, vorzeitigen Mehrdeutigkeitsnachweis,
+Positivlisten gegen zukünftige Privatfelder, Versionsdispatch und F02-Identitäten.
+`node scripts/check-puzzle-services.mjs --benchmark` liefert eine schreibfreie
+Prüfung samt optionaler Messung. Produktion und Paketierung bleiben unverändert.
+
+## Veröffentlichungsarchiv v1 (F02)
+
+Vertrag und historische Zuordnung: [PUBLICATION-ARCHIVE-V1.md](PUBLICATION-ARCHIVE-V1.md).
+`tests/reference/publication-archive.test.mjs` prüft Kanonisierungsvektoren,
+Identitätsgrenzen, Snapshotintegrität am gepinnten Gitstand, widersprüchliche
+Referenzen, unveränderliche Veröffentlichungen, Darstellungsrevisionen,
+Legacyauflösung, bytegleiche historische Dateien und unveränderte Paketgrenzen.
+Die Tests laufen über den bestehenden Unit-Glob; die Unit-CI lädt dafür die
+Git-Historie. `node scripts/validate-archive.mjs` prüft das interne Archiv separat.
+
+## Regelvertrag `gezeitenkarten-1` (F01/I01)
+
+Der [eingefrorene Regelvertrag](RULESET-GEZEITENKARTEN-1.md) dokumentiert den
+aktuellen modularen Stand. Die älteren datierten Abschnitte unten bleiben als
+Historie erhalten; ihre Aussagen über noch fehlende CI-/Browserprüfungen sind
+kein aktueller Gesamtstatus.
+
+| Absicherung | Bereits vorhanden / gezielte Ergänzung |
+| --- | --- |
+| Unverändertes Archiv und unabhängige Referenzlösung | `archive-integrity`, `reference-rules`, `modular-puzzle` bleiben erhalten. |
+| Historische Logik-/Sollroutenhashes | `stabilization` behält die vier Hashes und prüft zusätzlich IDs, Schema-/Datenversionen und Manifestpfade. |
+| Vier eindeutig berechnete Sollrouten | Bestehende Katalogprüfung in `puzzle-data` um expliziten Vergleich der Solverlösungen erweitert; redaktionelle Tests bleiben erhalten. |
+| Wiederbesuch, Land, unbekannte Hinweise, falsche Sollroute, unlösbar/mehrdeutig, Budgetfehler | Bestehende `toolbar`-, `puzzle-data`- und Referenztests wiederverwenden. |
+| Geometrie und bisher nicht abgedeckte Routen-/Parametergrenzen | Neue `rules-contract.test.mjs`: 625 Zellpaare gegen unabhängiges Archiv, 1–6 Etappen, tatsächliche Stundenobergrenzen, Ortsarten, Richtungs-/Drehgrenzen, inklusive Zählintervalle. |
+| Existenzielle Mehrzellen-Ortsdistanz | Neuer Test mit gleichzeitig wahren Abständen 2 und 3; der bisherige Mehrzellenfall allein unterschied sich nicht vom Mindestabstand. |
+| Irredundanzdiagnostik für spätere generierte Basisrätsel | Neue Weglasszahlen gegen Archivprädikate; Gegenbeispiel zum gleichzeitigen Entfernen einzeln redundanter Hinweise. Kein neues Veröffentlichungsgate. |
+| Difficulty-Grenze | Drei eindeutige Hinweissätze derselben Route mit gleicher alter Kennzahl; keine Behauptung menschlicher Schwierigkeit. |
+
+Ausführen: `npm run test:unit`, `npm run test:puzzles`,
+`python3 tests/test_package.py`, `sh scripts/package.sh` und die relevanten
+Browserprüfungen am frisch entpackten ZIP nach [Deploymentanleitung](DEPLOYMENT.md).
+Die vorhandene CI führt zusätzlich ihre vollständigen Chromium-/WebKit- und
+Deploymentjobs aus. Neue Testdateien sind bereits vom bestehenden Unit-Glob erfasst;
+keine Workflowänderung erforderlich. Bestandsschutz und neue Generatoranforderung
+sind getrennt: Die vier historischen Fälle werden nicht nachträglich irredundant gemacht.
+
 ## Automatisierte Ebenen
 
 - **Unit:** Hex-Nachbarschaft, Distanz (Symmetrie, 0, Nachbarn), Richtungen und 60°-Drehungen, Küstenregel, Routenvalidierung, Hinweisprädikate.
