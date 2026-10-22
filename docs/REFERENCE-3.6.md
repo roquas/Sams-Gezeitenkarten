@@ -1,3 +1,5 @@
+> Historischer Entwicklungsstand. Aktueller Vertrag und vier Testebenen: [Konsolidierung F01–F03](CONSOLIDATION-F01-F03.md). Reguläre Inhalte verwenden jetzt ausschließlich Schema 2.
+
 # Unveränderter Referenzstand 3.6 – Provenienz
 
 **Status:** Originaldateien unter [`prototypes/3.6/`](../prototypes/3.6/) im privaten GitHub-Repository gesichert. Alle 14 Originaldateien wurden am 12.10.2026 anhand ihrer Git-Blob-SHA-1 mit den Dateien des ursprünglichen ZIP **bytegenau abgeglichen**. Das ZIP selbst wurde nicht eingecheckt.

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "backgrounds": [
     {
       "id": "sea-blue-01",
@@ -21,7 +21,6 @@
     {
       "id": "technical.single.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "technical-placeholder",
       "geometry": {
@@ -45,12 +44,12 @@
         "blue-sea"
       ],
       "passable": false,
-      "production": "draft"
+      "production": "draft",
+      "semanticClass": "island"
     },
     {
       "id": "technical.double.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "technical-placeholder",
       "geometry": {
@@ -78,12 +77,12 @@
         "blue-sea"
       ],
       "passable": false,
-      "production": "draft"
+      "production": "draft",
+      "semanticClass": "island"
     },
     {
       "id": "technical.lighthouse.v1",
       "family": "navigation",
-      "type": "lighthouse",
       "role": "geographic",
       "stage": "technical-placeholder",
       "geometry": {
@@ -107,12 +106,12 @@
         "blue-sea"
       ],
       "passable": true,
-      "production": "draft"
+      "production": "draft",
+      "semanticClass": "lighthouse"
     },
     {
       "id": "technical.decoration.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "technical-placeholder",
       "geometry": {
@@ -135,12 +134,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "draft"
+      "production": "draft",
+      "semanticClass": "decoration"
     },
     {
       "id": "land-coast.island.h1.basalt-spire.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -164,12 +163,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "draft"
+      "production": "draft",
+      "semanticClass": "island"
     },
     {
       "id": "land-coast.island.h1.basalt-spire-water.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -193,12 +192,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "island"
     },
     {
       "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
       "family": "navigation",
-      "type": "lighthouse",
       "role": "geographic",
       "stage": "illustration",
       "passable": true,
@@ -222,12 +221,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "lighthouse"
     },
     {
       "id": "land-coast.atoll.h1.broken-passages.v1",
       "family": "land-coast",
-      "type": "atoll",
       "role": "geographic",
       "stage": "illustration",
       "passable": true,
@@ -251,12 +250,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "atoll"
     },
     {
       "id": "navigation.wreck.h1.offcenter-sloop.v1",
       "family": "navigation",
-      "type": "wreck",
       "role": "geographic",
       "stage": "illustration",
       "passable": true,
@@ -280,12 +279,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "wreck"
     },
     {
       "id": "land-coast.island.h2.tropical-bays.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -313,12 +312,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "island"
     },
     {
       "id": "land-coast.island.h3.massive-volcano.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -350,12 +349,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "island"
     },
     {
       "id": "land-coast.archipelago.h3.bent-reefs.v1",
       "family": "land-coast",
-      "type": "archipelago",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -387,12 +386,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "historical"
+      "production": "historical",
+      "semanticClass": "archipelago"
     },
     {
       "id": "land-coast.archipelago.h3.sand-reefs.v2",
       "family": "land-coast",
-      "type": "archipelago",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -424,12 +423,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "archipelago"
     },
     {
       "id": "land-coast.island.h3.south-harbor.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -461,12 +460,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "island"
     },
     {
       "id": "land-coast.island.h3.smuggler-cove.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -498,12 +497,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "island"
     },
     {
       "id": "land-coast.island.h4.long-sand.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -539,12 +538,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "island"
     },
     {
       "id": "land-coast.island.h4.crab-claw.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -580,12 +579,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "historical"
+      "production": "historical",
+      "semanticClass": "island"
     },
     {
       "id": "land-coast.island.h4.jungle-temple.v1",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -621,12 +620,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "island"
     },
     {
       "id": "land-coast.island.h4.crab-claw.v2",
       "family": "land-coast",
-      "type": "island",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -662,12 +661,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "historical"
+      "production": "historical",
+      "semanticClass": "island"
     },
     {
       "id": "land-coast.settlement.h4.tesoro.v1",
       "family": "land-coast",
-      "type": "settlement",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -703,12 +702,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "historical"
+      "production": "historical",
+      "semanticClass": "settlement"
     },
     {
       "id": "land-coast.settlement.h4.tesoro.v2",
       "family": "land-coast",
-      "type": "settlement",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -744,12 +743,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "historical"
+      "production": "historical",
+      "semanticClass": "settlement"
     },
     {
       "id": "land-coast.settlement.h4.tesoro.v3",
       "family": "land-coast",
-      "type": "settlement",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -785,12 +784,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "historical"
+      "production": "historical",
+      "semanticClass": "settlement"
     },
     {
       "id": "land-coast.settlement.h4.tesoro.v4",
       "family": "land-coast",
-      "type": "settlement",
       "role": "geographic",
       "stage": "illustration",
       "passable": false,
@@ -826,12 +825,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "settlement"
     },
     {
       "id": "sea-life.accent.h1.barrels.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "geographic",
       "stage": "illustration",
       "geometry": {
@@ -855,12 +854,12 @@
         "blue-sea"
       ],
       "passable": true,
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "barrels"
     },
     {
       "id": "sea-life.accent.h1.buoy.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "geographic",
       "stage": "illustration",
       "geometry": {
@@ -884,12 +883,12 @@
         "blue-sea"
       ],
       "passable": true,
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "buoy"
     },
     {
       "id": "sea-life.accent.h1.gulls.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -912,12 +911,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "historical"
+      "production": "historical",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.dolphins.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -940,12 +939,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "historical"
+      "production": "historical",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.rowboat.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "geographic",
       "stage": "illustration",
       "geometry": {
@@ -969,12 +968,12 @@
         "blue-sea"
       ],
       "passable": true,
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "rowboat"
     },
     {
       "id": "sea-life.accent.h1.crate.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "geographic",
       "stage": "illustration",
       "geometry": {
@@ -998,12 +997,12 @@
         "blue-sea"
       ],
       "passable": true,
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "crate"
     },
     {
       "id": "sea-life.accent.h1.foam.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -1026,12 +1025,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "deferred"
+      "production": "deferred",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.bottle.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "geographic",
       "stage": "illustration",
       "geometry": {
@@ -1055,12 +1054,12 @@
         "blue-sea"
       ],
       "passable": true,
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "bottle"
     },
     {
       "id": "sea-life.accent.h1.driftwood.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "geographic",
       "stage": "illustration",
       "geometry": {
@@ -1084,12 +1083,12 @@
         "blue-sea"
       ],
       "passable": true,
-      "production": "enabled"
+      "production": "enabled",
+      "semanticClass": "driftwood"
     },
     {
       "id": "sea-life.accent.h1.turtle.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -1112,12 +1111,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "deferred"
+      "production": "deferred",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.gulls.v2",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -1140,12 +1139,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "deferred"
+      "production": "deferred",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.dolphins.v2",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -1168,12 +1167,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "deferred"
+      "production": "deferred",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.foam-flecks.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -1196,12 +1195,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "deferred"
+      "production": "deferred",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.current-arc.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -1224,12 +1223,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "deferred"
+      "production": "deferred",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.spray.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -1252,12 +1251,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "deferred"
+      "production": "deferred",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.foam-trail.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -1280,12 +1279,12 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "deferred"
+      "production": "deferred",
+      "semanticClass": "decoration"
     },
     {
       "id": "sea-life.accent.h1.cross-ripples.v1",
       "family": "sea-life",
-      "type": "accent",
       "role": "decoration",
       "stage": "illustration",
       "geometry": {
@@ -1308,7 +1307,8 @@
       "candidateFamilies": [
         "blue-sea"
       ],
-      "production": "deferred"
+      "production": "deferred",
+      "semanticClass": "decoration"
     }
   ],
   "reviews": [
@@ -2048,5 +2048,6 @@
       "status": "pending",
       "notes": "Abschließende Wasserillustrationsrunde: klein, dezentral, unbenannt, befahrbar und niemals Hinweisreferenz. Neue/überarbeitete Datei bis zur ausdrücklichen Nutzersichtung künstlerisch UNFREIGEGEBEN. Keine Approval-Hashes oder Übertragung aus früheren Versionen. Siehe docs/CARD-MOTIFS-FINALE-65.md."
     }
-  ]
+  ],
+  "semanticVersion": 1
 }

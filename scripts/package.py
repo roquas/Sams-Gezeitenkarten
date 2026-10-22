@@ -50,42 +50,29 @@ def collect(root):
     if (root / '.htaccess').is_file():
         add(root / '.htaccess')
     add(root / 'puzzles/manifest.json')
-    add(root / 'assets/catalog/library.json')
-    library = json.loads((root / 'assets/catalog/library.json').read_text(encoding='utf-8'))
-    for ref in [a['image']['path'] for a in library['assets']] + [b['image'] for b in library['backgrounds']]:
-        if not re.fullmatch(r'assets/[A-Za-z0-9_/-]+\.(png|webp)', ref):
-            raise ValueError(f'Unzulässiger Assetpfad: {ref}')
-        add(root / ref)
-    manifest = json.loads((root / 'puzzles/manifest.json').read_text(encoding='utf-8'))
-    registry = (root / 'src/puzzles/assets.mjs').read_text(encoding='utf-8')
-    backgrounds = dict(re.findall(r"'([^']+)'\s*:\s*'(assets/[^']+)'", registry))
-    motifs = dict(re.findall(r"'([^']+)'\s*:\s*\{asset:'([^']+)'", registry))
-    omitted = set(re.findall(r"'([^']+)'\s*:\s*null", registry))
-    # Include every registered motif: the registry itself is shipped in the app.
-    for asset in motifs.values():
-        add(root / 'assets/seekarte' / asset)
-    ids = set()
+    manifest_path = root / 'puzzles/manifest.json'
+    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+    def package_source(ref):
+        if not re.fullmatch(r'(?:\.\./)*[A-Za-z0-9_./-]+\.json', ref):
+            raise ValueError(f'Unzulässige Paketquelle: {ref}')
+        candidate = manifest_path.parent / ref
+        if not candidate.resolve().is_relative_to(root):
+            raise ValueError(f'Paketquelle außerhalb des Pakets: {ref}')
+        # Normalize dot segments, retaining symlinks for add() to reject.
+        return Path(__import__('os').path.normpath(candidate))
+    resource_root = (manifest_path.parent / manifest.get('resourceBase', './')).resolve()
+    if not resource_root.is_relative_to(root):
+        raise ValueError('Ressourcenbasis außerhalb des Pakets')
+    if manifest.get('assetCatalog'):
+        catalog_path = package_source(manifest['assetCatalog'])
+        add(catalog_path)
+        library = json.loads(catalog_path.read_text(encoding='utf-8'))
+        for ref in [a['image']['path'] for a in library['assets']] + [b['image'] for b in library['backgrounds']]:
+            if not re.fullmatch(r'assets/[A-Za-z0-9_/-]+\.(png|webp)', ref):
+                raise ValueError(f'Unzulässiger Assetpfad: {ref}')
+            add(resource_root / ref)
     for entry in manifest['puzzles']:
-        filename = entry['path']
-        if not re.fullmatch(r'[A-Za-z0-9_.-]+\.json', filename):
-            raise ValueError(f"Unzulässiger Rätselpfad: {filename}")
-        path = root / 'puzzles' / filename
-        add(path)
-        puzzle = json.loads(path.read_text(encoding='utf-8'))
-        if puzzle['id'] != entry['id'] or entry['id'] in ids:
-            raise ValueError(f"Falsche oder doppelte Rätsel-ID: {filename}")
-        ids.add(entry['id'])
-        presentation = puzzle['presentation']
-        background = presentation['background']
-        if background not in backgrounds:
-            raise ValueError(f"Unbekannter Hintergrund in {filename}: {background}")
-        add(root / backgrounds[background])
-        for overlay in presentation['overlays']:
-            asset = overlay['asset']
-            if asset not in motifs and asset not in omitted:
-                raise ValueError(f"Unbekanntes Kartenmotiv in {filename}: {asset}")
-    if manifest['defaultId'] not in ids:
-        raise ValueError('Standardrätsel fehlt im Manifest')
+        add(package_source(entry['path']))
     validate_release(root, files)
     return sorted(files)
 

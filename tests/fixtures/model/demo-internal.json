@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 2,
+  "rulesVersion": "gezeitenkarten-2",
+  "dataVersion": 1,
+  "id": "model-demo",
+  "logic": {
+    "map": {
+      "geometry": "even-row-offset-pointy-v1",
+      "grid": {
+        "columns": 5,
+        "rows": 5
+      },
+      "objects": [
+        {
+          "id": "o1",
+          "cells": [
+            "A5",
+            "B5"
+          ],
+          "passable": true
+        },
+        {
+          "id": "o2",
+          "cells": [
+            "B2",
+            "C2"
+          ],
+          "passable": false
+        },
+        {
+          "id": "o3",
+          "cells": [
+            "D1"
+          ],
+          "passable": false
+        },
+        {
+          "id": "o4",
+          "cells": [
+            "D3"
+          ],
+          "passable": true
+        }
+      ]
+    },
+    "start": "A5",
+    "steps": 3,
+    "clues": [
+      {
+        "id": "I",
+        "type": "direction",
+        "hour": 1,
+        "direction": "E"
+      },
+      {
+        "id": "II",
+        "type": "direction",
+        "hour": 2,
+        "direction": "E"
+      },
+      {
+        "id": "III",
+        "type": "direction",
+        "hour": 3,
+        "direction": "E"
+      }
+    ]
+  },
+  "presentation": {
+    "title": "Die Probefahrt",
+    "intro": [
+      "Kontrolliertes Demorätsel für das neue Kartenmodell. Sam und Robin prüfen ihre Seekarte."
+    ],
+    "objectNames": {
+      "o2": "Zwilling"
+    },
+    "clueTexts": {
+      "I": "In Stunde 1 fuhren wir nach Osten.",
+      "II": "In Stunde 2 fuhren wir weiter nach Osten.",
+      "III": "Auch in Stunde 3 hielten wir Ostkurs."
+    },
+    "hints": [
+      "Die erste Etappe führt von A5 nach B5."
+    ],
+    "background": "sea-blue-01",
+    "assetPlacements": [
+      {
+        "id": "island",
+        "assetId": "land-coast.island.h2.tropical-bays.v1",
+        "anchor": "B2",
+        "objectId": "o2"
+      },
+      {
+        "id": "spire",
+        "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+        "anchor": "D1",
+        "objectId": "o3"
+      },
+      {
+        "id": "beacon",
+        "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "anchor": "D3",
+        "objectId": "o4"
+      }
+    ]
+  },
+  "solution": [
+    "A5",
+    "B5",
+    "C5",
+    "D5"
+  ],
+  "metadata": {
+    "kind": "demo",
+    "source": "Controlled technical fixture; not an editorial publication."
+  }
+}

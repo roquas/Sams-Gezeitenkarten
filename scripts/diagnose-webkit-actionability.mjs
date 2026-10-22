@@ -73,21 +73,17 @@ export const test=base.extend({
  }
 }});
 `);
-let source=readFileSync(join(root,'tests/browser/puzzle-selection.spec.mjs'),'utf8')
- .replace(/from '(?:@playwright\/test|\.\.\/integration\/webkit-startup.mjs)'/, "from './fixture.mjs'");
-if(!source.includes("from './fixture.mjs'"))throw Error('Selection fixture import changed; review the diagnostic substitution');
-if(variant==='single-load'){
- const original="await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();";
- if(!source.includes(original))throw Error('Selection setup changed; review the diagnostic substitution');
- source=source.replace(original,"await page.goto('/');");
-}
-writeFileSync(join(temp,'puzzle-selection.spec.mjs'),source);
+let source=readFileSync(join(root,'tests/integration/model-game.mjs'),'utf8')
+ .replace("from './webkit-startup.mjs'", "from './fixture.mjs'")
+ .replace("new URL('../../'+p,import.meta.url)", "new URL(p,"+JSON.stringify(pathToFileURL(root+'/').href)+")");
+source+="\nregisterModelTests('/');\n";
+writeFileSync(join(temp,'model.spec.mjs'),source);
 writeFileSync(join(temp,'playwright.config.mjs'),`
 import {defineConfig,devices} from ${JSON.stringify(testModule)};
 export default defineConfig({
- testDir:${JSON.stringify(temp)},testMatch:'puzzle-selection.spec.mjs',fullyParallel:false,workers:1,
+ testDir:${JSON.stringify(temp)},testMatch:'model.spec.mjs',fullyParallel:false,workers:1,
  retries:0,failOnFlakyTests:true,repeatEach:3,
- grep:/switch and reload isolate|manifest puzzle test-navigation can be solved/,
+ grep:/a second controlled entry|route interaction and verification/,
  reporter:[['list'],['json',{outputFile:${JSON.stringify(join(output,'results.json'))}}]],
  outputDir:${JSON.stringify(join(output,'tests'))},
  use:{baseURL:'http://127.0.0.1:4173',trace:'retain-on-failure',screenshot:'only-on-failure'},

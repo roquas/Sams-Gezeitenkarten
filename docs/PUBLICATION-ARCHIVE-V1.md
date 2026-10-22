@@ -1,3 +1,5 @@
+> Historischer Prototypvertrag, ersetzt durch [Konsolidierung F01–F03](CONSOLIDATION-F01-F03.md), [Regeln v2](RULESET-GEZEITENKARTEN-2.md) und [Datenvertrag v2](PUZZLE-FORMAT.md). Die folgenden Aussagen sind kein aktueller Laufzeitvertrag.
+
 # Stabile Identitäten und Veröffentlichungsarchiv v1 (F02)
 
 Bezug: [#21](https://github.com/roquas/Sams-Gezeitenkarten/issues/21),

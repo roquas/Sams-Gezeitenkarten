@@ -1,59 +1,38 @@
-import {schemaErrors} from './schema.mjs';
-import {MOTIFS,BACKGROUNDS} from './assets.mjs';
-import {createRules} from '../engine/puzzle.mjs';
+import {schemaErrors,puzzleSchema} from './schema.mjs';
+import {requireContract,validateLogic,validateTarget,DefinitionError} from '../engine/validate.mjs';
 import {solvePuzzle} from '../engine/solver.mjs';
 import {validatePlacements} from '../assets/library.mjs';
 export class PuzzleError extends Error{
  constructor(errors){super('Rätsel konnte nicht geladen werden: '+errors.join('; '));this.name='PuzzleError';this.errors=errors;}
 }
-export function validatePuzzle(document,{assetLibrary}={}){
- const errors=schemaErrors(document);
- if(errors.length)throw new PuzzleError(errors);
- const {logic,presentation}=document,rules=createRules(logic),known=new Set(rules.cells),blocked=rules.blocked;
- const check=(ok,path,message)=>{if(!ok)errors.push(`${path}: ${message}`);};
- check(!blocked.has(logic.start),'logic.start','Start liegt auf Land');
- check(logic.steps<known.size-blocked.size,'logic.steps','zu wenige befahrbare Felder');
- for(const [id,place] of Object.entries(logic.places))check(place.cells.every(c=>place.kind==='island'?blocked.has(c):!blocked.has(c)),`logic.places.${id}`,'Ortsart widerspricht Befahrbarkeit');
- const clueIds=logic.clues.map(c=>c.id);
- check(new Set(clueIds).size===clueIds.length,'logic.clues','doppelte Hinweis-ID');
- for(const clue of logic.clues){
-  const path=`logic.clues.${clue.id}`;
-  for(const hour of clue.hours??[clue.hour])check(hour<=logic.steps,path,'Stunde überschreitet Routenlänge');
-  if(clue.hours)check(clue.hours[0]<=clue.hours[1],path,'Stundenbereich ist umgekehrt');
-  if(clue.place)check(Object.hasOwn(logic.places,clue.place),path,'unbekannte Orts-ID');
-  if(clue.type==='countAdjacentToPlace')check(clue.count<=clue.hours[1]-clue.hours[0]+1,path,'Anzahl überschreitet Stundenbereich');
- }
- for(const [name,ids] of [['places',Object.keys(logic.places)],['clues',clueIds]]){
-  check(ids.every(id=>Object.hasOwn(presentation[name],id)),`presentation.${name}`,'Textreferenz fehlt');
-  check(Object.keys(presentation[name]).every(id=>ids.includes(id)),`presentation.${name}`,'unbekannte Textreferenz');
- }
- check(Object.hasOwn(BACKGROUNDS,presentation.background),'presentation.background','unbekanntes Asset');
- for(const [i,o] of presentation.overlays.entries())check(Object.hasOwn(MOTIFS,o.asset),`presentation.overlays[${i}].asset`,'unbekanntes Asset');
- if(presentation.assetPlacements?.length){
-  if(!assetLibrary)errors.push('presentation.assetPlacements: asset library required');
-  else errors.push(...validatePlacements(presentation.assetPlacements,assetLibrary,logic,presentation.assetBackground));
- }
- if(presentation.assetBackground&&presentation.assetBackground!=='sea-blue-01')errors.push('presentation.assetBackground: game currently renders sea-blue-01 only');
- if(document.solution){
-  check(rules.legal(document.solution),'solution','keine legale vollständige Route');
-  if(!errors.length)check(logic.clues.every(c=>rules.matches(document.solution,c)),'solution','Sollroute widerspricht Hinweisen');
- }
- if(errors.length)throw new PuzzleError(errors);
- return document;
+export function validateDefinition(document,options={}){
+ const versions=requireContract(document,options),errors=schemaErrors(document,puzzleSchema);
+ if(errors.length)throw new DefinitionError('structure',errors);
+ validateLogic(document.logic);
+ const {logic,presentation}=document;
+ const ids=logic.map.objects.map(o=>o.id),clueIds=logic.clues.map(c=>c.id);
+ if(Object.keys(presentation.objectNames).some(id=>!ids.includes(id)))errors.push('presentation.objectNames: unknown object');
+ if(!clueIds.every(id=>Object.hasOwn(presentation.clueTexts,id))||Object.keys(presentation.clueTexts).some(id=>!clueIds.includes(id)))errors.push('presentation.clueTexts: missing or unknown clue reference');
+ if(options.assetLibrary){
+  try{errors.push(...validatePlacements(presentation.assetPlacements,options.assetLibrary,logic.map,presentation.background,options));}
+  catch(error){throw new DefinitionError('semantics',error.errors??[error.message]);}
+ }else if(presentation.assetPlacements.length)errors.push('presentation.assetPlacements: asset library required');
+ if(errors.length)throw new DefinitionError('semantics',errors);
+ if(Object.hasOwn(document,'solution'))validateTarget(logic,document.solution);
+ return {...versions,structural:true,semantic:true,targetRoute:document.solution?'valid':'absent'};
 }
+export function validatePuzzle(document,options={}){validateDefinition(document,options);return document;}
+// UI view of the same logic. No alternate rule model or stored answer is needed.
 export function compilePuzzle(document,options={}){
  validatePuzzle(document,options);
  const analysis=solvePuzzle(document.logic);
- if(analysis.status!=='unique')throw new PuzzleError([`logic: ${analysis.count} Lösungen (${analysis.status}); veröffentlicht werden nur eindeutige Rätsel`]);
- if(document.solution&&document.solution.some((cell,h)=>cell!==analysis.solutions[0][h]))throw new PuzzleError(['solution: Sollroute weicht von der unabhängig ermittelten Lösung ab']);
+ if(analysis.status!=='unique')throw new PuzzleError([`logic: ${analysis.count} Lösungen (${analysis.status}); only unique puzzles can be played`]);
  const {logic,presentation}=document;
- // Compatibility view for the existing engine/UI; logic and editorial text stay separate on disk.
- return {...logic,id:document.id,schemaVersion:document.schemaVersion,dataVersion:document.dataVersion,
-  places:Object.fromEntries(Object.entries(logic.places).map(([id,p])=>[id,{...p,name:presentation.places[id]}])),
-  clues:logic.clues.map(c=>({...c,text:presentation.clues[c.id]})),
+ const background=options.assetLibrary?.backgrounds.find(b=>b.id===presentation.background);
+ if(!background)throw new PuzzleError(['presentation.background: explicit asset catalog with matching background required']);
+ return {...logic,id:document.id,schemaVersion:document.schemaVersion,rulesVersion:document.rulesVersion,dataVersion:document.dataVersion,
+  objectNames:presentation.objectNames,clues:logic.clues.map(c=>({...c,text:presentation.clueTexts[c.id]})),
   title:presentation.title,intro:presentation.intro,hints:presentation.hints,
-  background:{asset:BACKGROUNDS[presentation.background]},overlays:presentation.overlays,
-  ...(presentation.assetPlacements?.length?{assetPlacements:presentation.assetPlacements,assetLibrary:options.assetLibrary}:{}),
-  solution:analysis.solutions[0],resultTexts:document.resultTexts??{},analysis
- };
+  background:{asset:background.image},assetPlacements:presentation.assetPlacements,assetLibrary:options.assetLibrary,resourceBaseUrl:options.resourceBaseUrl,
+  solution:analysis.solutions[0],resultTexts:document.resultTexts??{},analysis};
 }

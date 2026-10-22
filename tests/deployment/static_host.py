@@ -17,10 +17,6 @@ class Handler(SimpleHTTPRequestHandler):
         if not path.startswith(PREFIX):
             return str(ROOT / '__outside_deployment__')
         relative = path[len(PREFIX):]
-        if relative.startswith('legacy/'):
-            relative = relative[len('legacy/'):]
-            if relative.endswith('.mjs'):
-                relative = relative[:-4] + '.js'
         return super().translate_path('/' + relative)
 
     def send_header(self, keyword, value):
@@ -32,17 +28,6 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header('X-Content-Type-Options', 'nosniff')
         super().end_headers()
 
-    def do_GET(self):
-        if urlsplit(self.path).path == PREFIX + 'legacy/':
-            # The former entry URL, with exactly the same current application bytes.
-            data = (ROOT / 'index.html').read_bytes().replace(b'src/ui/game.js', b'src/ui/game.mjs')
-            self.send_response(200)
-            self.send_header('Content-Type', 'text/html; charset=utf-8')
-            self.send_header('Content-Length', str(len(data)))
-            self.end_headers()
-            self.wfile.write(data)
-            return
-        super().do_GET()
 
 
 if __name__ == '__main__':

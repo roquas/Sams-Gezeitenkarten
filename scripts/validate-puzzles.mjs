@@ -1,19 +1,18 @@
-import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {validateManifest} from '../src/puzzles/loader.mjs';
+import {readContentPackage} from './lib/content-package.mjs';
+import {validatePublicPuzzle} from '../src/puzzles/public.mjs';
 import {compilePuzzle} from '../src/puzzles/validate.mjs';
 import {validateAssetFiles} from './validate-assets.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 export async function validatePuzzles(base=root){
- const read=async ref=>JSON.parse(await fs.readFile(path.join(base,'puzzles',ref),'utf8'));
- const manifest=validateManifest(await read('manifest.json'));
- const assetLibrary=validateAssetFiles(await read('../assets/catalog/library.json'),base);
+ const {manifest,resourceRoot,assetLibrary,readPuzzle}=readContentPackage(base);
+ if(assetLibrary)validateAssetFiles(assetLibrary,resourceRoot);
  const results=[];
  for(const entry of manifest.puzzles){
-  const document=await read(entry.path);
-  if(entry.id!==document.id)throw Error(`Manifest-ID mismatch: ${entry.path}`);
-  const puzzle=compilePuzzle(document,{assetLibrary});
+  const dto=readPuzzle(entry);validatePublicPuzzle(dto,{assetLibrary});
+  if(entry.id!==dto.puzzle.id)throw Error(`Manifest-ID mismatch: ${entry.path}`);
+  const puzzle=compilePuzzle(dto.puzzle,{assetLibrary});
   results.push({id:puzzle.id,kind:entry.kind,...puzzle.analysis});
  }
  return results;

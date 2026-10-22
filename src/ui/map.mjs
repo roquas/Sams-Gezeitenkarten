@@ -2,7 +2,7 @@ import {CHART_BOUNDS} from './chart-geometry.mjs';
 import {drawAssetPlacements} from './asset-layer.mjs';
 import {frameMode,drawSea,drawFrame} from './parchment-frame.mjs';
 import {hexCenter,hexVertices,placeLabelLayout,startLabelLayout} from './place-labels.mjs';
-import {CHART_BACKGROUND, chartOverlays, parchmentTiles, CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
+import {CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
 import {distancePhase} from '../state/distance-overlay.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
@@ -32,9 +32,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
  // Modulare Seekarten-Grafik: 1a Wasser, 1b transparente Motive, 1c mehrfeldrige Inseln.
  // Alle Motive sind rein dekorativ und niemals interaktive Trefferflächen.
  const requestedMode=frameStyle||frameMode(window.location.search);
- // New production placements are reviewed against the delivered blue sea.
- // Historical frame experiments use other water; keep that exception local.
- const mode=puzzle.assetPlacements?.length&&!['final','quiet'].includes(requestedMode)?'final':requestedMode;
+ const mode=requestedMode==='quiet'?'quiet':'final';
  if(svg.dataset.frameMode!==mode)svg.dataset.frameMode=mode;
  const showArt=document.getElementById("showChart").checked;
  const cached=staticCharts.get(svg);
@@ -46,22 +44,10 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
  svg.replaceChildren();
  const art=el("g",{"pointer-events":"none","aria-hidden":"true",visibility:showArt?"visible":"hidden"});
  svg.append(el("rect",{...CHART_BOUNDS,fill:"#e9d5b0","pointer-events":"none","aria-hidden":"true"}));
- if(mode==='legacy')for(const [index,tile] of parchmentTiles().entries()){
-  const slice=el("svg",{...tile,class:index===4?"parchment-water":"parchment-edge",preserveAspectRatio:"none",overflow:"hidden","data-parchment-slice":"true"});
-  slice.append(el("image",{href:puzzle.background?.asset||CHART_BACKGROUND,width:475,height:385,preserveAspectRatio:"none"}));
-  art.append(slice);
- }
- if(mode!=='legacy')art.append(drawSea(el,mode));
- const objects=el('g',{'data-chart-layer':'objects','pointer-events':'none','aria-hidden':'true'});
- art.append(objects);
- const artCenter=ids=>{const pts=ids.map(id=>coords(byId[id]));return [pts.reduce((n,p)=>n+p[0],0)/pts.length,pts.reduce((n,p)=>n+p[1],0)/pts.length]};
- const overlays=chartOverlays(puzzle.overlays);
- for(const o of overlays){
-  const [cx,cy]=artCenter(o.cells);
-  objects.append(el("image",{href:o.asset,x:cx-o.w/2+o.dx,y:cy-o.h/2+o.dy,width:o.w,height:o.h,opacity:o.opacity,"data-art-cells":o.cells.join(" "),"data-asset-id":o.assetId,"data-legacy-asset":"true",preserveAspectRatio:o.cells.length>2?"none":"xMidYMid meet","pointer-events":"none"}));
- }
- if(puzzle.assetPlacements?.length)drawAssetPlacements(el,objects,puzzle.assetPlacements,puzzle.assetLibrary,byId);
- if(mode!=='legacy')art.append(drawFrame(el,mode));
+ art.append(drawSea(el,mode,puzzle.background?.asset&&new URL(puzzle.background.asset,puzzle.resourceBaseUrl??document.baseURI).href));
+ const objects=el('g',{'data-chart-layer':'objects','pointer-events':'none','aria-hidden':'true'});art.append(objects);
+ if(puzzle.assetPlacements?.length)drawAssetPlacements(el,objects,puzzle.assetPlacements,puzzle.assetLibrary,byId,puzzle.resourceBaseUrl);
+ art.append(drawFrame(el,mode));
  // Island labels use connected land geometry; Start follows its ship.
  const drawLabel=(layout,t,start=false)=>{
    if(!layout)return;
@@ -76,7 +62,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
    const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,'Times New Roman',serif","font-size":fontSize,"font-weight":"600",fill:start?"#8c3e2c":"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
    g.append(text);clipped.append(g);art.append(clipped);
  };
- for(const place of Object.values(puzzle.places))drawLabel(placeLabelLayout(place.cells,place.name,blocked,byId),place.name);
+ for(const object of puzzle.map.objects){const name=puzzle.objectNames[object.id]??object.cells.join(' / ');if(!object.passable)drawLabel(placeLabelLayout(object.cells,name,blocked,byId),name);}
  drawLabel(startLabelLayout(byId[puzzle.start]),'Start',true);
  svg.append(art);
  // Fit actual browser font metrics without expanding the safe land footprint.
@@ -115,7 +101,6 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
      const heading=el('g',{'data-margin-side':side,'data-margin-index':r,'data-margin-center':x,'data-margin-outer':band.outer,'data-margin-inner':band.inner});
      // The transparent inkblot now shows the underlying art/sea directly:
      // no beige SVG backing in the two approved parchment frames.
-     if(mode==='raster'||mode==='modular')heading.append(el('circle',{cx:x,cy:y,r:14,fill:'#f3e5c5',opacity:'.92'}));
      // Kein UI-Kreis: asymmetrischer, leicht durchscheinender Tintenklecks.
      const d=`M ${x-8} ${y-4} Q ${x-12} ${y-11} ${x-3} ${y-10} Q ${x+5} ${y-13} ${x+9} ${y-4} Q ${x+13} ${y+3} ${x+5} ${y+9} Q ${x-4} ${y+13} ${x-9} ${y+4} Z`;
      heading.append(el("path",{d,fill:rc.hex,opacity:".57",stroke:rc.hex,"stroke-width":"1.3"}));
@@ -143,7 +128,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
  for(const c of cells){
   const [x,y]=coords(c),land=blocked.has(c.id),m=land?undefined:state.marks[key(state.layer,c.id)];
   const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
-  const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id});
+  const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id,"data-object-id":puzzle.map.objects.find(o=>o.cells.includes(c.id))?.id??''});
   g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#d6c59a":"#ece3c1","stroke-width":"1.05","stroke-opacity":land?".62":".56",...(land?{"stroke-dasharray":"4 3"}:{}),"stroke-linejoin":"round","pointer-events":"all"}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.

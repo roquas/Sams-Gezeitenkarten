@@ -1,0 +1,499 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gezeitenkarten/puzzle-v2.schema.json",
+  "title": "Gezeitenkarten puzzle v2 (5×5 chart, 1–6 hours)",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "rulesVersion": {
+      "const": "gezeitenkarten-2"
+    },
+    "dataVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+      "maxLength": 80
+    },
+    "logic": {
+      "type": "object",
+      "properties": {
+        "map": {
+          "type": "object",
+          "properties": {
+            "geometry": {
+              "const": "even-row-offset-pointy-v1"
+            },
+            "grid": {
+              "type": "object",
+              "properties": {
+                "columns": {
+                  "const": 5
+                },
+                "rows": {
+                  "const": 5
+                }
+              },
+              "required": [
+                "columns",
+                "rows"
+              ],
+              "additionalProperties": false
+            },
+            "objects": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                    "maxLength": 80
+                  },
+                  "cells": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-E][1-5]$"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                  },
+                  "passable": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "cells",
+                  "passable"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "geometry",
+            "grid",
+            "objects"
+          ],
+          "additionalProperties": false
+        },
+        "start": {
+          "type": "string",
+          "pattern": "^[A-E][1-5]$"
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "clues": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                    "maxLength": 80
+                  },
+                  "type": {
+                    "const": "direction"
+                  },
+                  "hour": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 6
+                  },
+                  "direction": {
+                    "enum": [
+                      "E",
+                      "SE",
+                      "SW",
+                      "W",
+                      "NW",
+                      "NE"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "type",
+                  "hour",
+                  "direction"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                    "maxLength": 80
+                  },
+                  "type": {
+                    "const": "turn"
+                  },
+                  "hour": {
+                    "type": "integer",
+                    "minimum": 2,
+                    "maximum": 6
+                  },
+                  "degrees": {
+                    "enum": [
+                      -180,
+                      -120,
+                      -60,
+                      0,
+                      60,
+                      120,
+                      180
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "type",
+                  "hour",
+                  "degrees"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                    "maxLength": 80
+                  },
+                  "type": {
+                    "const": "position"
+                  },
+                  "hour": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 6
+                  },
+                  "cell": {
+                    "type": "string",
+                    "pattern": "^[A-E][1-5]$"
+                  }
+                },
+                "required": [
+                  "id",
+                  "type",
+                  "hour",
+                  "cell"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                    "maxLength": 80
+                  },
+                  "type": {
+                    "const": "distanceToPlace"
+                  },
+                  "hour": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 6
+                  },
+                  "placeId": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                    "maxLength": 80
+                  },
+                  "distance": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 8
+                  }
+                },
+                "required": [
+                  "id",
+                  "type",
+                  "hour",
+                  "placeId",
+                  "distance"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                    "maxLength": 80
+                  },
+                  "type": {
+                    "const": "distanceBetweenHours"
+                  },
+                  "hours": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 6
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  "distance": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 8
+                  }
+                },
+                "required": [
+                  "id",
+                  "type",
+                  "hours",
+                  "distance"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                    "maxLength": 80
+                  },
+                  "type": {
+                    "const": "countDistanceToPlace"
+                  },
+                  "fromHour": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 6
+                  },
+                  "toHour": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 6
+                  },
+                  "placeId": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                    "maxLength": 80
+                  },
+                  "distance": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 8
+                  },
+                  "count": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 7
+                  }
+                },
+                "required": [
+                  "id",
+                  "type",
+                  "fromHour",
+                  "toHour",
+                  "placeId",
+                  "distance",
+                  "count"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "map",
+        "start",
+        "steps",
+        "clues"
+      ],
+      "additionalProperties": false
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "intro": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12000
+          },
+          "minItems": 1
+        },
+        "objectNames": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+            "maxLength": 80
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12000
+          }
+        },
+        "clueTexts": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+            "maxLength": 80
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12000
+          }
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12000
+          },
+          "minItems": 0
+        },
+        "background": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+          "maxLength": 80
+        },
+        "assetPlacements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                "maxLength": 80
+              },
+              "assetId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                "maxLength": 80
+              },
+              "anchor": {
+                "type": "string",
+                "pattern": "^[A-E][1-5]$"
+              },
+              "objectId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                "maxLength": 80
+              }
+            },
+            "required": [
+              "id",
+              "assetId",
+              "anchor"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "title",
+        "intro",
+        "objectNames",
+        "clueTexts",
+        "hints",
+        "background",
+        "assetPlacements"
+      ],
+      "additionalProperties": false
+    },
+    "solution": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-E][1-5]$"
+      },
+      "minItems": 2,
+      "uniqueItems": true
+    },
+    "resultTexts": {
+      "type": "object",
+      "properties": {
+        "correct": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "incorrect": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "demo",
+            "test",
+            "editorial"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "difficulty": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "kind",
+        "source"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "rulesVersion",
+    "dataVersion",
+    "id",
+    "logic",
+    "presentation"
+  ],
+  "additionalProperties": false
+}

@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import {dragTouch} from './touch-gesture.mjs';
 
 const cell=(page,id)=>page.locator(`#map [data-id="${id}"]`);
-const state=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-reference-3.6-schema1-data1')));
+const state=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));
 async function center(page,id){
  await cell(page,id).scrollIntoViewIfNeeded();
  const b=await cell(page,id).boundingBox();return {x:b.x+b.width/2,y:b.y+b.height/2};
@@ -43,7 +43,7 @@ export function registerChartScrollTests(url){
   test('vertical scrolling starts on water and land without notes or a radar source',async({page,browserName},info)=>{
    await page.goto(url);await expect(cell(page,'D3')).toBeVisible();
    await expect(page.locator('#map')).toHaveCSS('touch-action','pan-y pinch-zoom');
-   for(const id of ['D3','B3']){
+   for(const id of ['D3','B2']){
     await top(page);
     const point=await center(page,id),before=await scroll(page),saved=await state(page);
     await verticalSwipe(page,browserName,point,info);
@@ -55,7 +55,7 @@ export function registerChartScrollTests(url){
    const point=await center(page,'D3'),before=await scroll(page);
    await verticalSwipe(page,browserName,point,info);await expect.poll(()=>scroll(page)).toBeGreaterThan(before+20);
    await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
-   await cell(page,'B3').tap();await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','B3');
+   await cell(page,'B2').tap();await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','B2');
    expect((await state(page)).marks).toEqual({});await radar.tap();await expect(page.locator('.distance-overlay')).toHaveCount(0);
    // The same native scroll container reaches the book, not an inert overlay.
    await page.locator('.bordbook').scrollIntoViewIfNeeded();await expect(page.locator('#clueViewport')).toBeVisible();

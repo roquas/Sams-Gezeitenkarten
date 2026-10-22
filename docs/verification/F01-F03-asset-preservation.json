@@ -1,0 +1,463 @@
+{
+  "baseline": "16cabf8",
+  "artisticReviewRecordsPreserved": 110,
+  "approvedPairsPreserved": 19,
+  "approvedPairsVerified": [
+    {
+      "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "land-coast.atoll.h1.broken-passages.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "land-coast.island.h2.tropical-bays.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "land-coast.island.h3.massive-volcano.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "land-coast.island.h3.south-harbor.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "land-coast.island.h3.smuggler-cove.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "land-coast.island.h4.long-sand.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "land-coast.island.h4.jungle-temple.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v4",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "sea-life.accent.h1.barrels.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "sea-life.accent.h1.rowboat.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "sea-life.accent.h1.crate.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "sea-life.accent.h1.bottle.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    },
+    {
+      "assetId": "sea-life.accent.h1.driftwood.v1",
+      "backgroundId": "sea-blue-01",
+      "assetSha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378",
+      "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "exact": true
+    }
+  ],
+  "productionCounts": {
+    "enabled": 18,
+    "draft": 5,
+    "historical": 8,
+    "deferred": 9
+  },
+  "enabledPlaces": [
+    "land-coast.island.h1.basalt-spire-water.v1",
+    "navigation.lighthouse.h1.offcenter-beacon.v1",
+    "land-coast.atoll.h1.broken-passages.v1",
+    "navigation.wreck.h1.offcenter-sloop.v1",
+    "land-coast.island.h2.tropical-bays.v1",
+    "land-coast.island.h3.massive-volcano.v1",
+    "land-coast.archipelago.h3.sand-reefs.v2",
+    "land-coast.island.h3.south-harbor.v1",
+    "land-coast.island.h3.smuggler-cove.v1",
+    "land-coast.island.h4.long-sand.v1",
+    "land-coast.island.h4.jungle-temple.v1",
+    "land-coast.settlement.h4.tesoro.v4",
+    "sea-life.accent.h1.barrels.v1",
+    "sea-life.accent.h1.buoy.v1",
+    "sea-life.accent.h1.rowboat.v1",
+    "sea-life.accent.h1.crate.v1",
+    "sea-life.accent.h1.bottle.v1",
+    "sea-life.accent.h1.driftwood.v1"
+  ],
+  "files": [
+    {
+      "file": "assets/library/atoll-broken-v1.png",
+      "sha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/basalt-spire-v1.png",
+      "sha256": "d68f277f4b6bec2b4950a6341f1fac7a0360abe3d638065b047fc5c39ca78ae0",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/basalt-spire-water-v1.png",
+      "sha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/bent-reefs-h3-v1.png",
+      "sha256": "98918ab4ad5d584d3c68b0b26a548e6f458f599f54cab289df7689a69d2c2436",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/crab-claw-h4-v1.png",
+      "sha256": "f1d1d7c237820b89306cc40d7d54e7ca8570ba1b9311c3ccd9fb3441d9e5d81e",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/crab-claw-h4-v2.png",
+      "sha256": "fb419e1eed3f97cd6a30db2246b02b6dff4f8227548aacc9f00a556a4fb76d95",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-barrels-v1.png",
+      "sha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-bottle-v1.png",
+      "sha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-buoy-v1.png",
+      "sha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-crate-v1.png",
+      "sha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-cross-ripples-v1.png",
+      "sha256": "195102aa117db5829486f89f29c69bca5f53c80e2e72d8e24543e26b78be3a9a",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-current-arc-v1.png",
+      "sha256": "30e7dd5fd164f17e940144dc9e95651acf457accb263164d096832fdb9a0c47f",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-dolphins-v1.png",
+      "sha256": "3269363dbe4c4a9c948d629d083052bfa430737338d2c046cbd23fda53879270",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-dolphins-v2.png",
+      "sha256": "089a5d2c6fab7b9b487d0fdb23740163987e9d95cba38d8f1438fd50d8eb06c5",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-driftwood-v1.png",
+      "sha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-foam-flecks-v1.png",
+      "sha256": "91915baf42d8f1a7712f3735c6c51633311a9512c663d312b17fb93d16e6f6ca",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-foam-trail-v1.png",
+      "sha256": "8fec13011b297882e4610da08e0ce1391b41d39d5801022d34e83dc6124eac00",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-foam-v1.png",
+      "sha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-gulls-v1.png",
+      "sha256": "78ab079b04347aa1ee7298a13a94be7f26e6b0390c41bd84bb1c5bc7d39d8af0",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-gulls-v2.png",
+      "sha256": "5ea6df2c8396d82b249f9b2336e2ce56643375a0cffda5e467d08a617c2df33f",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-rowboat-v1.png",
+      "sha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-spray-v1.png",
+      "sha256": "dabf581f2af9178751030670dd42a8d69bb4592c583638457ab24965f1da0de6",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/flavor-turtle-v1.png",
+      "sha256": "10f4d8f5e81b3dec7f219291a813dfe53fc066402deaa11129c4f663cf04e78f",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/jungle-temple-h4-v1.png",
+      "sha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/lighthouse-offcenter-v1.png",
+      "sha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/long-sand-h4-v1.png",
+      "sha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/massive-volcano-h3-v1.png",
+      "sha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/sand-reefs-h3-v2.png",
+      "sha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/smuggler-cove-h3-v1.png",
+      "sha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/south-harbor-h3-v1.png",
+      "sha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/technical-decoration.png",
+      "sha256": "a8ffb6c11467331652a2da413dd01187e7de5fbf9a090b6c1dbef4a6a96f12ef",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/technical-double.png",
+      "sha256": "a818f0e6670097fd54fb7c30b5101c770795f6312731af815f80b7a7db347be8",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/technical-lighthouse.png",
+      "sha256": "b84d1a3191409c40c6e5ee7b86a1f4f6d634ff167a26db58d9571aa54e7a6470",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/technical-single.png",
+      "sha256": "a12180babf645da4cd91efd15146324af474c6bdf7308a6c245b6c507cfe6923",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/tesoro-h4-v1.png",
+      "sha256": "3e2495530ecf8b0dc884313187c6e4018c24d1a4f9a17e375250424671ddcd5d",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/tesoro-h4-v2.png",
+      "sha256": "9715a2c1d4d7e3b8d062c5c645d06966e93996f7ca6c7789d5eeca3500d9ea22",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/tesoro-h4-v3.png",
+      "sha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/tesoro-h4-v4.png",
+      "sha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/tropical-bays-h2-v1.png",
+      "sha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/library/wreck-offcenter-v1.png",
+      "sha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/seekarte/frame-parchment-01.webp",
+      "sha256": "fdd2f12c2b703b78f1f1ec31926c60d11c4cc65b79bec2cbaedb23a93ee9630a",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/seekarte/frame-parchment-02.webp",
+      "sha256": "6b491107f57e40354b91c8605b075ee8faadb6dd32e382137e9b9f04445982b7",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/seekarte/leuchtturm.png",
+      "sha256": "3d5b3da6361ad2c8ee81e58e6d3ab1895c87a7cef239d7aac050e0e2ad8706a4",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/seekarte/meer-ohne-objekte-prototyp.webp",
+      "sha256": "80ca03802c5d72e3133c7aa18e07b4850f95ac0ca7adfe29d5bbb4d714e6c6e1",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/seekarte/meer-pergament.webp",
+      "sha256": "7c8a65c7940de276df5db76c95ed86989f06f6cec7897729920ece684ec14fb5",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/seekarte/pergament-rahmen-prototyp.webp",
+      "sha256": "07cd4dcbfc6be24c2960075478e84dadba0c3ab9da03fdf4abfd0fe358f9e63a",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/seekarte/sea-blue-01.webp",
+      "sha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/seekarte/segelschiff.png",
+      "sha256": "c5b5e9e58aaa37cfa7d415c06081e75ab4c19a1c8f6426ff51a3b6b7086442dd",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/seekarte/tesoro.png",
+      "sha256": "4a4bf25734c4c372c413d1bf72bbcf4c90695871df1fb44722b4ac85650925ce",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/brass-bezel.webp",
+      "sha256": "56e4e12582e2711b676304c74d09095e57eaa8f6fb2dcd972e1190d1d2097896",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/brass-rail.webp",
+      "sha256": "51cbc41325b1ad1327420f0140422f70cb49bb37aaf4bbb6d7a6fb6424e29d90",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/brass-strip.webp",
+      "sha256": "ed4d3f20b6977519575926a2b3522eadeacf37a0770bea2a3baa67791693ca20",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/hourglass.webp",
+      "sha256": "435522626094f41d66f5bb8b8c9efe98c71a3f4c540ae3b3c694fab7e2f44685",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/logbook-chart.svg",
+      "sha256": "72822e0bb18a69754f1e05878be920ebc0e040f1e1a0e7b8943272b61c142c40",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/open-bordbook.webp",
+      "sha256": "57df6bcab49f6d60659d6641746789993fac0e2de6ff094f3f64f837d9499924",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/paper-grain.webp",
+      "sha256": "97e2dcf2dddd06fe03f628eaf8d23044e9938decf35351ef5c49178231f082be",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/ship-wheel.webp",
+      "sha256": "e19a8ec8ca99e7ed4f371573e7bb18368ba2b800312bfcbb6b6f1930ed709edf",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/tool-atlas.webp",
+      "sha256": "7086b66651d48c80f92bf3eeafa96b8edeaaedebe360dafaddb6c098d7974c08",
+      "byteIdenticalToBaseline": true
+    },
+    {
+      "file": "assets/ui/tool-refinements.webp",
+      "sha256": "de616dd976ee247800ba12e9263ad084a413d07aa16ec5973999bb642bc02793",
+      "byteIdenticalToBaseline": true
+    }
+  ]
+}

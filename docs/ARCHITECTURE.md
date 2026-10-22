@@ -1,30 +1,34 @@
-# Architekturentwurf – noch nicht beschlossen
+# Architektur
 
-**Ausgangspunkt:** Prototyp 3.6 ist statisches HTML/CSS/JS mit Grafikdateien; UI und Logik sind bislang eng gekoppelt. Ziel: schlank, Uberspace-kompatibel, ohne großes Framework.
+Native ES-Module, Node-Test-Runner und Playwright sind umgesetzt. Kein Framework
+und kein Buildschritt im Browser. Der statische Export benennt Module für
+MIME-kritische Hosts in `.js` um.
 
-```text
-src/
-  engine/        # Hexgeometrie, Routen, Hinweise, Prüfung
-  generator/     # Kandidaten, Eindeutigkeit, Qualität
-  ui/            # Karte und Bedienung
-  persistence/   # Spielstände
-content/         # Erzähltexte
-puzzles/         # Versionierte Falldaten
-assets/          # Grafiken (Rechte separat klären)
-tests/           # Unit-, Generator-, Browser- und Regressionstests
-docs/
-index.html
+```mermaid
+flowchart LR
+  Source[Explizite Paketquelle] --> Loader[Loader]
+  Catalog[Assetkatalog und Ressourcenbasis] --> Loader
+  Loader --> Document[Dokument- und öffentliche Validierung]
+  Document --> UI[UI und gemeinsamer Renderer]
+  Logic[Abstrakte Karte und Instanzlogik] --> Rules[Eine Regelengine]
+  Logic --> Validation[Reine Logikvalidierung]
+  Rules --> Solver[Solver und F03-Analyse]
+  Internal[Interne Definition] --> Projection[Positivlisten-Projektion]
+  Projection --> Source
 ```
 
-**Falldaten statt globaler Konstanten:** Gesperrte Felder sind eine variable Menge pro Rätsel; der Referenzfall 3.6 besitzt drei. Engine-Tests sollen mindestens eine abweichende Sperrfeldkonfiguration prüfen. Kartengröße, Startfeld und Routenlänge bleiben vorerst als mögliche spätere Parametrisierungen offen.
+`src/engine/`: Hexgeometrie, Legalität, Prädikate, Routengenerator, Solver und reine
+Validierung. Keine Assets, Datei-/Netzwerkzugriffe oder DOM-Abhängigkeiten.
+`src/puzzles/`: ausführbare Schemas, Dokumentvalidierung, Analyse, öffentliche
+Projektion und Loader mit expliziter Quelle. `src/assets/`: Metadaten-/Platzierungs-
+und Grafikgeometrieverträge. `src/ui/`: Darstellung, Browser-Bilddekodierung und
+Bedienung. `scripts/lib/`: Node-Adapter für Identitäten und gepinnte Archive.
 
-**Prinzipien:** Engine und Generator unabhängig vom DOM; UI liest definierte Falldaten; Text/Grafikänderungen erzwingen keine Regeländerung; Generatorfehler über reproduzierbare Seeds testbar. Für den ersten modularen Stand kein verpflichtendes Backend.
+Engine und Renderer kennen keine produktiven Rätselnamen oder Bestandszahlen.
+Die Anwendung wählt eine lokale Quelle; Inhaltspakete liefern öffentliche Rätsel,
+Assetmetadaten und Ressourcen. Die garantierte UI-Basis bleibt getrennt von
+kontrollierten Fixtures und optionalen Inhalten.
 
-**Offen:** ES-Module vs. Buildschritt, Test- und CI-Werkzeuge, Persistenzmigration, Falldatenschema, Trennung regelrelevanter und erzählerischer Hinweise, Rechtehandling.
-
-
-## Architekturentscheidung: datengetriebene Rätsel (12.10.2026)
-
-**Beschlossen:** Die Engine darf die konkrete Karte, die Anzahl gesperrter Felder, Ortsbezeichnungen, deren Positionen und grafische Overlays nicht fest einkodieren. Sie erhält diese aus einer versionierten Rätseldefinition. Vorhandene Assets sollen per stabiler Asset-ID referenzierbar sein; neue Assets können rätselspezifisch hinzugefügt werden. Der unveränderte Prototyp 3.6 bleibt Referenz, nicht Architekturvorgabe.
-
-**Noch als Idee offen:** Hintergründe können durch eine explizite Datei oder durch eine Standard-Asset-ID (z. B. `sea.type2`) ausgewählt werden. Orte können auf Bibliotheksassets (`island.tesoro`, `lighthouse.3`) oder selten auf mitgelieferte Binärassets verweisen. Datenformat, Asset-Auflösung, Rechte-/Sicherheitsgrenzen und Fallbacks werden vor Umsetzung spezifiziert. Keine Pflicht zur Einbettung von Binärdaten in JSON.
+Verbindliche Details: [Regeln](RULESET-GEZEITENKARTEN-2.md),
+[Daten/Assets/Pakete](PUZZLE-FORMAT.md), [Identitäten](PUBLICATION-ARCHIVE-V2.md),
+[Dienste](PUZZLE-SERVICES-F03.md), [Konsolidierungsbericht](CONSOLIDATION-F01-F03.md).

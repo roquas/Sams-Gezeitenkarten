@@ -32,14 +32,14 @@ export function registerInkStatusTests(url){
     await page.locator('[data-tool="yes"]').click();await expect(radar).toHaveAttribute('data-distance-state','showing');await expect(radar).toHaveAccessibleName('Abstände ausschalten');
     await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');
     await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
-    expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-reference-3.6-schema1-data1')).marks)).toEqual({});
+    expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')).marks)).toEqual({});
    });
    test(`radar ${method} starts a fresh source without marking it`,async({page},info)=>{
     // This is exactly the completed-selection precondition of the preceding
     // scenario. Keep the full input matrix while bounding each DPR-2 case.
     await page.addInitScript(()=>{
      if(!sessionStorage.getItem('radar-fixture-seeded')){
-      localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'C1'}));
+      localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'C1'}));
       sessionStorage.setItem('radar-fixture-seeded','true');
      }
     });
@@ -54,7 +54,7 @@ export function registerInkStatusTests(url){
     // reload must consume the real saved off state, never reseed this fixture.
     await page.addInitScript(()=>{
      if(!sessionStorage.getItem('radar-fixture-seeded')){
-      localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'A1'}));
+      localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'A1'}));
       sessionStorage.setItem('radar-fixture-seeded','true');
      }
     });
@@ -69,12 +69,12 @@ export function registerInkStatusTests(url){
   test('route contrast, equal other hours and active edges follow the selected hour',async({page})=>{
    // Route entry is already covered by the route/undo suites. This case
    // exercises the real hour transition with that same legal route restored.
-   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4','E3','D2','C2','B2'],layer:1,tool:'route'})));
+   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5','B5','C5','D5'],layer:1,tool:'route'})));
    await page.goto(url);await expect(cell(page,'D4')).toBeVisible();
    await page.locator('[data-hour="2"]').click();
-   const paths=page.locator('.route-stroke');await expect(paths).toHaveCount(4);
+   const paths=page.locator('.route-stroke');await expect(paths).toHaveCount(3);
    const styles=await paths.evaluateAll(nodes=>nodes.map(n=>({current:n.dataset.routeCurrent,stroke:n.getAttribute('stroke'),width:n.getAttribute('stroke-width'),opacity:+n.getAttribute('opacity'),dash:n.getAttribute('stroke-dasharray')})));
-   expect(styles[0]).toEqual(styles[2]);expect(styles[2]).toEqual(styles[3]);
+   expect(styles[0]).toEqual(styles[2]);
    expect(styles[1].current).toBe('true');expect(styles[1].dash).toBeNull();
    expect(styles[0].dash).toBe('8 5');expect(+styles[1].width).toBeGreaterThan(+styles[0].width);
    expect(styles.every(s=>s.opacity>=.9)).toBe(true);
@@ -89,7 +89,7 @@ export function registerInkStatusTests(url){
    await expect(page.locator('.route-stroke[data-route-current="true"]')).toHaveAttribute('data-route-hour','3');
   });
   test('radar status screenshot below the toolbar',async({page},info)=>{
-   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'A1'})));
+   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'A1'})));
    await page.goto(url);await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');
    const status=page.locator('#distanceStatus');await expect(status).not.toBeEmpty();await status.scrollIntoViewIfNeeded();
    await page.evaluate(()=>document.fonts.ready);const path=info.outputPath(`status-${width}.png`);
@@ -99,8 +99,8 @@ export function registerInkStatusTests(url){
    // Pixel inspection is a separate rendering scenario. Interaction and
    // transitions above still execute all real route/hour controls. Seeding a
    // legal persisted route avoids repeating those edits in each image case.
-   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-reference-3.6-schema1-data1',JSON.stringify({route:['D4','E3','D2','C2','B2'],layer:2,tool:'route'})));
-   await page.goto(url);await expect(page.locator('.route-stroke')).toHaveCount(4);
+   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5','B5','C5','D5'],layer:2,tool:'route'})));
+   await page.goto(url);await expect(page.locator('.route-stroke')).toHaveCount(3);
    await expect(page.locator('.edge-ink').first()).toHaveAttribute('data-active-hour','2');
    await page.locator('#showChart').evaluate((el,checked)=>{el.checked=checked;el.dispatchEvent(new Event('change'));},art);
    await expect(page.locator('.route-stroke[data-route-current="true"]')).toHaveCount(1);

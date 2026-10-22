@@ -6,7 +6,7 @@ async function attachJSON(info,name,value){
  await info.attach(name,{path,contentType:'application/json'});
 }
 
-const saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-reference-3.6-schema1-data1')));
+const saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));
 const position=page=>page.evaluate(()=>innerWidth<=880?document.getElementById('gameSurface').scrollTop:scrollY);
 async function record(page){
  return page.evaluate(()=>({

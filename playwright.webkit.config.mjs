@@ -1,7 +1,7 @@
 import {defineConfig,devices} from '@playwright/test';
 // Full Safari/WebKit regression suite; Chromium runs separately.
 export default defineConfig({
- testDir:'./tests/browser',fullyParallel:true,workers:1,
+ testDir:'./tests/browser',outputDir:'webkit-test-results',fullyParallel:true,workers:1,
  // Keep a worker exclusive to software-rendered DPR-2 tests; CI uses shards.
  retries:process.env.CI?1:0,
  failOnFlakyTests:!!process.env.CI,

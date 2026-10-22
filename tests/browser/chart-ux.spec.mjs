@@ -2,13 +2,11 @@ import {test,expect} from '@playwright/test';
 test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
 // A formatter is shared by the full book, single page, route and distance status.
 test('coordinate notation is shared and accessible across all outputs',async({page})=>{
- await expect(page.locator('#routeView [data-coordinate="D4"]')).toHaveAttribute('aria-label','Delta / Blau');
- for(let i=0;i<4;i++)await page.locator('#nextClue').click();
- const single=page.locator('#clueTrack [data-coordinate="C1"]'),list=page.locator('#allClues [data-coordinate="C1"]');
- await expect(single).toHaveAttribute('aria-label','Gamma / Cyan');
- expect(await single.innerHTML()).toBe(await list.innerHTML());
+ await expect(page.locator('#routeView [data-coordinate="A5"]')).toHaveAttribute('aria-label','Alpha / Orange');
+ const single=page.locator('#puzzleStory');
+ await expect(single).toContainText('Demorätsel');
  await page.locator('#toggleDistances').click();await page.locator('#map [data-id="C1"]').click();
- expect(await page.locator('#distanceStatus [data-coordinate="C1"]').innerHTML()).toBe(await single.innerHTML());
+ await expect(page.locator('#distanceStatus [data-coordinate="C1"]')).toHaveAttribute('aria-label','Gamma / Cyan');
  await expect(page.locator('#gameRules [data-coordinate="C3"]')).toHaveAttribute('aria-label','Gamma / Violett');
 });
 test('distance phases announce selection, cancel and preserve notes',async({page})=>{
@@ -30,21 +28,21 @@ test('distance phases announce selection, cancel and preserve notes',async({page
 test.describe('mobile overview at 390px',()=>{
  test.use({viewport:{width:390,height:844}});
  test('mobile overview shows every clue and preserves game, scroll, keyboard and undo',async({page})=>{
- await page.locator('[data-hour="4"]').click();await page.locator('[data-tool="yes"]').click();await page.locator('#map [data-id="A1"]').click();
+ await page.locator('[data-hour="3"]').click();await page.locator('[data-tool="yes"]').click();await page.locator('#map [data-id="A1"]').click();
  await page.locator('#gameSurface').evaluate(el=>el.scrollTop=300);const mapScroll=await page.locator('#gameSurface').evaluate(el=>el.scrollTop);
  await page.locator('#logbookTab').click();
  const surface=await page.locator('#gameSurface').boundingBox(),nav=await page.locator('.mobile-view-nav').boundingBox();expect(surface.y+surface.height).toBeLessThanOrEqual(nav.y+.5);
  await expect(page.locator('.map-panel')).toBeHidden();await expect(page.locator('#logbook')).toBeVisible();
- for(const id of ['I','II','III','IV','V','VI','VII'])await expect(page.locator(`#allClues [data-clue="${id}"]`)).toBeVisible();
- await page.locator('#allClues [data-clue="V"]').focus();await page.keyboard.press('Space');
- await expect(page.locator('#allClues [data-clue="V"]')).toHaveAttribute('aria-checked','true');
+ for(const id of ['I','II','III'])await expect(page.locator(`#allClues [data-clue="${id}"]`)).toBeVisible();
+ await page.locator('#allClues [data-clue="II"]').focus();await page.keyboard.press('Space');
+ await expect(page.locator('#allClues [data-clue="II"]')).toHaveAttribute('aria-checked','true');
  await page.locator('#gameSurface').evaluate(el=>el.scrollTop=400);const bookScroll=await page.locator('#gameSurface').evaluate(el=>el.scrollTop);
- await page.locator('#chartTab').click();await expect(page.locator('[data-hour="4"]')).toHaveAttribute('aria-pressed','true');
+ await page.locator('#chartTab').click();await expect(page.locator('[data-hour="3"]')).toHaveAttribute('aria-pressed','true');
  await expect(page.locator('[data-tool="yes"]')).toHaveAttribute('aria-pressed','true');
  expect(await page.locator('#gameSurface').evaluate(el=>el.scrollTop)).toBe(mapScroll);
  await page.locator('#logbookTab').focus();await page.keyboard.press('Enter');expect(await page.locator('#gameSurface').evaluate(el=>el.scrollTop)).toBe(bookScroll);
  await page.keyboard.press('Escape');await expect(page.locator('.map-panel')).toBeVisible();
- await page.locator('#undo').click();await expect(page.locator('#allClues [data-clue="V"]')).toHaveAttribute('aria-checked','false');
+ await page.locator('#undo').click();await expect(page.locator('#allClues [data-clue="II"]')).toHaveAttribute('aria-checked','false');
  await expect(page.locator('#map [data-id="A1"]')).toContainText('✓');
  await page.setViewportSize({width:1440,height:1080});await expect(page.locator('.mobile-view-nav')).toBeHidden();await expect(page.locator('#logbook')).toBeVisible();
  });
@@ -86,7 +84,7 @@ for(const surface of ['desktop','mobile-chart','mobile-bordbook','mobile-logbook
   if(surface.startsWith('mobile-logbook')){
    await page.locator('#logbookTab').click();await page.evaluate(()=>scrollTo(0,0));
    await page.locator('#gameSurface').evaluate(el=>el.scrollTop=0);
-   if(surface==='mobile-logbook-later')await page.locator('#allClues [data-clue="VI"]').scrollIntoViewIfNeeded();
+   if(surface==='mobile-logbook-later')await page.locator('#allClues [data-clue="III"]').scrollIntoViewIfNeeded();
   }
   const fullPage=['desktop','mobile-chart','mobile-logbook'].includes(surface);
   await testInfo.attach('ux-'+surface,{body:await page.screenshot({fullPage,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});

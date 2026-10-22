@@ -12,7 +12,7 @@ test('raster upper materials load, stay clear of hit targets and render at deskt
  for(const width of [320,390,768,1440]){
   await page.setViewportSize({width,height:1000});
   await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),{message:'horizontal overflow at '+width}).toBe(true);
-  const controls=await page.locator('.chart-toolbar button').evaluateAll(ns=>ns.map(n=>({w:n.getBoundingClientRect().width,h:n.getBoundingClientRect().height})));
+  const controls=await page.locator('.chart-toolbar button').evaluateAll(ns=>ns.filter(n=>n.getClientRects().length).map(n=>({w:n.getBoundingClientRect().width,h:n.getBoundingClientRect().height})));
   expect(controls.every(b=>b.w>=43.9&&b.h>=44)).toBe(true);
  }
  await page.emulateMedia({reducedMotion:'reduce'});
@@ -29,7 +29,7 @@ test('all material exports decode and the page turn keeps one accessible hint',a
  expect(backgrounds.every(bg=>/tool-(atlas|refinements)\.webp/.test(bg))).toBe(true);
  await page.emulateMedia({reducedMotion:'no-preference'});
  await page.locator('#nextClue').click();
- await expect(page.locator('#cluePosition')).toHaveText('II / VII');
+ await expect(page.locator('#cluePosition')).toHaveText('II / III');
  await expect(page.locator('#clueTrack [role="checkbox"]')).toHaveCount(1);
  const leaf=page.locator('.turning-leaf');
  if(await leaf.count())await expect(leaf).toHaveAttribute('aria-hidden','true');
@@ -55,7 +55,7 @@ test('all seven clues stay legible above page controls at narrow and tablet widt
  for(const width of [320,390,620,768]){
   await page.setViewportSize({width,height:900});
   await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),{message:'overflow at '+width}).toBe(true);
-  for(let i=0;i<7;i++){
+  for(let i=0;i<3;i++){
    const text=await page.locator('#clueTrack p').boundingBox(),nav=await page.locator('.bordbook .clue-nav').boundingBox(),viewport=await page.locator('#clueViewport').boundingBox();
    expect(text.x+text.width,`right edge of clue ${i} at ${width}`).toBeLessThanOrEqual(viewport.x+viewport.width+.5);
    expect(text.y+text.height,`page controls overlap clue ${i} at ${width}`).toBeLessThanOrEqual(nav.y+.5);
@@ -76,5 +76,5 @@ test('refined icons keep hour geometry, shared writing tools and equal toggle ey
   expect(eyes[0]).toBe(eyes[1]);
   const hex=await page.locator('[data-hour="1"] .hour-mini').boundingBox();expect(hex.width).toBeGreaterThanOrEqual(39);
  }
- await page.locator('[data-hour="6"]').focus();await page.keyboard.press('Enter');await expect(page.locator('[data-hour="6"]')).toHaveAttribute('aria-pressed','true');
+ await page.locator('[data-hour="3"]').focus();await page.keyboard.press('Enter');await expect(page.locator('[data-hour="3"]')).toHaveAttribute('aria-pressed','true');
 });

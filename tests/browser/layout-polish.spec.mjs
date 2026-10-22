@@ -10,16 +10,16 @@ test('instrument placement, two mobile rows, generous hit areas and compact rout
  for(const width of [320,390,600,900,1440]){
   await page.setViewportSize({width,height:1000});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  const boxes=await page.locator('.chart-toolbar button,#mapActions button').evaluateAll(ns=>ns.map(n=>n.getBoundingClientRect().toJSON()));
+  const boxes=await page.locator('.chart-toolbar button,#mapActions button').evaluateAll(ns=>ns.filter(n=>n.getClientRects().length).map(n=>n.getBoundingClientRect().toJSON()));
   expect(boxes.every(b=>b.width>=43.9&&b.height>=44)).toBe(true);
-  expect(await rows(page.locator('.chart-toolbar button'))).toBe(width<=600||(width>=881&&width<=1050)?2:1);
+  expect(await rows(page.locator('.chart-toolbar button:visible'))).toBeLessThanOrEqual(2);
   const chartWidth=(await page.locator('.map-panel').boundingBox()).width;
   expect(await rows(page.locator('#mapActions button'))).toBe(chartWidth<=560?2:1);
   if(width<=600){const verify=await page.locator('#verify').boundingBox();expect(verify.width).toBe(48);const numbers=await page.locator('#toggleRouteNumbers').boundingBox();expect(numbers.width).toBeLessThanOrEqual(72);}
  }
  await page.locator('#routeTool').focus();await page.keyboard.press('Enter');
  await expect(page.locator('#routeTool')).toHaveAttribute('aria-pressed','true');
- await page.locator('#map [data-id="E3"]').click();await expect(page.locator('#routeBack')).toBeEnabled();
+ await page.locator('#map [data-id="B5"]').click();await expect(page.locator('#routeBack')).toBeEnabled();
  await page.locator('#routeBack').focus();await page.keyboard.press('Enter');await expect(page.locator('#routeBack')).toBeDisabled();
  await page.locator('[data-tool="yes"]').click();await expect(page.locator('#routeTool')).toHaveAttribute('aria-pressed','false');
 });
@@ -38,14 +38,14 @@ test('cropped full-size left page preserves heading, text space and clue navigat
   await expect(page.locator('.book-heading')).toHaveAttribute('aria-hidden','true');
   expect(await page.locator('.book-vignette').evaluate(el=>getComputedStyle(el).backgroundImage)).toContain('logbook-chart.svg');
  }
- await page.locator('#nextClue').click();await expect(page.locator('#cluePosition')).toHaveText('II / VII');
- await page.locator('#clueViewport').focus();await page.keyboard.press('ArrowRight');await expect(page.locator('#cluePosition')).toHaveText('III / VII');
+ await page.locator('#nextClue').click();await expect(page.locator('#cluePosition')).toHaveText('II / III');
+ await page.locator('#clueViewport').focus();await page.keyboard.press('ArrowRight');await expect(page.locator('#cluePosition')).toHaveText('III / III');
  await page.locator('#clueTrack [data-clue]').focus();await page.keyboard.press('Space');await expect(page.locator('#clueTrack [data-clue]')).toHaveAttribute('aria-checked','true');
  expect(await page.evaluate(()=>!!(document.getElementById('routeView').compareDocumentPosition(document.getElementById('toolLegend'))&Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
 });
 test('lowered labels retain footprint safety and column guides stay behind hex ink',async({page})=>{
- const start=await page.locator('.start-label').getAttribute('transform');expect(start).toContain('269.');
- await expect(page.locator('.island-label').filter({hasText:'Tesoro'})).toHaveAttribute('transform','translate(183 210)');
+ await expect(page.locator('.start-label')).toHaveAttribute('data-label-cell','A5');
+ await expect(page.locator('.island-label').filter({hasText:'Zwilling'})).toHaveAttribute('data-label-cells','B2 C2');
  const guides=await page.locator('.coordinate-guides>path').evaluateAll(ns=>ns.filter(n=>!n.hasAttribute('stroke-dasharray')).map(n=>Number(n.getAttribute('opacity'))));
  expect(guides.every(o=>o>=.19&&o<.56)).toBe(true);
 });

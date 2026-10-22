@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 // Set reference viewports before navigation: mobile WebKit can keep stale
 // hit-test bounds after changing only the height of an already loaded page.
-const KEY='gezeitenkarten-reference-3.6-schema1-data1';
+const KEY='gezeitenkarten-model-demo-schema2-data1';
 const state=page=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),KEY);
 const cell=(page,id)=>page.locator('#map [data-id="'+id+'"]');
 const overlay=page=>page.locator('.distance-overlay');
@@ -30,7 +30,7 @@ test('erasing all hours retains the independent overlay',async({page})=>{
 });
 test('route, undo and reload retain the independent overlay',async({page})=>{
  await startRadar(page);
- await page.locator('#routeTool').click();await cell(page,'E3').click();await retained(page);await page.locator('#undo').click();expect((await state(page)).route).toEqual(['D4']);await retained(page);
+ await page.locator('#routeTool').click();await cell(page,'B5').click();await retained(page);await page.locator('#undo').click();expect((await state(page)).route).toEqual(['A5']);await retained(page);
  await page.reload();await retained(page);
 });
 test('keyboard origin changes preserve editing semantics',async({page})=>{
@@ -55,7 +55,7 @@ for(const width of [320,360,390,430,540,580,600,620,768,820,900,1024,1280,1440])
  test(`lower rail centers correctly with transparent buttons at ${width}px`,async({page})=>{
   const chart=await page.locator('.map-panel').boundingBox(),rail=await page.locator('#mapActions').boundingBox();
   expect(await rows(page.locator('#mapActions button'))).toBe(chart.width<=560?2:1);
-  const bs=await page.locator('#mapActions button').evaluateAll(ns=>ns.map(n=>n.getBoundingClientRect().toJSON()));expect(bs.every(b=>b.width>=44&&b.height>=44)).toBe(true);
+  const bs=await page.locator('#mapActions button').evaluateAll(ns=>ns.filter(n=>n.getClientRects().length).map(n=>n.getBoundingClientRect().toJSON()));expect(bs.every(b=>b.width>=44&&b.height>=44)).toBe(true);
   if(chart.width<=560){const group=await page.locator('.route-actions').boundingBox(),first=await page.locator('#routeTool').boundingBox(),last=await page.locator('#verify').boundingBox();expect(Math.abs((first.x+last.x+last.width)/2-(rail.x+rail.width/2))).toBeLessThan(1);expect(group.y).toBeGreaterThan(bs[0].y);}
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   expect(await page.locator('#mapActions button').evaluateAll(ns=>ns.every(n=>getComputedStyle(n).backgroundColor==='rgba(0, 0, 0, 0)'))).toBe(true);
@@ -66,7 +66,7 @@ test('rules incorporate all editorial corrections without inventing a global dis
  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
  const rules=page.locator('#gameRules');await rules.locator('summary').click();
  await expect(rules.locator('h3')).toBeVisible();
- for(const text of ['aufeinanderfolgende Blätter','Wattenmeer','wo','wann','Land ist nicht befahrbar','orangefarbener Kreis','nicht in jedem Rätsel','beispielsweise','In allen Stunden radieren','unterhalb der Karte','Stunden nacheinander','Schritte nummerieren','Notizprüfung (hier in der Hilfe weiter unten','Denkanstoß (hier in der Hilfe weiter unten'])await expect(rules).toContainText(text);
+ for(const text of ['aufeinanderfolgende Blätter','Wattenmeer','wo','wann','Land ist nicht befahrbar','Befahrbare Orte','nicht in jedem Rätsel','beispielsweise','In allen Stunden radieren','unterhalb der Karte','Stunden nacheinander','Schritte nummerieren','Notizprüfung (hier in der Hilfe weiter unten','Denkanstoß (hier in der Hilfe weiter unten'])await expect(rules).toContainText(text);
  await expect(rules).not.toContainText('eine Berührung an der Ecke');await expect(rules).not.toContainText('Das Riff bei Alpha/Violett');
  await expect(page.locator('#mapActions button')).toHaveCount(7);
 });

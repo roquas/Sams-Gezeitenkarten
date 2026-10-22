@@ -1,3 +1,5 @@
+> Historischer Entwicklungsstand. Aktueller Vertrag und vier Testebenen: [Konsolidierung F01–F03](CONSOLIDATION-F01-F03.md). Reguläre Inhalte verwenden jetzt ausschließlich Schema 2.
+
 # Teststrategie – Entwurf
 
 ## Getrennte Prüfdienste und öffentliche Projektion (F03)

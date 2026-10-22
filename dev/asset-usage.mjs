@@ -18,12 +18,14 @@ export function previewFixture(library,assetId,usage,name){
  if(!asset||!usageStates.some(s=>s.id===usage))throw Error('Unknown asset preview');
  if(usage!=='flavor'&&(asset.role!=='geographic'||asset.passable!==(usage==='named-passable')))throw Error('Usage conflicts with asset passability');
  const cells=placedCells(asset,'B3');
- const placements=[{id:'prototype',assetId,anchor:'B3',...(usage==='flavor'?{}:{placeId:'review-place'})}];
- const places=usage==='flavor'?{}:{'review-place':{name,cells}};
- const blocked=asset.role==='geographic'&&!asset.passable?cells:[];
- const errors=validatePlacements(placements,library,{grid:{columns:5,rows:5},blocked,places},'sea-blue-01',{development:true});
+ const isGeo=asset.role==='geographic';
+ const placements=[{id:'prototype',assetId,anchor:'B3',...(isGeo?{objectId:'review-place'}:{})}];
+ const map={geometry:'even-row-offset-pointy-v1',grid:{columns:5,rows:5},objects:isGeo?[{id:'review-place',cells,passable:asset.passable}]:[]};
+ const blocked=isGeo&&!asset.passable?cells:[];
+ const errors=validatePlacements(placements,library,map,'sea-blue-01',{development:true});
  if(errors.length)throw Error(errors.join('; '));
- return {blocked:new Set(blocked),puzzle:{steps:6,start:'A5',places,overlays:[],assetPlacements:placements,assetLibrary:library}};
+ return {blocked:new Set(blocked),puzzle:{steps:6,start:'A5',map,objectNames:usage==='flavor'?{}:{'review-place':name},assetPlacements:placements,assetLibrary:library}};
+
 }
 
 export function renderAssetPreview(svg,library,assetId,usage,name,{marked=false,hexes=true}={}){
