@@ -49,6 +49,11 @@
       "command": "python3 tests/test_package.py",
       "passed": 18,
       "scope": "Vollständige Paketgruppe einschließlich verschobener Ressourcenbasis und negativer Freigabefälle"
+    },
+    {
+      "command": "npx playwright test tests/browser/materials.spec.mjs",
+      "passed": 10,
+      "scope": "Vollständige Materialgruppe nach atomarer Prüfung des kurzlebigen Animationsblatts"
     }
   ],
   "developmentFailures": [
@@ -59,6 +64,10 @@
     {
       "stage": "R03 synchronization before case separation",
       "result": "1 failed, 5 passed: original combined three-gesture case exhausted its global 30s budget at the radar gesture. Native scroll completion already passed for water and land. Cases now isolated; all 18 final WebKit scroll cases passed."
+    },
+    {
+      "stage": "First complete Chromium desktop/mobile run",
+      "result": "269 passed, 1 failed. The pre-existing materials test observed a temporary turning-leaf, then waited for its aria-hidden attribute after the animation had removed it. Presence and attribute check are now one atomic DOM evaluation; the final complete rerun is reported in PR #74."
     }
   ],
   "extendedReport": "https://github.com/roquas/Sams-Gezeitenkarten/pull/74",

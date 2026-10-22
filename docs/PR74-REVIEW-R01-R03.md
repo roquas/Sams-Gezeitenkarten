@@ -103,6 +103,34 @@ und PageDown-Prüfungen sind ausdrücklich getrennt; eine physische iOS-Wischges
 bleibt eine Geräteabnahme. Mangels Zugriff auf die ursprünglichen CI-Traces wird
 die exakte Herkunft des dort berichteten 12px-Zwischenwerts nicht behauptet.
 
+Die vollständige Chromium-Abnahme deckte zusätzlich einen vorhandenen Testfehler
+in `tests/browser/materials.spec.mjs` auf (269 bestanden, 1 fehlgeschlagen): Das
+kurzlebige `.turning-leaf` verschwand zwischen `count()` und der anschließenden
+Attributassertion. Beide Prüfungen erfolgen jetzt atomar in derselben DOM-Abfrage.
+Die Aussage bleibt gleich: Jedes noch vorhandene Blatt muss `aria-hidden="true"`
+haben; ein bereits entferntes Blatt ist zulässig. Die anschließende Prüfung des
+Animationsendes bleibt unverändert. Dies ist die einzige ergänzende Testkorrektur
+außerhalb der drei Findings, notwendig für die vollständige Abnahme; keine Änderung
+an Anwendung, Animationsdauer oder Timeout.
+
+## Geänderte Dateien gegenüber dem Review-Ausgangspunkt
+
+Produktionscode:
+`src/ui/map.mjs`, `scripts/lib/package-path.mjs`,
+`scripts/lib/content-package.mjs`, `scripts/lib/publication-archive.mjs`,
+`scripts/validate-assets.mjs`.
+
+Regressionen:
+`tests/contracts/archive-resources.test.mjs`,
+`tests/fixtures/model/archive-vectors.json`,
+`tests/integration/model-game.mjs`, `tests/integration/chart-scroll.mjs`,
+`tests/deployment/chart-scroll.spec.mjs`, `tests/browser/materials.spec.mjs`.
+
+Vertrag und Nachweise:
+`docs/PUBLICATION-ARCHIVE-V2.md`, `docs/PR74-REVIEW-R01-R03.md`,
+`docs/verification/PR74-R01-R03-results.json`,
+`docs/verification/PR74-R01-R03-scroll-probe.json`.
+
 ## Verifikation
 
 Die gezielte lokale Abnahme und die schnellen vollständigen Prüfgruppen sind in

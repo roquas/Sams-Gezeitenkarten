@@ -32,7 +32,7 @@ test('all material exports decode and the page turn keeps one accessible hint',a
  await expect(page.locator('#cluePosition')).toHaveText('II / III');
  await expect(page.locator('#clueTrack [role="checkbox"]')).toHaveCount(1);
  const leaf=page.locator('.turning-leaf');
- if(await leaf.count())await expect(leaf).toHaveAttribute('aria-hidden','true');
+ expect(await leaf.evaluateAll(nodes=>nodes.every(node=>node.getAttribute('aria-hidden')==='true'))).toBe(true);
  await expect(leaf).toHaveCount(0,{timeout:2000});
  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#nextClue').click();
  await expect(leaf).toHaveCount(0);
