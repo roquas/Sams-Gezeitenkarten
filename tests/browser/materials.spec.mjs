@@ -36,7 +36,7 @@ test('all material exports decode and the page turn keeps one accessible hint',a
  // Observe the animation's completion rather than imposing a wall-clock
  // paint deadline on software-rendered WebKit. Removal remains mandatory.
  await leaf.evaluateAll(async nodes=>{await Promise.all(nodes.flatMap(node=>node.getAnimations()).map(animation=>animation.finished));});
- await expect(leaf).toHaveCount(0);
+ await expect(leaf).toHaveCount(0,{timeout:2000});
  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#nextClue').click();
  await expect(leaf).toHaveCount(0);
  expect(await page.locator('#clueViewport').evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0);
