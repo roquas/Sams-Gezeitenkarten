@@ -104,3 +104,5 @@ Die Archivprüfung trennt interne Definitionsbytes von `publicSource` und dem
 ausgelieferten Inventar. Ein eigener Metamorphietest sichert ab, dass private
 Provenienz bei gleicher öffentlicher Auslieferung die Veröffentlichungsidentität
 nicht verändert; private Definitionen dürfen im Auslieferungsinventar nicht stehen.
+
+[Lokale Prüfergebnisse mit Befehlen, Prüfumfang und ZIP-Hash](verification/F01-F03-results.json).

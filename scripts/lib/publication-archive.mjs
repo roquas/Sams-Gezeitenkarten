@@ -67,7 +67,7 @@ export function publicationFingerprint(entry,snapshot){
  return contentFingerprint('publication',{rulesVersion:entry.rulesVersion,
   instance:entry.fingerprints.instance,variant:entry.fingerprints.variant,
   revision:entry.revision,schemaVersion:entry.schemaVersion,dataVersion:entry.dataVersion,
-  publicSource:entry.publicSource,snapshot:snapshot.fingerprint});
+  publicSource:entry.publicSource,delivery:{files:[...snapshot.files].sort((a,b)=>compare(a.path,b.path)),assetCatalog:snapshot.assetCatalog??null}});
 }
 
 const string=pattern=>({type:'string',pattern});

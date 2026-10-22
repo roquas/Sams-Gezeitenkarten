@@ -59,9 +59,11 @@ test('private provenance changes cannot change publication identity, but cannot 
  const f=fixture(),before=f.p.fingerprints.publication;
  f.d.metadata={kind:'test',source:'different private seed provenance'};
  const bytes=Buffer.from(JSON.stringify(f.d));f.files.set(f.p.source.path,bytes);f.p.source.sha256=sha256(bytes);
- assert.equal(publicationFingerprint(f.p,f.s),before);validateArchive(f.manifest,{readBytes:f.readBytes});
+ f.s.commit='b'.repeat(40);f.s.fingerprint=snapshotFingerprint(f.s);
+ const readBytes=(path,commit)=>{assert.equal(commit,f.s.commit);return f.files.get(path);};
+ assert.equal(publicationFingerprint(f.p,f.s),before);validateArchive(f.manifest,{readBytes});
  f.s.files.push(f.p.source);f.s.fingerprint=snapshotFingerprint(f.s);f.p.fingerprints.publication=publicationFingerprint(f.p,f.s);
- assert.throws(()=>validateArchive(f.manifest,{readBytes:f.readBytes}),/internal definition must not be delivered/);
+ assert.throws(()=>validateArchive(f.manifest,{readBytes}),/internal definition must not be delivered/);
 });
 
 test('delivered DTO bytes must be public and exactly project the pinned internal definition',()=>{

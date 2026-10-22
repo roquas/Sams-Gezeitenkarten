@@ -11,7 +11,7 @@ Veröffentlichung; die Probefahrt ist ein technisches Demo-/Testpaket.
 | `mapFingerprint(map)` | Geometriekennung, Raster, Objekt-IDs, sortierte Zellmengen, Befahrbarkeit | Start, Etappen, Route, Hinweise und gesamte Darstellung |
 | `logicalFingerprints(document).instance` | Kartenfingerprint, Regelversion, Startzelle, Etappen, explizite interne Zielroute | Hinweise und Darstellung |
 | `.variant` | Instanzfingerprint und sortierte Multimenge strukturierter Hinweise | Redaktionelle Hinweis-IDs und Hinweisreihenfolge; Texte |
-| `publicationFingerprint(entry,snapshot)` | Regel-/Daten-/Schemaversion, Instanz, Variante, Revision, öffentlicher Quellpfad/-hash und vollständiger Auslieferungs-Snapshotfingerprint | Keine ausgelieferten Bytes werden bewusst ausgeschlossen |
+| `publicationFingerprint(entry,snapshot)` | Regel-/Daten-/Schemaversion, Instanz, Variante, Revision, öffentlicher Quellpfad/-hash und vollständiges sortiertes Auslieferungsinventar | Keine ausgelieferten Bytes werden bewusst ausgeschlossen |
 
 Ein Kartenfingerprint braucht **nur die Karte**. Er erzeugt keine künstliche
 Instanz/Zielroute und validiert keine Assets. Die logischen Identitäten benötigen
@@ -22,7 +22,7 @@ Objektreihenfolge und Zellreihenfolge sind bedeutungslos. Objekt-IDs und
 Befahrbarkeit sind bedeutungstragend. Doppelte Hinweise bleiben als Multimenge
 erhalten. Assettausch, Platzierung, Namen, Texte und Inhaltsrevision verändern
 keine logischen Identitäten. Änderungen solcher ausgelieferten Bytes verändern
-dagegen die Veröffentlichungsidentität über den öffentlichen Quell-/Snapshot-Hash.
+dagegen die Veröffentlichungsidentität über den öffentlichen Quellhash bzw. Auslieferungsinventar.
 
 ## Kanonisierung und feste Vektoren
 
@@ -59,7 +59,9 @@ interne `source` und öffentliche `publicSource` (je Pfad und Hash), Snapshot un
 Die interne Definition wird separat am Snapshot-Commit gelesen und gehasht; sie
 darf nicht im ausgelieferten Dateiinventar stehen. Der öffentliche DTO muss exakt
 der Projektion dieser internen Definition entsprechen. Private Provenienz/Seeds
-ändern bei unveränderter Auslieferung keine Veröffentlichungsidentität. IDs und Fingerprints werden bijektiv
+ändern bei unveränderter Auslieferung keine Veröffentlichungsidentität. Auch
+der reine Herkunftscommit ist kein ausgelieferter Inhalt: Er gehört zum gepinnten
+Snapshot, nicht zum Veröffentlichungsfingerprint. IDs und Fingerprints werden bijektiv
 gebunden; doppelte Revisionen oder widersprüchliche Bindungen sind Fehler.
 Mit `previous` bleiben akzeptierte Veröffentlichungen/Snapshots unveränderlich;
 neue Revisionen müssen über der bisher höchsten Revision der Variante liegen.

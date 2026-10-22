@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-22",
+  "baseCommit": "16cabf8",
+  "status": "all listed local checks passed",
+  "checks": [
+    {
+      "command": "npm run test:unit",
+      "passed": 81,
+      "scope": "engine, contracts and UI unit regressions"
+    },
+    {
+      "command": "npm run test:content",
+      "passed": 20,
+      "scope": "installed content consistency and curated artistic regressions"
+    },
+    {
+      "command": "python3 tests/test_package.py",
+      "passed": 18,
+      "scope": "isolated small packages, alternate resource locations, empty catalog and negative release gates"
+    },
+    {
+      "command": "npm run test:assets",
+      "passed": 20,
+      "scope": "13 image, 5 multihex export and 2 water export tests, plus catalog/hash/alpha validation across all feasible asset positions"
+    },
+    {
+      "command": "npx playwright test",
+      "passed": 254,
+      "scope": "complete Chromium desktop/mobile suite"
+    },
+    {
+      "command": "npx playwright test tests/browser/long-clue.spec.mjs tests/browser/model.spec.mjs --grep 'long clue text|second controlled entry'",
+      "passed": 4,
+      "scope": "new long-text cases and strengthened changing-start selection regression"
+    },
+    {
+      "command": "npx playwright test tests/browser/model.spec.mjs --config playwright.webkit.config.mjs",
+      "passed": 18,
+      "scope": "WebKit desktop/iPhone model integration"
+    },
+    {
+      "command": "npx playwright test tests/browser/model.spec.mjs --config playwright.webkit.config.mjs --grep 'second controlled entry'",
+      "passed": 2,
+      "scope": "strengthened changing-start regression"
+    },
+    {
+      "command": "npx playwright test tests/deployment/model.spec.mjs --config playwright.deployment.config.mjs",
+      "passed": 36,
+      "scope": "actual extracted ZIP under nested nosniff host: Chromium desktop/mobile and WebKit iPhone/iPad"
+    },
+    {
+      "command": "npx playwright test tests/deployment/model.spec.mjs --config playwright.deployment.config.mjs --grep 'second controlled entry'",
+      "passed": 4,
+      "scope": "strengthened changing-start regression against the actual ZIP"
+    },
+    {
+      "command": "node scripts/validate-puzzles.mjs",
+      "result": "all installed entries unique"
+    },
+    {
+      "command": "node scripts/check-puzzle-services.mjs tests/fixtures/model/demo-internal.json",
+      "result": "unique, target match, irredundant"
+    },
+    {
+      "command": "node scripts/validate-archive.mjs",
+      "result": "empty v2 archive valid; no publication registered"
+    },
+    {
+      "command": "node scripts/audit-asset-consolidation.mjs",
+      "result": "image bytes and artistic approval records unchanged against main"
+    },
+    {
+      "command": "python3 scripts/dev-server.py --self-test",
+      "result": "passed"
+    },
+    {
+      "command": "sh scripts/package.sh",
+      "result": "passed; every exported runtime byte matches the committed source after module renaming"
+    }
+  ],
+  "deploymentZip": {
+    "files": 94,
+    "sha256": "cee6a6870b12cef2740f1b7945869547611c48f2885c56536f511be9f4ae4e07"
+  },
+  "environment": {
+    "node": "24.19.0",
+    "browserPackage": "Playwright 1.64.0",
+    "webkit": "27.2 / build 2370",
+    "webkitRuntime": "Debian libraries installed in a temporary user-local browser bundle; ldconfig-only host precheck disabled. All listed browser cases executed."
+  },
+  "ci": "GitHub Actions is reported separately on PR #74 for its actual head commit."
+}

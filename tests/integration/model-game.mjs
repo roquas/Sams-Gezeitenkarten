@@ -56,13 +56,13 @@ export function registerModelTests(url){
   await page.goto(url);await expect(page.locator('#puzzleLoadError')).toContainText('Kartengrafik fehlt oder ist beschädigt');
  });
  test('a second controlled entry switches and reloads with separate state',async({page})=>{
-  const dto=read('puzzles/model-demo.json'),other=structuredClone(dto);other.puzzle.id='second-demo';other.puzzle.presentation.title='Zweite Probefahrt';
+  const dto=read('puzzles/model-demo.json'),other=structuredClone(dto);other.puzzle.id='second-demo';other.puzzle.presentation.title='Zweite Probefahrt';other.puzzle.logic.start='B5';other.identity.instanceId='inst-second-demo';other.identity.variantId='var-second-demo';
   const manifest=read('puzzles/manifest.json');manifest.puzzles.push({id:'second-demo',title:'Zweite Probefahrt',path:'second-demo.json',kind:'test'});
   await page.route('**/puzzles/manifest.json',r=>r.fulfill({json:manifest}));await page.route('**/puzzles/second-demo.json',r=>r.fulfill({json:other}));
   await page.goto(url);await expect(cell(page,'A5')).toBeVisible();await cell(page,'A1').click();
-  await settings(page);await page.locator('#puzzleSelect').selectOption('second-demo');await chart(page);await expect(page.locator('h1')).toHaveText('Zweite Probefahrt');await expect(cell(page,'A1')).not.toContainText('?');
+  await settings(page);await page.locator('#puzzleSelect').selectOption('second-demo');await chart(page);await expect(page.locator('h1')).toHaveText('Zweite Probefahrt');await expect(page.locator('.start-label')).toHaveAttribute('data-label-cell','B5');await expect(cell(page,'A1')).not.toContainText('?');
   await cell(page,'B1').click();await page.reload();await expect(cell(page,'B1')).toContainText('?');
-  await settings(page);await page.locator('#puzzleSelect').selectOption('model-demo');await chart(page);await expect(cell(page,'A1')).toContainText('?');await expect(cell(page,'B1')).not.toContainText('?');
+  await settings(page);await page.locator('#puzzleSelect').selectOption('model-demo');await chart(page);await expect(page.locator('.start-label')).toHaveAttribute('data-label-cell','A5');await expect(cell(page,'A1')).toContainText('?');await expect(cell(page,'B1')).not.toContainText('?');
  });
  test('multi-cell passable illustration uses the same renderer and no permanent name plaque',async({page})=>{
   const dto=read('puzzles/model-demo.json'),library=read('assets/catalog/library.json');
