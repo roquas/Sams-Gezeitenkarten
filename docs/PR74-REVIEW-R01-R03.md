@@ -28,7 +28,9 @@ Der präzisierte Vertrag und die Aktualisierung der festen Hashvektoren stehen i
 Regressionen in `tests/contracts/archive-resources.test.mjs`:
 
 - Reales temporäres Paket mit verschobener Ressourcenbasis: Paketlesen,
-  Assetvalidierung, Kompilierung, Archivvalidierung und Archivprojektion.
+  Assetvalidierung, Kompilierung, vollständige Puzzle-/Bild-CLI-Prüfung,
+  Archivvalidierung und Archivprojektion. Die isolierten PNG-/WebP-Bilder sind
+  dekodierbar und erfüllen den Alpha-/Footprintvertrag.
 - Laden desselben öffentlichen Lieferinventars unter einem tiefen URL-Unterpfad.
 - Gleicher Veröffentlichungsfingerprint bei verschiedenen internen Ressourcenbasen.
 - Andere öffentliche Assetreferenz oder andere Assetbytes ergeben einen anderen

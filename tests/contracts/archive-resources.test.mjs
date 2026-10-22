@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import {definition,asset,catalog} from '../fixtures/model/factories.mjs';
 import {readContentPackage} from '../../scripts/lib/content-package.mjs';
 import {validateAssetFiles} from '../../scripts/validate-assets.mjs';
@@ -12,10 +14,27 @@ import {createPuzzleLoader} from '../../src/puzzles/loader.mjs';
 import {sha256,logicalFingerprints,snapshotFingerprint,publicationFingerprint,validateArchive} from '../../scripts/lib/publication-archive.mjs';
 import {createArchiveProjector} from '../../scripts/lib/archive-projection.mjs';
 
+const repository=fileURLToPath(new URL('../../',import.meta.url));
+const imageCache=new Map();
+function makeImageBytes(format,width,height,tag=''){
+ const key=JSON.stringify([format,width,height,tag]);
+ if(!imageCache.has(key))imageCache.set(key,execFileSync('python3',['-c',`
+import sys
+from PIL import Image, ImageDraw, PngImagePlugin
+kind, width, height, tag = sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), sys.argv[4]
+image = Image.new('RGBA', (width, height), (0, 0, 0, 0))
+ImageDraw.Draw(image).rectangle((width//2-4, height//2-4, width//2+4, height//2+4), fill=(30, 80, 120, 255))
+metadata = PngImagePlugin.PngInfo()
+metadata.add_text('fixture', tag)
+image.save(sys.stdout.buffer, format=kind, **({'pnginfo': metadata} if kind == 'PNG' else {}))
+`,format,String(width),String(height),tag]));
+ return imageCache.get(key);
+}
+
 function fixture(t,resourceBase='resources',{imageRef='assets/test/island.png',imageBytes='island bytes'}={}){
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'gk-archive-resources-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
  const d=definition(),a=asset('test.island',[[0,0],[1,0]]);a.image.path=imageRef;
- const c=catalog([a]),images=new Map([[imageRef,Buffer.from(imageBytes)],[c.backgrounds[0].image,Buffer.from('sea bytes')]]);
+ const c=catalog([a]),images=new Map([[imageRef,makeImageBytes('PNG',a.image.width,a.image.height,imageBytes)],[c.backgrounds[0].image,makeImageBytes('WEBP',16,16)]]);
  c.reviews[0].assetSha256=sha256(images.get(imageRef));c.reviews[0].backgroundSha256=sha256(images.get(c.backgrounds[0].image));
  d.presentation.assetPlacements=[{id:'island',assetId:a.id,objectId:'shore',anchor:'B2'}];
  const identity={mapStructureId:'map-test',instanceId:'inst-test',variantId:'var-test'},dto=projectPublicPuzzle(d,{identity,assetLibrary:c});
@@ -41,10 +60,15 @@ function fixture(t,resourceBase='resources',{imageRef='assets/test/island.png',i
  return {root,d,c,files,s,p,manifest,readBytes};
 }
 
+
 test('shifted resource base survives package validation, archive, validation, projector and nested public URL loading',async t=>{
  const f=fixture(t,'nested/resources'),content=readContentPackage(f.root);
  validateAssetFiles(content.assetLibrary,content.resourceRoot);
  compilePuzzle(content.readPuzzle(content.manifest.puzzles[0]).puzzle,{assetLibrary:content.assetLibrary});
+ // Exercise the actual public package gates, including complete image decoding
+ // and alpha/footprint checks, rather than only hashing synthetic byte strings.
+ execFileSync('node',['scripts/validate-puzzles.mjs','--root',f.root],{cwd:repository});
+ execFileSync('python3',['scripts/check-library-images.py','--root',f.root],{cwd:repository});
  validateArchive(f.manifest,{readBytes:f.readBytes});
  const dto=createArchiveProjector(f.manifest,{readBytes:f.readBytes}).project('pub-test');assert.deepEqual(dto.puzzle.presentation,f.d.presentation);
  const prefix='https://example.test/arbitrary/deep/site/',requested=[];
