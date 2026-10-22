@@ -88,8 +88,12 @@ export function registerChartScrollTests(url){
    await page.locator('.bordbook').scrollIntoViewIfNeeded();await expect(page.locator('#clueViewport')).toBeVisible();
   });
   test('vertical scrolling preserves a waiting radar and later native taps select its source',async({page,browserName},info)=>{
+   // Radar activation is covered by the full click/keyboard/touch matrix.
+   // Start this independent scroll contract in its actual persisted waiting
+   // state instead of paying for another full DPR-2 map render first.
+   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'maybe',distanceMode:true,distanceOrigin:null})));
    await page.goto(url);await expect(cell(page,'D3')).toBeVisible();
-   const radar=page.locator('#toggleDistances');await radar.tap();
+   const radar=page.locator('#toggleDistances');await expect(radar).toHaveAttribute('data-distance-state','waiting');
    await top(page);
    const point=await center(page,'D3'),before=await scroll(page);
    await verticalSwipe(page,browserName,point,info,'D3');expect(await scroll(page)).toBeGreaterThan(before+20);

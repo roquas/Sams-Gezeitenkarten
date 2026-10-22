@@ -84,6 +84,10 @@ grundsätzlich blockierte native Scrollfunktion.
 Korrektur im gemeinsamen Test:
 
 - Wasser, Land und wartender Radar werden in eigenständigen Fällen geprüft.
+  Der Radarfall beginnt mit dem real unterstützten gespeicherten Wartezustand
+  und prüft diesen ausdrücklich vor dem Scrollen. Die Aktivierung per Klick,
+  Tastatur und Touch bleibt in der vollständigen Radarmatrix abgedeckt; alle
+  nachfolgenden Tap-/Quellwahl-/Ausschaltassertions des Scrollfalls bleiben bestehen.
 - Programmatisches Zurücksetzen wird vor der nächsten Trefferprüfung abgearbeitet.
 - Trefferziel, tatsächlicher Scrollweg und Fokusinhaber werden ausdrücklich geprüft.
 - WebKit: synthetische Pointerereignisse prüfen ausschließlich die Ereignisgrenze;
