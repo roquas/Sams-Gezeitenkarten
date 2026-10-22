@@ -11,7 +11,7 @@ Veröffentlichung; die Probefahrt ist ein technisches Demo-/Testpaket.
 | `mapFingerprint(map)` | Geometriekennung, Raster, Objekt-IDs, sortierte Zellmengen, Befahrbarkeit | Start, Etappen, Route, Hinweise und gesamte Darstellung |
 | `logicalFingerprints(document).instance` | Kartenfingerprint, Regelversion, Startzelle, Etappen, explizite interne Zielroute | Hinweise und Darstellung |
 | `.variant` | Instanzfingerprint und sortierte Multimenge strukturierter Hinweise | Redaktionelle Hinweis-IDs und Hinweisreihenfolge; Texte |
-| `publicationFingerprint(entry,snapshot)` | Regel-/Daten-/Schemaversion, Instanz, Variante, Revision, öffentlicher Quellpfad/-hash und vollständiges sortiertes Auslieferungsinventar | Keine ausgelieferten Bytes werden bewusst ausgeschlossen |
+| `publicationFingerprint(entry,snapshot)` | Regel-/Daten-/Schemaversion, Instanz, Variante, Revision, öffentlicher Quellpfad/-hash, öffentliche Ressourcenbasis und vollständiges sortiertes öffentliches Auslieferungsinventar | Keine ausgelieferten Bytes werden bewusst ausgeschlossen |
 
 Ein Kartenfingerprint braucht **nur die Karte**. Er erzeugt keine künstliche
 Instanz/Zielroute und validiert keine Assets. Die logischen Identitäten benötigen
@@ -47,12 +47,50 @@ Hinweismultiplizität und Unabhängigkeit von Assetauswahl/Darstellung ab.
 Beide Listen dürfen leer sein. Es gibt keine `legacyAliases` und keine alten
 Fingerprints, die zur Laufzeit konserviert werden müssen.
 
-Ein Snapshot besitzt `snapshotId`, `commit`, `files:[{path,sha256}]`, `fingerprint`
-und optional `assetCatalog` als ausdrücklichen Pfad innerhalb seines Inventars.
-Der Snapshotfingerprint umfasst Commit, sortiertes vollständiges Dateiinventar
-und diesen optionalen Katalogpfad. Ein Aufrufer liefert `readBytes(path,commit)`.
-Jeder Zugriff wird mit gepinnten Bytes geprüft, niemals mit dem heutigen Katalog.
-Bild- und Hintergrundfreigaben werden gegen genau diese Snapshotdateien geprüft.
+Ein Snapshot besitzt `snapshotId`, `commit`, `files:[{path,sha256,publicPath?}]`,
+`fingerprint` sowie optional `assetCatalog`, `resourceBase` und `publicResourceBase`.
+`path` ist der interne Speicherpfad am Herkunftscommit. `publicPath` ist der
+Dateipfad innerhalb der öffentlichen Auslieferung; ohne Angabe entspricht er
+`path`. Beide Pfadmengen sind eindeutig, relativ und frei von `.`/`..`-Segmenten.
+
+`assetCatalog` bezeichnet die interne Katalogdatei im Inventar. `resourceBase`
+ist das interne Ressourcenverzeichnis relativ zur Snapshotwurzel (Standard `.`).
+Asset-/Hintergrundreferenzen im Katalog werden wie im Paketloader relativ zu
+dieser Basis aufgelöst. `publicResourceBase` bezeichnet das entsprechende
+öffentliche Verzeichnis (Standard `.`). Für jede Referenz muss der aufgelöste
+interne Inventareintrag genau den passenden öffentlichen Pfad besitzen. Alle
+Bildbytes müssen im Inventar stehen und ihren SHA-256 sowie die Freigabehashes
+erfüllen. Paket- und Snapshotadapter verwenden denselben relativen Pfadauflöser;
+URL-Präfixe wie `/arbitrary/deep/site/` ergänzt ausschließlich der Host/Browser.
+
+Beispiel: `resourceBase:"storage/resources/"`,
+`publicResourceBase:"resources/"`, Katalogreferenz `assets/test/island.png`:
+`files` pinnt `{path:"storage/resources/assets/test/island.png",
+publicPath:"resources/assets/test/island.png",sha256:…}`. Eine separate öffentliche
+Paketmanifestdatei enthält die dazu passende öffentliche `resourceBase`; das interne
+Paketmanifest zur Quellauflösung ist keine ausgelieferte Datei.
+
+Der Snapshotfingerprint umfasst Herkunftscommit, internes Inventar einschließlich
+Zuordnung sowie Katalogpfad und beide Ressourcenbasen. Er dokumentiert somit auch
+interne Umzüge. Ein Aufrufer liefert `readBytes(path,commit)`. Jeder Zugriff wird
+mit gepinnten Bytes geprüft, niemals mit dem heutigen Katalog.
+
+Die **einzige** Veröffentlichungsfingerprintfunktion normalisiert dieses Inventar
+zu sortierten `{path:publicPath??path,sha256}`-Einträgen; öffentlicher Quell- und
+Katalogpfad werden durch dieselbe Zuordnung ersetzt. Hinzu kommen die normalisierte
+öffentliche Ressourcenbasis und die bereits definierten Veröffentlichungsfelder.
+Interne `resourceBase`, interne Pfade, Snapshot-ID/-fingerprint, Herkunftscommit und
+private Provenienz gehören nicht in diese Präimage. Bei unverändertem öffentlichen
+DTO, Katalog, Assetreferenzen, Lieferpfaden und Assetbytes bleibt daher derselbe
+Veröffentlichungsfingerprint und die zugeordnete `publicationId` erhalten. Eine
+Änderung ausgelieferter Referenzen, Pfade oder Bytes ändert ihn. Auch öffentliche
+Manifestdateien gehören ins Auslieferungsinventar und werden vollständig gepinnt.
+
+Dies präzisiert den v2-Vertrag innerhalb des noch unveröffentlichten PRs: Es gibt
+keine zweite Hashlogik und keine registrierte Veröffentlichung zu migrieren.
+Die festen Snapshot-/Veröffentlichungsvektoren sind entsprechend aktualisiert.
+Akzeptierte Snapshot- und Publikationsdatensätze bleiben trotzdem unveränderlich;
+ein interner Umzug erlaubt keine nachträgliche Änderung ihrer Archivhistorie.
 
 Veröffentlichungen binden die vier IDs, Regelversion, Revision, Schema-/Datenversion,
 interne `source` und öffentliche `publicSource` (je Pfad und Hash), Snapshot und Fingerprints.

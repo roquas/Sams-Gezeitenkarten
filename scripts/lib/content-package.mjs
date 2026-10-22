@@ -2,12 +2,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {validateManifest} from '../../src/puzzles/loader.mjs';
+import {resolvePackagePath} from './package-path.mjs';
 export function readContentPackage(base){
  base=path.resolve(base);
  const manifestPath=path.join(base,'puzzles/manifest.json');
  const manifest=validateManifest(JSON.parse(fs.readFileSync(manifestPath,'utf8')));
  const resolve=ref=>{
-  const full=path.resolve(path.dirname(manifestPath),ref);
+  const full=path.join(base,resolvePackagePath('puzzles',ref));
   if(full!==base&&!full.startsWith(base+path.sep))throw Error('Package source escapes root: '+ref);
   let component=base;
   for(const part of path.relative(base,full).split(path.sep).filter(Boolean)){

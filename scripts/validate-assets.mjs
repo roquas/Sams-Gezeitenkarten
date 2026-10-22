@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {validateLibrary} from '../src/assets/library.mjs';
 import {readContentPackage} from './lib/content-package.mjs';
+import {resolvePackagePath} from './lib/package-path.mjs';
 import {imageContract,placementContract} from '../src/assets/geometry.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
@@ -20,7 +21,7 @@ export function validateAssetBytes(library,readBytes){
 }
 export function validateAssetFiles(library,base=root){
  return validateAssetBytes(library,ref=>{
-  const full=path.resolve(base,ref);
+  const full=path.join(path.resolve(base),resolvePackagePath('.',ref));
   let component=path.resolve(base);
   for(const part of path.relative(component,full).split(path.sep)){
    component=path.join(component,part);

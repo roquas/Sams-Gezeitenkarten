@@ -25,6 +25,18 @@ export function registerModelTests(url){
   const dto=await (await page.request.get(new URL('puzzles/model-demo.json',page.url()).href)).json();
   expect(dto.puzzle.solution).toBeUndefined();expect(dto.puzzle.metadata).toBeUndefined();expect(dto.puzzle.generator).toBeUndefined();
  });
+ test('prototype property IDs use coordinate fallbacks and explicit own object names',async({page})=>{
+  const dto=read('puzzles/model-demo.json'),objects=dto.puzzle.logic.map.objects;
+  for(const [old,id] of [['o2','constructor'],['o3','toString']]){
+   objects.find(o=>o.id===old).id=id;
+   for(const p of dto.puzzle.presentation.assetPlacements)if(p.objectId===old)p.objectId=id;
+  }
+  objects.push({id:'hasOwnProperty',cells:['E1'],passable:false});dto.puzzle.presentation.objectNames={};
+  await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));await page.goto(url);
+  await expect(page.locator('#map .island-label text')).toHaveText(['B2 / C2','D1','E1']);
+  dto.puzzle.presentation.objectNames={constructor:'Eigener Name',toString:'Eigener Turm',hasOwnProperty:'Eigene Insel'};
+  await page.reload();await expect(page.locator('#map .island-label text')).toHaveText(['Eigener Name','Eigener Turm','Eigene Insel']);
+ });
  test('route interaction and verification use the new logic; blocked cells cannot be edited',async({page})=>{
   await page.goto(url);await expect(cell(page,'A5')).toBeVisible();
   await page.locator('#routeTool').click();await cell(page,'B2').click();expect((await saved(page)).route).toEqual(['A5']);

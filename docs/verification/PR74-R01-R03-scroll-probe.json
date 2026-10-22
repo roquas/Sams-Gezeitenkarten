@@ -1,0 +1,219 @@
+{
+  "date": "2026-10-22",
+  "browser": "Playwright 1.64 WebKit 2370, Linux software rendering",
+  "viewport": {
+    "width": 820,
+    "height": 900
+  },
+  "deviceScaleFactor": 1,
+  "method": "Original synthetic touch-pointer boundary, explicit cell focus, native PageDown; sample requestAnimationFrame progress without resetting the scroll between key press and final frame. This probe does not emulate a native iOS swipe.",
+  "observations": [
+    {
+      "mobile": false,
+      "cell": "D3",
+      "iteration": 0,
+      "before": 0,
+      "firstFrame": 27,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": false,
+      "cell": "B2",
+      "iteration": 0,
+      "before": 0,
+      "firstFrame": 21,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    },
+    {
+      "mobile": false,
+      "cell": "D3",
+      "iteration": 1,
+      "before": 0,
+      "firstFrame": 24,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": false,
+      "cell": "B2",
+      "iteration": 1,
+      "before": 0,
+      "firstFrame": 10,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    },
+    {
+      "mobile": false,
+      "cell": "D3",
+      "iteration": 2,
+      "before": 0,
+      "firstFrame": 5,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": false,
+      "cell": "B2",
+      "iteration": 2,
+      "before": 0,
+      "firstFrame": 3,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    },
+    {
+      "mobile": false,
+      "cell": "D3",
+      "iteration": 3,
+      "before": 0,
+      "firstFrame": 13,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": false,
+      "cell": "B2",
+      "iteration": 3,
+      "before": 0,
+      "firstFrame": 643,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    },
+    {
+      "mobile": false,
+      "cell": "D3",
+      "iteration": 4,
+      "before": 0,
+      "firstFrame": 9,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": false,
+      "cell": "B2",
+      "iteration": 4,
+      "before": 0,
+      "firstFrame": 37,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    },
+    {
+      "mobile": true,
+      "cell": "D3",
+      "iteration": 0,
+      "before": 0,
+      "firstFrame": 38,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": true,
+      "cell": "B2",
+      "iteration": 0,
+      "before": 0,
+      "firstFrame": 32,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    },
+    {
+      "mobile": true,
+      "cell": "D3",
+      "iteration": 1,
+      "before": 0,
+      "firstFrame": 13,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": true,
+      "cell": "B2",
+      "iteration": 1,
+      "before": 0,
+      "firstFrame": 629,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    },
+    {
+      "mobile": true,
+      "cell": "D3",
+      "iteration": 2,
+      "before": 0,
+      "firstFrame": 643,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": true,
+      "cell": "B2",
+      "iteration": 2,
+      "before": 0,
+      "firstFrame": 4,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    },
+    {
+      "mobile": true,
+      "cell": "D3",
+      "iteration": 3,
+      "before": 0,
+      "firstFrame": 11,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": true,
+      "cell": "B2",
+      "iteration": 3,
+      "before": 0,
+      "firstFrame": 643,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    },
+    {
+      "mobile": true,
+      "cell": "D3",
+      "iteration": 4,
+      "before": 0,
+      "firstFrame": 33,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "D3"
+    },
+    {
+      "mobile": true,
+      "cell": "B2",
+      "iteration": 4,
+      "before": 0,
+      "firstFrame": 38,
+      "finalFrame": 643,
+      "maximum": 1066,
+      "focusedCell": "B2"
+    }
+  ],
+  "ciBaseline": {
+    "head": "5600631dd6f67f4925099165a900e59f7ec5eac0",
+    "run": 39787610897,
+    "job": 119854790417,
+    "result": "webkit-desktop 820px: global 30s test timeout at radar scroll assertion; retry timed out while reading D3 bounding box. 42 other tests passed.",
+    "evidence": "GitHub check-run annotations via REST API; zipped CI traces/logs blocked at redirected hosts by environment network allowlist."
+  }
+}

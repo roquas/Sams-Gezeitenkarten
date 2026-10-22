@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-22",
+  "baseCommit": "5600631dd6f67f4925099165a900e59f7ec5eac0",
+  "scope": "Gezielte R01–R03-Abnahme und schnelle vollständige Engine-/Vertrags-/Inhaltsgruppen. Weitere vollständige Browser-, Asset- und ZIP-Abnahme sowie der jeweils aktuelle GitHub-CI-Status werden im bestehenden PR #74 dokumentiert, getrennt von diesen lokalen Ergebnissen.",
+  "checks": [
+    {
+      "command": "node --test tests/contracts/archive-resources.test.mjs tests/contracts/archive.test.mjs tests/contracts/loader.test.mjs",
+      "passed": 15,
+      "scope": "R01: Paket → Archiv → Projektion, öffentliche Identität, Fehlerfälle und URL-Unterverzeichnis"
+    },
+    {
+      "command": "npx playwright test tests/browser/model.spec.mjs --grep 'prototype property'",
+      "passed": 2,
+      "scope": "R02: Chromium Desktop/Mobil, alle drei Prototype-IDs mit Fallback und eigenem Namen"
+    },
+    {
+      "command": "npx playwright test --grep 'vertical scrolling'",
+      "passed": 18,
+      "scope": "R03: Chromium Desktop/Mobil, 390/820/1024px, Wasser/Land/Radar"
+    },
+    {
+      "command": "npx playwright test --config playwright.webkit.config.mjs --grep 'vertical scrolling'",
+      "passed": 18,
+      "scope": "R03: WebKit Desktop/iPhone, 390/820/1024px, Wasser/Land/Radar; ursprüngliches 30s-Testbudget"
+    },
+    {
+      "command": "npm run test:unit",
+      "passed": 85,
+      "scope": "Vollständige Engine-/Vertrags-/UI-Unitgruppe einschließlich Archiv und F03"
+    },
+    {
+      "command": "npm run test:content",
+      "passed": 20,
+      "scope": "Vollständige Inhaltsgruppe"
+    },
+    {
+      "command": "npm run test:puzzles",
+      "result": "unique; 1 solution"
+    },
+    {
+      "command": "node scripts/check-puzzle-services.mjs tests/fixtures/model/demo-internal.json",
+      "result": "unique, target match, irredundant"
+    },
+    {
+      "command": "node scripts/validate-archive.mjs",
+      "result": "empty v2 archive valid; no publication registered"
+    }
+  ],
+  "developmentFailures": [
+    {
+      "stage": "R01 first run",
+      "result": "Old fixed snapshot/publication vectors rejected the intentionally refined hash preimage. Vectors and contract updated; complete target suite now passes."
+    },
+    {
+      "stage": "R03 synchronization before case separation",
+      "result": "1 failed, 5 passed: original combined three-gesture case exhausted its global 30s budget at the radar gesture. Native scroll completion already passed for water and land. Cases now isolated; all 18 final WebKit scroll cases passed."
+    }
+  ],
+  "extendedReport": "https://github.com/roquas/Sams-Gezeitenkarten/pull/74",
+  "environment": {
+    "node": "22",
+    "playwright": "1.64.0",
+    "chromiumBuild": 1248,
+    "webkitBuild": 2370,
+    "webkitHost": "Linux software rendering; extracted shared libraries; PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1 bypasses only the ldconfig precheck, actual browsers run."
+  },
+  "limitations": [
+    "Original CI trace/log ZIP redirects are blocked by the environment host allowlist; GitHub check annotations and local traces were inspected.",
+    "WebKit PointerEvent probes are synthetic. Native PageDown is a separate native keyboard scroll proof; physical iOS swipe remains a device check."
+  ]
+}

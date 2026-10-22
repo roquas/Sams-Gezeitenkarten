@@ -6,6 +6,7 @@ import {schemaErrors} from '../../src/puzzles/schema.mjs';
 import {validateLogicDefinition,validateMap,validateTarget} from '../../src/engine/validate.mjs';
 import {RULES_VERSION} from '../../src/puzzles/schema.mjs';
 import {validateAssetBytes} from '../validate-assets.mjs';
+import {resolvePackagePath} from './package-path.mjs';
 
 const compare=(a,b)=>a<b?-1:a>b?1:0;
 const assert=(ok,message)=>{if(!ok)throw new Error(`archive: ${message}`);};
@@ -52,22 +53,36 @@ export function snapshotAssetLibrary(snapshot,readBytes){
   const file=snapshot.files.find(f=>f.path===path);
   assert(file,`asset file absent from snapshot: ${path}`);
   const bytes=readBytes(path,snapshot.commit);
+  assert(bytes!==undefined&&bytes!==null,`snapshot resource missing: ${path}`);
   assert(sha256(bytes)===file.sha256,`snapshot bytes changed: ${path}`);
   return bytes;
  };
  const library=JSON.parse(Buffer.from(read(snapshot.assetCatalog)).toString('utf8'));
- return validateAssetBytes(library,read);
+ return validateAssetBytes(library,ref=>{
+  const path=resolvePackagePath(snapshot.resourceBase??'.',ref);
+  const file=snapshot.files.find(f=>f.path===path);
+  assert(file,`asset file absent from snapshot: ${path} (reference ${ref})`);
+  assert((file.publicPath??file.path)===resolvePackagePath(snapshot.publicResourceBase??'.',ref),`asset public path disagrees with reference: ${ref}`);
+  return read(path);
+ });
 }
 
 export function snapshotFingerprint(snapshot){
- return contentFingerprint('snapshot',{commit:snapshot.commit,files:[...snapshot.files].sort((a,b)=>compare(a.path,b.path)),assetCatalog:snapshot.assetCatalog??null});
+ return contentFingerprint('snapshot',{commit:snapshot.commit,files:[...snapshot.files].sort((a,b)=>compare(a.path,b.path)),assetCatalog:snapshot.assetCatalog??null,
+  resourceBase:resolvePackagePath('.',snapshot.resourceBase??'.'),publicResourceBase:resolvePackagePath('.',snapshot.publicResourceBase??'.')});
 }
 
 export function publicationFingerprint(entry,snapshot){
+ const publicFile=path=>{
+  const file=snapshot.files.find(f=>f.path===path);
+  assert(file,`public file absent from snapshot: ${path}`);
+  return {path:file.publicPath??file.path,sha256:file.sha256};
+ };
  return contentFingerprint('publication',{rulesVersion:entry.rulesVersion,
   instance:entry.fingerprints.instance,variant:entry.fingerprints.variant,
   revision:entry.revision,schemaVersion:entry.schemaVersion,dataVersion:entry.dataVersion,
-  publicSource:entry.publicSource,delivery:{files:[...snapshot.files].sort((a,b)=>compare(a.path,b.path)),assetCatalog:snapshot.assetCatalog??null}});
+  publicSource:publicFile(entry.publicSource.path),delivery:{files:snapshot.files.map(f=>publicFile(f.path)).sort((a,b)=>compare(a.path,b.path)),
+   assetCatalog:snapshot.assetCatalog?publicFile(snapshot.assetCatalog).path:null,resourceBase:resolvePackagePath('.',snapshot.publicResourceBase??'.')}});
 }
 
 const string=pattern=>({type:'string',pattern});
@@ -79,9 +94,11 @@ const object=(properties,required=Object.keys(properties))=>({type:'object',prop
 const array=items=>({type:'array',minItems:0,items});
 const path=string('^(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+$');
 const source=object({path,sha256:digest});
+const deliveredSource=object({path,sha256:digest,publicPath:path},['path','sha256']);
+const directory=string('^(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+/?$');
 export const archiveSchema=object({
  archiveSchemaVersion:{const:2},canonicalizationVersion:{const:2},
- snapshots:array(object({snapshotId:id('snapshot'),commit:string('^[a-f0-9]{40}$'),files:array(source),fingerprint:fingerprint('snapshot'),assetCatalog:path},['snapshotId','commit','files','fingerprint'])),
+ snapshots:array(object({snapshotId:id('snapshot'),commit:string('^[a-f0-9]{40}$'),files:array(deliveredSource),fingerprint:fingerprint('snapshot'),assetCatalog:path,resourceBase:directory,publicResourceBase:directory},['snapshotId','commit','files','fingerprint'])),
  publications:array(object({publicationId:id('pub'),mapStructureId:id('map'),instanceId:id('inst'),variantId:id('var'),
   rulesVersion:{const:RULES_VERSION},revision:integer,schemaVersion:{const:2},dataVersion:integer,
   source,publicSource:source,snapshotId:id('snapshot'),fingerprints:object({mapStructure:fingerprint('map'),instance:fingerprint('instance'),variant:fingerprint('variant'),publication:fingerprint('publication')})}))
@@ -114,10 +131,14 @@ export function validateArchive(manifest,{readBytes,previous}={}){
  };
  for(const snapshot of manifest.snapshots){
   unique(snapshot.files,f=>f.path,'snapshot path');
+  unique(snapshot.files,f=>f.publicPath??f.path,'public delivery path');
+  for(const field of ['resourceBase','publicResourceBase'])resolvePackagePath('.',snapshot[field]??'.');
   const bytes=new Map();
   for(const file of snapshot.files){
    assert(!file.path.split('/').some(p=>p==='.'||p==='..'),'unsafe snapshot path');
+   assert(!(file.publicPath??file.path).split('/').some(p=>p==='.'||p==='..'),'unsafe public delivery path');
    const data=readBytes(file.path,snapshot.commit);
+   assert(data!==undefined&&data!==null,`snapshot resource missing: ${file.path}`);
    assert(sha256(data)===file.sha256,`snapshot bytes changed: ${file.path}`);
    bytes.set(file.path,data);
   }

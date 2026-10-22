@@ -62,7 +62,7 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
    const text=el("text",{x:0,y:0,dy:".35em","text-anchor":"middle","font-family":"Georgia,'Times New Roman',serif","font-size":fontSize,"font-weight":"600",fill:start?"#8c3e2c":"#392b19",stroke:"#f6e8cd","stroke-width":".35","paint-order":"stroke"},t);
    g.append(text);clipped.append(g);art.append(clipped);
  };
- for(const object of puzzle.map.objects){const name=puzzle.objectNames[object.id]??object.cells.join(' / ');if(!object.passable)drawLabel(placeLabelLayout(object.cells,name,blocked,byId),name);}
+ for(const object of puzzle.map.objects){const name=Object.hasOwn(puzzle.objectNames,object.id)?puzzle.objectNames[object.id]:object.cells.join(' / ');if(!object.passable)drawLabel(placeLabelLayout(object.cells,name,blocked,byId),name);}
  drawLabel(startLabelLayout(byId[puzzle.start]),'Start',true);
  svg.append(art);
  // Fit actual browser font metrics without expanding the safe land footprint.
