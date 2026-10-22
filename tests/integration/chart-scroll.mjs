@@ -53,13 +53,24 @@ async function verticalSwipe(page,browserName,point,info,id){
    return down&&move;
   },point);
   expect(allowed).toBe(true);
-  await page.keyboard.press('PageDown');
+  // Keep the native key down until WebKit has applied its default action.
+  // A down/up pair within one compositor frame is not a physical key press.
+  await page.keyboard.down('PageDown');
+  try{await expect.poll(()=>scroll(page)).toBeGreaterThan(before.top+20);}
+  finally{await page.keyboard.up('PageDown');}
  }
- // Crossing 20px can be only the first animation frame (12–43px observed).
- // Wait for the native scroll to finish before a later reset/tap changes it.
- await expect.poll(()=>page.evaluate(()=>window.__chartScrollProbe),{message:'native scroll completes with useful travel'}).toMatchObject({ended:true});
- const probe=await page.evaluate(()=>window.__chartScrollProbe);
- expect(probe.after).toBeGreaterThan(before.top+20);
+ // The contract is useful native movement, not completion of WebKit's
+ // compositor animation. Each scenario is independent. Capture the proof
+ // before cancelling residual inertia so subsequent book/tap checks cannot
+ // race an animation started by the test driver.
+ await expect.poll(()=>scroll(page)).toBeGreaterThan(before.top+20);
+ const probe=await page.evaluate(()=>{
+  const element=innerWidth<=880?document.getElementById('gameSurface'):document.scrollingElement;
+  const probe=window.__chartScrollProbe;probe.observed=element.scrollTop;
+  (innerWidth<=880?element:window).scrollTo({top:probe.observed,behavior:'instant'});
+  return {...probe,activeCell:document.activeElement?.dataset.id};
+ });
+ expect(probe.observed).toBeGreaterThan(before.top+20);
  await info.attach('native-scroll-'+id,{body:JSON.stringify({browserName,id,...probe}),contentType:'application/json'});
 }
 export function registerChartScrollTests(url){

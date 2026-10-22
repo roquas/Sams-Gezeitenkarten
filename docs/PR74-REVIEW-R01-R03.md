@@ -88,8 +88,17 @@ Korrektur im gemeinsamen Test:
 - Trefferziel, tatsächlicher Scrollweg und Fokusinhaber werden ausdrücklich geprüft.
 - WebKit: synthetische Pointerereignisse prüfen ausschließlich die Ereignisgrenze;
   anschließend prüft native PageDown-Eingabe die Scrollbedienbarkeit.
-- Der Test wartet auf das native `scrollend` und prüft weiterhin mehr als 20px
-  Bewegung. Keine Timeoutverlängerung und keine schwächere Bewegungsassertion.
+- Die native PageDown-Taste bleibt gedrückt, bis der Browser tatsächlich mehr als
+  20px Scrollbewegung verarbeitet hat; `finally` gibt sie frei. Die ursprüngliche
+  5s-Bewegungsassertion und das 30s-Fallbudget bleiben bestehen.
+- Ein vollständiges `scrollend` ist keine zusätzliche Bestehensbedingung mehr:
+  Die erste lokale Korrektur bestand, der CI-Lauf auf `03ce1a9` zeigte jedoch,
+  dass dieses spätere Compositor-Ereignis bei 820px ausbleiben oder erst nach dem
+  Prüfzeitfenster ankommen kann. Die geforderte native Bewegung bleibt zwingend.
+- Erst **nach** dem gemessenen Bewegungsnachweis beendet der Treiber verbleibende
+  native Animation/Inertia am erreichten Offset. Dadurch können die anschließenden
+  Buch-/Tap-Prüfungen nicht mit einer vom Test selbst begonnenen Animation rennen.
+  Es werden keine Scrollbewegungen für die Bestehensassertion per Skript erzeugt.
 - Scrollmesswerte werden als JSON-Testattachment protokolliert.
 - Dieselben vollständigen Scroll-/Touchfälle laufen auch gegen das tatsächlich
   entpackte ZIP unter `/gk/pr38/` (vier Browser-/Geräteprofile).
@@ -103,15 +112,38 @@ und PageDown-Prüfungen sind ausdrücklich getrennt; eine physische iOS-Wischges
 bleibt eine Geräteabnahme. Mangels Zugriff auf die ursprünglichen CI-Traces wird
 die exakte Herkunft des dort berichteten 12px-Zwischenwerts nicht behauptet.
 
-Die vollständige Chromium-Abnahme deckte zusätzlich einen vorhandenen Testfehler
-in `tests/browser/materials.spec.mjs` auf (269 bestanden, 1 fehlgeschlagen): Das
-kurzlebige `.turning-leaf` verschwand zwischen `count()` und der anschließenden
-Attributassertion. Beide Prüfungen erfolgen jetzt atomar in derselben DOM-Abfrage.
-Die Aussage bleibt gleich: Jedes noch vorhandene Blatt muss `aria-hidden="true"`
-haben; ein bereits entferntes Blatt ist zulässig. Die anschließende Prüfung des
-Animationsendes bleibt unverändert. Dies ist die einzige ergänzende Testkorrektur
-außerhalb der drei Findings, notwendig für die vollständige Abnahme; keine Änderung
-an Anwendung, Animationsdauer oder Timeout.
+Die vollständigen Prüfgruppen deckten zusätzliche vorhandene Testfehler auf.
+Diese eng begrenzten Abnahmekorrekturen ergänzen die drei Findings; Anwendung,
+Regeln, Grafiken und Timeouts werden dadurch nicht verändert:
+
+- `materials.spec.mjs`: `.turning-leaf` verschwand zwischen `count()` und der
+  Attributassertion. Beide Prüfungen erfolgen atomar. Die Entfernung wird nach
+  der natürlichen Web-Animation-`finished`-Promise geprüft, statt eine feste
+  2s-Wanduhrfrist auf softwaregerenderte Frames anzuwenden. Die Prüfung jedes
+  vorhandenen Blatts auf `aria-hidden="true"` und die erforderliche Entfernung
+  bleiben bestehen; die Animation wird nicht durch den Test beendet.
+- `gui-final-review.spec.mjs`: Drei unabhängige Überschreib-/Löschfälle hatten
+  ein gemeinsames 30s-Budget für zwölf Eingaben. Jeder Fall verwendet jetzt einen
+  frischen Kontext mit derselben Maybe-Markierung und prüft den jeweiligen
+  echten Eingabeweg sowie den erhaltenen Radarzustand separat.
+- `layout-polish.spec.mjs`: Sieben Bilder mit mehreren Viewportwechseln standen
+  unter einem gemeinsamen 30s-Budget. Desktop, Mobil und schmale Mobilansicht
+  sind eigenständige Fälle; alle sieben Aufnahmen bleiben erhalten. Der jeweilige
+  Viewport wird bereits vor der Navigation festgelegt.
+- Die drei genannten Dateien laden ihren bereits frischen Playwright-Kontext
+  einmal; das unnötige vorherige Laden/Löschen/Neuladen entfällt.
+- `ui-ink-status.mjs`: `document.load` garantiert noch keinen abgeschlossenen
+  asynchronen DTO-/Katalogloader. Vor gespeicherten Zustandsprüfungen wird die
+  tatsächlich aufgebaute interaktive Karte abgewartet; die anschließenden
+  Zustandsassertions bleiben bei ihren bisherigen Fristen. Dasselbe gilt nach
+  Reload. Dies behebt die zwei von CI gemeldeten Start-Races bei 820px.
+
+Der Lauf auf `03ce1a9` bestand lokal mit 270 Chromium-Fällen und in GitHub mit
+vollständigem Browser-, Asset- und Deployment-Job. Drei WebKit-Shards meldeten
+jedoch die oben ausgewerteten Fehler bzw. Flakes. Sie werden nicht als grüne
+Gesamtabnahme ausgewiesen. Der unterbrochene lokale ZIP-Lauf dieses Zwischenstands
+hatte 171 bestandene und zwei beim Abbruch unterbrochene Fälle; sein Nachfolger
+prüft den überarbeiteten Stand vollständig.
 
 ## Geänderte Dateien gegenüber dem Review-Ausgangspunkt
 
@@ -124,7 +156,9 @@ Regressionen:
 `tests/contracts/archive-resources.test.mjs`,
 `tests/fixtures/model/archive-vectors.json`,
 `tests/integration/model-game.mjs`, `tests/integration/chart-scroll.mjs`,
-`tests/deployment/chart-scroll.spec.mjs`, `tests/browser/materials.spec.mjs`.
+`tests/deployment/chart-scroll.spec.mjs`, `tests/browser/materials.spec.mjs`,
+`tests/browser/gui-final-review.spec.mjs`, `tests/browser/layout-polish.spec.mjs`,
+`tests/integration/ui-ink-status.mjs`.
 
 Vertrag und Nachweise:
 `docs/PUBLICATION-ARCHIVE-V2.md`, `docs/PR74-REVIEW-R01-R03.md`,

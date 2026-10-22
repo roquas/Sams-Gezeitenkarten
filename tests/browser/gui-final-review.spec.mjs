@@ -6,7 +6,7 @@ const state=page=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),KEY);
 const cell=(page,id)=>page.locator('#map [data-id="'+id+'"]');
 const overlay=page=>page.locator('.distance-overlay');
 const rows=async locator=>locator.evaluateAll(ns=>{const ys=ns.map(n=>{const b=n.getBoundingClientRect();return b.y+b.height/2;}).sort((a,b)=>a-b);return ys.reduce((a,y)=>{if(!a.length||y-a.at(-1)>1)a.push(y);return a;},[]).length;});
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
+test.beforeEach(async({page})=>{await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25);});
 const startRadar=async page=>{await page.locator('#toggleDistances').click();await cell(page,'C1').click();};
 const retained=async page=>{await expect(overlay(page)).toHaveAttribute('data-distance-origin','C1');await expect(page.locator('.distance-value')).toHaveCount(25);await expect(page.locator('#toggleDistances')).toHaveAttribute('data-distance-state','showing');};
 test('distance-two notes retain the independent overlay',async({page})=>{
@@ -16,12 +16,11 @@ test('distance-two notes retain the independent overlay',async({page})=>{
   await expect(page.locator(`[data-distance-cell="${id}"]`)).toHaveText('2');await cell(page,id).click();expect((await state(page)).marks['1:'+id]).toBe('maybe');await retained(page);
  }
 });
-test('overwriting and erasing notes retain the independent overlay',async({page})=>{
- await startRadar(page);await page.locator('[data-tool="maybe"]').click();
- for(const id of ['A1','A2','D2'])await cell(page,id).click();
- for(const [tool,id,value] of [['yes','A1','yes'],['no','A2','no'],['erase','D2',undefined]]){
-  await page.locator(`[data-tool="${tool}"]`).click();await cell(page,id).click();expect((await state(page)).marks['1:'+id]).toBe(value);await retained(page);
- }
+for(const [tool,id,value] of [['yes','A1','yes'],['no','A2','no'],['erase','D2',undefined]])test(`overwriting notes with ${tool} retains the independent overlay`,async({page})=>{
+ await startRadar(page);await page.locator('[data-tool="maybe"]').click();await cell(page,id).click();
+ expect((await state(page)).marks['1:'+id]).toBe('maybe');
+ await page.locator(`[data-tool="${tool}"]`).click();await cell(page,id).click();
+ expect((await state(page)).marks['1:'+id]).toBe(value);await retained(page);
 });
 test('erasing all hours retains the independent overlay',async({page})=>{
  await startRadar(page);await page.locator('[data-tool="yes"]').click();await cell(page,'A1').click();

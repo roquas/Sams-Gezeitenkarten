@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
+test.beforeEach(async({page})=>{await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('raster upper materials load, stay clear of hit targets and render at desktop and mobile',async({page},testInfo)=>{
  const failed=[];page.on('response',r=>{if(r.status()>=400&&r.url().includes('/assets/'))failed.push(r.url());});
  await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
@@ -33,7 +33,10 @@ test('all material exports decode and the page turn keeps one accessible hint',a
  await expect(page.locator('#clueTrack [role="checkbox"]')).toHaveCount(1);
  const leaf=page.locator('.turning-leaf');
  expect(await leaf.evaluateAll(nodes=>nodes.every(node=>node.getAttribute('aria-hidden')==='true'))).toBe(true);
- await expect(leaf).toHaveCount(0,{timeout:2000});
+ // Observe the animation's completion rather than imposing a wall-clock
+ // paint deadline on software-rendered WebKit. Removal remains mandatory.
+ await leaf.evaluateAll(async nodes=>{await Promise.all(nodes.flatMap(node=>node.getAnimations()).map(animation=>animation.finished));});
+ await expect(leaf).toHaveCount(0);
  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#nextClue').click();
  await expect(leaf).toHaveCount(0);
  expect(await page.locator('#clueViewport').evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0);

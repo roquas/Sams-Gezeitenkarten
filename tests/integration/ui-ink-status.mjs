@@ -1,6 +1,9 @@
 import {test,expect} from '@playwright/test';
 
 const cell=(page,id)=>page.locator(`#map [data-id="${id}"]`);
+// document.load does not await the asynchronous DTO/catalog loader. Observe
+// actual application readiness before checking a restored state or acting.
+const ready=page=>cell(page,'C1').waitFor({state:'attached'});
 const activate=async(page,method,locator)=>{
  if(method==='keyboard'){await locator.focus();await page.keyboard.press('Space');}
  else if(method==='touch')await locator.tap();else await locator.click();
@@ -21,7 +24,7 @@ export function registerInkStatusTests(url){
   test.use({viewport:{width,height:1000},hasTouch:true});
   for(const method of ['click','keyboard','touch']){
    test(`radar ${method} selects and switches off without moving the status slot`,async({page})=>{
-    await page.goto(url);await expect(cell(page,'C1')).toBeVisible();
+    await page.goto(url);await ready(page);await expect(cell(page,'C1')).toBeVisible();
     const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus'),before=await layout(page);
     await expect(status).toHaveAttribute('role','status');await expect(status).toHaveAttribute('aria-atomic','true');await expect(status).toBeEmpty();
     expect(before[2][1]).toBeGreaterThanOrEqual(before[1][1]+before[1][3]);
@@ -43,7 +46,7 @@ export function registerInkStatusTests(url){
       sessionStorage.setItem('radar-fixture-seeded','true');
      }
     });
-    await page.goto(url);const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
+    await page.goto(url);await ready(page);const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
     await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','C1');const before=await layout(page);
     await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
     await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
@@ -58,19 +61,19 @@ export function registerInkStatusTests(url){
       sessionStorage.setItem('radar-fixture-seeded','true');
      }
     });
-    await page.goto(url);const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
+    await page.goto(url);await ready(page);const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
     await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');const before=await layout(page);
     await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');
     await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
     await page.locator('#undo').click();await expect(page.locator('.distance-overlay')).toHaveCount(0);
-    await page.reload();await expect(radar).toHaveAttribute('data-distance-state','inactive');
+    await page.reload();await ready(page);await expect(radar).toHaveAttribute('data-distance-state','inactive');
    });
   }
   test('route contrast, equal other hours and active edges follow the selected hour',async({page})=>{
    // Route entry is already covered by the route/undo suites. This case
    // exercises the real hour transition with that same legal route restored.
    await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5','B5','C5','D5'],layer:1,tool:'route'})));
-   await page.goto(url);await expect(cell(page,'D4')).toBeVisible();
+   await page.goto(url);await ready(page);await expect(cell(page,'D4')).toBeVisible();
    await page.locator('[data-hour="2"]').click();
    const paths=page.locator('.route-stroke');await expect(paths).toHaveCount(3);
    const styles=await paths.evaluateAll(nodes=>nodes.map(n=>({current:n.dataset.routeCurrent,stroke:n.getAttribute('stroke'),width:n.getAttribute('stroke-width'),opacity:+n.getAttribute('opacity'),dash:n.getAttribute('stroke-dasharray')})));
@@ -90,7 +93,7 @@ export function registerInkStatusTests(url){
   });
   test('radar status screenshot below the toolbar',async({page},info)=>{
    await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'A1'})));
-   await page.goto(url);await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');
+   await page.goto(url);await ready(page);await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');
    const status=page.locator('#distanceStatus');await expect(status).not.toBeEmpty();await status.scrollIntoViewIfNeeded();
    await page.evaluate(()=>document.fonts.ready);const path=info.outputPath(`status-${width}.png`);
    await page.screenshot({path});await info.attach(`status-${width}`,{path,contentType:'image/png'});
@@ -100,7 +103,7 @@ export function registerInkStatusTests(url){
    // transitions above still execute all real route/hour controls. Seeding a
    // legal persisted route avoids repeating those edits in each image case.
    await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5','B5','C5','D5'],layer:2,tool:'route'})));
-   await page.goto(url);await expect(page.locator('.route-stroke')).toHaveCount(3);
+   await page.goto(url);await ready(page);await expect(page.locator('.route-stroke')).toHaveCount(3);
    await expect(page.locator('.edge-ink').first()).toHaveAttribute('data-active-hour','2');
    await page.locator('#showChart').evaluate((el,checked)=>{el.checked=checked;el.dispatchEvent(new Event('change'));},art);
    await expect(page.locator('.route-stroke[data-route-current="true"]')).toHaveCount(1);

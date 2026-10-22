@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
+test.beforeEach(async({page})=>{await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25);});
 const rows=async locator=>locator.evaluateAll(ns=>{const tops=ns.map(n=>n.getBoundingClientRect().top+n.getBoundingClientRect().height/2).sort((a,b)=>a-b);return tops.reduce((a,v)=>{if(!a.length||v-a.at(-1)>1)a.push(v);return a;},[]).length;});
 test('instrument placement, two mobile rows, generous hit areas and compact route numbers',async({page})=>{
  await expect(page.locator('.chart-toolbar .wheel-emblem,.chart-toolbar .hour-label')).toHaveCount(0);
@@ -49,15 +49,26 @@ test('lowered labels retain footprint safety and column guides stay behind hex i
  const guides=await page.locator('.coordinate-guides>path').evaluateAll(ns=>ns.filter(n=>!n.hasAttribute('stroke-dasharray')).map(n=>Number(n.getAttribute('opacity'))));
  expect(guides.every(o=>o>=.19&&o<.56)).toBe(true);
 });
-test('actual browser screenshots of six layout refinements',async({page},testInfo)=>{
- await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width:1440,height:1080});await page.evaluate(()=>scrollTo(0,0));
- for(const [name,locator] of [['layout-desktop',null],['layout-upper',page.locator('.chart-toolbar')],['layout-lower',page.locator('#mapActions')],['layout-book',page.locator('.bordbook')]]){
-  await testInfo.attach(name,{body:locator?await locator.screenshot({type:'jpeg',quality:96,scale:'css'}):await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
- }
- await page.setViewportSize({width:390,height:844});await page.locator('#gameSurface').evaluate(el=>el.scrollTop=0);
- await testInfo.attach('layout-mobile-upper',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
- await page.locator('.bordbook').scrollIntoViewIfNeeded();
- await testInfo.attach('layout-mobile-book',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
- await page.setViewportSize({width:320,height:780});await page.locator('#mapActions').scrollIntoViewIfNeeded();
- await testInfo.attach('layout-mobile-320',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+test.describe('layout review desktop',()=>{
+ test.use({viewport:{width:1440,height:1080},reducedMotion:'reduce'});
+ test('actual browser screenshots of desktop refinements',async({page},testInfo)=>{
+  for(const [name,locator] of [['layout-desktop',null],['layout-upper',page.locator('.chart-toolbar')],['layout-lower',page.locator('#mapActions')],['layout-book',page.locator('.bordbook')]]){
+   await testInfo.attach(name,{body:locator?await locator.screenshot({type:'jpeg',quality:96,scale:'css'}):await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+  }
+ });
+});
+test.describe('layout review mobile',()=>{
+ test.use({viewport:{width:390,height:844},reducedMotion:'reduce'});
+ test('actual browser screenshots of mobile refinements',async({page},testInfo)=>{
+  await testInfo.attach('layout-mobile-upper',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+  await page.locator('.bordbook').scrollIntoViewIfNeeded();
+  await testInfo.attach('layout-mobile-book',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+ });
+});
+test.describe('layout review narrow mobile',()=>{
+ test.use({viewport:{width:320,height:780},reducedMotion:'reduce'});
+ test('actual browser screenshot of narrow refinements',async({page},testInfo)=>{
+  await page.locator('#mapActions').scrollIntoViewIfNeeded();
+  await testInfo.attach('layout-mobile-320',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+ });
 });

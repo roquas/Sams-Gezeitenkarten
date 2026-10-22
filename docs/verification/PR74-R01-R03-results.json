@@ -54,6 +54,11 @@
       "command": "npx playwright test tests/browser/materials.spec.mjs",
       "passed": 10,
       "scope": "Vollständige Materialgruppe nach atomarer Prüfung des kurzlebigen Animationsblatts"
+    },
+    {
+      "command": "npx playwright test --config playwright.webkit.config.mjs tests/browser/ui-chart-scroll.spec.mjs tests/browser/gui-final-review.spec.mjs tests/browser/materials.spec.mjs tests/browser/layout-polish.spec.mjs --grep 'vertical scrolling|overwriting notes with|all material exports decode|actual browser screenshot.*refinements'",
+      "passed": 32,
+      "scope": "Verfeinerte native Eingabeverarbeitung, Scroll-/Radarzustand, getrennte Änderungsfälle, natürlicher Animationsabschluss und aufgeteilte Layout-Aufnahmen; Desktop DPR 2 und Mobil DPR 1"
     }
   ],
   "developmentFailures": [
@@ -68,6 +73,14 @@
     {
       "stage": "First complete Chromium desktop/mobile run",
       "result": "269 passed, 1 failed. The pre-existing materials test observed a temporary turning-leaf, then waited for its aria-hidden attribute after the animation had removed it. Presence and attribute check are now one atomic DOM evaluation; the final complete rerun is reported in PR #74."
+    },
+    {
+      "stage": "GitHub CI on 03ce1a9",
+      "result": "Unit, assets, complete Chromium and complete ZIP deployment jobs passed. WebKit shard 1: combined overwrite/erase scenario exhausted the unchanged 30s budget. Shard 2: additional scrollend condition failed at 820px; separate snapshot/animation cases were flaky. Shard 3: restored-state assertions preceded asynchronous application readiness in two cases. These failures/flakes are addressed by controlled native key processing, independent cases, animation completion promises and explicit interactive-map readiness; assertion/test timeout settings remain unchanged."
+    },
+    {
+      "stage": "Superseded local ZIP run on 03ce1a9",
+      "result": "171 passed, 2 interrupted by deliberate SIGINT before editing the shared scroll test; a full final-head run follows. Interrupted cases are not counted as passed or as product failures."
     }
   ],
   "extendedReport": "https://github.com/roquas/Sams-Gezeitenkarten/pull/74",

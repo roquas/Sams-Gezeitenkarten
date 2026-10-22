@@ -215,5 +215,155 @@
     "job": 119854790417,
     "result": "webkit-desktop 820px: global 30s test timeout at radar scroll assertion; retry timed out while reading D3 bounding box. 42 other tests passed.",
     "evidence": "GitHub check-run annotations via REST API; zipped CI traces/logs blocked at redirected hosts by environment network allowlist."
+  },
+  "dpr2RenderingComparison": {
+    "viewport": {
+      "width": 820,
+      "height": 900
+    },
+    "deviceScaleFactor": 2,
+    "method": "Same decoded game, actual radar control, focused D3, native PageDown. Optional compositor hints were applied only in disposable browser contexts; no CSS/product change retained. Timing varies by rendering state; every probe reached native scrollTop 643.",
+    "observations": [
+      {
+        "layer": "default",
+        "wholeActionMs": 15146,
+        "started": 14075,
+        "frames": [
+          {
+            "t": 17,
+            "y": 37
+          }
+        ],
+        "events": [],
+        "focus": "D3",
+        "stopped": true,
+        "reason": "scrollend",
+        "after": 643,
+        "elapsed": 2290
+      },
+      {
+        "layer": "static-art",
+        "wholeActionMs": 15815,
+        "started": 16103,
+        "frames": [
+          {
+            "t": 17,
+            "y": 39
+          }
+        ],
+        "events": [],
+        "focus": "D3",
+        "stopped": true,
+        "reason": "scrollend",
+        "after": 643,
+        "elapsed": 2414
+      },
+      {
+        "layer": "svg-root",
+        "wholeActionMs": 11035,
+        "started": 12929,
+        "frames": [
+          {
+            "t": 16,
+            "y": 38
+          }
+        ],
+        "events": [],
+        "focus": "D3",
+        "stopped": true,
+        "reason": "scrollend",
+        "after": 643,
+        "elapsed": 810
+      },
+      {
+        "layer": "default-held",
+        "wholeActionMs": 17381,
+        "started": 14495,
+        "frames": [
+          {
+            "t": 16,
+            "y": 38
+          },
+          {
+            "t": 2561,
+            "y": 643
+          }
+        ],
+        "events": [],
+        "focus": "D3",
+        "stopped": true,
+        "reason": "scrollend",
+        "after": 643,
+        "elapsed": 2562
+      },
+      {
+        "layer": "default",
+        "wholeActionMs": 15767,
+        "started": 14488,
+        "frames": [
+          {
+            "t": 17,
+            "y": 36
+          }
+        ],
+        "events": [],
+        "focus": "D3",
+        "stopped": true,
+        "reason": "scrollend",
+        "after": 643,
+        "elapsed": 2586
+      },
+      {
+        "layer": "svg-root",
+        "wholeActionMs": 11617,
+        "started": 13287,
+        "frames": [
+          {
+            "t": 17,
+            "y": 36
+          }
+        ],
+        "events": [],
+        "focus": "D3",
+        "stopped": true,
+        "reason": "scrollend",
+        "after": 643,
+        "elapsed": 1017
+      },
+      {
+        "layer": "default",
+        "wholeActionMs": 14878,
+        "started": 14319,
+        "frames": [
+          {
+            "t": 16,
+            "y": 37
+          }
+        ],
+        "events": [],
+        "focus": "D3",
+        "stopped": true,
+        "reason": "scrollend",
+        "after": 643,
+        "elapsed": 2344
+      },
+      {
+        "layer": "svg-root",
+        "wholeActionMs": 10901,
+        "started": 9516,
+        "frames": [
+          {
+            "t": 200,
+            "y": 642
+          }
+        ],
+        "events": [],
+        "focus": "D3",
+        "stopped": true,
+        "reason": "scrollend",
+        "after": 643,
+        "elapsed": 4022
+      }
+    ]
   }
 }
