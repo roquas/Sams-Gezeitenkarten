@@ -44,6 +44,11 @@
     {
       "command": "node scripts/validate-archive.mjs",
       "result": "empty v2 archive valid; no publication registered"
+    },
+    {
+      "command": "python3 tests/test_package.py",
+      "passed": 18,
+      "scope": "Vollständige Paketgruppe einschließlich verschobener Ressourcenbasis und negativer Freigabefälle"
     }
   ],
   "developmentFailures": [
@@ -58,7 +63,7 @@
   ],
   "extendedReport": "https://github.com/roquas/Sams-Gezeitenkarten/pull/74",
   "environment": {
-    "node": "22",
+    "node": "24.19.0 local; GitHub workflow uses Node.js 22",
     "playwright": "1.64.0",
     "chromiumBuild": 1248,
     "webkitBuild": 2370,
