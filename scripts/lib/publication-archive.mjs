@@ -1,4 +1,5 @@
 import {validateDefinition} from '../../src/puzzles/validate.mjs';
+import {projectPublicPuzzle,validatePublicPuzzle} from '../../src/puzzles/public.mjs';
 // Internal, Node-only archive tooling. Never imported by the browser application.
 import {createHash} from 'node:crypto';
 import {schemaErrors} from '../../src/puzzles/schema.mjs';
@@ -66,7 +67,7 @@ export function publicationFingerprint(entry,snapshot){
  return contentFingerprint('publication',{rulesVersion:entry.rulesVersion,
   instance:entry.fingerprints.instance,variant:entry.fingerprints.variant,
   revision:entry.revision,schemaVersion:entry.schemaVersion,dataVersion:entry.dataVersion,
-  source:entry.source,snapshot:snapshot.fingerprint});
+  publicSource:entry.publicSource,snapshot:snapshot.fingerprint});
 }
 
 const string=pattern=>({type:'string',pattern});
@@ -83,7 +84,7 @@ export const archiveSchema=object({
  snapshots:array(object({snapshotId:id('snapshot'),commit:string('^[a-f0-9]{40}$'),files:array(source),fingerprint:fingerprint('snapshot'),assetCatalog:path},['snapshotId','commit','files','fingerprint'])),
  publications:array(object({publicationId:id('pub'),mapStructureId:id('map'),instanceId:id('inst'),variantId:id('var'),
   rulesVersion:{const:RULES_VERSION},revision:integer,schemaVersion:{const:2},dataVersion:integer,
-  source,snapshotId:id('snapshot'),fingerprints:object({mapStructure:fingerprint('map'),instance:fingerprint('instance'),variant:fingerprint('variant'),publication:fingerprint('publication')})}))
+  source,publicSource:source,snapshotId:id('snapshot'),fingerprints:object({mapStructure:fingerprint('map'),instance:fingerprint('instance'),variant:fingerprint('variant'),publication:fingerprint('publication')})}))
 });
 
 function unique(items,key,label){
@@ -127,16 +128,26 @@ export function validateArchive(manifest,{readBytes,previous}={}){
  for(const entry of manifest.publications){
   const snapshot=snapshots.get(entry.snapshotId);
   assert(snapshot,`missing snapshot ${entry.snapshotId}`);
-  const bytes=bytesBySnapshot.get(entry.snapshotId).get(entry.source.path);
-  assert(bytes!==undefined,`source absent from snapshot: ${entry.source.path}`);
+  // Internal provenance is pinned separately from the delivered inventory.
+  // Private metadata must not influence the publication's content identity.
+  assert(!snapshot.files.some(f=>f.path===entry.source.path),'internal definition must not be delivered');
+  assert(!entry.source.path.split('/').some(p=>p==='.'||p==='..'),'unsafe internal source path');
+  const bytes=readBytes(entry.source.path,snapshot.commit);
   assert(sha256(bytes)===entry.source.sha256,`source fingerprint mismatch: ${entry.source.path}`);
   const document=JSON.parse(Buffer.from(bytes).toString('utf8'));
   assert(document.schemaVersion===entry.schemaVersion&&document.dataVersion===entry.dataVersion,'source versions disagree');
   const assetLibrary=snapshot.assetCatalog?
    snapshotAssetLibrary(snapshot,path=>bytesBySnapshot.get(snapshot.snapshotId).get(path)):undefined;
   const actual=logicalFingerprints(document,entry.rulesVersion);
-  // Full document validation uses precisely the pinned catalog, when supplied.
   validateDefinition(document,{assetLibrary});
+  const delivered=bytesBySnapshot.get(entry.snapshotId).get(entry.publicSource.path);
+  assert(delivered!==undefined,'public source absent from delivered snapshot');
+  assert(sha256(delivered)===entry.publicSource.sha256,'public source hash mismatch');
+  const dto=validatePublicPuzzle(JSON.parse(Buffer.from(delivered).toString('utf8')),{assetLibrary});
+  const publicIdentity={mapStructureId:entry.mapStructureId,instanceId:entry.instanceId,variantId:entry.variantId,
+   ...(dto.identity.sourcePublicationId?{sourcePublicationId:dto.identity.sourcePublicationId}:{})};
+  const projected=projectPublicPuzzle(document,{assetLibrary,identity:publicIdentity});
+  assert(canonicalJson(dto)===canonicalJson(projected),'delivered public puzzle disagrees with internal definition');
   for(const [domain,field] of [['mapStructure','mapStructureId'],['instance','instanceId'],['variant','variantId']]){
    assert(actual[domain]===entry.fingerprints[domain],`${domain} fingerprint mismatch`);
    identity(domain,entry[field],actual[domain]);

@@ -99,3 +99,8 @@ garantierte Fixture; UI-Lesbarkeit und Interaktion werden weiter geprüft.
 Prüfergebnisse werden im PR am endgültigen Commit festgehalten. Lokale Ergebnisse
 und CI werden getrennt ausgewiesen; eine erfolgreiche lokale Prüfung ist keine
 vorweggenommene Aussage über GitHub Actions.
+
+Die Archivprüfung trennt interne Definitionsbytes von `publicSource` und dem
+ausgelieferten Inventar. Ein eigener Metamorphietest sichert ab, dass private
+Provenienz bei gleicher öffentlicher Auslieferung die Veröffentlichungsidentität
+nicht verändert; private Definitionen dürfen im Auslieferungsinventar nicht stehen.
