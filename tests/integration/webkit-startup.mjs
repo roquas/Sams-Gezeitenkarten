@@ -5,8 +5,8 @@ export {expect};
 // separate rendering/gesture suites at the configured WebKit DPR 2; avoid
 // paying for four raster pixels per CSS pixel in these functional assertions.
 // Other browsers retain their project's original pixel density.
+// Trace retention is inherited from the active Playwright configuration.
 export const selectionUse={
- trace:'retain-on-failure',
  deviceScaleFactor:async({browserName,deviceScaleFactor},use)=>{
   await use(browserName==='webkit'?1:deviceScaleFactor);
  }

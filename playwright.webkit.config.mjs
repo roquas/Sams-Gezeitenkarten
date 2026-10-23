@@ -6,7 +6,9 @@ export default defineConfig({
  retries:process.env.CI?1:0,
  failOnFlakyTests:!!process.env.CI,
  reporter:process.env.CI?[['github'],['html',{open:'never'}],['json',{outputFile:process.env.PLAYWRIGHT_JSON_OUTPUT_NAME||'webkit-results.json'}]]:'list',
- use:{baseURL:'http://127.0.0.1:4173',trace:process.env.CI?'on-first-retry':'retain-on-failure',screenshot:'only-on-failure'},
+ // A passing retry cannot explain the first failure. Keep failing first-run
+ // traces as well as retry traces, including successful retries for comparison.
+ use:{baseURL:'http://127.0.0.1:4173',trace:process.env.CI?'retain-on-failure-and-retries':'retain-on-failure',screenshot:'only-on-failure'},
  projects:[{name:'webkit-desktop',use:{...devices['Desktop Safari']}},{name:'webkit-mobile',use:{...devices['iPhone 13'],deviceScaleFactor:1}}],
  webServer:{command:'python3 scripts/dev-server.py --port 4173',url:'http://127.0.0.1:4173/',reuseExistingServer:!process.env.CI,timeout:20000}
 });

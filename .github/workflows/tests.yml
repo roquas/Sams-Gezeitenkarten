@@ -92,11 +92,11 @@ jobs:
           name: webkit-timings-${{ matrix.shard }}
           path: |
             webkit-results.json
-            test-results/**/ink-*.png
-            test-results/**/status-*.png
-            test-results/**/frame-choice-*.png
-            test-results/**/resume-lifecycle.json
-            test-results/**/cold-chart-timeline.json
+            webkit-test-results/**/ink-*.png
+            webkit-test-results/**/status-*.png
+            webkit-test-results/**/frame-choice-*.png
+            webkit-test-results/**/resume-lifecycle.json
+            webkit-test-results/**/cold-chart-timeline.json
           if-no-files-found: error
           retention-days: 3
       - if: failure()
@@ -105,7 +105,7 @@ jobs:
           name: webkit-chart-report-${{ matrix.shard }}
           path: |
             playwright-report/
-            test-results/
+            webkit-test-results/
           if-no-files-found: ignore
           retention-days: 3
 
