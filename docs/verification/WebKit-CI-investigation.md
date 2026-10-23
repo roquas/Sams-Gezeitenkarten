@@ -180,9 +180,104 @@ Tracing fügt Aufwand hinzu und kann Renderingflakes sowohl sichtbar machen als
 auch zeitlich verändern. Gespeichert werden nur Fehler und Retries, für drei Tage;
 die Laufzeiten müssen bei der weiteren Untersuchung mit betrachtet werden.
 Dieser PR behebt die nachgewiesene **Diagnoselücke**, nicht nachweislich die
-ursprüngliche Browserinstabilität. Er bleibt deshalb ein Diagnose-Draft.
+ursprüngliche Browserinstabilität. Die Diagnoseverbesserung kann unabhängig von
+deren späterer Ursachenbehebung bewertet werden.
 
 PR #75 nicht wegen dieser Daten als fachlich fehlerhaft einstufen und nicht in
-diesem Branch verändern. Vor einem Merge die Browserfehler unabhängig klären und
-den finalen Stand erneut mit allen CI-Prüfungen bewerten; ein erfolgreicher Retry
-allein genügt bei aktivem `failOnFlakyTests` nicht.
+diesem Branch verändern. Den finalen Stand mit allen CI-Prüfungen bewerten;
+ein erfolgreicher Retry allein genügt bei aktivem `failOnFlakyTests` nicht als
+Nachweis behobener Browserinstabilität.
+
+## Reviewkorrektur P2: Trace-Vererbung der Modellsuite
+
+Reviewbasis: `45b8a3c6f4778c6dcc294c0e15cefd2d38c81fa1`, geprüft am 23.10.2026
+mit der tatsächlich installierten Playwright-Version **1.64.0**.
+
+`tests/browser/model.spec.mjs` übernimmt `selectionUse` aus
+`tests/integration/webkit-startup.mjs`. Dessen lokales
+`trace:'retain-on-failure'` überschrieb die globale WebKit-CI-Einstellung:
+Fehlertraces blieben erhalten, erfolgreiche Retry-Traces wurden verworfen.
+Auch `tests/deployment/model.spec.mjs` verwendet dasselbe Hilfsobjekt.
+
+Die Korrektur entfernt ausschließlich den Trace-Override aus `selectionUse`;
+ein Kommentar erklärt die Vererbung aus der aktiven Konfiguration. Es gibt keine
+zusätzliche Browser-/CI-Abfrage oder zweite Definition des Trace-Modus. Alle
+drei Hauptkonfigurationen setzen ihn bereits ausdrücklich. Dadurch gilt:
+
+- WebKit-CI: `retain-on-failure-and-retries`, auch in der Modellsuite;
+- lokales WebKit, Chromium und Deployment: weiterhin `retain-on-failure`.
+
+Die Konfigurationen selbst, Workflow, Anwendung, Assertions, Test- und
+Assertionbudgets, Retryanzahl, `failOnFlakyTests`, Matrix und Sharding bleiben
+bytegleich zur Reviewbasis. Nur dieser Helper und das Untersuchungsprotokoll
+werden für P2 geändert. PR #75 bleibt unberührt.
+
+### Tatsächliche Auflösung und Aufbewahrung
+
+Temporäre Prüfskripte unter `/tmp/pr76-trace` laden mit Playwrights eigenem
+`configLoader`/`testLoader` alle Testdateien und bauen über dessen `PoolBuilder`
+die tatsächlich verwendeten Fixture-Pools einschließlich lokaler `test.use`-
+Overrides auf. Geprüft wird jeweils `test._pool.resolve('trace').fn` gegen den
+erwarteten Modus. Diese internen Prüfzugriffe sind auf 1.64.0 begrenzt und werden
+nicht als zusätzliche Testinfrastruktur ausgeliefert.
+
+| Konfiguration | Test-/Fixture-Auflösungen | Davon Modellfälle | Ergebnis |
+| --- | --- | --- | --- |
+| WebKit unter CI, Desktop/Mobile | 278 | 20 | Alle `retain-on-failure-and-retries` |
+| WebKit lokal, Desktop/Mobile | 278 | 20 | Alle `retain-on-failure` |
+| Chromium unter CI, beide Projekte | 278 | 20 | Alle `retain-on-failure` |
+| Deployment unter CI, alle vier Projekte | 276 | 40 | Alle `retain-on-failure` |
+
+Echte Browserproben verwenden dieselben Konfigurationen und denselben
+`test`-/`selectionUse`-Helper. Jeweils global und mit dem identischen
+`test.use({...selectionUse,reducedMotion:'reduce'})` der Modellsuite laufen drei
+temporäre Szenarien: sofort erfolgreich, immer fehlschlagend und nur im Erstlauf
+fehlschlagend. Jeder Fall wird in beiden WebKit-Projekten ausgeführt. Lediglich
+Testverzeichnis, Reporter, Ausgabeort und der für Daten-URLs entbehrliche Server
+werden temporär umgelegt. Retryanzahl und Flakebehandlung bleiben unverändert.
+
+| Versuch | WebKit-CI: Versuche / gespeicherte Traces | Deployment-WebKit: Versuche / Traces |
+| --- | --- | --- |
+| Fehlgeschlagener Erstlauf | 8 / 8 | 8 / 8 |
+| Fehlgeschlagener Retry | 4 / 4 | 4 / 4 |
+| Erfolgreicher Retry nach Fehlschlag | 4 / 4 | 4 / 0, bisheriges Verhalten |
+| Erfolgreicher Erstlauf ohne Retry | 4 / 0 | 4 / 0 |
+
+**Alle vier WebKit-Aufbewahrungsfälle sind vollständig lokal verifiziert.**
+WebKit-CI-Probe: 20 Versuche, 16 gültige Trace-ZIPs, 12,6 s.
+Deployment-Probe (`iphone-webkit` und `ipad-webkit`): 20 Versuche, 12 gültige
+Trace-ZIPs, 8,7 s. Beide Proben enden absichtlich mit Exit 1, jeweils vier sicher
+fehlgeschlagenen, vier als flaky erkannten und vier sofort erfolgreichen Tests.
+Die Fehler sind ausschließlich die ausdrücklich eingebauten Diagnosefehler.
+
+Zusätzlich wird der unveränderte echte Modelltest „empty and unavailable
+optional catalogs give readable startup errors“ aus einer temporären Kopie des
+Browser-Wrappers mit einem zusätzlichen Erstfehler-Hook ausgeführt. Desktop und
+Mobile bestehen jeweils den Retry mit den ursprünglichen Assertions. Alle vier
+Traces (beide Erstfehler und beide erfolgreichen Retries) sind vorhanden; der
+Lauf bleibt wegen `failOnFlakyTests` erwartungsgemäß rot. Das ist eine gezielte
+Aufbewahrungsprobe, kein Stabilitätsnachweis.
+
+Die Prüfung öffnet alle 32 ZIPs aus den drei Proben, kontrolliert ZIP-Integrität,
+`test.trace`, WebKit-Kontextdaten und Browserereignisse. JSON-Status,
+Retrynummern, tatsächlich aufgelöster Modus und Trace-Anhänge stimmen überein.
+Die Anzahl der Dateien wird zusätzlich geprüft, damit verworfene erfolgreiche
+Erstläufe keine verwaisten Traces hinterlassen.
+
+### Uploadpfad und Ausführungsgrenzen
+
+Der unveränderte WebKit-Workflow lädt bei Fehlern weiterhin den vollständigen
+Ordner `webkit-test-results/` in `webkit-chart-report-${{ matrix.shard }}` sowie
+`playwright-report/` hoch. Ein erfolgreicher Retry hält den Job wegen
+`failOnFlakyTests:true` rot; damit greift auch dann `if: failure()`, und beide
+Vergleichstraces sind vom Uploadpfad erfasst. Das stets gespeicherte Timing-JSON
+und die Dreitagesaufbewahrung bleiben erhalten. Pfade und Bedingung sind geprüft;
+ein neuer tatsächlicher Actions-Upload ist vom separat ausgewiesenen CI-Status
+abhängig und wird durch diese lokale Gegenprobe nicht vorweggenommen.
+
+Browser: WebKit 27.2 / Build 2370, Debian-13-Paket. Browser und fehlende
+Bibliotheken wurden nur unter `/tmp` eingerichtet. Die Host-Vorprüfung wurde
+wegen dieser temporären Bibliotheksablage deaktiviert; Browser, Seiten,
+Assertions und Tracing liefen tatsächlich. Frühere Installations-/Startprobleme
+zählen nicht als Testausführungen. Keine Gleichsetzung mit dem Ubuntu-CI-Runner
+und kein vollständiger erneuter Browsermatrixlauf. `git diff --check` besteht.
