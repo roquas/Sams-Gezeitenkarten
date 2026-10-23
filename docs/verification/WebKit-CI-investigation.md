@@ -15,7 +15,8 @@ PR #75 und die Generator-, Asset- und Puzzleverträge bleiben unverändert.
 - PR-Lauf [39933197203](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39933197203):
   abgeschlossen, 8/10 Jobs erfolgreich; WebKit-Shards 1 und 2 fehlgeschlagen.
 - Originallogs der Jobs `120319567091`, `120346280146`, `120346280182`
-  vollständig gelesen und lokal außerhalb des Repositorys gesichert.
+  vollständig bezogen, relevante Abschnitte ausgewertet und lokal außerhalb
+  des Repositorys gesichert.
   WebKit-JSON-Berichte von main/Shards 1 und 2 sowie PR/Shard 1 gelesen;
   PR/Shard-1-HTML-Bericht einschließlich Retry-Trace und Fehlerscreenshot gelesen.
 
@@ -114,10 +115,72 @@ beobachteten Browserfehlern. Der neue Shard-1-Fehler allein beweist keinen
 Zusammenhang. Seine Unabhängigkeit ist ohne eigene Reproduktion auf main noch
 nicht abschließend experimentell belegt.
 
-## Laufende Gegenproben und nächste Schritte
+## Reproduktion und Gegenproben
 
-Die lokalen Ausgangstests und gezielten Eingabevergleiche werden vor Abschluss
-dieses Berichts ergänzt. Bis dahin bleibt dies ausdrücklich ein Diagnose-PR.
+Alle Diagnosemutationen wurden in temporär erzeugten Testkopien bzw. frischen
+Browserkontexten außerhalb des Repositorys vorgenommen und werden nicht ausgeliefert.
+Die Ausgangstests waren unverändert; zusätzlich aktiviertes Tracing kann ihr Timing
+beeinflussen. Fehlgeschlagene Browserstarts während der Bibliothekseinrichtung
+zählen nicht als ausgeführte Tests oder Produktfehler.
+
+| Gegenprobe | Ergebnis |
+| --- | --- |
+| Desktop-WebKit: Abstandsklick und alle sechs 820px-Scroll-/Touch-/Undo-Fälle, `--retries=0 --repeat-each=3 --trace=retain-on-failure` | **21 bestanden**, 5.4 min, ein Worker; kein ursprünglicher Fehler reproduziert |
+| Native PageDown gehalten, vier frische DPR-2-Kontexte bei 820×900, Fokus D3 | Alle vier erreichen `scrollTop=643` und `scrollend` **vor** dem Loslassen; erste Frames 11/38/46/36 px, Abschluss nach 1535/1468/1502/1789 ms |
+| Native PageDown sofort losgelassen, vier frische DPR-2-Kontexte | Nach 1.5 s zunächst 34/35/39/643 px; drei ohne beobachtetes `scrollend`. Das ist nur ein Zwischenstand, kein Nachweis dauerhaft blockierten Scrollens |
+| Negativkontrolle: `keydown(PageDown).preventDefault()` in der unveränderten Wasser-Scrollprüfung | Erwartet fehlgeschlagen bei **0 statt >20 px**; Treffer-/Pointer-Vorbedingungen bestanden |
+| Negativkontrolle: nur Abstandsklick in Capture-Phase per `stopImmediatePropagation()` unterdrückt | Erwartet fehlgeschlagen an fehlendem `#distanceStatus [data-coordinate="C1"]`; ein bloß erfolgreicher `locator.click()` reicht dem bestehenden Test nicht |
+| Künstlicher Flake: Erstlauf absichtlich fehlgeschlagen, Retry erfolgreich; tatsächliche neue CI-Trace-Konfiguration | **Exit 1**, als flaky gewertet; Erstlauf-Screenshot und **beide `trace.zip` vorhanden**. `failOnFlakyTests` bleibt wirksam |
+| `npm run test:unit` / `npm run test:content` / `npm run test:puzzles` | **85 / 20 bestanden**; Demo eindeutig, keine redundanten Hinweise |
+
+Gezielter Ausgangslauf (übliche Browserumgebungsvariablen wie oben):
+
+```sh
+CI=1 npx playwright test --config playwright.webkit.config.mjs \
+  --project webkit-desktop \
+  --grep 'chart touch input 820px|coordinate notation is shared' \
+  --retries=0 --repeat-each=3 --trace=retain-on-failure
+```
+
+Die gehaltene-Taste-Hypothese wurde damit lokal **nicht bestätigt**. Die beobachteten
+Frameabstände machen Rendering-/Scheduler-Verzögerungen plausibel, beweisen aber
+weder den Auslöser des ursprünglichen 5-s-Fehlers noch des 30-s-Klicktimeouts.
+Sofortiges Loslassen ist angesichts der Zwischenstände keine begründete Korrektur.
+Keine Scroll-Assertion wird abgeschwächt oder durch programmgesteuertes Scrollen
+ersetzt. Keine App-/Testaufbaukorrektur wird aus bloßer Plausibilität abgeleitet.
+
+Zusätzlich werden die vollständigen betroffenen Shards 1 und 2 mit einem Worker,
+beiden echten Projekten, CI-Retry-/Flake-Regeln und neuer Trace-Konfiguration geprüft.
+Nur Serverport, Reporter und lokaler Ausgabeordner sind in einer temporären
+Konfiguration umgelegt. Die abschließenden Ergebnisse und der aktuelle CI-Status
+stehen in [PR #76](https://github.com/roquas/Sams-Gezeitenkarten/pull/76).
+
+## Grenzen und nächste Experimente
+
+Wiederholt grüne lokale Tests beweisen keine Flakefreiheit. Der Shard-1-Timeout
+wurde auf main noch nicht reproduziert; fehlgeschlagene Erstläufe der alten CI
+haben keine Traces. Der große main-HTML-Report (68 MB) überschreitet außerdem das
+32-MiB-Transferlimit der lokalen Dateischnittstelle; Logs/JSON sind ausgewertet.
+
+1. Den nächsten **fehlgeschlagenen Erstlauf** aus den jetzt korrekt hochgeladenen
+   `webkit-test-results` untersuchen; Actionability-Log, rAF-/Inputzeitpunkte,
+   Scrollzustand, Layout und eventuelle Trefferblocker mit dem Retry vergleichen.
+2. Bei erneutem Abstandstimeout zunächst denselben Test auf main in frischen
+   Workern und in Shard-Reihenfolge ausführen. Ein kleiner, temporärer rAF-/Rect-
+   Monitor soll stabile Geometrie von ausbleibenden Frames unterscheiden;
+   zusätzlich einen unbeobachteten Kontrolllauf behalten.
+3. Kalten/warmen Browser, DPR 2/1 und einen/zwei Worker kontrolliert vergleichen.
+   Eine geringere Pixeldichte oder ein Warm-up ist hier **noch keine freigegebene
+   Korrektur** und wird nicht in die bestehenden Fälle eingebaut.
+4. Den PageDown-Ablauf mit vollständig verarbeitetem down/up-Paar gegen die
+   gehaltene Variante vergleichen, einschließlich `scrollend` und unveränderter
+   Bewegung im richtigen Container. Physische iOS-Swipes separat am Gerät prüfen.
+
+Tracing fügt Aufwand hinzu und kann Renderingflakes sowohl sichtbar machen als
+auch zeitlich verändern. Gespeichert werden nur Fehler und Retries, für drei Tage;
+die Laufzeiten müssen bei der weiteren Untersuchung mit betrachtet werden.
+Dieser PR behebt die nachgewiesene **Diagnoselücke**, nicht nachweislich die
+ursprüngliche Browserinstabilität. Er bleibt deshalb ein Diagnose-Draft.
 
 PR #75 nicht wegen dieser Daten als fachlich fehlerhaft einstufen und nicht in
 diesem Branch verändern. Vor einem Merge die Browserfehler unabhängig klären und
