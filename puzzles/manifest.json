@@ -1,32 +1,14 @@
 {
-  "schemaVersion": 1,
-  "defaultId": "reference-3.6",
+  "schemaVersion": 2,
+  "defaultId": "model-demo",
+  "assetCatalog": "../assets/catalog/library.json",
+  "resourceBase": "../",
   "puzzles": [
     {
-      "id": "reference-3.6",
-      "title": "Der verschwundene Kompass",
-      "path": "reference-3.6.json",
-      "kind": "reference"
-    },
-    {
-      "id": "test-navigation",
-      "title": "Technischer Testfall – Navigation",
-      "path": "test-navigation.json",
-      "kind": "test"
-    },
-    {
-      "id": "quittung-nombreo",
-      "title": "Die Quittung von Nombreo",
-      "path": "quittung-nombreo.json",
-      "kind": "editorial",
-      "difficulty": "leicht-mittel"
-    },
-    {
-      "id": "ankerbuch-tesoro",
-      "title": "Das doppelte Ankerbuch",
-      "path": "ankerbuch-tesoro.json",
-      "kind": "editorial",
-      "difficulty": "mittel"
+      "id": "model-demo",
+      "title": "Die Probefahrt",
+      "path": "model-demo.json",
+      "kind": "demo"
     }
   ]
 }

@@ -5,6 +5,7 @@ import {drawMap} from './map.mjs';
 import {createChartGestures} from './chart-gestures.mjs';
 import {frameMode} from './parchment-frame.mjs';
 import {pretty, coordinateMarkup, coordinateTextMarkup} from './coordinates.mjs';
+import {verifyPuzzleImages} from './asset-resources.mjs';
 import {createPuzzleLoader} from '../puzzles/loader.mjs';
 import {initialState, createHistory} from '../state/game-state.mjs';
 import {distancePhase,toggleDistance,chooseDistanceOrigin,selectChartTool} from '../state/distance-overlay.mjs';
@@ -19,8 +20,9 @@ import {adjacent as neighbor} from '../engine/hex.mjs';
 
 createMobileViews();
 
-const loader=createPuzzleLoader();
+const loader=createPuzzleLoader({manifestUrl:new URL('../../puzzles/manifest.json',import.meta.url)});
 const catalog=await loader.manifest();
+if(!catalog.puzzles.length)throw Error('Zurzeit sind keine Rätsel verfügbar.');
 let storage;try{storage=window.localStorage;}catch{}
 let selected;try{selected=storage?.getItem('gezeitenkarten-selected-puzzle');}catch{}
 let puzzle;
@@ -28,7 +30,14 @@ try{puzzle=await loader.load(catalog.puzzles.some(p=>p.id===selected)?selected:c
 catch(error){
  if(!selected||selected===catalog.defaultId)throw error;
  puzzle=await loader.load(catalog.defaultId);
- const notice=document.getElementById('puzzleLoadError');notice.hidden=false;notice.textContent=error.message+' Das Referenzrätsel bleibt verfügbar.';
+ const notice=document.getElementById('puzzleLoadError');notice.hidden=false;notice.textContent=error.message+' Das Standardrätsel bleibt verfügbar.';
+}
+// Art decoding must not block the playable paper map or discard saved notes.
+function checkImages(current){
+ verifyPuzzleImages(current).catch(error=>{
+  if(puzzle!==current)return;
+  const notice=document.getElementById('puzzleLoadError');notice.hidden=false;notice.textContent=error.message;
+ });
 }
 let rules=createRules(puzzle),blocked=rules.blocked,solution=puzzle.solution,hints=puzzle.hints;
 const escapeText=text=>String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -173,13 +182,13 @@ select.addEventListener('change',async()=>{
   const next=await loader.load(id);if(token!==request)return;
   save();puzzle=next;$('puzzleLoadError').hidden=true;rules=createRules(puzzle);blocked=rules.blocked;solution=puzzle.solution;hints=puzzle.hints;
   state=loadState(puzzle,storage);history.clear();cancelGesture();dragValue=null;
-  presentation();bordbook.setClues(puzzle.clues.map(({id,text})=>[id,text]));render();
+  checkImages(puzzle);presentation();bordbook.setClues(puzzle.clues.map(({id,text})=>[id,text]));render();
   try{storage?.setItem('gezeitenkarten-selected-puzzle',puzzle.id);}catch{}
   $('puzzleStatus').textContent='Geladen: '+puzzle.title+'. Spielstände bleiben getrennt gespeichert.';
  }catch(error){select.value=puzzle.id;$('puzzleStatus').textContent=error.message;}
  finally{if(token===request)select.disabled=false;}
 });
-presentation();render();
+presentation();render();checkImages(puzzle);
 })().catch(error=>{
  const status=document.getElementById('puzzleLoadError');status.hidden=false;status.textContent=error.message;
 });

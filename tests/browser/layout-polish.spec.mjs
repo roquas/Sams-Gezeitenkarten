@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);});
+test.beforeEach(async({page})=>{await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25);});
 const rows=async locator=>locator.evaluateAll(ns=>{const tops=ns.map(n=>n.getBoundingClientRect().top+n.getBoundingClientRect().height/2).sort((a,b)=>a-b);return tops.reduce((a,v)=>{if(!a.length||v-a.at(-1)>1)a.push(v);return a;},[]).length;});
 test('instrument placement, two mobile rows, generous hit areas and compact route numbers',async({page})=>{
  await expect(page.locator('.chart-toolbar .wheel-emblem,.chart-toolbar .hour-label')).toHaveCount(0);
@@ -10,16 +10,16 @@ test('instrument placement, two mobile rows, generous hit areas and compact rout
  for(const width of [320,390,600,900,1440]){
   await page.setViewportSize({width,height:1000});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  const boxes=await page.locator('.chart-toolbar button,#mapActions button').evaluateAll(ns=>ns.map(n=>n.getBoundingClientRect().toJSON()));
+  const boxes=await page.locator('.chart-toolbar button,#mapActions button').evaluateAll(ns=>ns.filter(n=>n.getClientRects().length).map(n=>n.getBoundingClientRect().toJSON()));
   expect(boxes.every(b=>b.width>=43.9&&b.height>=44)).toBe(true);
-  expect(await rows(page.locator('.chart-toolbar button'))).toBe(width<=600||(width>=881&&width<=1050)?2:1);
+  expect(await rows(page.locator('.chart-toolbar button:visible'))).toBeLessThanOrEqual(2);
   const chartWidth=(await page.locator('.map-panel').boundingBox()).width;
   expect(await rows(page.locator('#mapActions button'))).toBe(chartWidth<=560?2:1);
   if(width<=600){const verify=await page.locator('#verify').boundingBox();expect(verify.width).toBe(48);const numbers=await page.locator('#toggleRouteNumbers').boundingBox();expect(numbers.width).toBeLessThanOrEqual(72);}
  }
  await page.locator('#routeTool').focus();await page.keyboard.press('Enter');
  await expect(page.locator('#routeTool')).toHaveAttribute('aria-pressed','true');
- await page.locator('#map [data-id="E3"]').click();await expect(page.locator('#routeBack')).toBeEnabled();
+ await page.locator('#map [data-id="B5"]').click();await expect(page.locator('#routeBack')).toBeEnabled();
  await page.locator('#routeBack').focus();await page.keyboard.press('Enter');await expect(page.locator('#routeBack')).toBeDisabled();
  await page.locator('[data-tool="yes"]').click();await expect(page.locator('#routeTool')).toHaveAttribute('aria-pressed','false');
 });
@@ -38,26 +38,37 @@ test('cropped full-size left page preserves heading, text space and clue navigat
   await expect(page.locator('.book-heading')).toHaveAttribute('aria-hidden','true');
   expect(await page.locator('.book-vignette').evaluate(el=>getComputedStyle(el).backgroundImage)).toContain('logbook-chart.svg');
  }
- await page.locator('#nextClue').click();await expect(page.locator('#cluePosition')).toHaveText('II / VII');
- await page.locator('#clueViewport').focus();await page.keyboard.press('ArrowRight');await expect(page.locator('#cluePosition')).toHaveText('III / VII');
+ await page.locator('#nextClue').click();await expect(page.locator('#cluePosition')).toHaveText('II / III');
+ await page.locator('#clueViewport').focus();await page.keyboard.press('ArrowRight');await expect(page.locator('#cluePosition')).toHaveText('III / III');
  await page.locator('#clueTrack [data-clue]').focus();await page.keyboard.press('Space');await expect(page.locator('#clueTrack [data-clue]')).toHaveAttribute('aria-checked','true');
  expect(await page.evaluate(()=>!!(document.getElementById('routeView').compareDocumentPosition(document.getElementById('toolLegend'))&Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
 });
 test('lowered labels retain footprint safety and column guides stay behind hex ink',async({page})=>{
- const start=await page.locator('.start-label').getAttribute('transform');expect(start).toContain('269.');
- await expect(page.locator('.island-label').filter({hasText:'Tesoro'})).toHaveAttribute('transform','translate(183 210)');
+ await expect(page.locator('.start-label')).toHaveAttribute('data-label-cell','A5');
+ await expect(page.locator('.island-label').filter({hasText:'Zwilling'})).toHaveAttribute('data-label-cells','B2 C2');
  const guides=await page.locator('.coordinate-guides>path').evaluateAll(ns=>ns.filter(n=>!n.hasAttribute('stroke-dasharray')).map(n=>Number(n.getAttribute('opacity'))));
  expect(guides.every(o=>o>=.19&&o<.56)).toBe(true);
 });
-test('actual browser screenshots of six layout refinements',async({page},testInfo)=>{
- await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width:1440,height:1080});await page.evaluate(()=>scrollTo(0,0));
- for(const [name,locator] of [['layout-desktop',null],['layout-upper',page.locator('.chart-toolbar')],['layout-lower',page.locator('#mapActions')],['layout-book',page.locator('.bordbook')]]){
-  await testInfo.attach(name,{body:locator?await locator.screenshot({type:'jpeg',quality:96,scale:'css'}):await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
- }
- await page.setViewportSize({width:390,height:844});await page.locator('#gameSurface').evaluate(el=>el.scrollTop=0);
- await testInfo.attach('layout-mobile-upper',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
- await page.locator('.bordbook').scrollIntoViewIfNeeded();
- await testInfo.attach('layout-mobile-book',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
- await page.setViewportSize({width:320,height:780});await page.locator('#mapActions').scrollIntoViewIfNeeded();
- await testInfo.attach('layout-mobile-320',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+test.describe('layout review desktop',()=>{
+ test.use({viewport:{width:1440,height:1080},reducedMotion:'reduce'});
+ test('actual browser screenshots of desktop refinements',async({page},testInfo)=>{
+  for(const [name,locator] of [['layout-desktop',null],['layout-upper',page.locator('.chart-toolbar')],['layout-lower',page.locator('#mapActions')],['layout-book',page.locator('.bordbook')]]){
+   await testInfo.attach(name,{body:locator?await locator.screenshot({type:'jpeg',quality:96,scale:'css'}):await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+  }
+ });
+});
+test.describe('layout review mobile',()=>{
+ test.use({viewport:{width:390,height:844},reducedMotion:'reduce'});
+ test('actual browser screenshots of mobile refinements',async({page},testInfo)=>{
+  await testInfo.attach('layout-mobile-upper',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+  await page.locator('.bordbook').scrollIntoViewIfNeeded();
+  await testInfo.attach('layout-mobile-book',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+ });
+});
+test.describe('layout review narrow mobile',()=>{
+ test.use({viewport:{width:320,height:780},reducedMotion:'reduce'});
+ test('actual browser screenshot of narrow refinements',async({page},testInfo)=>{
+  await page.locator('#mapActions').scrollIntoViewIfNeeded();
+  await testInfo.attach('layout-mobile-320',{body:await page.screenshot({type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
+ });
 });

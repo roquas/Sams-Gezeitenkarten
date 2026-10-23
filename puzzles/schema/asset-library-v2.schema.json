@@ -1,0 +1,236 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "semanticVersion": {
+      "const": 1
+    },
+    "backgrounds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$",
+            "maxLength": 80
+          },
+          "family": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$",
+            "maxLength": 80
+          },
+          "image": {
+            "type": "string",
+            "pattern": "^assets/[a-zA-Z0-9_/-]+[.](png|webp)$"
+          }
+        },
+        "required": [
+          "id",
+          "family",
+          "image"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$",
+            "maxLength": 80
+          },
+          "family": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$",
+            "maxLength": 80
+          },
+          "semanticClass": {
+            "enum": [
+              "island",
+              "lighthouse",
+              "buoy",
+              "wreck",
+              "settlement",
+              "atoll",
+              "archipelago",
+              "algae",
+              "barrels",
+              "rowboat",
+              "crate",
+              "bottle",
+              "driftwood",
+              "decoration"
+            ]
+          },
+          "role": {
+            "enum": [
+              "geographic",
+              "decoration"
+            ]
+          },
+          "passable": {
+            "type": "boolean"
+          },
+          "stage": {
+            "enum": [
+              "technical-placeholder",
+              "illustration"
+            ]
+          },
+          "production": {
+            "enum": [
+              "enabled",
+              "draft",
+              "historical",
+              "deferred"
+            ]
+          },
+          "geometry": {
+            "type": "object",
+            "properties": {
+              "cells": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "required": [
+              "cells"
+            ],
+            "additionalProperties": false
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^assets/[a-zA-Z0-9_/-]+[.](png|webp)$"
+              },
+              "width": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "path",
+              "width",
+              "height"
+            ],
+            "additionalProperties": false
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "rights": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "source",
+              "rights"
+            ],
+            "additionalProperties": false
+          },
+          "candidateFamilies": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$",
+              "maxLength": 80
+            }
+          }
+        },
+        "required": [
+          "id",
+          "family",
+          "semanticClass",
+          "role",
+          "stage",
+          "production",
+          "geometry",
+          "image",
+          "provenance",
+          "candidateFamilies"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$",
+            "maxLength": 80
+          },
+          "backgroundId": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ]
+          },
+          "reviewer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "date": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+          },
+          "assetSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "backgroundSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "notes": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "assetId",
+          "backgroundId",
+          "status",
+          "notes"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "semanticVersion",
+    "backgrounds",
+    "assets",
+    "reviews"
+  ],
+  "additionalProperties": false
+}

@@ -1,3 +1,5 @@
+> Historischer Prototypvertrag, ersetzt durch [Konsolidierung F01–F03](CONSOLIDATION-F01-F03.md), [Regeln v2](RULESET-GEZEITENKARTEN-2.md) und [Datenvertrag v2](PUZZLE-FORMAT.md). Die folgenden Aussagen sind kein aktueller Laufzeitvertrag.
+
 # Regelvertrag `gezeitenkarten-1`
 
 Status: eingefrorene fachliche Semantik des modularen Spiels auf main

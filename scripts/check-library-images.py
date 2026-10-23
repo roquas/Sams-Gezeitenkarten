@@ -96,23 +96,24 @@ def check_image(data, asset):
 
 
 def validate_images(base=ROOT, runtime_files=()):
-    assets = json.loads(subprocess.check_output(['node', str(ROOT / 'scripts/validate-assets.mjs'),
+    content = json.loads(subprocess.check_output(['node', str(ROOT / 'scripts/validate-assets.mjs'),
                                                 '--root', str(base), '--image-contract'], cwd=ROOT))
+    assets = content['assets']
+    resource_root = Path(content['resourceRoot'])
     for asset in assets:
         try:
-            check_image((base / asset['image']['path']).read_bytes(), asset)
+            check_image((resource_root / asset['image']['path']).read_bytes(), asset)
         except (ValueError, OSError) as error:
             raise ValueError(f"{asset['id']}: {error}") from error
-    catalog = json.loads((base / 'assets/catalog/library.json').read_text())
-    references = set(runtime_files) | {b['image'] for b in catalog['backgrounds']}
-    for ref in sorted(references - {a['image']['path'] for a in assets}):
-        if Path(ref).suffix not in ('.png', '.webp'):
+    references = {base / ref for ref in runtime_files} | {resource_root / b['image'] for b in content['backgrounds']}
+    for file in sorted(references - {resource_root / a['image']['path'] for a in assets}):
+        if file.suffix not in ('.png', '.webp'):
             continue
         try:
-            with Image.open(base / ref) as image:
-                image.load()  # decode all shipped rasters, including legacy/backgrounds
+            with Image.open(file) as image:
+                image.load()
         except (ValueError, OSError) as error:
-            raise ValueError(f'{ref}: damaged runtime image: {error}') from error
+            raise ValueError(f'{file}: damaged runtime image: {error}') from error
     return len(assets)
 
 

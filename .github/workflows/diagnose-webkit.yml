@@ -21,7 +21,7 @@ jobs:
       - name: Check native mobile navigation and overlay review
         run: npx playwright test --config playwright.webkit.config.mjs --project webkit-mobile --grep "actual polished controls and expanded rules screenshots at 390px|actual mobile overlay and rules screenshots" --output webkit-viewport-results
       - name: Check frame reload and touch protocols before the full WebKit suite
-        run: npx playwright test --config playwright.webkit.config.mjs --grep "visible frame choice|one mouse or touch drag|mobile swipe turns|chart labels sit in parchment|erasing all hours|overwriting and erasing|manifest puzzle|switch and reload isolate|reset after reload|selected puzzle|compact controls and centered radar|actual polished controls|mobile overview shows every clue|mobile overview keeps navigation|actual browser screenshot for coordinate|actual mobile overlay and rules screenshots|tablet settings" --output webkit-smoke-results
+        run: npx playwright test --config playwright.webkit.config.mjs --grep "visible frame choice|one mouse or touch drag|mobile swipe turns|chart labels sit in parchment|erasing all hours|overwriting and erasing|route interaction and verification|a second controlled entry|reset after reload|selected puzzle|compact controls and centered radar|actual polished controls|mobile overview shows every clue|mobile overview keeps navigation|actual browser screenshot for coordinate|actual mobile overlay and rules screenshots|tablet settings" --output webkit-smoke-results
       - if: always()
         uses: actions/upload-artifact@v4
         with:

@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gezeitenkarten · Der verschwundene Kompass</title>
+<title>Gezeitenkarten</title>
 <link rel="stylesheet" href="src/ui/game.css">
 <link rel="stylesheet" href="src/ui/chart-frame.css">
 <link rel="stylesheet" href="src/ui/materials.css">
@@ -11,10 +11,10 @@
 </head>
 <body>
 <div id="gameSurface">
-<header><div><small>Gezeitenkarten · Ein Auftrag aus Nombreo</small><strong>Gezeitenkarten</strong></div><div style="text-align:right;font-size:12px">SPIELPROTOTYP · V0.1<br><span style="color:#ddc39c">Lokal · ohne Anmeldung</span></div></header>
+<header><div><small>Gezeitenkarten · Sams Logbuch</small><strong>Gezeitenkarten</strong></div><div style="text-align:right;font-size:12px">SPIELPROTOTYP · V0.1<br><span style="color:#ddc39c">Lokal · ohne Anmeldung</span></div></header>
 <main>
 <section class="panel map-panel" id="chartPanel"><div class="pad">
-<div class="topline"><div><div class="eyebrow">Deine Seekarte</div><h1>Der verschwundene Kompass</h1></div><span class="pill" id="score">0 Strafpunkte</span></div>
+<div class="topline"><div><div class="eyebrow">Deine Seekarte</div><h1>Gezeitenkarten</h1></div><span class="pill" id="score">0 Strafpunkte</span></div>
 
 <p id="puzzleLoadError" class="notice error" role="alert" hidden></p>
 <div class="chart-toolbar" aria-label="Stundenwahl und Kartenwerkzeuge">
@@ -53,7 +53,7 @@
 <p class="toolbar-guide"><a href="#toolLegend">Werkzeuglegende</a></p>
 
 <details class="tool-legend" id="toolLegend"><summary>Werkzeuglegende</summary>
-<dl><dt>Stunden 1–6</dt><dd>Stundenkarte wählen. Die dicke Hexkante kennzeichnet dieselbe Stunde auf der Seekarte.</dd>
+<dl><dt>Stunden 1–<span data-rule-hours="number">6</span></dt><dd>Stundenkarte wählen. Die dicke Hexkante kennzeichnet dieselbe Stunde auf der Seekarte.</dd>
 <dt>? · ✓ · ×</dt><dd>Ein Feld als möglich, sicher oder ausgeschlossen markieren. Erneutes Antippen entfernt die Markierung.</dd>
 <dt>⌫ · ⌫∀</dt><dd>In der gewählten Stunde radieren oder das Feld in allen Stunden leeren.</dd>
 <dt>Routenlinie · Routenpfeil zurück</dt><dd>Ab Start benachbarte Wasserfelder verbinden oder die letzte Etappe zurücknehmen.</dd>
@@ -61,7 +61,7 @@
 <dt>Radar</dt><dd>Aktivieren und ein Ursprungsfeld (auch Land) wählen. Die Zahlen bleiben beim Markieren sichtbar. Ein weiterer Druck auf das Radar schaltet die Anzeige sofort aus. Danach erneut aktivieren und einen neuen Ursprung wählen.</dd>
 <dt>Auge im Hexagon</dt><dd>Markierungen der aktuellen Stunde ein- oder ausblenden. Die dicke Kante folgt der Stundenwahl.</dd>
 <dt>Auge mit ①②③</dt><dd>Routennummern ein- oder ausblenden.</dd>
-<dt>Route mit Haken</dt><dd>Die Route anhand der Hinweise überprüfen. Erst nach sechs gültigen Etappen verfügbar.</dd></dl>
+<dt>Route mit Haken</dt><dd>Die Route anhand der Hinweise überprüfen. Erst nach <span data-rule-hours="word">sechs</span> gültigen Etappen verfügbar.</dd></dl>
 <p>Petrol und ein gedrückter Button zeigen das aktive Werkzeug beziehungsweise die eingeschaltete Anzeige. Ein durchgestrichenes Auge bedeutet ausgeblendete Stundenmarkierungen. Alle Buttons sind per Tab und Enter oder Leertaste bedienbar.</p>
 <p>Auf dem Touchscreen: Tippen markiert ein Feld, seitliches Ziehen mehrere Felder mit einem Undo-Schritt. Vertikales oder überwiegend vertikales Wischen scrollt die Buchseite, ohne Notizen zu ändern. Mit Maus oder Stift kannst Du in jede Richtung zeichnen.</p></details>
 <div class="stat"><span class="muted" id="count">0 Markierungen auf dieser Karte</span></div>
@@ -71,8 +71,7 @@
 <div class="logbook-backdrop" id="logbookBackdrop" aria-hidden="true"></div>
 <aside class="panel clue-panel" id="logbook" aria-label="Hilfe und Logbuch"><div class="pad">
 <div class="eyebrow clue-heading">Hilfe &amp; Logbuch</div>
-<section class="logbook-section"><details open><summary>Die Geschichte</summary><div id="puzzleStory"><p class="story">Robin hatte einen Kompass, Sam ein Logbuch und beide unterschiedliche Vorstellungen von einer Abkürzung. Nach sechs Stunden war der Kompass verschwunden. Die Route hatte Sam immerhin in sieben etwas eigenwilligen Beobachtungen festgehalten.</p>
-<p class="story">Rekonstruiere die sechs Stunden zwischen Kurswechseln, Leuchtturm und Tesoro. Wo sind Robin und Sam schließlich gelandet? Unter „Spielregeln“ steht, wie das funktioniert.</p></div></details></section>
+<section class="logbook-section"><details open><summary>Die Geschichte</summary><div id="puzzleStory"><p class="story">Rätsel wird geladen …</p></div></details></section>
 <section class="logbook-section"><details open><summary>Legende</summary><p class="muted">Robin benutzt statt gewöhnlicher Buchstaben griechische Namen und statt Zahlen Farben. Eine Ortsangabe besteht aus Spalte / Zeile – zum Beispiel <strong>γ / V</strong> (Gamma / Violett).</p><div class="coord-legend"><div><strong>Spalten</strong><p class="greek-legend"><span><b>α</b> Alpha</span><span><b>β</b> Beta</span><span><b>γ</b> Gamma</span><span><b>δ</b> Delta</span><span><b>ε</b> Epsilon</span></p></div><div><strong>Zeilen</strong><div class="color-legend"><span><i style="--swatch:#28b9c5">C</i>Cyan</span><span><i style="--swatch:#c74c99">M</i>Magenta</span><span><i style="--swatch:#8761ba">V</i>Violett</span><span><i style="--swatch:#4178b8">B</i>Blau</span><span><i style="--swatch:#d28a39">O</i>Orange</span></div></div></div><p class="muted">Die Buchstaben in den Farbflecken helfen, die Zeilen auch ohne Farberkennung zu unterscheiden.</p></details></section>
 <section class="logbook-section"><details id="gameRules"><summary>Spielregeln</summary>
 <article class="rules-introduction" aria-label="So liest man eine Gezeitenkarte">
@@ -87,13 +86,13 @@
 <h4>Dein Auftrag</h4>
 <p>Sam und Robin waren <span data-rule-hours="word">sechs</span> Stunden unterwegs. Das Schiff ist wieder aufgetaucht, der genaue Kurs allerdings nicht. Zum Glück gibt es Robins Logbuch. Darin stehen Beobachtungen über Fahrtrichtungen, Kurswechsel, Küsten und Entfernungen.</p>
 <p><strong>Rekonstruiere die vollständige Route, die alle Hinweise gleichzeitig erfüllt.</strong></p>
-<ul><li>Das <strong>Startfeld</strong> ist bekannt.</li><li>Die Fahrt dauert <strong><span data-rule-hours="word">sechs</span> Stunden</strong>; pro Stunde geht es genau ein Feld weiter.</li><li>Jeder Schritt führt auf eines der sechs Hexfelder mit gemeinsamer Seite.</li><li><strong>Land ist nicht befahrbar.</strong> Das gilt für Inseln wie Tesoro und andere als Land gekennzeichnete Felder.</li><li>Kein Feld darf während der Route mehrfach besucht werden.</li><li>Besondere Orte wie Leuchttürme, Wracks und Riffe sind <strong>befahrbar</strong>, sofern sie nicht ausdrücklich als Land gekennzeichnet sind. Ein <strong>orangefarbener Kreis</strong> zeigt an, dass sich möglicherweise eine von Robins Logbucheintragungen auf diesen Ort bezieht. Diese Orte und ihre konkreten Namen sind nicht in jedem Rätsel vorhanden.</li></ul>
+<ul><li>Das <strong>Startfeld</strong> ist bekannt.</li><li>Die Fahrt dauert <strong><span data-rule-hours="word">sechs</span> Stunden</strong>; pro Stunde geht es genau ein Feld weiter.</li><li>Jeder Schritt führt auf eines der sechs Hexfelder mit gemeinsamer Seite.</li><li><strong>Land ist nicht befahrbar.</strong> Die Karte kennzeichnet gesperrte Felder mit gestrichelten Kanten.</li><li>Kein Feld darf während der Route mehrfach besucht werden.</li><li>Geografische Orte können ein oder mehrere Felder umfassen. Ihre Befahrbarkeit ist in der Karte festgelegt. Befahrbare Orte tragen kein permanentes Namensschild und keinen zusätzlichen Ring. Hinweise nennen ihre Koordinaten, gegebenenfalls mit einem Namen; solche Orte sind nicht in jedem Rätsel vorhanden.</li></ul>
 <h4>Die Karte lesen</h4>
 <p>Die Seekarte besteht aus <strong>Hexfeldern</strong>. Benachbarte Hexfelder teilen eine gemeinsame <strong>Seite</strong>.</p>
 <p><strong>Koordinaten:</strong> Die Spalten heißen Alpha, Beta, Gamma, Delta und Epsilon; die Zeilen Cyan, Magenta, Violett, Blau und Orange. Beispiel: <strong>Gamma / Violett</strong>. Am Pergamentrand helfen Beschriftungen und geschwungene Hilfslinien bei der Orientierung. Die kompakte Symbolnotation in Hinweisen und Route meint dieselben Koordinaten.</p>
 <p><strong>Richtungen und Stundenmarkierungen:</strong> Nordost (Stunde 1), Ost (Stunde 2), Südost (Stunde 3), Südwest (Stunde 4), West (Stunde 5) und Nordwest (Stunde 6). Die sechs Hexseiten bieten jeweils Platz für die Notizen einer Stunde. Kleine Zeichen an der entsprechenden Seite zeigen Deine Markierungen; eine kräftige Doppelkante hebt die gerade gewählte Stunde hervor. Diese Anordnung hilft beim Sortieren Deiner Notizen – sie schreibt Sam keinen Kurs vor. Ein Kurswechsel bezieht sich auf die <strong>unmittelbar vorherige</strong> Fahrtrichtung. Von Ost aus bedeutet 60° rechts <strong>Südost</strong>, 60° links <strong>Nordost</strong>. Die erste Stunde hat noch keine vorherige Fahrtrichtung.</p>
-<p><strong>Abstände:</strong> Gemessen wird die <strong>Hexdistanz</strong>, also die kürzeste Schrittzahl auf einem ungehinderten Hexraster. Direkte Nachbarn haben Abstand 1. <strong>Landhindernisse verlängern diese geometrische Distanz nicht</strong>; der tatsächlich befahrbare Umweg kann länger sein.</p>
-<p><strong>Küste:</strong> Als <em>Küste von Tesoro</em> zählen <strong>beispielsweise</strong> alle befahrbaren Wasserfelder, die mit der Insel eine gemeinsame Hexseite besitzen. Dieselbe Regel gilt bei anderen Inseln.</p>
+<p><strong>Abstände:</strong> Gemessen wird die <strong>Hexdistanz</strong>, also die kürzeste Schrittzahl auf einem ungehinderten Hexraster. Der Abstand zu einem Ort ist der kleinste Abstand zu einer seiner Zellen. Auf einem Ortsfeld beträgt er 0; direkte Nachbarn haben Abstand 1. <strong>Landhindernisse verlängern diese geometrische Distanz nicht</strong>; der tatsächlich befahrbare Umweg kann länger sein.</p>
+<p><strong>Zeitintervalle:</strong> Ein Hinweis kann zählen, in wie vielen Stunden der Abstand zu einem Ort genau einen Wert hatte, beispielsweise Abstand 0. Anfangs- und Endstunde werden mitgezählt; jede Stunde zählt nur einmal.</p>
 <h4>Mit den Stundenkarten arbeiten</h4>
 <p>Du musst die Route nicht sofort kennen. Für <strong>jede Stunde 1 bis <span data-rule-hours="number">6</span></strong> kannst Du getrennt notieren, wo das Schiff gewesen sein könnte. Wähle oben die Stunde und dann ein Werkzeug:</p>
 <ul><li><strong>? Möglich:</strong> Hier könnte das Schiff in dieser Stunde gewesen sein.</li><li><strong>✓ Sicher:</strong> Hier muss es in dieser Stunde gewesen sein.</li><li><strong>× Ausgeschlossen:</strong> Hier kann es in dieser Stunde nicht gewesen sein.</li><li><strong>Radierer der aktuellen Stunde:</strong> Entfernt eine Markierung in der gewählten Stundenkarte; ein erneuter Klick auf dieselbe Markierung entfernt sie ebenfalls.</li><li><strong>In allen Stunden radieren:</strong> Ein Klick auf ein Feld entfernt dessen Markierungen in sämtlichen Stundenkarten, unabhängig von der gerade gewählten Stunde.</li></ul>

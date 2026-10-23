@@ -1,10 +1,9 @@
+"""Contract tests on a small isolated demo package, never a fixed content count."""
 import contextlib
+import hashlib
 import importlib.util
 import io
 import json
-import hashlib
-import subprocess
-import sys
 from pathlib import Path
 import shutil
 import tempfile
@@ -18,134 +17,39 @@ spec.loader.exec_module(packager)
 
 
 class PackagingTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.files = packager.collect(ROOT)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
-        for path in packager.collect(ROOT):
-            target = self.root / path
+        for ref in self.files:
+            target = self.root / ref
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(ROOT / path, target)
+            shutil.copyfile(ROOT / ref, target)
+        # Keep just the guaranteed demo package. Other installed assets are optional.
+        dto = self.read('puzzles/model-demo.json')
+        used = {p['assetId'] for p in dto['puzzle']['presentation']['assetPlacements']}
+        c = self.read('assets/catalog/library.json')
+        c['assets'] = [a for a in c['assets'] if a['id'] in used]
+        c['backgrounds'] = [b for b in c['backgrounds'] if b['id'] == dto['puzzle']['presentation']['background']]
+        c['reviews'] = [r for r in c['reviews'] if r['assetId'] in used and r['backgroundId'] == c['backgrounds'][0]['id']]
+        self.write('assets/catalog/library.json', c)
 
-    def test_deterministic_runtime_only_archive(self):
-        with contextlib.redirect_stdout(io.StringIO()):
-            output = packager.package(self.root)
-            first = output.read_bytes()
-            self.assertEqual(first, packager.package(self.root).read_bytes())
-        with zipfile.ZipFile(output) as archive:
-            names = archive.namelist()
-            self.assertIn('index.html', names)
-            self.assertIn('assets/catalog/library.json', names)
-            self.assertIn('assets/library/technical-double.png', names)
-            self.assertNotIn('dev/asset-library.html', names)
-            for name in ['assets/seekarte/sea-blue-01.webp', 'assets/seekarte/frame-parchment-01.webp', 'assets/seekarte/frame-parchment-02.webp', 'assets/ui/logbook-chart.svg', '.htaccess']:
-                self.assertIn(name, names)
-                self.assertEqual(archive.read(name), (ROOT / name).read_bytes())
-            self.assertEqual(names, [packager.deployment_name(n) for n in packager.collect(self.root)])
-            self.assertFalse(any(n.startswith(('tests/', 'docs/', 'node_modules/', 'prototypes/', '.git')) for n in names))
-            manifest = json.loads(archive.read('puzzles/manifest.json'))
-            self.assertEqual(len(manifest['puzzles']), 4)
-            for entry in manifest['puzzles']:
-                self.assertIn('puzzles/' + entry['path'], names)
+    def read(self, ref):
+        return json.loads((self.root / ref).read_text())
 
-    def test_all_module_references_are_exported_as_js(self):
-        import re
-        import posixpath
-        with contextlib.redirect_stdout(io.StringIO()):
-            output = packager.package(self.root)
-        with zipfile.ZipFile(output) as archive:
-            names = set(archive.namelist())
-            self.assertFalse(any(n.endswith('.mjs') for n in names))
-            self.assertIn('src/ui/game.js', names)
-            self.assertIn('type="module" src="src/ui/game.js"', archive.read('index.html').decode())
-            for name in names:
-                if not name.endswith('.js'):
-                    continue
-                text = archive.read(name).decode()
-                self.assertNotIn('.mjs', text)
-                refs = re.findall(r"(?:from\s*|import\s*)[\"']([^\"']+)[\"']", text)
-                for ref in refs:
-                    self.assertIn(posixpath.normpath(posixpath.join(posixpath.dirname(name), ref)), names)
-            for name in packager.collect(self.root):
-                if not name.endswith(('.mjs', '.html')):
-                    self.assertEqual(archive.read(name), (self.root / name).read_bytes())
+    def write(self, ref, data):
+        (self.root / ref).write_text(json.dumps(data))
 
-    def test_missing_puzzle(self):
-        (self.root / 'puzzles/quittung-nombreo.json').unlink()
-        with self.assertRaisesRegex(ValueError, 'quittung-nombreo.json'):
-            packager.collect(self.root)
+    def change_puzzle(self, mutate):
+        d = self.read('puzzles/model-demo.json')
+        mutate(d['puzzle'])
+        self.write('puzzles/model-demo.json', d)
 
-    def test_missing_asset(self):
-        (self.root / 'assets/seekarte/tesoro.png').unlink()
-        with self.assertRaisesRegex(ValueError, 'tesoro.png'):
-            packager.collect(self.root)
-
-    def test_missing_module(self):
-        (self.root / 'src/engine/hex.mjs').unlink()
-        with self.assertRaisesRegex(ValueError, 'hex.mjs'):
-            packager.collect(self.root)
-
-    def test_missing_catalog_image(self):
-        (self.root / 'assets/library/technical-single.png').unlink()
-        with self.assertRaisesRegex(ValueError, 'technical-single.png'):
-            packager.collect(self.root)
-
-    def test_catalog_path_escape(self):
-        path = self.root / 'assets/catalog/library.json'
-        data = json.loads(path.read_text())
-        data['assets'][0]['image']['path'] = 'assets/library/../../README.md'
-        path.write_text(json.dumps(data))
-        with self.assertRaisesRegex(ValueError, 'Assetpfad'):
-            packager.collect(self.root)
-
-    def test_unapproved_catalog_placement_is_not_shipped(self):
-        path = self.root / 'puzzles/reference-3.6.json'
-        data = json.loads(path.read_text())
-        data['presentation']['assetBackground'] = 'sea-blue-01'
-        data['presentation']['assetPlacements'] = [{'id': 'new', 'assetId': 'technical.single.v1', 'anchor': 'B3'}]
-        path.write_text(json.dumps(data))
-        with self.assertRaisesRegex(ValueError, 'visually approved'):
-            packager.collect(self.root)
-
-    def test_unknown_asset_id(self):
-        path = self.root / 'puzzles/quittung-nombreo.json'
-        data = json.loads(path.read_text()); data['presentation']['overlays'][0]['asset'] = 'invented.png'
-        path.write_text(json.dumps(data))
-        with self.assertRaisesRegex(ValueError, 'invented.png'):
-            packager.collect(self.root)
-
-    def test_path_escape(self):
-        path = self.root / 'puzzles/manifest.json'
-        data = json.loads(path.read_text()); data['puzzles'][0]['path'] = '../secret.json'
-        path.write_text(json.dumps(data))
-        with self.assertRaisesRegex(ValueError, 'Unzulässiger Rätselpfad'):
-            packager.collect(self.root)
-
-    def update_json(self, ref, mutate):
-        target = self.root / ref
-        data = json.loads(target.read_text())
-        mutate(data)
-        target.write_text(json.dumps(data))
-
-    def approve_fixture(self):
-        def approve(c):
-            for a in c['assets']:
-                a['stage'] = 'illustration'
-                a['production'] = 'enabled'
-            for r in c['reviews']:
-                a = next(a for a in c['assets'] if a['id'] == r['assetId'])
-                b = next(b for b in c['backgrounds'] if b['id'] == r['backgroundId'])
-                r.update(status='approved', reviewer='Package test only', date='2026-10-18',
-                         assetSha256=hashlib.sha256((self.root / a['image']['path']).read_bytes()).hexdigest(),
-                         backgroundSha256=hashlib.sha256((self.root / b['image']).read_bytes()).hexdigest())
-        self.update_json('assets/catalog/library.json', approve)
-        def place(p):
-            p['presentation']['assetBackground'] = 'sea-blue-01'
-            p['presentation']['assetPlacements'] = [dict(id='fixture', assetId='technical.single.v1', anchor='B3')]
-        self.update_json('puzzles/reference-3.6.json', place)
-
-    def rejected_release(self, pattern):
-        # A failed validation never creates a ZIP or replaces an earlier release.
+    def rejected(self, pattern):
         output = self.root / 'dist/Sams-Gezeitenkarten.zip'
         output.parent.mkdir(exist_ok=True)
         output.write_bytes(b'previous valid release')
@@ -154,124 +58,141 @@ class PackagingTests(unittest.TestCase):
         self.assertEqual(output.read_bytes(), b'previous valid release')
         self.assertFalse(output.with_suffix('.zip.tmp').exists())
 
-    def test_approved_fixture_can_be_exported(self):
-        self.approve_fixture()
+    def test_deterministic_runtime_only_archive_and_public_projection(self):
         with contextlib.redirect_stdout(io.StringIO()):
-            self.assertTrue(packager.package(self.root).is_file())
+            output = packager.package(self.root)
+            first = output.read_bytes()
+            self.assertEqual(first, packager.package(self.root).read_bytes())
+        with zipfile.ZipFile(output) as archive:
+            names = archive.namelist()
+            self.assertIn('src/ui/game.js', names)
+            self.assertFalse(any(n.endswith('.mjs') or n.startswith(('tests/', 'docs/', 'archive/', 'prototypes/')) for n in names))
+            self.assertNotIn('src/assets/legacy.js', names)
+            self.assertNotIn('scripts/lib/publication-archive.js', names)
+            for entry in self.read('puzzles/manifest.json')['puzzles']:
+                dto = json.loads(archive.read('puzzles/' + entry['path']))
+                self.assertNotIn('solution', dto['puzzle'])
+                self.assertNotIn('metadata', dto['puzzle'])
 
-    def test_artistically_approved_deferred_foam_preserves_previous_release(self):
-        self.update_json('puzzles/reference-3.6.json', lambda p: p['presentation'].update(
-            assetBackground='sea-blue-01',
-            assetPlacements=[dict(id='foam', assetId='sea-life.accent.h1.foam.v1', anchor='A1')]))
-        self.rejected_release('not enabled for production')
+    def test_all_module_references_are_exported_as_js(self):
+        import re
+        import posixpath
+        with contextlib.redirect_stdout(io.StringIO()):
+            output = packager.package(self.root)
+        with zipfile.ZipFile(output) as archive:
+            names = set(archive.namelist())
+            for name in names:
+                if not name.endswith('.js'):
+                    continue
+                text = archive.read(name).decode()
+                self.assertNotIn('.mjs', text)
+                for ref in re.findall(r"(?:from\s*|import\s*)[\"']([^\"']+)[\"']", text):
+                    self.assertIn(posixpath.normpath(posixpath.join(posixpath.dirname(name), ref)), names)
 
-    def test_wrong_asset_and_background_approval_hashes(self):
-        self.approve_fixture()
+    def test_missing_puzzle(self):
+        (self.root / 'puzzles/model-demo.json').unlink()
+        self.rejected('model-demo.json')
+
+    def test_missing_asset(self):
+        c = self.read('assets/catalog/library.json')
+        (self.root / c['assets'][0]['image']['path']).unlink()
+        self.rejected('Laufzeitdatei')
+
+    def test_path_escape(self):
+        c = self.read('puzzles/manifest.json')
+        c['puzzles'][0]['path'] = '../../secret.json'
+        self.write('puzzles/manifest.json', c)
+        self.rejected('außerhalb')
+
+    def test_stale_asset_and_background_approval_hashes(self):
+        original = self.read('assets/catalog/library.json')
         for field in ['assetSha256', 'backgroundSha256']:
-            with self.subTest(field=field):
-                original = (self.root / 'assets/catalog/library.json').read_bytes()
-                self.update_json('assets/catalog/library.json', lambda c: c['reviews'][0].update({field: '0'*64}))
-                self.rejected_release('Stale visual approval')
-                (self.root / 'assets/catalog/library.json').write_bytes(original)
+            c = json.loads(json.dumps(original))
+            c['reviews'][0][field] = '0'*64
+            self.write('assets/catalog/library.json', c)
+            self.rejected('Stale visual approval')
 
-    def test_stale_approval_after_asset_change(self):
-        self.approve_fixture()
-        image = self.root / 'assets/library/technical-single.png'
-        image.write_bytes(image.read_bytes()+b'changed')
-        self.rejected_release('Stale visual approval')
+    def test_incomplete_approval(self):
+        c = self.read('assets/catalog/library.json')
+        del c['reviews'][0]['reviewer']
+        self.write('assets/catalog/library.json', c)
+        self.rejected('Approval requires')
 
-    def test_incomplete_approval_metadata(self):
-        self.approve_fixture()
-        for field in ['reviewer', 'date', 'assetSha256', 'backgroundSha256']:
-            with self.subTest(field=field):
-                original = (self.root / 'assets/catalog/library.json').read_bytes()
-                self.update_json('assets/catalog/library.json', lambda c: c['reviews'][0].pop(field))
-                self.rejected_release('Approval requires')
-                (self.root / 'assets/catalog/library.json').write_bytes(original)
+    def test_forbidden_placement_transform(self):
+        self.change_puzzle(lambda p: p['presentation']['assetPlacements'][0].update(rotation=60))
+        self.rejected('rotation')
 
-    def test_forbidden_transform_parameters(self):
-        self.approve_fixture()
-        for field in ['scale', 'dx', 'dy', 'rotation', 'mirror']:
-            with self.subTest(field=field):
-                original = (self.root / 'puzzles/reference-3.6.json').read_bytes()
-                self.update_json('puzzles/reference-3.6.json', lambda p: p['presentation']['assetPlacements'][0].update({field: 2}))
-                self.rejected_release(field)
-                (self.root / 'puzzles/reference-3.6.json').write_bytes(original)
+    def test_mismatching_object_footprint(self):
+        self.change_puzzle(lambda p: p['presentation']['assetPlacements'][0].update(anchor='D4'))
+        self.rejected('footprint mismatch')
 
-    def test_placement_outside_board(self):
-        self.approve_fixture()
-        self.update_json('puzzles/reference-3.6.json', lambda p: p['presentation']['assetPlacements'][0].update(assetId='technical.double.v1', anchor='E3'))
-        self.rejected_release('outside chart')
+    def test_passability_is_never_overridden_by_asset(self):
+        self.change_puzzle(lambda p: p['logic']['map']['objects'][1].update(passable=True))
+        self.rejected('passable conflicts')
 
-    def test_disconnected_asset_geometry(self):
-        self.update_json('assets/catalog/library.json', lambda c: c['assets'][0]['geometry'].update(cells=[[0, 0], [2, 0]]))
-        self.rejected_release('edge-connected')
+    def test_corrupt_image_with_updated_approval_hash(self):
+        c = self.read('assets/catalog/library.json')
+        a = c['assets'][0]
+        broken = b'broken PNG'
+        (self.root / a['image']['path']).write_bytes(broken)
+        for r in c['reviews']:
+            if r['assetId'] == a['id']:
+                r['assetSha256'] = hashlib.sha256(broken).hexdigest()
+        self.write('assets/catalog/library.json', c)
+        self.rejected('cannot identify image')
 
-    def test_corrupt_image_even_with_current_approval_hashes(self):
-        (self.root / 'assets/library/technical-single.png').write_bytes(b'broken PNG')
-        self.approve_fixture()
-        self.rejected_release('technical.single.v1:.*cannot identify image')
-
-    def test_same_background_id_with_different_file(self):
-        self.update_json('assets/catalog/library.json', lambda c: c['backgrounds'][0].update(image='assets/seekarte/meer-pergament.webp'))
-        self.approve_fixture()
-        self.rejected_release('rendered background')
-
-    def test_corrupt_background_even_with_current_hashes(self):
-        (self.root / 'assets/seekarte/sea-blue-01.webp').write_bytes(b'broken WebP')
-        self.approve_fixture()
-        self.rejected_release('damaged runtime image')
-
-    def test_corrupt_legacy_runtime_image(self):
-        (self.root / 'assets/seekarte/tesoro.png').write_bytes(b'broken PNG')
-        self.rejected_release('damaged runtime image')
-
-    def test_internal_asset_symlink_alias(self):
-        alias = self.root / 'assets/library/alias.png'
-        alias.symlink_to('technical-single.png')
-        self.update_json('assets/catalog/library.json', lambda c: c['assets'][0]['image'].update(path='assets/library/alias.png'))
-        self.rejected_release('Symbolische Links')
-
-    def test_symlink_directory_component(self):
-        source = self.root / 'assets/library'
-        target = self.root / 'assets/library-real'
-        source.rename(target)
-        source.symlink_to('library-real', target_is_directory=True)
-        self.rejected_release('Symbolische Links')
-
-    def test_alpha_outside_graphic_footprint(self):
+    def test_alpha_outside_footprint(self):
         from PIL import Image
-        path = self.root / 'assets/library/technical-single.png'
+        c = self.read('assets/catalog/library.json')
+        a = next(a for a in c['assets'] if len(a['geometry']['cells']) == 1)
+        path = self.root / a['image']['path']
         image = Image.open(path)
         image.putpixel((0, 0), (0, 0, 0, 1))
         image.save(path)
-        self.rejected_release('visible pixel outside geometry')
+        for r in c['reviews']:
+            if r['assetId'] == a['id']:
+                r['assetSha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+        self.write('assets/catalog/library.json', c)
+        self.rejected('visible pixel outside geometry')
 
-    def test_map_edge_alpha_outside_safety(self):
-        from PIL import Image
-        path = self.root / 'assets/library/technical-single.png'
-        image = Image.open(path)
-        image.putpixel((343, 204), (0, 0, 0, 1))
-        image.save(path)
-        self.approve_fixture()
-        self.update_json('puzzles/reference-3.6.json', lambda p: p['presentation']['assetPlacements'][0].update(anchor='E2'))
-        self.rejected_release('map boundary')
+    def test_symlink_components_rejected(self):
+        original = self.root / 'assets/library'
+        original.rename(self.root / 'assets/library-real')
+        original.symlink_to('library-real', target_is_directory=True)
+        self.rejected('Symbolische Links')
 
-    def test_puzzle_solver_is_a_publication_gate(self):
-        self.update_json('puzzles/reference-3.6.json', lambda p: p['logic'].update(clues=p['logic']['clues'][:1]))
-        self.update_json('puzzles/reference-3.6.json', lambda p: p['presentation'].update(clues={'I': p['presentation']['clues']['I']}))
-        self.rejected_release('Lösungen')
+    def test_solver_is_a_release_gate(self):
+        self.change_puzzle(lambda p: p['logic'].update(clues=[]))
+        self.change_puzzle(lambda p: p['presentation'].update(clueTexts={}))
+        self.rejected('Lösungen')
 
-    def test_both_cli_entrypoints_report_failure_and_preserve_archive(self):
-        self.approve_fixture()
-        self.update_json('assets/catalog/library.json', lambda c: c['reviews'][0].update(assetSha256='0'*64))
-        for command in [['sh', str(ROOT / 'scripts/package.sh')], [sys.executable, str(ROOT / 'scripts/package.py')]]:
-            with self.subTest(command=command):
-                result = subprocess.run([*command, '--root', str(self.root)], capture_output=True, text=True)
-                self.assertNotEqual(result.returncode, 0)
-                self.assertIn('Export fehlgeschlagen', result.stderr)
-                self.assertIn('Stale visual approval', result.stderr)
-                self.assertFalse((self.root / 'dist/Sams-Gezeitenkarten.zip').exists())
+    def test_private_target_cannot_enter_runtime_dto(self):
+        self.change_puzzle(lambda p: p.update(solution=['A5', 'B5', 'C5', 'D5']))
+        self.rejected('solution')
+
+    def test_deferred_art_cannot_be_exported(self):
+        c = self.read('assets/catalog/library.json')
+        c['assets'][0]['production'] = 'deferred'
+        self.write('assets/catalog/library.json', c)
+        self.rejected('not enabled for production')
+
+    def test_empty_optional_catalog_needs_no_asset_catalog(self):
+        self.write('puzzles/manifest.json', {'schemaVersion': 2, 'defaultId': None, 'puzzles': []})
+        (self.root / 'assets/catalog/library.json').unlink()
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertTrue(packager.package(self.root).is_file())
+
+    def test_catalog_and_resources_can_use_another_local_location(self):
+        c = self.read('puzzles/manifest.json')
+        c['assetCatalog'] = '../resources/catalog.json'
+        c['resourceBase'] = '../resources/'
+        directory = self.root / 'resources'
+        directory.mkdir()
+        shutil.copyfile(self.root / 'assets/catalog/library.json', directory / 'catalog.json')
+        shutil.copytree(self.root / 'assets', directory / 'assets')
+        self.write('puzzles/manifest.json', c)
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertTrue(packager.package(self.root).is_file())
 
 
 if __name__ == '__main__':

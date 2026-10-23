@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "geometry": {
+      "const": "even-row-offset-pointy-v1"
+    },
+    "grid": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "const": 5
+        },
+        "rows": {
+          "const": 5
+        }
+      },
+      "required": [
+        "columns",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+            "maxLength": 80
+          },
+          "cells": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-E][1-5]$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "passable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "cells",
+          "passable"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "geometry",
+    "grid",
+    "objects"
+  ],
+  "additionalProperties": false
+}

@@ -1,74 +1,117 @@
-# Rätseldaten und Schnittstellen – Schema 1
+# Rätsel- und Inhaltspaketvertrag v2
 
-Implementierung für [#18](https://github.com/roquas/Sams-Gezeitenkarten/issues/18), [#19](https://github.com/roquas/Sams-Gezeitenkarten/issues/19), [#23](https://github.com/roquas/Sams-Gezeitenkarten/issues/23) und [#33](https://github.com/roquas/Sams-Gezeitenkarten/issues/33). Die allgemeine UI-/Projektdokumentation wird separat aktualisiert; historische 3.6-Dokumente und Originaldateien bleiben unverändert.
+Geltende Regeln: [gezeitenkarten-2](RULESET-GEZEITENKARTEN-2.md).
+Die ausführbaren Schemas in `src/puzzles/schema.mjs` und
+`src/assets/library.mjs` sind die Quelle der JSON-Schemas unter `puzzles/schema/`.
+Schema 1, typisierte Ortslisten und Overlays werden nicht mehr angenommen.
 
-## Transport und Grenzen
+## Dokument und öffentliche Auslieferung
 
-Das separate interne [Veröffentlichungsarchiv v1 (F02)](PUBLICATION-ARCHIVE-V1.md)
-ordnet die vier Bestandsdateien stabilen Karten-, Instanz-, Varianten- und
-Veröffentlichungs-IDs zu. Dieses Format und der bestehende Browserkatalog bleiben
-unverändert; das Archiv gehört nicht zur statischen Auslieferung.
+Ein internes Dokument hat `schemaVersion:2`, `rulesVersion:"gezeitenkarten-2"`,
+`dataVersion` als positive Inhaltsrevision, `id`, `logic` und `presentation`.
+Optional sind `solution` (interne Zielroute), `metadata` und `resultTexts`.
+Die Karte ist `logic.map`; Start, Etappen und strukturierte Hinweise stehen
+außerhalb der abstrakten Karte. `dataVersion` registriert keine andere Regel-
+oder Schemabedeutung; weitere positive Inhaltsrevisionen sind zulässig.
 
-Ein JSON-Dokument enthält `schemaVersion: 1`, eine stabile `id`, `dataVersion` (positive ganze Zahl), `logic` und `presentation`. [JSON Schema](../puzzles/schema/puzzle-v1.schema.json), [verlustfreies Referenzbeispiel](../puzzles/reference-3.6.json), [explizit technischer Testfall](../puzzles/test-navigation.json).
+Darstellung:
 
-Schema 1 unterstützt bewusst die bestehende **5×5-Karte**, die dokumentierte Even-row-Hexgeometrie und **1–6 Stunden**. Andere Abmessungen oder mehr als sechs Stunden werden abgewiesen, nicht stillschweigend falsch gezeichnet. Größere Geometrien erfordern einen neuen geprüften Darstellungs-/Schemaausbau. Die Hinweisanzahl ist variabel und hat keine Obergrenze; mindestens ein Hinweis wird verlangt.
+- `title`, `intro`, `hints`: öffentliche Texte.
+- `objectNames`: optionale Namen für bekannte Objekt-IDs. Keine Klassentabelle.
+- `clueTexts`: genau ein öffentlicher Text je strukturierter Hinweis-ID.
+- `background`: Referenz in einem ausdrücklich übergebenen Assetkatalog.
+- `assetPlacements`: moderne Platzierungen; keine Größen, Rotationen oder Overlays.
 
-- `logic.grid`: `{columns:5, rows:5}`; Koordinaten `A1` bis `E5`.
-- `logic.blocked`: eindeutige gesperrte Zellen. **Nur diese Liste legt Befahrbarkeit fest.**
-- `logic.start`, `logic.steps`: befahrbarer Start, Zahl der Etappen; alle Routen ohne Wiederbesuch und nur über gemeinsame Hexseiten.
-- `logic.places`: stabile Orts-ID → `{kind,cells}`. `island` muss vollständig auf Land liegen; `lighthouse`, `reef`, `wreck`, `landmark` auf befahrbaren Feldern. Mehrteilige Orte sind möglich. Name/Illustration legen niemals Regeln fest.
-- `logic.clues`: eindeutige IDs, Typ und typabhängige Parameter. Keine Texte im Logikkern.
-- `presentation`: `title`, Absatzliste `intro`, Namenswörterbuch `places`, Hinweistextwörterbuch `clues`, vorbereitete `hints` (darf leer sein), `background` und `overlays`. Textreferenzen müssen exakt zu den Logik-IDs passen. Texte werden als Text behandelt/HTML-escaped, gemeinsame Koordinatensymbole danach eingefügt.
-- `solution`: optionaler redaktioneller Sollwert (Start plus alle Etappen). Wenn vorhanden, wird er auf Legalität und Hinweise geprüft und mit der **unabhängig berechneten** eindeutigen Lösung abgeglichen. Er steuert die Suche nicht.
-- `metadata`: optional, bei Angabe `kind` und `source`, optional `difficulty`. Herkunft und Schwierigkeit sind keine Eindeutigkeitsbeweise.
-- `resultTexts`: optionales Objekt mit unabhängig optionalen Strings `correct` und `incorrect`. `{}`, nur eines der Felder oder beide sind gültig. Vorbereitung für [#35](https://github.com/roquas/Sams-Gezeitenkarten/issues/35): **noch keine Verwendung für neue Ergebnisdarstellungen**. Spätere Oberfläche verwendet bei fehlendem Feld neutrale Defaults.
+Öffentliche Dokumente sind DTOs mit `projectionSchemaVersion:2`, `rulesVersion`,
+`identity:{mapStructureId,instanceId,variantId,sourcePublicationId?}` und `puzzle`.
+`projectPublicPuzzle` kopiert rekursiv nur erlaubte Felder. Zielroute, Seeds,
+Generatorinformationen, interne Metadaten und Analysen werden nicht ausgeliefert.
+`validatePublicPuzzle` weist solche Zusatzfelder strikt ab. Der Browser berechnet
+seine Spielhilfen aus den öffentlichen Regeln; das ist Datenminimierung, kein
+Schutz vor dem Rekonstruieren einer Lösung.
 
-Unbekannte Felder, Schema-Versionen, Hinweistypen, IDs/Assets und ungültige Referenzen führen zu benannten Fehlerpfaden. Es gibt keine automatische Interpretation unbekannter Versionen. Der veröffentlichte JSON-Schema-Vertrag wird aus `src/puzzles/schema.mjs` erzeugt; ein Test prüft die Gleichheit. Der kleine eigene Validator implementiert genau die verwendete JSON-Schema-Teilmenge, ohne Bibliotheks-/Frameworkabhängigkeit.
+Das öffentliche DTO wird direkt geladen, validiert und an die UI gebunden.
+Es gibt keine Übersetzung in alte `places`/`blocked`/`overlays`-Daten. Die UI-Sicht
+ergänzt lediglich Texte und die unabhängig ermittelte Lösung an derselben Logik.
 
-## Hinweistypen
+## Assetvertrag
 
-| Typ | Parameter | Semantik |
-|---|---|---|
-| `direction` | `hour` ≥ 1, `direction` | Bewegung dieser Etappe; E, SE, SW, W, NW, NE |
-| `turn` | `hour` ≥ 2, `degrees` | Drehung gegenüber vorheriger Etappe in 60°-Schritten; positiv rechts |
-| `position` | `hour`, `cell` | Exakte Position; Stunde 0 ist der Start |
-| `adjacentToPlace` | `hour`, `place` | Befahrbares Feld, gemeinsame Seite mit mindestens einer Ortszelle |
-| `distanceToPlace` | `hour`, `place`, `distance` | Mindestens eine Ortszelle hat exakt diesen geometrischen Abstand; **nicht** Mindestabstand über alle Ortszellen |
-| `distanceBetweenHours` | `hours:[a,b]`, `distance` | Geometrischer Hexabstand zwischen beiden Positionen |
-| `countAdjacentToPlace` | `hours:[a,b]`, `place`, `count` | Küstenaufenthalte im inklusiven Stundenbereich; jede Stunde höchstens einmal |
+Katalog: `schemaVersion:2`, `semanticVersion:1`, `backgrounds`, `assets`, `reviews`.
+Jedes Asset besitzt eine explizite `semanticClass` aus dem versionierten Vokabular:
+`island`, `lighthouse`, `buoy`, `wreck`, `settlement`, `atoll`, `archipelago`,
+`algae`, `barrels`, `rowboat`, `crate`, `bottle`, `driftwood`, `decoration`.
+Es wird niemals aus IDs oder Dateinamen geraten. Die einmalige redaktionelle
+Katalogumstellung klassifiziert bestehende Motive ausdrücklich; Bildbytes und
+bestehende künstlerische Freigaben wurden dabei nicht geändert.
 
-Stunden müssen innerhalb der Routenlänge liegen; Bereiche sind aufsteigend. Hindernisse verlängern die Hexdistanz nicht. Die vorhandenen Regeln in `src/engine/puzzle.mjs` werden gemeinsam vom Spiel und Solver verwendet; keine zweite Engine.
+`role:geographic` verlangt `passable:boolean`; `role:decoration` hat keine
+Befahrbarkeit und verwendet `semanticClass:decoration`. Die Klasse bestimmt
+keine Befahrbarkeit. Illustrationseignung wird durch `passable` und den
+zusammenhängenden axialen Footprint `geometry.cells` beschrieben.
 
-## Loader und Solver
+```json
+{"id":"p1","assetId":"example.buoy","anchor":"C3","objectId":"o1"}
+```
 
-Die separaten [Offline-Prüfdienste und die öffentliche Projektion (F03)](PUZZLE-SERVICES-F03.md)
-ergänzen diesen Vertrag. Der vorhandene Loader und `compilePuzzle()` bleiben
-unverändert; das neue öffentliche DTO wird noch nicht produktiv ausgeliefert.
+Ein geografisches Asset repräsentiert genau ein Objekt. Sein platzierter Footprint
+muss dessen Zellmenge **vollständig und exakt** abdecken und dieselbe Befahrbarkeit
+besitzen. Ein Objekt erhält höchstens eine Illustration. Dekoration hat keine
+`objectId`, überlappt kein logisches Objekt und verändert keine Logik.
+Alle Grafikfootprints sind untereinander exklusiv. Transformationen, Strecken und
+Clipping sind keine Auswege bei inkompatiblen Assets.
 
-- `validatePuzzle(document)` prüft Schema und semantische Referenzen; wirft `PuzzleError` mit `errors` und lesbarer Nachricht. Validität bedeutet noch keine Eindeutigkeit.
-- `solvePuzzle(logic, {maxNodes=250000, metrics=true})` arbeitet ohne DOM, Fetch, Speicherung oder Sollroute. Es enumeriert legale Routen über die bestehende Engine und liefert `status` (`unique`, `ambiguous`, `unsolvable`), exakte `count`, `solutions`, `legalRouteCount` und optional `metrics`. Beim überschrittenen Suchbudget wird abgebrochen/geworfen; niemals „eindeutig“ behauptet.
-- Metriken: Kandidaten nach jedem Hinweis, Kandidaten beim Weglassen jedes Hinweises (Redundanz), erzwungene Positionen und frühe Schritte, Hinweisvielfalt und erklärende Zählungen. Schwierigkeit ist ausdrücklich nur eine **vorläufige Enumerationsheuristik**, kein menschlicher Lösungs- oder Schwierigkeitsbeweis.
-- `compilePuzzle(document)` akzeptiert nur eindeutige Fälle, prüft eine vorhandene Sollroute und erzeugt die kompatible Laufzeitansicht für bestehende UI/Zustandsmodule. Die JSON-Schichten bleiben auf Dateiebene getrennt.
-- `createPuzzleLoader({manifestUrl?,fetcher?})`: `manifest()` und `load(id)` liefern Promises. Dateipfade sind relative JSON-Dateinamen innerhalb des Manifestverzeichnisses, keine fremden URLs/Traversalpfade. HTTP-/JSON-/Validierungsfehler bleiben verständlich. Ein fehlgeschlagener Wechsel lässt die bisherige Spielansicht und ihren Zustand intakt.
+Die Logik kann Objekte ohne Illustration enthalten. Bis F04b ist vollständige
+Illustrationsabdeckung kein Freigabekriterium: Der Demohafen A5/B5 besitzt noch
+kein passendes freigegebenes Mehrfeldasset. Die Engine und der Renderer unterstützen
+solche befahrbaren Footprints bereits; ein Browserfixture prüft ihre Bebilderung.
 
-Das statische Manifest führt nur existierende, eindeutig validierte Fälle. Der Browser lädt ausgewählte Dateien bei Bedarf; Wechsel erfolgt ohne Seitenreload. Ein neuer Spielzustand und geleerte Undo-Historie werden erst nach erfolgreichem Laden aktiviert. Karte, Start, Sperren, benannte Orte, Illustrationen, Texte, Hinweise und Stundenanzahl kommen aus den Daten. Native Auswahl in Einstellungen, Meldung über erfolgreichen Wechsel, mobile Seekarte/Logbuch-Navigation unverändert.
+Produktionsplatzierungen verlangen `production:enabled`, `stage:illustration`
+und eine konkrete Bild-/Hintergrundfreigabe. Offline-Paketprüfung validiert zudem
+Dateien, exakte Approval-Hashes, Bilddekodierung, Alpha-Footprints und Kartenrand.
+`development:true` ist allein für technische Galerien/Fixtures und hebt diese
+Freigabepolitik, nicht die logische Footprint-/Befahrbarkeitsprüfung auf.
 
-Asset-IDs werden ausschließlich über `src/puzzles/assets.mjs` auf die vorhandenen Aquarellgrafiken aufgelöst. Bewusste Motivwiederverwendung aus dem abgenommenen GUI-Stand bleibt erhalten. Unbekannte IDs werden abgewiesen; physische Assetdateien werden im Test geprüft. Ein fehlendes Deployment-Asset ist zusätzlich durch Browserprüfung erkennbar.
+## Explizite Quellen und drei Inhaltsebenen
 
-## Spielstände und Migration
+A. Garantierte UI-Basis: Geometrie, Meer `sea-blue-01`, beide Pergamentrahmen und
+die von HTML/CSS/Modulen referenzierten Bedienressourcen. Diese gehören zum
+Auslieferungsvertrag der UI.
 
-Neue Kennung: `gezeitenkarten-<id>-schema<schemaVersion>-data<dataVersion>`; Auswahl: `gezeitenkarten-selected-puzzle`. Reset betrifft nur das aktive Rätsel. Der bestehende Zustandssanitizer wird wiederverwendet. Undo ist pro geladener Sitzung transient, ebenso eine ausstehende Radar-Ursprungsauswahl. Bereits gespeicherte gültige Overlays gehören zum jeweiligen Spielstand.
+B. Kontrollierte Fixtures: `tests/fixtures/model/`, die öffentliche technische
+Probefahrt und kleine In-memory-Kataloge. Keine redaktionelle Veröffentlichung.
 
-Einmalige kompatible Übernahme: Nur `reference-3.6`, Schema 1, Datenversion 1 darf beim Fehlen des neuen Schlüssels `gezeitenkarten-reference-3.6-v0.1` lesen. Anschließend wird unter neuem Schlüssel gespeichert. Der alte Eintrag bleibt als Sicherung stehen; ein Reset im neuen Schlüssel importiert ihn nicht erneut. Eine neue Datenversion verwendet einen frischen Spielstand, ohne ältere Versionen oder andere Rätsel zu löschen. Redaktionell reine Textkorrekturen können die Datenversion behalten; Änderungen an Logik/Start/Hinweis-IDs müssen sie erhöhen. Unbekannte Schemaversionen brauchen eine explizite Migration, keine stille Konvertierung.
+C. Austauschbare Inhaltspakete: Ein beliebig großer Katalog mit öffentlichen
+Rätseln und einem optionalen Assetkatalog. Es gibt keine feste Puzzle-/Assetanzahl.
 
-## Sicherheitsgrenze / späterer Dienst
+```json
+{
+  "schemaVersion": 2,
+  "defaultId": "model-demo",
+  "assetCatalog": "../assets/catalog/library.json",
+  "resourceBase": "../",
+  "puzzles": [{"id":"model-demo","title":"Die Probefahrt","path":"model-demo.json","kind":"demo"}]
+}
+```
 
-Dieses statische Offline-Spiel kann Lösungswissen nicht geheim halten. Die Sollroute im JSON ist optional; der Solver liest sie nicht. Das Rohdokument wird nicht separat gecacht, die UI hält nur die berechnete eindeutige Route für die bestehende Notizprüfung. Ein späteres Spieler-Payload kann `solution` weglassen; für echten Spoilerschutz müssen Solver und Prüfservice serverseitig laufen und die Antwort-/Hilfeschnittstelle ersetzen. Keine Behauptung, clientseitige Daten seien privat. Kein Backend in dieser Ausbaustufe.
+Der Loader erhält `manifestUrl` und optional `fetcher`/`resourceValidator`.
+Rätsel- und Katalogquellen sind relativ zum Manifest; Bildreferenzen relativ zu
+`resourceBase`. Keine implizite Repository-URL und keine produktive Namensliste.
+Die Anwendung gibt ihren lokalen Einstieg selbst an. `{schemaVersion:2,
+defaultId:null,puzzles:[]}` ist gültig; die UI zeigt eine verständliche Leermeldung.
+Nicht verfügbare Quellen und beschädigte verwendete Grafiken werden gemeldet.
+Bilddekodierung läuft nach der Spielfeldinitialisierung: Eine langsame Grafik
+blockiert weder die bedienbare Papierkarte noch gespeicherte Notizen.
 
-## Lokale Nutzung und Prüfung
+Die statische Export-CLI ist ein lokaler Paketadapter: `--root` bezeichnet ein
+vollständiges Paket mit `index.html` und `puzzles/manifest.json`. Sie verfolgt
+lokale Abhängigkeiten, weist Pfade außerhalb dieses Pakets und Symlinks ab und
+validiert vor dem atomaren Ersetzen des ZIPs. Kein Netzwerkdienst, Plugin-System
+oder Repository-Split wird eingeführt.
 
-Wie bisher vom Repository aus `python3 -m http.server 8000` starten und `http://localhost:8000` öffnen. `file://` funktioniert wegen JSON-Fetch nicht. Einstellungen → „Rätsel auswählen“. Das Manifest enthält Referenz 3.6 und den ausdrücklich synthetischen technischen Testfall; zusätzliche redaktionelle Fälle kommen separat mit #34.
+## Aktuelle Beschriftung
 
-Mit Node/npm: `npm ci`, `npx playwright install --with-deps chromium webkit`, `npm run test:all`. Einzelne Teile: `npm run test:unit`, `npm run test:puzzles`, `npm run test:browser`. Die Katalogprüfung läuft auch in CI. Playwright prüft Chromium Desktop/Smartphone und zusätzlich die Auswahl auf WebKit mit iPad-Viewport und Touch, bei Pixeldichte 1 für den Software-Renderer in CI (kein Retina-/Hardwaretest; dieselben CSS-Abmessungen und Interaktionen). Vollständige Tastatursteuerung [#36](https://github.com/roquas/Sams-Gezeitenkarten/issues/36) bleibt außerhalb dieses Schritts; native Auswahl und bestehende Tastaturbedienung bleiben nutzbar.
-
-Die statische Aquarell-/Koordinatenebene bleibt bei Markierungen im DOM erhalten und wird erst beim Rätselwechsel neu aufgebaut. Das vermeidet unnötiges Bilddekodieren und erhält die Gestaltung. Der WebKit-Ablauftest hat wegen Software-Rendering ein eigenes Zeitbudget; Assertions, Touch-/Tastaturaktionen und Prüfumfang werden nicht übersprungen.
+Unbefahrbare Mehrfeldobjekte tragen Pergamentlabels; fehlt ein Name, erscheinen
+Koordinaten. Einzelobjekte behalten das Pergament, ihre Hinweise können Koordinaten
+verwenden. Befahrbare Objekte tragen weder permanentes Namensschild noch orange
+Ortsringe. Der Start hat eine eigene Markierung. Freie Dekoration besitzt keine
+Hinweisreferenz. Ein Ortsverzeichnis oder temporäre Labels sind spätere Arbeit.

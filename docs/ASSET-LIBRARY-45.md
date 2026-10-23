@@ -1,3 +1,5 @@
+> Historischer Prototypvertrag, ersetzt durch [Konsolidierung F01–F03](CONSOLIDATION-F01-F03.md), [Regeln v2](RULESET-GEZEITENKARTEN-2.md) und [Datenvertrag v2](PUZZLE-FORMAT.md). Die folgenden Aussagen sind kein aktueller Laufzeitvertrag.
+
 # Grafikasset-Bibliothek (#45)
 
 Erster Integrationsstand auf `main` nach PR #63 (`1f968b0`). Grundlage sind die vollständige Spezifikation von [Issue #45](https://github.com/roquas/Sams-Gezeitenkarten/issues/45) und die verbindliche Grafikregel vom **18.10.2026**. Sie ersetzt die Präzisierung vom 15.10.2026 hinsichtlich der Polygongeometrie: Der Footprint besteht aus lückenlosen Grafikzellen, während sämtliche sichtbaren Pixel weiterhin hart begrenzt bleiben. Der alte Branch `feature/asset-library-45` wurde geprüft, nicht gemergt. Sein Vorschlagskatalog bleibt unverändert in `assets/catalog/asset-proposals.json`; Zusammenhangsprüfung, axiale Koordinaten, unabhängige Befahrbarkeit und ausstehende Freigaben wurden übernommen. Die alte Prüfung auf exakt 18 Vorschläge ist keine Laufzeitbeschränkung.

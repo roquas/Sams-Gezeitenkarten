@@ -1,0 +1,116 @@
+{
+  "identity": {
+    "instanceId": "inst-model-demo",
+    "mapStructureId": "map-model-demo",
+    "variantId": "var-model-demo"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "model-demo",
+    "logic": {
+      "clues": [
+        {
+          "direction": "E",
+          "hour": 1,
+          "id": "I",
+          "type": "direction"
+        },
+        {
+          "direction": "E",
+          "hour": 2,
+          "id": "II",
+          "type": "direction"
+        },
+        {
+          "direction": "E",
+          "hour": 3,
+          "id": "III",
+          "type": "direction"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "A5",
+              "B5"
+            ],
+            "id": "o1",
+            "passable": true
+          },
+          {
+            "cells": [
+              "B2",
+              "C2"
+            ],
+            "id": "o2",
+            "passable": false
+          },
+          {
+            "cells": [
+              "D1"
+            ],
+            "id": "o3",
+            "passable": false
+          },
+          {
+            "cells": [
+              "D3"
+            ],
+            "id": "o4",
+            "passable": true
+          }
+        ]
+      },
+      "start": "A5",
+      "steps": 3
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "B2",
+          "assetId": "land-coast.island.h2.tropical-bays.v1",
+          "id": "island",
+          "objectId": "o2"
+        },
+        {
+          "anchor": "D1",
+          "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+          "id": "spire",
+          "objectId": "o3"
+        },
+        {
+          "anchor": "D3",
+          "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+          "id": "beacon",
+          "objectId": "o4"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "I": "In Stunde 1 fuhren wir nach Osten.",
+        "II": "In Stunde 2 fuhren wir weiter nach Osten.",
+        "III": "Auch in Stunde 3 hielten wir Ostkurs."
+      },
+      "hints": [
+        "Die erste Etappe führt von A5 nach B5."
+      ],
+      "intro": [
+        "Kontrolliertes Demorätsel für das neue Kartenmodell. Sam und Robin prüfen ihre Seekarte."
+      ],
+      "objectNames": {
+        "o2": "Zwilling"
+      },
+      "title": "Die Probefahrt"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}

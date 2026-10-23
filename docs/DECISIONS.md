@@ -36,3 +36,12 @@ Beschlossen: Benannte befahrbare Orte und Flavor zeigen nur ihre Illustration, o
 ## Kurze, lesbare Ortsnamen (19.10.2026, PR #65)
 
 Beschlossen für künftige Assetgestaltung und Benennung: bevorzugt ein charakteristisches Wort mit etwa 6–12 Zeichen, längere Namen nur nach Prüfung in tatsächlicher Kartengröße; keine extreme automatische Schriftverkleinerung. Humor und klare Unterscheidbarkeit passen zu „Plötzlich Pirat:in“. [Verbindliche Namensregel und unverbindliche Beispiele](WORLD-AND-STYLE.md#verbindliche-gestaltungsregel-ortsnamen-auf-pergamentrollen). Bestehende Namen, Rätseldaten und Logbuchtexte werden damit nicht umbenannt; die Labelarchitektur bleibt unverändert.
+
+## Einheitliches Modell vor erster Veröffentlichung (22.10.2026)
+
+Der ausdrücklich beauftragte Vertragsbruch ersetzt `gezeitenkarten-1`, alte
+Publikationen und parallele Legacy-Pfade durch Schema 2 und `gezeitenkarten-2`.
+Objektzellen sind zusammenhängend/disjunkt, Befahrbarkeit steht am Objekt,
+Mindestabstände ersetzen Existenzsemantik. Engine und Inhaltspakete sind entkoppelt.
+Details und Testtransfer: [Konsolidierung F01–F03](CONSOLIDATION-F01-F03.md).
+Frühere Aussagen über Erhalt der vier Prototypen sind damit aufgehoben.

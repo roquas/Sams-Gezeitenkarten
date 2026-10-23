@@ -1,8 +1,7 @@
 import {initialState} from '../state/game-state.mjs';
 import {createRules} from '../engine/puzzle.mjs';
 import {adjacent} from '../engine/hex.mjs';
-export const legacyStorageKey=puzzle=>`gezeitenkarten-${puzzle.id}-v0.1`;
-export const storageKey=puzzle=>puzzle.dataVersion?`gezeitenkarten-${puzzle.id}-schema${puzzle.schemaVersion}-data${puzzle.dataVersion}`:legacyStorageKey(puzzle);
+export const storageKey=puzzle=>`gezeitenkarten-${puzzle.id}-schema${puzzle.schemaVersion}-data${puzzle.dataVersion}`;
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 export function restoreState(puzzle,value){
  const fresh=initialState(puzzle),rules=createRules(puzzle),cells=new Set(rules.cells);
@@ -25,5 +24,5 @@ export function restoreState(puzzle,value){
  // Result HTML is transient: never insert persisted markup into the DOM.
  return next;
 }
-export function loadState(puzzle,storage){try{return restoreState(puzzle,JSON.parse(storage.getItem(storageKey(puzzle))??(puzzle.id==='reference-3.6'&&puzzle.schemaVersion===1&&puzzle.dataVersion===1?storage.getItem(legacyStorageKey(puzzle)):null)??'null'));}catch{return initialState(puzzle);}}
+export function loadState(puzzle,storage){try{return restoreState(puzzle,JSON.parse(storage.getItem(storageKey(puzzle))??'null'));}catch{return initialState(puzzle);}}
 export function saveState(puzzle,state,storage){try{storage.setItem(storageKey(puzzle),JSON.stringify(state));return true;}catch{return false;}}

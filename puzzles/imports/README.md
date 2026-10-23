@@ -1,3 +1,5 @@
+> Historischer Entwicklungsstand. Aktueller Vertrag und vier Testebenen: [Konsolidierung F01–F03](../../docs/CONSOLIDATION-F01-F03.md). Reguläre Inhalte verwenden jetzt ausschließlich Schema 2.
+
 # Originalquellen und spätere Importe (#34)
 
 [Issue #34](https://github.com/roquas/Sams-Gezeitenkarten/issues/34) bleibt offen. Bestandsprüfung am 13.10.2026:

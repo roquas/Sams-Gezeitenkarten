@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 
-const key='gezeitenkarten-reference-3.6-schema1-data1';
+const key='gezeitenkarten-model-demo-schema2-data1';
 const marks=page=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)).marks,key);
 async function center(page,id){
  const box=await page.locator(`#map [data-id="${id}"]`).boundingBox();

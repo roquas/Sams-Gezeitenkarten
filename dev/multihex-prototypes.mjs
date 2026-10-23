@@ -98,11 +98,12 @@ export function multihexFixture(library,prototype,anchor){
  const free=HEXES.filter(h=>!blocked.has(h.id)).map(h=>h.id);
  const near=id=>Math.min(...cells.map(c=>distance(id,c)));
  const route=free.flatMap((a,i)=>free.slice(i+1).filter(b=>adjacent(a,b)).map(b=>[a,b])).sort((a,b)=>a.reduce((s,id)=>s+near(id),0)-b.reduce((s,id)=>s+near(id),0))[0];
- const places={'review-island':{name:prototype.name,cells}};
- const assetPlacements=[{id:'multihex',assetId:asset.id,anchor,placeId:'review-island'}];
- const errors=validatePlacements(assetPlacements,library,{grid:{columns:5,rows:5},blocked:cells,places},'sea-blue-01',{development:true});
+ const map={geometry:'even-row-offset-pointy-v1',grid:{columns:5,rows:5},objects:[{id:'review-island',cells,passable:false}]};
+ const assetPlacements=[{id:'multihex',assetId:asset.id,anchor,objectId:'review-island'}];
+ const errors=validatePlacements(assetPlacements,library,map,'sea-blue-01',{development:true});
  if(errors.length)throw Error(errors.join('; '));
- return {blocked,route,puzzle:{steps:6,start:free.includes('A5')?'A5':free[0],places,overlays:[],assetPlacements,assetLibrary:library}};
+ return {blocked,route,puzzle:{steps:6,start:free.includes('A5')?'A5':free[0],map,objectNames:{'review-island':prototype.name},assetPlacements,assetLibrary:library}};
+
 }
 export function renderMultihex(svg,library,prototype,anchor,{marked=false,hexes=true,detail=false}={}){
  const {puzzle,blocked,route}=multihexFixture(library,prototype,anchor);

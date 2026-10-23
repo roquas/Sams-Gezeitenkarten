@@ -39,11 +39,11 @@ export function renderFlavorComparison(library){
   const anchors=['B2','D3','B4'];
   // Deliberate, development-only examples. No random placement or generator change.
   const placements=freeMotifReviewPages[page].map((key,i)=>({id:'free-'+key,assetId:flavorPrototypes.find(p=>p.key===key).id,anchor:anchors[i]}));
-  const errors=validatePlacements(placements,library,{grid:{columns:5,rows:5},blocked:[],places:{}},'sea-blue-01',{development:true});
+  const errors=validatePlacements(placements,library,{geometry:'even-row-offset-pointy-v1',grid:{columns:5,rows:5},objects:[]},'sea-blue-01',{development:true});
   if(errors.length)throw Error(errors.join('; '));
   map.id='map';
   try{drawMap({state:{layer:options.marked?2:null,marks:options.marked?{'2:B2':'yes','2:D3':'maybe','2:B4':'no'}:{},hiddenHours:[],route:options.marked?['B2','C2','D3']:['A5'],showRouteNumbers:false},
-   puzzle:{steps:6,start:'A5',places:{},overlays:[],assetPlacements:placements,assetLibrary:library},cells:HEXES,byId:Object.fromEntries(HEXES.map(h=>[h.id,h])),blocked:new Set(),pretty:id=>id,key:(h,id)=>h+':'+id,onActivate:()=>{},frameStyle:'final'});
+   puzzle:{steps:6,start:'A5',map:{geometry:'even-row-offset-pointy-v1',grid:{columns:5,rows:5},objects:[]},objectNames:{},assetPlacements:placements,assetLibrary:library},cells:HEXES,byId:Object.fromEntries(HEXES.map(h=>[h.id,h])),blocked:new Set(),pretty:id=>id,key:(h,id)=>h+':'+id,onActivate:()=>{},frameStyle:'final'});
   }finally{map.id='flavorMap';}
   for(const cell of map.querySelectorAll('.cell')){
    cell.removeAttribute('tabindex');cell.removeAttribute('role');cell.querySelector('polygon').setAttribute('visibility',options.hexes?'visible':'hidden');

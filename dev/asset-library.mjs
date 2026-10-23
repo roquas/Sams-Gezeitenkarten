@@ -16,15 +16,16 @@ const el=(tag,attrs={},text)=>{
 };
 const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
 const placements=[
- {id:'single',assetId:'technical.single.v1',anchor:'A1',placeId:'twin-islands'},
- {id:'double',assetId:'technical.double.v1',anchor:'B3',placeId:'long-island'},
- {id:'lighthouse',assetId:'technical.lighthouse.v1',anchor:'D2',placeId:'beacon'},
+ {id:'single',assetId:'technical.single.v1',anchor:'A1',objectId:'first-island'},
+ {id:'double',assetId:'technical.double.v1',anchor:'B3',objectId:'long-island'},
+ {id:'lighthouse',assetId:'technical.lighthouse.v1',anchor:'D2',objectId:'beacon'},
  {id:'decoration',assetId:'technical.decoration.v1',anchor:'C5'},
- {id:'separate',assetId:'technical.single.v1',anchor:'E5',placeId:'twin-islands'}
+ {id:'separate',assetId:'technical.single.v1',anchor:'E5',objectId:'last-island'}
 ];
-const logic={grid:{columns:5,rows:5},blocked:['A1','B3','C3','E5'],places:{
- 'twin-islands':{cells:['A1','E5']},'long-island':{cells:['B3','C3']},beacon:{cells:['D2']}
-}};
+const map={geometry:'even-row-offset-pointy-v1',grid:{columns:5,rows:5},objects:[
+ {id:'first-island',cells:['A1'],passable:false},{id:'last-island',cells:['E5'],passable:false},
+ {id:'long-island',cells:['B3','C3'],passable:false},{id:'beacon',cells:['D2'],passable:true}
+]};
 try{
  const response=await fetch(new URL('../assets/catalog/library.json',import.meta.url));
  if(!response.ok)throw Error('Catalog HTTP '+response.status);
@@ -61,7 +62,7 @@ try{
   svg.append(hexes);
  }
  function render(){
-  const errors=validatePlacements(placements,library,logic,select.value,{development:true});
+  const errors=validatePlacements(placements,library,map,select.value,{development:true});
   if(errors.length)throw Error(errors.join('; '));
   draw(document.getElementById('gallery'),placements);
   const inventory=document.getElementById('inventory');inventory.replaceChildren();
@@ -70,7 +71,7 @@ try{
   for(const value of ['Asset-ID','Ort / Felder','Befahrbarkeit','Visuelle Freigabe']){const th=document.createElement('th');th.textContent=value;headings.append(th);}table.append(headings);
   for(const p of placements){
    const a=library.assets.find(a=>a.id===p.assetId),row=document.createElement('tr');
-   for(const value of [a.id,(p.placeId??'Dekoration')+' / '+placedCells(a,p.anchor).join(', '),a.role==='decoration'?'ohne Regelbedeutung':a.passable?'befahrbar':'gesperrt',compatibility(library,a.id,select.value)]){const td=document.createElement('td');td.textContent=value;row.append(td);}table.append(row);
+   for(const value of [a.id,(p.objectId??'Dekoration')+' / '+placedCells(a,p.anchor).join(', '),a.role==='decoration'?'ohne Regelbedeutung':a.passable?'befahrbar':'gesperrt',compatibility(library,a.id,select.value)]){const td=document.createElement('td');td.textContent=value;row.append(td);}table.append(row);
   }
   inventory.append(table);
   const positions=document.getElementById('positions');positions.replaceChildren();

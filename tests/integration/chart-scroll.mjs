@@ -2,14 +2,34 @@ import {test,expect} from '@playwright/test';
 import {dragTouch} from './touch-gesture.mjs';
 
 const cell=(page,id)=>page.locator(`#map [data-id="${id}"]`);
-const state=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-reference-3.6-schema1-data1')));
+const state=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));
 async function center(page,id){
  await cell(page,id).scrollIntoViewIfNeeded();
  const b=await cell(page,id).boundingBox();return {x:b.x+b.width/2,y:b.y+b.height/2};
 }
-const top=page=>page.evaluate(()=>{if(innerWidth<=880)document.getElementById('gameSurface').scrollTop=0;else scrollTo(0,0);});
+const top=page=>page.evaluate(async()=>{
+ const target=innerWidth<=880?document.getElementById('gameSurface'):window;
+ target.scrollTo({top:0,behavior:'instant'});
+ // Flush the programmatic reset before hit testing or observing the next gesture.
+ await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+});
 const scroll=page=>page.evaluate(()=>innerWidth<=880?document.getElementById('gameSurface').scrollTop:scrollY);
-async function verticalSwipe(page,browserName,point,info){
+async function verticalSwipe(page,browserName,point,info,id){
+ const hit=await page.evaluate(point=>document.elementFromPoint(point.x,point.y)?.closest('[data-id]')?.dataset.id,point);
+ expect(hit,'gesture starts on the intended cell').toBe(id);
+ if(browserName==='webkit'){
+  // DOM pointer events cannot focus an element or perform a native swipe.
+  // Give the native keyboard probe an explicit, verified focus owner.
+  await cell(page,id).focus();await expect(cell(page,id)).toBeFocused();
+ }
+ const before=await page.evaluate(()=>{
+  const element=innerWidth<=880?document.getElementById('gameSurface'):document.scrollingElement;
+  const target=innerWidth<=880?element:document;
+  const probe=window.__chartScrollProbe={before:element.scrollTop,max:element.scrollHeight-element.clientHeight,ended:false};
+  target.addEventListener('scrollend',()=>{probe.after=element.scrollTop;probe.ended=true;},{once:true});
+  return {top:probe.before,remaining:probe.max-probe.before};
+ });
+ expect(before.remaining,'available scroll travel before input').toBeGreaterThan(20);
  if(browserName==='chromium'){
   const session=await page.context().newCDPSession(page);
   try{
@@ -33,32 +53,53 @@ async function verticalSwipe(page,browserName,point,info){
    return down&&move;
   },point);
   expect(allowed).toBe(true);
-  await page.evaluate(point=>document.elementFromPoint(point.x,point.y)?.closest('[data-id]')?.focus({preventScroll:true}),point);
-  await page.keyboard.press('PageDown');
+  // Keep the native key down until WebKit has applied its default action.
+  // A down/up pair within one compositor frame is not a physical key press.
+  await page.keyboard.down('PageDown');
+  try{await expect.poll(()=>scroll(page)).toBeGreaterThan(before.top+20);}
+  finally{await page.keyboard.up('PageDown');}
  }
+ // The contract is useful native movement, not completion of WebKit's
+ // compositor animation. Each scenario is independent. Capture the proof
+ // before cancelling residual inertia so subsequent book/tap checks cannot
+ // race an animation started by the test driver.
+ await expect.poll(()=>scroll(page)).toBeGreaterThan(before.top+20);
+ const probe=await page.evaluate(()=>{
+  const element=innerWidth<=880?document.getElementById('gameSurface'):document.scrollingElement;
+  const probe=window.__chartScrollProbe;probe.observed=element.scrollTop;
+  (innerWidth<=880?element:window).scrollTo({top:probe.observed,behavior:'instant'});
+  return {...probe,activeCell:document.activeElement?.dataset.id};
+ });
+ expect(probe.observed).toBeGreaterThan(before.top+20);
+ await info.attach('native-scroll-'+id,{body:JSON.stringify({browserName,id,...probe}),contentType:'application/json'});
 }
 export function registerChartScrollTests(url){
  for(const width of [390,820,1024])test.describe(`chart touch input ${width}px`,()=>{
   test.use({viewport:{width,height:900},hasTouch:true});
-  test('vertical scrolling starts on water and land without notes or a radar source',async({page,browserName},info)=>{
-   await page.goto(url);await expect(cell(page,'D3')).toBeVisible();
+  for(const [id,surface] of [['D3','water'],['B2','land']])test(`vertical scrolling starts on ${surface} without notes`,async({page,browserName},info)=>{
+   await page.goto(url);await expect(cell(page,id)).toBeVisible();
    await expect(page.locator('#map')).toHaveCSS('touch-action','pan-y pinch-zoom');
-   for(const id of ['D3','B3']){
-    await top(page);
-    const point=await center(page,id),before=await scroll(page),saved=await state(page);
-    await verticalSwipe(page,browserName,point,info);
-    await expect.poll(()=>scroll(page)).toBeGreaterThan(before+20);
-    expect(await state(page)).toEqual(saved);
-   }
-   const radar=page.locator('#toggleDistances');await radar.tap();
    await top(page);
-   const point=await center(page,'D3'),before=await scroll(page);
-   await verticalSwipe(page,browserName,point,info);await expect.poll(()=>scroll(page)).toBeGreaterThan(before+20);
-   await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
-   await cell(page,'B3').tap();await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','B3');
-   expect((await state(page)).marks).toEqual({});await radar.tap();await expect(page.locator('.distance-overlay')).toHaveCount(0);
+   const point=await center(page,id),before=await scroll(page),saved=await state(page);
+   await verticalSwipe(page,browserName,point,info,id);
+   expect(await scroll(page)).toBeGreaterThan(before+20);
+   expect(await state(page)).toEqual(saved);
    // The same native scroll container reaches the book, not an inert overlay.
    await page.locator('.bordbook').scrollIntoViewIfNeeded();await expect(page.locator('#clueViewport')).toBeVisible();
+  });
+  test('vertical scrolling preserves a waiting radar and later native taps select its source',async({page,browserName},info)=>{
+   // Radar activation is covered by the full click/keyboard/touch matrix.
+   // Start this independent scroll contract in its actual persisted waiting
+   // state instead of paying for another full DPR-2 map render first.
+   await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'maybe',distanceMode:true,distanceOrigin:null})));
+   await page.goto(url);await expect(cell(page,'D3')).toBeVisible();
+   const radar=page.locator('#toggleDistances');await expect(radar).toHaveAttribute('data-distance-state','waiting');
+   await top(page);
+   const point=await center(page,'D3'),before=await scroll(page);
+   await verticalSwipe(page,browserName,point,info,'D3');expect(await scroll(page)).toBeGreaterThan(before+20);
+   await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
+   await cell(page,'B2').tap();await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','B2');
+   expect((await state(page)).marks).toEqual({});await radar.tap();await expect(page.locator('.distance-overlay')).toHaveCount(0);
   });
   test('native tap and horizontal touch drawing preserve one-step undo',async({page,browserName})=>{
    await page.goto(url);await expect(cell(page,'A1')).toBeVisible();

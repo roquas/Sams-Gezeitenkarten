@@ -3,6 +3,8 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {validateLibrary} from '../src/assets/library.mjs';
+import {readContentPackage} from './lib/content-package.mjs';
+import {resolvePackagePath} from './lib/package-path.mjs';
 import {imageContract,placementContract} from '../src/assets/geometry.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
@@ -19,7 +21,7 @@ export function validateAssetBytes(library,readBytes){
 }
 export function validateAssetFiles(library,base=root){
  return validateAssetBytes(library,ref=>{
-  const full=path.resolve(base,ref);
+  const full=path.join(path.resolve(base),resolvePackagePath('.',ref));
   let component=path.resolve(base);
   for(const part of path.relative(component,full).split(path.sep)){
    component=path.join(component,part);
@@ -31,11 +33,11 @@ export function validateAssetFiles(library,base=root){
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const base=process.argv.includes('--root')?path.resolve(process.argv[process.argv.indexOf('--root')+1]):root;
- const library=validateAssetFiles(JSON.parse(fs.readFileSync(path.join(base,'assets/catalog/library.json'),'utf8')),base);
+ const content=readContentPackage(base);
+ const library=content.assetLibrary?validateAssetFiles(content.assetLibrary,content.resourceRoot):{schemaVersion:2,semanticVersion:1,assets:[],backgrounds:[],reviews:[]};
  if(process.argv.includes('--image-contract')){
-  const manifest=JSON.parse(fs.readFileSync(path.join(base,'puzzles/manifest.json'),'utf8'));
-  const placements=manifest.puzzles.flatMap(e=>JSON.parse(fs.readFileSync(path.join(base,'puzzles',e.path),'utf8')).presentation.assetPlacements??[]);
-  console.log(JSON.stringify(library.assets.map(a=>({...a,contract:imageContract(a.geometry.cells),placements:placements.filter(p=>p.assetId===a.id).map(p=>({id:p.id,anchor:p.anchor,contract:placementContract(a,p.anchor)}))}))));
+  const placements=content.manifest.puzzles.flatMap(e=>content.readPuzzle(e).puzzle.presentation.assetPlacements);
+  console.log(JSON.stringify({resourceRoot:content.resourceRoot,backgrounds:library.backgrounds,assets:library.assets.map(a=>({...a,contract:imageContract(a.geometry.cells),placements:placements.filter(p=>p.assetId===a.id).map(p=>({id:p.id,anchor:p.anchor,contract:placementContract(a,p.anchor)}))}))}));
  }
  else console.log(`OK: ${library.assets.length} assets, ${library.backgrounds.length} backgrounds; files and approval hashes valid`);
 }

@@ -1,9 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
- testDir:'./tests/browser',fullyParallel:true,retries:process.env.CI?1:0,
+ testDir:'./tests/browser',fullyParallel:true,workers:2,retries:process.env.CI?1:0,
  failOnFlakyTests:!!process.env.CI,
  reporter:process.env.CI?[['github'],['html',{open:'never'}]]:'list',
  use:{baseURL:'http://127.0.0.1:4173',trace:'retain-on-failure',screenshot:'only-on-failure'},
  projects:[{name:'chromium',use:{...devices['Desktop Chrome']}},{name:'mobile-chromium',use:{...devices['Pixel 7']}}],
- webServer:{command:'python3 scripts/dev-server.py --port 4173',url:'http://127.0.0.1:4173/prototypes/3.6/index.html',reuseExistingServer:!process.env.CI,timeout:20000}
+ webServer:{command:'python3 scripts/dev-server.py --port 4173',url:'http://127.0.0.1:4173/',reuseExistingServer:!process.env.CI,timeout:20000}
 });
