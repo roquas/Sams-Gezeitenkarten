@@ -23,6 +23,9 @@ Validierung. Keine Assets, Datei-/Netzwerkzugriffe oder DOM-Abhängigkeiten.
 Projektion und Loader mit expliziter Quelle. `src/assets/`: Metadaten-/Platzierungs-
 und Grafikgeometrieverträge. `src/ui/`: Darstellung, Browser-Bilddekodierung und
 Bedienung. `scripts/lib/`: Node-Adapter für Identitäten und gepinnte Archive.
+`src/generation/`: reine, deterministische abstrakte Kartengenerierung mit
+separater Struktur-/Routenanalyse und optionalen Eignungsfiltern;
+[Schnittstellen und Reproduktion](MAP-GENERATION-F04B.md). Keine Assetabhängigkeit.
 
 Engine und Renderer kennen keine produktiven Rätselnamen oder Bestandszahlen.
 Die Anwendung wählt eine lokale Quelle; Inhaltspakete liefern öffentliche Rätsel,
