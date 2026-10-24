@@ -6,7 +6,7 @@ import {randomStream,validateSeed} from '../generation/random.mjs';
 import {shapeSignature} from '../generation/map-analysis.mjs';
 
 export const ASSIGNMENT_VERSION='asset-assignment-1';
-export const VERIFICATION_VERSION='asset-placement-pixels-1';
+export const VERIFICATION_VERSION='asset-placement-pixels-2';
 const compare=(a,b)=>a<b?-1:a>b?1:0;
 const add=(counts,key)=>{counts[key]=(Object.hasOwn(counts,key)?counts[key]:0)+1;};
 

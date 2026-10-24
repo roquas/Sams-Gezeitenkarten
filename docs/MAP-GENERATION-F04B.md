@@ -274,11 +274,11 @@ und startet Python/Pillow. `prepareAssetCatalog` liefert
 `validateAssetBytes`, hält dann dieselben erfassten Bytes für Bildprüfung und
 Reproduktionshash fest. `verify-asset-positions.py` verwendet unverändert
 `check_image` / `PixelFootprint` aus dem vorhandenen Bildprüfer. Der Hintergrund
-wird ebenfalls dekodiert. Keine neue Alpha-, Sicherheitszonen- oder Hashlogik.
+wird ebenfalls dekodiert. Die strenge lokale Alpha-/Pixelflächenprüfung und die Hashlogik bleiben erhalten. Seit der Grafikvertragskorrektur vom 24.10.2026 wird die geografische Fläche nicht mehr mit globalen Spielschutzflächen geschnitten.
 
 Die Verifikation bindet mit `librarySnapshot` die exakten geprüften Metadaten,
 mit `backgroundId` die konkrete Freigabe und mit Version
-`asset-placement-pixels-1` die Prüflogik. Pro produktivem geografischem Asset
+`asset-placement-pixels-2` die korrigierte Prüflogik (vollständige lokale Grafikzellen an allen geometrisch passenden Positionen). Ergebnisse der Version 1 müssen erneut vorbereitet werden; sie könnten noch alte Randankersperren enthalten. Die Digestdefinition bleibt gleich; der Versionswert darin ändert den Digest. Pro produktivem geografischem Asset
 enthält sie `anchors` und gegebenenfalls lokale `error`- oder positionsbezogene
 `rejected`-Diagnosen. Zuerst werden alle Positionen gemeinsam geprüft; bei einem
 Fehler werden lokaler Fehler und einzelne unzulässige Anker unterschieden.
@@ -292,7 +292,8 @@ Schnittstelle direkt aufruft, muss vertrauenswürdige Verifikationsdaten liefern
 Fehlende Verifikation erlaubt keine Zuordnung und ergibt ein leeres Profil.
 Eine Metadatenänderung nach der Vorbereitung wird abgewiesen. Nach Änderungen
 der Dateien muss neu vorbereitet werden; ein gespeichertes Prüfergebnis prüft
-nicht von sich aus heutige Dateien. PR 3 muss diesen Lebenszyklus einhalten.
+nicht von sich aus heutige Dateien. Vor der produktiven Batchpipeline muss
+PR B/C den persistenten Freigabe- und Ressourcenlebenszyklus absichern.
 
 ## Exakte Zuordnung und Ergebnisstruktur
 
@@ -315,6 +316,10 @@ Befahrbarkeit wird unabhängig und exakt verglichen. Freigaben kommen aus
 Jeder Kandidat wird durch den gemeinsamen Platzierungsprüfkern geprüft; die
 gesamte Zuordnung besteht abschließend unverändert `validatePlacements`.
 Die Pixelprüfung jedes Ankers erfolgt vorher, niemals durch Renderer-Clipping.
+
+> Jede geografische Illustration ist an jeder Position verwendbar, an der ihre vollständige relative Hexform ohne Rotation oder Spiegelung auf die Karte passt. Die zulässige lokale Grafikfläche bleibt dabei unverändert.
+
+Die vorhandenen Ankerlisten und Schnittstellen bleiben bis PR B/C erhalten. Für ein lokal gültiges Bild liefert die Vorbereitung jetzt alle geometrisch passenden Anker. `PIXEL_POSITION_REJECTED` bleibt als Diagnose für unvollständige übergebene Verifikationen bestehen, ist aber keine geografische Randregel. Rahmenverträglichkeit wird universell und separat durch `check-chart-assets.py` geprüft. Persistente Freigabe, Ressourcenarchivierung und bildprüfungsfreies Laden sind weiterhin Folgearbeiten. Generator-, Zuordnungs- und Zufallsstromversionen ändern sich durch PR A nicht.
 
 ```js
 {
@@ -347,7 +352,7 @@ Detailfehler des Pixel-/Platzierungsprüfers werden gegebenenfalls mitgeliefert.
 | `BACKGROUND_NOT_APPROVED` | Keine Freigabe für diesen konkreten Hintergrund |
 | `PIXEL_VERIFICATION_MISSING` | Kein vertrauenswürdiges Bildprüfergebnis |
 | `IMAGE_CONTRACT_REJECTED` | Bild scheitert am lokalen bestehenden Vertrag |
-| `PIXEL_POSITION_REJECTED` | Bild ist am erforderlichen Anker nicht zulässig |
+| `PIXEL_POSITION_REJECTED` | Erforderlicher geometrischer Anker fehlt in den übergebenen Verifikationsdaten; keine zusätzliche Randbeschränkung |
 | `PLACEMENT_CONTRACT_REJECTED` | Weiterer Fehler des bestehenden Platzierungsvalidators |
 
 Die Prüfungen bilden diese Reihenfolge. Der am weitesten gelangte Kandidat
@@ -433,6 +438,14 @@ ersetzt nicht die archivierten Katalog-/Bildbytes oder den Algorithmusstand.
 
 ## Vergleich, Kataloggrenzen und Übergabe an PR 3
 
+Die abgelegten PR-1-/PR-2-Stichproben dokumentieren ihre historischen Versionen.
+PR A hebt nur die Pixelprüfversion auf `asset-placement-pixels-2` an; dadurch
+ändert sich der Katalogdigest trotz unveränderter Produktionskandidaten.
+Der getrennte [Prüfnachweis zu PR A](verification/graphic-contract-A.md) und die
+[neue Katalogstichprobe](verification/graphic-contract-A-catalog-sample.json)
+trennen diesen Versionseffekt von geografischen Änderungen. Die ursprünglichen
+Dateien und die unten beschriebene P2-Reproduktion bleiben erhalten.
+
 `node scripts/sample-catalog-maps.mjs` erstellt die feste Vergleichsstichprobe
 `verification/F04b-catalog-sample.json`: Seeds 0–127, 3–8 Objekte, Größen 1–4,
 Befahrbarkeitswahrscheinlichkeit 0,25, Präferenz 75 Prozent, keine Routenfilter
@@ -457,10 +470,12 @@ größere abstrakte Objekte haben keine passende Illustration. Dekorationen,
 technische Platzhalter, Entwürfe und historische/zurückgestellte Bilder sind
 keine Ersatzformen. Diese Lücken sind kein Karten- oder Generatorfehler.
 
-PR 3 übernimmt die getrennten Karten-/Zuordnungsdaten, Versionen, Seeds,
-normalisierte Config/Profile und Versuchsdiagnosen. Es muss Katalog und
-Ressourcen pinnen, den geprüften Adapterlebenszyklus einhalten und bei neuen
-Ressourcenbytes erneut prüfen. Abdeckung ist eine eigene Produktionsentscheidung,
+PR B/C ergänzt zuvor den persistenten Freigabenachweis, gebundene archivierte
+Ressourcen und das Laden freigegebener Stände ohne erneute Bilddekodierung.
+PR 3 übernimmt darauf aufbauend die getrennten Karten-/Zuordnungsdaten,
+Versionen, Seeds, normalisierte Config/Profile und Versuchsdiagnosen. Es muss
+den freigegebenen Katalog-/Ressourcenstand pinnen. Neue Ressourcenbytes verlangen
+einen neu geprüften Stand. Abdeckung ist eine eigene Produktionsentscheidung,
 kein stiller Gültigkeitsfilter. Der bestehende Renderer kann später unmittelbar
 `placements` verwenden. Endgültige Start-/Zielwahl, Hinweise, Schwierigkeit,
 Produktions-Batches und Veröffentlichungsidentitäten bleiben spätere Schritte.

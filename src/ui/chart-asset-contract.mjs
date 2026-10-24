@@ -19,9 +19,10 @@ export function headingZones(){
   out.push({side,index:i,x,y,bounds,hard,safe,hardPolygon:rectPolygon(hard),softPolygon:rectPolygon(safe),pixelSafe:[...toAssetPixel(...safe.slice(0,2)),...toAssetPixel(...safe.slice(2))]});
  }return out;
 }
-// Puzzle-specific art is intentionally NOT a part of the universal frame contract.
-// Assets must fit inside their own declared hex footprint; see Issue #45.
-// The 8 / 10 / 14 unit regions protect the game geometry only.
+// The 8 / 10 / 14 unit regions protect game markings and guide the frame.
+// Geographic art owns complete Voronoi cells, independently of these regions.
+// check-chart-assets.py separately checks every full cell against frame pixels;
+// the universal requirement never depends on a puzzle's chosen illustrations.
 const region=(distance)=>[offsetPolygon(ROW_ENVELOPE,distance)];
 export const PROTECTION=region(8);
 export const TRANSPARENT=region(10);

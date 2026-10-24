@@ -114,17 +114,28 @@ class LibraryImageTests(unittest.TestCase):
             [[.1, .15], [.15, .15], [.15, .25], [.1, .25]]]}
         self.assertFalse(checker.PixelFootprint(c).contains(2, 2))
 
-    def test_board_boundary_preserves_parchment_safety_without_renderer_clipping(self):
+    def test_full_upper_tip_is_valid_at_board_boundary_and_inside(self):
         cells = [[0, 0]]
         c = self.contract(cells)
-        # Locally legal pixel at y=-45: A1 would put it above the safety envelope.
+        # Contract correction: y=-45 at A1 may exceed gameplay protection;
+        # geographic art retains the same complete local cell as C3.
         image = self.pixel(c, c['pixelWidth']//2, 24)
         checker.check_image(self.data(image), {'contract': c})
         checker.check_image(self.data(image), {'contract': c, 'placements': [
             {'id': 'inside', 'anchor': 'C3', 'contract': self.contract(cells, 'C3')}]})
-        with self.assertRaisesRegex(ValueError, 'map boundary'):
-            checker.check_image(self.data(image), {'contract': c, 'placements': [
-                {'id': 'edge', 'anchor': 'A1', 'contract': self.contract(cells, 'A1')}]})
+        checker.check_image(self.data(image), {'contract': c, 'placements': [
+            {'id': 'edge', 'anchor': 'A1', 'contract': self.contract(cells, 'A1')}]})
+
+    def test_static_format_and_exif_mirror_remain_forbidden(self):
+        image = Image.new('RGBA', (16, 16))
+        image.putpixel((8, 8), (40, 80, 120, 255))
+        data = io.BytesIO()
+        image.convert('RGB').save(data, format='BMP')
+        with self.assertRaisesRegex(ValueError, 'static PNG/WebP'):
+            checker.check_image(data.getvalue(), self.asset)
+        image.getexif()[274] = 2
+        with self.assertRaisesRegex(ValueError, 'EXIF'):
+            checker.check_image(self.data(image), self.asset)
 
     def test_masks_are_complete_strict_pixel_footprints(self):
         for name in ['single', 'double-east', 'double-diagonal', 'triple-asymmetric']:

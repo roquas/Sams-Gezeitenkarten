@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {GRAPHIC_CELL,GRAPHIC_MAP_POLYGONS,GRAPHIC_SAFETY,graphicCell,graphicOwner,imageContract,placementContract,assetRectangle,neighbors} from '../../src/assets/geometry.mjs';
-import {polygonArea,intersectConvex,triangulate} from '../../src/assets/polygons.mjs';
-import {HEXES,pointInPolygon} from '../../src/ui/chart-geometry.mjs';
+import {GRAPHIC_CELL,GRAPHIC_MAP_POLYGONS,boardGraphicCell,graphicCell,graphicOwner,imageContract,placementContract,placedCells,assetRectangle,neighbors} from '../../src/assets/geometry.mjs';
+import {polygonArea,intersectConvex} from '../../src/assets/polygons.mjs';
+import {HEXES} from '../../src/ui/chart-geometry.mjs';
+import {PROTECTION,inRegion} from '../../src/ui/chart-asset-contract.mjs';
 import {containsPoint} from '../../src/ui/place-labels.mjs';
 import {reviewPositions} from '../../dev/review-positions.mjs';
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} != ${b}`);
@@ -61,24 +62,39 @@ test('concave shapes and enclosed omissions remain unions, never a hull or a bou
  assert.ok(Math.abs(Math.min(...xs)+Math.max(...xs))>1);
  assert.ok(Math.abs(Math.min(...ys)+Math.max(...ys))>1);
 });
-test('board cells retain the full-raster bisectors and the pre-existing geometric safety area',()=>{
- const triangles=triangulate(GRAPHIC_SAFETY);
- close(triangles.reduce((s,p)=>s+polygonArea(p),0),polygonArea(GRAPHIC_SAFETY));
- const boardArea=HEXES.reduce((s,h)=>s+triangles.reduce((a,t)=>a+polygonArea(intersectConvex(graphicCell(h.center),t)),0),0);
- close(GRAPHIC_MAP_POLYGONS.reduce((s,p)=>s+polygonArea(p),0),boardArea);
- for(const polygon of GRAPHIC_MAP_POLYGONS)for(const p of polygon){
-  assert.ok(triangles.some(t=>containsPoint(t,p)));
-  assert.ok(HEXES.some(h=>containsPoint(graphicCell(h.center),p)));
- }
- // Preserve the legacy 8-unit protection, even where full Voronoi tips extend.
- assert.ok(!pointInPolygon([60,10],GRAPHIC_SAFETY));
- const a={id:'single',geometry:{cells:forms[0]}};
- close(placementContract(a,'C3').polygons.reduce((s,p)=>s+polygonArea(p),0),82*68);
- assert.ok(placementContract(a,'A1').polygons.reduce((s,p)=>s+polygonArea(p),0)<82*68);
+test('all 25 board cells have their full area, independently of gameplay protection',()=>{
+ // Contract correction: boundary tips now belong to geographic art as well.
+ // The unchanged protection envelope continues to protect game markings.
+ close(GRAPHIC_MAP_POLYGONS.reduce((s,p)=>s+polygonArea(p),0),25*82*68);
+ assert.equal(GRAPHIC_MAP_POLYGONS.length,25);
+ for(const h of HEXES)assert.deepEqual(boardGraphicCell(h.center),[graphicCell(h.center)]);
+ assert.ok(!inRegion([60,10],PROTECTION));
+ assert.ok(containsPoint(boardGraphicCell(byId.A1.center)[0],[60,10]));
  // Complete board partition has no positive area shared by different cell IDs.
  for(let i=0;i<HEXES.length;i++)for(let j=0;j<i;j++){
   close(polygonArea(intersectConvex(graphicCell(HEXES[i].center),graphicCell(HEXES[j].center))),0);
  }
+});
+test('every geometrically fitting translation retains the exact local contract and orientation',()=>{
+ const library=JSON.parse(fs.readFileSync(new URL('../../assets/catalog/library.json',import.meta.url)));
+ let placements=0;
+ for(const asset of library.assets){
+  const local=imageContract(asset.geometry.cells);
+  for(const h of HEXES){
+   const cells=placedCells(asset,h.id);
+   if(cells.some(id=>!byId[id])){
+    assert.throws(()=>placementContract(asset,h.id),/extends beyond chart/);continue;
+   }
+   placements++;
+   assert.deepEqual(placementContract(asset,h.id),local);
+   const rect=assetRectangle(asset,h.id,byId),cx=rect.x+rect.width/2,cy=rect.y+rect.height/2;
+   for(let i=0;i<cells.length;i++)for(let j=0;j<6;j++){
+    const [x,y]=local.polygons[i][j],expected=boardGraphicCell(byId[cells[i]].center)[0][j];
+    close(x+cx,expected[0]);close(y+cy,expected[1]);
+   }
+  }
+ }
+ assert.equal(placements,847);
 });
 test('gallery deterministically covers both one-based row parities and all feasible edge/interior categories',()=>{
  for(const cells of [...forms,[[0,0],[-1,0]],[[0,0],[0,-1]],[[0,0],[-1,0],[0,-1]]]){
