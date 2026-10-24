@@ -26,6 +26,11 @@ Bedienung. `scripts/lib/`: Node-Adapter für Identitäten und gepinnte Archive.
 `src/generation/`: reine, deterministische abstrakte Kartengenerierung mit
 separater Struktur-/Routenanalyse und optionalen Eignungsfiltern;
 [Schnittstellen und Reproduktion](MAP-GENERATION-F04B.md). Keine Assetabhängigkeit.
+PR 2 ergänzt ein explizites geografisches Katalogprofil sowie
+`src/assets/assignment.mjs` für reine, getrennte Assetzuordnung. Der Node-Adapter
+`scripts/lib/asset-catalog.mjs` prüft Katalog-/Bildbytes und Positionen mit den
+bestehenden Verträgen. Fehlende Illustration ändert keine abstrakte Karte;
+der freie Generierungsmodus bleibt erhalten.
 
 Engine und Renderer kennen keine produktiven Rätselnamen oder Bestandszahlen.
 Die Anwendung wählt eine lokale Quelle; Inhaltspakete liefern öffentliche Rätsel,

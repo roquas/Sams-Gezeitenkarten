@@ -14,8 +14,11 @@ function components(cells,neighbors){
  return result;
 }
 const histogram=values=>{const result={};for(const value of values)result[value]=(result[value]??0)+1;return result;};
-function shapeSignature(cells){
- const points=cells.map(axial),q=Math.min(...points.map(p=>p[0])),r=Math.min(...points.map(p=>p[1]));
+export function shapeSignature(cells){
+ return axialShapeSignature(cells.map(axial));
+}
+export function axialShapeSignature(points){
+ const q=Math.min(...points.map(p=>p[0])),r=Math.min(...points.map(p=>p[1]));
  return points.map(([a,b])=>[a-q,b-r]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]).map(p=>p.join(',')).join(';');
 }
 
