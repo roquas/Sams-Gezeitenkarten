@@ -121,8 +121,11 @@ Einmaligkeitsregel war erforderlich.
 | `node --test --test-isolation=none …` für dieselbe Gruppe | Ebenfalls 112 bestanden |
 | `npm run test:content` / vollständige Einzeltestausgabe | 20 bestanden |
 | `npm run test:puzzles` | Gültig, eindeutig, Hinweise irredundant |
+| `npm run test:assets` | Datei-/Freigabehash-/Pixelprüfungen und 20 Python-Tests bestanden |
 | Bisheriges `node scripts/sample-maps.mjs` + `cmp` | Bytegleich zu `F04b-map-sample.json` |
+| `node scripts/sample-catalog-maps.mjs` + `cmp` | Gesamter Adapter-/Generierungspfad reproduziert `F04b-catalog-sample.json` bytegleich |
 | `playwright test tests/browser/model.spec.mjs` | 20 Desktop-/Mobil-Chromium-Fälle bestanden |
+| `git diff --check` | Bestanden |
 
 Die 14 neuen Tests decken exakte Ein-/Mehrfeldtranslation und Zeilenparität,
 asymmetrische Rotation/Spiegelung, Nichtmutation gefrorener Daten, Freigaben,
@@ -142,6 +145,11 @@ Test-/Budget-/Retryänderung. Keine WebKit-Stabilisierung in diesem PR.
 
 Die vollständige bestehende CI-Matrix bleibt aktiv. Ihr aktueller Stand wird im
 PR angegeben; lokale Erfolge ersetzen keine Behauptung eines grünen Gesamtlaufs.
+Der Unit-/Inhalte-/Rätseljob des ersten PR-Laufs
+[40044295656](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/40044295656)
+am Implementierungscommit `18fe51a90d288f81ef8c7782888e63d0b42ea4b6` ist bereits
+erfolgreich abgeschlossen; die Gesamtmatrix war beim Abruf noch in Arbeit.
+Der nachfolgende Abschlusscommit ergänzt ausschließlich diesen Prüfbericht.
 Die historischen, bereits auf main nachgewiesenen WebKit-Probleme sind oben und
 in `WebKit-CI-investigation.md` dokumentiert.
 
@@ -209,6 +217,13 @@ ausdrücklich enger Einfeldfall (Seed 0, vier Objekte, Wahrscheinlichkeit 0,5)
 belegt vollständige Zuordnung 4/4, ohne ein allgemeines Erfolgsversprechen.
 Alle Beispiele besitzen den bestehenden `mapFingerprint` und standardkonforme
 separate `placements`.
+
+Die unabhängige zweite Vorbereitung durch das fertige Vergleichsskript ergibt
+dieselbe 70.457-Byte-Datei wie die erste vorbereitete Katalogstichprobe.
+Stichproben-SHA-256:
+`b5e587ee97496b878dd0ee94118d16328eabe69e30272dfc5050875dc6fc818f`.
+Alle acht vielfältigen Beispielkarten wurden zusätzlich direkt aus den
+dokumentierten Seeds, der Config und dem abgeleiteten Profil reproduziert.
 
 ### Übergabe und verbleibende Grenzen
 
