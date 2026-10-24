@@ -46,6 +46,7 @@ Lokal: Node 24.19.0, Python 3, Pillow 12.3.0, NumPy 2.3.5, Playwright 1.64.0. CI
 | --- | --- |
 | `node --test tests/contracts/graphic-geometry.test.mjs tests/contracts/asset-catalog-adapter.test.mjs` am unveränderten `main` | 10/10; bestätigt den alten C3/A1-Gegensatz |
 | `npm run test:unit` | 120/120 Node-Unit-/Vertrags-/Integrationstests |
+| `npm run test:assets` | 40 Assets / 3 Hintergründe und Reviewhashes gültig; 40 Bilder lokal und an veröffentlichten Positionen gültig; 14 Bild-, 4 Rahmen-, 5 Mehrhexexport- und 2 Wasserfinale-Regressionen bestanden |
 | `node --test tests/contracts/asset-catalog-adapter.test.mjs` nach Präzisierung des ursprünglichen Testpixels | 5/5 |
 | `npm run test:content` | 20/20 |
 | `npm run test:puzzles` | `model-demo`: genau eine Lösung, unveränderte Route A5–D5 |
@@ -53,8 +54,9 @@ Lokal: Node 24.19.0, Python 3, Pillow 12.3.0, NumPy 2.3.5, Playwright 1.64.0. CI
 | `python3 tests/test_frame_footprint.py` | 4/4, einschließlich echter temporärer Rahmenmutation |
 | `python3 tests/test_package.py` | 18/18, einschließlich Hash-/Freigabe-/Geometrie-/Exportnegativfällen |
 | `npx playwright test tests/browser/model.spec.mjs --output /tmp/graphic-contract-validation/browser-results` | 20/20 Chromium Desktop/Mobil |
+| `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1 npx playwright test tests/browser/model.spec.mjs --config playwright.webkit.config.mjs --output /tmp/graphic-contract-validation/webkit-results` | 20/20 WebKit Desktop/Mobil; lokale Bibliotheken, siehe unten |
 
-Die vollständigen Bild-/Asset- und WebKit-Ergebnisse werden nach Abschluss ergänzt. Es wurde kein vollständiger Browser-/Deployment-/CI-Gesamtlauf behauptet.
+Alle oben aufgeführten lokalen Prüfungen sind abgeschlossen. Es wurde kein vollständiger Browser-/Deployment-/CI-Gesamtlauf behauptet. Ein zusätzlich gestarteter isolierter Lauf von `test_library_images.py` wurde beendet, weil dieselbe Suite bereits vollständig im npm-Assetgate läuft; aus diesem abgebrochenen Zusatzlauf wird kein Bestehen abgeleitet.
 
 WebKit benötigte zusätzliche Systembibliotheken. Die Standardinstallation scheiterte an fehlenden Root-Rechten. Debian-Bibliotheken wurden stattdessen unter `/tmp/graphic-contract-webkit` entpackt und im heruntergeladenen Browsercache verlinkt, weil WebKits Startskript `LD_LIBRARY_PATH` ersetzt. Alle sechs ursprünglich fehlenden Bibliotheken wurden mit `ctypes.CDLL` tatsächlich geladen; ein echter WebKit-Start mit gerenderter Testseite bestand. Für den anschließenden Testlauf gilt lokal `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1`: Playwrights reine `ldconfig -p`-Vorprüfung erkennt diese lokalen Dateien nicht. Browserassertionen, Projektkonfiguration, Timeouts und CI bleiben vollständig aktiv und unverändert. Vorherige WebKit-Versuche scheiterten vor Testausführung an fehlenden Bibliotheken; dies sind Umgebungsfehler und kein Befund zu sporadischen WebKit-CI-Problemen.
 
@@ -62,7 +64,34 @@ Erste Starts scheiterten an `spawnSync python3 EPERM` in der Prozesssandbox; die
 
 ## Stichprobenvergleich
 
-Ergebnisse werden nach Abschluss der Vorher-/Nachherläufe ergänzt. Historische Dateien `F04b-map-sample.json` und `F04b-catalog-sample.json` bleiben unverändert.
+Ausgeführt: `node scripts/sample-catalog-maps.mjs` und `node scripts/sample-maps.mjs` auf dem korrigierten Branch. Die historischen Dateien `F04b-map-sample.json` und `F04b-catalog-sample.json` bleiben unverändert; der neue Katalogbericht liegt separat in [graphic-contract-A-catalog-sample.json](graphic-contract-A-catalog-sample.json).
+
+18 produktive Bilder, **368/368** zugelassene Anker, **0** abgelehnte Bilder, **0** abgelehnte Anker und weiterhin **154** deduplizierte Profilplatzierungen.
+
+| Kennzahl, jeweils vorher = nachher | Frei | Kataloginformiert |
+| --- | ---: | ---: |
+| Gültige / unterschiedliche Karten | 128 / 128 | 128 / 128 |
+| Vollständig / teilweise / ohne Illustration | 4 / 113 / 11 | 27 / 101 / 0 |
+| Zuordnungen / Objekte | 302 / 679 | 483 / 670 |
+| Orientierte Formsignaturen | 56 | 44 |
+
+Die vollständige neue Katalogstichprobe ist nach Ersetzen **ausschließlich der Katalogdigest-Vorkommen** bytegleich zur historischen Datei. Damit bleiben auch sämtliche Kartenbeispiele, Bildauswahlen, Formhistogramme, Lückengründe und Arbeitsdiagnosen unverändert. Die freie/gefilterte PR-1-Stichprobe ist ohne jede Normalisierung bytegleich.
+
+| Identität | SHA-256 |
+| --- | --- |
+| Alter Katalogdigest, Prüfversion 1 | `656e70d5fd714dbd3aa02341848dfa5543ccbc21a245454f3941e6bf4fce3dc9` |
+| Neuer Katalogdigest, Prüfversion 2 | `267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112` |
+| Historische Katalogstichprobendatei | `b5e587ee97496b878dd0ee94118d16328eabe69e30272dfc5050875dc6fc818f` |
+| Neue Katalogstichprobendatei | `c4b8e032c483d682b17481d52035e11f4323763f3d1bf41a57266b738858efe0` |
+| Freie/gefilterte Generatorstichprobe, unverändert | `d220dc942ca286bdf7128a5cb8d39e84702435fe4f4ff2c4e8f2dbf131cc5af3` |
+
+Einordnung:
+
+1. **Geografische Ergebnisse:** beim vorhandenen Produktionsbestand unverändert, weil seine Bilder bereits vorher an allen geometrisch passenden Positionen zulässig waren.
+2. **Fachliche Vertragskorrektur:** die gezielten oberen Spitzenpixel werden jetzt auch am Rand angenommen; künftig lokal gültige Bilder verlieren dort keine Positionen mehr. Die bisherige aktuelle Abdeckung steigt dadurch nicht automatisch.
+3. **Notwendige Versionierung:** nur `checkerVersion` wird in der unveränderten Digestdefinition angehoben. Generatorversion `abstract-maps-1`, Profilmodus `catalog-informed-maps-1`, Zuordnung `asset-assignment-1`, Kandidatenreihenfolge, Seeds und Zufallsströme bleiben unverändert.
+
+Der zusätzliche vollständige Vorher-Lauf aus der isolierten main-Kopie ist ebenfalls abgeschlossen: beide Skripte reproduzieren ihre historischen Dateien vollständig bytegleich, einschließlich der oben aufgeführten Datei-SHA-256. Damit sind die Voraussetzungen des Architekturberichts auch mit dem unveränderten echten Bildadapter erneut bestätigt.
 
 ## Grenzen und Übergabe an PR B
 
