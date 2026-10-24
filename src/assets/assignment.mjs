@@ -1,7 +1,7 @@
 import {validateMap} from '../engine/validate.mjs';
 import {cellsOf} from '../engine/hex.mjs';
 import {placedCells} from './geometry.mjs';
-import {validateLibrary,validatePlacements,productionEnabled,compatibility} from './library.mjs';
+import {validateLibrary,validatePlacements,productionEnabled,compatibility,withPlacementValidator} from './library.mjs';
 import {randomStream,validateSeed} from '../generation/random.mjs';
 import {shapeSignature} from '../generation/map-analysis.mjs';
 
@@ -13,8 +13,11 @@ const add=(counts,key)=>{counts[key]=(Object.hasOwn(counts,key)?counts[key]:0)+1
 // verification is an explicit, trusted adapter result, never a claim inferred
 // from catalog metadata. Bind it to the exact metadata inspected by the adapter.
 export function validateCatalogContext(context){
+ validateLibrary(context.library);
+ return validateCatalogVerification(context);
+}
+function validateCatalogVerification(context){
  const {library,backgroundId,verification}=context;
- validateLibrary(library);
  if(!library.backgrounds.some(b=>b.id===backgroundId))throw Error('Unknown background: '+backgroundId);
  if(verification&&(verification.version!==VERIFICATION_VERSION||verification.librarySnapshot!==JSON.stringify(library)||
   verification.backgroundId!==backgroundId||!/^[a-f0-9]{64}$/.test(verification.catalogSha256)))throw Error('Stale or unsupported asset verification');
@@ -27,12 +30,13 @@ export function geographicCandidates(context){
 
 // Each gate has a stable code. The most advanced failed gate is the primary
 // object reason; the histogram still reports every inspected asset rejection.
-function releaseFailure(context,asset){
+function releaseFailure(context,asset,lookup){
  const {library,backgroundId,verification}=context;
  if(asset.production!=='enabled'||asset.stage!=='illustration')return 'PRODUCTION_DISABLED';
- if(compatibility(library,asset.id,backgroundId)!=='approved'||!productionEnabled(library,asset.id,backgroundId))return 'BACKGROUND_NOT_APPROVED';
+ if((lookup?lookup.validator.compatibility(asset.id):compatibility(library,asset.id,backgroundId))!=='approved'||
+  !(lookup?lookup.validator.productionEnabled(asset.id):productionEnabled(library,asset.id,backgroundId)))return 'BACKGROUND_NOT_APPROVED';
  if(!verification)return 'PIXEL_VERIFICATION_MISSING';
- const check=verification.assets.find(c=>c.assetId===asset.id);
+ const check=lookup?lookup.getCheck(asset.id):verification.assets.find(c=>c.assetId===asset.id);
  if(!check)return 'PIXEL_VERIFICATION_MISSING';
  return check.error?'IMAGE_CONTRACT_REJECTED':null;
 }
@@ -42,7 +46,24 @@ export function verifiedAnchors(context,asset){
 }
 
 export function assignAssets({map,seed,catalog}){
- validateMap(map);validateSeed(seed);validateCatalogContext(catalog);
+ validateMap(map);validateSeed(seed);
+ return withPlacementValidator(catalog.library,map,catalog.backgroundId,validator=>assignInScope(map,seed,catalog,validator));
+}
+function assignInScope(map,seed,catalog,validator){
+ validateCatalogVerification(catalog);
+ let checks;
+ const getCheck=assetId=>{
+  if(!catalog.verification)return undefined;
+  // Keep the original access/failure behavior for malformed trusted-adapter
+  // results; only actual arrays receive the lazily built first-match index.
+  if(!Array.isArray(catalog.verification.assets))return catalog.verification.assets.find(c=>c.assetId===assetId);
+  if(!checks){
+   checks=new Map();
+   for(const check of catalog.verification.assets)if(!checks.has(check.assetId))checks.set(check.assetId,check);
+  }
+  return checks.get(assetId);
+ };
+ const lookup={validator,getCheck};
  const random=randomStream(seed,ASSIGNMENT_VERSION+'/selection'),assets=geographicCandidates(catalog);
  const placements=[],objects=[],rejectionCounts={},assetTypes={},assetUsage={};
  let candidateChecks=0,anchorChecks=0;
@@ -60,18 +81,18 @@ export function assignAssets({map,seed,catalog}){
    });
    if(!anchors.length){reject('NO_EXACT_FOOTPRINT',asset.id);continue;}
    if(asset.passable!==object.passable){reject('PASSABILITY_MISMATCH',asset.id);continue;}
-   const failure=releaseFailure(catalog,asset);
+   const failure=releaseFailure(catalog,asset,lookup),check=getCheck(asset.id);
    if(failure){
-    const error=catalog.verification?.assets.find(c=>c.assetId===asset.id)?.error;
+    const error=check?.error;
     reject(failure,asset.id,error?[error]:undefined);continue;
    }
    for(const anchor of anchors){
-    if(!verifiedAnchors(catalog,asset).includes(anchor)){
-     const error=catalog.verification.assets.find(c=>c.assetId===asset.id).rejected?.find(p=>p.anchor===anchor)?.error;
+    if(!check.anchors.includes(anchor)){
+     const error=check.rejected?.find(p=>p.anchor===anchor)?.error;
      reject('PIXEL_POSITION_REJECTED',asset.id,error?[error]:undefined);continue;
     }
     const placement={id:'art-'+String(index+1).padStart(2,'0'),assetId:asset.id,anchor,objectId:object.id};
-    const errors=validatePlacements([placement],catalog.library,map,catalog.backgroundId);
+    const errors=validator.candidateErrors(placement);
     if(errors.length)reject('PLACEMENT_CONTRACT_REJECTED',asset.id,errors);
     else candidates.push({placement,semanticClass:asset.semanticClass});
    }

@@ -238,3 +238,136 @@ Aktuelle Kataloglücken, aufwendige Pixelvorbereitung und mögliche Verteilungs-
 verschiebungen durch Profile bleiben reale Grenzen. Start-/Routenauswahl,
 Hinweise, Schwierigkeit, Produktions-CLI und Veröffentlichung bleiben außerhalb
 dieses PR. Vor einem Merge ist die gewünschte unabhängige Prüfung vorgesehen.
+
+## P2-Performancekorrektur in PR #77
+
+Ausgangshead der unabhängigen Review: `a233965365085eab80ca1838bcfadf9dfaa7c538`.
+Die Korrektur bleibt im Branch `feature/f04b-asset-assignment` und in PR #77.
+Der Befund ist bestätigt: `assignAssets` rief für jeden passenden Kandidaten
+`validatePlacements([placement], …)` auf. Damit wurden Katalogschema, Geometrien,
+Reviews und Referenzen pro Kandidat erneut vollständig geprüft. Bei 512 passenden
+Assets und 25 Einfeldobjekten waren das 12.802 vollständige Katalogprüfungen.
+
+### Korrektur und interne Verantwortlichkeiten
+
+- `validatePlacements` behält seine öffentliche Signatur und benutzt denselben
+  privaten Prüfkern `placementErrors` wie der neue interne Kandidatenpfad.
+  Schema, Footprint, Befahrbarkeit, Freigaben, Überlappungen, IDs und
+  Objektvertretung bleiben dieselben Prüfungen in derselben Reihenfolge.
+- `withPlacementValidator(library,map,backgroundId,callback,options)` validiert
+  die Eingaben und baut private Asset-/Objekt-/Review-/Brettindizes einmal je
+  synchronem Aufruf. Kandidaten werden darin unabhängig geprüft. Die
+  abschließende vollständige `validatePlacements`-Prüfung in `assignAssets`
+  bleibt erhalten: genau zwei vollständige Katalogvalidierungen insgesamt.
+- Die bisherige formale Eingangsprüfung der Karte bleibt erhalten; der
+  geometrische Index wird einmal für den Scope aufgebaut. Im Abschlussvalidator
+  wird ein frischer Kontext erstellt. Es gibt keinen globalen Cache und keinen
+  extern übergebbaren „bereits geprüft“-Kontext.
+- Methoden laufen nach Rückkehr/Exception ab; Promise-Ergebnisse werden
+  abgewiesen. Die Quellen werden an den Scope-Grenzen gegen private
+  Metadatensnapshots geprüft. Veränderungen führen zu einem Fehler, bevor ein
+  Ergebnis zurückgegeben wird. Pro Kandidat wird kein Katalog serialisiert.
+- Die bestehende Katalog-/Verifikationsbindung mit Version, Hintergrund,
+  Digestformat und `librarySnapshot` bleibt bestehen. Der pro Aufruf bei Bedarf
+  aufgebaute Verifikationsindex behält die bisherige erste Fundstelle bei.
+  Ressourcenbindung und Vertrauensgrenze der Adapterdaten bleiben PR 3.
+- Die Referenzprüfung in `validateLibrary` verwendet ID-/Familienmengen statt
+  wiederholter linearer Asset-/Hintergrundsuchen. Kleine Ankerlisten und exakte
+  Translationen bleiben unverändert; zusätzliche Positions-/Footprintcaches
+  waren für die Beseitigung dieses Befunds nicht nötig.
+
+Es wurden weder Generator, Profilalgorithmus, Streams/Versionen, Diagnosen,
+Katalog, Bilder, Browseroberfläche noch CI-/WebKit-Konfiguration verändert.
+Kein grundlegender Vertragskonflikt und keine zusätzliche Produktionspipeline.
+
+### Reproduzierbare Gegenprobe
+
+`scripts/benchmark-asset-assignment.mjs` misst jeweils eine synchrone Zuordnung
+mit 28/128/512 freigegebenen synthetischen Einfeldassets, 25 unbefahrbaren
+Einfeldobjekten und Seed 0. Vorbereitung der Fixtures, Modul-/Dateizugriffe und
+Bilddekodierung liegen außerhalb des gemessenen Intervalls. Der Zähler beobachtet
+den Familienreferenzcheck eines Sentinelassets: genau einmal pro vollständigem
+`validateLibrary`, nie bei JSON-Serialisierung oder Kandidatenprüfung.
+
+Umgebung: Node **v24.19.0**, Linux x64, **Intel Xeon Platinum 8573C**,
+verwaltete Cloudumgebung mit drei verfügbaren CPUs. Ein Messdurchgang je Größe,
+dieselbe Reihenfolge in zwei separaten Prozessen. Die Laufzeiten sind
+umgebungsabhängig und keine CI-Grenzwerte.
+
+| Assets | Kandidatenprüfungen | Vorher (ms) | Nachher (ms) | Volle Katalogprüfungen vorher → nachher |
+| --- | --- | --- | --- | --- |
+| 28 | 700 | 322,266 | 13,484 | 702 → 2 |
+| 128 | 3200 | 4611,712 | 25,908 | 3202 → 2 |
+| 512 | 12800 | 71538,725 | 85,972 | 12802 → 2 |
+
+Vorher wurde der tatsächliche reviewte Commit in einem getrennten lokalen
+Checkout ausgeführt, mit unverändertem ursprünglichem Validator. Nachher wurde
+derselbe Benchmark gegen die korrigierten Module ausgeführt. Alle sechs
+Zuordnungen waren vollständig. Reproduktion aus dem korrigierten Checkout:
+
+```sh
+git worktree add --detach /tmp/f04b-assignment-before a233965365085eab80ca1838bcfadf9dfaa7c538
+node scripts/benchmark-asset-assignment.mjs /tmp/f04b-assignment-before
+node scripts/benchmark-asset-assignment.mjs
+```
+
+Die bisherige Struktur war `O(M × N × V)` für `M` Objekte, `N` Kandidatenassets
+und Kosten `V` einer vollständigen Katalogvalidierung. Die Korrektur reduziert
+dies auf konstant viele Katalog-/Indexaufbauten plus die unveränderten `M × N`
+geometrischen Kandidatenprüfungen. Durch die ID-Mengen entfallen außerdem die
+Asset-/Review-Kreuzsuchen innerhalb der Referenzprüfung. Objekt-/Footprintgrößen
+sind weiterhin durch das 25-Zellen-Brett begrenzt. Metadaten-/Reviewumfang,
+Speicherung, Kandidatenprodukt und separate Bildvorbereitung bleiben reale
+Skalierungsgrenzen; es wird kein konstanter Aufwand über beliebige Kataloge
+oder ein allgemeiner Laufzeitfaktor versprochen.
+
+### Zusätzliche Regressionen und Abnahme
+
+Fünf neue Tests in `tests/contracts/assignment-performance.test.mjs`:
+
+1. 23 Zuordnungsfälle vergleichen vollständige Ergebnisse, deterministische
+   Assetentscheidungen, Diagnosen und Fehler mit einem am tatsächlichen Head
+   `a233965` aufgezeichneten Fixture. Vollständige/partielle/fehlende Zuordnung,
+   mehrere Bilder, Geometrie, Freigaben, Pixelpositionen und ungültige/stale
+   Verifikationsdaten sind enthalten.
+2. 20 gespeicherte Validatorfälle prüfen öffentliche und interne Ergebnisse
+   einschließlich Fehlertext und -reihenfolge. Unzulässige Footprints/Anker,
+   Befahrbarkeit, Transformationen, Reviews, Freigaben, Dekorationen und
+   Entwicklungsoptionen sind enthalten.
+3. Einzeln gültige Kandidaten bleiben als Kombination bei Überlappung,
+   doppelter ID oder doppelter Objektillustration unzulässig.
+4. Scope-Verfall nach Rückkehr/Exception, Async-Ausschluss und Metadatenmutation
+   werden geprüft; eingefangene Methoden können nicht weiterbenutzt werden.
+5. Der Strukturtest für 28/128/512 Assets bestätigt 700/3200/12800 Kandidaten-
+   prüfungen bei jeweils exakt zwei vollständigen Katalogvalidierungen.
+
+Die Testfixtures enthalten aufgezeichnete Resultate, keine zweite unabhängig
+implementierte Validierungslogik. Keine geänderten Fehlerfolgen in den
+Vergleichsfällen. Keine zeitbasierten CI-Assertions.
+
+Lokaler Stand der Nachprüfung: **117 Unit-/Vertragstests**, **20 Inhaltstests**,
+gültige/eindeutige/irredundante Rätsel und **20 Desktop-/Mobil-Chromium-Fälle**
+bestanden. Beide vorhandenen F04b-Stichproben sind bytegleich reproduziert;
+die Stichprobendateien wurden nicht geändert. Ihre SHA-256 bleiben
+`d220dc942ca286bdf7128a5cb8d39e84702435fe4f4ff2c4e8f2dbf131cc5af3`
+und `b5e587ee97496b878dd0ee94118d16328eabe69e30272dfc5050875dc6fc818f`.
+Auch `npm run test:assets` ist vollständig bestanden: Datei-/Freigabehash- und
+Pixelprüfungen sowie 13 Bild-, fünf Mehrfeldexport- und zwei Wasserbildtests.
+`git diff --check` ist bestanden. Beide Stichproben, produktive Inhalte,
+Generatoren und CI-Dateien sind gegenüber dem reviewten Head unverändert.
+
+### CI-Einordnung vor der Korrektur
+
+Der nun abgeschlossene bisherige Head-Lauf
+[40044498667](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/40044498667)
+ist `completed/failure`: neun Jobs erfolgreich, WebKit-Shard 2 fehlgeschlagen.
+Die Originallogs von Job `120722976412` nennen zwei 30-s-Timeouts in
+`chart-scroll.mjs:104` und `:139` (820px) sowie einen Materials-Flake. Die
+gleichen beiden Scrolltests scheiterten bereits auf dem Basis-main in
+[40042640487 / Job 120717028443](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/40042640487/job/120717028443).
+Damit ist ihre Existenz vor dieser Performancekorrektur belegt. Eine vollständige
+Unabhängigkeit aller Browser-/Timingeffekte, insbesondere des zusätzlichen
+Materials-Flakes, folgt daraus nicht. Es wird keine Generatorregression aus
+diesem alten Lauf abgeleitet. Der tatsächliche CI-Status des neuen Heads wird
+gesondert im PR und Abschlussbericht ausgewiesen; keine WebKit-Stabilisierung,
+abgeschwächten Tests oder CI-Neustarts für einen grünen Status.

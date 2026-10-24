@@ -312,7 +312,8 @@ die tatsächlich gewählte Klasse aus den Metadaten. Sie erfindet keine Beziehun
 zwischen Dateiname, Bildfarbe, Objekt-ID, Befahrbarkeit und Motivklasse.
 Befahrbarkeit wird unabhängig und exakt verglichen. Freigaben kommen aus
 `productionEnabled`, der konkreten Hintergrundfreigabe und den Hashprüfungen.
-Jeder Kandidat sowie die gesamte Zuordnung bestehen `validatePlacements`.
+Jeder Kandidat wird durch den gemeinsamen Platzierungsprüfkern geprüft; die
+gesamte Zuordnung besteht abschließend unverändert `validatePlacements`.
 Die Pixelprüfung jedes Ankers erfolgt vorher, niemals durch Renderer-Clipping.
 
 ```js
@@ -463,3 +464,68 @@ Ressourcenbytes erneut prüfen. Abdeckung ist eine eigene Produktionsentscheidun
 kein stiller Gültigkeitsfilter. Der bestehende Renderer kann später unmittelbar
 `placements` verwenden. Endgültige Start-/Zielwahl, Hinweise, Schwierigkeit,
 Produktions-Batches und Veröffentlichungsidentitäten bleiben spätere Schritte.
+
+## P2-Korrektur: Validierung bei vielen Assetkandidaten
+
+Der reviewte Head `a233965` rief pro passendem Asset-/Objektpaar den vollständigen
+`validatePlacements`-Einstieg auf. Dieser prüfte jedes Mal erneut den gesamten
+Katalog einschließlich Geometrien, Reviews und Referenzen. Die geografisch
+korrekte Zuordnung skalierte deshalb bei vielen gleichartigen Bildern schlecht.
+
+`src/assets/library.mjs` enthält jetzt einen einzigen privaten Platzierungs-
+prüfkern `placementErrors`. Der öffentliche Einstieg `validatePlacements`
+behält Signatur, Prüfungen, Fehlertexte/-reihenfolge und Kombinationsprüfungen.
+Der neue **interne** Einstieg lautet:
+
+```js
+withPlacementValidator(library,map,backgroundId,validator => {
+  const errors = validator.candidateErrors(placement);
+  const approved = validator.compatibility(assetId);
+  const enabled = validator.productionEnabled(assetId);
+  // Kandidaten sind unabhängig; eine Kombination ist damit noch nicht geprüft.
+}, {development:false});
+```
+
+Dieser synchrone Aufruf validiert Katalog und Karte, baut private Indizes für
+Asset-/Objekt-IDs, konkrete/Wildcard-Reviews, Befahrbarkeits-/Freigabezugriffe,
+Brettzellen und logisch belegte Zellen und verwendet sie für alle Kandidaten.
+In `assignAssets` ersetzt er die bisherige Katalogeingangsprüfung. Die bisherige
+formale Kartenprüfung am Diensteingang bleibt erhalten; geometrische Indizes
+werden nur einmal je Scope aufgebaut. Die abschließende öffentliche
+Gesamtvalidierung bleibt eine vollständige, unabhängige Prüfung.
+Damit finden genau **zwei vollständige Katalogvalidierungen** je Zuordnung statt:
+Scope-Eingang und Abschluss, unabhängig von der Kandidatenzahl.
+
+Die Methoden und Indizes dürfen nicht für spätere Aufrufe gespeichert werden:
+Eine eingefangene Methode wirft nach Rückkehr oder Fehler `Expired placement
+validation scope`; ein Promise-Ergebnis wird abgewiesen. Katalog-/Kartenmetadaten
+werden nur an den Scope-Grenzen serialisiert und verglichen. Bei Änderung wird
+kein Ergebnis zurückgegeben (`Stale placement validation scope`). Die privaten
+Indizes können weder übergeben noch verändert werden; es existiert kein
+„bereits validiert“-Schalter und kein globaler Cache.
+
+Der vorhandene `validateCatalogVerification`-Pfad prüft weiterhin Version,
+Hintergrund, Digestformat und `librarySnapshot`. Verifikationseinträge werden
+innerhalb eines Zuordnungsaufrufs bei Bedarf nach Asset-ID indiziert; bei mehreren
+Einträgen gilt wie beim bisherigen `find` der erste. Pixelanker und lokale
+Bildfehler bleiben unveränderte zusätzliche Tore vor dem Platzierungsprüfkern.
+Ein fehlender oder fehlerhafter Nachweis wird durch die Optimierung nicht zu
+einer Freigabe. Die generelle Vertrauensgrenze für Adapterdaten und die spätere
+Ressourcenbindung aus PR 3 bleiben unverändert.
+
+Auch `validateLibrary` benutzt für Referenzen nun ID-/Familienmengen, statt je
+Review den gesamten Assetbestand zu durchsuchen. Bei festem 25-Zellen-Brett
+bleiben die stabil geordneten `M × N` Asset-/Objektprüfungen erhalten; Katalog-
+validierung und Indizes werden nur konstant oft aufgebaut. Schema-/Geometrie-
+prüfungen, Metadatenvergleiche und Speichernutzung bleiben abhängig von der
+Katalog-/Reviewgröße. Kleine Ankerlisten werden weiterhin direkt geprüft;
+zusätzliche Footprint- oder Positionscaches waren für diesen Befund nicht nötig.
+
+Kein Algorithmus-, Stream-, Versions- oder Diagnoseformatwechsel. Beide
+Stichprobendateien bleiben verbindliche bytegleiche Regressionen. Der Benchmark
+`node scripts/benchmark-asset-assignment.mjs [Checkout-Wurzel]` misst dieselbe
+synthetische Zuordnung mit 28/128/512 Assets, 25 Einfeldobjekten und Seed 0,
+ohne Datei-/Bildvorbereitung. Einzelne Laufzeiten sind keine CI-Grenzwerte;
+ein Strukturtest sichert die konstante Zahl vollständiger Katalogprüfungen.
+Messwerte, Reproduktion und Nachprüfung:
+[Prüfbericht](verification/F04b-validation.md#p2-performancekorrektur-in-pr-77).
