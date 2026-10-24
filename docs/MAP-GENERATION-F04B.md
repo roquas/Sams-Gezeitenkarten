@@ -1,4 +1,4 @@
-# F04b / PR 1: abstrakte Karten
+# F04b: abstrakte Karten und getrennte Assetzuordnung
 
 `src/generation/` erzeugt ausschließlich gültige v2-Karten. Geografische Vielfalt
 hat Vorrang vor Routeneignung. Die Karte enthält unverändert nur `geometry`,
@@ -6,7 +6,9 @@ hat Vorrang vor Routeneignung. Die Karte enthält unverändert nur `geometry`,
 Struktur, gemessene Routeneignung und spätere Rätselqualität sind getrennt.
 Eine zerschnittene Karte, eine Karte ohne befahrbares Objekt oder ohne Route
 ist gültig und wird ohne explizite Filter akzeptiert. Assets, Startauswahl,
-Zielroute, Hinweise, Texte und Veröffentlichungen sind nicht Teil dieses Schritts.
+Zielroute, Hinweise, Texte und Veröffentlichungen sind nicht Teil der abstrakten
+Generierung. PR 2 ergänzt die unten dokumentierte getrennte Assetzuordnung und
+ein ausdrücklich gewähltes geografisches Katalogprofil.
 
 ## Schnittstellen und interner Ergebnisvertrag
 
@@ -243,3 +245,287 @@ Schwierigkeit und Veröffentlichung bleiben eigenständige Schritte.
 
 Vorprüfung, vorhandene CI-Fehler und lokale Abnahme:
 [`verification/F04b-validation.md`](verification/F04b-validation.md).
+
+## PR 2: Schnittstellen und Verantwortlichkeiten
+
+Geografische Vielfalt hat weiterhin Vorrang. `generateMap({seed,config})` bleibt
+mit Version `abstract-maps-1` bytegleich reproduzierbar. Kein Katalog wird implizit
+geladen. Fehlende Bilder ändern weder Karte noch Gültigkeit oder Generatorstatus.
+Die folgenden Ergebnisse sind interne Übergabedaten, keine neuen Puzzle- oder
+Veröffentlichungsverträge. Die Anwendung wird in PR 2 nicht daran angeschlossen.
+
+```js
+import {prepareAssetCatalog} from '../scripts/lib/asset-catalog.mjs'; // nur Node
+import {assignAssets,createCatalogProfile} from '../src/assets/assignment.mjs';
+
+// library und resourceRoot gehören zum selben gepinnten Katalogstand.
+const catalog = prepareAssetCatalog({library,backgroundId:'sea-blue-01',resourceRoot});
+const free = generateMap({seed:42});
+const assignment = assignAssets({map:free.map,seed:42,catalog});
+const profile = createCatalogProfile(catalog,{preferencePercent:75});
+const informed = generateMap({seed:42,catalogProfile:profile});
+const informedAssignment = assignAssets({map:informed.map,seed:42,catalog});
+```
+
+`assignAssets`, `createCatalogProfile` und die Generierung sind synchron, rein und
+verändern ihre Eingaben nicht. Nur der Node-Adapter liest Dateien, prüft Hashes
+und startet Python/Pillow. `prepareAssetCatalog` liefert
+`{library,backgroundId,verification}`. Er benutzt `validateAssetFiles` und
+`validateAssetBytes`, hält dann dieselben erfassten Bytes für Bildprüfung und
+Reproduktionshash fest. `verify-asset-positions.py` verwendet unverändert
+`check_image` / `PixelFootprint` aus dem vorhandenen Bildprüfer. Der Hintergrund
+wird ebenfalls dekodiert. Keine neue Alpha-, Sicherheitszonen- oder Hashlogik.
+
+Die Verifikation bindet mit `librarySnapshot` die exakten geprüften Metadaten,
+mit `backgroundId` die konkrete Freigabe und mit Version
+`asset-placement-pixels-1` die Prüflogik. Pro produktivem geografischem Asset
+enthält sie `anchors` und gegebenenfalls lokale `error`- oder positionsbezogene
+`rejected`-Diagnosen. Zuerst werden alle Positionen gemeinsam geprüft; bei einem
+Fehler werden lokaler Fehler und einzelne unzulässige Anker unterschieden.
+Veraltete Freigabehashes oder ein beschädigter Hintergrund brechen die
+Vorbereitung ab. Ein lokal ungeeignetes Asset bleibt mit Fehlerdiagnose im
+Prüfergebnis und wird ausgeschlossen.
+
+Die reinen Dienste vertrauen ausdrücklich dem Adapterergebnis; es ist keine
+kryptografisch signierte Bescheinigung für beliebige fremde Eingaben. Wer diese
+Schnittstelle direkt aufruft, muss vertrauenswürdige Verifikationsdaten liefern.
+Fehlende Verifikation erlaubt keine Zuordnung und ergibt ein leeres Profil.
+Eine Metadatenänderung nach der Vorbereitung wird abgewiesen. Nach Änderungen
+der Dateien muss neu vorbereitet werden; ein gespeichertes Prüfergebnis prüft
+nicht von sich aus heutige Dateien. PR 3 muss diesen Lebenszyklus einhalten.
+
+## Exakte Zuordnung und Ergebnisstruktur
+
+`assignAssets({map,seed,catalog})` validiert zuerst Karte und Katalog. Geografische
+Assets werden nach ID sortiert; Objektzellen werden als mögliche Anker mit
+`placedCells` getestet. Dessen bestehende Transformation ist
+`axial(anchor)=[q,r]`, `row=r+dr`, `column=q+dq+floor(row/2)`. Damit wird die
+Zeilenparität korrekt berücksichtigt. Nur exakte Mengenübereinstimmung ist
+zulässig. Es gibt keine Rotation, Spiegelung, Skalierung, Footprint-Reparatur
+oder Verschiebung innerhalb einer Zelle. Tests unterscheiden asymmetrische
+Rotationen/Spiegelungen und Translationen ausdrücklich.
+
+`validateLibrary` erzwingt `semanticVersion:1` und die bestehenden geografischen
+`semanticClass`-Werte. Das v2-Objekt hat absichtlich keine Motivklasse; die
+Zuordnung darf daher jede passende geografische Klasse verwenden und berichtet
+die tatsächlich gewählte Klasse aus den Metadaten. Sie erfindet keine Beziehung
+zwischen Dateiname, Bildfarbe, Objekt-ID, Befahrbarkeit und Motivklasse.
+Befahrbarkeit wird unabhängig und exakt verglichen. Freigaben kommen aus
+`productionEnabled`, der konkreten Hintergrundfreigabe und den Hashprüfungen.
+Jeder Kandidat wird durch den gemeinsamen Platzierungsprüfkern geprüft; die
+gesamte Zuordnung besteht abschließend unverändert `validatePlacements`.
+Die Pixelprüfung jedes Ankers erfolgt vorher, niemals durch Renderer-Clipping.
+
+```js
+{
+  status: 'complete', // complete | partial | none
+  placements: [{id:'art-01',assetId:'…',anchor:'B2',objectId:'geo-01'}],
+  objects: [{objectId:'geo-01',size:1,shape:'0,0',passable:true,
+    status:'assigned',candidateCount:9,assetId:'…',semanticClass:'lighthouse',
+    rejections:{/* verworfene Kandidaten nach Code */}}],
+  diagnostics: {assignmentVersion:'asset-assignment-1',seed:42,backgroundId:'sea-blue-01',
+    catalogSha256:'…',objectCount:1,assignedCount:1,unassignedCount:0,
+    rejectionCounts:{},assetTypes:{lighthouse:1},assetUsage:{'…':1},
+    candidateChecks:18,anchorChecks:18}
+}
+```
+
+`placements` ist der bestehende Platzierungsvertrag; es wird kein zweites
+Renderingformat eingeführt. Die Karte bleibt separat und unverändert.
+`complete` bedeutet, dass jedes Objekt ein zulässiges Bild besitzt (auch bei
+einer leeren Karte); `partial` bedeutet mindestens eines, aber nicht alle;
+`none` bedeutet kein zugeordnetes Objekt einer nichtleeren Karte. Für
+fehlende Objekte enthält `objects` stattdessen `status:'unassigned', reason`.
+Detailfehler des Pixel-/Platzierungsprüfers werden gegebenenfalls mitgeliefert.
+
+| Code | Tatsächliche Ursache |
+| --- | --- |
+| `NO_GEOGRAPHIC_ASSETS` | Keine geografischen Einträge |
+| `NO_EXACT_FOOTPRINT` | Kein Asset hat an einem Objektanker exakt diese Zellen |
+| `PASSABILITY_MISMATCH` | Exakte Formen haben andere Befahrbarkeit |
+| `PRODUCTION_DISABLED` | Passende Form/Befahrbarkeit, aber keine produktive Illustration |
+| `BACKGROUND_NOT_APPROVED` | Keine Freigabe für diesen konkreten Hintergrund |
+| `PIXEL_VERIFICATION_MISSING` | Kein vertrauenswürdiges Bildprüfergebnis |
+| `IMAGE_CONTRACT_REJECTED` | Bild scheitert am lokalen bestehenden Vertrag |
+| `PIXEL_POSITION_REJECTED` | Bild ist am erforderlichen Anker nicht zulässig |
+| `PLACEMENT_CONTRACT_REJECTED` | Weiterer Fehler des bestehenden Platzierungsvalidators |
+
+Die Prüfungen bilden diese Reihenfolge. Der am weitesten gelangte Kandidat
+bestimmt den primären Fehlgrund; `rejections` zeigt zusätzlich die übrigen
+Kandidatenablehnungen. `diagnostics.rejectionCounts` zählt primäre Gründe pro
+unbebildertem Objekt, keine Generatorablehnungen. `candidateChecks` zählt
+geografische Asset-/Objektpaare, `anchorChecks` die getesteten Übersetzungen.
+
+Mehrere zulässige Assets werden gleichgewichtet aus stabiler Reihenfolge
+ausgewählt. Der Katalog verbietet Wiederverwendung nicht: Die vorhandene
+Eindeutigkeit betrifft Platzierungs-IDs und Objektvertretung, nicht Asset-IDs.
+Daher darf dasselbe Bild mehrere disjunkte Objekte vertreten. Mehrfach vorhandene
+Illustrationen beeinflussen die Bildauswahl, nicht die Formgewichtung im Profil.
+
+## Optionaler kataloginformierter Modus
+
+`createCatalogProfile` liefert `{version:'catalog-shapes-1',catalogSha256,
+preferencePercent,placements:[{cells,passable}]}`. Die Einträge enthalten nur
+tatsächlich geprüfte, im Brett positionierbare Footprints. Gleichartige
+Platzierungen werden nach Zellen und Befahrbarkeit dedupliziert. Asset-IDs,
+semantische Motivklassen und Bilddateien gelangen nicht in den Generator.
+`normalizeCatalogProfile` validiert jede vorgeschlagene Geografie mit
+`validateMap`, sortiert/dedupliziert und weist unbekannte Felder/Transformationen
+ab. Interne Grenze: höchstens 10.000 Profileinträge.
+
+Der Generator benutzt denselben Kandidatenaufbau, dieselbe Objektanzahl-, Größen-
+und Befahrbarkeitsauswahl und dieselben begrenzten Wiederholungen wie PR 1.
+Pro Platzierungsversuch bevorzugt er mit `preferencePercent` (Default 75) eine
+noch freie Profilplatzierung **derselben bereits gewählten Größe und
+Befahrbarkeit**. Die verfügbaren unterschiedlichen Zellmengen sind innerhalb
+dieser Auswahl gleichgewichtet. Bei fehlendem Kandidaten oder der übrigen
+Wahrscheinlichkeit verwendet er das vorhandene freie Wachstum. Auch bei 100
+Prozent bleibt fehlende Katalogabdeckung ein Rückfall auf freies Wachstum.
+Größen werden nicht auf Einzelfelder reduziert und Befahrbarkeiten nicht ersetzt.
+Kein vorhandenes Objekt wird nachträglich geändert oder entfernt.
+
+Formen mit mehr aktuell freien legalen Platzierungen erhalten dabei mehr
+Auswahlmöglichkeiten; Randlage und zuvor platzierte Objekte verzerren die
+Verteilung weiterhin. Abweichende Platzierungsfehlschläge können außerdem zu
+einem anderen akzeptierten Kandidaten und damit zu anderen Größen-/Anzahlwerten
+für denselben Seed führen. Es gibt keine Behauptung gleicher Verteilungen oder
+einer Gleichverteilung über Formklassen.
+
+Damit bleiben abstrakt erlaubte, im Katalog vorhandene und konkret am Anker
+bebilderbare Formen getrennt. Kataloglücken schränken die freie Generierung
+überhaupt nicht ein. Auch das Profil verspricht keine vollständige Zuordnung:
+Befahrbare Mehrfeldobjekte, freie Wachstumszweige und gegenseitige Belegung
+können weiterhin ohne Bild bleiben. Der Modus akzeptiert solche Karten.
+Es gibt keine zusätzliche Routenoptimierung oder implizite Start-/Routenfilter.
+Die aus PR 1 bekannten Filter bleiben ausschließlich ausdrücklich wählbar.
+
+Version des zusätzlichen Modus: `catalog-informed-maps-1`. Neben den üblichen
+Diagnosen enthält er das normalisierte `catalogProfile` und pro Kandidat
+`catalog:{preferenceDraws,preferredPlacements,growthPlacements,catalogMisses,
+footprintChecks}`. `footprintChecks` zählt überprüfte Profileinträge; deshalb
+ist weniger Wachstum nicht automatisch weniger Gesamtaufwand. Vorbereitung
+und spätere Assetauswahl sind eigene Kosten.
+
+## Reproduktion und Identitäten in PR 2
+
+- Freie Karten: unverändert `abstract-maps-1`, uint32-Seed, normalisierte Config.
+- Profilkarten: zusätzlich `catalog-informed-maps-1` und das vollständige
+  normalisierte Profil einschließlich `preferencePercent` und Katalogdigest.
+- Bildauswahl: `asset-assignment-1`, eigener uint32-Seed, unveränderte Karte,
+  gleicher Katalog, Hintergrund, Ressourcenbytes und Bildprüferversion.
+
+Assetauswahl verwendet ausschließlich die Domäne
+`asset-assignment-1/selection`. Der Profilmodus ergänzt je Kandidat die Domänen
+`catalog-informed-maps-1/<Versuch>/preference` und `/footprint`. Layout,
+Befahrbarkeit und freies Wachstum behalten ihre vorhandenen getrennten Streams.
+Zusätzliche Bilder, Änderungen der Bildauswahl oder reine Analyseänderungen
+konsumieren keinen geografischen Zufall im freien Modus. Ein leeres Profil oder
+0 Prozent Präferenz reproduziert dessen Geometrie exakt. Änderungen der
+Algorithmus-/Prüfsequenzen erfordern entsprechende Versionsanhebung.
+
+`catalogSha256` ist ein technischer Digest über `canonicalJson({library,
+backgroundId,resources,checkerVersion})`; `resources` listet sortierte Pfade und
+SHA-256 der beteiligten geografischen Produktionsbilder und des Hintergrunds.
+Beide Funktionen stammen aus `scripts/lib/publication-archive.mjs`. Es entsteht
+keine parallele Hashimplementierung und keine neue Publikationsidentität.
+Kartenbeispiele verwenden den bestehenden `mapFingerprint`. Ein Digest allein
+ersetzt nicht die archivierten Katalog-/Bildbytes oder den Algorithmusstand.
+
+## Vergleich, Kataloggrenzen und Übergabe an PR 3
+
+`node scripts/sample-catalog-maps.mjs` erstellt die feste Vergleichsstichprobe
+`verification/F04b-catalog-sample.json`: Seeds 0–127, 3–8 Objekte, Größen 1–4,
+Befahrbarkeitswahrscheinlichkeit 0,25, Präferenz 75 Prozent, keine Routenfilter
+und keine Routensuche. Die freie Geometrie entspricht dem freien Profil der
+PR-1-Stichprobe; deren gesonderte Routenanalyse wird hier nicht wiederholt.
+Das Skript ist eine interne Messung, keine Produktions-Batch-CLI.
+
+Der Bericht enthält vollständige Karten und Zuordnungen für Seeds 0/1/2 sowie
+gegebenenfalls die erste vollständige Karte je Modus; zusätzlich einen klar
+als Einfeldprofil ausgewiesenen vollständigen Zuordnungsfall. Gezählt werden
+Abdeckung, Asset-IDs/-Klassen, Größen, orientierte Formen, Formen/Befahrbarkeit,
+unbebilderte Größen/Formen und primäre Fehlgründe sowie sämtliche Kandidaten-,
+Platzierungs-, Profilprüf- und Zuordnungsversuche. Histogramme und unterschiedliche
+Karten/Formen machen Auswahlverzerrungen sichtbar; es gibt keinen Qualitätsscore.
+Die konkreten Messergebnisse und Prüfbelege stehen im
+[Abnahmebericht](verification/F04b-validation.md#pr-2-assetzuordnung-und-katalogprofil).
+
+Aktueller Katalog: 18 produktive geografische Illustrationen auf `sea-blue-01`,
+neun befahrbare Einfeldmotive, neun unbefahrbare Motive der Größen 1–4.
+Befahrbare Mehrfeldillustrationen fehlen weiterhin. Viele Orientierungen und
+größere abstrakte Objekte haben keine passende Illustration. Dekorationen,
+technische Platzhalter, Entwürfe und historische/zurückgestellte Bilder sind
+keine Ersatzformen. Diese Lücken sind kein Karten- oder Generatorfehler.
+
+PR 3 übernimmt die getrennten Karten-/Zuordnungsdaten, Versionen, Seeds,
+normalisierte Config/Profile und Versuchsdiagnosen. Es muss Katalog und
+Ressourcen pinnen, den geprüften Adapterlebenszyklus einhalten und bei neuen
+Ressourcenbytes erneut prüfen. Abdeckung ist eine eigene Produktionsentscheidung,
+kein stiller Gültigkeitsfilter. Der bestehende Renderer kann später unmittelbar
+`placements` verwenden. Endgültige Start-/Zielwahl, Hinweise, Schwierigkeit,
+Produktions-Batches und Veröffentlichungsidentitäten bleiben spätere Schritte.
+
+## P2-Korrektur: Validierung bei vielen Assetkandidaten
+
+Der reviewte Head `a233965` rief pro passendem Asset-/Objektpaar den vollständigen
+`validatePlacements`-Einstieg auf. Dieser prüfte jedes Mal erneut den gesamten
+Katalog einschließlich Geometrien, Reviews und Referenzen. Die geografisch
+korrekte Zuordnung skalierte deshalb bei vielen gleichartigen Bildern schlecht.
+
+`src/assets/library.mjs` enthält jetzt einen einzigen privaten Platzierungs-
+prüfkern `placementErrors`. Der öffentliche Einstieg `validatePlacements`
+behält Signatur, Prüfungen, Fehlertexte/-reihenfolge und Kombinationsprüfungen.
+Der neue **interne** Einstieg lautet:
+
+```js
+withPlacementValidator(library,map,backgroundId,validator => {
+  const errors = validator.candidateErrors(placement);
+  const approved = validator.compatibility(assetId);
+  const enabled = validator.productionEnabled(assetId);
+  // Kandidaten sind unabhängig; eine Kombination ist damit noch nicht geprüft.
+}, {development:false});
+```
+
+Dieser synchrone Aufruf validiert Katalog und Karte, baut private Indizes für
+Asset-/Objekt-IDs, konkrete/Wildcard-Reviews, Befahrbarkeits-/Freigabezugriffe,
+Brettzellen und logisch belegte Zellen und verwendet sie für alle Kandidaten.
+In `assignAssets` ersetzt er die bisherige Katalogeingangsprüfung. Die bisherige
+formale Kartenprüfung am Diensteingang bleibt erhalten; geometrische Indizes
+werden nur einmal je Scope aufgebaut. Die abschließende öffentliche
+Gesamtvalidierung bleibt eine vollständige, unabhängige Prüfung.
+Damit finden genau **zwei vollständige Katalogvalidierungen** je Zuordnung statt:
+Scope-Eingang und Abschluss, unabhängig von der Kandidatenzahl.
+
+Die Methoden und Indizes dürfen nicht für spätere Aufrufe gespeichert werden:
+Eine eingefangene Methode wirft nach Rückkehr oder Fehler `Expired placement
+validation scope`; ein Promise-Ergebnis wird abgewiesen. Katalog-/Kartenmetadaten
+werden nur an den Scope-Grenzen serialisiert und verglichen. Bei Änderung wird
+kein Ergebnis zurückgegeben (`Stale placement validation scope`). Die privaten
+Indizes können weder übergeben noch verändert werden; es existiert kein
+„bereits validiert“-Schalter und kein globaler Cache.
+
+Der vorhandene `validateCatalogVerification`-Pfad prüft weiterhin Version,
+Hintergrund, Digestformat und `librarySnapshot`. Verifikationseinträge werden
+innerhalb eines Zuordnungsaufrufs bei Bedarf nach Asset-ID indiziert; bei mehreren
+Einträgen gilt wie beim bisherigen `find` der erste. Pixelanker und lokale
+Bildfehler bleiben unveränderte zusätzliche Tore vor dem Platzierungsprüfkern.
+Ein fehlender oder fehlerhafter Nachweis wird durch die Optimierung nicht zu
+einer Freigabe. Die generelle Vertrauensgrenze für Adapterdaten und die spätere
+Ressourcenbindung aus PR 3 bleiben unverändert.
+
+Auch `validateLibrary` benutzt für Referenzen nun ID-/Familienmengen, statt je
+Review den gesamten Assetbestand zu durchsuchen. Bei festem 25-Zellen-Brett
+bleiben die stabil geordneten `M × N` Asset-/Objektprüfungen erhalten; Katalog-
+validierung und Indizes werden nur konstant oft aufgebaut. Schema-/Geometrie-
+prüfungen, Metadatenvergleiche und Speichernutzung bleiben abhängig von der
+Katalog-/Reviewgröße. Kleine Ankerlisten werden weiterhin direkt geprüft;
+zusätzliche Footprint- oder Positionscaches waren für diesen Befund nicht nötig.
+
+Kein Algorithmus-, Stream-, Versions- oder Diagnoseformatwechsel. Beide
+Stichprobendateien bleiben verbindliche bytegleiche Regressionen. Der Benchmark
+`node scripts/benchmark-asset-assignment.mjs [Checkout-Wurzel]` misst dieselbe
+synthetische Zuordnung mit 28/128/512 Assets, 25 Einfeldobjekten und Seed 0,
+ohne Datei-/Bildvorbereitung. Einzelne Laufzeiten sind keine CI-Grenzwerte;
+ein Strukturtest sichert die konstante Zahl vollständiger Katalogprüfungen.
+Messwerte, Reproduktion und Nachprüfung:
+[Prüfbericht](verification/F04b-validation.md#p2-performancekorrektur-in-pr-77).
