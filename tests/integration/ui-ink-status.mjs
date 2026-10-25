@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {selectionUse} from './webkit-startup.mjs';
 
 const cell=(page,id)=>page.locator(`#map [data-id="${id}"]`);
 // document.load does not await the asynchronous DTO/catalog loader. Observe
@@ -7,6 +8,11 @@ const ready=page=>cell(page,'C1').waitFor({state:'attached'});
 const activate=async(page,method,locator)=>{
  if(method==='keyboard'){await locator.focus();await page.keyboard.press('Space');}
  else if(method==='touch')await locator.tap();else await locator.click();
+};
+const expectRadar=async(radar,phase)=>{
+ await expect(radar).toHaveAttribute('data-distance-state',phase);
+ await expect(radar).toHaveAttribute('aria-pressed',String(phase!=='inactive'));
+ await expect(radar).toHaveAccessibleName({inactive:'Abstände einblenden',waiting:'Abstände: Jetzt ein Feld auf der Karte wählen. Erneut drücken zum Ausschalten.',showing:'Abstände ausschalten'}[phase]);
 };
 const layout=page=>page.evaluate(()=>{
  const parent=document.getElementById('chartPanel').getBoundingClientRect();
@@ -22,18 +28,25 @@ const contrast=(a,b)=>{
 export function registerInkStatusTests(url){
  for(const width of [390,820,1440])test.describe(`UI stabilization ${width}px`,()=>{
   test.use({viewport:{width,height:1000},hasTouch:true});
+  test.describe(()=>{
+  // These native input/state/layout checks use CSS pixels, as do the puzzle
+  // selection tests. Linux WebKit's DPR-2 frame waits can exhaust their shared
+  // budget before an assertion runs. Keep the rendering cases below at the
+  // project's original density; Chromium also retains its original density.
+  test.use(selectionUse);
   for(const method of ['click','keyboard','touch']){
    test(`radar ${method} selects and switches off without moving the status slot`,async({page})=>{
     await page.goto(url);await ready(page);await expect(cell(page,'C1')).toBeVisible();
     const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus'),before=await layout(page);
+    await expectRadar(radar,'inactive');
     await expect(status).toHaveAttribute('role','status');await expect(status).toHaveAttribute('aria-atomic','true');await expect(status).toBeEmpty();
     expect(before[2][1]).toBeGreaterThanOrEqual(before[1][1]+before[1][3]);
-    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','waiting');
+    await activate(page,method,radar);await expectRadar(radar,'waiting');
     await expect(page.locator('.distance-overlay')).toHaveCount(0);expect(await layout(page)).toEqual(before);
     await activate(page,method,cell(page,'C1'));await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','C1');
     expect(await layout(page)).toEqual(before);expect(await status.evaluate(el=>el.scrollHeight<=el.clientHeight)).toBe(true);
-    await page.locator('[data-tool="yes"]').click();await expect(radar).toHaveAttribute('data-distance-state','showing');await expect(radar).toHaveAccessibleName('Abstände ausschalten');
-    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');
+    await page.locator('[data-tool="yes"]').click();await expectRadar(radar,'showing');
+    await activate(page,method,radar);await expectRadar(radar,'inactive');
     await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
     expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')).marks)).toEqual({});
    });
@@ -48,8 +61,8 @@ export function registerInkStatusTests(url){
     });
     await page.goto(url);await ready(page);const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
     await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','C1');const before=await layout(page);
-    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
-    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
+    await activate(page,method,radar);await expectRadar(radar,'inactive');await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
+    await activate(page,method,radar);await expectRadar(radar,'waiting');await expect(page.locator('.distance-overlay')).toHaveCount(0);
     await activate(page,method,cell(page,'A1'));await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');await expect(cell(page,'A1')).not.toContainText('✓');expect(await layout(page)).toEqual(before);
    });
    test(`radar ${method} stays off through undo and reload`,async({page})=>{
@@ -63,12 +76,23 @@ export function registerInkStatusTests(url){
     });
     await page.goto(url);await ready(page);const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus');
     await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','A1');const before=await layout(page);
-    await activate(page,method,radar);await expect(radar).toHaveAttribute('data-distance-state','inactive');
+    await activate(page,method,radar);await expectRadar(radar,'inactive');
     await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
     await page.locator('#undo').click();await expect(page.locator('.distance-overlay')).toHaveCount(0);
-    await page.reload();await ready(page);await expect(radar).toHaveAttribute('data-distance-state','inactive');
+    await page.reload();await ready(page);await expectRadar(radar,'inactive');
    });
   }
+  if(width===820)for(const tool of ['maybe','yes','no','erase','clearAll','route'])test(`radar stays dismissible after selecting ${tool}`,async({page})=>{
+   await page.addInitScript(tool=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:tool==='maybe'?'route':'maybe',distanceMode:true,distanceOrigin:'C1'})),tool);
+   await page.goto(url);await ready(page);
+   const radar=page.locator('#toggleDistances'),status=page.locator('#distanceStatus'),before=await layout(page);
+   await page.locator(`[data-tool="${tool}"]`).click();
+   await expect(page.locator(`[data-tool="${tool}"]`)).toHaveAttribute('aria-pressed','true');
+   await expectRadar(radar,'showing');await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','C1');expect(await layout(page)).toEqual(before);
+   await radar.tap();await expectRadar(radar,'inactive');await expect(page.locator('.distance-overlay')).toHaveCount(0);await expect(status).toBeEmpty();expect(await layout(page)).toEqual(before);
+   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')).marks)).toEqual({});
+  });
+  });
   test('route contrast, equal other hours and active edges follow the selected hour',async({page})=>{
    // Route entry is already covered by the route/undo suites. This case
    // exercises the real hour transition with that same legal route restored.
