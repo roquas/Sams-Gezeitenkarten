@@ -1,4 +1,4 @@
-# Touch/Undo: funktionale Abläufe und DPR-2-Gesten
+# Linux-WebKit: Touch/Undo, DPR-2-Gesten und Materials-Prüfungen
 
 Vorbereitet am 25.10.2026 auf main `b29691099c6f068d5022a6017e8b2b9cf35d7678`
 nach PR #79. Separater Testfix; PR #78 und dessen Merge-Head
@@ -64,7 +64,7 @@ ersetzt.
 Anwendung, Grafiken, Freigaben, Generatoren, Viewports, bestehende Assertions,
 Timeouts, Retry-Einstellungen, `failOnFlakyTests`, Playwright-Konfigurationen
 und reguläre Workflows bleiben unverändert. Die Ergänzung betrifft nur die
-Testdatei und diesen Prüfbericht.
+beiden Browser-Testdateien und diesen Prüfbericht.
 
 ## Bisher ausgeführte Validierung
 
@@ -90,3 +90,41 @@ Software-Rendering und DPR 2. Er erhält deren fachliche Historyfolge vollständ
 und prüft die positive dichteabhängige Gesten-/Undo-Funktion zusätzlich separat.
 Reale Geräteprüfungen und die unveränderten DPR-2-Rendering-/Gestenfälle bleiben
 notwendig. Kein automatischer Merge dieses Testfixes oder von PR #78.
+
+## Zusätzliche Materials-Befunde und Korrektur
+
+Im ersten Testfix-Lauf [40223305598](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/40223305598)
+bestehen die bisherigen Touch-/Undo-Fälle und die neuen DPR-2-Gestenfälle.
+Shard 2 bleibt jedoch wegen **zweier flakiger Materials-Fälle** rot:
+`raster upper materials load…` endet am Gesamtbudget bei der zweiten PNG-Aufnahme;
+`all seven clues stay legible…` endet bei einer der sequenziellen Bounding-Box-Abfragen.
+Beide bestehen erst im regulären Retry; `failOnFlakyTests` weist den Job korrekt
+ab. Die Lesbarkeitsinstabilität ist bereits im main-Vergleich sichtbar.
+
+Die Materials-Korrektur verändert weder Renderdichte noch Grenzwerte:
+
+- Die vollständige native Raster-/Werkzeugprüfung einschließlich der vier
+  Responsive-Breiten bleibt als Funktionsfall erhalten.
+- Die drei bisherigen PNG-Aufnahmen erhalten jeweils einen isolierten Fall,
+  mit identischen Viewports, Formaten, Bildnamen und ursprünglicher Projekt-DPR.
+  Ein gültiger persistierter Zustand setzt nur Stunde und Werkzeug voraus; der
+  echte letzte Zellklick erzeugt weiterhin die abgebildete Markierung und den
+  Fokus. Stunde, Werkzeug, tatsächliche Markierung und DPR werden zusätzlich
+  geprüft. Das entspricht dem sichtbaren Zustand nach der bisherigen nativen
+  Funktionsfolge.
+- Jede der vier bisherigen Lesbarkeitsbreiten durchläuft separat denselben
+  vollständigen Drei-Seiten-Zyklus mit echten Weiter-Klicks. Horizontaler
+  Überlauf, rechte Textkante, Abstand zu den Seitenkontrollen und mindestens
+  16 px Schrift bleiben unverändert geprüft, einschließlich der bestehenden
+  0,5-px-Toleranzen. Sichtbarkeit und Seitennummern werden ausdrücklich geprüft.
+- Text-, Navigations- und Sichtfensterrechteck sowie Schriftgröße werden je
+  Seite gemeinsam aus einem Layoutzustand gelesen. Positive sichtbare Boxen
+  bleiben Pflicht; Null-Rechtecke versteckter Inhalte können nicht bestehen.
+- Die bisherigen JPEG-Kompositionsaufnahmen, Animations-, Exportdekodierungs-
+  und Iconprüfungen bleiben unverändert.
+
+Gezielte neue Materials-Fälle auf Desktop-WebKit DPR 2 jeweils dreimal:
+**24/24 bestanden**, 0 flaky und 0 übersprungen, bei unveränderten CI-Einstellungen.
+Die vollständige Materials-Matrix sowie der neue vollständige CI-Lauf werden im
+Pull Request dokumentiert. Es wurden weiterhin keine Anwendungs-, Bild-,
+Freigabe-, Timeout-, Retry-, Flaky- oder Workflowänderungen vorgenommen.
