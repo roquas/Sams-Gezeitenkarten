@@ -13,7 +13,9 @@ PNG unverändert als Ebenenmaske bei 100 % verwenden. Weiß (Alpha 255) erlaubt 
 
 JSON-Koordinaten sind SVG-Einheiten relativ zum arithmetischen Mittelpunkt der belegten Zentren. Umrechnung: `px = 4*(x + width/2)`, `py = 4*(y + height/2)`. Die komplette Leinwand wird auf diesem Mittelpunkt platziert, nicht anhand sichtbarer Motive oder der Mittelpunktlage ihrer Bounding-Box.
 
-Die generischen Masken gelten für das vollständige Raster. Am äußeren Kartenrand können Teile wegen der bestehenden geometrischen Schutzzone unzulässig sein. Vor Produktion die geplante Position mit `placementContract(asset, anchor)` prüfen; die Entwicklungsgalerie zeigt diese Fläche grün. Der Export prüft tatsächliche Platzierungen, der Renderer beschneidet nichts.
+Die Masken gelten unverändert an jeder geometrisch passenden Kartenposition, einschließlich aller Randfelder und beider Zeilenparitäten. `placementContract(asset, anchor)` prüft die vollständige relative Hexform auf Kartenpassung und liefert dieselbe lokale Fläche wie `imageContract`. Spielschutzfläche und Pergamentrahmen beschränken diese Fläche nicht. Galerie und Export verwenden denselben Vertrag; der Renderer beschneidet nichts.
+
+> Jede geografische Illustration ist an jeder Position verwendbar, an der ihre vollständige relative Hexform ohne Rotation oder Spiegelung auf die Karte passt. Die zulässige lokale Grafikfläche bleibt dabei unverändert.
 
 Reproduktion aus dem Repository-Hauptverzeichnis (Node.js, Python, Pillow):
 

@@ -88,10 +88,10 @@ Die früheren Statusabschnitte oben sind historische Stände. Aktuell existieren
 | --- | --- |
 | Tatsächliches gestrecktes Voronoi-Raster, Flächeninhalt 5576, sechs gemeinsame Kanten, keine positiven Schnittflächen, Vergleich mit nächsten Zentren | `tests/reference/graphic-geometry.test.mjs` |
 | Unveränderte Zentren, korrekte axiale Platzierung in beiden Zeilenparitäten, geometrischer Mittelpunkt, vier feste Bildmaße | `graphic-geometry.test.mjs`, `asset-library.test.mjs` |
-| Konkavitäten und Ring mit ausgelassener Innenzelle; Rand aus vollständigem Raster mit bestehender 8-Einheiten-Schutzzone | `graphic-geometry.test.mjs`, `tests/test_library_images.py` |
+| Konkavitäten und Ring mit ausgelassener Innenzelle; identische vollständige Grafikzellen an allen 25 Positionen, getrennte Spielschutzzone | `graphic-geometry.test.mjs`, `tests/test_library_images.py` |
 | Alpha 1, ganze Pixelquadrate statt Mittelpunkt/Ecken, gültige interne diagonale Kante, ungültige äußere Schräge, eingeschlossene kleine Aussparung und ehemalige Wasserlücke | `tests/test_library_images.py` |
 | Exakte, reproduzierbare Masken für vier Formen, jeder Maskenpixel gegen Vertrag geprüft | `tests/test_library_images.py`, `graphic-geometry.test.mjs` |
-| B1: falsche/veraltete Asset-/Meerhashes, fehlende Freigabefelder, scale/dx/dy/rotation/mirror, Mehrhex über Kartenrand, getrennte Geometrie, beschädigte Asset-/Meer-/Legacydatei, Alpha außerhalb Geometrie/Schutzzone, nicht eindeutiges Rätsel | `tests/test_package.py`; gültiges freigegebenes Testasset als Positivkontrolle; beide CLI-Einstiege; altes ZIP bleibt bei Fehler erhalten |
+| B1: falsche/veraltete Asset-/Meerhashes, fehlende Freigabefelder, scale/dx/dy/rotation/mirror, Mehrhex über Kartenrand, getrennte Geometrie, beschädigte Asset-/Meer-/Legacydatei, Alpha außerhalb lokaler Grafikgeometrie, nicht eindeutiges Rätsel | `tests/test_package.py`; gültiges freigegebenes Testasset als Positivkontrolle; beide CLI-Einstiege; altes ZIP bleibt bei Fehler erhalten |
 | B2: gleiche Hintergrund-ID mit anderem Pfad wird trotz aktueller Hashes abgelehnt | `asset-library.test.mjs`, `tests/test_package.py` |
 | B3: interner Alias, ausbrechender Symlink und symbolische Verzeichniskomponente werden abgelehnt | `asset-library.test.mjs`, `tests/test_package.py` |
 | B5: deterministische gerade/ungerade Zeilen × Rand/Innen je geeigneter Form; unmögliche Kategorie wird ausgelassen | `graphic-geometry.test.mjs`, `tests/browser/asset-library.spec.mjs` |
@@ -115,3 +115,11 @@ DEPLOY_ROOT=/pfad/zum/entpackten/zip npx playwright test --config playwright.dep
 ```
 
 Die Deployment-CI führt zusätzlich die vorhandenen Vergleiche mit den beiden historischen PR-38-Paketen aus. Jobstatus und Lauf-URL müssen für den tatsächlich gepushten Commit geprüft werden.
+
+## Positionsunabhängiger Grafikvertrag (24.10.2026)
+
+- `graphic-geometry.test.mjs`: alle 847 geometrisch passenden Katalogtranslationen, unveränderte lokale Polygone/Leinwand und Orientierung; Formen außerhalb der Karte bleiben ungültig.
+- `asset-catalog-adapter.test.mjs`: echte Alpha-1-Pixel nahe der oberen Spitze an allen passenden Einfeld-, horizontalen Zweier-, diagonalen Zweier- und asymmetrischen Dreierpositionen. A1 und C3 ergeben beide `complete`; alte Prüfversionen werden abgewiesen.
+- `test_library_images.py`: volle Randspitze zulässig; vollständige Pixelquadrate, lokale Überstände, Format, Maße, Alpha, EXIF, Konkavitäten und Löcher bleiben streng geprüft.
+- `test_frame_footprint.py` und `check-chart-assets.py`: positive Flächenschnitte vollständiger Rahmenpixelquadrate mit allen vollständigen Grafikzellen; dünne Überstände werden erkannt, reine Randberührung bleibt erlaubt. Beide produktiven Rahmen werden zusätzlich zu den bisherigen Transparenz-/Pergamentprüfungen geprüft.
+- Historische Stichproben und Reviewberichte bleiben erhalten; aktueller Vorher-/Nachhervergleich: [Prüfnachweis PR A](verification/graphic-contract-A.md).

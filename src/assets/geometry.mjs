@@ -1,7 +1,5 @@
 import {axial} from '../engine/hex.mjs';
 import {HEXES} from '../ui/chart-geometry.mjs';
-import {PROTECTION} from '../ui/chart-asset-contract.mjs';
-import {intersectConvex,polygonArea,triangulate} from './polygons.mjs';
 
 export const PIXELS_PER_UNIT=4;
 export const neighbors=[[1,0],[0,1],[-1,1],[-1,0],[0,-1],[1,-1]];
@@ -35,13 +33,10 @@ export function graphicOwner([x,y]){
  const owner=candidates.filter(c=>Math.abs(c.d-min)<1e-8).sort((a,b)=>a.q-b.q||a.r-b.r)[0];
  return [owner.q,owner.r];
 }
-// Board = union of its 25 infinite-lattice cells, intersected with the existing
-// 8-unit gameplay protection envelope. Derived only from grid geometry; never
-// from frame alpha or current artwork. No renderer clipping is performed.
-export const GRAPHIC_SAFETY=PROTECTION[0];
-const safeTriangles=triangulate(GRAPHIC_SAFETY);
+// Every board position owns the same complete infinite-lattice graphic cell.
+// Gameplay protection and frame transparency are separate display contracts.
 export function boardGraphicCell(center){
- return safeTriangles.map(t=>intersectConvex(graphicCell(center),t)).filter(p=>polygonArea(p)>1e-9);
+ return [graphicCell(center)];
 }
 export const GRAPHIC_MAP_POLYGONS=HEXES.flatMap(h=>boardGraphicCell(h.center));
 export function imageContract(cells){
@@ -53,12 +48,12 @@ export function imageContract(cells){
  const [width,height]=[0,1].map(i=>2*Math.ceil(Math.max(...points.map(p=>Math.abs(p[i])))+4));
  return {width,height,pixelWidth:width*PIXELS_PER_UNIT,pixelHeight:height*PIXELS_PER_UNIT,polygons};
 }
-// Same canvas, with the permitted footprint at a specific board position.
-// Files destined for the edge must already fit it; validation rejects overflow.
+// Translation changes neither the canvas nor its local permitted footprint.
+// The only position constraint is that every occupied cell is on the board.
 export function placementContract(asset,anchor){
  const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
- const rect=assetRectangle(asset,anchor,byId),cx=rect.x+rect.width/2,cy=rect.y+rect.height/2;
- return {...imageContract(asset.geometry.cells),polygons:rect.cells.flatMap(id=>boardGraphicCell(byId[id].center)).map(p=>p.map(([x,y])=>[x-cx,y-cy]))};
+ assetRectangle(asset,anchor,byId);
+ return imageContract(asset.geometry.cells);
 }
 export function placedCells(asset,anchor){
  const [q,r]=axial(anchor);

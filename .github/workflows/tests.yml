@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
       - name: Install asset validation dependencies
         run: python3 -m pip install --user Pillow numpy
       - name: Verify alpha artifact normalizer safety
@@ -32,8 +34,6 @@ jobs:
       - name: Validate sea and both parchment frames
         run: |
           python3 scripts/check-chart-assets.py
-      - uses: actions/setup-node@v4
-        with: {node-version: '22'}
       - name: Validate asset catalog, approval hashes and local image footprints
         run: npm run test:assets
   browser:

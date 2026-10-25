@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Read-only technical acceptance check. Exit 2 = files missing, 1 = invalid.
-Requires Pillow and numpy; artistic approval remains a separate manual step.
+Requires Node.js, Pillow and numpy; artistic approval remains a separate manual step.
 """
-import argparse,json,sys
+import argparse,json,subprocess,sys
 from pathlib import Path
 import numpy as np
 from PIL import Image
+from lib.frame_footprint import graphic_overlap_mask
 p=argparse.ArgumentParser();p.add_argument('--root',default='.');p.add_argument('--contract',default='docs/seekarte-template/contract.json');a=p.parse_args()
 root=Path(a.root);spec=json.loads(Path(a.contract).read_text());report={'status':'passed','files':{},'manual_review_required':['neutral object-free sea','no cracks or illustrations in quiet label zones','text contrast in actual SVG','artistic approval']}
 files=spec['format']['files']
@@ -13,6 +14,12 @@ missing=[files[k] for k in ['sea','frame','quietFrame'] if not (root/files[k]).i
 if missing:
  print(json.dumps({'status':'pending','missing':missing},indent=2));sys.exit(2)
 errors=[]
+# Read the current shared geometry, independently of the selected artwork root
+# and the frame's gameplay protection/transparent-opening guide.
+source="import {GRAPHIC_MAP_POLYGONS} from './src/assets/geometry.mjs'; console.log(JSON.stringify(GRAPHIC_MAP_POLYGONS));"
+polygons=json.loads(subprocess.check_output(['node','--input-type=module','-e',source],cwd=Path(__file__).resolve().parent.parent))
+graphic=graphic_overlap_mask(polygons,spec['format']['svgBounds'],
+ (spec['format']['pixels']['width'],spec['format']['pixels']['height']),spec['format']['pixels']['perSvgUnit'])
 for kind in ['sea','frame','quietFrame']:
  file=root/files[kind]
  with Image.open(file) as im:
@@ -51,14 +58,19 @@ for kind in ['sea','frame','quietFrame']:
    if not n:return
    rows,cols=np.where(bad)
    ix=int(rows[0]);iy=int(cols[0])
+   region=opening if name=='mandatory_clear' else graphic if name=='geographic_graphic_cells' else perimeter if name=='perimeter' else np.ones_like(alpha,dtype=bool)
    info['alpha_diagnostics'][name]={
-    'affected_pixels':n, 'fraction_of_region':round(n/max(int(np.count_nonzero(opening if name=='mandatory_clear' else perimeter if name=='perimeter' else np.ones_like(alpha,dtype=bool))),1),7),
+    'affected_pixels':n, 'fraction_of_region':round(n/max(int(np.count_nonzero(region)),1),7),
     'bbox_pixels':[int(cols.min()),int(rows.min()),int(cols.max()),int(rows.max())],
     'first_pixel':[iy,ix,int(alpha[ix,iy])],
     'alpha_min':int(alpha[bad].min()),'alpha_max':int(alpha[bad].max())
    }
   examine('mandatory_clear',opening&(alpha!=0))
   if 'mandatory_clear' in info['alpha_diagnostics']:errors.append(f'{kind}: nonzero alpha in mandatory clear opening')
+  info['geographic_graphic_cells']={'tested_pixel_squares':int(np.count_nonzero(graphic)),
+   'overlapping_alpha_pixels':int(np.count_nonzero(graphic&(alpha!=0)))}
+  examine('geographic_graphic_cells',graphic&(alpha!=0))
+  if 'geographic_graphic_cells' in info['alpha_diagnostics']:errors.append(f'{kind}: nonzero alpha overlaps complete geographic graphic cells')
   perimeter=np.zeros_like(alpha,dtype=bool)
   perimeter[[0,-1],:]=True
   perimeter[:,[0,-1]]=True

@@ -46,9 +46,13 @@ Fläche: 82*68 = 5576 SVG-Quadrateinheiten
 
 Die Zellen sind wegen der tatsächlichen Projektion **keine regelmäßigen Hexagone**. Jeder der sechs logischen Kantennachbarn teilt eine ganze Kante, auch bei wechselnder Zeilenparität. Ihre Innenflächen sind disjunkt. Mehrhexflächen sind Vereinigungen dieser Zellen; interne Kanten sind keine Pixelbarrieren. Konkavitäten und ausgelassene Zellen bleiben erhalten. Ein konvexer Rumpf oder ein gemeinsames Rechteck wäre falsch.
 
-Der äußere Kartenbereich ist die Vereinigung der 25 Zellen aus dem **vollständigen Raster**, geschnitten mit der bereits vorhandenen geometrischen 8-Einheiten-Spielschutzzone `PROTECTION[0]`. Diese stammt aus `ROW_ENVELOPE`, also der festen Spielgeometrie, unabhängig von Pergamentalpha und Illustrationen. Dadurch werden Voronoi-Zellen am Rand nicht bis ins Unendliche erweitert und bestehende Sicherheitsabstände nicht aufgehoben. Beispielsweise läge die volle Spitze von A1 bei `y≈9,64`, die bestehende Schutzzone beginnt dort aber bei `y=12`. Diese Spitze ist an A1 als Bildinhalt unzulässig.
+Der geografische Kartenbereich ist ausschließlich die Vereinigung der 25 **vollständigen lokalen Voronoi-Grafikzellen** des festen Rasters. `boardGraphicCell` liefert für jedes Hex dieselbe vollständige Zelle. Es gibt keinen Schnitt mit `PROTECTION`, Spielschutzflächen, Pergament oder Bildalpha. Beispielsweise bleibt die volle Spitze von A1 bei `y≈9,64` zulässig, obwohl die separate Spielschutzzone dort bei `y=12` beginnt.
 
-`boardGraphicCell` zerlegt die geschnittenen Randzellen in konvexe Fragmente mit disjunkten Innenflächen. `placementContract` liefert sie im lokalen Bildkoordinatensystem. Der Export prüft alle tatsächlich eingetragenen Platzierungen zusätzlich gegen diese Randgeometrie. Ein innen gültiges Bild kann am Kartenrand ungültig sein. Dafür muss die Illustration von Anfang an passend komponiert oder eine eigene Assetvariante erstellt werden; der Renderer beschneidet oder verschiebt nichts. Die Entwicklungsgalerie zeigt die tatsächlich erlaubte Fläche grün an.
+> Jede geografische Illustration ist an jeder Position verwendbar, an der ihre vollständige relative Hexform ohne Rotation oder Spiegelung auf die Karte passt. Die zulässige lokale Grafikfläche bleibt dabei unverändert.
+
+`placementContract` prüft weiterhin, dass alle belegten Hexfelder auf der 5×5-Karte liegen, und liefert exakt den lokalen `imageContract`. Die Entwicklungsgalerie und die Exportprüfung verwenden diese gemeinsame Fläche. Kein Renderer beschneidet oder verschiebt das Bild. Leinwand, Bildanker und arithmetische Zentrierung bleiben unverändert.
+
+Die 8-/10-/14-Einheiten-Zonen aus `chart-asset-contract.mjs` dienen weiterhin dem Schutz von Spielmarkierungen und der Rahmengestaltung. Unabhängig davon verlangt `scripts/check-chart-assets.py` für beide Rahmen Alpha 0 für jedes vollständige Quellpixelquadrat mit positiver Flächenüberschneidung mit einer der 25 vollständigen Grafikzellen. Dies sichert universelle Rahmenverträglichkeit ohne Ausschluss einzelner Assetpositionen. Künstlerische Freigaben und sonstige Rahmenprüfungen bleiben erforderlich.
 
 Der Bildmittelpunkt liegt auf dem arithmetischen Mittel **aller belegten Hexzentren**. Der feste symmetrische Bildrahmen entsteht aus den Grafikzellen um diesen Mittelpunkt: je Achse `2*ceil(max(abs(Koordinate))+4)` SVG-Einheiten, also mindestens vier Einheiten transparenter Dateirand. Eine Bounding-Box bestimmt nur die Bilddatei, niemals die erlaubte Grafikfläche.
 
@@ -66,7 +70,7 @@ Die asymmetrische Dreierform ist eine geknickte Kette `[[0,0],[1,0],[1,1]]` mit 
 
 ### Reproduzierbare Zeichenschablonen
 
-[docs/asset-templates](asset-templates/README.md) enthält für die ersten vier Formen jeweils eine transparente PNG-Maske mit den festen Bildmaßen und einen JSON-Vertrag mit den exakten Vektorpolygonen. Weiß/Alpha 255 bedeutet: Dieses vollständige Pixel darf bemalt werden. Alpha 0 muss transparent bleiben. Der Generator `python3 scripts/build-asset-templates.py` verwendet den Browservertrag und denselben Flächenprüfer wie der Export. Die Masken sind technische Hilfsmittel, keine Illustrationen. Randplatzierungen müssen zusätzlich den positionsabhängigen Vertrag erfüllen.
+[docs/asset-templates](asset-templates/README.md) enthält für die ersten vier Formen jeweils eine transparente PNG-Maske mit den festen Bildmaßen und einen JSON-Vertrag mit den exakten Vektorpolygonen. Weiß/Alpha 255 bedeutet: Dieses vollständige Pixel darf bemalt werden. Alpha 0 muss transparent bleiben. Der Generator `python3 scripts/build-asset-templates.py` verwendet den Browservertrag und denselben Flächenprüfer wie der Export. Die Masken sind technische Hilfsmittel, keine Illustrationen. Die vollständige lokale Maske gilt unverändert auch für Randplatzierungen; nur die belegten Hexfelder müssen auf die Karte passen.
 
 Andere Formen erhalten ihre Maße ohne Architekturänderung durch:
 
@@ -196,7 +200,7 @@ Die Galerie zeigt neben dem Motivvergleich drei wählbare Verwendungszustände: 
 
 Das sind **fachliche Verwendungsweisen, keine drei neuen technischen Assettypen**. Bestehende `type`-Werte und feste Geometrien bleiben maßgeblich. Insbesondere dürfen bereits vorhandene `accent`-Illustrationen befahrbare Orte sein; ihre Spielbedeutung folgt der Rolle und `passable`, nicht Dateiname oder Typbezeichnung.
 
-Pro Karte sollen später **höchstens 0–3 freie Kartenmotive** sparsam eingesetzt werden. Sie dürfen dezentral beinahe zwischen Hexfeldern erscheinen, aber kein Alphapixel darf die eigene zulässige Grafik-/Sicherheitsfläche verlassen. Das wird beim Authoring geprüft; der Renderer verschiebt, beschneidet, dreht oder skaliert kein einzelnes Motiv zur Laufzeit. Es wird jetzt weder Zufallsplatzierung noch Generatorlogik eingeführt. Namen im Review sind Besprechungstitel; freie Motive werden nie zu logischen Orten.
+Pro Karte sollen später **höchstens 0–3 freie Kartenmotive** sparsam eingesetzt werden. Sie dürfen dezentral beinahe zwischen Hexfeldern erscheinen, aber kein Alphapixel darf die eigene zulässige lokale Grafikfläche verlassen. Das wird beim Authoring geprüft; der Renderer verschiebt, beschneidet, dreht oder skaliert kein einzelnes Motiv zur Laufzeit. Es wird jetzt weder Zufallsplatzierung noch Generatorlogik eingeführt. Namen im Review sind Besprechungstitel; freie Motive werden nie zu logischen Orten.
 
 Befahrbare Orte können logisch benannt werden, erhalten hier aber **keine neuen permanenten Ortsbeschriftungen oder Ringe**. Das Konzept kontextueller Ortslabels aus Issue #68 bleibt unverändert. Die bisherige Regel für lesbare Pergamentnamen gilt weiter dort, wo der bestehende Renderer bereits Ortsnamen zeigt.
 
