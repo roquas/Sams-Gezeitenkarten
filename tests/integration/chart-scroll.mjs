@@ -1,11 +1,28 @@
 import {test,expect} from '@playwright/test';
 import {dragTouch} from './touch-gesture.mjs';
+import {selectionUse} from './webkit-startup.mjs';
 
 const cell=(page,id)=>page.locator(`#map [data-id="${id}"]`);
 const state=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));
 async function center(page,id){
  await cell(page,id).scrollIntoViewIfNeeded();
  const b=await cell(page,id).boundingBox();return {x:b.x+b.width/2,y:b.y+b.height/2};
+}
+async function horizontalCenters(page,ids){
+ // Adjacent cells on one row are visible after the first scroll. Measure both
+ // in one layout snapshot: separate scroll/boundingBox calls can incur
+ // extra Linux-WebKit compositor waits at DPR 2. The density guards
+ // retain the project density, visible art and both actual hit targets.
+ await cell(page,ids[0]).scrollIntoViewIfNeeded();
+ const snapshot=await page.evaluate(ids=>({ratio:devicePixelRatio,art:document.getElementById('showChart').checked,points:ids.map(id=>{
+  const box=document.querySelector(`#map [data-id="${id}"]`).getBoundingClientRect();
+  const x=box.x+box.width/2,y=box.y+box.height/2;
+  return {x,y,hit:document.elementFromPoint(x,y)?.closest('[data-id]')?.dataset.id};
+ })}),ids);
+ expect(snapshot.ratio,'gesture retains configured pixel density').toBe(test.info().project.use.deviceScaleFactor??1);
+ expect(snapshot.art,'gesture retains visible chart artwork').toBe(true);
+ for(let i=0;i<ids.length;i++)expect(snapshot.points[i].hit,'horizontal gesture hits '+ids[i]).toBe(ids[i]);
+ return snapshot.points.map(({x,y})=>({x,y}));
 }
 const top=page=>page.evaluate(async()=>{
  const target=innerWidth<=880?document.getElementById('gameSurface'):window;
@@ -101,6 +118,11 @@ export function registerChartScrollTests(url){
    await cell(page,'B2').tap();await expect(page.locator('.distance-overlay')).toHaveAttribute('data-distance-origin','B2');
    expect((await state(page)).marks).toEqual({});await radar.tap();await expect(page.locator('.distance-overlay')).toHaveCount(0);
   });
+  // Keep the complete input/history sequence in the existing CSS-pixel
+  // functional profile. Short positive gesture/undo cases below independently
+  // retain the project's native density, including desktop WebKit DPR 2.
+  test.describe(()=>{
+  test.use(selectionUse);
   test('native tap and horizontal touch drawing preserve one-step undo',async({page,browserName})=>{
    await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
    await cell(page,'A1').tap();expect((await state(page)).marks).toEqual({'1:A1':'maybe'});
@@ -109,6 +131,7 @@ export function registerChartScrollTests(url){
    await dragTouch(page,{browserName,from:first,to:second,pointer:true});
    expect((await state(page)).marks).toEqual({'1:A1':'maybe','1:B1':'maybe'});
    await page.locator('#undo').click();expect((await state(page)).marks).toEqual({});
+  });
   });
   test('cancelled, uncaptured and diagonal touches never make accidental notes',async({page})=>{
    await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
@@ -136,6 +159,8 @@ export function registerChartScrollTests(url){
    await cell(page,'A1').tap();expect((await state(page)).marks).toEqual({'1:A1':'maybe'});
    await page.locator('#undo').click();expect((await state(page)).marks).toEqual({});
   });
+  test.describe(()=>{
+  test.use(selectionUse);
   test('touch erasing is one undoable gesture',async({page,browserName})=>{
    await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
    await cell(page,'A1').tap();await cell(page,'B1').tap();
@@ -143,6 +168,18 @@ export function registerChartScrollTests(url){
    const from=await center(page,'A1'),to=await center(page,'B1');
    await dragTouch(page,{browserName,from,to,pointer:true});expect((await state(page)).marks).toEqual({});
    await page.locator('#undo').click();expect((await state(page)).marks).toEqual({'1:A1':'maybe','1:B1':'maybe'});
+  });
+  });
+  for(const erase of [false,true])test(`single touch ${erase?'erasure':'drawing'} and native undo retain project pixel density`,async({page,browserName})=>{
+   const marked={'1:A1':'maybe','1:B1':'maybe'};
+   if(erase)await page.addInitScript(marks=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'erase',marks})),marked);
+   await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
+   expect((await state(page)).marks).toEqual(erase?marked:{});
+   const [from,to]=await horizontalCenters(page,['A1','B1']);
+   await dragTouch(page,{browserName,from,to,pointer:true});
+   expect((await state(page)).marks).toEqual(erase?{}:marked);
+   await page.locator('#undo').click();
+   expect((await state(page)).marks).toEqual(erase?marked:{});
   });
  });
 }
