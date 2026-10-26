@@ -1,0 +1,1867 @@
+{
+  "validationSchemaVersion": 1,
+  "catalogId": "gk-catalog-content-v1-sha256-3f406882907a76f99b3c6f816dc664f28f55d1ba42f01baa5fc637dc0b742bd1",
+  "versions": {
+    "driver": "catalog-release-checks-1",
+    "librarySchema": 2,
+    "assetSemantics": 1,
+    "geometry": "even-row-offset-pointy-v1",
+    "pixelChecker": "asset-placement-pixels-2",
+    "frameContract": 4
+  },
+  "implementation": {
+    "sourceCommit": "ccab5f41dae380525f7535de4470848a3ab4d214",
+    "files": [
+      {
+        "path": "scripts/audit-asset-consolidation.mjs",
+        "sha256": "254c33f7f2ed74a84000138174531500c0469f84e9c310a6826cdb3c3893e99f"
+      },
+      {
+        "path": "scripts/benchmark-asset-assignment.mjs",
+        "sha256": "0432688ee9438d3ff44833a1972283ef7aa4dbe9f12fe0685aa14024b2c72af8"
+      },
+      {
+        "path": "scripts/build-asset-fixtures.py",
+        "sha256": "6e392700e7c760755e45ae96b3fc532a4bfa1c7134c3818570b8fddfd9aa4603"
+      },
+      {
+        "path": "scripts/build-asset-inventory.mjs",
+        "sha256": "448144e3aec264fe32000e7888fa59307d2d64f74546fd05e7fcc95c942841b3"
+      },
+      {
+        "path": "scripts/build-asset-templates.py",
+        "sha256": "b854f9179056a8aa79a4ab6993864a242f9d1e2d9856c18403788adc642a2619"
+      },
+      {
+        "path": "scripts/build-chart-template.mjs",
+        "sha256": "74c38839d40089c061383375393897d66811e78cc7083e4d84640a670ed9973f"
+      },
+      {
+        "path": "scripts/capture-flavor-prototypes.mjs",
+        "sha256": "3e9d65bbbc14b1283203b622c6298b1cd31c9ae49296e3f82e86dc0b6e56cf8e"
+      },
+      {
+        "path": "scripts/capture-multihex-round2.mjs",
+        "sha256": "9378b0af8277575ec733868d1cc405e06b6243c0e0ecb187ac12a4dc36937058"
+      },
+      {
+        "path": "scripts/capture-parchment-frame.mjs",
+        "sha256": "228500890ebdac8b09d517cae4ce08cdd6d32e6aa81c4fe5b79db4960680a6c2"
+      },
+      {
+        "path": "scripts/capture-tesoro.mjs",
+        "sha256": "0ec4a74288dfd88178fc463718103eebedc04cef97dd34bea37e3db9fd8b558b"
+      },
+      {
+        "path": "scripts/catalog-release.mjs",
+        "sha256": "459d7b8eb0fb1c9eae3c585426607470d9e0a2596ae1fab0d667de7914ca4eb6"
+      },
+      {
+        "path": "scripts/chart-template-browser.mjs",
+        "sha256": "2b9a78b0fdd9d5e182ccac335c7a28d0bc32ecd540016c6bc1f46e8afbb07254"
+      },
+      {
+        "path": "scripts/check-catalog-release-images.py",
+        "sha256": "1189724b11c628a43c4086d366c0024a066905db6911f394c97eb00ee406edfa"
+      },
+      {
+        "path": "scripts/check-catalog-release.mjs",
+        "sha256": "16c05924c1a6434401d7b9d771d3a85b1dc83f75fcfd9ea24459f07c47b57e0b"
+      },
+      {
+        "path": "scripts/check-chart-assets.py",
+        "sha256": "6aa755b0eb36413f174ff2585c8ea21c4df60d3716918c2e27a32abda3e6b93e"
+      },
+      {
+        "path": "scripts/check-library-images.py",
+        "sha256": "132a56fb4fbf9b022cdbaea9c4c28c1bbfd832aa4622ccd1f43047b5d5745eb9"
+      },
+      {
+        "path": "scripts/check-puzzle-services.mjs",
+        "sha256": "c9dcfdf67fca527c95b33b26ceee199aa2af9808edf921e9f4a72bfe87d8ed2c"
+      },
+      {
+        "path": "scripts/dev-server.py",
+        "sha256": "727c11a0b33dbb82e6025aa9ec403099ccfb66f2c989b9fbff124d432e065d3e"
+      },
+      {
+        "path": "scripts/diagnose-live.mjs",
+        "sha256": "34126a140c9e0573bb544a8583b749066c0cdc38adba5b81b23dfb00cece9309"
+      },
+      {
+        "path": "scripts/diagnose-radar-webkit.mjs",
+        "sha256": "344e79e316aa81d5bac6c63aece8ab8709628a5dd904e0fa1874a044e4a9b2d2"
+      },
+      {
+        "path": "scripts/diagnose-webkit-actionability.mjs",
+        "sha256": "809757fbea2c7b630675e7cb4392309f22f71f9b9597ff8ad0a4e7d436a5fb66"
+      },
+      {
+        "path": "scripts/export-claw-v2.py",
+        "sha256": "c7e7f26fa9f14e290a590b0145bfb7dd3a46726d6e8c69e1609370fef8d06ee0"
+      },
+      {
+        "path": "scripts/export-flavor-prototypes.py",
+        "sha256": "9e4ae9eb110c421255b86fbea1c94648cbe3e3e5fc56fff5d612109d994b522a"
+      },
+      {
+        "path": "scripts/export-multihex-prototypes.py",
+        "sha256": "e2f060327911c9357b524db62a4a7060972bb55668a7397d189f9adff26d7f83"
+      },
+      {
+        "path": "scripts/export-multihex-round2.py",
+        "sha256": "8bf62acc11a1911370ee6bd7125c1e13d38b5c7c2235423e7b7ed329ae74518c"
+      },
+      {
+        "path": "scripts/export-tesoro.py",
+        "sha256": "65642acf1ee938f09f1d9266c6967e39a7b49950452d37a8fb3663f59361341e"
+      },
+      {
+        "path": "scripts/export-water-finale.py",
+        "sha256": "4799482212458f378d2678a9c64f9caff30f34cc8f87d06d9f86b3d0db256fab"
+      },
+      {
+        "path": "scripts/lib/archive-projection.mjs",
+        "sha256": "8968b5afcc6f5ae2523c1a2c73466e4b7aaa401211e58491176204725270c865"
+      },
+      {
+        "path": "scripts/lib/asset-catalog.mjs",
+        "sha256": "46cf50f50f99188ddf3f0922ac731c3e9243c33b6d11eabe59175998c30d7962"
+      },
+      {
+        "path": "scripts/lib/catalog-release-format.mjs",
+        "sha256": "3197f5d86a6c693b764a5beb373ca41295e65fdfe03252472f50811bc90b8e40"
+      },
+      {
+        "path": "scripts/lib/catalog-release-v1.mjs",
+        "sha256": "90ad31f3573bfc26bc8cbe3db39464f26e0af455adc64fa675120accf5a88891"
+      },
+      {
+        "path": "scripts/lib/catalog-release.mjs",
+        "sha256": "fe4dc55705cdb57f890cb01043b82947718379a8469aa4e3bb2f7e00695c15b8"
+      },
+      {
+        "path": "scripts/lib/content-hash.mjs",
+        "sha256": "020e233bb0bafe0e096fc4b7b9430b3a6c81a891bbfd9c96c900b212846bdbb4"
+      },
+      {
+        "path": "scripts/lib/content-package.mjs",
+        "sha256": "ed732bfccb7f5926384ec84122c7ad2dcaea4eb80bc1e88c2d60d832f1ab70f6"
+      },
+      {
+        "path": "scripts/lib/frame_footprint.py",
+        "sha256": "bb03831d473aa1d493f536f9958d566b4793f19ff59172c1c8ac37678d6417cc"
+      },
+      {
+        "path": "scripts/lib/package-path.mjs",
+        "sha256": "dd631de1ab67e92c9057f5470905ce65edf896289d28e915a1dfaa423153c28b"
+      },
+      {
+        "path": "scripts/lib/publication-archive.mjs",
+        "sha256": "859d4ad94db2bf59d8496168c1c15779b1507ea9fd857ba8ce30d654160f6f03"
+      },
+      {
+        "path": "scripts/measure-chart-template.mjs",
+        "sha256": "8d2a752e7a436e796fa97d4c2fc19da7e5a6acc99d89c7811cf2975040e8b007"
+      },
+      {
+        "path": "scripts/normalize-chart-alpha.py",
+        "sha256": "a2241bca8797454eea652fd2b75ea6e133843b9acdbb24f94d7765568929c2df"
+      },
+      {
+        "path": "scripts/package.py",
+        "sha256": "a3e6ca3b24379189c88a0c7abc7079d2cf154309655cde2bd9108fc002b000ae"
+      },
+      {
+        "path": "scripts/sample-catalog-maps.mjs",
+        "sha256": "1192a0310fa77cacece443e7addbc0b3e6db4ba98540414eb0359272fe24a205"
+      },
+      {
+        "path": "scripts/sample-maps.mjs",
+        "sha256": "1ef1a46113f155bcbafeef2e8ee26fb294ef4d6c30e80bfdd1367abfdd71cc7e"
+      },
+      {
+        "path": "scripts/validate-archive.mjs",
+        "sha256": "30c266e6ffc5f5c15fae99ea6d1456677a2e0f4a993e77d7b7dc540206780a4e"
+      },
+      {
+        "path": "scripts/validate-assets.mjs",
+        "sha256": "87204d8df90398d95faf57710990cbe380ceb53c45f7ab41ba22b95acc8c5b0f"
+      },
+      {
+        "path": "scripts/validate-puzzles.mjs",
+        "sha256": "9a745bca16ca795b3cd01bbb2db1a0701fdaa68c0de1a48f63104013b1223a8a"
+      },
+      {
+        "path": "scripts/verify-asset-positions.py",
+        "sha256": "2cd6bfee671631cd39eaa9c557bdfcc4969047dbf0d3087833b2f06db2705049"
+      },
+      {
+        "path": "src/assets/assignment.mjs",
+        "sha256": "298024a89ce8dea2ee829b94a37c5c0925192694d3129859b1815c405f828b40"
+      },
+      {
+        "path": "src/assets/geometry.mjs",
+        "sha256": "a6e611321a9df5039c5e6c8dde74b65a0276ccbc0fcd4e54a84623364021106b"
+      },
+      {
+        "path": "src/assets/library.mjs",
+        "sha256": "623f0d7454b04c5a83c9fa9b1919f82add6ac7a073a7fd49cd3ebe2b49d7b2fd"
+      },
+      {
+        "path": "src/assets/polygons.mjs",
+        "sha256": "d63b75d6b551ddca704e6caddbbce05e6fbafc5c2a6d60705dc94638ca16590d"
+      },
+      {
+        "path": "src/engine/hex.mjs",
+        "sha256": "7854533abe9609afcd10b81949e7652359abaedb632758c0812efe7d3e7ed268"
+      },
+      {
+        "path": "src/engine/puzzle.mjs",
+        "sha256": "90c8750e1da208d9cce256a05afa3b9ae819fe56c29822e49b4bdd944a8fa10d"
+      },
+      {
+        "path": "src/engine/solver.mjs",
+        "sha256": "674b79e93b11e6a8f9355a844900ded0a60a4b7071baf055b145a0d8282b452d"
+      },
+      {
+        "path": "src/engine/validate.mjs",
+        "sha256": "88a3884b69e4f35c19ef11517b012c12ea01fa1a68d6673972bdb2d4c1cbb735"
+      },
+      {
+        "path": "src/generation/catalog-profile.mjs",
+        "sha256": "8975a7b29338d3b62fc845e6cb2bd70cc31dd655cfc0d9eae4c163f6c85ff799"
+      },
+      {
+        "path": "src/generation/config.mjs",
+        "sha256": "766c945d832dabb7fdf3be118064424abad6b54e8e55da31ed83d9708234bf69"
+      },
+      {
+        "path": "src/generation/map-analysis.mjs",
+        "sha256": "5f2c3e562949b9bccc39e29216211f5723bc0eac4097d5580fbdb431f285490e"
+      },
+      {
+        "path": "src/generation/maps.mjs",
+        "sha256": "d0c702843443d59e20f4362d0a18cf7c4d0beba82f046ad921570fb2fd5d1fb4"
+      },
+      {
+        "path": "src/generation/random.mjs",
+        "sha256": "caabad8572cb7b89d624be05a8d2123d6e56e0314ab489e2b317245028329f61"
+      },
+      {
+        "path": "src/persistence/storage.mjs",
+        "sha256": "05035dcb42cbf2396d567c95c976e640fe724e8d96d6a73430c70939290f7188"
+      },
+      {
+        "path": "src/puzzles/analysis.mjs",
+        "sha256": "183df8abbfcb646d5a5ac1c2fccb874359c3b048bbf3352e0e4c707405d19227"
+      },
+      {
+        "path": "src/puzzles/json-schema.mjs",
+        "sha256": "c7b53606c8dd18a650f1cf69d42d632b658699e82aa6360b5ec3d5802a2dcff7"
+      },
+      {
+        "path": "src/puzzles/loader.mjs",
+        "sha256": "f8cc6805f68b4a5fd7ec044a0dd3b47b673ed6553b2f6c7b154b93e434e4ad2a"
+      },
+      {
+        "path": "src/puzzles/public.mjs",
+        "sha256": "9968a81ede7f34487235280fae1484043dde0706c2e28400dc7128ddd970a564"
+      },
+      {
+        "path": "src/puzzles/schema.mjs",
+        "sha256": "13a54b5b0d70299cad7c2f4cfa8022adcb145a66ac56adecf30f23c81f951afb"
+      },
+      {
+        "path": "src/puzzles/validate.mjs",
+        "sha256": "2485e97383cfe437f1c96174e3d61979af103cd27de53493a3449f42c2ecc902"
+      },
+      {
+        "path": "src/state/distance-overlay.mjs",
+        "sha256": "0693f88d5826c189bc372d8bf366c59b996aef55e3733404daf9de10d9577754"
+      },
+      {
+        "path": "src/state/game-state.mjs",
+        "sha256": "2ec5149406b474a58876f4421579373c186ffad759e7b91e232f1dd9c4d05dc5"
+      },
+      {
+        "path": "src/ui/asset-layer.mjs",
+        "sha256": "36838748f0ff09afa53c04317ede6048e7a93cc73a3254e2d153faad83061255"
+      },
+      {
+        "path": "src/ui/asset-resources.mjs",
+        "sha256": "9687f23332af315a5fcd187a7d9a216010be16b34473a4e1b4b87616a21ef0cf"
+      },
+      {
+        "path": "src/ui/bordbook.mjs",
+        "sha256": "e7e941af5416abd1acffd1e7683c928039deb7c514229022c76c7c0741905cad"
+      },
+      {
+        "path": "src/ui/chart-art.mjs",
+        "sha256": "9c153b06084fd5d206be986e16b5e177bc3b4f47c5e3fd6131721188947a0b2f"
+      },
+      {
+        "path": "src/ui/chart-asset-contract.mjs",
+        "sha256": "53ed79cadea316d3d0b2e7d55d3586e5de36c8bdf73b830c93c49866b414b36f"
+      },
+      {
+        "path": "src/ui/chart-geometry.mjs",
+        "sha256": "19b51c3324874e88108a168e8fda84cdb107591970958f3679ce59d47e097d13"
+      },
+      {
+        "path": "src/ui/chart-gestures.mjs",
+        "sha256": "1f49787157b16dc971581f8f69a9c313264eb95f9bdbb60ff89db1f9700f0aae"
+      },
+      {
+        "path": "src/ui/coordinates.mjs",
+        "sha256": "39bc6b8dfcd6e82257e941ff6f0ab20e3edbe686dc448cd46db7979ff6beb00d"
+      },
+      {
+        "path": "src/ui/game.mjs",
+        "sha256": "def418f9d01634a776f54fb714d34e85b243e8accba29c13b8bb65cd5d967888"
+      },
+      {
+        "path": "src/ui/map.mjs",
+        "sha256": "3fa24a0045df9a014385f9531507cab3aea3f9b51ddb66987da3c381f7a6a0f9"
+      },
+      {
+        "path": "src/ui/material-icons.mjs",
+        "sha256": "790766d552464b64673e4d0b1fe969a4b968f34a514cf16a9c2a0546389202cc"
+      },
+      {
+        "path": "src/ui/mobile-views.mjs",
+        "sha256": "b6807afc380f461ee805722107384ed8d3fad823018b944bec2bd86d76af441d"
+      },
+      {
+        "path": "src/ui/parchment-frame.mjs",
+        "sha256": "a6cfd84e70c46fe9613099411765b3cc2246e049faa7a9d403eddbcdafd6d28b"
+      },
+      {
+        "path": "src/ui/place-labels.mjs",
+        "sha256": "5e3b7866fd7604d21171b125c4e3414980c2db741b099334b741c64e6e7e8a87"
+      },
+      {
+        "path": "src/ui/toolbar.mjs",
+        "sha256": "5a80ffe998e2ae74af75026e457a1403266d5f0823733d9407497cff9596b270"
+      }
+    ],
+    "sha256": "1ea807595fd8d33d1103b2723e2c140ce9d1721a1b53a571988ee937a9469f70"
+  },
+  "tools": {
+    "node": "24.19.0",
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "webp": "1.6.0",
+    "zlib": "1.3.1"
+  },
+  "catalog": {
+    "schema": "passed",
+    "references": "passed",
+    "reviewHashes": "passed"
+  },
+  "assets": [
+    {
+      "assetId": "technical.single.v1",
+      "path": "assets/library/technical-single.png",
+      "sha256": "a12180babf645da4cd91efd15146324af474c6bdf7308a6c245b6c507cfe6923",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "technical.double.v1",
+      "path": "assets/library/technical-double.png",
+      "sha256": "a818f0e6670097fd54fb7c30b5101c770795f6312731af815f80b7a7db347be8",
+      "format": "PNG",
+      "width": 688,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "technical.lighthouse.v1",
+      "path": "assets/library/technical-lighthouse.png",
+      "sha256": "b84d1a3191409c40c6e5ee7b86a1f4f6d634ff167a26db58d9571aa54e7a6470",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "technical.decoration.v1",
+      "path": "assets/library/technical-decoration.png",
+      "sha256": "a8ffb6c11467331652a2da413dd01187e7de5fbf9a090b6c1dbef4a6a96f12ef",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h1.basalt-spire.v1",
+      "path": "assets/library/basalt-spire-v1.png",
+      "sha256": "d68f277f4b6bec2b4950a6341f1fac7a0360abe3d638065b047fc5c39ca78ae0",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+      "path": "assets/library/basalt-spire-water-v1.png",
+      "sha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+      "path": "assets/library/lighthouse-offcenter-v1.png",
+      "sha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.atoll.h1.broken-passages.v1",
+      "path": "assets/library/atoll-broken-v1.png",
+      "sha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+      "path": "assets/library/wreck-offcenter-v1.png",
+      "sha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h2.tropical-bays.v1",
+      "path": "assets/library/tropical-bays-h2-v1.png",
+      "sha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773",
+      "format": "PNG",
+      "width": 688,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h3.massive-volcano.v1",
+      "path": "assets/library/massive-volcano-h3-v1.png",
+      "sha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828",
+      "format": "PNG",
+      "width": 688,
+      "height": 768,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.archipelago.h3.bent-reefs.v1",
+      "path": "assets/library/bent-reefs-h3-v1.png",
+      "sha256": "98918ab4ad5d584d3c68b0b26a548e6f458f599f54cab289df7689a69d2c2436",
+      "format": "PNG",
+      "width": 912,
+      "height": 768,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+      "path": "assets/library/sand-reefs-h3-v2.png",
+      "sha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e",
+      "format": "PNG",
+      "width": 912,
+      "height": 768,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h3.south-harbor.v1",
+      "path": "assets/library/south-harbor-h3-v1.png",
+      "sha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62",
+      "format": "PNG",
+      "width": 688,
+      "height": 768,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h3.smuggler-cove.v1",
+      "path": "assets/library/smuggler-cove-h3-v1.png",
+      "sha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+      "format": "PNG",
+      "width": 912,
+      "height": 768,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h4.long-sand.v1",
+      "path": "assets/library/long-sand-h4-v1.png",
+      "sha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130",
+      "format": "PNG",
+      "width": 1344,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h4.crab-claw.v1",
+      "path": "assets/library/crab-claw-h4-v1.png",
+      "sha256": "f1d1d7c237820b89306cc40d7d54e7ca8570ba1b9311c3ccd9fb3441d9e5d81e",
+      "format": "PNG",
+      "width": 856,
+      "height": 680,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h4.jungle-temple.v1",
+      "path": "assets/library/jungle-temple-h4-v1.png",
+      "sha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254",
+      "format": "PNG",
+      "width": 856,
+      "height": 680,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.island.h4.crab-claw.v2",
+      "path": "assets/library/crab-claw-h4-v2.png",
+      "sha256": "fb419e1eed3f97cd6a30db2246b02b6dff4f8227548aacc9f00a556a4fb76d95",
+      "format": "PNG",
+      "width": 856,
+      "height": 680,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v1",
+      "path": "assets/library/tesoro-h4-v1.png",
+      "sha256": "3e2495530ecf8b0dc884313187c6e4018c24d1a4f9a17e375250424671ddcd5d",
+      "format": "PNG",
+      "width": 856,
+      "height": 680,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v2",
+      "path": "assets/library/tesoro-h4-v2.png",
+      "sha256": "9715a2c1d4d7e3b8d062c5c645d06966e93996f7ca6c7789d5eeca3500d9ea22",
+      "format": "PNG",
+      "width": 856,
+      "height": 680,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v3",
+      "path": "assets/library/tesoro-h4-v3.png",
+      "sha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285",
+      "format": "PNG",
+      "width": 856,
+      "height": 680,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "land-coast.settlement.h4.tesoro.v4",
+      "path": "assets/library/tesoro-h4-v4.png",
+      "sha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+      "format": "PNG",
+      "width": 856,
+      "height": 680,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.barrels.v1",
+      "path": "assets/library/flavor-barrels-v1.png",
+      "sha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "path": "assets/library/flavor-buoy-v1.png",
+      "sha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.gulls.v1",
+      "path": "assets/library/flavor-gulls-v1.png",
+      "sha256": "78ab079b04347aa1ee7298a13a94be7f26e6b0390c41bd84bb1c5bc7d39d8af0",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.dolphins.v1",
+      "path": "assets/library/flavor-dolphins-v1.png",
+      "sha256": "3269363dbe4c4a9c948d629d083052bfa430737338d2c046cbd23fda53879270",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.rowboat.v1",
+      "path": "assets/library/flavor-rowboat-v1.png",
+      "sha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.crate.v1",
+      "path": "assets/library/flavor-crate-v1.png",
+      "sha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam.v1",
+      "path": "assets/library/flavor-foam-v1.png",
+      "sha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.bottle.v1",
+      "path": "assets/library/flavor-bottle-v1.png",
+      "sha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.driftwood.v1",
+      "path": "assets/library/flavor-driftwood-v1.png",
+      "sha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.turtle.v1",
+      "path": "assets/library/flavor-turtle-v1.png",
+      "sha256": "10f4d8f5e81b3dec7f219291a813dfe53fc066402deaa11129c4f663cf04e78f",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.gulls.v2",
+      "path": "assets/library/flavor-gulls-v2.png",
+      "sha256": "5ea6df2c8396d82b249f9b2336e2ce56643375a0cffda5e467d08a617c2df33f",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.dolphins.v2",
+      "path": "assets/library/flavor-dolphins-v2.png",
+      "sha256": "089a5d2c6fab7b9b487d0fdb23740163987e9d95cba38d8f1438fd50d8eb06c5",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam-flecks.v1",
+      "path": "assets/library/flavor-foam-flecks-v1.png",
+      "sha256": "91915baf42d8f1a7712f3735c6c51633311a9512c663d312b17fb93d16e6f6ca",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.current-arc.v1",
+      "path": "assets/library/flavor-current-arc-v1.png",
+      "sha256": "30e7dd5fd164f17e940144dc9e95651acf457accb263164d096832fdb9a0c47f",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.spray.v1",
+      "path": "assets/library/flavor-spray-v1.png",
+      "sha256": "dabf581f2af9178751030670dd42a8d69bb4592c583638457ab24965f1da0de6",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.foam-trail.v1",
+      "path": "assets/library/flavor-foam-trail-v1.png",
+      "sha256": "8fec13011b297882e4610da08e0ce1391b41d39d5801022d34e83dc6124eac00",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    },
+    {
+      "assetId": "sea-life.accent.h1.cross-ripples.v1",
+      "path": "assets/library/flavor-cross-ripples-v1.png",
+      "sha256": "195102aa117db5829486f89f29c69bca5f53c80e2e72d8e24543e26b78be3a9a",
+      "format": "PNG",
+      "width": 360,
+      "height": 408,
+      "checks": {
+        "staticFormat": "passed",
+        "dimensions": "passed",
+        "alpha": "passed",
+        "nonempty": "passed",
+        "orientation": "passed",
+        "localPixels": "passed"
+      }
+    }
+  ],
+  "backgrounds": [
+    {
+      "backgroundId": "sea-blue-01",
+      "path": "assets/seekarte/sea-blue-01.webp",
+      "sha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+      "format": "WEBP",
+      "width": 2252,
+      "height": 1892,
+      "checks": {
+        "staticFormat": "passed",
+        "decode": "passed"
+      }
+    },
+    {
+      "backgroundId": "legacy-parchment-sea",
+      "path": "assets/seekarte/meer-pergament.webp",
+      "sha256": "7c8a65c7940de276df5db76c95ed86989f06f6cec7897729920ece684ec14fb5",
+      "format": "WEBP",
+      "width": 858,
+      "height": 789,
+      "checks": {
+        "staticFormat": "passed",
+        "decode": "passed"
+      }
+    },
+    {
+      "backgroundId": "prototype-sea",
+      "path": "assets/seekarte/meer-ohne-objekte-prototyp.webp",
+      "sha256": "80ca03802c5d72e3133c7aa18e07b4850f95ac0ca7adfe29d5bbb4d714e6c6e1",
+      "format": "WEBP",
+      "width": 1368,
+      "height": 1150,
+      "checks": {
+        "staticFormat": "passed",
+        "decode": "passed"
+      }
+    }
+  ],
+  "frames": [
+    {
+      "backgroundId": "sea-blue-01",
+      "contractPath": "docs/seekarte-template/contract.json",
+      "resources": {
+        "sea": {
+          "path": "assets/seekarte/sea-blue-01.webp",
+          "sha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+        },
+        "frame": {
+          "path": "assets/seekarte/frame-parchment-02.webp",
+          "sha256": "6b491107f57e40354b91c8605b075ee8faadb6dd32e382137e9b9f04445982b7"
+        },
+        "quietFrame": {
+          "path": "assets/seekarte/frame-parchment-01.webp",
+          "sha256": "fdd2f12c2b703b78f1f1ec31926c60d11c4cc65b79bec2cbaedb23a93ee9630a"
+        }
+      },
+      "report": {
+        "status": "passed",
+        "files": {
+          "sea": {
+            "size": [
+              2252,
+              1892
+            ],
+            "format": "WEBP",
+            "mode": "RGB"
+          },
+          "frame": {
+            "size": [
+              2252,
+              1892
+            ],
+            "format": "WEBP",
+            "mode": "RGBA",
+            "alpha_diagnostics": {},
+            "geographic_graphic_cells": {
+              "tested_pixel_squares": 2234040,
+              "overlapping_alpha_pixels": 0
+            },
+            "label_zones": [
+              {
+                "side": "top",
+                "index": 0,
+                "min_luminance": 0.0003,
+                "max_luminance": 0.9981
+              },
+              {
+                "side": "top",
+                "index": 1,
+                "min_luminance": 0,
+                "max_luminance": 0.8519
+              },
+              {
+                "side": "top",
+                "index": 2,
+                "min_luminance": 0.009,
+                "max_luminance": 0.8185
+              },
+              {
+                "side": "top",
+                "index": 3,
+                "min_luminance": 0,
+                "max_luminance": 0.8516
+              },
+              {
+                "side": "top",
+                "index": 4,
+                "min_luminance": 0.0003,
+                "max_luminance": 0.8132
+              },
+              {
+                "side": "bottom",
+                "index": 0,
+                "min_luminance": 0,
+                "max_luminance": 0.9987
+              },
+              {
+                "side": "bottom",
+                "index": 1,
+                "min_luminance": 0.0017,
+                "max_luminance": 0.7958
+              },
+              {
+                "side": "bottom",
+                "index": 2,
+                "min_luminance": 0.0005,
+                "max_luminance": 0.9861
+              },
+              {
+                "side": "bottom",
+                "index": 3,
+                "min_luminance": 0.0202,
+                "max_luminance": 0.7562
+              },
+              {
+                "side": "bottom",
+                "index": 4,
+                "min_luminance": 0,
+                "max_luminance": 0.7818
+              },
+              {
+                "side": "left",
+                "index": 0,
+                "min_luminance": 0.0005,
+                "max_luminance": 0.819
+              },
+              {
+                "side": "left",
+                "index": 1,
+                "min_luminance": 0,
+                "max_luminance": 0.9892
+              },
+              {
+                "side": "left",
+                "index": 2,
+                "min_luminance": 0.0056,
+                "max_luminance": 0.8228
+              },
+              {
+                "side": "left",
+                "index": 3,
+                "min_luminance": 0,
+                "max_luminance": 0.9924
+              },
+              {
+                "side": "left",
+                "index": 4,
+                "min_luminance": 0,
+                "max_luminance": 0.9924
+              },
+              {
+                "side": "right",
+                "index": 0,
+                "min_luminance": 0.0001,
+                "max_luminance": 0.6988
+              },
+              {
+                "side": "right",
+                "index": 1,
+                "min_luminance": 0.0001,
+                "max_luminance": 0.9943
+              },
+              {
+                "side": "right",
+                "index": 2,
+                "min_luminance": 0.0058,
+                "max_luminance": 0.8237
+              },
+              {
+                "side": "right",
+                "index": 3,
+                "min_luminance": 0.0003,
+                "max_luminance": 0.7789
+              },
+              {
+                "side": "right",
+                "index": 4,
+                "min_luminance": 0,
+                "max_luminance": 0.9994
+              }
+            ]
+          },
+          "quietFrame": {
+            "size": [
+              2252,
+              1892
+            ],
+            "format": "WEBP",
+            "mode": "RGBA",
+            "alpha_diagnostics": {},
+            "geographic_graphic_cells": {
+              "tested_pixel_squares": 2234040,
+              "overlapping_alpha_pixels": 0
+            },
+            "label_zones": [
+              {
+                "side": "top",
+                "index": 0,
+                "min_luminance": 0.0003,
+                "max_luminance": 1
+              },
+              {
+                "side": "top",
+                "index": 1,
+                "min_luminance": 0,
+                "max_luminance": 0.86
+              },
+              {
+                "side": "top",
+                "index": 2,
+                "min_luminance": 0.0358,
+                "max_luminance": 0.8185
+              },
+              {
+                "side": "top",
+                "index": 3,
+                "min_luminance": 0,
+                "max_luminance": 0.8516
+              },
+              {
+                "side": "top",
+                "index": 4,
+                "min_luminance": 0.0159,
+                "max_luminance": 0.8132
+              },
+              {
+                "side": "bottom",
+                "index": 0,
+                "min_luminance": 0,
+                "max_luminance": 0.891
+              },
+              {
+                "side": "bottom",
+                "index": 1,
+                "min_luminance": 0.0025,
+                "max_luminance": 0.7958
+              },
+              {
+                "side": "bottom",
+                "index": 2,
+                "min_luminance": 0.0005,
+                "max_luminance": 0.9861
+              },
+              {
+                "side": "bottom",
+                "index": 3,
+                "min_luminance": 0.0518,
+                "max_luminance": 0.7562
+              },
+              {
+                "side": "bottom",
+                "index": 4,
+                "min_luminance": 0.009,
+                "max_luminance": 0.7818
+              },
+              {
+                "side": "left",
+                "index": 0,
+                "min_luminance": 0.0005,
+                "max_luminance": 0.8269
+              },
+              {
+                "side": "left",
+                "index": 1,
+                "min_luminance": 0,
+                "max_luminance": 0.9981
+              },
+              {
+                "side": "left",
+                "index": 2,
+                "min_luminance": 0.0056,
+                "max_luminance": 0.8464
+              },
+              {
+                "side": "left",
+                "index": 3,
+                "min_luminance": 0.0218,
+                "max_luminance": 0.7328
+              },
+              {
+                "side": "left",
+                "index": 4,
+                "min_luminance": 0.0031,
+                "max_luminance": 0.9394
+              },
+              {
+                "side": "right",
+                "index": 0,
+                "min_luminance": 0.0071,
+                "max_luminance": 0.7737
+              },
+              {
+                "side": "right",
+                "index": 1,
+                "min_luminance": 0.0001,
+                "max_luminance": 0.9943
+              },
+              {
+                "side": "right",
+                "index": 2,
+                "min_luminance": 0.0058,
+                "max_luminance": 0.8237
+              },
+              {
+                "side": "right",
+                "index": 3,
+                "min_luminance": 0.0003,
+                "max_luminance": 0.7789
+              },
+              {
+                "side": "right",
+                "index": 4,
+                "min_luminance": 0,
+                "max_luminance": 0.9844
+              }
+            ]
+          }
+        },
+        "manual_review_required": [
+          "neutral object-free sea",
+          "no cracks or illustrations in quiet label zones",
+          "text contrast in actual SVG",
+          "artistic approval"
+        ],
+        "errors": []
+      }
+    }
+  ],
+  "placements": [
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "D1",
+        "D3"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.atoll.h1.broken-passages.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.island.h2.tropical-bays.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.island.h3.massive-volcano.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.island.h3.smuggler-cove.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D3",
+        "D5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.island.h3.south-harbor.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.island.h4.jungle-temple.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "D1",
+        "D3"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.island.h4.long-sand.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "land-coast.settlement.h4.tesoro.v4",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "D1",
+        "D3"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "sea-life.accent.h1.barrels.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "sea-life.accent.h1.bottle.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "sea-life.accent.h1.crate.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "sea-life.accent.h1.driftwood.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    {
+      "backgroundId": "sea-blue-01",
+      "assetId": "sea-life.accent.h1.rowboat.v1",
+      "status": "passed",
+      "method": "local-contract-equality-1",
+      "anchors": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    }
+  ]
+}

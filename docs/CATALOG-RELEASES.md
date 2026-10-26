@@ -5,6 +5,48 @@ produktive Auswahl und eine ausdrücklich ausgeführte Freigabe. Git-Historie un
 SHA-256 schützen gegen versehentliche Änderungen und inkonsistente Stände. Dies
 ist keine absolute Unveränderlichkeit und kein Schutz gegen böswillige Administratoren.
 
+## Erste reguläre Freigabe: initialer technischer Referenzstand
+
+Die Freigabe durch **Projekt Sams-Gezeitenkarten** vom
+`2026-10-26T23:58:35.532Z` ist der initiale technische Referenzstand für Phase C
+und die anschließende Erprobung der vorhandenen Assets in generierten Seekarten.
+Sie wurde mit der vorgesehenen CLI ausdrücklich ausgeführt und verwendet
+ausschließlich die vorhandenen Kunstfreigaben und `productionEnabled`-Regeln.
+
+| Nachweis | Wert |
+| --- | --- |
+| Quellcommit auf `main` einschließlich PR #81 | `ccab5f41dae380525f7535de4470848a3ab4d214` |
+| Katalog-ID | `gk-catalog-content-v1-sha256-3f406882907a76f99b3c6f816dc664f28f55d1ba42f01baa5fc637dc0b742bd1` |
+| Release-ID | `gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1` |
+| Manifest-SHA-256 | `f541bfceb8a9ee6fb941b27bf559b11e23a6fb85455cdb34467ab18d3cba2f91` |
+| Vollständiger Bestand | 40 Assets, 3 Hintergründe, beide Rahmen; 54 inventarisierte Ressourcendateien |
+| Produktive Auswahl | 18 geografische Assets auf `sea-blue-01`, 368 geometrisch passende Anker |
+
+Die fünf freigegebenen Dateien liegen unter
+[`archive/catalog-releases/gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1/`](../archive/catalog-releases/gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1/).
+Der Bestand enthält auch Entwürfe, historische und zurückgestellte Motive.
+Die Produktionsauswahl bleibt unverändert; insbesondere bleibt die zurückgestellte
+Schaumströmung ausgeschlossen. Grafikdateien und künstlerische Einzelentscheidungen
+wurden nicht geändert.
+
+Die gepinnten Prüfer bestätigen Schema, Referenzen, Kunstfreigabehashes,
+Bildformate, Bildmaße, Alpha, nichtleere Bildinhalte, Orientierung und lokale
+Pixelverträge für alle 40 Assets. Beide Rahmen bestehen jeweils den vollständigen
+Prüfumfang von 2.234.040 Pixelquadraten ohne Alphaüberschneidung sowie die Prüfung
+ihrer jeweils 20 Beschriftungszonen. Alle 368 produktiven Anker erfüllen die
+Gleichheit von lokalem und platziertem Grafikvertrag. Die 54 Ressourcen wurden
+zusätzlich direkt gegen die Bytes und SHA-256 aus dem Quellcommit geprüft;
+die Auswahl stimmt mit der bestehenden `productionEnabled`-Auswertung überein.
+
+Die im Nachweis gespeicherte Prüfumgebung ist Node 24.19.0, Python 3.12.14,
+Pillow 12.3.0, NumPy 2.3.5, WebP 1.6.0 und zlib 1.3.1. Andere Werkzeugversionen
+können bei einer Neuerstellung eine andere Release-ID ergeben; für die weitere
+Verwendung gilt das archivierte Release mit den oben angegebenen Identitäten.
+Die im Rahmenbericht benannten künstlerischen Sichtprüfgrenzen bleiben bestehen;
+diese technische Referenzfreigabe erfindet keine neuen Kunstfreigaben.
+
+Phase C und die automatische Rätselgenerierung sind nachgelagerte Arbeiten.
+
 ## Ablage und Identitäten
 
 `archive/catalog-releases/<release-id>/` enthält genau fünf JSON-Dateien:
