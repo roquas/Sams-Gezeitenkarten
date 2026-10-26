@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "assetCatalog": "assets/catalog/library.json",
+  "resourceBase": ".",
+  "librarySchema": "puzzles/schema/asset-library-v2.schema.json",
+  "graphicContracts": [
+    "src/assets/geometry.mjs",
+    "src/engine/hex.mjs",
+    "src/ui/chart-geometry.mjs",
+    "src/ui/chart-asset-contract.mjs",
+    "src/ui/place-labels.mjs"
+  ],
+  "productionBackgrounds": [
+    {
+      "id": "sea-blue-01",
+      "chartContract": "docs/seekarte-template/contract.json"
+    }
+  ]
+}
