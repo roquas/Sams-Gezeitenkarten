@@ -91,9 +91,9 @@ export function validateTechnical(validation,snapshot,implementation){
  const {library,policy}=snapshot;
  const measurements=new Map();
  const measure=(path,format,width,height)=>{
-  const value={format,width,height};
-  if(measurements.has(path))same(value,measurements.get(path),'inconsistent image measurements: '+path);
-  else measurements.set(path,value);
+  const identity=byPath.get(path).sha256,value={format,width,height};
+  if(measurements.has(identity))same(value,measurements.get(identity),'inconsistent image measurements: '+path);
+  else measurements.set(identity,value);
  };
  assert(Array.isArray(validation.assets)&&validation.assets.length===library.assets.length,'incomplete asset results');
  library.assets.forEach((a,i)=>{

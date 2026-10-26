@@ -130,8 +130,9 @@ gemeinsame, datengetriebene Hilfsfunktionen. Die bisherigen öffentlichen APIs d
 Helfer bleiben erhalten. Änderungen an allgemeinen Spiel-/Assetverträgen dürfen die
 V1-Auswertung nicht ändern; neue Fachverträge benötigen eine neue Version.
 
-Wiederholt gemeldete Formate und Bildmaße derselben Ressource müssen übereinstimmen,
-einschließlich des Meeres in Hintergrund- und Rahmenbericht. Für Rahmenvertrag 4
+Wiederholt gemeldete Formate und Bildmaße derselben Bildbytes (gleicher SHA-256)
+müssen übereinstimmen, auch unter verschiedenen Pfaden und einschließlich des
+Meeres in Hintergrund- und Rahmenbericht. Für Rahmenvertrag 4
 ist der geografische Prüfumfang bei festem Canvas, Maßstab und Raster exakt
 2.234.040 Quellpixelquadrate je Rahmen. Der Loader kontrolliert diesen versionierten
 Wert und die zugehörige Rasterdefinition. Er erzeugt dabei weder Pixelmasken noch

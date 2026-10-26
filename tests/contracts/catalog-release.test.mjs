@@ -314,4 +314,13 @@ test('two background IDs sharing one resource must report identical dimensions',
  verifyCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,candidate:out});
  edit(out,'validation',v=>{v.backgrounds.at(-1).height++;});
  assert.throws(()=>verifyCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,candidate:out}),/inconsistent image measurements/);
+ // The same bytes at a different path are the same measured image as well.
+ const copyPath='assets/test/archive-copy.webp';
+ fs.copyFileSync(path.join(f.repositoryRoot,library.backgrounds[1].image),path.join(f.repositoryRoot,copyPath));
+ library.backgrounds.at(-1).image=copyPath;save(file,library);
+ const copySource=commit(f.repositoryRoot,'Identical image bytes at different paths'),copyOut=path.join(f.directory,'content-alias');
+ buildCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,source:copySource,out:copyOut});
+ verifyCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,candidate:copyOut});
+ edit(copyOut,'validation',v=>{v.backgrounds.at(-1).height++;});
+ assert.throws(()=>verifyCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,candidate:copyOut}),/inconsistent image measurements/);
 });
