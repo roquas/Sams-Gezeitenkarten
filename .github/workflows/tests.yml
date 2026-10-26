@@ -13,13 +13,24 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
-      - name: Install image validation dependency for publication unit checks
-        run: python3 -m pip install --user Pillow
+      - name: Install image validation dependencies for publication and release unit checks
+        run: python3 -m pip install --user Pillow numpy
       - name: Verify no-cache development HTTP semantics
         run: python3 scripts/dev-server.py --self-test
       - run: npm run test:unit
       - run: npm run test:content
       - run: npm run test:puzzles
+  catalog-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify accepted catalog history and complete new releases without image analysis
+        env:
+          CATALOG_PREVIOUS: ${{ github.event.pull_request.base.sha || github.event.before || 'HEAD^' }}
+        run: node scripts/catalog-release.mjs check-archive --previous "$CATALOG_PREVIOUS"
   assets:
     runs-on: ubuntu-latest
     steps:

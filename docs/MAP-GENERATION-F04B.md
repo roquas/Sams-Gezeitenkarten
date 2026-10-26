@@ -1,5 +1,9 @@
 # F04b: abstrakte Karten und getrennte Assetzuordnung
 
+Phase B ergänzt [persistente, ausdrücklich freigegebene Katalog-Releases](CATALOG-RELEASES.md)
+mit Git-Ressourcenbindung und bildprüfungsfreiem Loader. Die unten beschriebenen
+Dienste bleiben unverändert; ihre Anbindung an Releases folgt in Phase C.
+
 `src/generation/` erzeugt ausschließlich gültige v2-Karten. Geografische Vielfalt
 hat Vorrang vor Routeneignung. Die Karte enthält unverändert nur `geometry`,
 `grid` und `objects: [{id,cells,passable}]`. Formale Gültigkeit, geografische
