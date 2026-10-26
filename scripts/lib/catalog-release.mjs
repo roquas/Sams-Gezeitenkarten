@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {execFileSync,spawnSync} from 'node:child_process';
-import {sha256} from './publication-archive.mjs';
+import {sha256} from './content-hash.mjs';
 import {assert,same,hash,commit,releaseIdValid,safePath,parse,jsonBytes,record,
  POLICY_PATH,RELEASE_ROOT,CANDIDATE_FILES,RELEASE_FILES,checkerPath,implementationIdentity,
  describeSnapshot,releaseIdentity,validateTechnical} from './catalog-release-format.mjs';

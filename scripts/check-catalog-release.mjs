@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {sha256} from './lib/publication-archive.mjs';
+import {sha256} from './lib/content-hash.mjs';
 import {assert,same,describeSnapshot,resourcePath,implementationIdentity,VERSIONS,validateTechnical} from './lib/catalog-release-format.mjs';
 import {imageContract,placementContract} from '../src/assets/geometry.mjs';
 import {VERIFICATION_VERSION} from '../src/assets/assignment.mjs';

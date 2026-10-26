@@ -243,3 +243,75 @@ test('committing a candidate cannot approve it and approval requires a source an
  fs.writeFileSync(path.join(f.repositoryRoot,'unrelated.txt'),'unrelated');commit(f.repositoryRoot,'Unrelated history');
  assert.throws(()=>approve(f),/source commit must be an available ancestor/);
 });
+
+test('historical V1 keeps all 368 anchors in fresh processes from the actually changed runtime checkout',t=>{
+ const f=fixture(t),library=JSON.parse(fs.readFileSync(path.join(project,'assets/catalog/library.json')));
+ // Full real resource data, but an isolated disposable Git repository and an
+ // explicit test-only approval. The project's release archive is never touched.
+ for(const ref of ['assets/catalog/library.json',...library.assets.map(a=>a.image.path),...library.backgrounds.map(b=>b.image)]){
+  const destination=path.join(f.repositoryRoot,ref);fs.mkdirSync(path.dirname(destination),{recursive:true});
+  fs.copyFileSync(path.join(project,ref),destination);
+ }
+ const historicalSource=commit(f.repositoryRoot,'Historical full V1 catalog in isolated test repository');
+ const out=path.join(f.directory,'historical'),result=buildCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,source:historicalSource,out});
+ approveCatalogRelease({repositoryRoot:f.repositoryRoot,candidate:out,...result,approvedBy:'Historical V1 regression only; not production'});
+ commit(f.repositoryRoot,'Record isolated historical V1 test release');
+ const expected=loadCatalogRelease({repositoryRoot:f.repositoryRoot,releaseId:result.releaseId});
+ assert.equal(expected.validation.placements.reduce((n,p)=>n+p.anchors.length,0),368);
+ const geometryPath=path.join(f.repositoryRoot,'src/assets/geometry.mjs');
+ const geometry=fs.readFileSync(geometryPath,'utf8');
+ assert.ok(geometry.includes('export function placedCells(asset,anchor){'));
+ fs.writeFileSync(geometryPath,geometry.replace('export function placedCells(asset,anchor){',"export function placedCells(asset,anchor){ return ['Z99'];"));
+ // These sentinels also catch transitive imports through the old archive/hash,
+ // generic schema entry point, or filesystem asset validator.
+ for(const ref of ['src/assets/library.mjs','src/puzzles/schema.mjs','scripts/validate-assets.mjs','scripts/lib/publication-archive.mjs']){
+  const file=path.join(f.repositoryRoot,ref);fs.writeFileSync(file,"throw Error('mutable domain module imported by V1 loader');\n"+fs.readFileSync(file,'utf8'));
+ }
+ commit(f.repositoryRoot,'Later incompatible general runtime contracts');
+ const ownCli=path.join(f.repositoryRoot,'scripts/catalog-release.mjs');
+ const probe=execFileSync(process.execPath,['--input-type=module','-e',
+  "import {placedCells} from './src/assets/geometry.mjs'; console.log(JSON.stringify(placedCells({geometry:{cells:[[0,0]]}},'A1')));"],{cwd:f.repositoryRoot,encoding:'utf8'});
+ assert.deepEqual(JSON.parse(probe),['Z99']);
+ const bin=path.join(f.directory,'git-only');fs.mkdirSync(bin);
+ fs.symlinkSync(execFileSync('which',['git'],{encoding:'utf8'}).trim(),path.join(bin,'git'));
+ const options={cwd:f.repositoryRoot,encoding:'utf8',env:{...process.env,PATH:bin}};
+ const verified=JSON.parse(execFileSync(process.execPath,[ownCli,'verify','--release',result.releaseId],options));
+ assert.equal(verified.releaseId,result.releaseId);assert.equal(verified.catalogId,result.catalogId);
+ const loaded=JSON.parse(execFileSync(process.execPath,['--input-type=module','-e',
+  "import {loadCatalogRelease} from './scripts/lib/catalog-release.mjs'; const r=loadCatalogRelease({repositoryRoot:'.',releaseId:process.argv[1]}); console.log(JSON.stringify({catalogId:r.catalogId,selection:r.selection,placements:r.validation.placements}));",result.releaseId],options));
+ assert.equal(loaded.catalogId,expected.catalogId);assert.deepEqual(loaded.selection,expected.selection);
+ assert.deepEqual(loaded.placements,expected.validation.placements);
+ assert.equal(loaded.placements.reduce((n,p)=>n+p.anchors.length,0),368);
+ // Exercise the OUTER build path in that same changed installation too. Its
+ // image worker still runs exclusively from the historical source snapshot.
+ const rebuilt=JSON.parse(execFileSync(process.execPath,[ownCli,'build','--source',historicalSource,'--out',path.join(f.directory,'rebuilt')],
+  {cwd:f.repositoryRoot,encoding:'utf8',env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'}}));
+ assert.equal(rebuilt.releaseId,result.releaseId);assert.equal(rebuilt.manifestSha256,result.manifestSha256);
+});
+
+test('rebound evidence rejects contradictory background/frame facts and shortened V1 pixel scopes',t=>{
+ const f=fixture(t),cases=[
+  [v=>v.backgrounds[0].width++,/inconsistent image measurements/],
+  [v=>v.backgrounds[0].height++,/inconsistent image measurements/],
+  [v=>v.backgrounds[0].format='PNG',/inconsistent image measurements/],
+  [v=>v.frames[0].report.files.quietFrame.geographic_graphic_cells.tested_pixel_squares--,/frame footprint/],
+  [v=>{for(const name of ['frame','quietFrame'])v.frames[0].report.files[name].geographic_graphic_cells.tested_pixel_squares=1;},/frame footprint/],
+  // Area*scale^2 omits intersecting boundary squares: plausible but incomplete.
+  [v=>{for(const name of ['frame','quietFrame'])v.frames[0].report.files[name].geographic_graphic_cells.tested_pixel_squares=25*5576*16;},/frame footprint/]
+ ];
+ for(const [i,[mutate,error]] of cases.entries()){
+  const directory=path.join(f.directory,'inconsistent-'+i);fs.cpSync(candidate,directory,{recursive:true});
+  edit(directory,'validation',mutate);
+  assert.throws(()=>verifyCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,candidate:directory}),error);
+ }
+});
+
+test('two background IDs sharing one resource must report identical dimensions',t=>{
+ const f=fixture(t),file=path.join(f.repositoryRoot,'assets/catalog/library.json'),library=JSON.parse(fs.readFileSync(file));
+ library.backgrounds.push({...library.backgrounds[1],id:'archive-alias'});save(file,library);
+ const aliasSource=commit(f.repositoryRoot,'Two background references to the same resource'),out=path.join(f.directory,'aliased');
+ buildCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,source:aliasSource,out});
+ verifyCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,candidate:out});
+ edit(out,'validation',v=>{v.backgrounds.at(-1).height++;});
+ assert.throws(()=>verifyCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,candidate:out}),/inconsistent image measurements/);
+});

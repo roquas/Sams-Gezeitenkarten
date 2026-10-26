@@ -1,7 +1,8 @@
 import {validateDefinition} from '../../src/puzzles/validate.mjs';
 import {projectPublicPuzzle,validatePublicPuzzle} from '../../src/puzzles/public.mjs';
 // Internal, Node-only archive tooling. Never imported by the browser application.
-import {createHash} from 'node:crypto';
+import {canonicalJson,sha256} from './content-hash.mjs';
+export {canonicalJson,sha256} from './content-hash.mjs';
 import {schemaErrors} from '../../src/puzzles/schema.mjs';
 import {validateLogicDefinition,validateMap,validateTarget} from '../../src/engine/validate.mjs';
 import {RULES_VERSION} from '../../src/puzzles/schema.mjs';
@@ -10,19 +11,6 @@ import {resolvePackagePath} from './package-path.mjs';
 
 const compare=(a,b)=>a<b?-1:a>b?1:0;
 const assert=(ok,message)=>{if(!ok)throw new Error(`archive: ${message}`);};
-export const sha256=bytes=>createHash('sha256').update(bytes).digest('hex');
-
-// Deliberately narrower than general JSON: no floats, undefined or exotic objects.
-export function canonicalJson(value){
- if(value===null||typeof value==='boolean'||typeof value==='string')return JSON.stringify(value);
- if(typeof value==='number'){
-  assert(Number.isSafeInteger(value),'canonical numbers must be safe integers');
-  return JSON.stringify(value);
- }
- if(Array.isArray(value))return '['+Array.from(value,canonicalJson).join(',')+']';
- assert(value&&Object.getPrototypeOf(value)===Object.prototype,'canonical value must be plain JSON');
- return '{'+Object.keys(value).sort(compare).map(key=>JSON.stringify(key)+':'+canonicalJson(value[key])).join(',')+'}';
-}
 
 const domains=new Set(['map','instance','variant','snapshot','publication']);
 export function contentFingerprint(domain,value){

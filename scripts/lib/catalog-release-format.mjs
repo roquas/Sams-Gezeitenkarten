@@ -1,11 +1,8 @@
 // Release v1 contracts. No image decoding, subprocesses or working-tree reads.
 import {isDeepStrictEqual} from 'node:util';
-import {canonicalJson,sha256} from './publication-archive.mjs';
+import {canonicalJson,sha256} from './content-hash.mjs';
 import {resolvePackagePath} from './package-path.mjs';
-import {validateLibrary,librarySchema,productionEnabled} from '../../src/assets/library.mjs';
-import {validateAssetBytes} from '../validate-assets.mjs';
-import {placedCells} from '../../src/assets/geometry.mjs';
-import {cellsOf} from '../../src/engine/hex.mjs';
+import {validateLibraryV1,validateReviewHashesV1,productionEnabledV1,placedCellsV1,BOARD_V1,framePixelScopeV1} from './catalog-release-v1.mjs';
 
 export const POLICY_PATH='scripts/config/catalog-release-v1.json';
 export const RELEASE_ROOT='archive/catalog-releases';
@@ -45,9 +42,8 @@ export function describeSnapshot(read){
  record(policy,['schemaVersion','assetCatalog','resourceBase','librarySchema','graphicContracts','productionBackgrounds'],'policy');
  assert(policy.schemaVersion===1,'unsupported policy version');
  assert(policy.resourceBase==='.'||safePath(policy.resourceBase),'invalid resource base');
- const library=validateLibrary(parse(read(safePath(policy.assetCatalog))));
- same(parse(read(safePath(policy.librarySchema))),librarySchema,'unsupported pinned library schema');
- validateAssetBytes(library,ref=>read(resourcePath(policy.resourceBase,ref)));
+ const library=validateLibraryV1(parse(read(safePath(policy.assetCatalog))),parse(read(safePath(policy.librarySchema))));
+ validateReviewHashesV1(library,ref=>read(resourcePath(policy.resourceBase,ref)));
  const expected=new Map();
  const add=(p,kind)=>{safePath(p);assert(!expected.has(p)||expected.get(p)===kind,'conflicting resource kinds: '+p);expected.set(p,kind);};
  add(POLICY_PATH,'policy');add(policy.assetCatalog,'catalog');add(policy.librarySchema,'schema');
@@ -72,12 +68,12 @@ export function describeSnapshot(read){
   .map(([path,kind])=>{const bytes=read(path);return {path,kind,bytes:bytes.length,sha256:sha256(bytes)};})};
  const catalogId=catalogIdentity(inventory);
  const selection={selectionSchemaVersion:1,catalogId,backgrounds:policy.productionBackgrounds.map(({id})=>({backgroundId:id,
-  geographicAssetIds:library.assets.filter(a=>a.role==='geographic'&&productionEnabled(library,a.id,id)).map(a=>a.id).sort()}))};
- const board=cellsOf({columns:5,rows:5}).sort(),allowed=new Set(board);
+  geographicAssetIds:library.assets.filter(a=>a.role==='geographic'&&productionEnabledV1(library,a.id,id)).map(a=>a.id).sort()}))};
+ const board=BOARD_V1,allowed=new Set(board);
  const placements=selection.backgrounds.flatMap(b=>b.geographicAssetIds.map(assetId=>{
   const asset=library.assets.find(a=>a.id===assetId);
   return {backgroundId:b.backgroundId,assetId,status:'passed',method:'local-contract-equality-1',
-   anchors:board.filter(anchor=>placedCells(asset,anchor).every(c=>allowed.has(c)))};
+   anchors:board.filter(anchor=>placedCellsV1(asset,anchor).every(c=>allowed.has(c)))};
  }));
  return {policy,library,contracts,inventory,catalogId,selection,placements};
 }
@@ -93,6 +89,12 @@ export function validateTechnical(validation,snapshot,implementation){
  same(validation.catalog,{schema:'passed',references:'passed',reviewHashes:'passed'},'incomplete catalog checks');
  const byPath=new Map(snapshot.inventory.files.map(f=>[f.path,f]));
  const {library,policy}=snapshot;
+ const measurements=new Map();
+ const measure=(path,format,width,height)=>{
+  const value={format,width,height};
+  if(measurements.has(path))same(value,measurements.get(path),'inconsistent image measurements: '+path);
+  else measurements.set(path,value);
+ };
  assert(Array.isArray(validation.assets)&&validation.assets.length===library.assets.length,'incomplete asset results');
  library.assets.forEach((a,i)=>{
   const result=validation.assets[i];record(result,['assetId','path','sha256','format','width','height','checks'],'asset result');
@@ -100,6 +102,7 @@ export function validateTechnical(validation,snapshot,implementation){
   same({assetId:result.assetId,path:result.path,sha256:result.sha256,width:result.width,height:result.height},
    {assetId:a.id,path:p,sha256:byPath.get(p).sha256,width:a.image.width,height:a.image.height},'asset result mismatch/duplicate: '+a.id);
   assert(['PNG','WEBP'].includes(result.format),'unsupported asset format');
+  measure(p,result.format,result.width,result.height);
   same(result.checks,{staticFormat:'passed',dimensions:'passed',alpha:'passed',nonempty:'passed',orientation:'passed',localPixels:'passed'},'incomplete asset checks');
  });
  assert(Array.isArray(validation.backgrounds)&&validation.backgrounds.length===library.backgrounds.length,'incomplete background results');
@@ -109,6 +112,7 @@ export function validateTechnical(validation,snapshot,implementation){
   same({backgroundId:result.backgroundId,path:result.path,sha256:result.sha256},
    {backgroundId:b.id,path:p,sha256:byPath.get(p).sha256},'background result mismatch/duplicate');
   assert(['PNG','WEBP'].includes(result.format)&&Number.isSafeInteger(result.width)&&result.width>0&&Number.isSafeInteger(result.height)&&result.height>0,'invalid background image result');
+  measure(p,result.format,result.width,result.height);
   same(result.checks,{staticFormat:'passed',decode:'passed'},'incomplete background checks');
  });
  same(validation.placements,snapshot.placements,'incomplete/duplicate geographic anchors');
@@ -119,6 +123,7 @@ export function validateTechnical(validation,snapshot,implementation){
   same(entry.resources,Object.fromEntries(Object.entries(contract.format.files).map(([kind,ref])=>{
    const p=resourcePath(policy.resourceBase,ref);return [kind,{path:p,sha256:byPath.get(p).sha256}];
   })),'frame resources mismatch');
+  const expectedSquares=framePixelScopeV1(contract);
   const r=entry.report;record(r,['status','files','manual_review_required','errors'],'frame report');
   assert(r.status==='passed','frame validation failed');same(r.errors,[],'frame errors');
   same(r.manual_review_required,['neutral object-free sea','no cracks or illustrations in quiet label zones','text contrast in actual SVG','artistic approval'],'missing manual-review boundary');
@@ -128,10 +133,11 @@ export function validateTechnical(validation,snapshot,implementation){
    record(f,kind==='sea'?['size','format','mode']:['size','format','mode','alpha_diagnostics','geographic_graphic_cells','label_zones'],'frame resource result');
    same(f.size,[contract.format.pixels.width,contract.format.pixels.height],'frame dimensions mismatch');
    assert(f.format==='WEBP'&&(kind==='sea'?['RGB','RGBA'].includes(f.mode):f.mode==='RGBA'),'invalid frame format');
+   measure(entry.resources[kind].path,f.format,...f.size);
    if(kind==='sea')continue;
    same(f.alpha_diagnostics,{},'frame alpha violations');
    record(f.geographic_graphic_cells,['tested_pixel_squares','overlapping_alpha_pixels'],'frame footprint');
-   assert(Number.isSafeInteger(f.geographic_graphic_cells.tested_pixel_squares)&&f.geographic_graphic_cells.tested_pixel_squares>0&&f.geographic_graphic_cells.overlapping_alpha_pixels===0,'incomplete/failed frame footprint');
+   assert(f.geographic_graphic_cells.tested_pixel_squares===expectedSquares&&f.geographic_graphic_cells.overlapping_alpha_pixels===0,'incomplete/failed frame footprint: expected full V1 scope');
    assert(Array.isArray(f.label_zones)&&f.label_zones.length===contract.zones.headings.items.length,'incomplete frame label checks');
    contract.zones.headings.items.forEach((z,j)=>{
     const actual=f.label_zones[j];record(actual,['side','index','min_luminance','max_luminance'],'label check');

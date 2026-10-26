@@ -114,6 +114,37 @@ privat gehaltener verifizierter Bytes. Laden und Prüfen starten nur Git, niemal
 Python/Pillow oder den Bildprüfer. Die Kosten sind proportional zu den gelesenen
 Ressourcenbytes; Git-Zugriffe werden innerhalb einer Prüfung zwischengespeichert.
 
+## Stabiler V1-Laufzeitvertrag
+
+`scripts/lib/catalog-release-v1.mjs` hält ausschließlich die für historische V1-
+Releases benötigte fachliche Auswertung fest: Metadatenschema und -konsistenz,
+Reviewhashes, Produktionsauswahl, Bildmaße und axiale Translation im 5×5-Raster.
+Das historische Bibliotheksschema bleibt gepinnte JSON-Daten; seine kanonische
+SHA-256 kennzeichnet die unterstützte Definition. Es wird keine zweite vollständige
+Schema-, Rendering-, Polygon- oder Platzierungsimplementierung angelegt.
+
+Der Loader und der äußere Buildpfad importieren keine allgemeinen Geometrie-,
+Bibliotheks- oder Archivfachmodule mehr, auch nicht transitiv über Hashhelfer.
+SHA-256/Kanonisierung, Pfadauflösung und der allgemeine JSON-Schema-Prüfkern bleiben
+gemeinsame, datengetriebene Hilfsfunktionen. Die bisherigen öffentlichen APIs dieser
+Helfer bleiben erhalten. Änderungen an allgemeinen Spiel-/Assetverträgen dürfen die
+V1-Auswertung nicht ändern; neue Fachverträge benötigen eine neue Version.
+
+Wiederholt gemeldete Formate und Bildmaße derselben Ressource müssen übereinstimmen,
+einschließlich des Meeres in Hintergrund- und Rahmenbericht. Für Rahmenvertrag 4
+ist der geografische Prüfumfang bei festem Canvas, Maßstab und Raster exakt
+2.234.040 Quellpixelquadrate je Rahmen. Der Loader kontrolliert diesen versionierten
+Wert und die zugehörige Rasterdefinition. Er erzeugt dabei weder Pixelmasken noch
+dekodiert er Bilddateien. Auch konsistent verkürzte oder neu gehashte widersprüchliche
+Berichte werden abgewiesen.
+
+Die Regression startet frische CLI-/Loaderprozesse aus einem tatsächlich veränderten
+Laufzeitcheckout: Die allgemeine Translation liefert dort absichtlich nur ein
+Außenfeld, weitere allgemeine Fachmodule werfen beim Import. Das unveränderte
+historische Testrelease behält dennoch seine Identitäten, Auswahl und 368 Anker.
+Auch der äußere Buildpfad wird aus dieser Installation gegen den historischen
+Quellcommit geprüft. Sämtliche Testfreigaben bleiben in temporären Testrepositorys.
+
 ## Konfiguration, Abbrüche und Grenzen
 
 Format 1 konfiguriert ausschließlich `sea-blue-01` als Produktionshintergrund.
