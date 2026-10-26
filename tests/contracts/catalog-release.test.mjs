@@ -65,6 +65,9 @@ test('candidate is reproducible and inventories all referenced assets, backgroun
  assert.deepEqual(buildCatalogReleaseCandidate({repositoryRoot:f.repositoryRoot,source,out:second}),{...built,directory:second});
  for(const name of fs.readdirSync(candidate))assert.deepEqual(fs.readFileSync(path.join(candidate,name)),fs.readFileSync(path.join(second,name)));
  const inventory=JSON.parse(fs.readFileSync(path.join(candidate,'inventory.json'))),paths=inventory.files.map(f=>f.path);
+ const tools=JSON.parse(fs.readFileSync(path.join(candidate,'validation.json'))).tools;
+ const codecs=JSON.parse(execFileSync('python3',['-c',"from PIL import features; import json; print(json.dumps({k:features.version(k) for k in ['webp','zlib']}))"],{encoding:'utf8'}));
+ assert.equal(tools.zlib,codecs.zlib);assert.equal(tools.webp,codecs.webp);
  for(const p of ['assets/test/test-foam.png','assets/test/test-draft.png','assets/test/archive.webp','assets/test/prototype.webp',
   'assets/seekarte/frame-parchment-01.webp','assets/seekarte/frame-parchment-02.webp','docs/seekarte-template/contract.json','puzzles/schema/asset-library-v2.schema.json',
   'src/assets/geometry.mjs','src/ui/chart-asset-contract.mjs'])assert.ok(paths.includes(p),p);

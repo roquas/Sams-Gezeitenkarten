@@ -3,7 +3,6 @@ import importlib.util
 import json
 import platform
 import sys
-import zlib
 from pathlib import Path
 import PIL
 import numpy
@@ -30,7 +29,7 @@ def main():
             backgrounds.append({'format': image.format, 'width': image.width, 'height': image.height})
     print(json.dumps({'assets': assets, 'backgrounds': backgrounds,
                      'tools': {'python': platform.python_version(), 'pillow': PIL.__version__, 'numpy': numpy.__version__,
-                               'webp': features.version('webp'), 'zlib': zlib.ZLIB_RUNTIME_VERSION}}))
+                               'webp': features.version('webp'), 'zlib': features.version('zlib')}}))
 
 
 if __name__ == '__main__':
