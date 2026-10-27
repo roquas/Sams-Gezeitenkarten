@@ -1,5 +1,10 @@
 # F04b: abstrakte Karten und getrennte Assetzuordnung
 
+PR 3 ergänzt die [lokale Batch-CLI mit vollständigen Kandidatendaten und
+strengem Einzel-Replay](MAP-BATCH-F04B.md). Sie verwendet die hier dokumentierten
+Generator-, Analyse- und Zuordnungsdienste unverändert; die feste Stichprobe
+bleibt eine eigenständige Regression.
+
 Phase B ergänzt [persistente, ausdrücklich freigegebene Katalog-Releases](CATALOG-RELEASES.md)
 mit Git-Ressourcenbindung und bildprüfungsfreiem Loader. Die unten beschriebenen
 Dienste bleiben unverändert. Phase C bindet sie über

@@ -39,6 +39,13 @@ Git-Historie und startet keine Bildprüfung. Aufruf und Reproduktion:
 Katalog-/Bildprüfungen mit Python/Pillow. Fehlende Illustration ändert keine
 abstrakte Karte; der freie Generierungsmodus bleibt erhalten.
 
+`scripts/lib/map-batch.mjs` orchestriert lokale Kartenbatches; die dünne CLI
+`scripts/generate-map-batch.mjs` lädt explizit freigegebene Releases und schreibt
+Manifest, vollständige JSONL-Kandidaten und getrennte Zusammenfassungen. Sie
+aggregiert vorhandene Analyseergebnisse ohne zweite Topologie-/Routenanalyse.
+Einzel-Replay verlangt denselben Programmcommit, saubere Programmdateien und
+übereinstimmende Algorithmusversionen. [Batchvertrag und Grenzen](MAP-BATCH-F04B.md).
+
 Engine und Renderer kennen keine produktiven Rätselnamen oder Bestandszahlen.
 Die Anwendung wählt eine lokale Quelle; Inhaltspakete liefern öffentliche Rätsel,
 Assetmetadaten und Ressourcen. Die garantierte UI-Basis bleibt getrennt von
