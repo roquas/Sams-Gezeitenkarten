@@ -1,10 +1,10 @@
-import fs from 'node:fs';
+import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {generateMap} from '../src/generation/maps.mjs';
 import {assignAssets,createCatalogProfile} from '../src/assets/assignment.mjs';
 import {axialShapeSignature} from '../src/generation/map-analysis.mjs';
 import {geographicCandidates,verifiedAnchors} from '../src/assets/assignment.mjs';
-import {prepareAssetCatalog} from './lib/asset-catalog.mjs';
+import {loadReleasedAssetCatalog} from './lib/released-asset-catalog.mjs';
 import {mapFingerprint} from './lib/publication-archive.mjs';
 
 const add=(h,key,n=1)=>{h[key]=(Object.hasOwn(h,key)?h[key]:0)+n;};
@@ -12,6 +12,7 @@ export const SAMPLE_CONFIG={objectCount:{min:3,max:8},objectSizes:[1,2,3,4],pass
 
 // Small, fixed diagnostic experiment, deliberately no production batch CLI,
 // route filters, timing thresholds, publication IDs or selected puzzle starts.
+// This pure measurement accepts trusted/test contexts; it proves no approval.
 export function sampleCatalogMaps(catalog,{seedCount=128,config=SAMPLE_CONFIG,preferencePercent=75}={}){
  if(!Number.isInteger(seedCount)||seedCount<1||seedCount>1024)throw RangeError('seedCount must be 1–1024');
  const profile=createCatalogProfile(catalog,{preferencePercent});
@@ -60,9 +61,23 @@ export function sampleCatalogMaps(catalog,{seedCount=128,config=SAMPLE_CONFIG,pr
  return report;
 }
 
+// Approved diagnostic entry: accept identifiers, never caller-supplied contexts
+// or provenance. Always establish approval through the release adapter itself.
+export function main(argv=process.argv.slice(2)){
+ if(!Array.isArray(argv)||argv.some(value=>typeof value!=='string'))throw Error('Expected command-line arguments, not a catalog context');
+ const options=new Map();
+ for(let i=0;i<argv.length;i+=2){
+  const flag=argv[i],value=argv[i+1];
+  if(!['--release','--background','--repository'].includes(flag)||options.has(flag)||!value||value.startsWith('--'))throw Error('Invalid or duplicate option: '+flag);
+  options.set(flag,value);
+ }
+ for(const flag of ['--release','--background'])if(!options.has(flag))throw Error('Missing '+flag);
+ const repositoryRoot=path.resolve(options.get('--repository')??fileURLToPath(new URL('../',import.meta.url)));
+ const {catalog,provenance}=loadReleasedAssetCatalog({repositoryRoot,releaseId:options.get('--release'),backgroundId:options.get('--background')});
+ return {...sampleCatalogMaps(catalog),provenance};
+}
+
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
- const root=fileURLToPath(new URL('../',import.meta.url));
- const library=JSON.parse(fs.readFileSync(new URL('../assets/catalog/library.json',import.meta.url)));
- const catalog=prepareAssetCatalog({library,backgroundId:'sea-blue-01',resourceRoot:root});
- console.log(JSON.stringify(sampleCatalogMaps(catalog),null,2));
+ try{console.log(JSON.stringify(main(),null,2));}
+ catch(error){console.error(error.message);process.exitCode=1;}
 }
