@@ -2,7 +2,10 @@
 
 Phase B ergänzt [persistente, ausdrücklich freigegebene Katalog-Releases](CATALOG-RELEASES.md)
 mit Git-Ressourcenbindung und bildprüfungsfreiem Loader. Die unten beschriebenen
-Dienste bleiben unverändert; ihre Anbindung an Releases folgt in Phase C.
+Dienste bleiben unverändert. Phase C bindet sie über
+`loadReleasedAssetCatalog` an freigegebene Stände an; der feste Diagnoseeinstieg
+verlangt ausdrücklich Release-ID und Hintergrund. [Aufruf, Voraussetzungen,
+Berichtsprovenienz und Reproduktion](CATALOG-RELEASES.md#phase-c-freigegebener-generierungskontext-und-diagnose).
 
 `src/generation/` erzeugt ausschließlich gültige v2-Karten. Geografische Vielfalt
 hat Vorrang vor Routeneignung. Die Karte enthält unverändert nur `geometry`,
@@ -259,11 +262,11 @@ Die folgenden Ergebnisse sind interne Übergabedaten, keine neuen Puzzle- oder
 Veröffentlichungsverträge. Die Anwendung wird in PR 2 nicht daran angeschlossen.
 
 ```js
-import {prepareAssetCatalog} from '../scripts/lib/asset-catalog.mjs'; // nur Node
+import {loadReleasedAssetCatalog} from '../scripts/lib/released-asset-catalog.mjs'; // nur Node
 import {assignAssets,createCatalogProfile} from '../src/assets/assignment.mjs';
 
-// library und resourceRoot gehören zum selben gepinnten Katalogstand.
-const catalog = prepareAssetCatalog({library,backgroundId:'sea-blue-01',resourceRoot});
+// releaseId und backgroundId werden ausdrücklich gewählt.
+const {catalog,provenance} = loadReleasedAssetCatalog({repositoryRoot,releaseId,backgroundId});
 const free = generateMap({seed:42});
 const assignment = assignAssets({map:free.map,seed:42,catalog});
 const profile = createCatalogProfile(catalog,{preferencePercent:75});
@@ -272,8 +275,9 @@ const informedAssignment = assignAssets({map:informed.map,seed:42,catalog});
 ```
 
 `assignAssets`, `createCatalogProfile` und die Generierung sind synchron, rein und
-verändern ihre Eingaben nicht. Nur der Node-Adapter liest Dateien, prüft Hashes
-und startet Python/Pillow. `prepareAssetCatalog` liefert
+verändern ihre Eingaben nicht. Der Release-Adapter liest geprüfte Gitdaten ohne
+Bilddekodierung; Provenienz wird außerhalb der reinen Datenverträge gehalten.
+Das weiterhin verfügbare Entwicklungswerkzeug `prepareAssetCatalog` liefert
 `{library,backgroundId,verification}`. Er benutzt `validateAssetFiles` und
 `validateAssetBytes`, hält dann dieselben erfassten Bytes für Bildprüfung und
 Reproduktionshash fest. `verify-asset-positions.py` verwendet unverändert
@@ -296,8 +300,8 @@ Schnittstelle direkt aufruft, muss vertrauenswürdige Verifikationsdaten liefern
 Fehlende Verifikation erlaubt keine Zuordnung und ergibt ein leeres Profil.
 Eine Metadatenänderung nach der Vorbereitung wird abgewiesen. Nach Änderungen
 der Dateien muss neu vorbereitet werden; ein gespeichertes Prüfergebnis prüft
-nicht von sich aus heutige Dateien. Vor der produktiven Batchpipeline muss
-PR B/C den persistenten Freigabe- und Ressourcenlebenszyklus absichern.
+nicht von sich aus heutige Dateien. Der Release-Adapter sichert Freigabe und
+Ressourcenbindung für den Diagnoseeinstieg; eine Batchpipeline bleibt nachgelagert.
 
 ## Exakte Zuordnung und Ergebnisstruktur
 
@@ -323,7 +327,13 @@ Die Pixelprüfung jedes Ankers erfolgt vorher, niemals durch Renderer-Clipping.
 
 > Jede geografische Illustration ist an jeder Position verwendbar, an der ihre vollständige relative Hexform ohne Rotation oder Spiegelung auf die Karte passt. Die zulässige lokale Grafikfläche bleibt dabei unverändert.
 
-Die vorhandenen Ankerlisten und Schnittstellen bleiben bis PR B/C erhalten. Für ein lokal gültiges Bild liefert die Vorbereitung jetzt alle geometrisch passenden Anker. `PIXEL_POSITION_REJECTED` bleibt als Diagnose für unvollständige übergebene Verifikationen bestehen, ist aber keine geografische Randregel. Rahmenverträglichkeit wird universell und separat durch `check-chart-assets.py` geprüft. Persistente Freigabe, Ressourcenarchivierung und bildprüfungsfreies Laden sind weiterhin Folgearbeiten. Generator-, Zuordnungs- und Zufallsstromversionen ändern sich durch PR A nicht.
+Die vorhandenen Ankerlisten und Schnittstellen bleiben erhalten. Phase C befüllt
+sie aus dem freigegebenen Release. Für ein lokal gültiges Bild enthält dieser
+alle geometrisch passenden Anker. `PIXEL_POSITION_REJECTED` bleibt als Diagnose
+für unvollständige übergebene Verifikationen bestehen, ist aber keine geografische
+Randregel. Rahmenverträglichkeit wurde universell und separat geprüft; der
+Ladeweg übernimmt den archivierten Nachweis. Generator-, Zuordnungs- und
+Zufallsstromversionen ändern sich durch die Integration nicht.
 
 ```js
 {
@@ -450,8 +460,11 @@ Der getrennte [Prüfnachweis zu PR A](verification/graphic-contract-A.md) und di
 trennen diesen Versionseffekt von geografischen Änderungen. Die ursprünglichen
 Dateien und die unten beschriebene P2-Reproduktion bleiben erhalten.
 
-`node scripts/sample-catalog-maps.mjs` erstellt die feste Vergleichsstichprobe
-`verification/F04b-catalog-sample.json`: Seeds 0–127, 3–8 Objekte, Größen 1–4,
+`node scripts/sample-catalog-maps.mjs --release <ID> --background <ID>` gibt die
+feste Vergleichsstichprobe als JSON auf stdout aus, ergänzt um separate Provenienz.
+Die historischen Dateien `verification/F04b-catalog-sample.json` und
+`verification/graphic-contract-A-catalog-sample.json` bleiben unverändert.
+Parameter: Seeds 0–127, 3–8 Objekte, Größen 1–4,
 Befahrbarkeitswahrscheinlichkeit 0,25, Präferenz 75 Prozent, keine Routenfilter
 und keine Routensuche. Die freie Geometrie entspricht dem freien Profil der
 PR-1-Stichprobe; deren gesonderte Routenanalyse wird hier nicht wiederholt.
@@ -474,7 +487,7 @@ größere abstrakte Objekte haben keine passende Illustration. Dekorationen,
 technische Platzhalter, Entwürfe und historische/zurückgestellte Bilder sind
 keine Ersatzformen. Diese Lücken sind kein Karten- oder Generatorfehler.
 
-PR B/C ergänzt zuvor den persistenten Freigabenachweis, gebundene archivierte
+Phase B/C ergänzt den persistenten Freigabenachweis, gebundene archivierte
 Ressourcen und das Laden freigegebener Stände ohne erneute Bilddekodierung.
 PR 3 übernimmt darauf aufbauend die getrennten Karten-/Zuordnungsdaten,
 Versionen, Seeds, normalisierte Config/Profile und Versuchsdiagnosen. Es muss
@@ -529,8 +542,8 @@ innerhalb eines Zuordnungsaufrufs bei Bedarf nach Asset-ID indiziert; bei mehrer
 Einträgen gilt wie beim bisherigen `find` der erste. Pixelanker und lokale
 Bildfehler bleiben unveränderte zusätzliche Tore vor dem Platzierungsprüfkern.
 Ein fehlender oder fehlerhafter Nachweis wird durch die Optimierung nicht zu
-einer Freigabe. Die generelle Vertrauensgrenze für Adapterdaten und die spätere
-Ressourcenbindung aus PR 3 bleiben unverändert.
+einer Freigabe. Die generelle Vertrauensgrenze für Adapterdaten bleibt unverändert;
+der freigegebene Diagnoseeinstieg stellt die Ressourcenbindung über Phase B/C her.
 
 Auch `validateLibrary` benutzt für Referenzen nun ID-/Familienmengen, statt je
 Review den gesamten Assetbestand zu durchsuchen. Bei festem 25-Zellen-Brett

@@ -45,7 +45,8 @@ Verwendung gilt das archivierte Release mit den oben angegebenen Identitäten.
 Die im Rahmenbericht benannten künstlerischen Sichtprüfgrenzen bleiben bestehen;
 diese technische Referenzfreigabe erfindet keine neuen Kunstfreigaben.
 
-Phase C und die automatische Rätselgenerierung sind nachgelagerte Arbeiten.
+Phase C verbindet diesen Referenzstand mit Zuordnung, Profilbildung und der
+festen Katalogdiagnose. Automatische Rätsel-/Batchgenerierung bleibt nachgelagert.
 
 ## Ablage und Identitäten
 
@@ -156,6 +157,89 @@ privat gehaltener verifizierter Bytes. Laden und Prüfen starten nur Git, niemal
 Python/Pillow oder den Bildprüfer. Die Kosten sind proportional zu den gelesenen
 Ressourcenbytes; Git-Zugriffe werden innerhalb einer Prüfung zwischengespeichert.
 
+## Phase C: freigegebener Generierungskontext und Diagnose
+
+```js
+import {loadReleasedAssetCatalog} from '../scripts/lib/released-asset-catalog.mjs';
+import {assignAssets,createCatalogProfile} from '../src/assets/assignment.mjs';
+
+const {catalog,provenance,readResource} = loadReleasedAssetCatalog({
+  repositoryRoot, releaseId, backgroundId,
+});
+const profile = createCatalogProfile(catalog);
+const assignment = assignAssets({map,seed:42,catalog});
+```
+
+Der Adapter übernimmt `library` aus dem Release, die produktiven Asset-IDs aus
+`selection.backgrounds` und ihre Anker aus `validation.placements`. Der gesamte
+Katalog bleibt für die bisherigen Kandidatendiagnosen erhalten; ausschließlich
+ausgewählte Assets erhalten Verifikationseinträge. Es werden keine Bilder
+dekodiert und keine neuen Pixel-, Rahmen- oder Ankerfreigaben berechnet.
+Die Prüfung der konkreten Zuordnung zu Kartenobjekten bleibt erforderlich.
+
+`catalog` behält den Vertrag `{library,backgroundId,verification}`. `provenance`
+steht separat und enthält `adapterVersion`, `releaseId`, `catalogId`,
+`sourceCommit`, `archiveCommit`, `backgroundId` und den bisherigen
+`catalogSha256`. Kontext und Provenienz sind eingefroren. `readResource(ref)`
+löst Katalogreferenzen gegen die Release-Ressourcenbasis auf und liefert Kopien
+der geprüften Bytes; das vollständige archivierte Inventar bleibt lesbar.
+Lesbarkeit eines archivierten Entwurfs erteilt keine Produktionsfreigabe.
+
+Die freigegebene feste Diagnose wird aus dem Repository so aufgerufen:
+
+```sh
+node scripts/sample-catalog-maps.mjs \
+  --release gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1 \
+  --background sea-blue-01 > /tmp/catalog-diagnostic.json
+```
+
+Release und Hintergrund sind Pflichtangaben. Optional wählt `--repository PATH`
+das Git-Repository; sonst wird das Repository des Skripts verwendet, unabhängig
+vom aktuellen Arbeitsverzeichnis. `latest`, doppelte/unbekannte Optionen und
+übergebene Kontext-/Provenienzobjekte werden abgewiesen. Der Einstieg lädt den
+Kontext jedes Mal selbst über `loadReleasedAssetCatalog`. Fehlende Freigaben,
+fehlende Git-Objekte und nur archivierte, nicht produktive Hintergründe führen
+zum Fehler und erzeugen keinen Diagnosebericht.
+
+Laufzeitvoraussetzungen sind **Node 22+, Git und verfügbare Quellhistorie**.
+Der Lauf erfolgt lokal ohne Netzwerk, Python oder Pillow. Katalog, Ressourcen,
+Freigabe und technische Nachweise stammen aus Git; entsprechende Arbeitsdateien
+dürfen fehlen oder verändert sein. Ausführbare JS-Module werden wie üblich aus
+dem Programmcheckout geladen. Für Reproduktionen diesen Programmstand separat
+festhalten und einen sauberen Checkout verwenden.
+
+Der JSON-Bericht behält alle bisherigen Messfelder und ergänzt ausschließlich
+das separate Feld `provenance`. Die Stichprobe bleibt fest bei Seeds 0–127,
+beiden bisherigen Modi und unveränderter Konfiguration/Präferenz. Es entstehen
+keine neuen Identitätsarten, Rätselveröffentlichungen oder Batchaufträge.
+Kartenfingerprints sowie bestehende Instanz-/Varianten-/Publikationsverträge
+werden nicht erweitert. Zur Wiederholung gehören der Programmstand mit seinen
+Algorithmusversionen, Release-ID, Hintergrund und die festen Stichprobenparameter.
+`archiveCommit` dokumentiert den gelesenen Archivstand; bei unverändertem Programm
+und Release dürfen spätere Commits dieses Herkunftsfeld ändern, während Messdaten
+und Inhaltsidentitäten gleich bleiben.
+
+`sampleCatalogMaps(catalog, options)` bleibt die reine Messfunktion für
+vertrauenswürdige Adapterdaten und synthetische Tests. Ihr Aufruf belegt keine
+Freigabe. `prepareAssetCatalog` bleibt als separates Entwicklungs-/Prüfwerkzeug
+erhalten und benötigt weiterhin Python/Pillow; der freigegebene Diagnoseeinstieg
+ruft es nicht auf.
+
+Die dauerhafte Regression in `tests/contracts/catalog-diagnostics.test.mjs`
+vergleicht für den echten Release den vollständigen alten/neuen Katalogkontext,
+das gesamte Profil und Zuordnungen für Seeds 0–31 in beiden Modi. Der alte
+Adapter erhält dafür ausschließlich materialisierte Releasebytes in einem
+temporären Verzeichnis. Dieser Vergleich benötigt Python/Pillow als Testwerkzeug
+und erstellt keine Freigabe. Zusätzlich muss die gesamte feste Diagnose nach
+Abtrennung der Provenienz bytegleich zur unveränderten Referenz
+`docs/verification/graphic-contract-A-catalog-sample.json` bleiben. Ein frischer
+CLI-Prozess läuft mit ausschließlich Git auf PATH, entfernten Arbeitsdaten und
+absichtlich unbrauchbarer Bildvorbereitung. Ausführung:
+
+```sh
+node --test tests/contracts/catalog-diagnostics.test.mjs
+```
+
 ## Stabiler V1-Laufzeitvertrag
 
 `scripts/lib/catalog-release-v1.mjs` hält ausschließlich die für historische V1-
@@ -208,7 +292,7 @@ Hauptstand und validiert alle neuen Releases. Ein absichtliches Überschreiben d
 Git-Historie wird durch dieses Modell nicht abgesichert. Flache Klone müssen die
 referenzierten Quellcommits bereitstellen; fehlende Git-Objekte werden gemeldet.
 
-Phase C übernimmt erst die Anbindung an `assignAssets`/`createCatalogProfile` und
-die spätere Ablösung der Ankerlisten. Batchgenerierung, Spieloberfläche und ein
-eigenständiger Export sind nicht Bestandteil von Phase B. Fertige veröffentlichte
-Rätsel benötigen keine Git-Historie.
+Phase C verwendet die gespeicherten Anker über die bestehenden Zuordnungs- und
+Profilschnittstellen. Batchgenerierung, Spieloberfläche und ein eigenständiger
+Export bleiben außerhalb dieser Integration. Fertige veröffentlichte Rätsel
+benötigen keine Git-Historie.

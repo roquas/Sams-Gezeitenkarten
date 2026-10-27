@@ -28,9 +28,16 @@ separater Struktur-/Routenanalyse und optionalen Eignungsfiltern;
 [Schnittstellen und Reproduktion](MAP-GENERATION-F04B.md). Keine Assetabhängigkeit.
 PR 2 ergänzt ein explizites geografisches Katalogprofil sowie
 `src/assets/assignment.mjs` für reine, getrennte Assetzuordnung. Der Node-Adapter
-`scripts/lib/asset-catalog.mjs` prüft Katalog-/Bildbytes und Positionen mit den
-bestehenden Verträgen. Fehlende Illustration ändert keine abstrakte Karte;
-der freie Generierungsmodus bleibt erhalten.
+`scripts/lib/released-asset-catalog.mjs` lädt einen ausdrücklich gewählten,
+freigegebenen Release und übernimmt Auswahl und Anker in den bestehenden Kontext.
+Die feste Diagnose `scripts/sample-catalog-maps.mjs` verlangt Release-ID und
+Hintergrund und lädt diesen Kontext selbst. Provenienz steht separat im Bericht;
+Profile, Karten- und Rätselidentitäten bleiben unverändert. Der Ladeweg benötigt
+Git-Historie und startet keine Bildprüfung. Aufruf und Reproduktion:
+[Katalog-Releases](CATALOG-RELEASES.md#phase-c-freigegebener-generierungskontext-und-diagnose).
+`scripts/lib/asset-catalog.mjs` bleibt das Entwicklungswerkzeug für neue
+Katalog-/Bildprüfungen mit Python/Pillow. Fehlende Illustration ändert keine
+abstrakte Karte; der freie Generierungsmodus bleibt erhalten.
 
 Engine und Renderer kennen keine produktiven Rätselnamen oder Bestandszahlen.
 Die Anwendung wählt eine lokale Quelle; Inhaltspakete liefern öffentliche Rätsel,
