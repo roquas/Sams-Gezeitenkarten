@@ -1,0 +1,29 @@
+{
+  "selectionSchemaVersion": 1,
+  "catalogId": "gk-catalog-content-v1-sha256-3f406882907a76f99b3c6f816dc664f28f55d1ba42f01baa5fc637dc0b742bd1",
+  "backgrounds": [
+    {
+      "backgroundId": "sea-blue-01",
+      "geographicAssetIds": [
+        "land-coast.archipelago.h3.sand-reefs.v2",
+        "land-coast.atoll.h1.broken-passages.v1",
+        "land-coast.island.h1.basalt-spire-water.v1",
+        "land-coast.island.h2.tropical-bays.v1",
+        "land-coast.island.h3.massive-volcano.v1",
+        "land-coast.island.h3.smuggler-cove.v1",
+        "land-coast.island.h3.south-harbor.v1",
+        "land-coast.island.h4.jungle-temple.v1",
+        "land-coast.island.h4.long-sand.v1",
+        "land-coast.settlement.h4.tesoro.v4",
+        "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "navigation.wreck.h1.offcenter-sloop.v1",
+        "sea-life.accent.h1.barrels.v1",
+        "sea-life.accent.h1.bottle.v1",
+        "sea-life.accent.h1.buoy.v1",
+        "sea-life.accent.h1.crate.v1",
+        "sea-life.accent.h1.driftwood.v1",
+        "sea-life.accent.h1.rowboat.v1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,329 @@
+{
+  "inventorySchemaVersion": 1,
+  "files": [
+    {
+      "path": "assets/catalog/library.json",
+      "kind": "catalog",
+      "bytes": 86970,
+      "sha256": "fdf6ff9b61f1274a1f7769402b794bac26c7bc587afdd62598caa88152eaf439"
+    },
+    {
+      "path": "assets/library/atoll-broken-v1.png",
+      "kind": "image",
+      "bytes": 105200,
+      "sha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2"
+    },
+    {
+      "path": "assets/library/basalt-spire-v1.png",
+      "kind": "image",
+      "bytes": 120800,
+      "sha256": "d68f277f4b6bec2b4950a6341f1fac7a0360abe3d638065b047fc5c39ca78ae0"
+    },
+    {
+      "path": "assets/library/basalt-spire-water-v1.png",
+      "kind": "image",
+      "bytes": 101880,
+      "sha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd"
+    },
+    {
+      "path": "assets/library/bent-reefs-h3-v1.png",
+      "kind": "image",
+      "bytes": 326579,
+      "sha256": "98918ab4ad5d584d3c68b0b26a548e6f458f599f54cab289df7689a69d2c2436"
+    },
+    {
+      "path": "assets/library/crab-claw-h4-v1.png",
+      "kind": "image",
+      "bytes": 478410,
+      "sha256": "f1d1d7c237820b89306cc40d7d54e7ca8570ba1b9311c3ccd9fb3441d9e5d81e"
+    },
+    {
+      "path": "assets/library/crab-claw-h4-v2.png",
+      "kind": "image",
+      "bytes": 439260,
+      "sha256": "fb419e1eed3f97cd6a30db2246b02b6dff4f8227548aacc9f00a556a4fb76d95"
+    },
+    {
+      "path": "assets/library/flavor-barrels-v1.png",
+      "kind": "image",
+      "bytes": 72523,
+      "sha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795"
+    },
+    {
+      "path": "assets/library/flavor-bottle-v1.png",
+      "kind": "image",
+      "bytes": 72423,
+      "sha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150"
+    },
+    {
+      "path": "assets/library/flavor-buoy-v1.png",
+      "kind": "image",
+      "bytes": 57900,
+      "sha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4"
+    },
+    {
+      "path": "assets/library/flavor-crate-v1.png",
+      "kind": "image",
+      "bytes": 67395,
+      "sha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180"
+    },
+    {
+      "path": "assets/library/flavor-cross-ripples-v1.png",
+      "kind": "image",
+      "bytes": 9518,
+      "sha256": "195102aa117db5829486f89f29c69bca5f53c80e2e72d8e24543e26b78be3a9a"
+    },
+    {
+      "path": "assets/library/flavor-current-arc-v1.png",
+      "kind": "image",
+      "bytes": 7695,
+      "sha256": "30e7dd5fd164f17e940144dc9e95651acf457accb263164d096832fdb9a0c47f"
+    },
+    {
+      "path": "assets/library/flavor-dolphins-v1.png",
+      "kind": "image",
+      "bytes": 71610,
+      "sha256": "3269363dbe4c4a9c948d629d083052bfa430737338d2c046cbd23fda53879270"
+    },
+    {
+      "path": "assets/library/flavor-dolphins-v2.png",
+      "kind": "image",
+      "bytes": 6274,
+      "sha256": "089a5d2c6fab7b9b487d0fdb23740163987e9d95cba38d8f1438fd50d8eb06c5"
+    },
+    {
+      "path": "assets/library/flavor-driftwood-v1.png",
+      "kind": "image",
+      "bytes": 71393,
+      "sha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378"
+    },
+    {
+      "path": "assets/library/flavor-foam-flecks-v1.png",
+      "kind": "image",
+      "bytes": 6838,
+      "sha256": "91915baf42d8f1a7712f3735c6c51633311a9512c663d312b17fb93d16e6f6ca"
+    },
+    {
+      "path": "assets/library/flavor-foam-trail-v1.png",
+      "kind": "image",
+      "bytes": 6760,
+      "sha256": "8fec13011b297882e4610da08e0ce1391b41d39d5801022d34e83dc6124eac00"
+    },
+    {
+      "path": "assets/library/flavor-foam-v1.png",
+      "kind": "image",
+      "bytes": 103665,
+      "sha256": "a92b6daadeabed732ecba1a8e00b7ebbbd6ee94104f326553c94a11f8e18611b"
+    },
+    {
+      "path": "assets/library/flavor-gulls-v1.png",
+      "kind": "image",
+      "bytes": 67167,
+      "sha256": "78ab079b04347aa1ee7298a13a94be7f26e6b0390c41bd84bb1c5bc7d39d8af0"
+    },
+    {
+      "path": "assets/library/flavor-gulls-v2.png",
+      "kind": "image",
+      "bytes": 5416,
+      "sha256": "5ea6df2c8396d82b249f9b2336e2ce56643375a0cffda5e467d08a617c2df33f"
+    },
+    {
+      "path": "assets/library/flavor-rowboat-v1.png",
+      "kind": "image",
+      "bytes": 76996,
+      "sha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b"
+    },
+    {
+      "path": "assets/library/flavor-spray-v1.png",
+      "kind": "image",
+      "bytes": 5398,
+      "sha256": "dabf581f2af9178751030670dd42a8d69bb4592c583638457ab24965f1da0de6"
+    },
+    {
+      "path": "assets/library/flavor-turtle-v1.png",
+      "kind": "image",
+      "bytes": 105729,
+      "sha256": "10f4d8f5e81b3dec7f219291a813dfe53fc066402deaa11129c4f663cf04e78f"
+    },
+    {
+      "path": "assets/library/jungle-temple-h4-v1.png",
+      "kind": "image",
+      "bytes": 691213,
+      "sha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254"
+    },
+    {
+      "path": "assets/library/lighthouse-offcenter-v1.png",
+      "kind": "image",
+      "bytes": 89388,
+      "sha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f"
+    },
+    {
+      "path": "assets/library/long-sand-h4-v1.png",
+      "kind": "image",
+      "bytes": 371618,
+      "sha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130"
+    },
+    {
+      "path": "assets/library/massive-volcano-h3-v1.png",
+      "kind": "image",
+      "bytes": 539670,
+      "sha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828"
+    },
+    {
+      "path": "assets/library/sand-reefs-h3-v2.png",
+      "kind": "image",
+      "bytes": 448813,
+      "sha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e"
+    },
+    {
+      "path": "assets/library/smuggler-cove-h3-v1.png",
+      "kind": "image",
+      "bytes": 536903,
+      "sha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075"
+    },
+    {
+      "path": "assets/library/south-harbor-h3-v1.png",
+      "kind": "image",
+      "bytes": 497626,
+      "sha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62"
+    },
+    {
+      "path": "assets/library/technical-decoration.png",
+      "kind": "image",
+      "bytes": 915,
+      "sha256": "a8ffb6c11467331652a2da413dd01187e7de5fbf9a090b6c1dbef4a6a96f12ef"
+    },
+    {
+      "path": "assets/library/technical-double.png",
+      "kind": "image",
+      "bytes": 3493,
+      "sha256": "a818f0e6670097fd54fb7c30b5101c770795f6312731af815f80b7a7db347be8"
+    },
+    {
+      "path": "assets/library/technical-lighthouse.png",
+      "kind": "image",
+      "bytes": 1215,
+      "sha256": "b84d1a3191409c40c6e5ee7b86a1f4f6d634ff167a26db58d9571aa54e7a6470"
+    },
+    {
+      "path": "assets/library/technical-single.png",
+      "kind": "image",
+      "bytes": 2130,
+      "sha256": "a12180babf645da4cd91efd15146324af474c6bdf7308a6c245b6c507cfe6923"
+    },
+    {
+      "path": "assets/library/tesoro-h4-v1.png",
+      "kind": "image",
+      "bytes": 581875,
+      "sha256": "3e2495530ecf8b0dc884313187c6e4018c24d1a4f9a17e375250424671ddcd5d"
+    },
+    {
+      "path": "assets/library/tesoro-h4-v2.png",
+      "kind": "image",
+      "bytes": 652089,
+      "sha256": "9715a2c1d4d7e3b8d062c5c645d06966e93996f7ca6c7789d5eeca3500d9ea22"
+    },
+    {
+      "path": "assets/library/tesoro-h4-v3.png",
+      "kind": "image",
+      "bytes": 742243,
+      "sha256": "e87ce6dbc5d1956a6b0876ecd67630d75ec48565dcdb9bc2b6ff6c1136a7a285"
+    },
+    {
+      "path": "assets/library/tesoro-h4-v4.png",
+      "kind": "image",
+      "bytes": 715125,
+      "sha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61"
+    },
+    {
+      "path": "assets/library/tropical-bays-h2-v1.png",
+      "kind": "image",
+      "bytes": 336937,
+      "sha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773"
+    },
+    {
+      "path": "assets/library/wreck-offcenter-v1.png",
+      "kind": "image",
+      "bytes": 86315,
+      "sha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec"
+    },
+    {
+      "path": "assets/seekarte/frame-parchment-01.webp",
+      "kind": "image",
+      "bytes": 2466344,
+      "sha256": "fdd2f12c2b703b78f1f1ec31926c60d11c4cc65b79bec2cbaedb23a93ee9630a"
+    },
+    {
+      "path": "assets/seekarte/frame-parchment-02.webp",
+      "kind": "image",
+      "bytes": 2913646,
+      "sha256": "6b491107f57e40354b91c8605b075ee8faadb6dd32e382137e9b9f04445982b7"
+    },
+    {
+      "path": "assets/seekarte/meer-ohne-objekte-prototyp.webp",
+      "kind": "image",
+      "bytes": 159550,
+      "sha256": "80ca03802c5d72e3133c7aa18e07b4850f95ac0ca7adfe29d5bbb4d714e6c6e1"
+    },
+    {
+      "path": "assets/seekarte/meer-pergament.webp",
+      "kind": "image",
+      "bytes": 219776,
+      "sha256": "7c8a65c7940de276df5db76c95ed86989f06f6cec7897729920ece684ec14fb5"
+    },
+    {
+      "path": "assets/seekarte/sea-blue-01.webp",
+      "kind": "image",
+      "bytes": 3386254,
+      "sha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+    },
+    {
+      "path": "docs/seekarte-template/contract.json",
+      "kind": "chart-contract",
+      "bytes": 34414,
+      "sha256": "ed733f7d3332c2c0156c52bae92432b221707d54023135c1f5086a527bb79547"
+    },
+    {
+      "path": "puzzles/schema/asset-library-v2.schema.json",
+      "kind": "schema",
+      "bytes": 5556,
+      "sha256": "585519b6924a8f1fc968babd501bd095fc543c52ca333fafde11e844673985c2"
+    },
+    {
+      "path": "scripts/config/catalog-release-v1.json",
+      "kind": "policy",
+      "bytes": 486,
+      "sha256": "44a930d43386ff8bddd1ec93e4b475fef17ab694235e072ce922610222187140"
+    },
+    {
+      "path": "src/assets/geometry.mjs",
+      "kind": "graphic-contract",
+      "bytes": 3951,
+      "sha256": "a6e611321a9df5039c5e6c8dde74b65a0276ccbc0fcd4e54a84623364021106b"
+    },
+    {
+      "path": "src/engine/hex.mjs",
+      "kind": "graphic-contract",
+      "bytes": 885,
+      "sha256": "7854533abe9609afcd10b81949e7652359abaedb632758c0812efe7d3e7ed268"
+    },
+    {
+      "path": "src/ui/chart-asset-contract.mjs",
+      "kind": "graphic-contract",
+      "bytes": 6036,
+      "sha256": "53ed79cadea316d3d0b2e7d55d3586e5de36c8bdf73b830c93c49866b414b36f"
+    },
+    {
+      "path": "src/ui/chart-geometry.mjs",
+      "kind": "graphic-contract",
+      "bytes": 2336,
+      "sha256": "19b51c3324874e88108a168e8fda84cdb107591970958f3679ce59d47e097d13"
+    },
+    {
+      "path": "src/ui/place-labels.mjs",
+      "kind": "graphic-contract",
+      "bytes": 3619,
+      "sha256": "5e3b7866fd7604d21171b125c4e3414980c2db741b099334b741c64e6e7e8a87"
+    }
+  ]
+}

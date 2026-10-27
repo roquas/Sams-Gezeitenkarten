@@ -1,0 +1,11 @@
+{
+  "releaseSchemaVersion": 1,
+  "catalogId": "gk-catalog-content-v1-sha256-3f406882907a76f99b3c6f816dc664f28f55d1ba42f01baa5fc637dc0b742bd1",
+  "sourceCommit": "ccab5f41dae380525f7535de4470848a3ab4d214",
+  "assetCatalog": "assets/catalog/library.json",
+  "resourceBase": ".",
+  "inventorySha256": "87a4d38bea84a83fa4fdbef49c63551aad6d95110e0d34907eb5fe74e55e8f67",
+  "validationSha256": "d09278001e2ba4215cabb98cf92495eeb6bee2fab63ef6e07ec60af3544911a1",
+  "selectionSha256": "4169af4bfd224b306d44b52d9966c9d741ede7e640bf60236cc1ede3bb77921d",
+  "releaseId": "gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1"
+}
