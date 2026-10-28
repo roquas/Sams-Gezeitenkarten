@@ -179,4 +179,6 @@ Die automatisierten Nachweise liegen in
 `tests/engine/catalog-compliant.test.mjs` und
 `tests/contracts/target-map-batch.test.mjs`; bestehende Generator-, Zuordnungs-,
 Batch-, Release- und Positionsprüfungen bleiben im Unitgate enthalten.
-Der realistische Batchnachweis wird separat unter `docs/verification/` abgelegt.
+Der [reale Batchnachweis](verification/catalog-compliant-batch.md) dokumentiert
+1.000 akzeptierte Karten aus 1.403 Versuchen einschließlich Verwerfungen,
+Kennzahlen und vollständig reproduzierbarem Programmstand.
