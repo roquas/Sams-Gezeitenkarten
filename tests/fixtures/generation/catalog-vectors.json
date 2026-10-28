@@ -1,0 +1,431 @@
+{
+  "sourceCommit": "81cf564965887645caf52b7035580b458272e75f",
+  "releaseId": "gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1",
+  "backgroundId": "sea-blue-01",
+  "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+  "cases": [
+    {
+      "name": "accepted-reviewed-attempt",
+      "index": 1,
+      "options": {
+        "targetCount": 1000,
+        "maxAttempts": 5000,
+        "seedStart": 0,
+        "assignmentSeedStart": 100000,
+        "config": {
+          "maxMapAttempts": 1
+        }
+      },
+      "expected": {
+        "index": 1,
+        "generationSeed": 1,
+        "assignmentSeed": 100001,
+        "status": "generated",
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "id": "geo-01",
+              "cells": [
+                "C5"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-02",
+              "cells": [
+                "A3"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-03",
+              "cells": [
+                "E4"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-04",
+              "cells": [
+                "D3"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-05",
+              "cells": [
+                "B1",
+                "C1",
+                "D1",
+                "E1"
+              ],
+              "passable": false
+            }
+          ]
+        },
+        "mapFingerprint": "gk-map-v2-sha256:6259806f779f0cf3a734b77e2c8f014e42214316880222ceda01f07d97067982",
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "error": null,
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "anchor": "C5",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "A3",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "anchor": "E4",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "anchor": "D3",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "land-coast.island.h4.long-sand.v1",
+              "anchor": "B1",
+              "objectId": "geo-05"
+            }
+          ],
+          "assignmentVersion": "catalog-assignment-1",
+          "assignedCount": 5,
+          "unassignedCount": 0,
+          "assetUsage": {
+            "sea-life.accent.h1.bottle.v1": 1,
+            "sea-life.accent.h1.driftwood.v1": 1,
+            "sea-life.accent.h1.buoy.v1": 1,
+            "sea-life.accent.h1.rowboat.v1": 1,
+            "land-coast.island.h4.long-sand.v1": 1
+          }
+        },
+        "diagnostics": {
+          "generatorVersion": "catalog-compliant-maps-2",
+          "config": {
+            "objectCount": {
+              "min": 2,
+              "max": 7
+            },
+            "objectSizes": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "passableProbability": 0.5,
+            "maxMapAttempts": 1,
+            "analysis": {
+              "steps": [],
+              "maxNodes": 10000
+            },
+            "filters": {
+              "routeSteps": [],
+              "minLargestComponent": 0
+            }
+          },
+          "attempts": 1,
+          "placementAttempts": 5,
+          "rejectedAttempts": 0,
+          "unknownAttempts": 0,
+          "rejectionCounts": {},
+          "attemptLog": [
+            {
+              "attempt": 1,
+              "status": "accepted",
+              "reasons": [],
+              "placementAttempts": 5,
+              "failedObject": null,
+              "catalog": {
+                "preferredPlacements": 5,
+                "footprintChecks": 770
+              },
+              "routes": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "exhausted-placement-budget",
+      "index": 0,
+      "options": {
+        "targetCount": 1000,
+        "maxAttempts": 5000,
+        "seedStart": 0,
+        "assignmentSeedStart": 100000,
+        "config": {
+          "maxMapAttempts": 1
+        }
+      },
+      "expected": {
+        "index": 0,
+        "generationSeed": 0,
+        "assignmentSeed": 100000,
+        "status": "exhausted",
+        "map": null,
+        "mapFingerprint": null,
+        "decision": "rejected",
+        "rejectionReasons": [
+          "GENERATION_EXHAUSTED",
+          "OBJECT_SPACING_EXHAUSTED"
+        ],
+        "error": null,
+        "assignment": null,
+        "diagnostics": {
+          "generatorVersion": "catalog-compliant-maps-2",
+          "config": {
+            "objectCount": {
+              "min": 2,
+              "max": 7
+            },
+            "objectSizes": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "passableProbability": 0.5,
+            "maxMapAttempts": 1,
+            "analysis": {
+              "steps": [],
+              "maxNodes": 10000
+            },
+            "filters": {
+              "routeSteps": [],
+              "minLargestComponent": 0
+            }
+          },
+          "attempts": 1,
+          "placementAttempts": 5,
+          "rejectedAttempts": 1,
+          "unknownAttempts": 0,
+          "rejectionCounts": {
+            "OBJECT_SPACING_EXHAUSTED": 1
+          },
+          "attemptLog": [
+            {
+              "attempt": 1,
+              "status": "rejected",
+              "reasons": [
+                {
+                  "code": "OBJECT_SPACING_EXHAUSTED"
+                }
+              ],
+              "placementAttempts": 5,
+              "failedObject": 5,
+              "catalog": {
+                "preferredPlacements": 4,
+                "footprintChecks": 770
+              },
+              "routes": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "accepted-after-filter-rejection",
+      "index": 20,
+      "options": {
+        "targetCount": 1000,
+        "maxAttempts": 5000,
+        "seedStart": 0,
+        "assignmentSeedStart": 100000,
+        "config": {
+          "passableProbability": 0.15,
+          "maxMapAttempts": 3,
+          "filters": {
+            "routeSteps": [
+              1
+            ]
+          }
+        }
+      },
+      "expected": {
+        "index": 20,
+        "generationSeed": 20,
+        "assignmentSeed": 100020,
+        "status": "generated",
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "id": "geo-01",
+              "cells": [
+                "A1"
+              ],
+              "passable": false
+            },
+            {
+              "id": "geo-02",
+              "cells": [
+                "A3"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-03",
+              "cells": [
+                "B2",
+                "C1",
+                "C2"
+              ],
+              "passable": false
+            }
+          ]
+        },
+        "mapFingerprint": "gk-map-v2-sha256:293bed270fd467282aefb3b842385f3e0bbf8cab2f493d37eb1149f60fd9b020",
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "error": null,
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "anchor": "A1",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "A3",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.island.h3.massive-volcano.v1",
+              "anchor": "B2",
+              "objectId": "geo-03"
+            }
+          ],
+          "assignmentVersion": "catalog-assignment-1",
+          "assignedCount": 3,
+          "unassignedCount": 0,
+          "assetUsage": {
+            "land-coast.island.h1.basalt-spire-water.v1": 1,
+            "navigation.lighthouse.h1.offcenter-beacon.v1": 1,
+            "land-coast.island.h3.massive-volcano.v1": 1
+          }
+        },
+        "diagnostics": {
+          "generatorVersion": "catalog-compliant-maps-2",
+          "config": {
+            "objectCount": {
+              "min": 2,
+              "max": 7
+            },
+            "objectSizes": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "passableProbability": 0.15,
+            "maxMapAttempts": 3,
+            "analysis": {
+              "steps": [],
+              "maxNodes": 10000
+            },
+            "filters": {
+              "routeSteps": [
+                1
+              ],
+              "minLargestComponent": 0
+            }
+          },
+          "attempts": 2,
+          "placementAttempts": 6,
+          "rejectedAttempts": 1,
+          "unknownAttempts": 0,
+          "rejectionCounts": {
+            "NO_ELIGIBLE_START": 1
+          },
+          "attemptLog": [
+            {
+              "attempt": 1,
+              "status": "rejected",
+              "reasons": [
+                {
+                  "code": "NO_ELIGIBLE_START",
+                  "status": "rejected",
+                  "steps": 1
+                }
+              ],
+              "placementAttempts": 3,
+              "failedObject": null,
+              "catalog": {
+                "preferredPlacements": 3,
+                "footprintChecks": 462
+              },
+              "routes": [
+                {
+                  "steps": 1,
+                  "status": "no-route",
+                  "eligibleStartCountLowerBound": 0,
+                  "eligibleStartCountExact": true,
+                  "routeCountLowerBound": 0,
+                  "countExact": true,
+                  "search": {
+                    "completed": true,
+                    "maxNodesPerStart": 10000,
+                    "nodesVisited": 0
+                  }
+                }
+              ]
+            },
+            {
+              "attempt": 2,
+              "status": "accepted",
+              "reasons": [],
+              "placementAttempts": 3,
+              "failedObject": null,
+              "catalog": {
+                "preferredPlacements": 3,
+                "footprintChecks": 462
+              },
+              "routes": [
+                {
+                  "steps": 1,
+                  "status": "route-found",
+                  "eligibleStartCountLowerBound": 1,
+                  "eligibleStartCountExact": true,
+                  "routeCountLowerBound": 3,
+                  "countExact": true,
+                  "search": {
+                    "completed": true,
+                    "maxNodesPerStart": 10000,
+                    "nodesVisited": 4
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
