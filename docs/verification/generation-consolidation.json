@@ -6093,6 +6093,66 @@
     "chartAssetCheck": "passed",
     "devServerSelfTest": "passed",
     "releaseArchiveCheck": "passed",
-    "diffCheck": "passed"
+    "diffCheck": "passed",
+    "webkitIsolatedLocalRepeat": {
+      "passed": 75,
+      "failed": 0,
+      "interrupted": 1,
+      "notRun": 244,
+      "stoppedBecause": "complete six-shard CI matrix available"
+    },
+    "ci": {
+      "url": "https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/40729164096",
+      "testedCommit": "a211c408fe705dce4eaaf63a6c317822203fff21",
+      "unit": "success",
+      "content": "success",
+      "puzzles": "success",
+      "assets": "success",
+      "chromium": "success",
+      "catalogReleases": "success",
+      "webkit": {
+        "executed": 320,
+        "passedWithoutRetry": 319,
+        "passedOnRetry": 1,
+        "failedAssertionsAfterRetry": 0,
+        "jobConclusion": "failure due to failOnFlakyTests",
+        "flakyTest": "tests/browser/chart-ux.spec.mjs:12 webkit-mobile",
+        "flakyJobId": 122960461232,
+        "shards": [
+          {
+            "shard": 1,
+            "jobId": 122960460434,
+            "passed": 54
+          },
+          {
+            "shard": 2,
+            "jobId": 122960461134,
+            "passed": 54
+          },
+          {
+            "shard": 3,
+            "jobId": 122960461055,
+            "passed": 53
+          },
+          {
+            "shard": 4,
+            "jobId": 122960461232,
+            "passed": 52,
+            "flaky": 1
+          },
+          {
+            "shard": 5,
+            "jobId": 122960461072,
+            "passed": 53
+          },
+          {
+            "shard": 6,
+            "jobId": 122960461025,
+            "passed": 53
+          }
+        ]
+      },
+      "deploymentBrowserJob": "in progress at evidence snapshot; local package tests and CI package build passed"
+    }
   }
 }

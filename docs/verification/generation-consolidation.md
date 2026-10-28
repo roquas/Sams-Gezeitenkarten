@@ -137,6 +137,7 @@ bleiben erhalten.
 | `python3 tests/test_package.py` | 18 / 18 bestanden |
 | `npm run test:browser` | 320 / 320 Chromium-Tests (Desktop und Mobil) bestanden |
 | WebKit, `contact-sheet.spec.mjs` | 6 / 6 bestanden (Desktop und Mobil) |
+| Vollständige WebKit-CI-Matrix | 319 direkt bestanden, 1 erst im Retry; Job wegen Flakiness rot |
 | Reale 24-Karten-Sichtung | vier Browser-/Viewportkombinationen mit je 144 erfolgreich dekodierten Bildern |
 | Alpha-Normalisierer-Selbsttest und `check-chart-assets.py` | bestanden, keine Pixeländerungen |
 | Entwicklungsserver-Selbsttest | No-Cache-HTTP-Vertrag bestanden |
@@ -151,10 +152,27 @@ reproduziert denselben Stabilitäts-/Klicktimeout in
 `chart-ux.spec.mjs` / „distance phases announce selection, cancel and preserve notes“;
 der erste Koordinatentest besteht dort knapp (28,6 Sekunden). Das betrifft die
 bereits unveränderte Spieloberfläche bei DPR 2, nicht die Kontaktübersicht.
-Ein separater vollständiger Wiederholungsanlauf mit einem Worker und einer Grenze
-von fünf Fehlern läuft ohne konkurrierende Chromium-/Assetläufe; dessen Ergebnis
-wird vor Abschluss ergänzt. Der vollständige Standard-WebKit-Lauf wird bis dahin
-nicht als bestanden ausgegeben.
+Der isolierte lokale Wiederholungsanlauf bestand anschließend 75 Prüfungen ohne
+Fehler. Er wurde beendet (1 unterbrochen, 244 nicht ausgeführt), nachdem die
+vollständige unveränderte WebKit-Matrix in der CI vorlag.
+
+Die [CI des geprüften Implementierungsstands `a211c40`](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/40729164096)
+bestätigt Unit, Content, Rätsel, Assets, Chromium und Releasearchiv ebenfalls.
+Alle **320 WebKit-Prüfungen** wurden in den vorhandenen sechs Shards ausgeführt:
+**319 bestanden direkt, 1 im Wiederholungsversuch**. Shard 4 meldet wegen
+`failOnFlakyTests` dennoch einen fehlgeschlagenen Job. Betroffen ist derselbe
+bestehende Test `chart-ux.spec.mjs:12` (diesmal WebKit Mobil): Timeout beim nativen
+SVG-Klick, Wiederholung erfolgreich. Die Kontaktübersicht besteht vollständig.
+Keine erhöhten Timeouts, abgeschwächten Assertions oder Änderungen an der
+unveränderten Spieloberfläche. Der Zusatzjob mit den Browserprüfungen des frisch
+erzeugten ZIP-Pakets war beim Nachweisabschluss noch aktiv; sein Ergebnis steht
+im verlinkten CI-Lauf. Die lokalen 18 Pakettests und der CI-Paketbau bestehen.
+
+Damit wird die vollständige WebKit-Matrix ausdrücklich mit ihrem Flakiness-Befund
+ausgewiesen, nicht als uneingeschränkt grüner Lauf. Dies ist eine bekannte Grenze
+der bestehenden UI-/Software-Rendering-Prüfung; die Generatorbereinigung führt
+keinen neuen Laufzeitpfad in diese Oberfläche ein. Die nachfolgenden Commits
+aktualisieren nur Tests und Nachweise, nicht die beim Batch geprüfte Implementierung.
 
 Lokal: Debian 13, zwei CPU-Kerne, Node 24.19.0, Python 3.12.14, Chromium 156,
 WebKit 27.2. Fehlende WebKit-Systembibliotheken wurden ausschließlich lokal aus
