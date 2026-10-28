@@ -1,5 +1,9 @@
 # F04b PR3: lokale Kartenbatches (Format 1)
 
+Der ausdrücklich gewählte Modus `catalog-compliant` ergänzt einen separaten
+[Zielzahlvertrag in Format 2](CATALOG-COMPLIANT-GENERATION.md). Der hier
+beschriebene versuchszählende Format-1-Vertrag bleibt erhalten.
+
 `scripts/generate-map-batch.mjs` führt eine feste Anzahl Aufrufe des bestehenden
 `generateMap` aus. Jede zurückgegebene Karte erhält separat `assignAssets`.
 Geografische Gültigkeit, grafische Abdeckung, spätere Rätselqualität und visuelle

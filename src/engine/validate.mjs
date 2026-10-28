@@ -11,7 +11,7 @@ export function requireContract(definition,{rulesVersion=definition?.rulesVersio
  if(!Number.isSafeInteger(definition?.dataVersion)||definition.dataVersion<1||definition.dataVersion>2147483647)throw new DefinitionError('version',['invalid dataVersion']);
  return {rulesVersion,schemaVersion:2,dataVersion:definition.dataVersion};
 }
-export function validateMap(map){
+export function validateMap(map,{separateObjects=false}={}){
  const errors=schemaErrors(map,mapSchema,'map');
  if(errors.length)throw new DefinitionError('structure',errors);
  const ids=new Set(),occupied=new Set();
@@ -21,6 +21,10 @@ export function validateMap(map){
   const seen=new Set([o.cells[0]]),queue=[o.cells[0]];
   for(let i=0;i<queue.length;i++)for(const c of o.cells)if(!seen.has(c)&&adjacent(queue[i],c)){seen.add(c);queue.push(c);}
   if(seen.size!==o.cells.length)errors.push('map.objects.'+o.id+': cells must be edge-connected');
+ }
+ if(separateObjects)for(let i=0;i<map.objects.length;i++)for(let j=0;j<i;j++){
+  if(map.objects[i].cells.some(a=>map.objects[j].cells.some(b=>adjacent(a,b))))
+   errors.push('map.objects: shared edge between '+map.objects[j].id+' and '+map.objects[i].id);
  }
  if(errors.length)throw new DefinitionError('semantics',errors);
  return map;

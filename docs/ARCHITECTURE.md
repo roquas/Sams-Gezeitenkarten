@@ -46,6 +46,13 @@ aggregiert vorhandene Analyseergebnisse ohne zweite Topologie-/Routenanalyse.
 Einzel-Replay verlangt denselben Programmcommit, saubere Programmdateien und
 übereinstimmende Algorithmusversionen. [Batchvertrag und Grenzen](MAP-BATCH-F04B.md).
 
+Der optionale [kataloggerechte Modus](CATALOG-COMPLIANT-GENERATION.md) verwendet
+denselben Kandidatenbauer mit geografischen Kapazitätsprofilen und zusätzlichem
+Objektabstand. Die bestehende Zuordnungsengine ergänzt eine globale Motivbelegung
+mit einmaligen unbefahrbaren Assets und bevorzugt unterschiedlichen befahrbaren
+Assets. Format 2 zählt akzeptierte Karten unter explizitem Versuchsbudget; Karte,
+Assetbelegung und spätere Rätsel bleiben getrennt.
+
 Engine und Renderer kennen keine produktiven Rätselnamen oder Bestandszahlen.
 Die Anwendung wählt eine lokale Quelle; Inhaltspakete liefern öffentliche Rätsel,
 Assetmetadaten und Ressourcen. Die garantierte UI-Basis bleibt getrennt von
