@@ -111,7 +111,7 @@ test('static output is byte reproducible, deduplicates pinned resources and neve
  assert.deepEqual(files,fs.readdirSync(path.join(second,'resources')).sort());
  for(const file of ['index.html',...files.map(f=>'resources/'+f)])assert.deepEqual(fs.readFileSync(path.join(first,file)),fs.readFileSync(path.join(second,file)));
  const html=fs.readFileSync(path.join(first,'index.html'),'utf8');
- assert.equal((html.match(/<article>/g)??[]).length,3);assert.ok(!html.includes('<script src='));
+ assert.equal((html.match(/<article\b/g)??[]).length,3);assert.ok(!html.includes('<script src='));
  assert.ok(!html.includes('https://released.invalid'));
  for(const row of loaded.rows)assert.ok(html.includes(row.mapFingerprint));
  for(const file of files)assert.equal(sha256(fs.readFileSync(path.join(first,'resources',file))),file.split('.')[0]);

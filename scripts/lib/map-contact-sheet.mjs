@@ -29,55 +29,112 @@ export function selectCandidateIndices(indices,count){
  return [...indices];
 }
 
-export async function readContactBatch({batch,indices,repositoryRoot=PROGRAM_ROOT}){
+// Both handoff streams are read with bounded memory. Only explicitly selected
+// cards are retained; accepted rows must be the exact ordered subset of attempts.
+async function* jsonRows(file){
+ const input=fs.createReadStream(file),lines=createInterface({input,crlfDelay:Infinity});
+ try{for await(const line of lines)yield JSON.parse(line);}
+ finally{lines.close();input.destroy();}
+}
+
+export async function readContactBatch({batch,indices,acceptedIndices,repositoryRoot=PROGRAM_ROOT}){
  const manifest=readJson(path.join(batch,'manifest.json')),options=validateBatchManifest(manifest);
- indices=selectCandidateIndices(indices,options.count);
+ const constrained=options.mode==='catalog-compliant';
+ assert((indices!==undefined)!==(acceptedIndices!==undefined),'choose exactly one of indices or acceptedIndices');
+ assert(acceptedIndices===undefined||constrained,'acceptedIndices requires catalog-compliant format 2');
  const released=loadReleasedAssetCatalog({repositoryRoot,...manifest.provenance});
  same(stableProvenance(manifest.provenance),stableProvenance(released.provenance),'release provenance mismatch');
  assert(/^[a-f0-9]{40}$/.test(manifest.provenance.archiveCommit),'invalid archive commit');
- const profile=options.mode==='catalog-informed'?createCatalogProfile(released.catalog,{preferencePercent:options.preferencePercent}):null;
+ const profile=options.mode==='free'?null:createCatalogProfile(released.catalog,constrained?{mode:options.mode}:{preferencePercent:options.preferencePercent});
  same(manifest.catalogProfile,profile,'catalog profile mismatch');
  const summary=readJson(path.join(batch,'summary.json'));
- assert(summary.batchFormatVersion===manifest.batchFormatVersion&&summary.status==='completed'&&
-  summary.requestedCount===options.count&&summary.processedCount===options.count&&
+ assert(summary.batchFormatVersion===manifest.batchFormatVersion,'summary batch format mismatch');
+ let count=options.count;
+ if(constrained){
+  const {attemptedCount,acceptedCount,rejectedCount}=summary;
+  assert(summary.targetCount===options.targetCount&&summary.maxAttempts===options.maxAttempts&&
+   Number.isSafeInteger(attemptedCount)&&attemptedCount>=1&&attemptedCount<=options.maxAttempts&&
+   Number.isSafeInteger(acceptedCount)&&acceptedCount>=0&&acceptedCount<=Math.min(attemptedCount,options.targetCount)&&
+   rejectedCount===attemptedCount-acceptedCount,'invalid target batch counts');
+  assert(summary.status===(acceptedCount===options.targetCount?'target-reached':'target-unreached')&&
+   (summary.status==='target-reached'||attemptedCount===options.maxAttempts),'regularly finished target batch required');
+  same(summary.attempted.errors,{},'failed target attempts');same(summary.accepted.errors,{},'failed accepted results');
+  count=attemptedCount;
+ }else assert(summary.status==='completed'&&summary.requestedCount===count&&summary.processedCount===count&&
   isDeepStrictEqual(summary.errors,{}),'completed batch summary required');
- const wanted=new Set(indices),selected=new Map(),statuses={geography:{},assignment:{}};
- const input=fs.createReadStream(path.join(batch,'candidates.jsonl'));
- const lines=createInterface({input,crlfDelay:Infinity});
- let position=0;
+ const kind=acceptedIndices===undefined?'attempt':'accepted';
+ const selection=selectCandidateIndices(acceptedIndices??indices,kind==='accepted'?summary.acceptedCount:count);
+ const wanted=new Set(selection),selected=new Map(),resultIndices=new Map();
+ const statuses={geography:{},assignment:{}},acceptedStatuses={geography:{},assignment:{}},rejectionCounts={};
+ const increment=(group,row)=>{
+  const g=row.generation.status;group.geography[g]=(group.geography[g]??0)+1;
+  if(row.assignment){const a=row.assignment.status;group.assignment[a]=(group.assignment[a]??0)+1;}
+ };
+ const accepted=constrained?jsonRows(path.join(batch,'accepted.jsonl')):null;
+ let position=0,acceptedPosition=0;
  try{
-  for await(const line of lines){
-   const row=JSON.parse(line),label='candidate '+position;
-   assert(position<options.count&&row.index===position,label+': order/index mismatch');
+  for await(const row of jsonRows(path.join(batch,'candidates.jsonl'))){
+   const label='candidate '+position;
+   assert(position<count&&row.index===position,label+': order/index mismatch');
    assert(row.generationSeed===options.seedStart+position&&row.assignmentSeed===options.assignmentSeedStart+position,label+': seed schedule mismatch');
    assert(!row.error&&row.generation,label+': failed/missing generation');
    const g=row.generation;
    assert(g.diagnostics?.seed===row.generationSeed,label+': generation seed mismatch');
    same(g.diagnostics.config,options.config,label+': generation config mismatch');
-   same(g.diagnostics.generatorVersion,options.mode==='free'?manifest.versions.generator:manifest.versions.catalogGenerator,label+': generator version mismatch');
+   same(g.diagnostics.generatorVersion,options.mode==='catalog-informed'?manifest.versions.catalogGenerator:manifest.versions.generator,label+': generator version mismatch');
    same(g.diagnostics.catalogProfile??null,profile,label+': generation profile mismatch');
    assert(['generated','exhausted','inconclusive'].includes(g.status),label+': invalid generation status');
-   statuses.geography[g.status]=(statuses.geography[g.status]??0)+1;
    if(g.map){
-    assert(g.status==='generated',label+': unexpected map');validateMap(g.map);
+    assert(g.status==='generated',label+': unexpected map');validateMap(g.map,{separateObjects:constrained});
     assert(mapFingerprint(g.map)===row.mapFingerprint,label+': map fingerprint mismatch');
     assert(row.assignment&&['complete','partial','none'].includes(row.assignment.status),label+': missing/invalid assignment');
-    const status=row.assignment.status;statuses.assignment[status]=(statuses.assignment[status]??0)+1;
    }else assert(g.status!=='generated'&&row.mapFingerprint===null&&row.assignment===null,label+': missing map or unexpected assignment');
-   if(wanted.has(position)){
+   increment(statuses,row);
+   let resultIndex=null;
+   if(constrained){
+    const isAccepted=g.status==='generated'&&row.assignment?.status==='complete';
+    assert(row.decision===(isAccepted?'accepted':'rejected'),label+': acceptance decision mismatch');
+    assert(Array.isArray(row.rejectionReasons)&&row.rejectionReasons.every(r=>typeof r==='string'&&r.length>0)&&
+     new Set(row.rejectionReasons).size===row.rejectionReasons.length,label+': invalid rejection reasons');
+    if(isAccepted){
+     same(row.rejectionReasons,[],label+': accepted candidate has rejection reasons');
+     assert(acceptedPosition<summary.acceptedCount,label+': too many accepted candidates');
+     const next=await accepted.next();assert(!next.done,label+': missing accepted row');
+     same(next.value,row,label+': accepted row differs from original attempt');
+     resultIndex=acceptedPosition++;increment(acceptedStatuses,row);
+     // A target-reached run must stop at its final accepted attempt.
+     assert(acceptedPosition<options.targetCount||position===count-1,'attempts after target reached');
+    }else{
+     assert(row.rejectionReasons.length>0,label+': rejected candidate needs reasons');
+     for(const reason of row.rejectionReasons)rejectionCounts[reason]=(rejectionCounts[reason]??0)+1;
+    }
+   }
+   const key=kind==='accepted'?resultIndex:position;
+   if(wanted.has(key)){
+    assert(!constrained||resultIndex!==null,label+': rejected attempt is not a regular catalog-compliant result');
     assert(g.map,label+': no geographic map to preview ('+g.status+')');
-    // Recheck the saved selection with the approved context. Render the saved
-    // placements only; never replace them or turn an exception into coverage none.
-    same(row.assignment,assignAssets({map:g.map,seed:row.assignmentSeed,catalog:released.catalog}),label+': saved assignment mismatch');
-    selected.set(position,row);
+    // Recheck concrete saved motifs with the existing mode-specific service.
+    // Render the stored placements only, never substitute a fresh assignment.
+    same(row.assignment,assignAssets({map:g.map,seed:row.assignmentSeed,catalog:released.catalog,
+     ...(constrained?{reusePolicy:options.mode}:{})}),label+': saved assignment mismatch');
+    selected.set(key,row);resultIndices.set(key,resultIndex);
    }
    position++;
   }
- }finally{lines.close();input.destroy();}
- assert(position===options.count,'candidate count mismatch/truncated batch');
- same(statuses.geography,summary.geography.statuses,'summary geography status mismatch');
- same(statuses.assignment,summary.assignment.statuses,'summary assignment status mismatch');
- return {manifest,rows:indices.map(i=>selected.get(i)),released};
+  if(accepted)assert((await accepted.next()).done,'unexpected extra accepted row');
+ }finally{if(accepted)await accepted.return();}
+ assert(position===count,'candidate count mismatch/truncated batch');
+ const expected=constrained?summary.attempted:summary;
+ same(statuses.geography,expected.geography.statuses,'summary geography status mismatch');
+ same(statuses.assignment,expected.assignment.statuses,'summary assignment status mismatch');
+ if(constrained){
+  assert(acceptedPosition===summary.acceptedCount,'accepted count mismatch');
+  same(acceptedStatuses.geography,summary.accepted.geography.statuses,'accepted summary geography status mismatch');
+  same(acceptedStatuses.assignment,summary.accepted.assignment.statuses,'accepted summary assignment status mismatch');
+  same(rejectionCounts,summary.rejectionCounts,'summary rejection counts mismatch');
+ }
+ return {manifest,summary,rows:selection.map(i=>selected.get(i)),acceptedIndices:constrained?selection.map(i=>resultIndices.get(i)):null,
+  selection:{kind,indices:selection},released};
 }
 
 // Decode only: no alpha/footprint inspection, pixel reapproval or image changes.
@@ -144,8 +201,8 @@ export function renderContactSvg(row,library,files,resolveImage){
  svg.append(diagnostic,frame);return svg.toString();
 }
 
-export async function createMapContactSheet({batch,indices,out,repositoryRoot=PROGRAM_ROOT}){
- const {manifest,rows,released}=await readContactBatch({batch,indices,repositoryRoot});
+export async function createMapContactSheet({batch,indices,acceptedIndices,out,repositoryRoot=PROGRAM_ROOT}){
+ const {manifest,summary,rows,acceptedIndices:resultIndices,selection,released}=await readContactBatch({batch,indices,acceptedIndices,repositoryRoot});
  const {catalog,chartContract,readResource}=released,format=chartContract.format;
  same(format.version,CHART_ASSET_SPEC.version,'unsupported released chart contract');
  same(format.viewBox,CHART_VIEWBOX,'released SVG viewBox mismatch');
@@ -165,17 +222,22 @@ export async function createMapContactSheet({batch,indices,out,repositoryRoot=PR
   const key=ref.startsWith('https://released.invalid/')?new URL(ref).pathname.slice(1):ref;
   assert(paths.has(key),'unresolved released image: '+key);return paths.get(key);
  };
- const cards=rows.map(row=>{
+ const cards=rows.map((row,i)=>{
   const d=row.assignment.diagnostics;
-  return '<article><h2>Kandidat '+row.index+' <span class="status">'+row.assignment.status+'</span></h2>'+renderContactSvg(row,catalog.library,format.files,resolveImage)+
-   '<dl><dt>Seed</dt><dd>'+row.generationSeed+' · Zuordnungsseed '+row.assignmentSeed+'</dd><dt>Objekte</dt><dd>'+d.assignedCount+' illustriert · '+d.unassignedCount+' ohne Illustration</dd><dt>Kartenfingerprint</dt><dd><code>'+escape(row.mapFingerprint)+'</code></dd></dl></article>';
+  const target=resultIndices!==null;
+  const identity=target?'Ergebnis '+resultIndices[i]+' · Versuch '+row.index:'Kandidat '+row.index;
+  const placements='<details><summary>Motivbelegung ('+row.assignment.placements.length+')</summary><ul>'+row.assignment.placements.map(p=>
+   '<li><code>'+escape(p.objectId)+'</code> → <code>'+escape(p.assetId)+'</code> · Anker '+escape(p.anchor)+'</li>').join('')+'</ul></details>';
+  return '<article data-attempt-index="'+row.index+'"'+(target?' data-result-index="'+resultIndices[i]+'"':'')+'><h2>'+identity+' <span class="status">'+row.assignment.status+'</span></h2>'+renderContactSvg(row,catalog.library,format.files,resolveImage)+
+   '<dl><dt>Seed</dt><dd>'+row.generationSeed+' · Zuordnungsseed '+row.assignmentSeed+'</dd><dt>Objekte</dt><dd>'+d.assignedCount+' illustriert · '+d.unassignedCount+' ohne Illustration</dd><dt>Kartenfingerprint</dt><dd><code>'+escape(row.mapFingerprint)+'</code></dd><dt>Innere Kartenversuche</dt><dd>'+row.generation.diagnostics.attempts+'</dd></dl>'+placements+'</article>';
  }).join('\n');
  // Also diagnose files removed/damaged after export. Classic inline JS works
  // under file://; it does not render maps or fetch remote data.
  const imageCheck='<script>Promise.all('+JSON.stringify(resources.map(r=>[paths.get(r.ref),r.ref]))+'.map(async ([url,ref])=>{const image=new Image();image.src=url;try{await image.decode();return null}catch{return ref}})).then(results=>{const failed=results.filter(Boolean);if(failed.length){const alert=document.getElementById("image-errors");alert.hidden=false;alert.textContent="Bildfehler: Grafiken fehlen oder sind beschädigt: "+failed.join(", ")}});</script>';
  const html='<!doctype html>\n<html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
-  '<title>Seekarten · Kontaktübersicht</title><style>body{margin:0;background:#eef0f2;color:#17232a;font:16px system-ui,sans-serif}header{padding:24px 32px;max-width:1100px}h1{margin:0 0 12px}h2{font-size:19px;margin:0 0 12px}.status{font:14px monospace;background:#e9edf1;padding:4px 8px;border-radius:4px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr));gap:24px;padding:0 24px 24px}article{min-width:0;padding:16px;background:white;border:1px solid #d3dce2;border-radius:8px}svg{display:block;width:100%;height:auto}dl{font-size:14px;line-height:1.6;margin-bottom:0}dt{font-weight:650}dd{margin:0 0 6px;overflow-wrap:anywhere}code{font-size:12px}.legend{color:#85005f}header code{overflow-wrap:anywhere}</style>'+ 
-  '<header><h1>Seekarten · Kontaktübersicht</h1><p id="image-errors" role="alert" hidden style="color:#9b111e;font-weight:bold"></p><noscript>Die Bildfehleranzeige benötigt JavaScript. Die Karten selbst sind statische SVG-Grafiken.</noscript><p>'+rows.length+' explizit ausgewählte Kandidaten: '+rows.map(r=>r.index).join(', ')+'. Modus: '+escape(manifest.options.mode)+'.</p>'+ 
+  '<title>Seekarten · Kontaktübersicht</title><style>body{margin:0;background:#eef0f2;color:#17232a;font:16px system-ui,sans-serif}header{padding:24px 32px;max-width:1100px}h1{margin:0 0 12px}h2{font-size:19px;margin:0 0 12px}.status{font:14px monospace;background:#e9edf1;padding:4px 8px;border-radius:4px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr));gap:24px;padding:0 24px 24px}article{min-width:0;padding:16px;background:white;border:1px solid #d3dce2;border-radius:8px}svg{display:block;width:100%;height:auto}dl{font-size:14px;line-height:1.6;margin-bottom:0}dt{font-weight:650}dd{margin:0 0 6px;overflow-wrap:anywhere}code{font-size:12px}.legend{color:#85005f}header code,details{overflow-wrap:anywhere}details{font-size:13px;margin-top:12px}summary{cursor:pointer}li{margin:8px 0}</style>'+
+  '<header><h1>Seekarten · Kontaktübersicht</h1><p id="image-errors" role="alert" hidden style="color:#9b111e;font-weight:bold"></p><noscript>Die Bildfehleranzeige benötigt JavaScript. Die Karten selbst sind statische SVG-Grafiken.</noscript><p>'+rows.length+' explizit ausgewählte Kandidaten: '+selection.indices.join(', ')+' ('+(selection.kind==='accepted'?'akzeptierte Ergebnisindizes':'Versuchsindizes')+'). Modus: '+escape(manifest.options.mode)+'.</p>'+
+  (resultIndices!==null?'<p>Batchstatus: '+escape(summary.status)+' · '+summary.acceptedCount+' / '+summary.targetCount+' akzeptiert · '+summary.attemptedCount+' Versuche · '+summary.rejectedCount+' verworfen. Ergebnis- und Versuchsindizes sind nullbasiert.</p>':'')+
   '<p class="legend">Magenta, gestrichelte Hexkonturen und ×: technische Platzhalter für Objekte ohne Illustration.</p><p>Release: <code>'+escape(manifest.provenance.releaseId)+'</code><br>Hintergrund: '+escape(manifest.provenance.backgroundId)+
   '<br>Batch-Programmcommit: <code>'+escape(manifest.program.commit)+'</code></p></header><main>'+cards+'</main>'+imageCheck+'</html>\n';
  // Validate and render everything before reserving a new output directory.
@@ -185,5 +247,5 @@ export async function createMapContactSheet({batch,indices,out,repositoryRoot=PR
   for(const r of resources)fs.writeFileSync(path.join(out,'resources',r.file),r.bytes);
   fs.writeFileSync(path.join(out,'index.html'),html,{flag:'wx'});
  }catch(error){fs.rmSync(out,{recursive:true,force:true});throw error;}
- return {out:path.resolve(out,'index.html'),indices:rows.map(r=>r.index),resourceCount:resources.length};
+ return {out:path.resolve(out,'index.html'),indices:rows.map(r=>r.index),resourceCount:resources.length,...(resultIndices!==null?{acceptedIndices:resultIndices}:{})};
 }

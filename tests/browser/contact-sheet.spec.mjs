@@ -52,3 +52,37 @@ test('a resource removed after export produces a visible diagnostic with its ori
  await expect(page.getByRole('alert')).toContainText('Bildfehler');
  await expect(page.getByRole('alert')).toContainText('assets/');
 });
+
+test('catalog-compliant images keep accepted indices, attempt indices and original asset rectangles',async({page},testInfo)=>{
+ const target=contactBatchFixture({mode:'catalog-compliant',assignmentSeedStart:1000,config:{maxMapAttempts:1}});
+ try{
+  const out=path.join(target.directory,'sheet'),selection=[11,0,7];
+  await createMapContactSheet({batch:target.batch,acceptedIndices:selection,out});
+  const accepted=fs.readFileSync(path.join(target.batch,'accepted.jsonl'),'utf8').trim().split('\n').map(JSON.parse);
+  const expected=selection.map(i=>accepted[i]);
+  await page.goto(pathToFileURL(path.join(out,'index.html')).href);
+  await expect(page.locator('.status')).toHaveText(['complete','complete','complete']);
+  await expect(page.locator('[data-unillustrated-object]')).toHaveCount(0);
+  for(const [i,row] of expected.entries()){
+   const card=page.locator('article').nth(i);
+   await expect(card).toHaveAttribute('data-result-index',String(selection[i]));
+   await expect(card).toHaveAttribute('data-attempt-index',String(row.index));
+   await expect(card).toContainText(row.mapFingerprint);
+   await expect(card).toContainText(row.generationSeed+' · Zuordnungsseed '+row.assignmentSeed);
+   await expect(card.locator('[data-asset-id]')).toHaveCount(row.assignment.placements.length);
+   await card.locator('summary').click();
+   for(const p of row.assignment.placements){
+    await expect(card.locator('li').filter({hasText:p.assetId})).toContainText('Anker '+p.anchor);
+    const image=card.locator('[data-placement-id="'+p.id+'"]');
+    await expect(image).toHaveAttribute('data-asset-id',p.assetId);
+    await expect(image).not.toHaveAttribute('transform',/.+/);
+   }
+  }
+  await page.evaluate(async()=>{
+   await Promise.all([...document.querySelectorAll('svg image')].map(async node=>{const image=new Image();image.src=node.href.baseVal;await image.decode();}));
+  });
+  await expect(page.getByRole('alert')).toBeHidden();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBeFalsy();
+  await page.screenshot({path:testInfo.outputPath('catalog-compliant-contact-sheet.png'),fullPage:true});
+ }finally{target.cleanup();}
+});
