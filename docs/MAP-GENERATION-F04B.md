@@ -1,5 +1,9 @@
 # F04b: abstrakte Karten und getrennte Assetzuordnung
 
+[PR B: kataloggerechte Generierung](CATALOG-COMPLIANT-GENERATION.md) ergänzt
+`catalog-compliant` mit Kapazitätsprofil, Objektabstand und vollständiger
+Motivbelegung. Die folgenden freien/kataloginformierten Verträge bleiben bestehen.
+
 PR 3 ergänzt die [lokale Batch-CLI mit vollständigen Kandidatendaten und
 strengem Einzel-Replay](MAP-BATCH-F04B.md). Sie verwendet die hier dokumentierten
 Generator-, Analyse- und Zuordnungsdienste unverändert; die feste Stichprobe

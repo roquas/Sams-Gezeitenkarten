@@ -6,6 +6,7 @@ import {randomStream,validateSeed} from '../generation/random.mjs';
 import {shapeSignature} from '../generation/map-analysis.mjs';
 
 export const ASSIGNMENT_VERSION='asset-assignment-1';
+export const CONSTRAINED_ASSIGNMENT_VERSION='catalog-assignment-1';
 export const VERIFICATION_VERSION='asset-placement-pixels-2';
 const compare=(a,b)=>a<b?-1:a>b?1:0;
 const add=(counts,key)=>{counts[key]=(Object.hasOwn(counts,key)?counts[key]:0)+1;};
@@ -45,11 +46,12 @@ export function verifiedAnchors(context,asset){
  return releaseFailure(context,asset)?[]:context.verification.assets.find(c=>c.assetId===asset.id).anchors;
 }
 
-export function assignAssets({map,seed,catalog}){
+export function assignAssets({map,seed,catalog,reusePolicy='unrestricted'}){
  validateMap(map);validateSeed(seed);
- return withPlacementValidator(catalog.library,map,catalog.backgroundId,validator=>assignInScope(map,seed,catalog,validator));
+ if(!['unrestricted','catalog-compliant'].includes(reusePolicy))throw Error('Unsupported asset reuse policy');
+ return withPlacementValidator(catalog.library,map,catalog.backgroundId,validator=>assignInScope(map,seed,catalog,validator,reusePolicy));
 }
-function assignInScope(map,seed,catalog,validator){
+function assignInScope(map,seed,catalog,validator,reusePolicy){
  validateCatalogVerification(catalog);
  let checks;
  const getCheck=assetId=>{
@@ -64,8 +66,10 @@ function assignInScope(map,seed,catalog,validator){
   return checks.get(assetId);
  };
  const lookup={validator,getCheck};
- const random=randomStream(seed,ASSIGNMENT_VERSION+'/selection'),assets=geographicCandidates(catalog);
+ const constrained=reusePolicy==='catalog-compliant',version=constrained?CONSTRAINED_ASSIGNMENT_VERSION:ASSIGNMENT_VERSION;
+ const random=randomStream(seed,version+'/selection'),assets=geographicCandidates(catalog);
  const placements=[],objects=[],rejectionCounts={},assetTypes={},assetUsage={};
+ const choices=[];
  let candidateChecks=0,anchorChecks=0;
  const stages=['NO_EXACT_FOOTPRINT','PASSABILITY_MISMATCH','PRODUCTION_DISABLED','BACKGROUND_NOT_APPROVED',
   'PIXEL_VERIFICATION_MISSING','IMAGE_CONTRACT_REJECTED','PIXEL_POSITION_REJECTED','PLACEMENT_CONTRACT_REJECTED'];
@@ -99,35 +103,80 @@ function assignInScope(map,seed,catalog,validator){
   }
   const record={objectId:object.id,size:object.cells.length,shape:shapeSignature(object.cells),passable:object.passable,
    candidateCount:candidates.length,rejections,...(details.length?{details}:{})};
-  if(candidates.length){
-   const selected=candidates[random.integer(candidates.length)];
+  choices.push({record,candidates});
+ }
+ const selectedByObject=constrained?matchCatalogChoices(choices,random):null;
+ for(const {record,candidates} of choices){
+  const selected=constrained?selectedByObject.get(record.objectId):candidates.length?candidates[random.integer(candidates.length)]:null;
+  if(selected){
    placements.push(selected.placement);add(assetTypes,selected.semanticClass);add(assetUsage,selected.placement.assetId);
    objects.push({...record,status:'assigned',assetId:selected.placement.assetId,semanticClass:selected.semanticClass});
   }else{
-   const reason=[...stages].reverse().find(code=>rejections[code])??'NO_GEOGRAPHIC_ASSETS';
+   const reason=candidates.length?'ASSET_REUSE_EXHAUSTED':
+    [...stages].reverse().find(code=>record.rejections[code])??'NO_GEOGRAPHIC_ASSETS';
    add(rejectionCounts,reason);objects.push({...record,status:'unassigned',reason});
   }
  }
  const errors=validatePlacements(placements,catalog.library,map,catalog.backgroundId);
  if(errors.length)throw Error('Assignment invariant: '+errors.join('; '));
  return {status:placements.length===map.objects.length?'complete':placements.length?'partial':'none',placements,objects,
-  diagnostics:{assignmentVersion:ASSIGNMENT_VERSION,seed,backgroundId:catalog.backgroundId,
+  diagnostics:{assignmentVersion:version,seed,backgroundId:catalog.backgroundId,
    catalogSha256:catalog.verification?.catalogSha256??null,objectCount:map.objects.length,
    assignedCount:placements.length,unassignedCount:map.objects.length-placements.length,
    rejectionCounts,assetTypes,assetUsage,candidateChecks,anchorChecks}};
 }
 
+// Maximum bipartite matching reserves each blocked painting once across the
+// whole map. The same matching first maximizes distinct passable paintings;
+// only unmatched passable objects reuse a least-used compatible painting.
+// Candidate discovery/validation stays in the existing assignment scope above.
+function matchCatalogChoices(choices,random){
+ const ordered=choices.map(({record,candidates})=>{
+  const shuffled=[...candidates];
+  for(let i=shuffled.length-1;i>0;i--){const j=random.integer(i+1);[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
+  return {record,candidates:shuffled};
+ });
+ const owners=new Map(),selected=new Map(),byObject=new Map(ordered.map(o=>[o.record.objectId,o]));
+ function augment(objectId,seen){
+  for(const candidate of byObject.get(objectId).candidates){
+   const id=candidate.placement.assetId;if(seen.has(id))continue;seen.add(id);
+   if(!owners.has(id)||augment(owners.get(id),seen)){
+    owners.set(id,objectId);selected.set(objectId,candidate);return true;
+   }
+  }
+  return false;
+ }
+ for(const {record} of ordered)augment(record.objectId,new Set());
+ const usage={};for(const c of selected.values())add(usage,c.placement.assetId);
+ for(const {record,candidates} of ordered)if(record.passable&&!selected.has(record.objectId)&&candidates.length){
+  const minimum=Math.min(...candidates.map(c=>usage[c.placement.assetId]??0));
+  const candidate=candidates.find(c=>(usage[c.placement.assetId]??0)===minimum);
+  selected.set(record.objectId,candidate);add(usage,candidate.placement.assetId);
+ }
+ return selected;
+}
+
 // Only geographic footprints cross into generation. Deduplicate by footprint
 // and passability so nine paintings of one form do not give it nine votes.
-export function createCatalogProfile(catalog,{preferencePercent=75}={}){
+export function createCatalogProfile(catalog,{preferencePercent=75,mode='catalog-informed'}={}){
  validateCatalogContext(catalog);
+ if(!['catalog-informed','catalog-compliant'].includes(mode))throw Error('Unsupported catalog profile mode');
  if(!Number.isInteger(preferencePercent)||preferencePercent<0||preferencePercent>100)throw RangeError('preferencePercent must be 0–100');
- const board=new Set(cellsOf({columns:5,rows:5})),unique=new Map();
+ const board=new Set(cellsOf({columns:5,rows:5})),unique=new Map(),capacities=new Map();
+ if(mode==='catalog-compliant')for(const asset of geographicCandidates(catalog)){
+  const anchors=verifiedAnchors(catalog,asset);
+  if(anchors.length){
+   const shape=shapeSignature(placedCells(asset,anchors[0])),key=Number(asset.passable)+':'+shape;
+   const group=capacities.get(key)??{shape,passable:asset.passable,count:0};group.count++;capacities.set(key,group);
+  }
+ }
  for(const asset of geographicCandidates(catalog))for(const anchor of verifiedAnchors(catalog,asset)){
   const cells=placedCells(asset,anchor).sort();
   if(!cells.every(c=>board.has(c)))throw Error('Verified anchor outside chart');
   const key=Number(asset.passable)+':'+cells.join(',');unique.set(key,{cells,passable:asset.passable});
  }
- return {version:'catalog-shapes-1',catalogSha256:catalog.verification?.catalogSha256??null,preferencePercent,
-  placements:[...unique].sort(([a],[b])=>compare(a,b)).map(([,value])=>value)};
+ const placements=[...unique].sort(([a],[b])=>compare(a,b)).map(([,value])=>value);
+ if(mode==='catalog-compliant')return {version:'catalog-capacities-1',catalogSha256:catalog.verification?.catalogSha256??null,
+  placements,capacities:[...capacities].sort(([a],[b])=>compare(a,b)).map(([,value])=>value)};
+ return {version:'catalog-shapes-1',catalogSha256:catalog.verification?.catalogSha256??null,preferencePercent,placements};
 }
