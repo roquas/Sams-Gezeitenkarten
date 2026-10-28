@@ -1,3 +1,5 @@
+> **Historischer Nachweis vor der Generatorkonsolidierung.** Aufrufe und Versionsverträge gelten am damaligen Gitcommit. Aktuell: [Generatorvertrag](../CATALOG-COMPLIANT-GENERATION.md).
+
 # F04b / PR 1 – Vorprüfung und Abnahme
 
 Basis: aktuelles `origin/main`, am 23.10.2026 per `git fetch origin main`

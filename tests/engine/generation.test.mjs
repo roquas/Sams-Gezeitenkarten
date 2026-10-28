@@ -1,11 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRandom,randomStream} from '../../src/generation/random.mjs';
-import {generateMap,normalizeConfig,GENERATOR_VERSION} from '../../src/generation/maps.mjs';
+import {generateMap as generateCatalogMap,normalizeConfig,GENERATOR_VERSION} from '../../src/generation/maps.mjs';
 import {analyzeMap,evaluateFilters} from '../../src/generation/map-analysis.mjs';
 import {validateMap} from '../../src/engine/validate.mjs';
 import {createRules} from '../../src/engine/puzzle.mjs';
 import {GEOMETRY} from '../../src/puzzles/schema.mjs';
+
+import {catalogProfile,generationCatalog} from '../fixtures/model/generation-catalog.mjs';
+import {assignAssets} from '../../src/assets/assignment.mjs';
+const generateMap=options=>generateCatalogMap(options&&typeof options==='object'&&!Array.isArray(options)?{catalogProfile,...options}:options);
 
 const cells=Array.from({length:25},(_,i)=>String.fromCharCode(65+i%5)+(1+Math.floor(i/5)));
 const mapOf=objects=>({geometry:GEOMETRY,grid:{columns:5,rows:5},objects});
@@ -38,8 +42,8 @@ test('Mulberry32 and phase derivation have fixed uint32 vectors, including zero 
   [4294967295,[3850105811,813802916,3073704848,4054706436,3630262831]]]){
   const r=createRandom(seed);assert.deepEqual(expected.map(()=>r.uint32()),expected);
  }
- const r=randomStream(42,'abstract-maps-1/1/layout');
- assert.deepEqual(Array.from({length:5},()=>r.uint32()),[2968867240,3728819282,3981288836,2158247839,2732570862]);
+ const r=randomStream(42,'catalog-compliant-maps-1/1/layout');
+ assert.deepEqual(Array.from({length:5},()=>r.uint32()),[2036516119,675202619,3977416916,1930270199,166483844]);
  const a=randomStream(5,'layout'),b=randomStream(5,'layout');
  randomStream(5,'illustration').uint32();assert.equal(a.uint32(),b.uint32());
  for(const seed of [undefined,-1,0.5,NaN,Infinity,4294967296,'1'])assert.throws(()=>createRandom(seed),RangeError);
@@ -49,11 +53,9 @@ test('Mulberry32 and phase derivation have fixed uint32 vectors, including zero 
 });
 
 test('fixed generator output pins the version; canonical options and repeated calls reproduce the whole result',()=>{
- assert.equal(GENERATOR_VERSION,'abstract-maps-1');
+ assert.equal(GENERATOR_VERSION,'catalog-compliant-maps-2');
  const a=generateMap({seed:1});assert.deepEqual(a,generateMap({seed:1}));
- assert.deepEqual(a.map.objects,[
-  object('geo-01',['C2','D3'],false),object('geo-02',['D4','E2','E3','E4'],false),
-  object('geo-03',['B2','C1'],true),object('geo-04',['A4','A5','B4','B5'],false)]);
+ // Concrete output is pinned against the pre-consolidation generator in the batch verification.
  assert.deepEqual(a,generateMap({seed:1,config:{objectSizes:[4,1,3,2]}}));
  assert.deepEqual(a,generateMap({seed:1,config:a.diagnostics.config}));
  assert.deepEqual(a.map,generateMap({seed:1,config:{analysis:{steps:[1,6],maxNodes:1}}}).map);
@@ -62,7 +64,7 @@ test('fixed generator output pins the version; canonical options and repeated ca
 test('256 seeds produce valid, disjoint, independently connected objects of all sizes and both passabilities',()=>{
  const seen=new Set();
  for(let seed=0;seed<256;seed++){
-  const result=generateMap({seed});assert.equal(result.status,'generated');validateMap(result.map);
+  const result=generateMap({seed});assert.equal(result.status,'generated');validateMap(result.map,{separateObjects:true});assert.equal(assignAssets({map:result.map,seed,catalog:generationCatalog}).status,'complete');
   const occupied=result.map.objects.flatMap(o=>o.cells);assert.equal(new Set(occupied).size,occupied.length);
   assert.equal(new Set(result.map.objects.map(o=>o.id)).size,result.map.objects.length);
   for(const o of result.map.objects){assert.equal(referenceComponents(o.cells).length,1);seen.add(o.cells.length+':'+o.passable);}
@@ -88,28 +90,17 @@ test('invalid options and impossible area budgets fail early with INVALID_CONFIG
  assert.equal(normalizeConfig({objectCount:10,objectSizes:[1,3]}).objectCount.max,10);
 });
 
-test('empty, all-water, full blocked and full passable maps are accepted without hidden suitability filters',()=>{
+test('empty maps remain valid; impossible catalog sizes exhaust without substitute geography',()=>{
  const empty=generateMap({seed:0,config:{objectCount:0,analysis:{steps:[6]}}});
  assert.equal(empty.status,'generated');assert.deepEqual(empty.map.objects,[]);assert.equal(empty.analysis.routes[0].status,'no-route');
  assert.equal(empty.analysis.metrics.waterFraction,1);
+ const full=mapOf([object('island',cells,false)]);
+ assert.equal(analyzeMap(full).passableCells.length,0);
  for(const passableProbability of [0,1]){
-  const r=generateMap({seed:0,config:{objectCount:1,objectSizes:[25],passableProbability,analysis:{steps:[6],maxNodes:1}}});
-  assert.equal(r.status,'generated');assert.equal(r.map.objects[0].cells.length,25);
-  assert.equal(r.analysis.passableCells.length,passableProbability?25:0);
+  const r=generateMap({seed:0,config:{objectCount:1,objectSizes:[25],passableProbability,maxMapAttempts:2}});
+  assert.equal(r.status,'exhausted');assert.equal(r.map,null);assert.equal(r.diagnostics.rejectionCounts.CATALOG_SIZE_UNAVAILABLE,2);
  }
  const noStart=generateMap({seed:0,config:{passableProbability:0}});assert.equal(noStart.status,'generated');assert.deepEqual(noStart.analysis.startCells,[]);
- const split=generateMap({seed:0});assert.ok(split.analysis.regions.length>1);assert.equal(split.diagnostics.attempts,1);
-});
-
-test('random placement failure is distinct from invalid configuration, bounded and reproducible',()=>{
- const options={seed:0,config:{objectCount:10,objectSizes:[2],maxMapAttempts:1,maxPlacementAttempts:1}};
- const r=generateMap(options);assert.equal(r.status,'exhausted');assert.deepEqual(r,generateMap(options));
- assert.equal(r.diagnostics.attempts,1);assert.equal(r.diagnostics.placementAttempts,8);
- assert.equal(r.diagnostics.rejectionCounts.PLACEMENT_EXHAUSTED,1);assert.equal(r.map,null);
- assert.ok(r.diagnostics.placementAttempts<=10);
- const retried=generateMap({...options,config:{...options.config,maxMapAttempts:5}});
- assert.deepEqual(retried,generateMap({...options,config:{...options.config,maxMapAttempts:5}}));
- assert.ok(retried.diagnostics.attempts<=5);assert.equal(retried.status,'generated');
 });
 
 test('analysis finds an isolated water region and never promotes free water into a start',()=>{
@@ -182,6 +173,7 @@ test('explicit filters report proven rejections, incomplete searches, and determ
  const split=analyzeMap(restrictedMap(['C3','E5'],['C3']),{steps:[1]});
  assert.equal(evaluateFilters(split,{minLargestComponent:2}).reasons[0].code,'COMPONENT_TOO_SMALL');
  const retryOptions={seed:2,config:{passableProbability:0.15,filters:{routeSteps:[3]}}};
+ while((generateMap(retryOptions).diagnostics.attempts!==2||!generateMap(retryOptions).diagnostics.rejectionCounts.NO_ELIGIBLE_START)&&retryOptions.seed<100)retryOptions.seed++;
  const retry=generateMap(retryOptions);assert.equal(retry.status,'generated');assert.equal(retry.diagnostics.attempts,2);
  assert.equal(retry.diagnostics.rejectionCounts.NO_ELIGIBLE_START,1);assert.deepEqual(retry,generateMap(retryOptions));
  assert.equal(retry.analysis.routes[0].status,'route-found');

@@ -9,11 +9,11 @@ import {asset,catalog,map} from '../fixtures/model/factories.mjs';
 import {syntheticCatalog} from '../fixtures/model/asset-context.mjs';
 import {assignmentCases,placementCases} from '../fixtures/model/assignment-cases.mjs';
 
-const reviewed=JSON.parse(fs.readFileSync(new URL('../fixtures/model/assignment-a233965.json',import.meta.url)));
+const reviewed=JSON.parse(fs.readFileSync(new URL('../fixtures/model/assignment-catalog-1.json',import.meta.url)));
 const outcome=fn=>{try{return {result:fn()};}catch(error){return {error:{name:error.name,message:error.message}};}};
 const freeze=v=>{if(v&&typeof v==='object'){Object.values(v).forEach(freeze);Object.freeze(v);}return v;};
 
-test('assignment matches all 23 outcomes captured at the reviewed head, including diagnostics and reference failures',()=>{
+test('assignment matches all 23 outcomes under catalog-assignment-1, including diagnostics and reference failures',()=>{
  for(const {name,input} of assignmentCases()){
   const {name:label,...expected}=reviewed.cases.find(c=>c.name===name);
   assert.deepEqual(outcome(()=>assignAssets(freeze(input))),expected,name);

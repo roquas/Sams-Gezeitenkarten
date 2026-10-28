@@ -2,8 +2,7 @@ import {asset,catalog,map} from './factories.mjs';
 import {syntheticCatalog} from './asset-context.mjs';
 import {placedCells} from '../../../src/assets/geometry.mjs';
 
-// Inputs for results captured from the reviewed a233965 implementation. No
-// alternate validation implementation is retained in the regression suite.
+// Catalog assignment and shared placement-validation regression inputs.
 export function assignmentCases(){
  const cases=[];
  const add=(name,mutate=()=>{},seed=0)=>{

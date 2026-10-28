@@ -9,7 +9,7 @@ const number=(value,name)=>{
 export async function main(argv=process.argv.slice(2)){
  if(!Array.isArray(argv)||argv.some(v=>typeof v!=='string'))throw Error('Expected command-line arguments');
  const [command,...args]=argv;
- const flags=command==='run'?['--release','--background','--count','--target-count','--max-attempts','--seed-start','--assignment-seed-start','--mode','--preference-percent','--config','--repository','--out']:
+ const flags=command==='run'?['--release','--background','--target-count','--max-attempts','--seed-start','--assignment-seed-start','--config','--repository','--out']:
   command==='replay'?['--batch','--index','--repository','--out']:null;
  if(!flags)throw Error('Expected run or replay');
  const values=new Map();
@@ -18,20 +18,18 @@ export async function main(argv=process.argv.slice(2)){
   if(!flags.includes(flag)||values.has(flag)||!value||value.startsWith('--'))throw Error('Invalid or duplicate option: '+flag);
   values.set(flag,value);
  }
- const constrained=values.get('--mode')==='catalog-compliant';
- for(const flag of command==='run'?['--release','--background',...(constrained?['--target-count','--max-attempts']:['--count']),'--seed-start','--out']:['--batch','--index','--out']){
+ for(const flag of command==='run'?['--release','--background','--target-count','--max-attempts','--seed-start','--out']:['--batch','--index','--out']){
   if(!values.has(flag))throw Error('Missing '+flag);
  }
  const common={out:values.get('--out'),...(values.has('--repository')?{repositoryRoot:values.get('--repository')}:{})};
  if(command==='replay')return replayMapBatch({...common,batch:values.get('--batch'),index:number(values.get('--index'),'--index')});
  const options={seedStart:number(values.get('--seed-start'),'--seed-start')};
- for(const [flag,key] of [['--count','count'],['--target-count','targetCount'],['--max-attempts','maxAttempts']]){
+ for(const [flag,key] of [['--target-count','targetCount'],['--max-attempts','maxAttempts']]){
   if(values.has(flag))options[key]=number(values.get(flag),flag);
  }
- for(const [flag,key] of [['--assignment-seed-start','assignmentSeedStart'],['--preference-percent','preferencePercent']]){
+ for(const [flag,key] of [['--assignment-seed-start','assignmentSeedStart']]){
   if(values.has(flag))options[key]=number(values.get(flag),flag);
  }
- if(values.has('--mode'))options.mode=values.get('--mode');
  if(values.has('--config'))options.config=JSON.parse(fs.readFileSync(values.get('--config'),'utf8'));
  return runMapBatch({...common,releaseId:values.get('--release'),backgroundId:values.get('--background'),options});
 }

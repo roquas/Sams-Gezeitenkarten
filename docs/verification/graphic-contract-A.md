@@ -1,3 +1,5 @@
+> **Historischer Nachweis vor der Generatorkonsolidierung.** Aufrufe und Versionsverträge gelten am damaligen Gitcommit. Aktuell: [Generatorvertrag](../CATALOG-COMPLIANT-GENERATION.md).
+
 # PR A: positionsunabhängiger geografischer Grafikvertrag
 
 Prüfbasis: `main` nach PR #77, `4fbd6f6d9b246fa55ad6db9189c6f13e685b264d`, am 24.10.2026 mit `git fetch origin main` und `git ls-remote origin refs/heads/main` bestätigt. Die Ausgangskopie war unverändert. Historische Tests und Stichproben wurden zusätzlich aus einem isolierten `git archive origin/main` unter `/tmp/graphic-contract-baseline` ausgeführt. Der beigefügte Architekturbericht war Prüfgrundlage; seine Aussagen wurden gegen den Code und die folgenden Gegenproben geprüft.

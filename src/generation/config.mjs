@@ -26,7 +26,7 @@ export function normalizeFilters(filters={}){
   minLargestComponent:integer(filters.minLargestComponent??0,0,25,'filters.minLargestComponent')};
 }
 export function normalizeConfig(config={}){
- record(config,['objectCount','objectSizes','passableProbability','maxMapAttempts','maxPlacementAttempts','analysis','filters'],'config');
+ record(config,['objectCount','objectSizes','passableProbability','maxMapAttempts','analysis','filters'],'config');
  const range=typeof config.objectCount==='number'?{min:config.objectCount,max:config.objectCount}:config.objectCount??{min:2,max:7};
  record(range,['min','max'],'objectCount');
  const objectCount={min:integer(range.min,0,25,'objectCount.min'),max:integer(range.max,0,25,'objectCount.max')};
@@ -42,6 +42,5 @@ export function normalizeConfig(config={}){
  if(typeof passableProbability!=='number'||!Number.isFinite(passableProbability)||passableProbability<0||passableProbability>1)invalid('passableProbability must be from 0 to 1');
  return {objectCount,objectSizes,passableProbability,
   maxMapAttempts:integer(config.maxMapAttempts??20,1,1000,'maxMapAttempts'),
-  maxPlacementAttempts:integer(config.maxPlacementAttempts??20,1,1000,'maxPlacementAttempts'),
   analysis:normalizeAnalysisOptions(config.analysis),filters:normalizeFilters(config.filters)};
 }

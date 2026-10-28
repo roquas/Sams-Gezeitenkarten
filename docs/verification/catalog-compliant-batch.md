@@ -1,3 +1,5 @@
+> **Historischer Nachweis vor der Generatorkonsolidierung.** Aufrufe und Versionsverträge gelten am damaligen Gitcommit. Aktuell: [Generatorvertrag](../CATALOG-COMPLIANT-GENERATION.md).
+
 # PR B: realistischer Batchnachweis
 
 Ausgeführt am 28.10.2026 auf Programmcommit

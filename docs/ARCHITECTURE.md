@@ -23,35 +23,33 @@ Validierung. Keine Assets, Datei-/Netzwerkzugriffe oder DOM-Abhängigkeiten.
 Projektion und Loader mit expliziter Quelle. `src/assets/`: Metadaten-/Platzierungs-
 und Grafikgeometrieverträge. `src/ui/`: Darstellung, Browser-Bilddekodierung und
 Bedienung. `scripts/lib/`: Node-Adapter für Identitäten und gepinnte Archive.
-`src/generation/`: reine, deterministische abstrakte Kartengenerierung mit
-separater Struktur-/Routenanalyse und optionalen Eignungsfiltern;
-[Schnittstellen und Reproduktion](MAP-GENERATION-F04B.md). Keine Assetabhängigkeit.
-PR 2 ergänzt ein explizites geografisches Katalogprofil sowie
-`src/assets/assignment.mjs` für reine, getrennte Assetzuordnung. Der Node-Adapter
-`scripts/lib/released-asset-catalog.mjs` lädt einen ausdrücklich gewählten,
-freigegebenen Release und übernimmt Auswahl und Anker in den bestehenden Kontext.
-Die feste Diagnose `scripts/sample-catalog-maps.mjs` verlangt Release-ID und
-Hintergrund und lädt diesen Kontext selbst. Provenienz steht separat im Bericht;
-Profile, Karten- und Rätselidentitäten bleiben unverändert. Der Ladeweg benötigt
-Git-Historie und startet keine Bildprüfung. Aufruf und Reproduktion:
-[Katalog-Releases](CATALOG-RELEASES.md#phase-c-freigegebener-generierungskontext-und-diagnose).
+`src/generation/`: deterministische kataloggerechte Geografie mit getrennten
+Struktur-/Routenanalysen und ausdrücklich aktivierten Eignungsfiltern. Der einzige
+Generator verlangt ein geografisches Kapazitätsprofil. `src/assets/assignment.mjs`
+leitet dieses aus dem Katalog ab und belegt die erzeugte Karte anschließend mit
+konkreten Motiven über eine globale Zuordnung. Geografie enthält weder Asset-IDs
+noch Renderdaten. Allgemeine Hex- und Rätselverträge bleiben unabhängig von
+Generatorregeln wie dem Objektabstand.
+
+`scripts/lib/released-asset-catalog.mjs` lädt einen explizit gewählten freigegebenen
+Release samt gepinnter Ressourcen aus Git. `scripts/lib/map-batch.mjs` orchestriert
+ausschließlich Zielzahlbatches unter explizitem Versuchsbudget (Format 3), akzeptiert
+nur vollständig belegte Karten und erhält ursprüngliche Versuchsindizes sowie
+getrennte Ergebnisindizes. Einzel-Replay prüft den gesamten Datensatz am
+aufgezeichneten sauberen Programmcommit. Die feste Diagnose
+`scripts/sample-catalog-maps.mjs` verwendet denselben Datensatzbauer und dieselben
+Analyseaggregate; keine zusätzliche Generierungsstrategie.
+
+`scripts/lib/map-contact-sheet.mjs` prüft beide gespeicherten Datenströme und
+rendert ausschließlich ausgewählte vollständige Ergebnisse mit den gemeinsamen
+Grafikdiensten und unveränderten Releasebytes. Spätere Rätselgenerierung kann
+an gültiger Geografie und konkreter Motivbelegung ansetzen. Sie benötigt keine
+historischen Modusparameter. Es wird noch keine Rätselgenerierung implementiert.
+
+[Einziger Generator-/Batchvertrag, CLI und Replay](CATALOG-COMPLIANT-GENERATION.md),
+[Kontaktübersicht](MAP-CONTACT-SHEET.md), [Katalogfreigaben](CATALOG-RELEASES.md).
 `scripts/lib/asset-catalog.mjs` bleibt das Entwicklungswerkzeug für neue
-Katalog-/Bildprüfungen mit Python/Pillow. Fehlende Illustration ändert keine
-abstrakte Karte; der freie Generierungsmodus bleibt erhalten.
-
-`scripts/lib/map-batch.mjs` orchestriert lokale Kartenbatches; die dünne CLI
-`scripts/generate-map-batch.mjs` lädt explizit freigegebene Releases und schreibt
-Manifest, vollständige JSONL-Kandidaten und getrennte Zusammenfassungen. Sie
-aggregiert vorhandene Analyseergebnisse ohne zweite Topologie-/Routenanalyse.
-Einzel-Replay verlangt denselben Programmcommit, saubere Programmdateien und
-übereinstimmende Algorithmusversionen. [Batchvertrag und Grenzen](MAP-BATCH-F04B.md).
-
-Der optionale [kataloggerechte Modus](CATALOG-COMPLIANT-GENERATION.md) verwendet
-denselben Kandidatenbauer mit geografischen Kapazitätsprofilen und zusätzlichem
-Objektabstand. Die bestehende Zuordnungsengine ergänzt eine globale Motivbelegung
-mit einmaligen unbefahrbaren Assets und bevorzugt unterschiedlichen befahrbaren
-Assets. Format 2 zählt akzeptierte Karten unter explizitem Versuchsbudget; Karte,
-Assetbelegung und spätere Rätsel bleiben getrennt.
+Katalog-/Bildprüfungen mit Python/Pillow.
 
 Engine und Renderer kennen keine produktiven Rätselnamen oder Bestandszahlen.
 Die Anwendung wählt eine lokale Quelle; Inhaltspakete liefern öffentliche Rätsel,

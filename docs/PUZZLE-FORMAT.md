@@ -60,10 +60,11 @@ besitzen. Ein Objekt erhält höchstens eine Illustration. Dekoration hat keine
 Alle Grafikfootprints sind untereinander exklusiv. Transformationen, Strecken und
 Clipping sind keine Auswege bei inkompatiblen Assets.
 
-Die Logik kann Objekte ohne Illustration enthalten. Bis F04b ist vollständige
-Illustrationsabdeckung kein Freigabekriterium: Der Demohafen A5/B5 besitzt noch
-kein passendes freigegebenes Mehrfeldasset. Die Engine und der Renderer unterstützen
-solche befahrbaren Footprints bereits; ein Browserfixture prüft ihre Bebilderung.
+Die allgemeine Logikvalidierung kann Objekte ohne Illustration ausdrücken;
+bestehende veröffentlichte Rätsel behalten diesen Laufzeitvertrag.
+Für neue verwendbare Karten verlangt der
+[Generatorvertrag](CATALOG-COMPLIANT-GENERATION.md) vollständige konkrete
+Illustrationsabdeckung vor der Batchannahme.
 
 Produktionsplatzierungen verlangen `production:enabled`, `stage:illustration`
 und eine konkrete Bild-/Hintergrundfreigabe. Offline-Paketprüfung validiert zudem

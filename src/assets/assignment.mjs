@@ -5,8 +5,7 @@ import {validateLibrary,validatePlacements,productionEnabled,compatibility,withP
 import {randomStream,validateSeed} from '../generation/random.mjs';
 import {shapeSignature} from '../generation/map-analysis.mjs';
 
-export const ASSIGNMENT_VERSION='asset-assignment-1';
-export const CONSTRAINED_ASSIGNMENT_VERSION='catalog-assignment-1';
+export const ASSIGNMENT_VERSION='catalog-assignment-1';
 export const VERIFICATION_VERSION='asset-placement-pixels-2';
 const compare=(a,b)=>a<b?-1:a>b?1:0;
 const add=(counts,key)=>{counts[key]=(Object.hasOwn(counts,key)?counts[key]:0)+1;};
@@ -46,12 +45,13 @@ export function verifiedAnchors(context,asset){
  return releaseFailure(context,asset)?[]:context.verification.assets.find(c=>c.assetId===asset.id).anchors;
 }
 
-export function assignAssets({map,seed,catalog,reusePolicy='unrestricted'}){
+export function assignAssets(options){
+ const {map,seed,catalog}=options;
+ if(Object.keys(options).some(k=>!['map','seed','catalog'].includes(k)))throw Error('Unsupported assignment option');
  validateMap(map);validateSeed(seed);
- if(!['unrestricted','catalog-compliant'].includes(reusePolicy))throw Error('Unsupported asset reuse policy');
- return withPlacementValidator(catalog.library,map,catalog.backgroundId,validator=>assignInScope(map,seed,catalog,validator,reusePolicy));
+ return withPlacementValidator(catalog.library,map,catalog.backgroundId,validator=>assignInScope(map,seed,catalog,validator));
 }
-function assignInScope(map,seed,catalog,validator,reusePolicy){
+function assignInScope(map,seed,catalog,validator){
  validateCatalogVerification(catalog);
  let checks;
  const getCheck=assetId=>{
@@ -66,7 +66,7 @@ function assignInScope(map,seed,catalog,validator,reusePolicy){
   return checks.get(assetId);
  };
  const lookup={validator,getCheck};
- const constrained=reusePolicy==='catalog-compliant',version=constrained?CONSTRAINED_ASSIGNMENT_VERSION:ASSIGNMENT_VERSION;
+ const version=ASSIGNMENT_VERSION;
  const random=randomStream(seed,version+'/selection'),assets=geographicCandidates(catalog);
  const placements=[],objects=[],rejectionCounts={},assetTypes={},assetUsage={};
  const choices=[];
@@ -105,9 +105,9 @@ function assignInScope(map,seed,catalog,validator,reusePolicy){
    candidateCount:candidates.length,rejections,...(details.length?{details}:{})};
   choices.push({record,candidates});
  }
- const selectedByObject=constrained?matchCatalogChoices(choices,random):null;
+ const selectedByObject=matchCatalogChoices(choices,random);
  for(const {record,candidates} of choices){
-  const selected=constrained?selectedByObject.get(record.objectId):candidates.length?candidates[random.integer(candidates.length)]:null;
+  const selected=selectedByObject.get(record.objectId);
   if(selected){
    placements.push(selected.placement);add(assetTypes,selected.semanticClass);add(assetUsage,selected.placement.assetId);
    objects.push({...record,status:'assigned',assetId:selected.placement.assetId,semanticClass:selected.semanticClass});
@@ -158,12 +158,11 @@ function matchCatalogChoices(choices,random){
 
 // Only geographic footprints cross into generation. Deduplicate by footprint
 // and passability so nine paintings of one form do not give it nine votes.
-export function createCatalogProfile(catalog,{preferencePercent=75,mode='catalog-informed'}={}){
+export function createCatalogProfile(catalog){
+ if(arguments.length!==1)throw Error('Catalog profile accepts only a catalog context');
  validateCatalogContext(catalog);
- if(!['catalog-informed','catalog-compliant'].includes(mode))throw Error('Unsupported catalog profile mode');
- if(!Number.isInteger(preferencePercent)||preferencePercent<0||preferencePercent>100)throw RangeError('preferencePercent must be 0–100');
  const board=new Set(cellsOf({columns:5,rows:5})),unique=new Map(),capacities=new Map();
- if(mode==='catalog-compliant')for(const asset of geographicCandidates(catalog)){
+ for(const asset of geographicCandidates(catalog)){
   const anchors=verifiedAnchors(catalog,asset);
   if(anchors.length){
    const shape=shapeSignature(placedCells(asset,anchors[0])),key=Number(asset.passable)+':'+shape;
@@ -176,7 +175,6 @@ export function createCatalogProfile(catalog,{preferencePercent=75,mode='catalog
   const key=Number(asset.passable)+':'+cells.join(',');unique.set(key,{cells,passable:asset.passable});
  }
  const placements=[...unique].sort(([a],[b])=>compare(a,b)).map(([,value])=>value);
- if(mode==='catalog-compliant')return {version:'catalog-capacities-1',catalogSha256:catalog.verification?.catalogSha256??null,
+ return {version:'catalog-capacities-1',catalogSha256:catalog.verification?.catalogSha256??null,
   placements,capacities:[...capacities].sort(([a],[b])=>compare(a,b)).map(([,value])=>value)};
- return {version:'catalog-shapes-1',catalogSha256:catalog.verification?.catalogSha256??null,preferencePercent,placements};
 }

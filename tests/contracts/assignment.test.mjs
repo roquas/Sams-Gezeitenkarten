@@ -32,10 +32,10 @@ test('asymmetric rotations and mirrors never match; cell order and translation d
  }
 });
 
-test('full, partial, absent and empty coverage remain separate from map validity; reuse is legal',()=>{
+test('full, partial, absent and empty coverage remain diagnosable; blocked reuse is refused',()=>{
  const c=syntheticCatalog(catalog()),map=mapOf([object('a',['B2']),object('b',['D4']),object('multi',['B3','C3'],true)]);
- const r=run(map,c);assert.equal(r.status,'partial');assert.equal(r.diagnostics.assignedCount,2);
- assert.equal(r.placements[0].assetId,r.placements[1].assetId);assert.equal(r.objects[2].reason,'NO_EXACT_FOOTPRINT');
+ const r=run(map,c);assert.equal(r.status,'partial');assert.equal(r.diagnostics.assignedCount,1);
+ assert.equal(r.objects.find(o=>o.reason==='ASSET_REUSE_EXHAUSTED').objectId,'b');assert.equal(r.objects[2].reason,'NO_EXACT_FOOTPRINT');
  assert.equal(run(mapOf([map.objects[2]]),c).status,'none');
  const empty=run(mapOf([]),c);assert.equal(empty.status,'complete');assert.equal(empty.diagnostics.objectCount,0);
  const none=run(map,syntheticCatalog(catalog([])));assert.equal(none.objects[0].reason,'NO_GEOGRAPHIC_ASSETS');

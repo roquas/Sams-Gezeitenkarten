@@ -1,3 +1,5 @@
+> Aktuelle Generatortests und vollständige Testbefehle: [Einziger Generatorvertrag](CATALOG-COMPLIANT-GENERATION.md#tests-und-grenzen). Ergebnisse der Konsolidierung: [Nachweis](verification/generation-consolidation.md).
+
 > Historischer Entwicklungsstand. Aktueller Vertrag und vier Testebenen: [Konsolidierung F01–F03](CONSOLIDATION-F01-F03.md). Reguläre Inhalte verwenden jetzt ausschließlich Schema 2.
 
 # Teststrategie – Entwurf

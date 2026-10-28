@@ -27,6 +27,7 @@ Hexabstände einschließlich Land. Undo erhält Anzeigeoptionen und bezahlte Hil
 - [Rätsel-, Asset- und Paketformat v2](docs/PUZZLE-FORMAT.md)
 - [F02-Identitäten/Archiv v2](docs/PUBLICATION-ARCHIVE-V2.md)
 - [F03-Dienste](docs/PUZZLE-SERVICES-F03.md)
+- [Einziger Generatorweg, Zielzahlbatches und Replay](docs/CATALOG-COMPLIANT-GENERATION.md)
 - [Lokale grafische Kontaktübersicht aus Kartenbatches](docs/MAP-CONTACT-SHEET.md)
 - [Architektur](docs/ARCHITECTURE.md)
 - [Konsolidierung, entfernte Schnittstellen und Testtransfer](docs/CONSOLIDATION-F01-F03.md)
