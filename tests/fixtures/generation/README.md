@@ -79,6 +79,6 @@ veränderten gespeicherten Erwartung ausgeführt, ausgewählt über
   SHA-256-Fingerprint ersetzt: ebenfalls Exitcode 1 / `ERR_ASSERTION` am Feld
   `mapFingerprint`.
 
-Nach jeder Negativprüfung wurden die ursprünglichen Fixturebytes wiederhergestellt.
+Nach den Negativprüfungen wurden die ursprünglichen Fixturebytes wiederhergestellt.
 Der abschließende Lauf der drei Sollvektoren bestand erneut (3/3).
 Produktionscode, Versionen, freigegebene Assets und Rätsel sind unverändert.
