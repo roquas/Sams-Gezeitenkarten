@@ -6,14 +6,16 @@ import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
 import {createInterface} from 'node:readline';
 import {isDeepStrictEqual} from 'node:util';
-import {generateMap,normalizeConfig,GENERATOR_VERSION,CATALOG_GENERATOR_VERSION} from '../../src/generation/maps.mjs';
+import {generateMap,normalizeConfig,GENERATOR_VERSION,CATALOG_GENERATOR_VERSION,CONSTRAINED_GENERATOR_VERSION} from '../../src/generation/maps.mjs';
 import {validateSeed} from '../../src/generation/random.mjs';
-import {assignAssets,createCatalogProfile,ASSIGNMENT_VERSION,VERIFICATION_VERSION} from '../../src/assets/assignment.mjs';
+import {assignAssets,createCatalogProfile,ASSIGNMENT_VERSION,CONSTRAINED_ASSIGNMENT_VERSION,VERIFICATION_VERSION} from '../../src/assets/assignment.mjs';
 import {RULES_VERSION} from '../../src/puzzles/schema.mjs';
 import {mapFingerprint} from './publication-archive.mjs';
 import {loadReleasedAssetCatalog,RELEASED_ASSET_CATALOG_VERSION} from './released-asset-catalog.mjs';
 
 export const BATCH_FORMAT_VERSION=1;
+export const TARGET_BATCH_FORMAT_VERSION=2;
+export const ACCEPTANCE_VERSION='catalog-complete-1';
 export const SEED_SCHEDULE_VERSION='sequential-uint32-1';
 export const PROGRAM_ROOT=fileURLToPath(new URL('../../',import.meta.url));
 const assert=(ok,message)=>{if(!ok)throw Error('map-batch: '+message);};
@@ -27,7 +29,18 @@ function keys(value,allowed,label,required=[]){
 }
 
 export function normalizeBatchOptions(options){
- keys(options,['count','seedStart','assignmentSeedStart','mode','config','preferencePercent'],'options',['count','seedStart']);
+ const constrained=options?.mode==='catalog-compliant';
+ keys(options,constrained?['targetCount','maxAttempts','seedStart','assignmentSeedStart','mode','config','preferencePercent']:
+  ['count','seedStart','assignmentSeedStart','mode','config','preferencePercent'],'options',constrained?['targetCount','maxAttempts','seedStart']:['count','seedStart']);
+ if(constrained){
+  const {targetCount,maxAttempts,seedStart}=options,assignmentSeedStart=options.assignmentSeedStart??seedStart;
+  assert(Number.isSafeInteger(targetCount)&&targetCount>=1,'targetCount must be a positive safe integer');
+  assert(Number.isSafeInteger(maxAttempts)&&maxAttempts>=1,'maxAttempts must be a positive safe integer');
+  validateSeed(seedStart);validateSeed(assignmentSeedStart);
+  assert(seedStart+maxAttempts-1<=0xffffffff&&assignmentSeedStart+maxAttempts-1<=0xffffffff,'seed schedule overflows uint32');
+  assert(options.preferencePercent===undefined||options.preferencePercent===null,'preferencePercent requires catalog-informed mode');
+  return {targetCount,maxAttempts,seedStart,assignmentSeedStart,mode:options.mode,config:normalizeConfig(options.config),preferencePercent:null};
+ }
  const {count,seedStart}=options,assignmentSeedStart=options.assignmentSeedStart??seedStart,mode=options.mode??'free';
  assert(Number.isSafeInteger(count)&&count>=1,'count must be a positive safe integer');
  validateSeed(seedStart);validateSeed(assignmentSeedStart);
@@ -46,28 +59,41 @@ function programState(){
  return {commit:git('rev-parse','HEAD'),nodeVersion:process.version};
 }
 function versions(mode,profile){
+ if(mode==='catalog-compliant')return {generator:CONSTRAINED_GENERATOR_VERSION,catalogGenerator:null,
+  assignment:CONSTRAINED_ASSIGNMENT_VERSION,catalogProfile:profile?.version??null,pixelChecker:VERIFICATION_VERSION,
+  releaseAdapter:RELEASED_ASSET_CATALOG_VERSION,rules:RULES_VERSION,acceptance:ACCEPTANCE_VERSION};
  return {generator:GENERATOR_VERSION,catalogGenerator:mode==='catalog-informed'?CATALOG_GENERATOR_VERSION:null,
   assignment:ASSIGNMENT_VERSION,catalogProfile:profile?.version??null,pixelChecker:VERIFICATION_VERSION,
   releaseAdapter:RELEASED_ASSET_CATALOG_VERSION,rules:RULES_VERSION};
 }
 function profileFor(catalog,options){
+ if(options.mode==='catalog-compliant')return createCatalogProfile(catalog,{mode:options.mode});
  return options.mode==='catalog-informed'?createCatalogProfile(catalog,{preferencePercent:options.preferencePercent}):null;
 }
 
 // Trusted-context helper, like sampleCatalogMaps. Only runMapBatch/replayMapBatch
 // establish approval themselves. Never turn an exception into assignment 'none'.
 export function generateBatchRecord(index,options,catalog,catalogProfile=null){
- assert(Number.isSafeInteger(index)&&index>=0&&index<options.count,'index outside batch');
+ const constrained=options.mode==='catalog-compliant';
+ assert(Number.isSafeInteger(index)&&index>=0&&index<(constrained?options.maxAttempts:options.count),'index outside batch');
  const generationSeed=options.seedStart+index,assignmentSeed=options.assignmentSeedStart+index;
  const record={index,generationSeed,assignmentSeed,mapFingerprint:null,generation:null,assignment:null};
  let phase='generation';
  try{
-  record.generation=generateMap({seed:generationSeed,config:options.config,...(catalogProfile?{catalogProfile}:{})});
+  if(constrained)catalogProfile??=profileFor(catalog,options);
+  record.generation=generateMap({seed:generationSeed,config:options.config,...(catalogProfile?{catalogProfile}:{}),
+   ...(constrained?{mode:options.mode}:{})});
   if(record.generation.map){
    record.mapFingerprint=mapFingerprint(record.generation.map);phase='assignment';
-   record.assignment=assignAssets({map:record.generation.map,seed:assignmentSeed,catalog});
+   record.assignment=assignAssets({map:record.generation.map,seed:assignmentSeed,catalog,...(constrained?{reusePolicy:options.mode}:{})});
   }
  }catch(error){record.error={phase,code:error.code??(phase==='assignment'?'ASSIGNMENT_ERROR':'GENERATION_ERROR'),message:error.message};}
+ if(constrained){
+  record.decision=!record.error&&record.generation?.status==='generated'&&record.assignment?.status==='complete'?'accepted':'rejected';
+  record.rejectionReasons=record.decision==='accepted'?[]:record.error?[record.error.code]:
+   !record.generation.map?[...new Set(['GENERATION_'+record.generation.status.toUpperCase(),...Object.keys(record.generation.diagnostics.rejectionCounts)])]:
+    ['ASSIGNMENT_INCOMPLETE',...Object.keys(record.assignment.diagnostics.rejectionCounts)];
+ }
  return record;
 }
 
@@ -126,20 +152,35 @@ export function runMapBatch({repositoryRoot=PROGRAM_ROOT,releaseId,backgroundId,
  options=normalizeBatchOptions(options);
  const program=programState(),{catalog,provenance}=loadReleasedAssetCatalog({repositoryRoot,releaseId,backgroundId});
  const catalogProfile=profileFor(catalog,options);
- const manifest={batchFormatVersion:BATCH_FORMAT_VERSION,seedScheduleVersion:SEED_SCHEDULE_VERSION,
+ const constrained=options.mode==='catalog-compliant';
+ const manifest={batchFormatVersion:constrained?TARGET_BATCH_FORMAT_VERSION:BATCH_FORMAT_VERSION,seedScheduleVersion:SEED_SCHEDULE_VERSION,
   options,catalogProfile,versions:versions(options.mode,catalogProfile),program,provenance};
  // Reserve exclusively after all setup validation. Never reuse an earlier run.
  fs.mkdirSync(out);
  fs.writeFileSync(path.join(out,'manifest.json'),json(manifest),{flag:'wx'});
- const file=fs.openSync(path.join(out,'candidates.jsonl'),'wx'),totals=createBatchSummary(options.count);
+ const file=fs.openSync(path.join(out,'candidates.jsonl'),'wx');
+ const acceptedFile=constrained?fs.openSync(path.join(out,'accepted.jsonl'),'wx'):null;
+ const limit=constrained?options.maxAttempts:options.count,totals=createBatchSummary(limit);
+ const accepted=constrained?createBatchSummary(options.targetCount):null,rejectionCounts={},repetitionHistogram={};
+ let attemptedCount=0,acceptedCount=0;
  try{
-  for(let index=0;index<options.count;index++){
+  for(let index=0;index<limit&&(!constrained||acceptedCount<options.targetCount);index++){
    const row=generateBatchRecord(index,options,catalog,catalogProfile);
-   fs.writeFileSync(file,JSON.stringify(row)+'\n');totals.record(row);
+   fs.writeFileSync(file,JSON.stringify(row)+'\n');totals.record(row);attemptedCount++;
    if(row.error)throw Error(`map-batch: attempt ${index} failed during ${row.error.phase}: ${row.error.message}`);
+   if(constrained){
+    if(row.decision==='accepted'){
+     fs.writeFileSync(acceptedFile,JSON.stringify(row)+'\n');accepted.record(row);acceptedCount++;
+     const repeated=Object.values(row.assignment.diagnostics.assetUsage).reduce((sum,n)=>sum+Math.max(0,n-1),0);
+     add(repetitionHistogram,repeated);
+    }else for(const reason of row.rejectionReasons)add(rejectionCounts,reason);
+   }
   }
- }finally{fs.closeSync(file);}
- const summary=totals.complete();
+ }finally{fs.closeSync(file);if(acceptedFile!==null)fs.closeSync(acceptedFile);}
+ const metrics=aggregate=>({geography:aggregate.summary.geography,assignment:aggregate.summary.assignment,errors:aggregate.summary.errors});
+ const summary=constrained?{batchFormatVersion:TARGET_BATCH_FORMAT_VERSION,status:acceptedCount===options.targetCount?'target-reached':'target-unreached',
+  targetCount:options.targetCount,maxAttempts:options.maxAttempts,attemptedCount,acceptedCount,rejectedCount:attemptedCount-acceptedCount,
+  rejectionCounts,attempted:metrics(totals),accepted:{...metrics(accepted),repetitionHistogram}}:totals.complete();
  // Only the final rename marks successful completion; a partial write or
  // process termination cannot leave an apparently completed summary.json.
  fs.writeFileSync(path.join(out,'summary.pending'),json(summary),{flag:'wx'});
@@ -152,7 +193,7 @@ export function runMapBatch({repositoryRoot=PROGRAM_ROOT,releaseId,backgroundId,
 export function validateBatchManifest(manifest,program=null){
  keys(manifest,['batchFormatVersion','seedScheduleVersion','options','catalogProfile','versions','program','provenance'],'manifest',
   ['batchFormatVersion','seedScheduleVersion','options','catalogProfile','versions','program','provenance']);
- assert(manifest.batchFormatVersion===BATCH_FORMAT_VERSION,'unsupported batch format');
+ assert(manifest.batchFormatVersion===(manifest.options?.mode==='catalog-compliant'?TARGET_BATCH_FORMAT_VERSION:BATCH_FORMAT_VERSION),'unsupported batch format');
  assert(manifest.seedScheduleVersion===SEED_SCHEDULE_VERSION,'unsupported seed schedule version');
  keys(manifest.program,['commit','nodeVersion'],'program',['commit','nodeVersion']);
  assert(typeof manifest.program.commit==='string'&&/^[a-f0-9]{40}$/.test(manifest.program.commit)&&
@@ -180,7 +221,7 @@ async function readCandidate(batch,index){
 export async function replayMapBatch({repositoryRoot=PROGRAM_ROOT,batch,index,out}){
  const program=programState(),manifest=JSON.parse(fs.readFileSync(path.join(batch,'manifest.json'),'utf8'));
  const options=validateBatchManifest(manifest,program);
- assert(Number.isSafeInteger(index)&&index>=0&&index<options.count,'index outside batch');
+ assert(Number.isSafeInteger(index)&&index>=0&&index<(options.mode==='catalog-compliant'?options.maxAttempts:options.count),'index outside batch');
  const stored=await readCandidate(batch,index);
  const {releaseId,backgroundId,...saved}=manifest.provenance;
  const {catalog,provenance}=loadReleasedAssetCatalog({repositoryRoot,releaseId,backgroundId});

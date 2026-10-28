@@ -1,0 +1,694 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "5c8e0bf5aab30aac04b00e9dcf0f2cc20517a20b",
+  "program": {
+    "commit": "816594fd2318ce2e2a85f188bc73e0e219f1589f",
+    "nodeVersion": "v24.19.0"
+  },
+  "provenance": {
+    "adapterVersion": "released-asset-catalog-1",
+    "releaseId": "gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1",
+    "catalogId": "gk-catalog-content-v1-sha256-3f406882907a76f99b3c6f816dc664f28f55d1ba42f01baa5fc637dc0b742bd1",
+    "sourceCommit": "ccab5f41dae380525f7535de4470848a3ab4d214",
+    "archiveCommit": "816594fd2318ce2e2a85f188bc73e0e219f1589f",
+    "backgroundId": "sea-blue-01",
+    "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112"
+  },
+  "options": {
+    "targetCount": 1000,
+    "maxAttempts": 5000,
+    "seedStart": 0,
+    "assignmentSeedStart": 100000,
+    "mode": "catalog-compliant",
+    "config": {
+      "objectCount": {
+        "min": 2,
+        "max": 7
+      },
+      "objectSizes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "passableProbability": 0.5,
+      "maxMapAttempts": 1,
+      "maxPlacementAttempts": 20,
+      "analysis": {
+        "steps": [],
+        "maxNodes": 10000
+      },
+      "filters": {
+        "routeSteps": [],
+        "minLargestComponent": 0
+      }
+    },
+    "preferencePercent": null
+  },
+  "versions": {
+    "generator": "catalog-compliant-maps-1",
+    "catalogGenerator": null,
+    "assignment": "catalog-assignment-1",
+    "catalogProfile": "catalog-capacities-1",
+    "pixelChecker": "asset-placement-pixels-2",
+    "releaseAdapter": "released-asset-catalog-1",
+    "rules": "gezeitenkarten-2",
+    "acceptance": "catalog-complete-1"
+  },
+  "elapsedSeconds": 3.516672769,
+  "checks": {
+    "verifiedAcceptedMaps": 1000,
+    "maximumBlockedAssetUsePerMap": 1,
+    "replayedAttemptIndices": [
+      0,
+      1,
+      1402
+    ],
+    "acceptedRowsEqualAcceptedCandidates": true
+  },
+  "files": {
+    "manifest.json": {
+      "sha256": "04f1698f1f43054266c7d77f26f6177fc22d4758738f64385698dfbaeb881098",
+      "bytes": 19670
+    },
+    "candidates.jsonl": {
+      "sha256": "57635eb8f313451fb2eff026038577ebafa76e8713d978def8072751ed271186",
+      "bytes": 14973554
+    },
+    "accepted.jsonl": {
+      "sha256": "8fa3c6f371f2edb2368103df63880f46a4f90b8e1b3440bf4ab1cf1b5b3baa27",
+      "bytes": 11822135
+    },
+    "summary.json": {
+      "sha256": "7eb6a421743e948bbe36131cfdcd9a6fed0bd737d1df2f22b396cc698d883afd",
+      "bytes": 13752
+    }
+  },
+  "summary": {
+    "batchFormatVersion": 2,
+    "status": "target-reached",
+    "targetCount": 1000,
+    "maxAttempts": 5000,
+    "attemptedCount": 1403,
+    "acceptedCount": 1000,
+    "rejectedCount": 403,
+    "rejectionCounts": {
+      "GENERATION_EXHAUSTED": 403,
+      "OBJECT_SPACING_EXHAUSTED": 403
+    },
+    "attempted": {
+      "geography": {
+        "statuses": {
+          "exhausted": 403,
+          "generated": 1000
+        },
+        "distinctMaps": 997,
+        "duplicateMaps": 3,
+        "emptyMaps": 0,
+        "mapAttempts": 1403,
+        "placementAttempts": 6076,
+        "rejectionCounts": {
+          "OBJECT_SPACING_EXHAUSTED": 403
+        },
+        "profileWork": {
+          "preferenceDraws": 0,
+          "preferredPlacements": 5673,
+          "growthPlacements": 0,
+          "catalogMisses": 0,
+          "footprintChecks": 935704
+        },
+        "histograms": {
+          "objectCount": {
+            "2": 228,
+            "3": 238,
+            "4": 224,
+            "5": 170,
+            "6": 101,
+            "7": 39
+          },
+          "passableObjects": {
+            "0": 85,
+            "1": 255,
+            "2": 304,
+            "3": 178,
+            "4": 112,
+            "5": 53,
+            "6": 10,
+            "7": 3
+          },
+          "blockedObjects": {
+            "0": 121,
+            "1": 344,
+            "2": 364,
+            "3": 152,
+            "4": 19
+          },
+          "occupiedCells": {
+            "2": 87,
+            "3": 105,
+            "4": 97,
+            "5": 141,
+            "6": 142,
+            "7": 123,
+            "8": 143,
+            "9": 83,
+            "10": 51,
+            "11": 25,
+            "12": 3
+          },
+          "waterCells": {
+            "13": 3,
+            "14": 25,
+            "15": 51,
+            "16": 83,
+            "17": 143,
+            "18": 123,
+            "19": 142,
+            "20": 141,
+            "21": 97,
+            "22": 105,
+            "23": 87
+          },
+          "landFraction": {
+            "0.32": 143,
+            "0.36": 83,
+            "0.2": 141,
+            "0.12": 105,
+            "0.16": 97,
+            "0.24": 142,
+            "0.08": 87,
+            "0.28": 123,
+            "0.4": 51,
+            "0.44": 25,
+            "0.48": 3
+          },
+          "waterFraction": {
+            "0.68": 143,
+            "0.64": 83,
+            "0.8": 141,
+            "0.88": 105,
+            "0.84": 97,
+            "0.76": 142,
+            "0.92": 87,
+            "0.72": 123,
+            "0.6": 51,
+            "0.56": 25,
+            "0.52": 3
+          },
+          "passableComponentCount": {
+            "1": 931,
+            "2": 68,
+            "3": 1
+          },
+          "blockedComponentCount": {
+            "0": 121,
+            "1": 344,
+            "2": 364,
+            "3": 152,
+            "4": 19
+          },
+          "coastEdges": {
+            "4": 1,
+            "5": 6,
+            "6": 5,
+            "7": 10,
+            "8": 25,
+            "9": 19,
+            "10": 25,
+            "11": 26,
+            "12": 33,
+            "13": 29,
+            "14": 35,
+            "15": 45,
+            "16": 24,
+            "17": 38,
+            "18": 50,
+            "19": 52,
+            "20": 35,
+            "21": 54,
+            "22": 42,
+            "23": 45,
+            "24": 59,
+            "25": 53,
+            "26": 45,
+            "27": 58,
+            "28": 52,
+            "29": 35,
+            "30": 30,
+            "31": 22,
+            "32": 21,
+            "33": 14,
+            "34": 6,
+            "35": 4,
+            "36": 1,
+            "37": 1
+          },
+          "passableComponentSizes": {
+            "1": 62,
+            "2": 8,
+            "13": 1,
+            "14": 4,
+            "15": 12,
+            "16": 31,
+            "17": 37,
+            "18": 83,
+            "19": 113,
+            "20": 107,
+            "21": 155,
+            "22": 152,
+            "23": 89,
+            "24": 95,
+            "25": 121
+          },
+          "blockedComponentSizes": {
+            "1": 451,
+            "2": 405,
+            "3": 437,
+            "4": 311
+          },
+          "objectSizes": {
+            "1": 2642,
+            "2": 405,
+            "3": 437,
+            "4": 311
+          },
+          "shapesByPassability": {
+            "true:0,0": 2191,
+            "false:0,0;1,0;2,0;3,0": 109,
+            "false:0,0": 451,
+            "false:0,0;0,1;1,0;1,1": 202,
+            "false:0,0;1,0;1,1": 90,
+            "false:0,1;1,0;2,0": 91,
+            "false:0,0;1,0": 405,
+            "false:0,1;1,0;1,1": 138,
+            "false:0,0;0,1;1,0": 118
+          },
+          "boundaryCells": {
+            "0": 852,
+            "1": 2237,
+            "2": 505,
+            "3": 139,
+            "4": 62
+          },
+          "boundaryEdges": {
+            "0": 852,
+            "1": 386,
+            "2": 642,
+            "3": 882,
+            "4": 610,
+            "5": 147,
+            "6": 106,
+            "7": 53,
+            "8": 55,
+            "9": 31,
+            "10": 31
+          },
+          "isolatedCells": {
+            "0": 939,
+            "1": 60,
+            "2": 1
+          },
+          "deadEnds": {
+            "0": 525,
+            "1": 335,
+            "2": 105,
+            "3": 30,
+            "4": 5
+          },
+          "articulationCells": {
+            "0": 483,
+            "1": 218,
+            "2": 118,
+            "3": 71,
+            "4": 45,
+            "5": 22,
+            "6": 28,
+            "7": 3,
+            "8": 6,
+            "9": 4,
+            "10": 2
+          },
+          "startCells": {
+            "0": 85,
+            "1": 255,
+            "2": 304,
+            "3": 178,
+            "4": 112,
+            "5": 53,
+            "6": 10,
+            "7": 3
+          }
+        },
+        "routes": {}
+      },
+      "assignment": {
+        "statuses": {
+          "complete": 1000
+        },
+        "nonemptyStatuses": {
+          "complete": 1000
+        },
+        "objects": 3795,
+        "assigned": 3795,
+        "unassigned": 0,
+        "rejectionCounts": {},
+        "assetTypes": {
+          "bottle": 218,
+          "driftwood": 250,
+          "buoy": 258,
+          "rowboat": 242,
+          "island": 1407,
+          "settlement": 107,
+          "crate": 250,
+          "lighthouse": 251,
+          "archipelago": 90,
+          "atoll": 247,
+          "barrels": 237,
+          "wreck": 238
+        },
+        "assetUsage": {
+          "sea-life.accent.h1.bottle.v1": 218,
+          "sea-life.accent.h1.driftwood.v1": 250,
+          "sea-life.accent.h1.buoy.v1": 258,
+          "sea-life.accent.h1.rowboat.v1": 242,
+          "land-coast.island.h4.long-sand.v1": 109,
+          "land-coast.island.h1.basalt-spire-water.v1": 451,
+          "land-coast.settlement.h4.tesoro.v4": 107,
+          "sea-life.accent.h1.crate.v1": 250,
+          "navigation.lighthouse.h1.offcenter-beacon.v1": 251,
+          "land-coast.island.h4.jungle-temple.v1": 95,
+          "land-coast.archipelago.h3.sand-reefs.v2": 90,
+          "land-coast.atoll.h1.broken-passages.v1": 247,
+          "sea-life.accent.h1.barrels.v1": 237,
+          "land-coast.island.h3.smuggler-cove.v1": 91,
+          "land-coast.island.h2.tropical-bays.v1": 405,
+          "navigation.wreck.h1.offcenter-sloop.v1": 238,
+          "land-coast.island.h3.massive-volcano.v1": 138,
+          "land-coast.island.h3.south-harbor.v1": 118
+        },
+        "unassignedShapes": {},
+        "unassignedSizesByPassability": {},
+        "candidateChecks": 106260,
+        "anchorChecks": 168196
+      },
+      "errors": {}
+    },
+    "accepted": {
+      "geography": {
+        "statuses": {
+          "generated": 1000
+        },
+        "distinctMaps": 997,
+        "duplicateMaps": 3,
+        "emptyMaps": 0,
+        "mapAttempts": 1000,
+        "placementAttempts": 3795,
+        "rejectionCounts": {},
+        "profileWork": {
+          "preferenceDraws": 0,
+          "preferredPlacements": 3795,
+          "growthPlacements": 0,
+          "catalogMisses": 0,
+          "footprintChecks": 584430
+        },
+        "histograms": {
+          "objectCount": {
+            "2": 228,
+            "3": 238,
+            "4": 224,
+            "5": 170,
+            "6": 101,
+            "7": 39
+          },
+          "passableObjects": {
+            "0": 85,
+            "1": 255,
+            "2": 304,
+            "3": 178,
+            "4": 112,
+            "5": 53,
+            "6": 10,
+            "7": 3
+          },
+          "blockedObjects": {
+            "0": 121,
+            "1": 344,
+            "2": 364,
+            "3": 152,
+            "4": 19
+          },
+          "occupiedCells": {
+            "2": 87,
+            "3": 105,
+            "4": 97,
+            "5": 141,
+            "6": 142,
+            "7": 123,
+            "8": 143,
+            "9": 83,
+            "10": 51,
+            "11": 25,
+            "12": 3
+          },
+          "waterCells": {
+            "13": 3,
+            "14": 25,
+            "15": 51,
+            "16": 83,
+            "17": 143,
+            "18": 123,
+            "19": 142,
+            "20": 141,
+            "21": 97,
+            "22": 105,
+            "23": 87
+          },
+          "landFraction": {
+            "0.32": 143,
+            "0.36": 83,
+            "0.2": 141,
+            "0.12": 105,
+            "0.16": 97,
+            "0.24": 142,
+            "0.08": 87,
+            "0.28": 123,
+            "0.4": 51,
+            "0.44": 25,
+            "0.48": 3
+          },
+          "waterFraction": {
+            "0.68": 143,
+            "0.64": 83,
+            "0.8": 141,
+            "0.88": 105,
+            "0.84": 97,
+            "0.76": 142,
+            "0.92": 87,
+            "0.72": 123,
+            "0.6": 51,
+            "0.56": 25,
+            "0.52": 3
+          },
+          "passableComponentCount": {
+            "1": 931,
+            "2": 68,
+            "3": 1
+          },
+          "blockedComponentCount": {
+            "0": 121,
+            "1": 344,
+            "2": 364,
+            "3": 152,
+            "4": 19
+          },
+          "coastEdges": {
+            "4": 1,
+            "5": 6,
+            "6": 5,
+            "7": 10,
+            "8": 25,
+            "9": 19,
+            "10": 25,
+            "11": 26,
+            "12": 33,
+            "13": 29,
+            "14": 35,
+            "15": 45,
+            "16": 24,
+            "17": 38,
+            "18": 50,
+            "19": 52,
+            "20": 35,
+            "21": 54,
+            "22": 42,
+            "23": 45,
+            "24": 59,
+            "25": 53,
+            "26": 45,
+            "27": 58,
+            "28": 52,
+            "29": 35,
+            "30": 30,
+            "31": 22,
+            "32": 21,
+            "33": 14,
+            "34": 6,
+            "35": 4,
+            "36": 1,
+            "37": 1
+          },
+          "passableComponentSizes": {
+            "1": 62,
+            "2": 8,
+            "13": 1,
+            "14": 4,
+            "15": 12,
+            "16": 31,
+            "17": 37,
+            "18": 83,
+            "19": 113,
+            "20": 107,
+            "21": 155,
+            "22": 152,
+            "23": 89,
+            "24": 95,
+            "25": 121
+          },
+          "blockedComponentSizes": {
+            "1": 451,
+            "2": 405,
+            "3": 437,
+            "4": 311
+          },
+          "objectSizes": {
+            "1": 2642,
+            "2": 405,
+            "3": 437,
+            "4": 311
+          },
+          "shapesByPassability": {
+            "true:0,0": 2191,
+            "false:0,0;1,0;2,0;3,0": 109,
+            "false:0,0": 451,
+            "false:0,0;0,1;1,0;1,1": 202,
+            "false:0,0;1,0;1,1": 90,
+            "false:0,1;1,0;2,0": 91,
+            "false:0,0;1,0": 405,
+            "false:0,1;1,0;1,1": 138,
+            "false:0,0;0,1;1,0": 118
+          },
+          "boundaryCells": {
+            "0": 852,
+            "1": 2237,
+            "2": 505,
+            "3": 139,
+            "4": 62
+          },
+          "boundaryEdges": {
+            "0": 852,
+            "1": 386,
+            "2": 642,
+            "3": 882,
+            "4": 610,
+            "5": 147,
+            "6": 106,
+            "7": 53,
+            "8": 55,
+            "9": 31,
+            "10": 31
+          },
+          "isolatedCells": {
+            "0": 939,
+            "1": 60,
+            "2": 1
+          },
+          "deadEnds": {
+            "0": 525,
+            "1": 335,
+            "2": 105,
+            "3": 30,
+            "4": 5
+          },
+          "articulationCells": {
+            "0": 483,
+            "1": 218,
+            "2": 118,
+            "3": 71,
+            "4": 45,
+            "5": 22,
+            "6": 28,
+            "7": 3,
+            "8": 6,
+            "9": 4,
+            "10": 2
+          },
+          "startCells": {
+            "0": 85,
+            "1": 255,
+            "2": 304,
+            "3": 178,
+            "4": 112,
+            "5": 53,
+            "6": 10,
+            "7": 3
+          }
+        },
+        "routes": {}
+      },
+      "assignment": {
+        "statuses": {
+          "complete": 1000
+        },
+        "nonemptyStatuses": {
+          "complete": 1000
+        },
+        "objects": 3795,
+        "assigned": 3795,
+        "unassigned": 0,
+        "rejectionCounts": {},
+        "assetTypes": {
+          "bottle": 218,
+          "driftwood": 250,
+          "buoy": 258,
+          "rowboat": 242,
+          "island": 1407,
+          "settlement": 107,
+          "crate": 250,
+          "lighthouse": 251,
+          "archipelago": 90,
+          "atoll": 247,
+          "barrels": 237,
+          "wreck": 238
+        },
+        "assetUsage": {
+          "sea-life.accent.h1.bottle.v1": 218,
+          "sea-life.accent.h1.driftwood.v1": 250,
+          "sea-life.accent.h1.buoy.v1": 258,
+          "sea-life.accent.h1.rowboat.v1": 242,
+          "land-coast.island.h4.long-sand.v1": 109,
+          "land-coast.island.h1.basalt-spire-water.v1": 451,
+          "land-coast.settlement.h4.tesoro.v4": 107,
+          "sea-life.accent.h1.crate.v1": 250,
+          "navigation.lighthouse.h1.offcenter-beacon.v1": 251,
+          "land-coast.island.h4.jungle-temple.v1": 95,
+          "land-coast.archipelago.h3.sand-reefs.v2": 90,
+          "land-coast.atoll.h1.broken-passages.v1": 247,
+          "sea-life.accent.h1.barrels.v1": 237,
+          "land-coast.island.h3.smuggler-cove.v1": 91,
+          "land-coast.island.h2.tropical-bays.v1": 405,
+          "navigation.wreck.h1.offcenter-sloop.v1": 238,
+          "land-coast.island.h3.massive-volcano.v1": 138,
+          "land-coast.island.h3.south-harbor.v1": 118
+        },
+        "unassignedShapes": {},
+        "unassignedSizesByPassability": {},
+        "candidateChecks": 106260,
+        "anchorChecks": 168196
+      },
+      "errors": {},
+      "repetitionHistogram": {
+        "0": 1000
+      }
+    }
+  }
+}

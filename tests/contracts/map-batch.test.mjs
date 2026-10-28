@@ -25,8 +25,9 @@ before(()=>{
  git(program,'checkout','--quiet','--detach',git(project,'rev-parse','HEAD'));
  // Exercise uncommitted implementation too, but launch it from its own clean,
  // committed checkout. Production has no program-root override or dirty bypass.
- for(const name of ['scripts/generate-map-batch.mjs','scripts/lib/map-batch.mjs'])fs.copyFileSync(path.join(project,name),path.join(program,name));
- git(program,'add','scripts');
+ for(const name of ['scripts/generate-map-batch.mjs','scripts/lib/map-batch.mjs','src/assets/assignment.mjs',
+  'src/generation/maps.mjs','src/generation/catalog-profile.mjs','src/engine/validate.mjs'])fs.copyFileSync(path.join(project,name),path.join(program,name));
+ git(program,'add','scripts','src');
  if(git(program,'diff','--cached','--name-only'))commit(program);
  programCommit=git(program,'rev-parse','HEAD');
 });
@@ -211,8 +212,8 @@ test('write failure leaves earlier candidates and no successful summary',()=>{
 test('unexpected assignment failure in the actual CLI retains geography and aborts the batch',()=>{
  const file=path.join(program,'src/assets/assignment.mjs');
  try{
-  fs.writeFileSync(file,fs.readFileSync(file,'utf8').replace('export function assignAssets({map,seed,catalog}){',
-   'export function assignAssets({map,seed,catalog}){ throw Error("Injected assignment failure");'));
+  fs.writeFileSync(file,fs.readFileSync(file,'utf8').replace("export function assignAssets({map,seed,catalog,reusePolicy='unrestricted'}){",
+   "export function assignAssets({map,seed,catalog,reusePolicy='unrestricted'}){ throw Error(\"Injected assignment failure\");"));
   git(program,'add','src/assets/assignment.mjs');commit(program);
   const out=fresh('assignment-failed'),r=cli(['run',...releaseArgs,'--count','3','--seed-start','0','--out',out]);
   assert.equal(r.status,1);assert.match(r.stderr,/failed during assignment/);
