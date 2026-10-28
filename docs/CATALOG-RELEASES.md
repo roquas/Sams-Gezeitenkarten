@@ -48,6 +48,10 @@ diese technische Referenzfreigabe erfindet keine neuen Kunstfreigaben.
 Phase C verbindet diesen Referenzstand mit Zuordnung, Profilbildung und der
 festen Katalogdiagnose. Automatische Rätsel-/Batchgenerierung bleibt nachgelagert.
 
+Der [Positionsnachweis für PR A](CATALOG-POSITION-INDEPENDENCE.md) prüft die
+vollständigen 368 Anker einschließlich Rand und Ecken erneut gegen die
+freigegebenen Bildbytes und beide Rahmen. Er benötigt keine neue Freigabe.
+
 ## Ablage und Identitäten
 
 `archive/catalog-releases/<release-id>/` enthält genau fünf JSON-Dateien:
