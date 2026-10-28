@@ -1,0 +1,6098 @@
+{
+  "programCommit": "7d95afc5032129e6b27e58ea28e2969367e596f5",
+  "baselineCommit": "dfe5865949cb817609c310c4897b83382dda735f",
+  "manifest": {
+    "batchFormatVersion": 3,
+    "seedScheduleVersion": "sequential-uint32-1",
+    "options": {
+      "targetCount": 1000,
+      "maxAttempts": 5000,
+      "seedStart": 0,
+      "assignmentSeedStart": 100000,
+      "config": {
+        "objectCount": {
+          "min": 2,
+          "max": 7
+        },
+        "objectSizes": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "passableProbability": 0.5,
+        "maxMapAttempts": 1,
+        "analysis": {
+          "steps": [],
+          "maxNodes": 10000
+        },
+        "filters": {
+          "routeSteps": [],
+          "minLargestComponent": 0
+        }
+      }
+    },
+    "catalogProfile": {
+      "version": "catalog-capacities-1",
+      "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+      "placements": [
+        {
+          "cells": [
+            "A1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A1",
+            "A2",
+            "B1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A1",
+            "A2",
+            "B1",
+            "B2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A1",
+            "B1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A1",
+            "B1",
+            "B2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A1",
+            "B1",
+            "C1",
+            "D1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2",
+            "A3",
+            "B2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2",
+            "A3",
+            "B3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2",
+            "B1",
+            "B2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2",
+            "B1",
+            "C1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2",
+            "B2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2",
+            "B2",
+            "B3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2",
+            "B2",
+            "B3",
+            "C3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2",
+            "B2",
+            "C2",
+            "D2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A2",
+            "B2",
+            "C3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A3",
+            "A4",
+            "B3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A3",
+            "A4",
+            "B3",
+            "B4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A3",
+            "B3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A3",
+            "B3",
+            "B4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A3",
+            "B3",
+            "C3",
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4",
+            "A5",
+            "B4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4",
+            "A5",
+            "B5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4",
+            "B3",
+            "B4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4",
+            "B3",
+            "C3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4",
+            "B4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4",
+            "B4",
+            "B5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4",
+            "B4",
+            "B5",
+            "C5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4",
+            "B4",
+            "C4",
+            "D4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A4",
+            "B4",
+            "C5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A5",
+            "B5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A5",
+            "B5",
+            "C5",
+            "D5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B1",
+            "B2",
+            "C1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B1",
+            "B2",
+            "C1",
+            "C2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B1",
+            "C1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B1",
+            "C1",
+            "C2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B1",
+            "C1",
+            "D1",
+            "E1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2",
+            "B3",
+            "C2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2",
+            "B3",
+            "C3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2",
+            "C1",
+            "C2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2",
+            "C1",
+            "D1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2",
+            "C2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2",
+            "C2",
+            "C3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2",
+            "C2",
+            "C3",
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2",
+            "C2",
+            "D2",
+            "E2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B2",
+            "C2",
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B3",
+            "B4",
+            "C3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B3",
+            "B4",
+            "C3",
+            "C4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B3",
+            "C3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B3",
+            "C3",
+            "C4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B3",
+            "C3",
+            "D3",
+            "E3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4",
+            "B5",
+            "C4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4",
+            "B5",
+            "C5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4",
+            "C3",
+            "C4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4",
+            "C3",
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4",
+            "C4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4",
+            "C4",
+            "C5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4",
+            "C4",
+            "C5",
+            "D5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4",
+            "C4",
+            "D4",
+            "E4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B4",
+            "C4",
+            "D5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B5",
+            "C5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "B5",
+            "C5",
+            "D5",
+            "E5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C1",
+            "C2",
+            "D1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C1",
+            "C2",
+            "D1",
+            "D2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C1",
+            "D1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C1",
+            "D1",
+            "D2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C2",
+            "C3",
+            "D2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C2",
+            "C3",
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C2",
+            "D1",
+            "D2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C2",
+            "D1",
+            "E1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C2",
+            "D2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C2",
+            "D2",
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C2",
+            "D2",
+            "D3",
+            "E3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C2",
+            "D2",
+            "E3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C3",
+            "C4",
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C3",
+            "C4",
+            "D3",
+            "D4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C3",
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C3",
+            "D3",
+            "D4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C4",
+            "C5",
+            "D4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C4",
+            "C5",
+            "D5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C4",
+            "D3",
+            "D4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C4",
+            "D3",
+            "E3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C4",
+            "D4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C4",
+            "D4",
+            "D5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C4",
+            "D4",
+            "D5",
+            "E5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C4",
+            "D4",
+            "E5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "C5",
+            "D5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D1",
+            "D2",
+            "E1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D1",
+            "D2",
+            "E1",
+            "E2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D1",
+            "E1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D1",
+            "E1",
+            "E2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D2",
+            "D3",
+            "E2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D2",
+            "D3",
+            "E3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D2",
+            "E1",
+            "E2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D2",
+            "E2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D2",
+            "E2",
+            "E3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D3",
+            "D4",
+            "E3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D3",
+            "D4",
+            "E3",
+            "E4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D3",
+            "E3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D3",
+            "E3",
+            "E4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D4",
+            "D5",
+            "E4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D4",
+            "D5",
+            "E5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D4",
+            "E3",
+            "E4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D4",
+            "E4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D4",
+            "E4",
+            "E5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "D5",
+            "E5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "E1"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "E2"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "E3"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "E4"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "E5"
+          ],
+          "passable": false
+        },
+        {
+          "cells": [
+            "A1"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "A2"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "A3"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "A4"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "A5"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "B1"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "B2"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "B3"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "B4"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "B5"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "C1"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "C2"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "C3"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "C4"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "C5"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "D1"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "D2"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "D3"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "D4"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "D5"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "E1"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "E2"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "E3"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "E4"
+          ],
+          "passable": true
+        },
+        {
+          "cells": [
+            "E5"
+          ],
+          "passable": true
+        }
+      ],
+      "capacities": [
+        {
+          "shape": "0,0",
+          "passable": false,
+          "count": 1
+        },
+        {
+          "shape": "0,0;0,1;1,0",
+          "passable": false,
+          "count": 1
+        },
+        {
+          "shape": "0,0;0,1;1,0;1,1",
+          "passable": false,
+          "count": 2
+        },
+        {
+          "shape": "0,0;1,0",
+          "passable": false,
+          "count": 1
+        },
+        {
+          "shape": "0,0;1,0;1,1",
+          "passable": false,
+          "count": 1
+        },
+        {
+          "shape": "0,0;1,0;2,0;3,0",
+          "passable": false,
+          "count": 1
+        },
+        {
+          "shape": "0,1;1,0;1,1",
+          "passable": false,
+          "count": 1
+        },
+        {
+          "shape": "0,1;1,0;2,0",
+          "passable": false,
+          "count": 1
+        },
+        {
+          "shape": "0,0",
+          "passable": true,
+          "count": 9
+        }
+      ]
+    },
+    "versions": {
+      "generator": "catalog-compliant-maps-2",
+      "assignment": "catalog-assignment-1",
+      "catalogProfile": "catalog-capacities-1",
+      "pixelChecker": "asset-placement-pixels-2",
+      "releaseAdapter": "released-asset-catalog-1",
+      "rules": "gezeitenkarten-2",
+      "acceptance": "catalog-complete-1"
+    },
+    "program": {
+      "commit": "7d95afc5032129e6b27e58ea28e2969367e596f5",
+      "nodeVersion": "v24.19.0"
+    },
+    "provenance": {
+      "adapterVersion": "released-asset-catalog-1",
+      "releaseId": "gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1",
+      "catalogId": "gk-catalog-content-v1-sha256-3f406882907a76f99b3c6f816dc664f28f55d1ba42f01baa5fc637dc0b742bd1",
+      "sourceCommit": "ccab5f41dae380525f7535de4470848a3ab4d214",
+      "archiveCommit": "7d95afc5032129e6b27e58ea28e2969367e596f5",
+      "backgroundId": "sea-blue-01",
+      "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112"
+    }
+  },
+  "summary": {
+    "batchFormatVersion": 3,
+    "status": "target-reached",
+    "targetCount": 1000,
+    "maxAttempts": 5000,
+    "attemptedCount": 1403,
+    "acceptedCount": 1000,
+    "rejectedCount": 403,
+    "rejectionCounts": {
+      "GENERATION_EXHAUSTED": 403,
+      "OBJECT_SPACING_EXHAUSTED": 403
+    },
+    "attempted": {
+      "geography": {
+        "statuses": {
+          "exhausted": 403,
+          "generated": 1000
+        },
+        "distinctMaps": 997,
+        "duplicateMaps": 3,
+        "emptyMaps": 0,
+        "mapAttempts": 1403,
+        "placementAttempts": 6076,
+        "rejectionCounts": {
+          "OBJECT_SPACING_EXHAUSTED": 403
+        },
+        "profileWork": {
+          "preferredPlacements": 5673,
+          "footprintChecks": 935704
+        },
+        "histograms": {
+          "objectCount": {
+            "2": 228,
+            "3": 238,
+            "4": 224,
+            "5": 170,
+            "6": 101,
+            "7": 39
+          },
+          "passableObjects": {
+            "0": 85,
+            "1": 255,
+            "2": 304,
+            "3": 178,
+            "4": 112,
+            "5": 53,
+            "6": 10,
+            "7": 3
+          },
+          "blockedObjects": {
+            "0": 121,
+            "1": 344,
+            "2": 364,
+            "3": 152,
+            "4": 19
+          },
+          "occupiedCells": {
+            "2": 87,
+            "3": 105,
+            "4": 97,
+            "5": 141,
+            "6": 142,
+            "7": 123,
+            "8": 143,
+            "9": 83,
+            "10": 51,
+            "11": 25,
+            "12": 3
+          },
+          "waterCells": {
+            "13": 3,
+            "14": 25,
+            "15": 51,
+            "16": 83,
+            "17": 143,
+            "18": 123,
+            "19": 142,
+            "20": 141,
+            "21": 97,
+            "22": 105,
+            "23": 87
+          },
+          "landFraction": {
+            "0.32": 143,
+            "0.36": 83,
+            "0.2": 141,
+            "0.12": 105,
+            "0.16": 97,
+            "0.24": 142,
+            "0.08": 87,
+            "0.28": 123,
+            "0.4": 51,
+            "0.44": 25,
+            "0.48": 3
+          },
+          "waterFraction": {
+            "0.68": 143,
+            "0.64": 83,
+            "0.8": 141,
+            "0.88": 105,
+            "0.84": 97,
+            "0.76": 142,
+            "0.92": 87,
+            "0.72": 123,
+            "0.6": 51,
+            "0.56": 25,
+            "0.52": 3
+          },
+          "passableComponentCount": {
+            "1": 931,
+            "2": 68,
+            "3": 1
+          },
+          "blockedComponentCount": {
+            "0": 121,
+            "1": 344,
+            "2": 364,
+            "3": 152,
+            "4": 19
+          },
+          "coastEdges": {
+            "4": 1,
+            "5": 6,
+            "6": 5,
+            "7": 10,
+            "8": 25,
+            "9": 19,
+            "10": 25,
+            "11": 26,
+            "12": 33,
+            "13": 29,
+            "14": 35,
+            "15": 45,
+            "16": 24,
+            "17": 38,
+            "18": 50,
+            "19": 52,
+            "20": 35,
+            "21": 54,
+            "22": 42,
+            "23": 45,
+            "24": 59,
+            "25": 53,
+            "26": 45,
+            "27": 58,
+            "28": 52,
+            "29": 35,
+            "30": 30,
+            "31": 22,
+            "32": 21,
+            "33": 14,
+            "34": 6,
+            "35": 4,
+            "36": 1,
+            "37": 1
+          },
+          "passableComponentSizes": {
+            "1": 62,
+            "2": 8,
+            "13": 1,
+            "14": 4,
+            "15": 12,
+            "16": 31,
+            "17": 37,
+            "18": 83,
+            "19": 113,
+            "20": 107,
+            "21": 155,
+            "22": 152,
+            "23": 89,
+            "24": 95,
+            "25": 121
+          },
+          "blockedComponentSizes": {
+            "1": 451,
+            "2": 405,
+            "3": 437,
+            "4": 311
+          },
+          "objectSizes": {
+            "1": 2642,
+            "2": 405,
+            "3": 437,
+            "4": 311
+          },
+          "shapesByPassability": {
+            "true:0,0": 2191,
+            "false:0,0;1,0;2,0;3,0": 109,
+            "false:0,0": 451,
+            "false:0,0;0,1;1,0;1,1": 202,
+            "false:0,0;1,0;1,1": 90,
+            "false:0,1;1,0;2,0": 91,
+            "false:0,0;1,0": 405,
+            "false:0,1;1,0;1,1": 138,
+            "false:0,0;0,1;1,0": 118
+          },
+          "boundaryCells": {
+            "0": 852,
+            "1": 2237,
+            "2": 505,
+            "3": 139,
+            "4": 62
+          },
+          "boundaryEdges": {
+            "0": 852,
+            "1": 386,
+            "2": 642,
+            "3": 882,
+            "4": 610,
+            "5": 147,
+            "6": 106,
+            "7": 53,
+            "8": 55,
+            "9": 31,
+            "10": 31
+          },
+          "isolatedCells": {
+            "0": 939,
+            "1": 60,
+            "2": 1
+          },
+          "deadEnds": {
+            "0": 525,
+            "1": 335,
+            "2": 105,
+            "3": 30,
+            "4": 5
+          },
+          "articulationCells": {
+            "0": 483,
+            "1": 218,
+            "2": 118,
+            "3": 71,
+            "4": 45,
+            "5": 22,
+            "6": 28,
+            "7": 3,
+            "8": 6,
+            "9": 4,
+            "10": 2
+          },
+          "startCells": {
+            "0": 85,
+            "1": 255,
+            "2": 304,
+            "3": 178,
+            "4": 112,
+            "5": 53,
+            "6": 10,
+            "7": 3
+          }
+        },
+        "routes": {}
+      },
+      "assignment": {
+        "statuses": {
+          "complete": 1000
+        },
+        "nonemptyStatuses": {
+          "complete": 1000
+        },
+        "objects": 3795,
+        "assigned": 3795,
+        "unassigned": 0,
+        "rejectionCounts": {},
+        "assetTypes": {
+          "bottle": 218,
+          "driftwood": 250,
+          "buoy": 258,
+          "rowboat": 242,
+          "island": 1407,
+          "settlement": 107,
+          "crate": 250,
+          "lighthouse": 251,
+          "archipelago": 90,
+          "atoll": 247,
+          "barrels": 237,
+          "wreck": 238
+        },
+        "assetUsage": {
+          "sea-life.accent.h1.bottle.v1": 218,
+          "sea-life.accent.h1.driftwood.v1": 250,
+          "sea-life.accent.h1.buoy.v1": 258,
+          "sea-life.accent.h1.rowboat.v1": 242,
+          "land-coast.island.h4.long-sand.v1": 109,
+          "land-coast.island.h1.basalt-spire-water.v1": 451,
+          "land-coast.settlement.h4.tesoro.v4": 107,
+          "sea-life.accent.h1.crate.v1": 250,
+          "navigation.lighthouse.h1.offcenter-beacon.v1": 251,
+          "land-coast.island.h4.jungle-temple.v1": 95,
+          "land-coast.archipelago.h3.sand-reefs.v2": 90,
+          "land-coast.atoll.h1.broken-passages.v1": 247,
+          "sea-life.accent.h1.barrels.v1": 237,
+          "land-coast.island.h3.smuggler-cove.v1": 91,
+          "land-coast.island.h2.tropical-bays.v1": 405,
+          "navigation.wreck.h1.offcenter-sloop.v1": 238,
+          "land-coast.island.h3.massive-volcano.v1": 138,
+          "land-coast.island.h3.south-harbor.v1": 118
+        },
+        "unassignedShapes": {},
+        "unassignedSizesByPassability": {},
+        "candidateChecks": 106260,
+        "anchorChecks": 168196
+      },
+      "errors": {}
+    },
+    "accepted": {
+      "geography": {
+        "statuses": {
+          "generated": 1000
+        },
+        "distinctMaps": 997,
+        "duplicateMaps": 3,
+        "emptyMaps": 0,
+        "mapAttempts": 1000,
+        "placementAttempts": 3795,
+        "rejectionCounts": {},
+        "profileWork": {
+          "preferredPlacements": 3795,
+          "footprintChecks": 584430
+        },
+        "histograms": {
+          "objectCount": {
+            "2": 228,
+            "3": 238,
+            "4": 224,
+            "5": 170,
+            "6": 101,
+            "7": 39
+          },
+          "passableObjects": {
+            "0": 85,
+            "1": 255,
+            "2": 304,
+            "3": 178,
+            "4": 112,
+            "5": 53,
+            "6": 10,
+            "7": 3
+          },
+          "blockedObjects": {
+            "0": 121,
+            "1": 344,
+            "2": 364,
+            "3": 152,
+            "4": 19
+          },
+          "occupiedCells": {
+            "2": 87,
+            "3": 105,
+            "4": 97,
+            "5": 141,
+            "6": 142,
+            "7": 123,
+            "8": 143,
+            "9": 83,
+            "10": 51,
+            "11": 25,
+            "12": 3
+          },
+          "waterCells": {
+            "13": 3,
+            "14": 25,
+            "15": 51,
+            "16": 83,
+            "17": 143,
+            "18": 123,
+            "19": 142,
+            "20": 141,
+            "21": 97,
+            "22": 105,
+            "23": 87
+          },
+          "landFraction": {
+            "0.32": 143,
+            "0.36": 83,
+            "0.2": 141,
+            "0.12": 105,
+            "0.16": 97,
+            "0.24": 142,
+            "0.08": 87,
+            "0.28": 123,
+            "0.4": 51,
+            "0.44": 25,
+            "0.48": 3
+          },
+          "waterFraction": {
+            "0.68": 143,
+            "0.64": 83,
+            "0.8": 141,
+            "0.88": 105,
+            "0.84": 97,
+            "0.76": 142,
+            "0.92": 87,
+            "0.72": 123,
+            "0.6": 51,
+            "0.56": 25,
+            "0.52": 3
+          },
+          "passableComponentCount": {
+            "1": 931,
+            "2": 68,
+            "3": 1
+          },
+          "blockedComponentCount": {
+            "0": 121,
+            "1": 344,
+            "2": 364,
+            "3": 152,
+            "4": 19
+          },
+          "coastEdges": {
+            "4": 1,
+            "5": 6,
+            "6": 5,
+            "7": 10,
+            "8": 25,
+            "9": 19,
+            "10": 25,
+            "11": 26,
+            "12": 33,
+            "13": 29,
+            "14": 35,
+            "15": 45,
+            "16": 24,
+            "17": 38,
+            "18": 50,
+            "19": 52,
+            "20": 35,
+            "21": 54,
+            "22": 42,
+            "23": 45,
+            "24": 59,
+            "25": 53,
+            "26": 45,
+            "27": 58,
+            "28": 52,
+            "29": 35,
+            "30": 30,
+            "31": 22,
+            "32": 21,
+            "33": 14,
+            "34": 6,
+            "35": 4,
+            "36": 1,
+            "37": 1
+          },
+          "passableComponentSizes": {
+            "1": 62,
+            "2": 8,
+            "13": 1,
+            "14": 4,
+            "15": 12,
+            "16": 31,
+            "17": 37,
+            "18": 83,
+            "19": 113,
+            "20": 107,
+            "21": 155,
+            "22": 152,
+            "23": 89,
+            "24": 95,
+            "25": 121
+          },
+          "blockedComponentSizes": {
+            "1": 451,
+            "2": 405,
+            "3": 437,
+            "4": 311
+          },
+          "objectSizes": {
+            "1": 2642,
+            "2": 405,
+            "3": 437,
+            "4": 311
+          },
+          "shapesByPassability": {
+            "true:0,0": 2191,
+            "false:0,0;1,0;2,0;3,0": 109,
+            "false:0,0": 451,
+            "false:0,0;0,1;1,0;1,1": 202,
+            "false:0,0;1,0;1,1": 90,
+            "false:0,1;1,0;2,0": 91,
+            "false:0,0;1,0": 405,
+            "false:0,1;1,0;1,1": 138,
+            "false:0,0;0,1;1,0": 118
+          },
+          "boundaryCells": {
+            "0": 852,
+            "1": 2237,
+            "2": 505,
+            "3": 139,
+            "4": 62
+          },
+          "boundaryEdges": {
+            "0": 852,
+            "1": 386,
+            "2": 642,
+            "3": 882,
+            "4": 610,
+            "5": 147,
+            "6": 106,
+            "7": 53,
+            "8": 55,
+            "9": 31,
+            "10": 31
+          },
+          "isolatedCells": {
+            "0": 939,
+            "1": 60,
+            "2": 1
+          },
+          "deadEnds": {
+            "0": 525,
+            "1": 335,
+            "2": 105,
+            "3": 30,
+            "4": 5
+          },
+          "articulationCells": {
+            "0": 483,
+            "1": 218,
+            "2": 118,
+            "3": 71,
+            "4": 45,
+            "5": 22,
+            "6": 28,
+            "7": 3,
+            "8": 6,
+            "9": 4,
+            "10": 2
+          },
+          "startCells": {
+            "0": 85,
+            "1": 255,
+            "2": 304,
+            "3": 178,
+            "4": 112,
+            "5": 53,
+            "6": 10,
+            "7": 3
+          }
+        },
+        "routes": {}
+      },
+      "assignment": {
+        "statuses": {
+          "complete": 1000
+        },
+        "nonemptyStatuses": {
+          "complete": 1000
+        },
+        "objects": 3795,
+        "assigned": 3795,
+        "unassigned": 0,
+        "rejectionCounts": {},
+        "assetTypes": {
+          "bottle": 218,
+          "driftwood": 250,
+          "buoy": 258,
+          "rowboat": 242,
+          "island": 1407,
+          "settlement": 107,
+          "crate": 250,
+          "lighthouse": 251,
+          "archipelago": 90,
+          "atoll": 247,
+          "barrels": 237,
+          "wreck": 238
+        },
+        "assetUsage": {
+          "sea-life.accent.h1.bottle.v1": 218,
+          "sea-life.accent.h1.driftwood.v1": 250,
+          "sea-life.accent.h1.buoy.v1": 258,
+          "sea-life.accent.h1.rowboat.v1": 242,
+          "land-coast.island.h4.long-sand.v1": 109,
+          "land-coast.island.h1.basalt-spire-water.v1": 451,
+          "land-coast.settlement.h4.tesoro.v4": 107,
+          "sea-life.accent.h1.crate.v1": 250,
+          "navigation.lighthouse.h1.offcenter-beacon.v1": 251,
+          "land-coast.island.h4.jungle-temple.v1": 95,
+          "land-coast.archipelago.h3.sand-reefs.v2": 90,
+          "land-coast.atoll.h1.broken-passages.v1": 247,
+          "sea-life.accent.h1.barrels.v1": 237,
+          "land-coast.island.h3.smuggler-cove.v1": 91,
+          "land-coast.island.h2.tropical-bays.v1": 405,
+          "navigation.wreck.h1.offcenter-sloop.v1": 238,
+          "land-coast.island.h3.massive-volcano.v1": 138,
+          "land-coast.island.h3.south-harbor.v1": 118
+        },
+        "unassignedShapes": {},
+        "unassignedSizesByPassability": {},
+        "candidateChecks": 106260,
+        "anchorChecks": 168196
+      },
+      "errors": {},
+      "repetitionHistogram": {
+        "0": 1000
+      }
+    }
+  },
+  "verification": {
+    "geographicallyValid": 1000,
+    "completeAssignments": 1000,
+    "assignmentRechecks": 1000,
+    "globallyValidReuse": 1000,
+    "exactReferenceAttempts": 1403,
+    "removedDiagnosticFields": [
+      "config.maxPlacementAttempts",
+      "preferenceDraws",
+      "growthPlacements",
+      "catalogMisses"
+    ],
+    "replayIndices": [
+      0,
+      1,
+      685,
+      1402
+    ],
+    "corners": [
+      "A1",
+      "A5",
+      "E1",
+      "E5"
+    ],
+    "edges": [
+      "bottom",
+      "left",
+      "right",
+      "top"
+    ]
+  },
+  "files": {
+    "manifest.json": {
+      "bytes": 19542,
+      "sha256": "277f48e10ef62c904ba43c44e952b68cc9026e11f39b2a2db7bb15b8e219dbd0"
+    },
+    "candidates.jsonl": {
+      "bytes": 14854299,
+      "sha256": "0b054de48a4f5ae306b9b502c2d64429d49e0b97c3b7d7a015243d14bd5ef327"
+    },
+    "accepted.jsonl": {
+      "bytes": 11737135,
+      "sha256": "e9ed7a35ce689ff04531b8d066d9643fc56ee38f27aab94917c887481977c5c2"
+    },
+    "summary.json": {
+      "bytes": 13574,
+      "sha256": "4ad3e0e754efad64cab9d767760b1a0b92f805ac9b89eabcf86c4a26a075202b"
+    }
+  },
+  "contact": {
+    "selection": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      50,
+      100,
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900,
+      998,
+      999
+    ],
+    "rows": [
+      {
+        "resultIndex": 0,
+        "index": 1,
+        "generationSeed": 1,
+        "assignmentSeed": 100001,
+        "mapFingerprint": "gk-map-v2-sha256:6259806f779f0cf3a734b77e2c8f014e42214316880222ceda01f07d97067982",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "C5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "E4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "D3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "B1",
+                  "C1",
+                  "D1",
+                  "E1"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "anchor": "C5",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "A3",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "anchor": "E4",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "anchor": "D3",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "land-coast.island.h4.long-sand.v1",
+              "anchor": "B1",
+              "objectId": "geo-05"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "semanticClass": "bottle"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "semanticClass": "buoy"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "semanticClass": "rowboat"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 4,
+              "shape": "0,0;1,0;2,0;3,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 27
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h4.long-sand.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100001,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 5,
+            "assignedCount": 5,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "bottle": 1,
+              "driftwood": 1,
+              "buoy": 1,
+              "rowboat": 1,
+              "island": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.bottle.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1,
+              "sea-life.accent.h1.buoy.v1": 1,
+              "sea-life.accent.h1.rowboat.v1": 1,
+              "land-coast.island.h4.long-sand.v1": 1
+            },
+            "candidateChecks": 140,
+            "anchorChecks": 224
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "01271888e6a9ea44cb5e0b0dbbc7103d8ff2e08e809bd91dcdc7a82503669152"
+      },
+      {
+        "resultIndex": 1,
+        "index": 2,
+        "generationSeed": 2,
+        "assignmentSeed": 100002,
+        "mapFingerprint": "gk-map-v2-sha256:32ef4cf70dd743b4c4de8236988c05b721114761c2271d27f39931535a2ffa95",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "A5"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "E1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "C4",
+                  "D4",
+                  "D5",
+                  "E5"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "A1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "B3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-06",
+                "cells": [
+                  "C1"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "anchor": "A5",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "E1",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.settlement.h4.tesoro.v4",
+              "anchor": "C4",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "anchor": "A1",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "anchor": "B3",
+              "objectId": "geo-05"
+            },
+            {
+              "id": "art-06",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "C1",
+              "objectId": "geo-06"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 10,
+                "PRODUCTION_DISABLED": 2
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 4,
+              "shape": "0,0;0,1;1,0;1,1",
+              "passable": false,
+              "candidateCount": 2,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 23,
+                "PRODUCTION_DISABLED": 3
+              },
+              "status": "assigned",
+              "assetId": "land-coast.settlement.h4.tesoro.v4",
+              "semanticClass": "settlement"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "semanticClass": "crate"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "semanticClass": "bottle"
+            },
+            {
+              "objectId": "geo-06",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "semanticClass": "lighthouse"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100002,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 6,
+            "assignedCount": 6,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "island": 1,
+              "driftwood": 1,
+              "settlement": 1,
+              "crate": 1,
+              "bottle": 1,
+              "lighthouse": 1
+            },
+            "assetUsage": {
+              "land-coast.island.h1.basalt-spire-water.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1,
+              "land-coast.settlement.h4.tesoro.v4": 1,
+              "sea-life.accent.h1.crate.v1": 1,
+              "sea-life.accent.h1.bottle.v1": 1,
+              "navigation.lighthouse.h1.offcenter-beacon.v1": 1
+            },
+            "candidateChecks": 168,
+            "anchorChecks": 252
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "ce5206afc0bd5e7a9b850798bce32e864d4ced69f5d7bda6ee5a3f2456667b75"
+      },
+      {
+        "resultIndex": 2,
+        "index": 3,
+        "generationSeed": 3,
+        "assignmentSeed": 100003,
+        "mapFingerprint": "gk-map-v2-sha256:f2f98818665e3dac22373438791482503f0f716ac4a53e5a115ba839bdcf3526",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "C1",
+                  "C2",
+                  "D1",
+                  "D2"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "anchor": "A5",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "land-coast.island.h4.jungle-temple.v1",
+              "anchor": "C1",
+              "objectId": "geo-02"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "semanticClass": "bottle"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 4,
+              "shape": "0,0;0,1;1,0;1,1",
+              "passable": false,
+              "candidateCount": 2,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 23,
+                "PRODUCTION_DISABLED": 3
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h4.jungle-temple.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100003,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 2,
+            "assignedCount": 2,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "bottle": 1,
+              "island": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.bottle.v1": 1,
+              "land-coast.island.h4.jungle-temple.v1": 1
+            },
+            "candidateChecks": 56,
+            "anchorChecks": 140
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "c7411cb8f7ceb8bc0920ebebf1a5077335af4c7f19f5cf566d5702f57ab04892"
+      },
+      {
+        "resultIndex": 3,
+        "index": 4,
+        "generationSeed": 4,
+        "assignmentSeed": 100004,
+        "mapFingerprint": "gk-map-v2-sha256:1e9e328b8fa6f3d1b9de6de8b8ecf106135cd3a7ab8eb29a69a8e6be496c7983",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "A1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A4",
+                  "B4",
+                  "C5"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "C1"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "A1",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+              "anchor": "A4",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "anchor": "C1",
+              "objectId": "geo-03"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "semanticClass": "lighthouse"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 3,
+              "shape": "0,0;1,0;1,1",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "PRODUCTION_DISABLED": 1,
+                "NO_EXACT_FOOTPRINT": 26
+              },
+              "status": "assigned",
+              "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+              "semanticClass": "archipelago"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 10,
+                "PRODUCTION_DISABLED": 2
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100004,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 3,
+            "assignedCount": 3,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "lighthouse": 1,
+              "archipelago": 1,
+              "island": 1
+            },
+            "assetUsage": {
+              "navigation.lighthouse.h1.offcenter-beacon.v1": 1,
+              "land-coast.archipelago.h3.sand-reefs.v2": 1,
+              "land-coast.island.h1.basalt-spire-water.v1": 1
+            },
+            "candidateChecks": 84,
+            "anchorChecks": 140
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "fa409807df9ef1d04d9385725e75edf535d10b6ee780eae0a4f46496893efe85"
+      },
+      {
+        "resultIndex": 4,
+        "index": 5,
+        "generationSeed": 5,
+        "assignmentSeed": 100005,
+        "mapFingerprint": "gk-map-v2-sha256:a90f1e307a1d5f2d587ee88f82d6e2da3c3ee527f9d619150637ad88d69b846b",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "E3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "E1"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "anchor": "B5",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "E3",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "anchor": "E1",
+              "objectId": "geo-03"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "semanticClass": "atoll"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "semanticClass": "barrels"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100005,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 3,
+            "assignedCount": 3,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "atoll": 1,
+              "driftwood": 1,
+              "barrels": 1
+            },
+            "assetUsage": {
+              "land-coast.atoll.h1.broken-passages.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1,
+              "sea-life.accent.h1.barrels.v1": 1
+            },
+            "candidateChecks": 84,
+            "anchorChecks": 84
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "cbafb01dab81b1f494167a95f0329a2a68c9e65024dc2f65bbcca23d4009d209"
+      },
+      {
+        "resultIndex": 5,
+        "index": 6,
+        "generationSeed": 6,
+        "assignmentSeed": 100006,
+        "mapFingerprint": "gk-map-v2-sha256:2113a50cf671f8f79e47a469935cd52966465bfc936f51ac92826a02838181e6",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "D2",
+                  "D3",
+                  "E2"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "anchor": "B3",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "land-coast.island.h3.smuggler-cove.v1",
+              "anchor": "D3",
+              "objectId": "geo-02"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "semanticClass": "rowboat"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 3,
+              "shape": "0,1;1,0;2,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 27
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h3.smuggler-cove.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100006,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 2,
+            "assignedCount": 2,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "rowboat": 1,
+              "island": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.rowboat.v1": 1,
+              "land-coast.island.h3.smuggler-cove.v1": 1
+            },
+            "candidateChecks": 56,
+            "anchorChecks": 112
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "464d8f213000d1d9f928a8e6bb15aadc2469f403faa7a26c21e2f2207169fb65"
+      },
+      {
+        "resultIndex": 6,
+        "index": 9,
+        "generationSeed": 9,
+        "assignmentSeed": 100009,
+        "mapFingerprint": "gk-map-v2-sha256:2ecbc48d9bddaf3d9b163c258fd8f5496d804f5d4e46f9db93fe462df7c7417b",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "C1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A2"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "C5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "A4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "D3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-06",
+                "cells": [
+                  "E5"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "anchor": "C1",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "anchor": "A2",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "C5",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "A4",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "anchor": "D3",
+              "objectId": "geo-05"
+            },
+            {
+              "id": "art-06",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "anchor": "E5",
+              "objectId": "geo-06"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "semanticClass": "crate"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "semanticClass": "barrels"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "semanticClass": "lighthouse"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "semanticClass": "buoy"
+            },
+            {
+              "objectId": "geo-06",
+              "size": 1,
+              "shape": "0,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 10,
+                "PRODUCTION_DISABLED": 2
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100009,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 6,
+            "assignedCount": 6,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "crate": 1,
+              "barrels": 1,
+              "driftwood": 1,
+              "lighthouse": 1,
+              "buoy": 1,
+              "island": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.crate.v1": 1,
+              "sea-life.accent.h1.barrels.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1,
+              "navigation.lighthouse.h1.offcenter-beacon.v1": 1,
+              "sea-life.accent.h1.buoy.v1": 1,
+              "land-coast.island.h1.basalt-spire-water.v1": 1
+            },
+            "candidateChecks": 168,
+            "anchorChecks": 168
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "dfb1c391ffac75e082858141e3f8dac51a816da1c946c3b343f02e3ae74490fc"
+      },
+      {
+        "resultIndex": 7,
+        "index": 11,
+        "generationSeed": 11,
+        "assignmentSeed": 100011,
+        "mapFingerprint": "gk-map-v2-sha256:a981cd702a3e34dab959e756cf9b53ea72d1323873a73232cca742d52fa680bd",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "D3",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "anchor": "A5",
+              "objectId": "geo-02"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "semanticClass": "lighthouse"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "semanticClass": "rowboat"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100011,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 2,
+            "assignedCount": 2,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "lighthouse": 1,
+              "rowboat": 1
+            },
+            "assetUsage": {
+              "navigation.lighthouse.h1.offcenter-beacon.v1": 1,
+              "sea-life.accent.h1.rowboat.v1": 1
+            },
+            "candidateChecks": 56,
+            "anchorChecks": 56
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "ad6c1af2d4582e5ce85b4e2378232cd905c5eca40b308001961f49cea29bfe6f"
+      },
+      {
+        "resultIndex": 8,
+        "index": 12,
+        "generationSeed": 12,
+        "assignmentSeed": 100012,
+        "mapFingerprint": "gk-map-v2-sha256:5c063ccdc9f4f2d5a069139c13a7d2442f94cd49bae99f8411b4abb7353c4046",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "C1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "E3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "C5",
+                  "D5"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "anchor": "C1",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "anchor": "E3",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "anchor": "C5",
+              "objectId": "geo-03"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "semanticClass": "crate"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "semanticClass": "barrels"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 2,
+              "shape": "0,0;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 26,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100012,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 3,
+            "assignedCount": 3,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "crate": 1,
+              "barrels": 1,
+              "island": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.crate.v1": 1,
+              "sea-life.accent.h1.barrels.v1": 1,
+              "land-coast.island.h2.tropical-bays.v1": 1
+            },
+            "candidateChecks": 84,
+            "anchorChecks": 112
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "4120904c4e68417f22b5310e0e091103e849db11179ca2bbd93f033de02d93da"
+      },
+      {
+        "resultIndex": 9,
+        "index": 13,
+        "generationSeed": 13,
+        "assignmentSeed": 100013,
+        "mapFingerprint": "gk-map-v2-sha256:736139c12559a4c8547fc5012ceb27b7e916107d11a1f16bf7e3d31be4f852b1",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "E1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "A4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "C1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "C3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-06",
+                "cells": [
+                  "A1"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+              "anchor": "D4",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "E1",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "anchor": "A4",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "anchor": "C1",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "anchor": "C3",
+              "objectId": "geo-05"
+            },
+            {
+              "id": "art-06",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "anchor": "A1",
+              "objectId": "geo-06"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+              "semanticClass": "wreck"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "semanticClass": "atoll"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "semanticClass": "buoy"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "semanticClass": "rowboat"
+            },
+            {
+              "objectId": "geo-06",
+              "size": 1,
+              "shape": "0,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 10,
+                "PRODUCTION_DISABLED": 2
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100013,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 6,
+            "assignedCount": 6,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "wreck": 1,
+              "driftwood": 1,
+              "atoll": 1,
+              "buoy": 1,
+              "rowboat": 1,
+              "island": 1
+            },
+            "assetUsage": {
+              "navigation.wreck.h1.offcenter-sloop.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1,
+              "land-coast.atoll.h1.broken-passages.v1": 1,
+              "sea-life.accent.h1.buoy.v1": 1,
+              "sea-life.accent.h1.rowboat.v1": 1,
+              "land-coast.island.h1.basalt-spire-water.v1": 1
+            },
+            "candidateChecks": 168,
+            "anchorChecks": 168
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "944b7cf9c75fe386ba43e6b3cc2e96064fb5714859fe177539a5bf10fa9c5631"
+      },
+      {
+        "resultIndex": 10,
+        "index": 14,
+        "generationSeed": 14,
+        "assignmentSeed": 100014,
+        "mapFingerprint": "gk-map-v2-sha256:e91107e10eff8807f28b304795502ff6befbbe7f6dcc8481edffbe972ae3c676",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "C1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "B4",
+                  "C4",
+                  "C5",
+                  "D5"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+              "anchor": "A5",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "anchor": "C1",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.island.h4.jungle-temple.v1",
+              "anchor": "B4",
+              "objectId": "geo-03"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+              "semanticClass": "wreck"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "semanticClass": "bottle"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 4,
+              "shape": "0,0;0,1;1,0;1,1",
+              "passable": false,
+              "candidateCount": 2,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 23,
+                "PRODUCTION_DISABLED": 3
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h4.jungle-temple.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100014,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 3,
+            "assignedCount": 3,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "wreck": 1,
+              "bottle": 1,
+              "island": 1
+            },
+            "assetUsage": {
+              "navigation.wreck.h1.offcenter-sloop.v1": 1,
+              "sea-life.accent.h1.bottle.v1": 1,
+              "land-coast.island.h4.jungle-temple.v1": 1
+            },
+            "candidateChecks": 84,
+            "anchorChecks": 168
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "e123484e3b2fe8ddd1ac4492d69e9ec25a85f0d225bb2d6e148154eac3dea0ab"
+      },
+      {
+        "resultIndex": 11,
+        "index": 15,
+        "generationSeed": 15,
+        "assignmentSeed": 100015,
+        "mapFingerprint": "gk-map-v2-sha256:072fbcebd4e3a3406b47cf4a2db257591ac462783ab62f5114d64ed09b66c34b",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B2",
+                  "C2",
+                  "D2",
+                  "E2"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "E4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "A1"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "land-coast.island.h4.long-sand.v1",
+              "anchor": "B2",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "anchor": "A4",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "anchor": "D5",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+              "anchor": "E4",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "anchor": "A1",
+              "objectId": "geo-05"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 4,
+              "shape": "0,0;1,0;2,0;3,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 27
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h4.long-sand.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "semanticClass": "barrels"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 10,
+                "PRODUCTION_DISABLED": 2
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+              "semanticClass": "wreck"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "semanticClass": "buoy"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100015,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 5,
+            "assignedCount": 5,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "island": 2,
+              "barrels": 1,
+              "wreck": 1,
+              "buoy": 1
+            },
+            "assetUsage": {
+              "land-coast.island.h4.long-sand.v1": 1,
+              "sea-life.accent.h1.barrels.v1": 1,
+              "land-coast.island.h1.basalt-spire-water.v1": 1,
+              "navigation.wreck.h1.offcenter-sloop.v1": 1,
+              "sea-life.accent.h1.buoy.v1": 1
+            },
+            "candidateChecks": 140,
+            "anchorChecks": 224
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "287d63883b99942ce08962aa1a46dfa0aeda449fe144d02698192cf28f40a9f6"
+      },
+      {
+        "resultIndex": 50,
+        "index": 66,
+        "generationSeed": 66,
+        "assignmentSeed": 100066,
+        "mapFingerprint": "gk-map-v2-sha256:18cdc188ad302ad0d6ed8d6d843258a4475e49ab1a41cd2cfa37f4a0d8ef9cc6",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D3",
+                  "E3",
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A1",
+                  "B1"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "B4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "D1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "D5"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+              "anchor": "D3",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "anchor": "A1",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "anchor": "B4",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "D1",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "anchor": "D5",
+              "objectId": "geo-05"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 3,
+              "shape": "0,0;1,0;1,1",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "PRODUCTION_DISABLED": 1,
+                "NO_EXACT_FOOTPRINT": 26
+              },
+              "status": "assigned",
+              "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+              "semanticClass": "archipelago"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 2,
+              "shape": "0,0;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 26,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "semanticClass": "rowboat"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "semanticClass": "lighthouse"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "semanticClass": "bottle"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100066,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 5,
+            "assignedCount": 5,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "archipelago": 1,
+              "island": 1,
+              "rowboat": 1,
+              "lighthouse": 1,
+              "bottle": 1
+            },
+            "assetUsage": {
+              "land-coast.archipelago.h3.sand-reefs.v2": 1,
+              "land-coast.island.h2.tropical-bays.v1": 1,
+              "sea-life.accent.h1.rowboat.v1": 1,
+              "navigation.lighthouse.h1.offcenter-beacon.v1": 1,
+              "sea-life.accent.h1.bottle.v1": 1
+            },
+            "candidateChecks": 140,
+            "anchorChecks": 224
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "8c7d66cb487d56d22b5b1a2279ed9a5c2805784c6b7ebc11b7c32c99f767476f"
+      },
+      {
+        "resultIndex": 100,
+        "index": 135,
+        "generationSeed": 135,
+        "assignmentSeed": 100135,
+        "mapFingerprint": "gk-map-v2-sha256:b7e481d52ae70786a1d7ef054a94f7b1378f605273211dbc23e5c328d0d9cee5",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "D5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "E3"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "anchor": "B4",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "anchor": "D5",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "E3",
+              "objectId": "geo-03"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "semanticClass": "barrels"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "semanticClass": "bottle"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100135,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 3,
+            "assignedCount": 3,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "barrels": 1,
+              "bottle": 1,
+              "driftwood": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.barrels.v1": 1,
+              "sea-life.accent.h1.bottle.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1
+            },
+            "candidateChecks": 84,
+            "anchorChecks": 84
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "77f466c40f33ab26040b5faa4a988e76db736010d2a1782b4f7e5a3af7f7e014"
+      },
+      {
+        "resultIndex": 200,
+        "index": 272,
+        "generationSeed": 272,
+        "assignmentSeed": 100272,
+        "mapFingerprint": "gk-map-v2-sha256:04ace6569b9fce7e4a47509902daa96d96745a22b1754ca51d5b4c092464eb0e",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "C4"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "E2"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "B5",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "anchor": "C4",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "anchor": "E2",
+              "objectId": "geo-03"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 10,
+                "PRODUCTION_DISABLED": 2
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "semanticClass": "atoll"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100272,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 3,
+            "assignedCount": 3,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "driftwood": 1,
+              "island": 1,
+              "atoll": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.driftwood.v1": 1,
+              "land-coast.island.h1.basalt-spire-water.v1": 1,
+              "land-coast.atoll.h1.broken-passages.v1": 1
+            },
+            "candidateChecks": 84,
+            "anchorChecks": 84
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "8690ebcaee23abe14c1c6ba76cf96f33f9b465150bfdebe847bc969da4ae1fa7"
+      },
+      {
+        "resultIndex": 300,
+        "index": 406,
+        "generationSeed": 406,
+        "assignmentSeed": 100406,
+        "mapFingerprint": "gk-map-v2-sha256:6c26594ee95e05fbfe23458d666333872d9765eddaba28f33364a560b8402af3",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "C4",
+                  "C5",
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "C1",
+                  "C2",
+                  "D1",
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "A3",
+                  "B3"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "land-coast.island.h3.smuggler-cove.v1",
+              "anchor": "C5",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "anchor": "A1",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.island.h4.jungle-temple.v1",
+              "anchor": "C1",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "anchor": "A5",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "anchor": "A3",
+              "objectId": "geo-05"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 3,
+              "shape": "0,1;1,0;2,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 27
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h3.smuggler-cove.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "semanticClass": "buoy"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 4,
+              "shape": "0,0;0,1;1,0;1,1",
+              "passable": false,
+              "candidateCount": 2,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 23,
+                "PRODUCTION_DISABLED": 3
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h4.jungle-temple.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "semanticClass": "crate"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 2,
+              "shape": "0,0;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 26,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100406,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 5,
+            "assignedCount": 5,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "island": 3,
+              "buoy": 1,
+              "crate": 1
+            },
+            "assetUsage": {
+              "land-coast.island.h3.smuggler-cove.v1": 1,
+              "sea-life.accent.h1.buoy.v1": 1,
+              "land-coast.island.h4.jungle-temple.v1": 1,
+              "sea-life.accent.h1.crate.v1": 1,
+              "land-coast.island.h2.tropical-bays.v1": 1
+            },
+            "candidateChecks": 140,
+            "anchorChecks": 308
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "29f4840242e1ede8f364d6fe7bf3fb8de1044f33d236ed196a87609e14afd006"
+      },
+      {
+        "resultIndex": 400,
+        "index": 541,
+        "generationSeed": 541,
+        "assignmentSeed": 100541,
+        "mapFingerprint": "gk-map-v2-sha256:3ed2bbbaa08cd41f51fe367ab4ecdbff4e2ff3e578ad064ad52a8b9abe744f00",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "E2"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "C1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "B3",
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "D5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-06",
+                "cells": [
+                  "A1"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-07",
+                "cells": [
+                  "E4"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "anchor": "E2",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "anchor": "C1",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "A5",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "anchor": "B3",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "anchor": "D5",
+              "objectId": "geo-05"
+            },
+            {
+              "id": "art-06",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "anchor": "A1",
+              "objectId": "geo-06"
+            },
+            {
+              "id": "art-07",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "E4",
+              "objectId": "geo-07"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "semanticClass": "buoy"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "semanticClass": "crate"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "semanticClass": "lighthouse"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 2,
+              "shape": "0,0;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 26,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "semanticClass": "barrels"
+            },
+            {
+              "objectId": "geo-06",
+              "size": 1,
+              "shape": "0,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 10,
+                "PRODUCTION_DISABLED": 2
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-07",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100541,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 7,
+            "assignedCount": 7,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "buoy": 1,
+              "crate": 1,
+              "lighthouse": 1,
+              "island": 2,
+              "barrels": 1,
+              "driftwood": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.buoy.v1": 1,
+              "sea-life.accent.h1.crate.v1": 1,
+              "navigation.lighthouse.h1.offcenter-beacon.v1": 1,
+              "land-coast.island.h2.tropical-bays.v1": 1,
+              "sea-life.accent.h1.barrels.v1": 1,
+              "land-coast.island.h1.basalt-spire-water.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1
+            },
+            "candidateChecks": 196,
+            "anchorChecks": 224
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "c6ce67956c92f29a25bccf4f0a1fad8838dbfbf92dc5065217d59f769f755f74"
+      },
+      {
+        "resultIndex": 500,
+        "index": 685,
+        "generationSeed": 685,
+        "assignmentSeed": 100685,
+        "mapFingerprint": "gk-map-v2-sha256:0edf16c20e8ba16f1f73e5342c8ed1e4dbeabe47349b89ceb142da14fdcd7d0d",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "D1",
+                  "E1"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "A2",
+                  "B2",
+                  "B3",
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "B5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "E4"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "D5",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "anchor": "D1",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.settlement.h4.tesoro.v4",
+              "anchor": "A2",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "anchor": "B5",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "E4",
+              "objectId": "geo-05"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "semanticClass": "lighthouse"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 2,
+              "shape": "0,0;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 26,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 4,
+              "shape": "0,0;0,1;1,0;1,1",
+              "passable": false,
+              "candidateCount": 2,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 23,
+                "PRODUCTION_DISABLED": 3
+              },
+              "status": "assigned",
+              "assetId": "land-coast.settlement.h4.tesoro.v4",
+              "semanticClass": "settlement"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "semanticClass": "atoll"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100685,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 5,
+            "assignedCount": 5,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "lighthouse": 1,
+              "island": 1,
+              "settlement": 1,
+              "atoll": 1,
+              "driftwood": 1
+            },
+            "assetUsage": {
+              "navigation.lighthouse.h1.offcenter-beacon.v1": 1,
+              "land-coast.island.h2.tropical-bays.v1": 1,
+              "land-coast.settlement.h4.tesoro.v4": 1,
+              "land-coast.atoll.h1.broken-passages.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1
+            },
+            "candidateChecks": 140,
+            "anchorChecks": 252
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "9f60b17bf2d5e865d15221fa57aba1cc6e2fe4dee2cc8db540939aaab98c709e"
+      },
+      {
+        "resultIndex": 600,
+        "index": 830,
+        "generationSeed": 830,
+        "assignmentSeed": 100830,
+        "mapFingerprint": "gk-map-v2-sha256:f161d0387a9eb1c50b45ecfafef2885975a43aa74906fd115c6e5d4b75ece7af",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "C3",
+                  "C4",
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "B1",
+                  "C1",
+                  "D1",
+                  "E1"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "A3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "A5",
+                  "B5"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "land-coast.island.h3.south-harbor.v1",
+              "anchor": "C3",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "land-coast.island.h4.long-sand.v1",
+              "anchor": "B1",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "anchor": "A3",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "anchor": "A5",
+              "objectId": "geo-04"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 3,
+              "shape": "0,0;0,1;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 27
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h3.south-harbor.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 4,
+              "shape": "0,0;1,0;2,0;3,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 27
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h4.long-sand.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "semanticClass": "bottle"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 2,
+              "shape": "0,0;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 26,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100830,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 4,
+            "assignedCount": 4,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "island": 3,
+              "bottle": 1
+            },
+            "assetUsage": {
+              "land-coast.island.h3.south-harbor.v1": 1,
+              "land-coast.island.h4.long-sand.v1": 1,
+              "sea-life.accent.h1.bottle.v1": 1,
+              "land-coast.island.h2.tropical-bays.v1": 1
+            },
+            "candidateChecks": 112,
+            "anchorChecks": 280
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "0e15849aa03b142d3ccbc5c579e3b120a5f957ccfe0c68b086ce8865ffd38d18"
+      },
+      {
+        "resultIndex": 700,
+        "index": 965,
+        "generationSeed": 965,
+        "assignmentSeed": 100965,
+        "mapFingerprint": "gk-map-v2-sha256:8dfba1652ac2d789ba272ac8ab1d8089bd054faa490eb66f433d3eab3c598916",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D4",
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "C1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "B3"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "anchor": "D4",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+              "anchor": "A5",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "C1",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "anchor": "D2",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "anchor": "B3",
+              "objectId": "geo-05"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 2,
+              "shape": "0,0;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 26,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+              "semanticClass": "wreck"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 10,
+                "PRODUCTION_DISABLED": 2
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h1.basalt-spire-water.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "semanticClass": "barrels"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 100965,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 5,
+            "assignedCount": 5,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "island": 2,
+              "wreck": 1,
+              "driftwood": 1,
+              "barrels": 1
+            },
+            "assetUsage": {
+              "land-coast.island.h2.tropical-bays.v1": 1,
+              "navigation.wreck.h1.offcenter-sloop.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1,
+              "land-coast.island.h1.basalt-spire-water.v1": 1,
+              "sea-life.accent.h1.barrels.v1": 1
+            },
+            "candidateChecks": 140,
+            "anchorChecks": 168
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "c1a0bc50ee3318330644350852168e476cac8497079570fd1e5a0456fd047100"
+      },
+      {
+        "resultIndex": 800,
+        "index": 1108,
+        "generationSeed": 1108,
+        "assignmentSeed": 101108,
+        "mapFingerprint": "gk-map-v2-sha256:f6a287b5a5a2376d0b3cb94cacae2ad3a2502c49296f195ecd70fc0507afc201",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "C2",
+                  "D1",
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "C4",
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "B5"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "anchor": "B3",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "land-coast.island.h3.massive-volcano.v1",
+              "anchor": "C2",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "anchor": "C4",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "anchor": "B5",
+              "objectId": "geo-04"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "semanticClass": "barrels"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 3,
+              "shape": "0,1;1,0;1,1",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 27
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h3.massive-volcano.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 2,
+              "shape": "0,0;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 26,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "semanticClass": "island"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.crate.v1",
+              "semanticClass": "crate"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 101108,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 4,
+            "assignedCount": 4,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "barrels": 1,
+              "island": 2,
+              "crate": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.barrels.v1": 1,
+              "land-coast.island.h3.massive-volcano.v1": 1,
+              "land-coast.island.h2.tropical-bays.v1": 1,
+              "sea-life.accent.h1.crate.v1": 1
+            },
+            "candidateChecks": 112,
+            "anchorChecks": 196
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "60b323f01f280df2aac1837fe4d67c5be9e0234269d6ddf4794bebed49fc6ce4"
+      },
+      {
+        "resultIndex": 900,
+        "index": 1255,
+        "generationSeed": 1255,
+        "assignmentSeed": 101255,
+        "mapFingerprint": "gk-map-v2-sha256:8b6ecebc67c9712d64620a14f52cc65d80492ad30ba3cb9c95495577ef567723",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "B2"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "anchor": "D1",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "B2",
+              "objectId": "geo-02"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.barrels.v1",
+              "semanticClass": "barrels"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 101255,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 2,
+            "assignedCount": 2,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "barrels": 1,
+              "driftwood": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.barrels.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1
+            },
+            "candidateChecks": 56,
+            "anchorChecks": 56
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "993d62fcd4f5fa958620348ba39e10695f7ad5a450037f93b7235d0f87b11ab0"
+      },
+      {
+        "resultIndex": 998,
+        "index": 1400,
+        "generationSeed": 1400,
+        "assignmentSeed": 101400,
+        "mapFingerprint": "gk-map-v2-sha256:ec7d6b978975eff4f88bf7d2171fb4c156a1689b649c64cfc36149cccaf64057",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B4",
+                  "C4",
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A1",
+                  "B1"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+              "anchor": "B4",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "anchor": "A1",
+              "objectId": "geo-02"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 3,
+              "shape": "0,0;1,0;1,1",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "PRODUCTION_DISABLED": 1,
+                "NO_EXACT_FOOTPRINT": 26
+              },
+              "status": "assigned",
+              "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+              "semanticClass": "archipelago"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 2,
+              "shape": "0,0;1,0",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 26,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.island.h2.tropical-bays.v1",
+              "semanticClass": "island"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 101400,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 2,
+            "assignedCount": 2,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "archipelago": 1,
+              "island": 1
+            },
+            "assetUsage": {
+              "land-coast.archipelago.h3.sand-reefs.v2": 1,
+              "land-coast.island.h2.tropical-bays.v1": 1
+            },
+            "candidateChecks": 56,
+            "anchorChecks": 140
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "85c5b8c2e444fe057188e48acb706717b59fd739b9e77448685006a3f84f1091"
+      },
+      {
+        "resultIndex": 999,
+        "index": 1402,
+        "generationSeed": 1402,
+        "assignmentSeed": 101402,
+        "mapFingerprint": "gk-map-v2-sha256:444f7a05d2c36b59ee9f62b3d458bc151a1354118334b5f4997de24dcafcbe8c",
+        "generation": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "A4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "C1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "C3",
+                  "D3",
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "E1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "A1"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "innerMapAttempts": 1
+        },
+        "assignment": {
+          "status": "complete",
+          "placements": [
+            {
+              "id": "art-01",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "anchor": "A4",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-02",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "C1",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-03",
+              "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+              "anchor": "C3",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-04",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "anchor": "E1",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-05",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "A1",
+              "objectId": "geo-05"
+            }
+          ],
+          "objects": [
+            {
+              "objectId": "geo-01",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "semanticClass": "buoy"
+            },
+            {
+              "objectId": "geo-02",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "semanticClass": "lighthouse"
+            },
+            {
+              "objectId": "geo-03",
+              "size": 3,
+              "shape": "0,0;1,0;1,1",
+              "passable": false,
+              "candidateCount": 1,
+              "rejections": {
+                "PRODUCTION_DISABLED": 1,
+                "NO_EXACT_FOOTPRINT": 26
+              },
+              "status": "assigned",
+              "assetId": "land-coast.archipelago.h3.sand-reefs.v2",
+              "semanticClass": "archipelago"
+            },
+            {
+              "objectId": "geo-04",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "land-coast.atoll.h1.broken-passages.v1",
+              "semanticClass": "atoll"
+            },
+            {
+              "objectId": "geo-05",
+              "size": 1,
+              "shape": "0,0",
+              "passable": true,
+              "candidateCount": 9,
+              "rejections": {
+                "NO_EXACT_FOOTPRINT": 15,
+                "PASSABILITY_MISMATCH": 3,
+                "PRODUCTION_DISABLED": 1
+              },
+              "status": "assigned",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "semanticClass": "driftwood"
+            }
+          ],
+          "diagnostics": {
+            "assignmentVersion": "catalog-assignment-1",
+            "seed": 101402,
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "objectCount": 5,
+            "assignedCount": 5,
+            "unassignedCount": 0,
+            "rejectionCounts": {},
+            "assetTypes": {
+              "buoy": 1,
+              "lighthouse": 1,
+              "archipelago": 1,
+              "atoll": 1,
+              "driftwood": 1
+            },
+            "assetUsage": {
+              "sea-life.accent.h1.buoy.v1": 1,
+              "navigation.lighthouse.h1.offcenter-beacon.v1": 1,
+              "land-coast.archipelago.h3.sand-reefs.v2": 1,
+              "land-coast.atoll.h1.broken-passages.v1": 1,
+              "sea-life.accent.h1.driftwood.v1": 1
+            },
+            "candidateChecks": 140,
+            "anchorChecks": 196
+          }
+        },
+        "decision": "accepted",
+        "rejectionReasons": [],
+        "recordSha256": "b35961f7362ec845cf522c56698eb2da30dcdbd5a93bbc98cf6c1f1411d85d98"
+      }
+    ],
+    "files": {
+      "index.html": {
+        "bytes": 84300,
+        "sha256": "ebb048de54729c0a2d98492d1179ecdd4992dea3cd874b208a40d1c3bf844971"
+      },
+      "resources/03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773.png": {
+        "bytes": 336937,
+        "sha256": "03f70eb90085f36ebf5d7a06db158e73048282f68be580465021d5bc0a31c773"
+      },
+      "resources/10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4.png": {
+        "bytes": 57900,
+        "sha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4"
+      },
+      "resources/21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd.png": {
+        "bytes": 101880,
+        "sha256": "21986016dcaf203ae7e2036cf19e35e1437d23fc90b196c87b46b26c1a7fd2cd"
+      },
+      "resources/2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150.png": {
+        "bytes": 72423,
+        "sha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150"
+      },
+      "resources/2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b.png": {
+        "bytes": 76996,
+        "sha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b"
+      },
+      "resources/4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e.png": {
+        "bytes": 448813,
+        "sha256": "4ecc67e6704b9bb2124b3f56804799a8debacb93fa2e171619d3e220a037f78e"
+      },
+      "resources/599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130.png": {
+        "bytes": 371618,
+        "sha256": "599ff785c04453aa9f75b9214b7c994a6596b3b63026b8bfd31d89c8870f2130"
+      },
+      "resources/5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61.png": {
+        "bytes": 715125,
+        "sha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61"
+      },
+      "resources/6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254.png": {
+        "bytes": 691213,
+        "sha256": "6b3a942beda696b1fca3039fb032d7a2719c9ecc42e5e3c9741a530479b31254"
+      },
+      "resources/6b491107f57e40354b91c8605b075ee8faadb6dd32e382137e9b9f04445982b7.webp": {
+        "bytes": 2913646,
+        "sha256": "6b491107f57e40354b91c8605b075ee8faadb6dd32e382137e9b9f04445982b7"
+      },
+      "resources/716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f.png": {
+        "bytes": 89388,
+        "sha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f"
+      },
+      "resources/764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2.png": {
+        "bytes": 105200,
+        "sha256": "764bf3e2f85e566fe30d380af6ea8d6835d1936d533f76a295fd0e638b98f8d2"
+      },
+      "resources/84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180.png": {
+        "bytes": 67395,
+        "sha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180"
+      },
+      "resources/9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828.png": {
+        "bytes": 539670,
+        "sha256": "9dc2e28e8edba04cb768bc8650640ad4c4f3b2a5778f6519da4f713b6e79b828"
+      },
+      "resources/a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec.png": {
+        "bytes": 86315,
+        "sha256": "a7c9386e7ff0b291015a6e1b0a88c5a29b9d36cc5f174e7d09a326f9dda42fec"
+      },
+      "resources/cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62.png": {
+        "bytes": 497626,
+        "sha256": "cb4086c17282d8fc94cadf3c6508a8b41bd3287b88b78dfc348fe6f0f85b5f62"
+      },
+      "resources/d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795.png": {
+        "bytes": 72523,
+        "sha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795"
+      },
+      "resources/daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378.png": {
+        "bytes": 71393,
+        "sha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378"
+      },
+      "resources/e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582.webp": {
+        "bytes": 3386254,
+        "sha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+      },
+      "resources/ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075.png": {
+        "bytes": 536903,
+        "sha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075"
+      }
+    },
+    "browserAudit": [
+      {
+        "browser": "chromium",
+        "version": "156.0.8078.4",
+        "viewport": "desktop",
+        "cards": 24,
+        "decodedImages": 144,
+        "overflow": false,
+        "placeholders": 0,
+        "pageErrors": [],
+        "networkRequests": [],
+        "savedIdentitiesAndRectangles": "matched",
+        "screenshot": "docs/reviews/contact-sheet/consolidated-desktop.jpg",
+        "sha256": "ca2b835f4280ca48a048f47b0102802483f16914892d7efcdea4a878ead2db00",
+        "screenshotViewport": {
+          "width": 1440,
+          "height": 1800
+        }
+      },
+      {
+        "browser": "chromium",
+        "version": "156.0.8078.4",
+        "viewport": "mobile",
+        "cards": 24,
+        "decodedImages": 144,
+        "overflow": false,
+        "placeholders": 0,
+        "pageErrors": [],
+        "networkRequests": [],
+        "savedIdentitiesAndRectangles": "matched",
+        "screenshot": "docs/reviews/contact-sheet/consolidated-mobile.jpg",
+        "sha256": "4f6a4511d1e5c918c217308774709edcc515aad9c95b2a0d2dcdc4098cbb4b37"
+      },
+      {
+        "browser": "webkit",
+        "version": "27.2",
+        "viewport": "desktop",
+        "cards": 24,
+        "decodedImages": 144,
+        "overflow": false,
+        "placeholders": 0,
+        "pageErrors": [],
+        "networkRequests": [],
+        "savedIdentitiesAndRectangles": "matched"
+      },
+      {
+        "browser": "webkit",
+        "version": "27.2",
+        "viewport": "mobile",
+        "cards": 24,
+        "decodedImages": 144,
+        "overflow": false,
+        "placeholders": 0,
+        "pageErrors": [],
+        "networkRequests": [],
+        "savedIdentitiesAndRectangles": "matched"
+      }
+    ]
+  },
+  "tests": {
+    "unit": {
+      "passed": 192,
+      "failed": 0
+    },
+    "content": {
+      "passed": 20,
+      "failed": 0
+    },
+    "puzzles": "unique and unchanged",
+    "assets": {
+      "metadataAssets": 40,
+      "backgrounds": 3,
+      "imageContracts": 40,
+      "pythonPassed": 25
+    },
+    "package": {
+      "passed": 18,
+      "failed": 0
+    },
+    "chromium": {
+      "passed": 320,
+      "failed": 0
+    },
+    "webkitContact": {
+      "passed": 6,
+      "failed": 0
+    },
+    "webkitInitialAttempt": {
+      "failed": 2,
+      "interrupted": 1,
+      "notRun": 317,
+      "reason": "native SVG click/actionability timeout under concurrent CPU load"
+    },
+    "webkitBaseline": {
+      "commit": "dfe5865949cb817609c310c4897b83382dda735f",
+      "passed": 1,
+      "failed": 1,
+      "failure": "existing chart-ux distance phases SVG click/actionability timeout"
+    },
+    "additionalContracts": {
+      "passed": 36,
+      "failed": 0
+    },
+    "finalRejectionChecks": {
+      "passed": 20,
+      "failed": 0
+    },
+    "releasedCatalog": {
+      "passed": 10,
+      "failed": 0
+    },
+    "alphaSelfTest": "passed",
+    "chartAssetCheck": "passed",
+    "devServerSelfTest": "passed",
+    "releaseArchiveCheck": "passed",
+    "diffCheck": "passed"
+  }
+}

@@ -17,7 +17,8 @@ Batcherzeugung und Replay: [Generatorvertrag](CATALOG-COMPLIANT-GENERATION.md).
 optional den Katalogcheckout. Das Ausgabeverzeichnis muss neu sein.
 Ergebnisindizes sind eindeutige, nullbasierte Zeilenpositionen in `accepted.jsonl`;
 die explizit angegebene Reihenfolge bleibt erhalten. Es gibt keine alternative
-Auswahl nach Versuchsindizes. Die entfernte CLI-Option `--indices` wird abgewiesen.
+Auswahl nach Versuchsindizes. Die entfernte CLI-Option `--indices` wird abgewiesen. Die Rückgabe `indices`
+enthält weiterhin die ursprünglichen Versuchsindizes als Metadaten.
 
 ## Darstellung
 

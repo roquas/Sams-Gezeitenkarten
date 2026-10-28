@@ -80,7 +80,7 @@ test('invalid options and impossible area budgets fail early with INVALID_CONFIG
  for(const config of [null,[],{extra:true},{objectCount:{min:3,max:2}},{objectCount:26},
   {objectCount:13,objectSizes:[2]},{objectCount:2,objectSizes:[1,25]},
   {objectSizes:[]},{objectSizes:[0]},{objectSizes:[2,2]},{objectSizes:[1.5]},
-  {passableProbability:NaN},{passableProbability:2},{maxMapAttempts:0},{maxPlacementAttempts:0},
+  {passableProbability:NaN},{passableProbability:2},{maxMapAttempts:0},{maxPlacementAttempts:20},
   {analysis:{steps:[0]}},{analysis:{steps:[1,1]}},{analysis:{steps:[7]}},{analysis:{maxNodes:0}},
   {filters:{routeSteps:[7]}},{filters:{minLargestComponent:26}},{filters:{hidden:true}}]){
   assert.throws(()=>generateMap({seed:1,config}),{code:'INVALID_CONFIG'});

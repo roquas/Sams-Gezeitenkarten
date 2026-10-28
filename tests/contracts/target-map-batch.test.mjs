@@ -133,7 +133,7 @@ test('target replay rejects manifest/version/seed/decision drift and remains usa
 });
 
 test('CLI refuses removed mode/count/preference flags and invalid budgets before output',()=>{
- for(const extra of [['--mode','catalog-compliant'],['--count','10'],['--preference-percent','100'],['--max-attempts','0']]){
+ for(const extra of [['--mode','catalog-compliant'],['--mode','free'],['--mode','catalog-informed'],['--count','10'],['--preference-percent','100'],['--max-attempts','0']]){
   const out=fresh('refused'),r=cli(['run',...releaseArgs,'--target-count','2',
    ...(extra[0]==='--max-attempts'?[]:['--max-attempts','10']),'--seed-start','0','--out',out,...extra]);
   assert.equal(r.status,1);assert.ok(!fs.existsSync(out));
