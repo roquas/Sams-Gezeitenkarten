@@ -52,6 +52,9 @@ test('real approved release supplies exactly 18 assets, 368 anchors and 154 geog
  const {catalog,provenance}=loaded,selected=release.selection.backgrounds[0].geographicAssetIds;
  assert.equal(catalog.library.assets.length,40);
  assert.deepEqual(catalog.library,release.library); // Do not prune metadata or rewrite art decisions.
+ const policy=JSON.parse(release.readResource('scripts/config/catalog-release-v1.json'));
+ assert.deepEqual(loaded.chartContract,JSON.parse(release.readResource(policy.productionBackgrounds[0].chartContract)));
+ assert.ok(Object.isFrozen(loaded.chartContract.format.files));
  assert.equal(selected.length,18);
  assert.deepEqual(catalog.verification.assets,release.validation.placements.map(({assetId,anchors})=>({assetId,anchors})));
  assert.deepEqual(catalog.verification.assets.map(a=>a.assetId),selected);

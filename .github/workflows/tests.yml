@@ -53,10 +53,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
+      - name: Install local contact sheet image decoder
+        run: python3 -m pip install --user Pillow
       - run: npm run test:browser
       - name: Retain UI review screenshots and lifecycle observations
         if: always()
@@ -93,10 +96,13 @@ jobs:
       PLAYWRIGHT_JSON_OUTPUT_NAME: webkit-results.json
     steps:
       - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
+      - name: Install local contact sheet image decoder
+        run: python3 -m pip install --user Pillow
       - run: npx playwright test --config playwright.webkit.config.mjs --shard=${{ matrix.shard }}/6
       - name: Retain WebKit timings
         if: always()

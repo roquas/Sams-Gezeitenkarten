@@ -1,7 +1,7 @@
 // Node/Git adapter for generation. Approval and evidence validation belong to
 // the release loader; this module neither decodes images nor prepares anchors.
 import {loadCatalogRelease} from './catalog-release.mjs';
-import {resourcePath} from './catalog-release-format.mjs';
+import {resourcePath,POLICY_PATH} from './catalog-release-format.mjs';
 import {canonicalJson,sha256} from './content-hash.mjs';
 
 export const RELEASED_ASSET_CATALOG_VERSION='released-asset-catalog-1';
@@ -26,6 +26,10 @@ export function loadReleasedAssetCatalog({repositoryRoot,releaseId,backgroundId}
  const checks=new Map(release.validation.placements.filter(p=>p.backgroundId===backgroundId).map(p=>[p.assetId,p]));
  const assets=selection.geographicAssetIds.map(assetId=>({assetId,anchors:checks.get(assetId).anchors}));
  const readResource=ref=>release.readResource(resourcePath(release.manifest.resourceBase,ref));
+ // Presentation reads the same pinned chart contract as release validation.
+ const policy=JSON.parse(release.readResource(POLICY_PATH));
+ const chartPath=policy.productionBackgrounds.find(b=>b.id===backgroundId).chartContract;
+ const chartContract=frozen(JSON.parse(release.readResource(chartPath)));
  // Preserve the existing technical digest, including its reference paths and
  // complete library. It is distinct from both catalogId and releaseId.
  const references=[...new Set([background.image,...selection.geographicAssetIds.map(id=>byId.get(id).image.path)])].sort();
@@ -40,5 +44,5 @@ export function loadReleasedAssetCatalog({repositoryRoot,releaseId,backgroundId}
   sourceCommit:release.manifest.sourceCommit,archiveCommit:release.archiveCommit,backgroundId,catalogSha256});
  // Reads cover the verified inventory (also archived, nonproductive resources),
  // with the same copy isolation as the loader. They do not grant selection.
- return Object.freeze({catalog,provenance,readResource});
+ return Object.freeze({catalog,provenance,readResource,chartContract});
 }

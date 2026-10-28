@@ -188,13 +188,17 @@ export function runMapBatch({repositoryRoot=PROGRAM_ROOT,releaseId,backgroundId,
  return summary;
 }
 
-function validateManifest(manifest,program){
+// Review can validate the data contract across program commits. Strict replay
+// additionally supplies the actual program state and requires that exact commit.
+export function validateBatchManifest(manifest,program=null){
  keys(manifest,['batchFormatVersion','seedScheduleVersion','options','catalogProfile','versions','program','provenance'],'manifest',
   ['batchFormatVersion','seedScheduleVersion','options','catalogProfile','versions','program','provenance']);
  assert(manifest.batchFormatVersion===(manifest.options?.mode==='catalog-compliant'?TARGET_BATCH_FORMAT_VERSION:BATCH_FORMAT_VERSION),'unsupported batch format');
  assert(manifest.seedScheduleVersion===SEED_SCHEDULE_VERSION,'unsupported seed schedule version');
  keys(manifest.program,['commit','nodeVersion'],'program',['commit','nodeVersion']);
- assert(manifest.program.commit===program.commit,'program commit mismatch; use the recorded program checkout');
+ assert(typeof manifest.program.commit==='string'&&/^[a-f0-9]{40}$/.test(manifest.program.commit)&&
+  typeof manifest.program.nodeVersion==='string'&&/^v\d+\.\d+\.\d+$/.test(manifest.program.nodeVersion),'invalid program identity');
+ if(program)assert(manifest.program.commit===program.commit,'program commit mismatch; use the recorded program checkout');
  const options=normalizeBatchOptions(manifest.options);same(options,manifest.options,'noncanonical saved options');
  same(manifest.versions,versions(options.mode,manifest.catalogProfile),'algorithm version mismatch');
  keys(manifest.provenance,['adapterVersion','releaseId','catalogId','sourceCommit','archiveCommit','backgroundId','catalogSha256'],'provenance',
@@ -216,7 +220,7 @@ async function readCandidate(batch,index){
 
 export async function replayMapBatch({repositoryRoot=PROGRAM_ROOT,batch,index,out}){
  const program=programState(),manifest=JSON.parse(fs.readFileSync(path.join(batch,'manifest.json'),'utf8'));
- const options=validateManifest(manifest,program);
+ const options=validateBatchManifest(manifest,program);
  assert(Number.isSafeInteger(index)&&index>=0&&index<(options.mode==='catalog-compliant'?options.maxAttempts:options.count),'index outside batch');
  const stored=await readCandidate(batch,index);
  const {releaseId,backgroundId,...saved}=manifest.provenance;
