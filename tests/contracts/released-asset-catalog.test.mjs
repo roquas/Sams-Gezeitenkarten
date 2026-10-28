@@ -62,8 +62,8 @@ test('real approved release supplies exactly 18 assets, 368 anchors and 154 geog
  const profile=createCatalogProfile(catalog);
  assert.equal(profile.placements.length,154);
  assert.deepEqual(normalizeCatalogProfile(profile),profile);
- assert.deepEqual(Object.keys(profile).sort(),['catalogSha256','placements','preferencePercent','version']);
- assert.equal(profile.version,'catalog-shapes-1');
+ assert.deepEqual(Object.keys(profile).sort(),['capacities','catalogSha256','placements','version']);
+ assert.equal(profile.version,'catalog-capacities-1');
  assert.equal(profile.catalogSha256,DIGEST);
  assert.deepEqual(provenance,{adapterVersion:RELEASED_ASSET_CATALOG_VERSION,releaseId:RELEASE_ID,catalogId:CATALOG_ID,
   sourceCommit:SOURCE,archiveCommit:git(project,'rev-parse','HEAD'),backgroundId:'sea-blue-01',catalogSha256:DIGEST});
@@ -84,7 +84,7 @@ test('every archived anchor can represent its exact object without changing map 
    const m=freeze(map([{id:'shore',cells:placedCells(asset,anchor),passable:asset.passable}]));
    const fingerprint=mapFingerprint(m),result=assignAssets({map:m,seed:0,catalog});
    assert.equal(result.status,'complete',asset.id+'/'+anchor);
-   assert.equal(result.diagnostics.assignmentVersion,'asset-assignment-1');
+   assert.equal(result.diagnostics.assignmentVersion,'catalog-assignment-1');
    assert.equal(result.diagnostics.catalogSha256,DIGEST);
    assert.ok(result.placements.every(p=>selected.has(p.assetId)));
    assert.deepEqual(validatePlacements(result.placements,catalog.library,m,catalog.backgroundId),[]);
@@ -98,7 +98,7 @@ test('every archived anchor can represent its exact object without changing map 
  assert.ok(excluded.some(a=>a.stage==='technical-placeholder'));
  for(const a of excluded)assert.deepEqual(verifiedAnchors(catalog,a),[],a.id);
  // The actual catalog still has no passable multihex paintings. Keep coverage
- // separate from validity and retain the existing partial/none results.
+ // separate from validity: partial/none remain rejection diagnostics.
  const port={id:'port',cells:['A1'],passable:true},gap={id:'gap',cells:['C3','D3'],passable:true};
  assert.equal(assignAssets({map:map([port,gap]),seed:0,catalog}).status,'partial');
  assert.equal(assignAssets({map:map([gap]),seed:0,catalog}).status,'none');

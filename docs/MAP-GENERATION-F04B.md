@@ -1,3 +1,5 @@
+> **Historischer Entwicklungsstand F04b / PR #77.** Die hier beschriebenen alten Generatorverträge sind entfernt. Aktueller einziger Weg: [Kataloggerechte Kartengenerierung](CATALOG-COMPLIANT-GENERATION.md). Reproduktion nur am jeweiligen ursprünglichen Gitcommit.
+
 # F04b: abstrakte Karten und getrennte Assetzuordnung
 
 [PR B: kataloggerechte Generierung](CATALOG-COMPLIANT-GENERATION.md) ergänzt

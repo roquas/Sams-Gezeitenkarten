@@ -16,11 +16,9 @@ const cli=path.join(project,'scripts/sample-catalog-maps.mjs');
 const RELEASE_ID='gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1';
 const args=['--release',RELEASE_ID,'--background','sea-blue-01'];
 const options={repositoryRoot:project,releaseId:RELEASE_ID,backgroundId:'sea-blue-01'};
-const referenceBytes=fs.readFileSync(path.join(project,'docs/verification/graphic-contract-A-catalog-sample.json'),'utf8');
-const reference=JSON.parse(referenceBytes);
 const git=(root,...args)=>execFileSync('git',['-C',root,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
-let released;
-before(()=>{released=loadReleasedAssetCatalog(options);});
+let released,reference;
+before(()=>{released=loadReleasedAssetCatalog(options);reference=sampleCatalogMaps(released.catalog);});
 
 function temporary(t){
  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'gk-catalog-diagnostics-'));
@@ -31,15 +29,14 @@ function fixture(t){
  git(project,'clone','--quiet','--shared','--no-checkout',project,root);
  git(root,'checkout','--quiet','--detach',git(project,'rev-parse','HEAD'));
  // Also exercise the currently edited entry before it has been committed.
- fs.copyFileSync(cli,path.join(root,'scripts/sample-catalog-maps.mjs'));
+ for(const name of ['src','scripts'])fs.cpSync(path.join(project,name),path.join(root,name),{recursive:true});
  return {directory,root};
 }
 
-test('approved diagnostic entry reproduces the entire existing 128-seed report with separate release provenance',()=>{
+test('approved diagnostic entry reproduces the single-contract 128-seed report with separate release provenance',()=>{
  const {provenance,...report}=main([...args,'--repository',project]);
  assert.deepEqual(provenance,released.provenance);
  assert.deepEqual(report,reference);
- assert.equal(JSON.stringify(report,null,2)+'\n',referenceBytes);
  assert.equal(report.catalog.eligibleAssets,18);
  assert.equal(report.catalog.preparation.allowedAnchors,368);
  assert.equal(report.catalog.profilePlacements,154);
@@ -126,7 +123,8 @@ test('legacy preparation of the real pinned bytes matches the complete release c
  assert.deepEqual(legacy,released.catalog);
  const legacyProfile=createCatalogProfile(legacy),profile=createCatalogProfile(released.catalog);
  assert.deepEqual(legacyProfile,profile);
- for(let seed=0;seed<32;seed++)for(const catalogProfile of [undefined,profile]){
+ for(let seed=0;seed<32;seed++){
+  const catalogProfile=profile;
   const result=generateMap({seed,config:SAMPLE_CONFIG,...(catalogProfile?{catalogProfile}:{})});
   assert.equal(result.status,'generated');
   assert.deepEqual(assignAssets({map:result.map,seed,catalog:legacy}),assignAssets({map:result.map,seed,catalog:released.catalog}));

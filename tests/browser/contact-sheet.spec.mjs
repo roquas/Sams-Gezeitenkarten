@@ -9,16 +9,16 @@ import {CHART_VIEWBOX} from '../../src/ui/chart-geometry.mjs';
 let fixture,sheet;
 test.beforeAll(async()=>{
  fixture=contactBatchFixture();sheet=path.join(fixture.directory,'sheet');
- await createMapContactSheet({batch:fixture.batch,indices:[10,0,9],out:sheet});
+ await createMapContactSheet({batch:fixture.batch,acceptedIndices:[10,0,9],out:sheet});
 });
 test.afterAll(()=>fixture?.cleanup());
 
-test('file contact sheet decodes real art offline with complete, partial and none coverage',async({page},testInfo)=>{
+test('file contact sheet decodes real art offline with complete coverage',async({page},testInfo)=>{
  const errors=[],network=[];page.on('pageerror',e=>errors.push(e.message));
  page.on('request',request=>{if(/^https?:/.test(request.url()))network.push(request.url());});
  await page.goto(pathToFileURL(path.join(sheet,'index.html')).href);
  await expect(page.locator('article')).toHaveCount(3);
- await expect(page.locator('.status')).toHaveText(['complete','partial','none']);
+ await expect(page.locator('.status')).toHaveText(['complete','complete','complete']);
  const decoded=await page.evaluate(async()=>{
   const images=[...document.querySelectorAll('svg image')];
   await Promise.all(images.map(async node=>{const image=new Image();image.src=node.href.baseVal;await image.decode();}));
@@ -27,9 +27,7 @@ test('file contact sheet decodes real art offline with complete, partial and non
  expect(decoded).toBeGreaterThan(6);
  await expect(page.locator('#image-errors')).toBeHidden();
  await expect(page.locator('article').nth(0).locator('[data-unillustrated-object]')).toHaveCount(0);
- expect(await page.locator('article').nth(1).locator('[data-unillustrated-object]').count()).toBeGreaterThan(0);
- await expect(page.locator('article').nth(2).locator('[data-asset-id]')).toHaveCount(0);
- expect(await page.locator('article').nth(2).locator('[data-unillustrated-object]').count()).toBeGreaterThan(0);
+ await expect(page.locator('[data-unillustrated-object]')).toHaveCount(0);
  expect(await page.locator('svg').evaluateAll((nodes,viewBox)=>nodes.every(n=>n.getAttribute('viewBox')===viewBox),CHART_VIEWBOX)).toBeTruthy();
  const clipping=await page.locator('svg').evaluateAll(nodes=>nodes.flatMap(svg=>{
   const view=svg.viewBox.baseVal;
@@ -54,7 +52,7 @@ test('a resource removed after export produces a visible diagnostic with its ori
 });
 
 test('catalog-compliant images keep accepted indices, attempt indices and original asset rectangles',async({page},testInfo)=>{
- const target=contactBatchFixture({mode:'catalog-compliant',assignmentSeedStart:1000,config:{maxMapAttempts:1}});
+ const target=contactBatchFixture({assignmentSeedStart:1000,config:{maxMapAttempts:1}});
  try{
   const out=path.join(target.directory,'sheet'),selection=[11,0,7];
   await createMapContactSheet({batch:target.batch,acceptedIndices:selection,out});

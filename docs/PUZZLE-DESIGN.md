@@ -12,11 +12,13 @@ Prototypen 3.5 und 3.6 mischen Richtung, 60°-Abbiegen, Landmarkenabstand, Dista
 
 ## Generatorpipeline
 
-F04b / PR 1 implementiert [abstrakte Kartengenerierung und getrennte Nutzbarkeitsanalyse](MAP-GENERATION-F04B.md).
-Geografische Vielfalt hat Vorrang; Routenpotenzial ist eine nachgelagerte Messung
-und nur bei ausdrücklich aktivierten Filtern ein Auswahlkriterium.
+Die [kataloggerechte Kartengenerierung](CATALOG-COMPLIANT-GENERATION.md) liefert
+geografisch gültige Karten und vollständige konkrete Motivbelegungen.
+Routenpotenzial bleibt eine getrennte Messung und nur bei ausdrücklich
+aktivierten Filtern ein Auswahlkriterium. Die Rätselengine kennt keinen
+Generierungsmodus.
 
-Noch offen: Assetzuordnung → endgültigen Start und Zielroute bestimmen →
+Noch offen: endgültigen Start und Zielroute bestimmen →
 Kandidatenhinweise erzeugen → auf exakt eine Lösung prüfen → Schwierigkeit und
 Qualität des schrittweisen Lösungswegs bewerten → vollständiges Rätsel speichern.
 

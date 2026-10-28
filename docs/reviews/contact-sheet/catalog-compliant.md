@@ -1,3 +1,5 @@
+> **Historischer Nachweis vor der Generatorkonsolidierung.** Aufrufe und Versionsverträge gelten am damaligen Gitcommit. Aktuell: [Generatorvertrag](../../CATALOG-COMPLIANT-GENERATION.md).
+
 # Sichtungsnachweis: kataloggerechte Kontaktübersicht
 
 Quellprogramm: `9d3bd4e8d1d1e47a3f81b1be425ac2b3cdf346e3` (main nach PR #88).

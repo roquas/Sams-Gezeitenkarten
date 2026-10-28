@@ -212,16 +212,13 @@ dürfen fehlen oder verändert sein. Ausführbare JS-Module werden wie üblich a
 dem Programmcheckout geladen. Für Reproduktionen diesen Programmstand separat
 festhalten und einen sauberen Checkout verwenden.
 
-Der JSON-Bericht behält alle bisherigen Messfelder und ergänzt ausschließlich
-das separate Feld `provenance`. Die Stichprobe bleibt fest bei Seeds 0–127,
-beiden bisherigen Modi und unveränderter Konfiguration/Präferenz. Es entstehen
-keine neuen Identitätsarten, Rätselveröffentlichungen oder Batchaufträge.
-Kartenfingerprints sowie bestehende Instanz-/Varianten-/Publikationsverträge
-werden nicht erweitert. Zur Wiederholung gehören der Programmstand mit seinen
-Algorithmusversionen, Release-ID, Hintergrund und die festen Stichprobenparameter.
-`archiveCommit` dokumentiert den gelesenen Archivstand; bei unverändertem Programm
-und Release dürfen spätere Commits dieses Herkunftsfeld ändern, während Messdaten
-und Inhaltsidentitäten gleich bleiben.
+Der JSON-Bericht enthält das geografische Katalogprofil, Formen-/Kapazitätsdaten,
+getrennte Aggregate für alle 128 Versuche und die akzeptierten vollständigen
+Karten, Verwerfungsgründe, Beispiele und separate Provenienz. Die Diagnose
+verwendet denselben Datensatzbauer wie der einzige Zielzahlbatch. Programmstand,
+Release-ID, Hintergrund und Stichprobenparameter bestimmen die Reproduktion.
+`archiveCommit` dokumentiert den gelesenen Archivstand; ein späterer Archivcommit
+ändert bei gleichem Release weder Messdaten noch Inhaltsidentitäten.
 
 `sampleCatalogMaps(catalog, options)` bleibt die reine Messfunktion für
 vertrauenswürdige Adapterdaten und synthetische Tests. Ihr Aufruf belegt keine
@@ -229,16 +226,13 @@ Freigabe. `prepareAssetCatalog` bleibt als separates Entwicklungs-/Prüfwerkzeug
 erhalten und benötigt weiterhin Python/Pillow; der freigegebene Diagnoseeinstieg
 ruft es nicht auf.
 
-Die dauerhafte Regression in `tests/contracts/catalog-diagnostics.test.mjs`
-vergleicht für den echten Release den vollständigen alten/neuen Katalogkontext,
-das gesamte Profil und Zuordnungen für Seeds 0–31 in beiden Modi. Der alte
-Adapter erhält dafür ausschließlich materialisierte Releasebytes in einem
-temporären Verzeichnis. Dieser Vergleich benötigt Python/Pillow als Testwerkzeug
-und erstellt keine Freigabe. Zusätzlich muss die gesamte feste Diagnose nach
-Abtrennung der Provenienz bytegleich zur unveränderten Referenz
-`docs/verification/graphic-contract-A-catalog-sample.json` bleiben. Ein frischer
-CLI-Prozess läuft mit ausschließlich Git auf PATH, entfernten Arbeitsdaten und
-absichtlich unbrauchbarer Bildvorbereitung. Ausführung:
+Die Regression in `tests/contracts/catalog-diagnostics.test.mjs` vergleicht den
+vollständigen Entwicklung-/Releasekontext, Kapazitätsprofile und kataloggerechte
+Zuordnungen für Seeds 0–31. Die Entwicklungsprüfung materialisiert ausschließlich
+geprüfte Releasebytes und benötigt Python/Pillow; der produktive Diagnoseweg
+liest gespeicherte Evidenz. Zusätzlich läuft ein frischer CLI-Prozess mit nur Git
+auf PATH, entfernten Arbeitsdaten und unbrauchbarer Bildvorbereitung. Historische
+Vergleichsberichte unter `docs/verification/` gehören zu ihren ursprünglichen Commits.
 
 ```sh
 node --test tests/contracts/catalog-diagnostics.test.mjs

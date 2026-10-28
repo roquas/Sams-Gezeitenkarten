@@ -37,13 +37,13 @@ function cli(args){
 function success(args){const r=cli(args);assert.equal(r.status,0,r.stderr);return JSON.parse(r.stdout);}
 function run({target=12,budget=100,config={maxMapAttempts:1},extra=[]}={}){
  const out=fresh('batch'),file=fresh('config.json');fs.writeFileSync(file,JSON.stringify(config));
- const summary=success(['run',...releaseArgs,'--mode','catalog-compliant','--target-count',String(target),'--max-attempts',String(budget),
+ const summary=success(['run',...releaseArgs,'--target-count',String(target),'--max-attempts',String(budget),
   '--seed-start','0','--assignment-seed-start','1000','--config',file,'--out',out,...extra]);return {out,summary};
 }
 const replay=(out,index)=>['replay','--batch',out,'--index',String(index),'--out',fresh('replay.json')];
 
-test('target options require an explicit bounded budget, separate mode and canonical seed schedules',()=>{
- const o=normalizeBatchOptions({mode:'catalog-compliant',targetCount:1000,maxAttempts:10,seedStart:0});
+test('target options require an explicit bounded budget, canonical seed schedules',()=>{
+ const o=normalizeBatchOptions({targetCount:1000,maxAttempts:10,seedStart:0});
  assert.deepEqual(normalizeBatchOptions(o),o);assert.equal(o.assignmentSeedStart,0);
  for(const change of [{maxAttempts:undefined},{targetCount:0},{maxAttempts:0},{count:1000},{mode:'free'},
   {seedStart:0xffffffff},{assignmentSeedStart:0xffffffff},{preferencePercent:100}])
@@ -52,19 +52,19 @@ test('target options require an explicit bounded budget, separate mode and canon
 });
 
 test('target records use original attempt indices/seeds and existing geography and assignment services',()=>{
- const options=normalizeBatchOptions({mode:'catalog-compliant',targetCount:10,maxAttempts:100,seedStart:40,assignmentSeedStart:80});
- const profile=createCatalogProfile(catalog,{mode:options.mode}),row=generateBatchRecord(7,options,catalog,profile);
+ const options=normalizeBatchOptions({targetCount:10,maxAttempts:100,seedStart:40,assignmentSeedStart:80});
+ const profile=createCatalogProfile(catalog),row=generateBatchRecord(7,options,catalog,profile);
  assert.equal(row.index,7);assert.equal(row.generationSeed,47);assert.equal(row.assignmentSeed,87);assert.equal(row.decision,'accepted');
- const g=generateMap({seed:47,config:options.config,mode:options.mode,catalogProfile:profile});
+ const g=generateMap({seed:47,config:options.config,catalogProfile:profile});
  assert.deepEqual(row.generation,g);
- assert.deepEqual(row.assignment,assignAssets({map:g.map,seed:87,catalog,reusePolicy:options.mode}));
+ assert.deepEqual(row.assignment,assignAssets({map:g.map,seed:87,catalog}));
  assert.deepEqual(row,generateBatchRecord(7,options,catalog));
 });
 
 test('whole-map assignment remains a final acceptance gate even if a trusted profile overstates stock',()=>{
- const options=normalizeBatchOptions({mode:'catalog-compliant',targetCount:1,maxAttempts:1,seedStart:0,
+ const options=normalizeBatchOptions({targetCount:1,maxAttempts:1,seedStart:0,
   config:{objectCount:2,objectSizes:[1],passableProbability:0}});
- const profile=createCatalogProfile(catalog,{mode:options.mode});
+ const profile=createCatalogProfile(catalog);
  profile.capacities.find(g=>!g.passable&&g.shape==='0,0').count=2;
  const row=generateBatchRecord(0,options,catalog,profile);
  assert.equal(row.generation.status,'generated');assert.equal(row.assignment.status,'partial');
@@ -77,7 +77,7 @@ test('real released target batch replaces rejected attempts, saves only complete
  assert.equal(s.status,'target-reached');assert.equal(s.acceptedCount,12);assert.ok(s.attemptedCount>12);
  assert.equal(s.rejectedCount,s.attemptedCount-12);assert.ok(s.rejectionCounts.OBJECT_SPACING_EXHAUSTED>0);
  assert.equal(all.length,s.attemptedCount);assert.deepEqual(accepted,all.filter(r=>r.decision==='accepted'));
- assert.equal(manifest.batchFormatVersion,2);assert.equal(manifest.catalogProfile.version,'catalog-capacities-1');
+ assert.equal(manifest.batchFormatVersion,3);assert.equal(manifest.catalogProfile.version,'catalog-capacities-1');
  assert.equal(manifest.versions.acceptance,'catalog-complete-1');assert.equal(manifest.provenance.releaseId,releaseId);
  assert.equal(s.accepted.assignment.statuses.complete,12);assert.equal(s.accepted.geography.statuses.generated,12);
  const selected=new Set(catalog.verification.assets.map(a=>a.assetId));
@@ -132,9 +132,9 @@ test('target replay rejects manifest/version/seed/decision drift and remains usa
  success(replay(out,0));assert.equal(cli(replay(out,1)).status,1);
 });
 
-test('new CLI refuses ambiguous old/new count flags and missing budgets before output',()=>{
- for(const extra of [['--count','10'],['--preference-percent','100'],['--max-attempts','0']]){
-  const out=fresh('refused'),r=cli(['run',...releaseArgs,'--mode','catalog-compliant','--target-count','2',
+test('CLI refuses removed mode/count/preference flags and invalid budgets before output',()=>{
+ for(const extra of [['--mode','catalog-compliant'],['--mode','free'],['--mode','catalog-informed'],['--count','10'],['--preference-percent','100'],['--max-attempts','0']]){
+  const out=fresh('refused'),r=cli(['run',...releaseArgs,'--target-count','2',
    ...(extra[0]==='--max-attempts'?[]:['--max-attempts','10']),'--seed-start','0','--out',out,...extra]);
   assert.equal(r.status,1);assert.ok(!fs.existsSync(out));
  }
@@ -146,7 +146,7 @@ test('target run and replay use Git release resources with absent working assets
  const {out,summary}=run({target:3,budget:30,extra:['--repository',data]});assert.equal(summary.status,'target-reached');
  success([...replay(out,rows(out,'accepted.jsonl')[0].index),'--repository',data]);
  git(data,'add','archive');git(data,'-c','user.name=Target test','-c','user.email=target@example.invalid','-c','commit.gpgsign=false','commit','--quiet','-m','Remove working archive in disposable repository');
- const refused=fresh('unapproved'),r=cli(['run',...releaseArgs,'--mode','catalog-compliant','--target-count','1',
+ const refused=fresh('unapproved'),r=cli(['run',...releaseArgs,'--target-count','1',
   '--max-attempts','10','--seed-start','0','--repository',data,'--out',refused]);
  assert.equal(r.status,1);assert.match(r.stderr,/incomplete release/);assert.ok(!fs.existsSync(refused));
 });

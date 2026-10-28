@@ -12,7 +12,7 @@ const read=(batch,name)=>JSON.parse(fs.readFileSync(path.join(batch,name),'utf8'
 const rows=(batch,name)=>fs.readFileSync(path.join(batch,name),'utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
 let fixture,accepted,loaded,serial=0;
 before(async()=>{
- fixture=contactBatchFixture({mode:'catalog-compliant',assignmentSeedStart:1000,config:{maxMapAttempts:1}});
+ fixture=contactBatchFixture({assignmentSeedStart:1000,config:{maxMapAttempts:1}});
  accepted=rows(fixture.batch,'accepted.jsonl');
  loaded=await readContactBatch({batch:fixture.batch,acceptedIndices:[11,0,7]});
 });
@@ -28,9 +28,6 @@ test('accepted positions resolve original attempts and both independent seeds wi
  assert.ok(accepted.some((row,i)=>row.index!==i));
  assert.deepEqual(loaded.acceptedIndices,[11,0,7]);
  assert.deepEqual(loaded.rows,[accepted[11],accepted[0],accepted[7]]);
- assert.deepEqual(loaded.selection,{kind:'accepted',indices:[11,0,7]});
- const byAttempt=await readContactBatch({batch:fixture.batch,indices:loaded.rows.map(r=>r.index)});
- assert.deepEqual(byAttempt.rows,loaded.rows);assert.deepEqual(byAttempt.acceptedIndices,[11,0,7]);
  for(const row of loaded.rows){
   assert.equal(row.generationSeed,row.index);assert.equal(row.assignmentSeed,1000+row.index);
   assert.equal(row.assignment.status,'complete');assert.equal(row.decision,'accepted');
@@ -39,13 +36,15 @@ test('accepted positions resolve original attempts and both independent seeds wi
  }
 });
 
-test('only accepted complete results are displayed; both index namespaces are explicit and range checked',async()=>{
+test('only accepted complete results are displayed; removed selection and invalid result indices are refused',async()=>{
  const rejected=rows(fixture.batch,'candidates.jsonl').find(r=>r.decision==='rejected');assert.ok(rejected);
- await assert.rejects(readContactBatch({batch:fixture.batch,indices:[rejected.index]}),/rejected attempt/);
+ await assert.rejects(readContactBatch({batch:fixture.batch,indices:[rejected.index]}),/unknown contact batch option/);
  for(const selection of [{acceptedIndices:[12]},{acceptedIndices:[0,0]},{acceptedIndices:[]},{},
   {indices:[accepted[0].index],acceptedIndices:[0]}])await assert.rejects(readContactBatch({batch:fixture.batch,...selection}));
- const old=contactBatchFixture();
- try{await assert.rejects(readContactBatch({batch:old.batch,acceptedIndices:[0]}),/format 2/);}finally{old.cleanup();}
+ for(const version of [1,2]){
+  const batch=changed('manifest.json',m=>m.batchFormatVersion=version);
+  await assert.rejects(readContactBatch({batch,acceptedIndices:[0]}),/unsupported batch format/);
+ }
 });
 
 test('both saved streams and target summaries are validated including unselected rows',async()=>{
@@ -101,11 +100,11 @@ test('HTML links result, attempt, fingerprint and saved motif anchors and is byt
  for(const file of files)assert.deepEqual(fs.readFileSync(path.join(first,file)),fs.readFileSync(path.join(second,file)));
  const cli=await main(['--batch',fixture.batch,'--accepted-indices','11,0,7','--out',fresh('cli')]);
  assert.deepEqual(cli.indices,result.indices);assert.deepEqual(cli.acceptedIndices,[11,0,7]);
- await assert.rejects(main(['--batch',fixture.batch,'--indices','0','--accepted-indices','0','--out',fresh('ambiguous')]),/exactly one/);
+ await assert.rejects(main(['--batch',fixture.batch,'--indices','0','--accepted-indices','0','--out',fresh('ambiguous')]),/Invalid or duplicate option/);
 });
 
 test('regular budget exhaustion retains actual accepted results and explicitly reports an unmet target',async()=>{
- const partial=contactBatchFixture({mode:'catalog-compliant',targetCount:100,maxAttempts:6,config:{maxMapAttempts:1}});
+ const partial=contactBatchFixture({targetCount:100,maxAttempts:6,config:{maxMapAttempts:1}});
  try{
   const summary=read(partial.batch,'summary.json');assert.equal(summary.status,'target-unreached');assert.ok(summary.acceptedCount>0);
   const out=path.join(partial.directory,'sheet');await createMapContactSheet({batch:partial.batch,acceptedIndices:[0],out});
@@ -114,7 +113,7 @@ test('regular budget exhaustion retains actual accepted results and explicitly r
 });
 
 test('a thousand-result batch supports sparse selection across the complete accepted stream',async()=>{
- const large=contactBatchFixture({mode:'catalog-compliant',targetCount:1000,maxAttempts:5000,assignmentSeedStart:100000,config:{maxMapAttempts:1}});
+ const large=contactBatchFixture({targetCount:1000,maxAttempts:5000,assignmentSeedStart:100000,config:{maxMapAttempts:1}});
  try{
   const result=await readContactBatch({batch:large.batch,acceptedIndices:[999,0,500]});
   assert.equal(result.summary.acceptedCount,1000);assert.equal(result.rows.length,3);

@@ -1,184 +1,157 @@
-# PR B: kataloggerechte Kartengenerierung und Zielzahlbatch
+# Kataloggerechte Kartengenerierung
 
-`catalog-compliant` ist ein ausdrücklich gewählter Modus neben dem unveränderten
-freien und kataloginformierten Generator. Er erzeugt geografische Karten aus
-den Formen und Befahrbarkeiten des gewählten freigegebenen Katalogs. Der
-Zielzahlbatch akzeptiert ausschließlich Karten mit vollständiger konkreter
-Assetzuordnung unter den Wiederverwendungsregeln.
+Dies ist der einzige unterstützte Weg zu verwendbaren generierten Seekarten.
+Ein ausdrücklich freigegebener Katalog liefert geografische Formen und Kapazitäten;
+der Generator erzeugt die Geografie, die getrennte Assetzuordnung belegt sie.
+Nur geografisch gültige Karten mit vollständiger Motivbelegung werden akzeptiert.
+Noch keine Start-/Zielroutenwahl, Hinweis- oder Rätselgenerierung und keine Veröffentlichung.
 
-## Aufruf
+## Einstieg und CLI
 
-Voraussetzungen wie beim [bisherigen Batch](MAP-BATCH-F04B.md): Node 22+, Git,
-Quellhistorie des expliziten Releases sowie sauber eingecheckte Programmdateien
-unter `src/` und `scripts/`. Generierung und Replay benötigen weder Python noch
-Arbeitsbilder oder Netzwerk. Das Ausgabeverzeichnis muss neu sein.
+Node 22+, Git und die vollständige Quellhistorie sind erforderlich. Release und
+Hintergrund werden explizit angegeben. Der Releaseadapter liest geprüfte Daten
+und unveränderte Grafikbytes aus Git; Python ist erst für das Dekodieren einer
+Kontaktübersicht nötig. Programmdateien unter `src/` und `scripts/` müssen für
+Batch und Replay sauber und committed sein.
 
 ```sh
 node scripts/generate-map-batch.mjs run \
-  --mode catalog-compliant \
   --release gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1 \
   --background sea-blue-01 \
-  --target-count 1000 --max-attempts 5000 --seed-start 0 \
-  --out /tmp/gezeitenkarten-kataloggerecht
+  --target-count 1000 --max-attempts 5000 \
+  --seed-start 0 --assignment-seed-start 100000 \
+  --out /tmp/gezeitenkarten-batch
 ```
 
-`--target-count` und `--max-attempts` sind positive sichere Ganzzahlen und in
-diesem Modus Pflicht. Auch ein Budget kleiner als die Zielzahl ist zulässig;
-der Lauf meldet dann ausdrücklich den unerreichten Zielstatus.
-`--count` und `--preference-percent` werden in diesem Modus abgewiesen. Die
-vorhandenen Optionen `--assignment-seed-start`, `--config` und `--repository`
-gelten weiterhin. `free` und `catalog-informed` verwenden weiterhin `--count`
-und Format 1; ihre Zahl zählt Generatoraufrufe einschließlich ungeeigneter
-Ergebnisse, ihre bisherigen Zufallsfolgen bleiben unverändert.
+Pflichtoptionen: `--release`, `--background`, `--target-count`, `--max-attempts`,
+`--seed-start`, `--out`. Optional: `--assignment-seed-start` (Standard:
+Generierungsseed), `--config <JSON-Datei>`, `--repository <Katalogcheckout>`.
+Das Ausgabeverzeichnis darf noch nicht existieren. Es gibt keinen Modusparameter.
+Unbekannte und doppelte Optionen werden abgewiesen. Das Budget zählt äußere
+Versuche, die Zielzahl ausschließlich akzeptierte Karten. Bei Budgeterschöpfung
+endet der Lauf regulär mit `target-unreached` und der tatsächlich erreichten Zahl;
+unerwartete Programm-, Release- und Schreibfehler beenden ihn erfolglos.
 
-## Gemeinsame Dienste und harte Annahmebedingung
+## Reine Dienste
 
 ```js
-const {catalog} = loadReleasedAssetCatalog({repositoryRoot, releaseId, backgroundId});
-const catalogProfile = createCatalogProfile(catalog, {mode: 'catalog-compliant'});
-const generation = generateMap({seed: 42, config, mode: 'catalog-compliant', catalogProfile});
-if (generation.map) {
-  const assignment = assignAssets({map: generation.map, seed: 81, catalog,
-    reusePolicy: 'catalog-compliant'});
-  // Erst assignment.status === 'complete' erfüllt die Annahmebedingung.
+const catalogProfile = createCatalogProfile(catalog);
+const generation = generateMap({seed: 42, config, catalogProfile});
+if (generation.status === 'generated') {
+  const assignment = assignAssets({map: generation.map, seed: 100042, catalog});
+  // Erst assignment.status === 'complete' ergibt eine verwendbare Karte.
 }
 ```
 
-Der vorhandene Releaseadapter liefert Auswahl und gespeicherte Anker; es gibt
-keine neue Bildprüfung oder Freigabe. Das geografische Profil
-`catalog-capacities-1` enthält deduplizierte Platzierungen und je orientierter
-Form/Befahrbarkeit die Zahl passender konkreter Motive. Es enthält weder
-Asset-IDs noch Darstellungseigenschaften. Diese Zahlen werden aus den
-verifizierten geografischen Assets abgeleitet, ohne feste Produktionslisten.
+`createCatalogProfile` liefert ausschließlich `catalog-capacities-1`, Kataloghash,
+zulässige Platzierungen `{cells, passable}` und Formkapazitäten. Weder Asset-IDs
+noch Renderdaten gelangen in den Generator. `generateMap` verlangt dieses Profil.
+`assignAssets` verwendet immer die globale Zuordnung: unbefahrbare Motive einmal,
+befahrbare zuerst möglichst verschieden und anschließend möglichst selten genutzt.
+`partial` und `none` bleiben ausdrückbare Fehlerdiagnosen und Verwerfungsgründe.
+Sie sind keine verwendbaren Kartenergebnisse. Profilkapazitäten ersetzen nicht
+die abschließende konkrete Zuordnung, insbesondere bei positionsabhängigen Engpässen.
 
-Der bestehende Kandidatenbauer in `src/generation/maps.mjs` wählt die
-Objektanzahl im konfigurierten Bereich und zieht die Befahrbarkeit unabhängig
-je Objekt mit `passableProbability`. Danach wählt er nur verfügbare, erlaubte
-Größen und ihre unverändert orientierten Platzierungen. Größen werden gleich
-gewichtet; zusätzliche Bilder derselben Form geben einer Platzierung keine
-zusätzlichen Stimmen. Unbefahrbare Formkapazitäten werden schon hier reserviert.
-Alle belegten Zellen und ihre direkten Nachbarn sperren die Platzierung
-**anderer** Objekte. Innere Kanten einer Mehrhexform bleiben erlaubt.
+Konfiguration:
 
-`validateMap(map, {separateObjects:true})` prüft diesen zusätzlichen Abstand
-mit der bestehenden Hexnachbarschaft. Ohne Option gilt unverändert der freie
-Kartenvertrag. Rand und Ecken erhalten keinen Wasserabstand; alle passenden
-Profilpositionen bleiben verfügbar. Der [Grafikvertrag aus PR A](CATALOG-POSITION-INDEPENDENCE.md)
-wird nicht verändert. Es gibt keine Rotation, Spiegelung oder Bildanpassung.
-
-Die vorhandene Zuordnungsengine entdeckt und validiert weiterhin sämtliche
-konkreten Kandidaten. Mit `reusePolicy:catalog-compliant` löst sie anschließend
-eine maximale bipartite Zuordnung über die gesamte Karte. Unbefahrbare Assets
-haben Kapazität eins. Für befahrbare Assets maximiert dieselbe Zuordnung zunächst
-die Zahl unterschiedlicher Motive; nur verbleibende Objekte verwenden ein
-passendes, bisher möglichst selten verwendetes Motiv erneut. Seedabhängige
-Gleichstandsentscheidungen bleiben deterministisch. Standardmäßig gilt weiter
-`reusePolicy:unrestricted` mit der bisherigen Zuordnungsfolge.
-
-Karte und Motivbelegung bleiben getrennte Objekte. Der Zuordnungsdienst kann
-später erneut mit anderem Seed aufgerufen werden; alternative Belegungen oder
-eine Suche nach Rätseln werden hier nicht implementiert.
-
-## Budgets, Engpässe und Konfiguration
-
-Ein äußerer Versuch ist ein Aufruf von `generateMap` und gegebenenfalls
-`assignAssets`. Für nullbasierten **Versuchsindex** `i` gilt unverändert
-`sequential-uint32-1`: Generierungsseed `seedStart+i`, Zuordnungsseed
-`assignmentSeedStart+i`. Beide vollständigen Folgen bis `maxAttempts-1` müssen
-in uint32 passen. Akzeptierte Ergebnisnummern ersetzen diese Indizes niemals.
-
-`maxMapAttempts` bleibt das explizite innere Kandidatenbudget pro Generatoraufruf.
-Damit werden höchstens `maxAttempts × maxMapAttempts` geografische Kandidaten
-untersucht. Der Modus untersucht bei einem Platzierungsschritt alle passenden
-Katalogpositionen; Wiederholungen desselben unveränderten Suchzustands bringen
-nichts. Deshalb benötigt er einen Platzierungsversuch je Objekt und keinen
-zufälligen Wachstumspfad aus dem freien Modus. Es gibt keine zusätzliche
-unbegrenzte Platzierungs- oder Zuordnungsschleife.
-
-Fehlt eine angeforderte Befahrbarkeit oder Größe, reicht die Motivkapazität
-nicht oder ist kein Platz mit Abstand übrig, wird der innere Kandidat verworfen.
-Objektanzahl, Befahrbarkeit und erlaubte Größen werden für diesen Kandidaten
-nicht gelockert. Weitere innere Kandidaten ziehen erneut innerhalb derselben
-Konfiguration. Die Verteilung akzeptierter Karten ist dadurch bedingt auf
-Machbarkeit und entspricht keiner garantierten Gleichverteilung.
-
-| Diagnose | Bedeutung |
+| Feld | Standard und Bedeutung |
 | --- | --- |
-| `CATALOG_PASSABILITY_UNAVAILABLE` | Für die gezogene Befahrbarkeit gibt es keine Profilplatzierung |
-| `CATALOG_SIZE_UNAVAILABLE` | Keine erlaubte Größe passt in den restlichen Flächenhaushalt |
-| `CATALOG_CAPACITY_EXHAUSTED` | Passende unbefahrbare Motive sind bereits reserviert |
-| `OBJECT_SPACING_EXHAUSTED` | Keine verbleibende Formposition hält den Objektabstand ein |
-| `GENERATION_EXHAUSTED` / `GENERATION_INCONCLUSIVE` | Generatoraufruf liefert innerhalb seines Budgets keine akzeptierte Karte |
-| `ASSIGNMENT_INCOMPLETE` | Die gesamte Karte erhält keine vollständige konkrete Belegung |
-| `ASSET_REUSE_EXHAUSTED` | Konkrete passende unbefahrbare Assets reichen für die gemeinsame Belegung nicht |
+| `objectCount` | `{min:2,max:7}`; alternativ feste Anzahl, einschließlich 0 |
+| `objectSizes` | `[1,2,3,4]`; nur passende freigegebene Formen werden gewählt |
+| `passableProbability` | `0.5` |
+| `maxMapAttempts` | `20`; 1–1000 innere Kandidaten je äußerem Versuch |
+| `analysis` | `{steps:[],maxNodes:10000}`; Routenmessung, 1–6 Schritte |
+| `filters` | `{routeSteps:[],minLargestComponent:0}`; nur ausdrücklich aktivierte Eignungsfilter |
 
-Vorhandene explizite Analysefilter und ihre Gründe gelten weiterhin.
-Unerwartete Dienst-/Schreibfehler brechen den Lauf mit Fehler ab und erzeugen
-keine abgeschlossene Zusammenfassung. Sie werden nicht als normale Kataloglücke
-oder ungeeignete Ersatzkarte behandelt.
+Alle Parameter werden streng validiert und kanonisiert. Der wirkungslose alte
+Parameter `maxPlacementAttempts` entfällt: jeder Objektversuch wählt direkt aus
+der aktuell zulässigen Platzierungsmenge. Fehlende Passierbarkeit, Formgröße,
+Kapazität oder Platzierung führt zu einer konkreten Diagnose ohne Regelaufweichung.
 
-## Format 2, Reproduktion und objektive Kennzahlen
+## Geografischer Vertrag
 
-| Datei | Inhalt |
-| --- | --- |
-| `manifest.json` | `batchFormatVersion:2`, Zielzahl/Budget, normalisierte Konfiguration, Seedfolge, vollständiges Kapazitätsprofil, Programmcommit und Releaseprovenienz |
-| `candidates.jsonl` | Alle verarbeiteten Versuche, fortlaufend ab Index 0; vollständige Generation, Analyse, Zuordnung sowie `decision` und `rejectionReasons` |
-| `accepted.jsonl` | Nur akzeptierte Kandidaten, jeweils dieselbe vollständige Zeile einschließlich des ursprünglichen Versuchsindex und beider Seeds |
-| `summary.json` | Nach regulärem Ende atomar geschrieben: `target-reached` oder `target-unreached`, tatsächliche Versuche, Annahmen, Verwerfungen und aggregierte Ursachen |
+- Nur kataloggedeckte Formen und Befahrbarkeiten; vollständige Bebilderbarkeit
+  wird nach der Geografie mit den konkreten Motiven geprüft.
+- Grafiken werden weder rotiert, gespiegelt noch verändert.
+- Verschiedene Objekte teilen keine Hexkante. Es gibt keinen zusätzlichen Randabstand.
+- Unbefahrbare Motive höchstens einmal; befahrbare dürfen nach bevorzugter Vielfalt wiederholt werden.
+- Geografie, konkrete Motivbelegung und spätere Rätsellogik bleiben getrennt.
 
-Beide regulären Zielstatus liefern CLI-Exitcode 0; der maschinenlesbare
-Zielstatus in `summary.json` unterscheidet Erfolg und Budgeterschöpfung.
-Nicht vorhandene `summary.json` bedeutet weiterhin: Lauf nicht regulär beendet.
-`rejectionCounts` zählt jeden Grund höchstens einmal pro verworfenem äußeren
-Versuch. Mehrere Gründe können für denselben Versuch gelten. Innere
-Verwerfungszahlen stehen separat in `attempted.geography.rejectionCounts`.
+Diese Regeln gelten für den Generatorvertrag. Die allgemeine Hexgeometrie,
+`validateMap` und veröffentlichte Rätsel erhalten ihre bisherigen Verträge.
+Die Objektabstandsprüfung wird ausdrücklich über `separateObjects:true` gewählt;
+sie wird keine neue allgemeine Grundannahme der Engine. Künftige Regeländerungen
+entwickeln diesen einen Vertrag weiter; es werden keine vorsorglichen Strategien implementiert.
 
-`attempted` und `accepted` aggregieren die bestehenden geografischen Analysen
-und Zuordnungsdiagnosen getrennt: Objektgrößen, orientierte Formen,
-Befahrbarkeiten, Wasser-/Landanteile, Komponenten, Randberührung, Motivverwendung,
-unterschiedliche Karten und Dubletten. `accepted.repetitionHistogram` zählt
-Karten nach der Zahl wiederholter Motivverwendungen. Es gibt keine zweite
-Topologieanalyse und keinen Qualitätsscore. Dubletten sind erlaubt und bleiben
-über den bestehenden `mapFingerprint` erkennbar. Explizit konfigurierte leere
-Karten bleiben möglich und werden als solche gezählt.
+## Zielzahlbatch und Format 3
+
+`manifest.json` speichert normalisierte Optionen, Kapazitätsprofil,
+Algorithmusversionen, Programmcommit/Node-Version und Releaseprovenienz.
+`candidates.jsonl` enthält jeden ursprünglichen Versuch samt beiden Seeds,
+Geografie, Analyse, Fingerprint, Assetzuordnung, `decision` und `rejectionReasons`.
+`accepted.jsonl` ist die unveränderte, geordnete Teilfolge akzeptierter Datensätze.
+Der Ergebnisindex ist dessen nullbasierte Zeilenposition; `index` bleibt immer
+der ursprüngliche Versuchsindex. Seeds sind jeweils Startseed + Versuchsindex;
+Überläufe über uint32 werden vor Beginn abgewiesen.
+
+`summary.json` entsteht erst atomar nach regulärem Abschluss. Sie enthält Ziel,
+Budget, tatsächliche Versuch-/Ergebniszahlen, Verwerfungsgründe sowie getrennte
+Analyse-/Belegungsstatistiken für alle Versuche und akzeptierte Karten. Sie
+bewahrt exakte und begrenzte Routenmessungen samt Suchbudgetkennzeichnung;
+Einzigartigkeit und Qualitätsranking sind keine Annahmebedingungen.
+
+**Warum eine neue Formatnummer:** Die gespeicherte Struktur ändert sich tatsächlich:
+`options.mode`, `options.preferencePercent`, `versions.catalogGenerator`,
+`config.maxPlacementAttempts` sowie die nur für Wachstums-/Präferenzstrategien
+benötigten Zähler `preferenceDraws`, `growthPlacements`, `catalogMisses` entfallen.
+Deshalb wird Format 3 eingeführt. Format 2 künstlich mit bedeutungslosen Feldern
+fortzuführen würde die entfernten Verträge weitertragen. Es gibt weder Migration
+noch produktive Leser für Format 1 oder 2; historische Batches werden mit ihrem
+aufgezeichneten Gitcommit reproduziert.
+
+Der Generator heißt `catalog-compliant-maps-2` wegen des geänderten Diagnose- und
+Konfigurationsvertrags. Seine Zufallsdomänen bleiben ausdrücklich
+`catalog-compliant-maps-1/<innerer Versuch>/layout`, `/passability`, `/placement`.
+Zuordnung (`catalog-assignment-1/selection`), Seedfolge, geografische Regeln und
+Identitätsdefinitionen bleiben gleich. Der [Batchnachweis](verification/generation-consolidation.md)
+vergleicht Karten, Belegungen und Entscheidungen mit dem Stand nach PR #88/#86.
+
+## Replay und Sichtung
 
 ```sh
 node scripts/generate-map-batch.mjs replay \
-  --batch /tmp/gezeitenkarten-kataloggerecht --index 17 \
-  --out /tmp/gezeitenkarten-versuch-17.jsonl
+  --batch /tmp/gezeitenkarten-batch --index 1402 --out /tmp/versuch-1402.jsonl
+node scripts/render-map-contact-sheet.mjs \
+  --batch /tmp/gezeitenkarten-batch --accepted-indices 0,1,500,999 \
+  --out /tmp/gezeitenkarten-kontakt
 ```
 
-Replay verwendet stets den Versuchsindex in `candidates.jsonl`, auch für
-verworfene Versuche. Es verlangt denselben aufgezeichneten Programmcommit,
-saubere Programmdateien, übereinstimmende Profil-/Algorithmusversionen und
-dieselben gebundenen Releasedaten. Das gesamte neu erzeugte Ergebnis,
-einschließlich Annahmeentscheidung, muss mit der gespeicherten Zeile
-übereinstimmen. Bereits vollständige Kandidaten bleiben nach Abbruch replaybar.
+Replay zählt ursprüngliche Versuche, einschließlich verworfener. Es verlangt den
+aufgezeichneten sauberen Programmcommit, Versionen, Profil, stabile Provenienz
+und einen vollständig identischen Datensatz. Ein späterer Archivcommit allein
+ändert die Releaseidentität nicht. Einzelne vollständige Zeilen bleiben nach
+Abbruch replayfähig, auch ohne Abschlusszusammenfassung.
 
-Neue Versionen sind `catalog-compliant-maps-1`, `catalog-capacities-1`,
-`catalog-assignment-1` und die Annahmeregel `catalog-complete-1`.
-Die bisherigen Generator-/Zuordnungsversionen, Releaseidentitäten,
-Kartenfingerprints und Rätsel-/Publikationsidentitäten werden nicht geändert.
-Format-1-Läufe werden weiterhin mit ihrem aufgezeichneten Programmstand
-reproduziert. PR #86 bleibt separat; sein bisheriger Format-1-Kontaktbogen
-erhält hier keine implizite Unterstützung für Format 2.
+Die [Kontaktübersicht](MAP-CONTACT-SHEET.md) akzeptiert ausschließlich Ergebnisindizes
+vollständiger Karten im aktuellen Format. Sie zeigt beide Indexräume, Seeds,
+Fingerprints, konkrete Asset-IDs/Anker und Provenienz, ohne neue Karten zu generieren.
 
-## Grenzen und Review
+## Tests und Grenzen
 
-Die Platzierung ist ein begrenztes zufälliges Packverfahren, keine vollständige
-Suche über alle möglichen Anordnungen. Ein unerreichtes Ziel beweist daher
-nicht, dass keine weitere Karte existieren kann. Die gespeicherten Gründe
-machen Kapazitäts-, Platzierungs- und Filterengpässe sichtbar.
+```sh
+npm run test:all
+npm run test:assets
+npx playwright test --config playwright.webkit.config.mjs
+python3 tests/test_package.py
+```
 
-Vollständige Bebilderbarkeit ist keine Aussage über Rätselschwierigkeit,
-Storyqualität oder visuelle Abnahme einer konkreten Karte. Es entstehen keine
-neuen Illustrationen, Katalogfreigaben, Startpunkte, Routen, Hinweise,
-Spieloberflächen oder Veröffentlichungen.
+Die Generator-, Batch-, Replay-, Diagnose- und Kontaktübersichtstests gehören zum
+regulären Unitlauf; Offline-Sichtung gehört zu den Chromium-/WebKit-Browsertests.
+Der [Nachweis](verification/generation-consolidation.md) enthält vollständige
+Ergebnisse, den realen 1.000-Karten-Lauf und die bewertete Altlastensuche.
 
-Die automatisierten Nachweise liegen in
-`tests/engine/catalog-compliant.test.mjs` und
-`tests/contracts/target-map-batch.test.mjs`; bestehende Generator-, Zuordnungs-,
-Batch-, Release- und Positionsprüfungen bleiben im Unitgate enthalten.
-Der [reale Batchnachweis](verification/catalog-compliant-batch.md) dokumentiert
-1.000 akzeptierte Karten aus 1.403 Versuchen einschließlich Verwerfungen,
-Kennzahlen und vollständig reproduzierbarem Programmstand.
+Begrenzte zufällige Packung ist kein Vollständigkeitsbeweis; eine packbare
+Konfiguration kann ihr Budget erschöpfen. Keine Gleichverteilung, garantierte
+Einzigartigkeit oder menschliche Rätselqualität. Die spätere Rätselgenerierung
+kann an gültiger Karte und konkreter Belegung ansetzen, ohne einen Generierungsmodus
+zu kennen. Start-/Zielroute, Hinweise und redaktionelle Freigabe bleiben zukünftige Arbeit.

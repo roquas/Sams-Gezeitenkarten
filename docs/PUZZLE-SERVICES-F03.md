@@ -42,7 +42,7 @@ Beispiele und feste Identitätsvektoren: `tests/fixtures/model/`. Die CLI
 `node scripts/check-puzzle-services.mjs <internal-definition.json>` prüft eine
 explizite strukturierte Definition. Sie hängt nicht von alten Rätselnamen ab.
 
-Offen für F04b/F05/F06: Auswahl passender Assets, vollständige Illustrationsabdeckung,
-automatische Textgenerierung aus `semanticClass`, Start-/Routenauswahl,
-Generatorprovenienz, menschliche Schwierigkeitskalibrierung und ein redaktioneller
+Der [Generatorvertrag](CATALOG-COMPLIANT-GENERATION.md) sichert bereits vollständige
+Assetzuordnung und Batchprovenienz. Offen: automatische Textgenerierung aus
+`semanticClass`, Start-/Routenauswahl, menschliche Schwierigkeitskalibrierung und ein redaktioneller
 Veröffentlichungsprozess. Diese Dienste veröffentlichen keine Rätsel.
