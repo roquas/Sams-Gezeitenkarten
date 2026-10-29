@@ -143,6 +143,19 @@ function elementFactory(resolveImage,prefix){
  };
 }
 
+// Saved geography is the only category source. Reuse the inner gameplay hexes,
+// not the larger illustration footprints or asset placement rectangles.
+function createGeographicGrid(el,map){
+ const occupied=new Map(map.objects.flatMap(object=>object.cells.map(cell=>[cell,object.passable?'passable':'blocked'])));
+ const grid=el('g',{'data-chart-layer':'geography',display:'none','pointer-events':'none','aria-hidden':'true',fill:'none','stroke-width':2,'stroke-opacity':0.8,'stroke-linejoin':'round'});
+ for(const hex of HEXES){
+  const category=occupied.get(hex.id)??'water';
+  grid.append(el('polygon',{'data-cell':hex.id,'data-category':category,points:hex.polygon.map(p=>p.join(',')).join(' '),
+   stroke:{water:'#216b9b',passable:'#c56a16',blocked:'#851f2a'}[category],'stroke-dasharray':category==='blocked'?'5 3':'none'}));
+ }
+ return grid;
+}
+
 export function renderContactSvg(row,library,files,resolveImage){
  assert(row.decision==='accepted'&&row.assignment?.status==='complete','only accepted complete maps can be rendered');
  const el=elementFactory(resolveImage,'candidate-'+row.index+'-');
@@ -153,7 +166,8 @@ export function renderContactSvg(row,library,files,resolveImage){
  const objects=el('g',{'data-chart-layer':'objects'});
  drawAssetPlacements(el,objects,row.assignment.placements,library,byId,new URL('https://released.invalid/'));
  svg.append(objects);
- svg.append(frame);return svg.toString();
+ svg.append(frame);
+ svg.append(createGeographicGrid(el,row.generation.map));return svg.toString();
 }
 
 export async function createMapContactSheet(input){
@@ -192,10 +206,14 @@ export async function createMapContactSheet(input){
  const imageCheck='<script>Promise.all('+JSON.stringify(resources.map(r=>[paths.get(r.ref),r.ref]))+'.map(async ([url,ref])=>{const image=new Image();image.src=url;try{await image.decode();return null}catch{return ref}})).then(results=>{const failed=results.filter(Boolean);if(failed.length){const alert=document.getElementById("image-errors");alert.hidden=false;alert.textContent="Bildfehler: Grafiken fehlen oder sind beschädigt: "+failed.join(", ")}});</script>';
  const html='<!doctype html>\n<html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
   '<title>Seekarten · Kontaktübersicht</title><style>body{margin:0;background:#eef0f2;color:#17232a;font:16px system-ui,sans-serif}header{padding:24px 32px;max-width:1100px}h1{margin:0 0 12px}h2{font-size:19px;margin:0 0 12px}.status{font:14px monospace;background:#e9edf1;padding:4px 8px;border-radius:4px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr));gap:24px;padding:0 24px 24px}article{min-width:0;padding:16px;background:white;border:1px solid #d3dce2;border-radius:8px}svg{display:block;width:100%;height:auto}dl{font-size:14px;line-height:1.6;margin-bottom:0}dt{font-weight:650}dd{margin:0 0 6px;overflow-wrap:anywhere}code{font-size:12px}header code,details{overflow-wrap:anywhere}details{font-size:13px;margin-top:12px}summary{cursor:pointer}li{margin:8px 0}</style>'+
-  '<header><h1>Seekarten · Kontaktübersicht</h1><p id="image-errors" role="alert" hidden style="color:#9b111e;font-weight:bold"></p><noscript>Die Bildfehleranzeige benötigt JavaScript. Die Karten selbst sind statische SVG-Grafiken.</noscript><p>'+rows.length+' explizit ausgewählte Karten: '+resultIndices.join(', ')+' (akzeptierte Ergebnisindizes).</p>'+
+  '<style>.show-hex-grid [data-chart-layer="geography"]{display:inline}.grid-toggle{display:flex;align-items:center;gap:10px;min-height:44px;width:fit-content;cursor:pointer}.grid-toggle input{width:22px;height:22px;margin:0;accent-color:#216b9b}.grid-toggle:focus-within{outline:2px solid #216b9b;outline-offset:4px}.grid-legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;margin:8px 0 0;padding:0;list-style:none}.grid-legend li{display:flex;align-items:center;gap:8px;margin:0}.grid-legend span{width:28px;border-top:3px solid #216b9b}.grid-legend .passable{border-color:#c56a16}.grid-legend .blocked{border-color:#851f2a;border-top-style:dashed}</style>'+
+  '<header><h1>Seekarten · Kontaktübersicht</h1><p id="image-errors" role="alert" hidden style="color:#9b111e;font-weight:bold"></p><noscript>Die Bildfehleranzeige und der Rasterschalter benötigen JavaScript. Die Karten selbst sind statische SVG-Grafiken.</noscript><p>'+rows.length+' explizit ausgewählte Karten: '+resultIndices.join(', ')+' (akzeptierte Ergebnisindizes).</p>'+
   '<p>Batchstatus: '+escape(summary.status)+' · '+summary.acceptedCount+' / '+summary.targetCount+' akzeptiert · '+summary.attemptedCount+' Versuche · '+summary.rejectedCount+' verworfen. Ergebnis- und Versuchsindizes sind nullbasiert.</p>'+
   '<p>Release: <code>'+escape(manifest.provenance.releaseId)+'</code><br>Hintergrund: '+escape(manifest.provenance.backgroundId)+
-  '<br>Batch-Programmcommit: <code>'+escape(manifest.program.commit)+'</code></p></header><main>'+cards+'</main>'+imageCheck+'</html>\n';
+  '<br>Batch-Programmcommit: <code>'+escape(manifest.program.commit)+'</code></p>'+
+  '<label class="grid-toggle"><input id="hex-grid-toggle" type="checkbox">Hexraster anzeigen</label>'+
+  '<ul class="grid-legend" aria-label="Legende des Hexrasters"><li><span aria-hidden="true"></span>Freies Wasserfeld</li><li><span class="passable" aria-hidden="true"></span>Befahrbares Objekt</li><li><span class="blocked" aria-hidden="true"></span>Unbefahrbares Objekt</li></ul>'+
+  '</header><main>'+cards+'</main><script>const gridToggle=document.getElementById("hex-grid-toggle");gridToggle.checked=false;gridToggle.addEventListener("change",()=>document.documentElement.classList.toggle("show-hex-grid",gridToggle.checked));</script>'+imageCheck+'</html>\n';
  // Validate and render everything before reserving a new output directory.
  fs.mkdirSync(out);
  try{
