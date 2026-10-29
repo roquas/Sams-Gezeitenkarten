@@ -13,6 +13,64 @@ test.beforeAll(async()=>{
 });
 test.afterAll(()=>fixture?.cleanup());
 
+test('geographic grid toggles every static map without layout or resource changes',async({page},testInfo)=>{
+ const errors=[],network=[],requests=[];
+ page.on('pageerror',error=>errors.push(error.message));
+ page.on('request',request=>{requests.push(request.url());if(/^https?:/.test(request.url()))network.push(request.url());});
+ await page.goto(pathToFileURL(path.join(sheet,'index.html')).href);
+ await page.evaluate(async()=>{
+  await document.fonts.ready;
+  await Promise.all([...document.querySelectorAll('svg image')].map(async node=>{const image=new Image();image.src=node.href.baseVal;await image.decode();}));
+ });
+ const toggle=page.getByRole('checkbox',{name:'Hexraster anzeigen'}),grids=page.locator('[data-chart-layer="geography"]');
+ await expect(toggle).not.toBeChecked();await expect(grids).toHaveCount(3);
+ for(const grid of await grids.all())await expect(grid).toBeHidden();
+ await expect(page.getByRole('list',{name:'Legende des Hexrasters'})).toBeVisible();
+ const bounds=()=>page.locator('article, article > svg').evaluateAll(nodes=>nodes.map(node=>{const r=node.getBoundingClientRect();return [r.x+scrollX,r.y+scrollY,r.width,r.height];}));
+ const chart=page.locator('article > svg').first();
+ const before=await chart.screenshot();
+ const beforeBounds=await bounds(),beforeRequests=requests.length;
+ await page.evaluate(()=>{
+  window.originalResources=[...document.querySelectorAll('svg')].map(svg=>[...svg.children].filter(n=>n.dataset.chartLayer!=='geography'));
+  window.originalMarkup=window.originalResources.map(nodes=>nodes.map(n=>n.outerHTML));
+  window.svgMutations=[];
+  window.svgObserver=new MutationObserver(records=>window.svgMutations.push(...records.map(r=>r.type)));
+  document.querySelectorAll('svg').forEach(svg=>window.svgObserver.observe(svg,{subtree:true,childList:true,attributes:true,characterData:true}));
+ });
+ await toggle.check();
+ const accepted=fs.readFileSync(path.join(fixture.batch,'accepted.jsonl'),'utf8').trim().split('\n').map(JSON.parse);
+ for(const [i,grid] of (await grids.all()).entries()){
+  await expect(grid).toBeVisible();await expect(grid.locator('polygon')).toHaveCount(25);
+  expect(await grid.evaluate(node=>getComputedStyle(node).pointerEvents)).toBe('none');
+  const objects=accepted[[10,0,9][i]].generation.map.objects;
+  const actual=await grid.locator('polygon').evaluateAll(nodes=>nodes.map(n=>({cell:n.dataset.cell,category:n.dataset.category,stroke:getComputedStyle(n).stroke,dash:getComputedStyle(n).strokeDasharray,fill:getComputedStyle(n).fill})));
+  for(const hex of actual){
+   const owner=objects.find(o=>o.cells.includes(hex.cell)),category=owner?(owner.passable?'passable':'blocked'):'water';
+   expect(hex.category).toBe(category);
+   expect(hex.stroke).toBe({water:'rgb(33, 107, 155)',passable:'rgb(197, 106, 22)',blocked:'rgb(133, 31, 42)'}[category]);
+   expect(hex.dash==='none').toBe(category!=='blocked');expect(hex.fill).toBe('none');
+  }
+ }
+ expect(await bounds()).toEqual(beforeBounds);
+ expect((await chart.screenshot()).equals(before)).toBeFalsy();
+ // A viewport capture preserves the viewport and text metrics during layout checks.
+ await page.screenshot({path:testInfo.outputPath('geographic-grid-enabled.png')});
+ await toggle.uncheck();
+ for(const grid of await grids.all())await expect(grid).toBeHidden();
+ expect(await bounds()).toEqual(beforeBounds);
+ expect((await chart.screenshot()).equals(before)).toBeTruthy();
+ expect(await page.evaluate(()=>{
+  const current=[...document.querySelectorAll('svg')].map(svg=>[...svg.children].filter(n=>n.dataset.chartLayer!=='geography'));
+  return current.every((nodes,i)=>nodes.every((node,j)=>node===window.originalResources[i][j]&&node.outerHTML===window.originalMarkup[i][j]))&&window.svgMutations.length===0;
+ })).toBeTruthy();
+ // With the hidden overlay removed, the original rendered chart is pixel-identical.
+ await page.locator('article').first().locator('[data-chart-layer="geography"]').evaluate(node=>node.remove());
+ expect((await chart.screenshot()).equals(before)).toBeTruthy();
+ await expect(page.getByRole('alert')).toBeHidden();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBeFalsy();
+ expect(requests.length).toBe(beforeRequests);expect(network).toEqual([]);expect(errors).toEqual([]);
+});
+
 test('file contact sheet decodes real art offline with complete coverage',async({page},testInfo)=>{
  const errors=[],network=[];page.on('pageerror',e=>errors.push(e.message));
  page.on('request',request=>{if(/^https?:/.test(request.url()))network.push(request.url());});
