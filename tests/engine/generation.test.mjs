@@ -52,10 +52,10 @@ test('Mulberry32 and phase derivation have fixed uint32 vectors, including zero 
  assert.throws(()=>randomStream(1,'ä'),RangeError);
 });
 
-test('fixed generator output pins the version; canonical options and repeated calls reproduce the whole result',()=>{
+test('generator version, canonical options and repeated calls remain reproducible',()=>{
  assert.equal(GENERATOR_VERSION,'catalog-compliant-maps-2');
  const a=generateMap({seed:1});assert.deepEqual(a,generateMap({seed:1}));
- // Concrete output is pinned against the pre-consolidation generator in the batch verification.
+ // Literal geographic/assignment results are pinned in generator-vectors.test.mjs.
  assert.deepEqual(a,generateMap({seed:1,config:{objectSizes:[4,1,3,2]}}));
  assert.deepEqual(a,generateMap({seed:1,config:a.diagnostics.config}));
  assert.deepEqual(a.map,generateMap({seed:1,config:{analysis:{steps:[1,6],maxNodes:1}}}).map);
