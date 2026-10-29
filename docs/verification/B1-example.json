@@ -1,0 +1,437 @@
+{
+  "measuredProgram": {
+    "commit": "644cd74e072e22f145610f1e8640e2e9083a0034",
+    "nodeVersion": "v24.19.0"
+  },
+  "sourceProgram": {
+    "commit": "b7b72a7f3f9ee61c792ce347b5092b25ca24f168",
+    "nodeVersion": "v24.19.0"
+  },
+  "input": [
+    {
+      "file": "manifest.json",
+      "sha256": "8325ab19fdbb071b66cd77215cd835a0fb2105bd0c18a1cce19369537f3b8cac"
+    },
+    {
+      "file": "summary.json",
+      "sha256": "7dbdcc3f9f3d82f4559b89b18b70462b2ee13ba6cbaccd230d7e0acb3ebc9eac"
+    },
+    {
+      "file": "candidates.jsonl",
+      "sha256": "d81c172a624a89093702e7e92ed568e1a678a15c97a953c0b58e691f19a9d4ad"
+    },
+    {
+      "file": "accepted.jsonl",
+      "sha256": "7a4e45041e2a9634c9615e7617315c8512fc59bb07216e87d42c2f4e2635d728"
+    }
+  ],
+  "sourceOptions": {
+    "targetCount": 12,
+    "maxAttempts": 40,
+    "seedStart": 0,
+    "assignmentSeedStart": 100000,
+    "config": {
+      "objectCount": {
+        "min": 0,
+        "max": 7
+      },
+      "objectSizes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "passableProbability": 0.5,
+      "maxMapAttempts": 1,
+      "analysis": {
+        "steps": [],
+        "maxNodes": 10000
+      },
+      "filters": {
+        "routeSteps": [],
+        "minLargestComponent": 0
+      }
+    }
+  },
+  "sourceCounts": {
+    "attemptedCount": 16,
+    "acceptedCount": 12,
+    "rejectedCount": 4
+  },
+  "exact": {
+    "summary": {
+      "experimentFormatVersion": 1,
+      "experimentId": "gk-b1-run-sha256:fa97b8543db3189a2002f0968c026e7fcd7ebcaf3c1269bd87a439b6782ea4b8",
+      "status": "completed",
+      "mapCount": 12,
+      "startCount": 25,
+      "mapStatuses": {
+        "route-found": 9,
+        "no-start": 3
+      },
+      "startStatuses": {
+        "route-found": 25
+      },
+      "routeCountLowerBound": 41607,
+      "countExact": true,
+      "incompleteMaps": 0,
+      "incompleteStarts": 0,
+      "search": {
+        "maxNodesPerStart": 100000,
+        "nodesVisited": 61957,
+        "totalNodeBudget": 2500000
+      }
+    },
+    "files": [
+      {
+        "file": "manifest.json",
+        "sha256": "c651c7e87d06a2ee5f10da045f534727331f9b382334db33a05f9f5c48409e84"
+      },
+      {
+        "file": "maps.jsonl",
+        "sha256": "ec7ce81919356982e2daf595a83a11cb0ff25c53f41677caf40b9df9f818be7f"
+      },
+      {
+        "file": "summary.json",
+        "sha256": "4424d5acf590a01ebdee25ea075f5db0e046c6cfad845c60215d90f8d68fcf60"
+      }
+    ],
+    "maps": [
+      {
+        "acceptedIndex": 0,
+        "candidateIndex": 1,
+        "mapFingerprint": "gk-map-v2-sha256:f603a61d6b0ff1c791681b898cb8c2445489ae5773115748778062dedcec75b0",
+        "status": "route-found",
+        "routeCountLowerBound": 7687,
+        "countExact": true,
+        "starts": [
+          {
+            "cell": "A3",
+            "routeCountLowerBound": 1760,
+            "countExact": true,
+            "nodesVisited": 2527
+          },
+          {
+            "cell": "C5",
+            "routeCountLowerBound": 2147,
+            "countExact": true,
+            "nodesVisited": 3153
+          },
+          {
+            "cell": "D3",
+            "routeCountLowerBound": 2124,
+            "countExact": true,
+            "nodesVisited": 3373
+          },
+          {
+            "cell": "E4",
+            "routeCountLowerBound": 1656,
+            "countExact": true,
+            "nodesVisited": 2350
+          }
+        ]
+      },
+      {
+        "acceptedIndex": 1,
+        "candidateIndex": 2,
+        "mapFingerprint": "gk-map-v2-sha256:1d2bc35c44453865936ef0894c341383801da0221f005e263291109699f116b2",
+        "status": "route-found",
+        "routeCountLowerBound": 2443,
+        "countExact": true,
+        "starts": [
+          {
+            "cell": "A1",
+            "routeCountLowerBound": 756,
+            "countExact": true,
+            "nodesVisited": 1155
+          },
+          {
+            "cell": "B3",
+            "routeCountLowerBound": 866,
+            "countExact": true,
+            "nodesVisited": 1478
+          },
+          {
+            "cell": "E1",
+            "routeCountLowerBound": 821,
+            "countExact": true,
+            "nodesVisited": 1242
+          }
+        ]
+      },
+      {
+        "acceptedIndex": 2,
+        "candidateIndex": 3,
+        "mapFingerprint": "gk-map-v2-sha256:2cd280534ec9de1be9c457e6403c61f054d8f04d23a9e9cae4b079f8502b0f35",
+        "status": "no-start",
+        "routeCountLowerBound": 0,
+        "countExact": true,
+        "starts": []
+      },
+      {
+        "acceptedIndex": 3,
+        "candidateIndex": 4,
+        "mapFingerprint": "gk-map-v2-sha256:18d8b219d6d0084637b2d4d56a8fba5b73b2eb8bc88e0a8ac6d54832db766621",
+        "status": "route-found",
+        "routeCountLowerBound": 1185,
+        "countExact": true,
+        "starts": [
+          {
+            "cell": "A1",
+            "routeCountLowerBound": 1185,
+            "countExact": true,
+            "nodesVisited": 1657
+          }
+        ]
+      },
+      {
+        "acceptedIndex": 4,
+        "candidateIndex": 5,
+        "mapFingerprint": "gk-map-v2-sha256:27b26604b048e3a70aba91d3a3718b4a4964d042ba2d2d522ec52c0c04e69997",
+        "status": "route-found",
+        "routeCountLowerBound": 4100,
+        "countExact": true,
+        "starts": [
+          {
+            "cell": "B5",
+            "routeCountLowerBound": 1934,
+            "countExact": true,
+            "nodesVisited": 2774
+          },
+          {
+            "cell": "E3",
+            "routeCountLowerBound": 2166,
+            "countExact": true,
+            "nodesVisited": 3159
+          }
+        ]
+      },
+      {
+        "acceptedIndex": 5,
+        "candidateIndex": 6,
+        "mapFingerprint": "gk-map-v2-sha256:2cd280534ec9de1be9c457e6403c61f054d8f04d23a9e9cae4b079f8502b0f35",
+        "status": "no-start",
+        "routeCountLowerBound": 0,
+        "countExact": true,
+        "starts": []
+      },
+      {
+        "acceptedIndex": 6,
+        "candidateIndex": 9,
+        "mapFingerprint": "gk-map-v2-sha256:2ecbc48d9bddaf3d9b163c258fd8f5496d804f5d4e46f9db93fe462df7c7417b",
+        "status": "route-found",
+        "routeCountLowerBound": 9811,
+        "countExact": true,
+        "starts": [
+          {
+            "cell": "A2",
+            "routeCountLowerBound": 1977,
+            "countExact": true,
+            "nodesVisited": 2895
+          },
+          {
+            "cell": "A4",
+            "routeCountLowerBound": 1923,
+            "countExact": true,
+            "nodesVisited": 2814
+          },
+          {
+            "cell": "C1",
+            "routeCountLowerBound": 1994,
+            "countExact": true,
+            "nodesVisited": 2977
+          },
+          {
+            "cell": "C5",
+            "routeCountLowerBound": 1969,
+            "countExact": true,
+            "nodesVisited": 2894
+          },
+          {
+            "cell": "D3",
+            "routeCountLowerBound": 1948,
+            "countExact": true,
+            "nodesVisited": 3097
+          }
+        ]
+      },
+      {
+        "acceptedIndex": 7,
+        "candidateIndex": 11,
+        "mapFingerprint": "gk-map-v2-sha256:2cd280534ec9de1be9c457e6403c61f054d8f04d23a9e9cae4b079f8502b0f35",
+        "status": "no-start",
+        "routeCountLowerBound": 0,
+        "countExact": true,
+        "starts": []
+      },
+      {
+        "acceptedIndex": 8,
+        "candidateIndex": 12,
+        "mapFingerprint": "gk-map-v2-sha256:04140cf27d790d4a7abdbd2ecacc8d172565275a2cf44f642ad214036b5fab30",
+        "status": "route-found",
+        "routeCountLowerBound": 4313,
+        "countExact": true,
+        "starts": [
+          {
+            "cell": "C1",
+            "routeCountLowerBound": 2147,
+            "countExact": true,
+            "nodesVisited": 3153
+          },
+          {
+            "cell": "E3",
+            "routeCountLowerBound": 2166,
+            "countExact": true,
+            "nodesVisited": 3159
+          }
+        ]
+      },
+      {
+        "acceptedIndex": 9,
+        "candidateIndex": 13,
+        "mapFingerprint": "gk-map-v2-sha256:bf6549ef984c7f53b10dc3b5a18a8379692ec5a47e283da43ed4da209fda0db2",
+        "status": "route-found",
+        "routeCountLowerBound": 10133,
+        "countExact": true,
+        "starts": [
+          {
+            "cell": "A4",
+            "routeCountLowerBound": 2081,
+            "countExact": true,
+            "nodesVisited": 3009
+          },
+          {
+            "cell": "C1",
+            "routeCountLowerBound": 2147,
+            "countExact": true,
+            "nodesVisited": 3153
+          },
+          {
+            "cell": "C3",
+            "routeCountLowerBound": 2020,
+            "countExact": true,
+            "nodesVisited": 3329
+          },
+          {
+            "cell": "D4",
+            "routeCountLowerBound": 2229,
+            "countExact": true,
+            "nodesVisited": 3310
+          },
+          {
+            "cell": "E1",
+            "routeCountLowerBound": 1656,
+            "countExact": true,
+            "nodesVisited": 2341
+          }
+        ]
+      },
+      {
+        "acceptedIndex": 10,
+        "candidateIndex": 14,
+        "mapFingerprint": "gk-map-v2-sha256:fd62e319c8682a1393ca28ab0e3331063626759d88fabd2d5f791d3302f778f5",
+        "status": "route-found",
+        "routeCountLowerBound": 1185,
+        "countExact": true,
+        "starts": [
+          {
+            "cell": "A5",
+            "routeCountLowerBound": 1185,
+            "countExact": true,
+            "nodesVisited": 1657
+          }
+        ]
+      },
+      {
+        "acceptedIndex": 11,
+        "candidateIndex": 15,
+        "mapFingerprint": "gk-map-v2-sha256:ca10a08e7f59a370ec81fd57436a8080eb5b3437a431ac515f0d1bdaa744e3e7",
+        "status": "route-found",
+        "routeCountLowerBound": 750,
+        "countExact": true,
+        "starts": [
+          {
+            "cell": "A4",
+            "routeCountLowerBound": 412,
+            "countExact": true,
+            "nodesVisited": 772
+          },
+          {
+            "cell": "E4",
+            "routeCountLowerBound": 338,
+            "countExact": true,
+            "nodesVisited": 529
+          }
+        ]
+      }
+    ]
+  },
+  "limited": {
+    "summary": {
+      "experimentFormatVersion": 1,
+      "experimentId": "gk-b1-run-sha256:551b02c54f1667a14494940e1a5dcd7489e1789c7d5c08cbd0a283fc9cc94631",
+      "status": "completed",
+      "mapCount": 12,
+      "startCount": 25,
+      "mapStatuses": {
+        "unknown": 9,
+        "no-start": 3
+      },
+      "startStatuses": {
+        "unknown": 25
+      },
+      "routeCountLowerBound": 0,
+      "countExact": false,
+      "incompleteMaps": 9,
+      "incompleteStarts": 25,
+      "search": {
+        "maxNodesPerStart": 1,
+        "nodesVisited": 25,
+        "totalNodeBudget": 25
+      }
+    },
+    "files": [
+      {
+        "file": "manifest.json",
+        "sha256": "009183b1bd9e8c000185aaeed96c9b1ee2391a73178691cd9cc8f923ca46c756"
+      },
+      {
+        "file": "maps.jsonl",
+        "sha256": "e91052e08fbfab681c9cf371cac786bfa4a25ebf5bf33bc5a6fe038e35c1c84a"
+      },
+      {
+        "file": "summary.json",
+        "sha256": "b87b81f0a2dfda619e88c783cf9e465b5ccfde288e21792f27d603d2389f5d36"
+      }
+    ]
+  },
+  "repeatByteIdentical": true,
+  "inputBytesUnchanged": true,
+  "targetExample": {
+    "acceptedIndex": 0,
+    "status": "selected",
+    "source": {
+      "mapFingerprint": "gk-map-v2-sha256:f603a61d6b0ff1c791681b898cb8c2445489ae5773115748778062dedcec75b0",
+      "start": "A3",
+      "steps": 6,
+      "order": "engine-row-major-1",
+      "routeIndex": 0
+    },
+    "route": [
+      "A3",
+      "A2",
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1"
+    ],
+    "instanceFingerprint": "gk-instance-v2-sha256:04ae9c68f197c521fcdab2eaa29ee977d48258316032ab6d2dcc06158288113a",
+    "search": {
+      "maxNodes": 100000,
+      "nodesVisited": 7,
+      "routesVisited": 1,
+      "completed": false
+    }
+  }
+}

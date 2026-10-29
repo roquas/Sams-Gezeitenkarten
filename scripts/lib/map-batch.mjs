@@ -38,7 +38,7 @@ export function normalizeBatchOptions(options){
  return {targetCount,maxAttempts,seedStart,assignmentSeedStart,config:normalizeConfig(options.config)};
 }
 
-function programState(){
+export function programState(){
  const git=(...args)=>execFileSync('git',['-C',PROGRAM_ROOT,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
  assert(git('status','--porcelain=v1','--untracked-files=all','--','src','scripts')==='',
   'program files under src/ and scripts/ must be clean and committed');

@@ -29,6 +29,7 @@ Hexabstände einschließlich Land. Undo erhält Anzeigeoptionen und bezahlte Hil
 - [F03-Dienste](docs/PUZZLE-SERVICES-F03.md)
 - [Einziger Generatorweg, Zielzahlbatches und Replay](docs/CATALOG-COMPLIANT-GENERATION.md)
 - [Lokale grafische Kontaktübersicht aus Kartenbatches](docs/MAP-CONTACT-SHEET.md)
+- [Privater Sechsschritt-Routenlauf B1](docs/ROUTE-EXPERIMENT-B1.md)
 - [Architektur](docs/ARCHITECTURE.md)
 - [Konsolidierung, entfernte Schnittstellen und Testtransfer](docs/CONSOLIDATION-F01-F03.md)
 
