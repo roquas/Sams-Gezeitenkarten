@@ -55,7 +55,9 @@ export async function readContactBatch(input){
   rejectedCount===attemptedCount-acceptedCount,'invalid target batch counts');
  assert(summary.status===(acceptedCount===options.targetCount?'target-reached':'target-unreached')&&
   (summary.status==='target-reached'||attemptedCount===options.maxAttempts),'regularly finished target batch required');
- const selection=selectAcceptedIndices(acceptedIndices,acceptedCount),wanted=new Set(selection),selected=new Map();
+ // Offline consumers can explicitly request the entire validated stream,
+ // including a regularly completed batch with zero accepted maps.
+ const selection=acceptedIndices==='all'?Array.from({length:acceptedCount},(_,i)=>i):selectAcceptedIndices(acceptedIndices,acceptedCount),wanted=new Set(selection),selected=new Map();
  const attemptedTotals=createBatchSummary(),acceptedTotals=createBatchSummary(),rejectionCounts={},repetitionHistogram={};
  const accepted=jsonRows(path.join(batch,'accepted.jsonl'));
  let position=0,acceptedPosition=0;
