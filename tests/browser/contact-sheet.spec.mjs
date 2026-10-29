@@ -53,7 +53,8 @@ test('geographic grid toggles every static map without layout or resource change
  }
  expect(await bounds()).toEqual(beforeBounds);
  expect((await chart.screenshot()).equals(before)).toBeFalsy();
- await page.screenshot({path:testInfo.outputPath('geographic-grid-enabled.png'),fullPage:true});
+ // A viewport capture preserves the viewport and text metrics during layout checks.
+ await page.screenshot({path:testInfo.outputPath('geographic-grid-enabled.png')});
  await toggle.uncheck();
  for(const grid of await grids.all())await expect(grid).toBeHidden();
  expect(await bounds()).toEqual(beforeBounds);

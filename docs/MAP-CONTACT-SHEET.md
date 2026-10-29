@@ -68,6 +68,8 @@ Die größeren grafischen Motivflächen sind keine geografischen Hexkonturen.
 Bilddateien, Assetnamen und transparente Pixel bestimmen keine Kategorien.
 Der Browser schaltet ausschließlich die Sichtbarkeit der fertig exportierten
 Gruppe um; dafür genügt lokales JavaScript, auch unter `file://`.
+Eine [24-Karten-Sichtung mit Browseraufnahmen](reviews/contact-sheet/geographic-grid.md)
+dokumentiert leere und dichter belegte Karten, Mehrhexformen und Randpositionen.
 
 **Die Rasterüberlagerung visualisiert Geografie und Befahrbarkeit. Sie bewertet
 keine Rätseltauglichkeit.** Eine dicht belegte Karte ist nicht automatisch ein
