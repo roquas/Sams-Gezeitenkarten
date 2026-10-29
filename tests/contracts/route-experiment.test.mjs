@@ -93,14 +93,37 @@ after(()=>fixture?.cleanup());
 const fresh=name=>path.join(fixture.directory,name+'-'+serial++);
 const read=(dir,name)=>fs.readFileSync(path.join(dir,name),'utf8');
 const rows=(dir,name)=>read(dir,name).trim().split('\n').filter(Boolean).map(JSON.parse);
-function cli(args){
- const result=spawnSync(process.execPath,[path.join(fixture.program,'scripts/run-route-experiment.mjs'),...args],{encoding:'utf8'});
+function cli(args,entry=path.join(fixture.program,'scripts/run-route-experiment.mjs')){
+ const result=spawnSync(process.execPath,[entry,...args],{encoding:'utf8'});
  assert.ifError(result.error);return result;
 }
 function run({batch=fixture.batch,selection='all',budget=1000000,out=fresh('run')}={}){
  const result=cli(['--batch',batch,'--accepted-indices',selection,'--max-nodes-per-start',String(budget),'--out',out]);
  assert.equal(result.status,0,result.stderr);return {out,summary:JSON.parse(result.stdout)};
 }
+
+test('symlink CLI without required arguments fails like the canonical entry point',()=>{
+ const link=fresh('route-cli.mjs');fs.symlinkSync(path.join(fixture.program,'scripts/run-route-experiment.mjs'),link);
+ const canonical=cli([]),linked=cli([],link);
+ assert.equal(canonical.status,1);assert.match(canonical.stderr,/Missing --batch/);
+ assert.equal(linked.status,1);assert.equal(linked.stdout,'');assert.equal(linked.stderr,canonical.stderr);
+});
+
+test('file and directory symlink CLI calls execute and produce the canonical result files',()=>{
+ const canonical=run(),fileLink=fresh('route-cli.mjs'),directoryLink=fresh('program-alias');
+ fs.symlinkSync(path.join(fixture.program,'scripts/run-route-experiment.mjs'),fileLink);
+ fs.symlinkSync(fixture.program,directoryLink,'dir');
+ for(const entry of [fileLink,path.join(directoryLink,'scripts/run-route-experiment.mjs')]){
+  const out=fresh('symlink-run'),result=cli(['--batch',fixture.batch,'--accepted-indices','all',
+   '--max-nodes-per-start','1000000','--out',out],entry);
+  assert.equal(result.status,0,result.stderr);
+  for(const file of ['manifest.json','maps.jsonl','summary.json']){
+   assert.ok(fs.existsSync(path.join(out,file)),file+' must be created by the symlink invocation');
+   assert.equal(read(out,file),read(canonical.out,file));
+  }
+  assert.deepEqual(JSON.parse(result.stdout),canonical.summary);
+ }
+});
 
 test('real completed input produces byte-identical B1 files across output paths and preserves every selected map',()=>{
  const before=Object.fromEntries(['manifest.json','summary.json','accepted.jsonl','candidates.jsonl'].map(f=>[f,read(fixture.batch,f)]));

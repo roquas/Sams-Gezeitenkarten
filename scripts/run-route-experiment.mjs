@@ -1,4 +1,5 @@
-import {pathToFileURL} from 'node:url';
+import {realpathSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
 import {runRouteExperiment} from './lib/route-experiment.mjs';
 
 export async function main(argv=process.argv.slice(2)){
@@ -18,7 +19,7 @@ export async function main(argv=process.argv.slice(2)){
   maxNodesPerStart:Number(budget),out:values.get('--out'),
   ...(values.has('--repository')?{repositoryRoot:values.get('--repository')}:{})});
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+if(process.argv[1]&&realpathSync(fileURLToPath(import.meta.url))===realpathSync(process.argv[1])){
  try{console.log(JSON.stringify(await main()));}
  catch(error){console.error(error.message);process.exitCode=1;}
 }
