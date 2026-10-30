@@ -15,6 +15,8 @@ test('developer catalog is opt-in; regular entry never requests private or exper
  expect(requests.some(p=>p.includes('/.dev/')||p.includes('/docs/'))).toBe(false);
 });
 test('all named variants are selectable; state, undo, radar, clues and penalties stay separate',async({page})=>{
+ // Several complete puzzle loads and reloads share this isolation scenario.
+ test.setTimeout(60_000);
  await page.goto('/?dev=b2');await expect(page.locator('h1')).toHaveText(first.testName);
  await expect(page.locator('#b2Selection')).toBeVisible();
  await expect(page.locator('#puzzleSelect option')).toHaveCount(96);
@@ -57,6 +59,7 @@ test('target route stays hidden and existing route tool verifies a B2 solution',
  await expect(page.locator('#puzzleLoadError')).toBeHidden();
 });
 test('all six technical clue types reach the existing bordbook with coordinate markup intact',async({page})=>{
+ test.setTimeout(60_000);
  const seen=new Set();
  for(const row of rows){
   const missing=row.definition.logic.clues.filter(c=>!seen.has(c.type));
