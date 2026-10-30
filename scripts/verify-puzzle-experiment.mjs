@@ -6,10 +6,12 @@ import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import {checkIrredundancy} from '../src/puzzles/analysis.mjs';
 import {logicalFingerprints} from './lib/publication-archive.mjs';
+import {createRules} from '../src/engine/puzzle.mjs';
+import {createClueEffectKey} from './lib/puzzle-clue-effects.mjs';
 
 export function verifyCandidates(file){
  const records=fs.readFileSync(file,'utf8').split('\n').filter(Boolean).map(JSON.parse);
- const variants=new Set();
+ const variants=new Set(),effects=new Set(),workspaces=new Map();
  for(const record of records){
   const result=checkIrredundancy(record.definition,{detailed:true,maxNodes:1000000});
   assert.equal(record.definition.logic.steps,6);assert.equal(record.definition.solution.length,7);
@@ -21,6 +23,17 @@ export function verifyCandidates(file){
    record.proof.omissions.map(({clueId,count,necessary})=>({clueId,count,necessary})));
   assert.deepEqual(logicalFingerprints(record.definition),record.fingerprints);
   const key=record.attemptId+'/'+record.fingerprints.variant;assert.ok(!variants.has(key),'duplicate variant for target attempt');variants.add(key);
+  if(record.puzzleExperimentFormatVersion>=2){
+   const scope=record.fingerprints.mapStructure+'/'+record.definition.logic.start;
+   if(!workspaces.has(scope)){
+    const rules=createRules(record.definition.logic),routes=[...rules.routes([record.definition.logic.start],{remaining:1000000})];
+    workspaces.set(scope,{rules,routes,keyForMasks:createClueEffectKey(record.definition.logic,routes)});
+   }
+   const {rules,routes,keyForMasks}=workspaces.get(scope);
+   const effectKey=keyForMasks(record.definition.logic.clues.map(clue=>Uint8Array.from(routes,route=>Number(rules.matches(route,clue)))));
+   assert.equal(record.effectKey,effectKey);
+   const attemptEffect=record.attemptId+'/'+effectKey;assert.ok(!effects.has(attemptEffect),'equivalent clue effects for target attempt');effects.add(attemptEffect);
+  }
  }
  return {verifiedCandidates:records.length,method:'existing-checkIrredundancy-detailed'};
 }

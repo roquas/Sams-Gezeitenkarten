@@ -1,0 +1,1243 @@
+{
+  "batchFormatVersion": 3,
+  "seedScheduleVersion": "sequential-uint32-1",
+  "options": {
+    "targetCount": 12,
+    "maxAttempts": 40,
+    "seedStart": 0,
+    "assignmentSeedStart": 100000,
+    "config": {
+      "objectCount": {
+        "min": 0,
+        "max": 7
+      },
+      "objectSizes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "passableProbability": 0.5,
+      "maxMapAttempts": 1,
+      "analysis": {
+        "steps": [],
+        "maxNodes": 10000
+      },
+      "filters": {
+        "routeSteps": [],
+        "minLargestComponent": 0
+      }
+    }
+  },
+  "catalogProfile": {
+    "version": "catalog-capacities-1",
+    "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+    "placements": [
+      {
+        "cells": [
+          "A1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A1",
+          "A2",
+          "B1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A1",
+          "A2",
+          "B1",
+          "B2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A1",
+          "B1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A1",
+          "B1",
+          "B2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A1",
+          "B1",
+          "C1",
+          "D1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2",
+          "A3",
+          "B2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2",
+          "A3",
+          "B3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2",
+          "B1",
+          "B2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2",
+          "B1",
+          "C1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2",
+          "B2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2",
+          "B2",
+          "B3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2",
+          "B2",
+          "B3",
+          "C3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2",
+          "B2",
+          "C2",
+          "D2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A2",
+          "B2",
+          "C3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A3",
+          "A4",
+          "B3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A3",
+          "A4",
+          "B3",
+          "B4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A3",
+          "B3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A3",
+          "B3",
+          "B4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A3",
+          "B3",
+          "C3",
+          "D3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4",
+          "A5",
+          "B4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4",
+          "A5",
+          "B5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4",
+          "B3",
+          "B4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4",
+          "B3",
+          "C3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4",
+          "B4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4",
+          "B4",
+          "B5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4",
+          "B4",
+          "B5",
+          "C5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4",
+          "B4",
+          "C4",
+          "D4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A4",
+          "B4",
+          "C5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A5",
+          "B5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A5",
+          "B5",
+          "C5",
+          "D5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B1",
+          "B2",
+          "C1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B1",
+          "B2",
+          "C1",
+          "C2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B1",
+          "C1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B1",
+          "C1",
+          "C2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B1",
+          "C1",
+          "D1",
+          "E1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2",
+          "B3",
+          "C2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2",
+          "B3",
+          "C3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2",
+          "C1",
+          "C2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2",
+          "C1",
+          "D1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2",
+          "C2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2",
+          "C2",
+          "C3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2",
+          "C2",
+          "C3",
+          "D3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2",
+          "C2",
+          "D2",
+          "E2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B2",
+          "C2",
+          "D3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B3",
+          "B4",
+          "C3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B3",
+          "B4",
+          "C3",
+          "C4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B3",
+          "C3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B3",
+          "C3",
+          "C4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B3",
+          "C3",
+          "D3",
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4",
+          "B5",
+          "C4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4",
+          "B5",
+          "C5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4",
+          "C3",
+          "C4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4",
+          "C3",
+          "D3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4",
+          "C4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4",
+          "C4",
+          "C5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4",
+          "C4",
+          "C5",
+          "D5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4",
+          "C4",
+          "D4",
+          "E4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B4",
+          "C4",
+          "D5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B5",
+          "C5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "B5",
+          "C5",
+          "D5",
+          "E5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C1",
+          "C2",
+          "D1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C1",
+          "C2",
+          "D1",
+          "D2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C1",
+          "D1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C1",
+          "D1",
+          "D2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C2",
+          "C3",
+          "D2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C2",
+          "C3",
+          "D3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C2",
+          "D1",
+          "D2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C2",
+          "D1",
+          "E1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C2",
+          "D2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C2",
+          "D2",
+          "D3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C2",
+          "D2",
+          "D3",
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C2",
+          "D2",
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C3",
+          "C4",
+          "D3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C3",
+          "C4",
+          "D3",
+          "D4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C3",
+          "D3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C3",
+          "D3",
+          "D4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C4",
+          "C5",
+          "D4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C4",
+          "C5",
+          "D5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C4",
+          "D3",
+          "D4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C4",
+          "D3",
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C4",
+          "D4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C4",
+          "D4",
+          "D5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C4",
+          "D4",
+          "D5",
+          "E5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C4",
+          "D4",
+          "E5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "C5",
+          "D5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D1",
+          "D2",
+          "E1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D1",
+          "D2",
+          "E1",
+          "E2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D1",
+          "E1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D1",
+          "E1",
+          "E2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D2",
+          "D3",
+          "E2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D2",
+          "D3",
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D2",
+          "E1",
+          "E2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D2",
+          "E2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D2",
+          "E2",
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D3",
+          "D4",
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D3",
+          "D4",
+          "E3",
+          "E4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D3",
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D3",
+          "E3",
+          "E4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D4",
+          "D5",
+          "E4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D4",
+          "D5",
+          "E5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D4",
+          "E3",
+          "E4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D4",
+          "E4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D4",
+          "E4",
+          "E5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "D5",
+          "E5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "E1"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "E2"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "E4"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "E5"
+        ],
+        "passable": false
+      },
+      {
+        "cells": [
+          "A1"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "A2"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "A3"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "A4"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "A5"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "B1"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "B2"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "B3"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "B4"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "B5"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "C1"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "C2"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "C3"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "C4"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "C5"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "D1"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "D2"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "D3"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "D4"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "D5"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "E1"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "E2"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "E3"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "E4"
+        ],
+        "passable": true
+      },
+      {
+        "cells": [
+          "E5"
+        ],
+        "passable": true
+      }
+    ],
+    "capacities": [
+      {
+        "shape": "0,0",
+        "passable": false,
+        "count": 1
+      },
+      {
+        "shape": "0,0;0,1;1,0",
+        "passable": false,
+        "count": 1
+      },
+      {
+        "shape": "0,0;0,1;1,0;1,1",
+        "passable": false,
+        "count": 2
+      },
+      {
+        "shape": "0,0;1,0",
+        "passable": false,
+        "count": 1
+      },
+      {
+        "shape": "0,0;1,0;1,1",
+        "passable": false,
+        "count": 1
+      },
+      {
+        "shape": "0,0;1,0;2,0;3,0",
+        "passable": false,
+        "count": 1
+      },
+      {
+        "shape": "0,1;1,0;1,1",
+        "passable": false,
+        "count": 1
+      },
+      {
+        "shape": "0,1;1,0;2,0",
+        "passable": false,
+        "count": 1
+      },
+      {
+        "shape": "0,0",
+        "passable": true,
+        "count": 9
+      }
+    ]
+  },
+  "versions": {
+    "generator": "catalog-compliant-maps-2",
+    "assignment": "catalog-assignment-1",
+    "catalogProfile": "catalog-capacities-1",
+    "pixelChecker": "asset-placement-pixels-2",
+    "releaseAdapter": "released-asset-catalog-1",
+    "rules": "gezeitenkarten-2",
+    "acceptance": "catalog-complete-1"
+  },
+  "program": {
+    "commit": "b7b72a7f3f9ee61c792ce347b5092b25ca24f168",
+    "nodeVersion": "v24.19.0"
+  },
+  "provenance": {
+    "adapterVersion": "released-asset-catalog-1",
+    "releaseId": "gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1",
+    "catalogId": "gk-catalog-content-v1-sha256-3f406882907a76f99b3c6f816dc664f28f55d1ba42f01baa5fc637dc0b742bd1",
+    "sourceCommit": "ccab5f41dae380525f7535de4470848a3ab4d214",
+    "archiveCommit": "b7b72a7f3f9ee61c792ce347b5092b25ca24f168",
+    "backgroundId": "sea-blue-01",
+    "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112"
+  }
+}

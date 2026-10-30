@@ -7,10 +7,16 @@ Es gibt keine Schwierigkeitswertung, geografische Vorauswahl oder Veröffentlich
 
 ## Durchlauf und Verantwortlichkeiten
 
-1. `puzzle-experiment.mjs` liest alle B1-Dateien, prüft Identitäten und reproduziert
-   die B1-Analyse mit deren ursprünglichem Budget. Unvollständige B1-Zählungen
-   bleiben zulässig; sie sind keine Nullroutenbeweise. Die Herkunft verweist auf
-   das vollständige B1-Manifest mit gepinntem Katalogrelease und Batchdateihashes.
+1. `puzzle-experiment.mjs` liest alle B1-Dateien und zusätzlich den ursprünglichen
+   Quellbatch (`--batch`). Dessen vier Dateihashes müssen exakt den B1-Eingabehashes
+   entsprechen. Der vorhandene `readContactBatch()` prüft Manifest, Releaseherkunft,
+   Seedplan, beide vollständigen Datenströme und sämtliche Motivbelegungen,
+   einschließlich unselektierter Karten. B1-Quellmanifest/-Zusammenfassung sowie
+   Karten, Ursprungsindizes, Seeds und Belegungen müssen mit diesem geprüften
+   Bestand übereinstimmen. Anschließend werden Identitäten und B1-Routenanalyse
+   mit dem ursprünglichen Budget reproduziert. Unvollständige B1-Zählungen bleiben
+   zulässig; sie sind keine Nullroutenbeweise. Jede Prüfung erfolgt vor der Suche
+   und vor der Reservierung des Ausgabeverzeichnisses.
 2. Für jeden B1-Start enumeriert `puzzle-route-solver.mjs` die legalen Routen mit
    dem bestehenden `createRules().routes()`. Nur eine **vollständige** Enumeration
    darf Eindeutigkeit beweisen. Nachgewiesene B1-Nullfälle benötigen keinen neuen
@@ -48,11 +54,24 @@ Ein Erfolg beendet die Suche nicht; erst ein explizites Budget beendet sie.
 Die Ausnahme ist eine bereits ohne Hinweise einzigartige Route: Nur der leere
 Hinweissatz kann dann irredundant sein, und diese Suche ist vollständig.
 
-Die bestehenden logischen Fingerprints unterscheiden Kombinationen derselben
-Zielroute; Hinweis-IDs und Reihenfolge erzeugen keine neue Variante. Doppelte
-Varianten innerhalb eines Zielversuchs werden verworfen. Identische Inhalte an
+Die bestehenden Instanz- und Variantenfingerprints bleiben unverändert. Zusätzlich
+erhält jeder Kandidat einen privaten `effectKey` (`gk-b2-effects-v1-sha256`). Er bindet
+Kartenfingerprint, Start, Regelfassung, sechs Etappen, Routenreihenfolge und den Hash
+der **vollständig** enumerierten Routen. Für jeden einzelnen Hinweis wird sein
+0/1-Treffervektor über genau diese Routen gehasht; die sortierte Menge dieser
+Einzelhinweiswirkungen bildet den Kombinationsteil des Schlüssels. Hinweisreihenfolge,
+IDs und unterschiedliche Parameter mit gleicher Wirkung erzeugen keine neue
+Wirkungsvariante. Es wird ausdrücklich **nicht** die gemeinsame Lösungsmenge des
+gesamten Satzes als Schlüssel verwendet.
+
+Gleiche Parameterfingerprints oder gleiche Wirkungsschlüssel innerhalb eines
+Zielversuchs werden verworfen. Die bereits erzeugte erste Repräsentation bleibt
+erhalten. Das kostet keine zusätzlichen Solverprüfungen oder Prädikataufrufe:
+Der Schlüssel verwendet die vollständigen vorhandenen Treffervektoren. Es gibt
+keine weiteren Neustarts zum Ersatz verworfener Äquivalente. Identische Inhalte an
 verschiedenen B1-Beobachtungen behalten ihre Herkunft; `uniqueCandidateCount`
-zählt zusätzlich die global verschiedenen Variantenfingerprints.
+zählt die global verschiedenen Wirkungsschlüssel, `candidateCount` die gespeicherten
+Beobachtungen nach Deduplikation innerhalb der Zielversuche.
 
 ## Solverwiederverwendung und Nachweise
 
@@ -84,11 +103,14 @@ eines Starts wiederverwendet, die Hinweisvektoren zwischen Zielrouten zunächst 
 
 Node 22+, vollständige Releasehistorie, sauber committete Dateien unter `src/` und
 `scripts/`. Alle Optionen sind verpflichtend. Keine Ausgabe darf bereits existieren
-oder innerhalb des B1-Eingangs liegen. Es gibt keine impliziten Wiederholungen.
+oder innerhalb des B1-Eingangs oder Quellbatches liegen. Es gibt keine impliziten
+Wiederholungen. Alte B1-Experimente im Format 1 bleiben unverändert verwendbar,
+benötigen jetzt aber ihren ursprünglichen Quellbatch für die Herkunftsprüfung.
+B1 speichert nur dessen Hashes; ohne Quellbytes kann B2 sie nicht verifizieren.
 
 ```sh
 node scripts/run-puzzle-experiment.mjs \
-  --b1 /tmp/b1 --out /tmp/b2 --seed 42 --route-indices 0,25 \
+  --b1 /tmp/b1 --batch /tmp/original-kartenbatch --out /tmp/b2 --seed 42 --route-indices 0,25 \
   --max-nodes-per-start 100000 --max-clue-parameters 100000 \
   --max-restarts 6 --max-solver-checks 2000 \
   --max-match-evaluations 5000000 --max-route-filter-evaluations 20000000
@@ -112,13 +134,20 @@ betroffenem Hinweis; diese Positionsvergleiche sind keine Prädikataufrufe.
 Die Eingangsprüfung reproduziert B1 mit dessen eigenem, im Manifest aufgezeichneten
 Budget. Sie wird getrennt von den neuen B2-Suchzählern gemessen.
 
-## Privates Experimentformat `puzzleExperimentFormatVersion: 1`
+## Privates Experimentformat `puzzleExperimentFormatVersion: 2`
+
+Format 2 ergänzt den Wirkungsschlüssel und die Bindung an den vollständig
+geprüften Quellbatch. Die Suchstrategie bleibt `random-incremental-1`, die
+Suchbudgets bleiben unverändert. B1-, Batch-, Release- und produktive Rätselverträge
+werden nicht geändert. Bibliotheksleser und CLI sind wegen des vorhandenen
+asynchronen Batchlesers ebenfalls asynchron (`await readB1Experiment(...)`,
+`await runPuzzleExperiment(...)`).
 
 | Datei | Inhalt |
 | --- | --- |
-| `manifest.json` | Strategie, feste sechs Etappen, Routenindizes/-reihenfolge, Seed, sämtliche Budgets, Programmcommit/Node, B1-ID, drei B1-Dateihashes und unverändertes B1-Manifest |
+| `manifest.json` | Strategie, feste sechs Etappen, Routenindizes/-reihenfolge, Seed, sämtliche Budgets, Programmcommit/Node, B1-ID, drei B1-Dateihashes, vier geprüfte Quellbatchdateihashes und unverändertes B1-Manifest |
 | `attempts.jsonl` | Eine Beobachtung je B1-Karte, alle Starts, vollständige/unvollständige Enumeration, jeder Zielabruf, Zielroute und Instanz-ID, abgeleiteter Seed, Versuch-ID, Suchzähler, aggregierte Gründe und erfolgreiche Varianten-IDs |
-| `candidates.jsonl` | Ein vollständiger privater Kandidat je Erfolg: Logikdefinition und Lösung, logische Fingerprints, Herkunft/Motivbelegung, Strategie/Seed/Budgets, Eindeutigkeits-/Irredundanznachweise und redaktionelle Messwerte |
+| `candidates.jsonl` | Ein vollständiger privater Kandidat je Erfolg: Logikdefinition und Lösung, unveränderte logische Fingerprints, zusätzlicher Wirkungsschlüssel, geprüfte Herkunft/Motivbelegung, Strategie/Seed/Budgets, Eindeutigkeits-/Irredundanznachweise und redaktionelle Messwerte |
 | `summary.json` | Karten/Starts/Zielrouten, Kandidaten und global verschiedene Varianten, Varianten je Zielversuch, Hinweisarten, aggregierte Eigenschaften/Gründe, Suchaufwand und Unvollständigkeit |
 | `timings.json` | Gemessene Millisekunden für Eingangsprüfung, Enumeration, Zielabrufe, Hinweisproduktion, Suche und Gesamtlauf |
 
@@ -148,7 +177,9 @@ mit ausformulierten Hinweistexten und Präsentationsmetadaten.
 `searchIncomplete`, `incompleteStarts`, `incompleteTargets` und je Ziel
 `search.incomplete` beachten. `exhaustive` betrifft ausschließlich die Kombinationensuche.
 `NO_PROGRESS` zählt verworfene, wirkungslose Ergänzungen; `POOL_NOT_UNIQUE` einen
-Neustart ohne eindeutigen Satz; `DUPLICATE_VARIANT` eine wiedergefundene Variante.
+Neustart ohne eindeutigen Satz; `DUPLICATE_VARIANT` einen wiedergefundenen
+Parameterfingerprint; `EQUIVALENT_CLUE_EFFECTS` einen anderen Parameterfingerprint
+mit gleicher Kombination von Einzelhinweiswirkungen.
 Budgetgründe benennen Produktion, Enumeration, Solver, Treffervektoren, Filter
 oder Neustarts. Ein Budgetgrund kann auch nach erfolgreichen Kandidaten auftreten.
 
@@ -169,8 +200,8 @@ Die Baseline ist begrenzt und heuristisch; sie enumeriert nicht alle minimalen
 Hinweissätze und behauptet keine optimale Schwierigkeit oder Qualität. Große
 Familien, insbesondere Zählhinweise, haben entsprechend ihrem Anteil am Pool mehr
 Gelegenheiten. Die rohe Verteilung ist somit keine Empfehlung für redaktionelle
-Gewichte. Auch semantisch äquivalente Hinweise mit unterschiedlichen gültigen
-Parametern sind entsprechend dem vorhandenen Variantenvertrag verschiedene Sätze.
+Gewichte. Unterschiedliche gültige Parameter behalten ihre bestehenden
+Variantenfingerprints; B2 zählt sie bei gleicher Einzelhinweiswirkung gemeinsam.
 
 Nächste Schritte: gespeicherte Beispiele spielen, beobachtete Kombinationen und
 Budgetabbrüche vergleichen, dann weitere Strategien mit derselben Schnittstelle

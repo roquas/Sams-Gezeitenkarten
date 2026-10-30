@@ -1,0 +1,208 @@
+{
+  "reviewedHead": "c74899a3ba11b7b36ffb4a8cfd95f1f434644816",
+  "originalLines": [
+    73,
+    77
+  ],
+  "legalRouteCount": 821,
+  "seed": 3974340776,
+  "budgets": {
+    "maxNodesPerStart": 100000,
+    "maxClueParameters": 100000,
+    "maxRestarts": 6,
+    "maxSolverChecks": 2000,
+    "maxMatchEvaluations": 5000000,
+    "maxRouteFilterEvaluations": 20000000
+  },
+  "routeSource": {
+    "mapFingerprint": "gk-map-v2-sha256:1d2bc35c44453865936ef0894c341383801da0221f005e263291109699f116b2",
+    "start": "E1",
+    "steps": 6,
+    "order": "engine-row-major-1",
+    "routeIndex": 0
+  },
+  "definitions": [
+    {
+      "schemaVersion": 2,
+      "rulesVersion": "gezeitenkarten-2",
+      "dataVersion": 1,
+      "logic": {
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "id": "geo-01",
+              "cells": [
+                "A5"
+              ],
+              "passable": false
+            },
+            {
+              "id": "geo-02",
+              "cells": [
+                "E1"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-03",
+              "cells": [
+                "C4",
+                "D4",
+                "D5",
+                "E5"
+              ],
+              "passable": false
+            },
+            {
+              "id": "geo-04",
+              "cells": [
+                "A1"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-05",
+              "cells": [
+                "B3"
+              ],
+              "passable": true
+            }
+          ]
+        },
+        "start": "E1",
+        "steps": 6,
+        "clues": [
+          {
+            "id": "H1",
+            "type": "countDistanceToPlace",
+            "fromHour": 3,
+            "toHour": 4,
+            "placeId": "geo-03",
+            "distance": 4,
+            "count": 1
+          },
+          {
+            "id": "H2",
+            "type": "countDistanceToPlace",
+            "fromHour": 0,
+            "toHour": 6,
+            "placeId": "geo-02",
+            "distance": 3,
+            "count": 2
+          }
+        ]
+      },
+      "solution": [
+        "E1",
+        "D1",
+        "C1",
+        "B1",
+        "A1",
+        "A2",
+        "B2"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "rulesVersion": "gezeitenkarten-2",
+      "dataVersion": 1,
+      "logic": {
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "id": "geo-01",
+              "cells": [
+                "A5"
+              ],
+              "passable": false
+            },
+            {
+              "id": "geo-02",
+              "cells": [
+                "E1"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-03",
+              "cells": [
+                "C4",
+                "D4",
+                "D5",
+                "E5"
+              ],
+              "passable": false
+            },
+            {
+              "id": "geo-04",
+              "cells": [
+                "A1"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-05",
+              "cells": [
+                "B3"
+              ],
+              "passable": true
+            }
+          ]
+        },
+        "start": "E1",
+        "steps": 6,
+        "clues": [
+          {
+            "id": "H1",
+            "type": "countDistanceToPlace",
+            "fromHour": 1,
+            "toHour": 4,
+            "placeId": "geo-04",
+            "distance": 0,
+            "count": 1
+          },
+          {
+            "id": "H2",
+            "type": "countDistanceToPlace",
+            "fromHour": 2,
+            "toHour": 6,
+            "placeId": "geo-02",
+            "distance": 3,
+            "count": 2
+          }
+        ]
+      },
+      "solution": [
+        "E1",
+        "D1",
+        "C1",
+        "B1",
+        "A1",
+        "A2",
+        "B2"
+      ]
+    }
+  ],
+  "fingerprints": [
+    {
+      "mapStructure": "gk-map-v2-sha256:1d2bc35c44453865936ef0894c341383801da0221f005e263291109699f116b2",
+      "instance": "gk-instance-v2-sha256:cef08e69c5c84148c1939d4011f5ccd194c2f48df9994f0127c51b73e62ac35c",
+      "variant": "gk-variant-v2-sha256:36c07436671a320abac09a2eede2bef69594bca225944f351de2aa630fb94fd2"
+    },
+    {
+      "mapStructure": "gk-map-v2-sha256:1d2bc35c44453865936ef0894c341383801da0221f005e263291109699f116b2",
+      "instance": "gk-instance-v2-sha256:cef08e69c5c84148c1939d4011f5ccd194c2f48df9994f0127c51b73e62ac35c",
+      "variant": "gk-variant-v2-sha256:89744b02e2968fd478e761ab209fce716bb20210d8e29fcdca077b5bae9ddd59"
+    }
+  ]
+}

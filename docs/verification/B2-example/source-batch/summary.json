@@ -1,0 +1,407 @@
+{
+  "batchFormatVersion": 3,
+  "status": "target-reached",
+  "targetCount": 12,
+  "maxAttempts": 40,
+  "attemptedCount": 16,
+  "acceptedCount": 12,
+  "rejectedCount": 4,
+  "rejectionCounts": {
+    "GENERATION_EXHAUSTED": 4,
+    "OBJECT_SPACING_EXHAUSTED": 4
+  },
+  "attempted": {
+    "geography": {
+      "statuses": {
+        "exhausted": 4,
+        "generated": 12
+      },
+      "distinctMaps": 10,
+      "duplicateMaps": 2,
+      "emptyMaps": 3,
+      "mapAttempts": 16,
+      "placementAttempts": 52,
+      "rejectionCounts": {
+        "OBJECT_SPACING_EXHAUSTED": 4
+      },
+      "profileWork": {
+        "preferredPlacements": 48,
+        "footprintChecks": 8008
+      },
+      "histograms": {
+        "objectCount": {
+          "0": 3,
+          "1": 2,
+          "2": 2,
+          "4": 2,
+          "5": 2,
+          "6": 1
+        },
+        "passableObjects": {
+          "0": 3,
+          "1": 2,
+          "2": 3,
+          "3": 1,
+          "4": 1,
+          "5": 2
+        },
+        "blockedObjects": {
+          "0": 9,
+          "1": 1,
+          "2": 2
+        },
+        "occupiedCells": {
+          "0": 3,
+          "1": 2,
+          "2": 2,
+          "4": 1,
+          "5": 1,
+          "6": 1,
+          "7": 1,
+          "8": 1
+        },
+        "waterCells": {
+          "17": 1,
+          "18": 1,
+          "19": 1,
+          "20": 1,
+          "21": 1,
+          "23": 2,
+          "24": 2,
+          "25": 3
+        },
+        "landFraction": {
+          "0": 3,
+          "0.16": 1,
+          "0.32": 1,
+          "0.04": 2,
+          "0.08": 2,
+          "0.24": 1,
+          "0.2": 1,
+          "0.28": 1
+        },
+        "waterFraction": {
+          "1": 3,
+          "0.84": 1,
+          "0.68": 1,
+          "0.96": 2,
+          "0.92": 2,
+          "0.76": 1,
+          "0.8": 1,
+          "0.72": 1
+        },
+        "passableComponentCount": {
+          "1": 12
+        },
+        "blockedComponentCount": {
+          "0": 9,
+          "1": 1,
+          "2": 2
+        },
+        "coastEdges": {
+          "0": 3,
+          "2": 2,
+          "9": 2,
+          "16": 1,
+          "22": 1,
+          "24": 1,
+          "27": 2
+        },
+        "passableComponentSizes": {
+          "20": 2,
+          "24": 1,
+          "25": 9
+        },
+        "blockedComponentSizes": {
+          "1": 3,
+          "4": 2
+        },
+        "objectSizes": {
+          "1": 28,
+          "4": 2
+        },
+        "shapesByPassability": {
+          "true:0,0": 25,
+          "false:0,0": 3,
+          "false:0,0;0,1;1,0;1,1": 1,
+          "false:0,0;1,0;2,0;3,0": 1
+        },
+        "boundaryCells": {
+          "0": 5,
+          "1": 24,
+          "2": 1
+        },
+        "boundaryEdges": {
+          "0": 5,
+          "1": 6,
+          "2": 7,
+          "3": 7,
+          "4": 4,
+          "5": 1
+        },
+        "isolatedCells": {
+          "0": 12
+        },
+        "deadEnds": {
+          "0": 10,
+          "1": 2
+        },
+        "articulationCells": {
+          "0": 10,
+          "1": 1,
+          "4": 1
+        },
+        "startCells": {
+          "0": 3,
+          "1": 2,
+          "2": 3,
+          "3": 1,
+          "4": 1,
+          "5": 2
+        }
+      },
+      "routes": {}
+    },
+    "assignment": {
+      "statuses": {
+        "complete": 12
+      },
+      "nonemptyStatuses": {
+        "complete": 9
+      },
+      "objects": 30,
+      "assigned": 30,
+      "unassigned": 0,
+      "rejectionCounts": {},
+      "assetTypes": {
+        "bottle": 2,
+        "driftwood": 5,
+        "buoy": 3,
+        "rowboat": 2,
+        "island": 4,
+        "settlement": 1,
+        "crate": 3,
+        "lighthouse": 2,
+        "atoll": 2,
+        "barrels": 3,
+        "wreck": 3
+      },
+      "assetUsage": {
+        "sea-life.accent.h1.bottle.v1": 2,
+        "sea-life.accent.h1.driftwood.v1": 5,
+        "sea-life.accent.h1.buoy.v1": 3,
+        "sea-life.accent.h1.rowboat.v1": 2,
+        "land-coast.island.h1.basalt-spire-water.v1": 3,
+        "land-coast.settlement.h4.tesoro.v4": 1,
+        "sea-life.accent.h1.crate.v1": 3,
+        "navigation.lighthouse.h1.offcenter-beacon.v1": 2,
+        "land-coast.atoll.h1.broken-passages.v1": 2,
+        "sea-life.accent.h1.barrels.v1": 3,
+        "navigation.wreck.h1.offcenter-sloop.v1": 3,
+        "land-coast.island.h4.long-sand.v1": 1
+      },
+      "unassignedShapes": {},
+      "unassignedSizesByPassability": {},
+      "candidateChecks": 840,
+      "anchorChecks": 1008
+    },
+    "errors": {}
+  },
+  "accepted": {
+    "geography": {
+      "statuses": {
+        "generated": 12
+      },
+      "distinctMaps": 10,
+      "duplicateMaps": 2,
+      "emptyMaps": 3,
+      "mapAttempts": 12,
+      "placementAttempts": 30,
+      "rejectionCounts": {},
+      "profileWork": {
+        "preferredPlacements": 30,
+        "footprintChecks": 4620
+      },
+      "histograms": {
+        "objectCount": {
+          "0": 3,
+          "1": 2,
+          "2": 2,
+          "4": 2,
+          "5": 2,
+          "6": 1
+        },
+        "passableObjects": {
+          "0": 3,
+          "1": 2,
+          "2": 3,
+          "3": 1,
+          "4": 1,
+          "5": 2
+        },
+        "blockedObjects": {
+          "0": 9,
+          "1": 1,
+          "2": 2
+        },
+        "occupiedCells": {
+          "0": 3,
+          "1": 2,
+          "2": 2,
+          "4": 1,
+          "5": 1,
+          "6": 1,
+          "7": 1,
+          "8": 1
+        },
+        "waterCells": {
+          "17": 1,
+          "18": 1,
+          "19": 1,
+          "20": 1,
+          "21": 1,
+          "23": 2,
+          "24": 2,
+          "25": 3
+        },
+        "landFraction": {
+          "0": 3,
+          "0.16": 1,
+          "0.32": 1,
+          "0.04": 2,
+          "0.08": 2,
+          "0.24": 1,
+          "0.2": 1,
+          "0.28": 1
+        },
+        "waterFraction": {
+          "1": 3,
+          "0.84": 1,
+          "0.68": 1,
+          "0.96": 2,
+          "0.92": 2,
+          "0.76": 1,
+          "0.8": 1,
+          "0.72": 1
+        },
+        "passableComponentCount": {
+          "1": 12
+        },
+        "blockedComponentCount": {
+          "0": 9,
+          "1": 1,
+          "2": 2
+        },
+        "coastEdges": {
+          "0": 3,
+          "2": 2,
+          "9": 2,
+          "16": 1,
+          "22": 1,
+          "24": 1,
+          "27": 2
+        },
+        "passableComponentSizes": {
+          "20": 2,
+          "24": 1,
+          "25": 9
+        },
+        "blockedComponentSizes": {
+          "1": 3,
+          "4": 2
+        },
+        "objectSizes": {
+          "1": 28,
+          "4": 2
+        },
+        "shapesByPassability": {
+          "true:0,0": 25,
+          "false:0,0": 3,
+          "false:0,0;0,1;1,0;1,1": 1,
+          "false:0,0;1,0;2,0;3,0": 1
+        },
+        "boundaryCells": {
+          "0": 5,
+          "1": 24,
+          "2": 1
+        },
+        "boundaryEdges": {
+          "0": 5,
+          "1": 6,
+          "2": 7,
+          "3": 7,
+          "4": 4,
+          "5": 1
+        },
+        "isolatedCells": {
+          "0": 12
+        },
+        "deadEnds": {
+          "0": 10,
+          "1": 2
+        },
+        "articulationCells": {
+          "0": 10,
+          "1": 1,
+          "4": 1
+        },
+        "startCells": {
+          "0": 3,
+          "1": 2,
+          "2": 3,
+          "3": 1,
+          "4": 1,
+          "5": 2
+        }
+      },
+      "routes": {}
+    },
+    "assignment": {
+      "statuses": {
+        "complete": 12
+      },
+      "nonemptyStatuses": {
+        "complete": 9
+      },
+      "objects": 30,
+      "assigned": 30,
+      "unassigned": 0,
+      "rejectionCounts": {},
+      "assetTypes": {
+        "bottle": 2,
+        "driftwood": 5,
+        "buoy": 3,
+        "rowboat": 2,
+        "island": 4,
+        "settlement": 1,
+        "crate": 3,
+        "lighthouse": 2,
+        "atoll": 2,
+        "barrels": 3,
+        "wreck": 3
+      },
+      "assetUsage": {
+        "sea-life.accent.h1.bottle.v1": 2,
+        "sea-life.accent.h1.driftwood.v1": 5,
+        "sea-life.accent.h1.buoy.v1": 3,
+        "sea-life.accent.h1.rowboat.v1": 2,
+        "land-coast.island.h1.basalt-spire-water.v1": 3,
+        "land-coast.settlement.h4.tesoro.v4": 1,
+        "sea-life.accent.h1.crate.v1": 3,
+        "navigation.lighthouse.h1.offcenter-beacon.v1": 2,
+        "land-coast.atoll.h1.broken-passages.v1": 2,
+        "sea-life.accent.h1.barrels.v1": 3,
+        "navigation.wreck.h1.offcenter-sloop.v1": 3,
+        "land-coast.island.h4.long-sand.v1": 1
+      },
+      "unassignedShapes": {},
+      "unassignedSizesByPassability": {},
+      "candidateChecks": 840,
+      "anchorChecks": 1008
+    },
+    "errors": {},
+    "repetitionHistogram": {
+      "0": 12
+    }
+  }
+}

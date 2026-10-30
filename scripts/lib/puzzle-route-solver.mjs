@@ -2,6 +2,7 @@
 import {createRules} from '../../src/engine/puzzle.mjs';
 import {validateLogic} from '../../src/engine/validate.mjs';
 import {clueKey} from './puzzle-clues.mjs';
+import {createClueEffectKey} from './puzzle-clue-effects.mjs';
 
 export class SearchBudgetExceeded extends Error{
  constructor(reason){super(reason);this.reason=reason;}
@@ -14,6 +15,7 @@ export function createRouteWorkspace(logic,{maxNodes}){
  try{for(const route of rules.routes([logic.start],budget))routes.push(route);}
  catch(error){if(budget.remaining>=0)throw error;
   return {completed:false,routeCountLowerBound:routes.length,nodesVisited:maxNodes};}
+ const keyForMasks=createClueEffectKey(logic,routes);
  return {completed:true,routeCount:routes.length,nodesVisited:maxNodes-budget.remaining,
   // Each target gets its own explicit matching/combination budget. Routes are
   // reused across targets, while target-specific clue tables stay short-lived.
@@ -54,6 +56,6 @@ export function createRouteWorkspace(logic,{maxNodes}){
     for(let r=0;r<routes.length;r++)if(table[r])for(let h=1;h<=6;h++)positions[h-1].add(routes[r][h]);
     return positions.flatMap((cells,h)=>cells.size===1?[h+1]:[]);
    }
-   return {check,exactHours,metrics};
+   return {check,exactHours,metrics,effectKey:indices=>keyForMasks(indices.map(mask))};
   }};
 }

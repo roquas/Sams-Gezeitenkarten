@@ -16,7 +16,7 @@ const deterministic=['manifest.json','attempts.jsonl','candidates.jsonl','summar
 function cli(args,entry=path.join(fixture.program,'scripts/run-puzzle-experiment.mjs')){
  const result=spawnSync(process.execPath,[entry,...args],{encoding:'utf8'});assert.ifError(result.error);return result;
 }
-function args(out){return ['--b1',b1,'--out',out,'--seed','42','--route-indices','0,25','--max-nodes-per-start','100000',
+function args(out){return ['--b1',b1,'--batch',fixture.batch,'--out',out,'--seed','42','--route-indices','0,25','--max-nodes-per-start','100000',
  '--max-clue-parameters','100000','--max-restarts','3','--max-solver-checks','1000','--max-match-evaluations','5000000',
  '--max-route-filter-evaluations','10000000'];}
 function run(change=value=>value,entry){
@@ -70,7 +70,7 @@ test('missing route ordinals are proven unavailable, with no claim that the map 
  }
 });
 
-test('corrupt rows, inconsistent summaries and unfinished B1 inputs fail before creating output',()=>{
+test('corrupt rows, inconsistent summaries and unfinished B1 inputs fail before creating output',async()=>{
  for(const corrupt of [
   directory=>{const records=rows(directory,'maps.jsonl');records.at(-1).mapTrialId='changed';fs.writeFileSync(path.join(directory,'maps.jsonl'),records.map(JSON.stringify).join('\n')+'\n');},
   directory=>{const summary=JSON.parse(read(directory,'summary.json'));summary.startCount++;fs.writeFileSync(path.join(directory,'summary.json'),JSON.stringify(summary));},
@@ -78,7 +78,7 @@ test('corrupt rows, inconsistent summaries and unfinished B1 inputs fail before 
  ]){
   const input=fresh('corrupt');fs.cpSync(b1,input,{recursive:true});corrupt(input);const out=fresh('refused');
   const result=cli(args(out).map((v,i,all)=>all[i-1]==='--b1'?input:v));assert.equal(result.status,1);assert.ok(!fs.existsSync(out));
-  assert.throws(()=>readB1Experiment(input));
+  await assert.rejects(()=>readB1Experiment(input,{batch:fixture.batch}));
  }
 });
 
@@ -88,10 +88,12 @@ test('explicit CLI budgets, uint32 seed, distinct route indices, six steps and s
   args(out).map((v,i,all)=>all[i-1]==='--route-indices'?'0,0':v),
   args(out).map((v,i,all)=>all[i-1]==='--seed'?'4294967296':v),
   args(out).map((v,i,all)=>all[i-1]==='--max-restarts'?'0':v),
-  args(out).filter((v,i,all)=>v!=='--max-match-evaluations'&&all[i-1]!=='--max-match-evaluations')]){
+  args(out).filter((v,i,all)=>v!=='--max-match-evaluations'&&all[i-1]!=='--max-match-evaluations'),
+  args(out).filter((v,i,all)=>v!=='--batch'&&all[i-1]!=='--batch')]){
   assert.equal(cli(values).status,1);assert.ok(!fs.existsSync(out));
  }
  const nested=path.join(b1,'nested');assert.equal(cli(args(nested)).status,1);assert.ok(!fs.existsSync(nested));
+ const sourceNested=path.join(fixture.batch,'nested');assert.equal(cli(args(sourceNested)).status,1);assert.ok(!fs.existsSync(sourceNested));
  const link=fresh('cli.mjs');fs.symlinkSync(path.join(fixture.program,'scripts/run-puzzle-experiment.mjs'),link);
  assert.equal(cli([],link).status,1);
  const throughLink=run(values=>values.map((v,i,all)=>all[i-1]==='--max-nodes-per-start'?'1':v),link);
