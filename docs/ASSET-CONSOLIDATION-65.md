@@ -1,3 +1,5 @@
+> Ergänzung vom 30.10.2026: [A0 abgeschlossen – vier Einzelhexinseln, sechs befahrbare Akzente und elf Zweierinseln](A0-COMPLETION.md). Arbeitskatalog: 55 Assets, 34 exakte Kunstfreigaben, 33 vorgesehene Ortsmotive. Die folgenden PR-65-Zahlen und Hashes dokumentieren den historischen Stand; archivierte Releases bleiben unverändert.
+
 # Assetbibliothek PR #65 – abschließende Konsolidierung
 
 Stand: 20.10.2026. Künstlerische Produktion vorerst abgeschlossen. Ausschließlich Arbeitsbranch `feature/asset-library-integration`; kein Merge, keine Änderung an `main`, keine neuen oder geänderten Grafiken, keine Generatoränderung und keine Flavor-Implementierung.

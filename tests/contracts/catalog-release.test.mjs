@@ -244,7 +244,7 @@ test('committing a candidate cannot approve it and approval requires a source an
  assert.throws(()=>approve(f),/source commit must be an available ancestor/);
 });
 
-test('historical V1 keeps all 368 anchors in fresh processes from the actually changed runtime checkout',t=>{
+test('V1 keeps all 674 current-catalog fixture anchors in fresh processes from the actually changed runtime checkout',t=>{
  const f=fixture(t),library=JSON.parse(fs.readFileSync(path.join(project,'assets/catalog/library.json')));
  // Full real resource data, but an isolated disposable Git repository and an
  // explicit test-only approval. The project's release archive is never touched.
@@ -257,7 +257,7 @@ test('historical V1 keeps all 368 anchors in fresh processes from the actually c
  approveCatalogRelease({repositoryRoot:f.repositoryRoot,candidate:out,...result,approvedBy:'Historical V1 regression only; not production'});
  commit(f.repositoryRoot,'Record isolated historical V1 test release');
  const expected=loadCatalogRelease({repositoryRoot:f.repositoryRoot,releaseId:result.releaseId});
- assert.equal(expected.validation.placements.reduce((n,p)=>n+p.anchors.length,0),368);
+ assert.equal(expected.validation.placements.reduce((n,p)=>n+p.anchors.length,0),674);
  const geometryPath=path.join(f.repositoryRoot,'src/assets/geometry.mjs');
  const geometry=fs.readFileSync(geometryPath,'utf8');
  assert.ok(geometry.includes('export function placedCells(asset,anchor){'));
@@ -281,7 +281,7 @@ test('historical V1 keeps all 368 anchors in fresh processes from the actually c
   "import {loadCatalogRelease} from './scripts/lib/catalog-release.mjs'; const r=loadCatalogRelease({repositoryRoot:'.',releaseId:process.argv[1]}); console.log(JSON.stringify({catalogId:r.catalogId,selection:r.selection,placements:r.validation.placements}));",result.releaseId],options));
  assert.equal(loaded.catalogId,expected.catalogId);assert.deepEqual(loaded.selection,expected.selection);
  assert.deepEqual(loaded.placements,expected.validation.placements);
- assert.equal(loaded.placements.reduce((n,p)=>n+p.anchors.length,0),368);
+ assert.equal(loaded.placements.reduce((n,p)=>n+p.anchors.length,0),674);
  // Exercise the OUTER build path in that same changed installation too. Its
  // image worker still runs exclusively from the historical source snapshot.
  const rebuilt=JSON.parse(execFileSync(process.execPath,[ownCli,'build','--source',historicalSource,'--out',path.join(f.directory,'rebuilt')],

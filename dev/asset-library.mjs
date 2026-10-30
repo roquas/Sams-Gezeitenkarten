@@ -3,7 +3,7 @@ import {HEXES,CHART_BOUNDS} from '../src/ui/chart-geometry.mjs';
 import {drawAssetPlacements} from '../src/ui/asset-layer.mjs';
 import {placedCells,placementContract,assetRectangle} from '../src/assets/geometry.mjs';
 import {renderAssetInventory} from './asset-inventory.mjs';
-import {availability} from './asset-curation.mjs';
+import {availability,catalogLabel} from './asset-curation.mjs';
 import {reviewPositions} from './review-positions.mjs';
 import {setupFlavorComparison,renderFlavorComparison} from './flavor-prototypes.mjs';
 import {renderPrototypeComparison} from './passable-prototypes.mjs';
@@ -35,7 +35,7 @@ try{
  const select=document.getElementById('background');
  for(const b of library.backgrounds){const o=document.createElement('option');o.value=b.id;o.textContent=b.id+' ('+b.family+')';select.append(o);}
  const reviewAsset=document.getElementById('reviewAsset');
- for(const a of library.assets){const o=document.createElement('option');o.value=a.id;o.textContent=a.id+' · '+availability(a);reviewAsset.append(o);}
+ for(const a of library.assets){const o=document.createElement('option');o.value=a.id;o.textContent=catalogLabel(a)+' · '+availability(a);reviewAsset.append(o);}
  const requested=new URLSearchParams(location.search).get('asset');
  if(library.assets.some(a=>a.id===requested))reviewAsset.value=requested;
  function draw(svg,instances){

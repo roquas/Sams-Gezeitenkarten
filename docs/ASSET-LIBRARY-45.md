@@ -1,3 +1,5 @@
+> Ergänzung vom 30.10.2026: [A0 abgeschlossen – vier Einzelhexinseln, sechs befahrbare Akzente und elf Zweierinseln](A0-COMPLETION.md). Arbeitskatalog: 55 Assets, 34 exakte Kunstfreigaben, 33 vorgesehene Ortsmotive. Die folgenden PR-65-Zahlen und Hashes dokumentieren den historischen Stand; archivierte Releases bleiben unverändert.
+
 > Historischer Prototypvertrag, ersetzt durch [Konsolidierung F01–F03](CONSOLIDATION-F01-F03.md), [Regeln v2](RULESET-GEZEITENKARTEN-2.md) und [Datenvertrag v2](PUZZLE-FORMAT.md). Die folgenden Aussagen sind kein aktueller Laufzeitvertrag.
 
 # Grafikasset-Bibliothek (#45)

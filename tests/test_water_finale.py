@@ -31,9 +31,9 @@ class WaterFinaleTests(unittest.TestCase):
                 for edge in (source[0,:], source[-1,:], source[:,0], source[:,-1]):
                     self.assertFalse(np.any(edge >= 16), 'Do not cut painted content at source canvas edge')
 
-    def test_nineteen_exact_approvals_and_no_new_file_inherits_an_approval(self):
+    def test_current_exact_approvals_and_no_deferred_file_inherits_an_approval(self):
         c = json.loads((ROOT/'assets/catalog/library.json').read_text())
-        self.assertEqual(sum(r['status']=='approved' for r in c['reviews']), 19)
+        self.assertEqual(sum(r['status']=='approved' for r in c['reviews']), 34)
         for key, version in FILES.items():
             aid = f'sea-life.accent.h1.{key}.v{version}'
             reviews = [r for r in c['reviews'] if r['assetId']==aid]

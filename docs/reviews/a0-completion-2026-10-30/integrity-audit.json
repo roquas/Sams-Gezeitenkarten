@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "baseCommit": "cb559f31ec7a0bf739688ce6c128d18ee61c3477",
+  "unchangedTechnicalContracts": [
+    {
+      "path": "src/assets/geometry.mjs",
+      "sha256": "a6e611321a9df5039c5e6c8dde74b65a0276ccbc0fcd4e54a84623364021106b"
+    },
+    {
+      "path": "src/assets/library.mjs",
+      "sha256": "623f0d7454b04c5a83c9fa9b1919f82add6ac7a073a7fd49cd3ebe2b49d7b2fd"
+    },
+    {
+      "path": "src/assets/assignment.mjs",
+      "sha256": "fcd399b56a61ab075b76c73a0d4ef978a32f45644096be5c8d92143e4848436c"
+    },
+    {
+      "path": "src/assets/polygons.mjs",
+      "sha256": "d63b75d6b551ddca704e6caddbbce05e6fbafc5c2a6d60705dc94638ca16590d"
+    },
+    {
+      "path": "src/ui/chart-geometry.mjs",
+      "sha256": "19b51c3324874e88108a168e8fda84cdb107591970958f3679ce59d47e097d13"
+    },
+    {
+      "path": "src/ui/chart-asset-contract.mjs",
+      "sha256": "53ed79cadea316d3d0b2e7d55d3586e5de36c8bdf73b830c93c49866b414b36f"
+    },
+    {
+      "path": "src/ui/asset-layer.mjs",
+      "sha256": "36838748f0ff09afa53c04317ede6048e7a93cc73a3254e2d153faad83061255"
+    },
+    {
+      "path": "scripts/check-library-images.py",
+      "sha256": "132a56fb4fbf9b022cdbaea9c4c28c1bbfd832aa4622ccd1f43047b5d5745eb9"
+    },
+    {
+      "path": "scripts/check-chart-assets.py",
+      "sha256": "6aa755b0eb36413f174ff2585c8ea21c4df60d3716918c2e27a32abda3e6b93e"
+    },
+    {
+      "path": "scripts/verify-asset-positions.py",
+      "sha256": "2cd6bfee671631cd39eaa9c557bdfcc4969047dbf0d3087833b2f06db2705049"
+    },
+    {
+      "path": "scripts/check-catalog-release-images.py",
+      "sha256": "1189724b11c628a43c4086d366c0024a066905db6911f394c97eb00ee406edfa"
+    },
+    {
+      "path": "scripts/check-catalog-release.mjs",
+      "sha256": "16c05924c1a6434401d7b9d771d3a85b1dc83f75fcfd9ea24459f07c47b57e0b"
+    },
+    {
+      "path": "scripts/lib/catalog-release.mjs",
+      "sha256": "fe4dc55705cdb57f890cb01043b82947718379a8469aa4e3bb2f7e00695c15b8"
+    },
+    {
+      "path": "scripts/lib/catalog-release-v1.mjs",
+      "sha256": "90ad31f3573bfc26bc8cbe3db39464f26e0af455adc64fa675120accf5a88891"
+    },
+    {
+      "path": "scripts/lib/released-asset-catalog.mjs",
+      "sha256": "1a6e60e476b1a21bc489b09efbafb1599704338b71c32b7560d8d2910f1ac346"
+    },
+    {
+      "path": "scripts/sample-catalog-maps.mjs",
+      "sha256": "246841fc749c5467b874318d01ef2cb5d53e51d6bd275d0d0000308f2f9d569a"
+    },
+    {
+      "path": "scripts/config/catalog-release-v1.json",
+      "sha256": "44a930d43386ff8bddd1ec93e4b475fef17ab694235e072ce922610222187140"
+    },
+    {
+      "path": "puzzles/schema/asset-library-v2.schema.json",
+      "sha256": "585519b6924a8f1fc968babd501bd095fc543c52ca333fafde11e844673985c2"
+    },
+    {
+      "path": "docs/verification/graphic-contract-A-catalog-sample.json",
+      "sha256": "c4b8e032c483d682b17481d52035e11f4323763f3d1bf41a57266b738858efe0"
+    }
+  ],
+  "archivePuzzlesRuntimeScriptsAndCIUnchanged": true,
+  "priorWorkingRepositoryFilesPreserved": 769,
+  "priorOutputFilesPreserved": 504,
+  "round5SelectedExportsPreserved": 12,
+  "newGeneration": false,
+  "newProductionApproval": false
+}

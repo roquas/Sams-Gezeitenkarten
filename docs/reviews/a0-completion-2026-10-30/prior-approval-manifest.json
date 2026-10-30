@@ -1,0 +1,149 @@
+{
+  "date": "2026-10-30",
+  "reviewer": "roquas",
+  "decisionSource": "Explicit user message in this A0 follow-up: selected four one-hex variants and all six newly sized/repositioned passable accents are artistically accepted and must be integrated into the catalog.",
+  "backgroundId": "sea-blue-01",
+  "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+  "items": [
+    {
+      "variant": "palme-01",
+      "id": "land-coast.island.h1.palm-beach.v1",
+      "file": "assets/library/palm-beach-h1-v1.png",
+      "sha256": "9c9225e2d8c1b03a307b54442cc183bb3ba7f1067274aaac282c342380bbb53f",
+      "sourceExportSha256": "9c9225e2d8c1b03a307b54442cc183bb3ba7f1067274aaac282c342380bbb53f",
+      "change": "added",
+      "passable": false
+    },
+    {
+      "variant": "atoll-02",
+      "id": "land-coast.atoll.h1.closed-lagoon.v1",
+      "file": "assets/library/closed-lagoon-h1-v1.png",
+      "sha256": "8f837aefda812df14bef108e8e854c8838658cc1bc3bd16e10a76f517275eeee",
+      "sourceExportSha256": "8f837aefda812df14bef108e8e854c8838658cc1bc3bd16e10a76f517275eeee",
+      "change": "added",
+      "passable": false
+    },
+    {
+      "variant": "leuchtturm-01",
+      "id": "navigation.lighthouse.h1.cyan-magenta-island.v1",
+      "file": "assets/library/cyan-magenta-island-h1-v1.png",
+      "sha256": "0c4f978994d6e36b43599ff56fc5ecf374a4d2003f0e0f13fab67d1c20418f7b",
+      "sourceExportSha256": "0c4f978994d6e36b43599ff56fc5ecf374a4d2003f0e0f13fab67d1c20418f7b",
+      "change": "added",
+      "passable": false
+    },
+    {
+      "variant": "drivein-01",
+      "id": "land-coast.settlement.h1.restaurant-island.v1",
+      "file": "assets/library/restaurant-island-h1-v1.png",
+      "sha256": "1b0aae1d8942b52297c5754a932de1b40955e530b26085107779557bb3537329",
+      "sourceExportSha256": "1b0aae1d8942b52297c5754a932de1b40955e530b26085107779557bb3537329",
+      "change": "added",
+      "passable": false
+    },
+    {
+      "id": "sea-life.accent.h1.barrels.v1",
+      "file": "assets/library/flavor-barrels-v1.png",
+      "sha256": "d1c19b1bbf4eccbfcd5663f65d624679215cace208589ecf66656c60893ee1ae",
+      "sourceExportSha256": "d1c19b1bbf4eccbfcd5663f65d624679215cace208589ecf66656c60893ee1ae",
+      "previousSha256": "d2f224a66834d413dc4137c0a394fd5f1a58e0bd534d72566ea7fd88343f7795",
+      "change": "replaced-approved-bytes",
+      "passable": true,
+      "offsetSvgUnits": [
+        -10.0,
+        -6.0
+      ],
+      "scale": [
+        0.8,
+        0.7990196078431373
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.buoy.v1",
+      "file": "assets/library/flavor-buoy-v1.png",
+      "sha256": "dc75de096edb1061a06c1c7224a7a8388ff85724d67d3abd9bdb9c50b5d925e5",
+      "sourceExportSha256": "dc75de096edb1061a06c1c7224a7a8388ff85724d67d3abd9bdb9c50b5d925e5",
+      "previousSha256": "10a5f73cd6a2a26d785521c3c03753f79af02c016a086441093894248606e2a4",
+      "change": "replaced-approved-bytes",
+      "passable": true,
+      "offsetSvgUnits": [
+        8.0,
+        -8.0
+      ],
+      "scale": [
+        0.8,
+        0.7990196078431373
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.rowboat.v1",
+      "file": "assets/library/flavor-rowboat-v1.png",
+      "sha256": "aa0b04087dc4cdca9edaf9c92771c371d0988a464bc644cf3141912cbb8e976f",
+      "sourceExportSha256": "aa0b04087dc4cdca9edaf9c92771c371d0988a464bc644cf3141912cbb8e976f",
+      "previousSha256": "2f70f944606bd8b86e0ef74e1f60a53475c6c2a85d610b0f76098968dfd26e6b",
+      "change": "replaced-approved-bytes",
+      "passable": true,
+      "offsetSvgUnits": [
+        -9.0,
+        7.0
+      ],
+      "scale": [
+        0.8,
+        0.7990196078431373
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.crate.v1",
+      "file": "assets/library/flavor-crate-v1.png",
+      "sha256": "c3c28310db72fd4d46ed9cf369e9cffbd3603e8a332bb9c71594a53ce24accee",
+      "sourceExportSha256": "c3c28310db72fd4d46ed9cf369e9cffbd3603e8a332bb9c71594a53ce24accee",
+      "previousSha256": "84fa17dd6a7e10db9ab888f5e6f4719aa74775f112c7b3edafdf6588f754e180",
+      "change": "replaced-approved-bytes",
+      "passable": true,
+      "offsetSvgUnits": [
+        9.0,
+        6.0
+      ],
+      "scale": [
+        0.8,
+        0.7990196078431373
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.bottle.v1",
+      "file": "assets/library/flavor-bottle-v1.png",
+      "sha256": "df44a66dac7b54a02c146f6a2fc93367b39a3c4f5389169a348d03ac3858d0f8",
+      "sourceExportSha256": "df44a66dac7b54a02c146f6a2fc93367b39a3c4f5389169a348d03ac3858d0f8",
+      "previousSha256": "2d281966978a7ae1d83603723d713810cfde253a0538457915c8e7ef5c076150",
+      "change": "replaced-approved-bytes",
+      "passable": true,
+      "offsetSvgUnits": [
+        0.0,
+        11.0
+      ],
+      "scale": [
+        0.8,
+        0.7990196078431373
+      ]
+    },
+    {
+      "id": "sea-life.accent.h1.driftwood.v1",
+      "file": "assets/library/flavor-driftwood-v1.png",
+      "sha256": "a224cc0693fe02f357085e86406d757696ff12a1b97181275145142fa74c02f9",
+      "sourceExportSha256": "a224cc0693fe02f357085e86406d757696ff12a1b97181275145142fa74c02f9",
+      "previousSha256": "daa7091a699ea6a217381fd937c0c0a55f6b0c9beb37192aae14c32e954cd378",
+      "change": "replaced-approved-bytes",
+      "passable": true,
+      "offsetSvgUnits": [
+        0.0,
+        -11.0
+      ],
+      "scale": [
+        0.8,
+        0.7990196078431373
+      ]
+    }
+  ],
+  "generatedTwoHexVariantsApproved": false,
+  "archiveOrReleaseChanged": false
+}
