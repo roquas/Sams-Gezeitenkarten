@@ -1,6 +1,6 @@
 {
   "program": {
-    "commit": "f30cf2698600197b651e6919c2872322659b2710",
+    "commit": "20c39f73cd83bed5ecb92795128a7b5ec48f8b6b",
     "nodeVersion": "v24.19.0"
   },
   "sourceBatchProgram": {
@@ -8,11 +8,37 @@
     "nodeVersion": "v24.19.0"
   },
   "independentVerification": {
-    "verifiedCandidates": 96,
+    "verifiedCandidates": 95,
     "method": "existing-checkIrredundancy-detailed"
   },
   "byteIdenticalRepeat": true,
+  "repeatRelocatedBothInputDirectories": true,
   "originalSourceFileHashesMatchB1Example": true,
+  "unchangedB1Artifacts": true,
+  "unchangedSearchBudgetsAndSeeds": true,
+  "unchangedRetainedLogicalFingerprints": true,
+  "droppedEquivalentParameterFingerprints": [
+    {
+      "originalLine": 77,
+      "variant": "gk-variant-v2-sha256:89744b02e2968fd478e761ab209fce716bb20210d8e29fcdca077b5bae9ddd59",
+      "start": "E1",
+      "routeIndex": 0
+    }
+  ],
+  "regressionBaseline": {
+    "reviewedHead": "c74899a3ba11b7b36ffb4a8cfd95f1f434644816",
+    "effectTestFile": {
+      "tests": 3,
+      "pass": 1,
+      "fail": 2
+    },
+    "provenanceTestsAtIntroduction": {
+      "tests": 13,
+      "pass": 2,
+      "fail": 11
+    },
+    "concreteEffectRegression": "5 distinct individual-effect sets versus 6 stored candidates"
+  },
   "deterministicFiles": [
     "manifest.json",
     "attempts.jsonl",
@@ -21,12 +47,12 @@
   ],
   "benchmarkDistinctSets": {
     "nodeVersion": "v24.19.0",
-    "inputSha256": "781c81b697419806eb66a8090447dfef6faf590023ff496debf77ca356a8d8ad",
+    "inputSha256": "d9e62cd6fae2cf03548800d5074f88db1d32a8f9fdc969cd5c807191c84c7137",
     "checks": 6,
     "distinctSets": 6,
     "legalRoutes": 1760,
-    "existingSolverMs": 300,
-    "cachedSolverMs": 81,
+    "existingSolverMs": 390,
+    "cachedSolverMs": 183,
     "cachedMetrics": {
       "solverChecks": 6,
       "cacheHits": 0,
@@ -37,12 +63,12 @@
   },
   "benchmarkWithRepeats": {
     "nodeVersion": "v24.19.0",
-    "inputSha256": "781c81b697419806eb66a8090447dfef6faf590023ff496debf77ca356a8d8ad",
+    "inputSha256": "d9e62cd6fae2cf03548800d5074f88db1d32a8f9fdc969cd5c807191c84c7137",
     "checks": 24,
     "distinctSets": 6,
     "legalRoutes": 1760,
-    "existingSolverMs": 992,
-    "cachedSolverMs": 141,
+    "existingSolverMs": 950,
+    "cachedSolverMs": 203,
     "cachedMetrics": {
       "solverChecks": 6,
       "cacheHits": 18,
@@ -53,7 +79,7 @@
   },
   "clueCountHistogram": {
     "3": 22,
-    "2": 12,
+    "2": 11,
     "4": 27,
     "6": 5,
     "5": 27,
@@ -62,7 +88,7 @@
   },
   "clueTypeDiversityHistogram": {
     "2": 28,
-    "1": 53,
+    "1": 52,
     "3": 10,
     "4": 5
   },
@@ -85,23 +111,23 @@
     },
     {
       "file": "examples/01-combined-deductions.json",
-      "bytes": 4690,
-      "sha256": "660a7a89c23eaebe3b5fa222b5e11ab582ca80c5f36d8b48c9b424cb19eb9e89"
+      "bytes": 4797,
+      "sha256": "838bf1f050732751b223fa0c475f42d3fee2a3907f53a85a9d5f2209720bf729"
     },
     {
       "file": "examples/02-same-target-alternative.json",
-      "bytes": 4354,
-      "sha256": "58675e3ab55f258ae376a5c5c2bd5ba0a311f9487a145bc2f0134d2c4dfe7919"
+      "bytes": 4461,
+      "sha256": "08c07f25420ee570775b50decb2f85c5421294542fa79f39e5d0bea1142c60e6"
     },
     {
       "file": "examples/03-direction-hour-one.json",
-      "bytes": 4742,
-      "sha256": "6159745fe184363c7920168b336604c22e60c24f84b84b02a474fe0483cde11d"
+      "bytes": 4849,
+      "sha256": "2827742ce06a0caae8b3e3143ff06ba2b25c23b758875da37994e7225cd3faa8"
     },
     {
       "file": "exhausted/attempts.jsonl",
       "bytes": 3800,
-      "sha256": "8773bb29c6120572b2dd8f7fd564e5e9d3974e3c0181edbb5a3e8a7a966ec986"
+      "sha256": "37d0369ecafc1c3cfbab55f26221e08060530ea5059a363a5c4e037d4ab5a70c"
     },
     {
       "file": "exhausted/candidates.jsonl",
@@ -110,43 +136,63 @@
     },
     {
       "file": "exhausted/manifest.json",
-      "bytes": 44018,
-      "sha256": "1cf89b4924bf2056416e1f2e76c1869f98f9dcc8b6542c6a2d9370e5e1a4d3f0"
+      "bytes": 44588,
+      "sha256": "db131505ef387bf549ba179d025965f453ffc926ee7d310d463c0921a505e7e3"
     },
     {
       "file": "exhausted/summary.json",
       "bytes": 909,
-      "sha256": "917e12b89066efe84e131d2200dce5c6fa2f4b69c97d759e72d5a529915b6173"
+      "sha256": "51aceb792f5b6e5638c88670904e8eb6121009455154738e871d389abda9599d"
     },
     {
       "file": "exhausted/timings.json",
-      "bytes": 123,
-      "sha256": "ef8ed9430e99c702c5ab7d39152901c477a80aecea7b97fed35ad38b22e1d399"
+      "bytes": 125,
+      "sha256": "2b398535376520f8bf7db2ef4592588ee2289e1a2d607cc741999cd57b2f00fd"
     },
     {
       "file": "run/attempts.jsonl",
-      "bytes": 27020,
-      "sha256": "a5f18da10eb753f548c3d929008dd618d1f361e1be85e135d015202e4769384b"
+      "bytes": 26960,
+      "sha256": "a1254aa5fbc480284a75b6ea4a353041d2b9ac8b227adc091ceca7308cf538e7"
     },
     {
       "file": "run/candidates.jsonl",
-      "bytes": 311599,
-      "sha256": "781c81b697419806eb66a8090447dfef6faf590023ff496debf77ca356a8d8ad"
+      "bytes": 318338,
+      "sha256": "d9e62cd6fae2cf03548800d5074f88db1d32a8f9fdc969cd5c807191c84c7137"
     },
     {
       "file": "run/manifest.json",
-      "bytes": 44023,
-      "sha256": "7f64b4ee0a7f69185865ef81d561a79a333adc8e5cc7db85d6a9cc5b408c4377"
+      "bytes": 44593,
+      "sha256": "3be4cc81ad0c5be3645397d7867cc40b217b5804a076950ede3fb64ccb4124bb"
     },
     {
       "file": "run/summary.json",
-      "bytes": 5215,
-      "sha256": "ed77fa3ec29140e772835872cf3e70f9c5f15b7cb340cedfe5ba83c4b1aa9f30"
+      "bytes": 5249,
+      "sha256": "9cf748fac6e8f0a8a14113014b7e5399711a5ff6ddbe7bd074dfd71889c45cc4"
     },
     {
       "file": "run/timings.json",
-      "bytes": 133,
-      "sha256": "54f0e23749f2d06c58748e3547fdddf3208b1cde9b3a361f03d5af7c4d43d2c2"
+      "bytes": 136,
+      "sha256": "4f91df40b1b184c361ef94b0038c1e55d6d9c4149c04db004e17e76d9edf6576"
+    },
+    {
+      "file": "source-batch/accepted.jsonl",
+      "bytes": 130357,
+      "sha256": "7a4e45041e2a9634c9615e7617315c8512fc59bb07216e87d42c2f4e2635d728"
+    },
+    {
+      "file": "source-batch/candidates.jsonl",
+      "bytes": 161272,
+      "sha256": "d81c172a624a89093702e7e92ed568e1a678a15c97a953c0b58e691f19a9d4ad"
+    },
+    {
+      "file": "source-batch/manifest.json",
+      "bytes": 19538,
+      "sha256": "8325ab19fdbb071b66cd77215cd835a0fb2105bd0c18a1cce19369537f3b8cac"
+    },
+    {
+      "file": "source-batch/summary.json",
+      "bytes": 8722,
+      "sha256": "7dbdcc3f9f3d82f4559b89b18b70462b2ee13ba6cbaccd230d7e0acb3ebc9eac"
     }
   ]
 }

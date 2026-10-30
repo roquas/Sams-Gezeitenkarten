@@ -1,5 +1,5 @@
 {
-  "puzzleExperimentFormatVersion": 1,
+  "puzzleExperimentFormatVersion": 2,
   "strategy": "random-incremental-1",
   "routeSelection": {
     "strategy": "explicit-indices-all-b1-starts-1",
@@ -21,7 +21,7 @@
     "maxRouteFilterEvaluations": 20000000
   },
   "program": {
-    "commit": "f30cf2698600197b651e6919c2872322659b2710",
+    "commit": "20c39f73cd83bed5ecb92795128a7b5ec48f8b6b",
     "nodeVersion": "v24.19.0"
   },
   "input": {
@@ -38,6 +38,24 @@
       {
         "file": "summary.json",
         "sha256": "07e5916e6a072bac522ac53fda2b88ff95f0906321d3cc5179f6019becda9512"
+      }
+    ],
+    "sourceFiles": [
+      {
+        "file": "manifest.json",
+        "sha256": "8325ab19fdbb071b66cd77215cd835a0fb2105bd0c18a1cce19369537f3b8cac"
+      },
+      {
+        "file": "summary.json",
+        "sha256": "7dbdcc3f9f3d82f4559b89b18b70462b2ee13ba6cbaccd230d7e0acb3ebc9eac"
+      },
+      {
+        "file": "candidates.jsonl",
+        "sha256": "d81c172a624a89093702e7e92ed568e1a678a15c97a953c0b58e691f19a9d4ad"
+      },
+      {
+        "file": "accepted.jsonl",
+        "sha256": "7a4e45041e2a9634c9615e7617315c8512fc59bb07216e87d42c2f4e2635d728"
       }
     ],
     "b1Manifest": {
@@ -1732,5 +1750,5 @@
       "experimentId": "gk-b1-run-sha256:d31d69c42cc44421c7dc976584c9e7fa551a21ea2820e5f7a4d6c5f2e0f7b9ac"
     }
   },
-  "experimentId": "gk-b2-run-sha256:622a4dd10d3f3061a0ad59765d1b5ab887aa1765657a41472b81a235e80fc99b"
+  "experimentId": "gk-b2-run-sha256:242b82594e1cd89ac4da8795a13bb373d3f1953f7a604cf99919203b2cf79d17"
 }

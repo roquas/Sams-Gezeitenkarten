@@ -1,7 +1,7 @@
 {
-  "puzzleExperimentFormatVersion": 1,
-  "experimentId": "gk-b2-run-sha256:622a4dd10d3f3061a0ad59765d1b5ab887aa1765657a41472b81a235e80fc99b",
-  "attemptId": "gk-b2-target-sha256:4eec444482dbe3f9e390c84c668625d848e477428c94b619fc890c60f0d269f0",
+  "puzzleExperimentFormatVersion": 2,
+  "experimentId": "gk-b2-run-sha256:242b82594e1cd89ac4da8795a13bb373d3f1953f7a604cf99919203b2cf79d17",
+  "attemptId": "gk-b2-target-sha256:d87143353719e3345a96638584fa166a6821367a21ee2720a068233d52bbf0c2",
   "b1MapTrialId": "gk-b1-map-sha256:5ca8096ec93a50167800d0ed1dd0bddc13e1bbbfff3318793173a2baa280f142",
   "b1StartTrialId": "gk-b1-start-sha256:48386a92cd9e0dbf33327616a6ec852e45333115e9ededea51a33ed210a19987",
   "source": {
@@ -118,6 +118,7 @@
     "instance": "gk-instance-v2-sha256:9464952f02dc042a7648cf221fa733263649cb7cce6d35fb8fa088f124b0c26e",
     "variant": "gk-variant-v2-sha256:8db7142f1c2086f4c9ea520249152cc77b8507a8c326c96cbeb4f475c23b7b39"
   },
+  "effectKey": "gk-b2-effects-v1-sha256:b039eba42f60b4244eece1719b3c13a39d12fc3d1dde7ab805a164280e1c2a94",
   "proof": {
     "method": "complete-engine-routes-and-predicates-1",
     "legalRouteCount": 1185,

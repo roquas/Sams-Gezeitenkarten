@@ -4,9 +4,15 @@
 [Messdaten und Dateihashes](B2-example/measurements.json) ·
 [Vollständige Kandidaten](B2-example/run/candidates.jsonl)
 
-Programm: `f30cf2698600197b651e6919c2872322659b2710`, Node **v24.19.0**.
+Programm: `20c39f73cd83bed5ecb92795128a7b5ec48f8b6b`, Node **v24.19.0**.
 Die Ergebnisdateien und dieser Bericht wurden anschließend als reine Nachweise
 ergänzt. Kein produktives Rätseldokument wurde geändert.
+
+Dieser Lauf ersetzt die Messung mit 96 Parameterfingerprints am geprüften Head
+`c74899a`. Nach Korrektur von P2-1 sind **95 unterschiedliche Kombinationen von Einzelhinweiswirkungen**
+übrig: 15 Zielrouten mit sechs Varianten, eine mit fünf. Seeds, Routenauswahl,
+Suchstrategie und sämtliche Budgets sind unverändert. Es gab keine Ersatzsuche.
+[Korrekturdiff und gezielte Nachprüfung beider P2-Befunde](B2-P2-corrections.md).
 
 ## Eingangsbestand
 
@@ -20,6 +26,9 @@ Danach erzeugte der unveränderte B1-Mergestand `948b29e` einen abgeschlossenen 
 über diese feste Auswahl. Der [vollständige B1-Eingang](B2-example/b1/manifest.json)
 ist zusammen mit `maps.jsonl` und `summary.json` hier gespeichert. B2 erzeugt selbst
 keine Karten und verändert diesen Bestand nicht.
+Zusätzlich liegen die vier Originaldateien des [Quellbatches](B2-example/source-batch/manifest.json)
+unverändert vor. B2 prüft mit dem bestehenden Batch-/Release-Leser ihren vollständigen
+Inhalt und die in B1 aufgezeichneten Dateihashes, bevor es Kandidaten sucht.
 
 Die Auswahl enthält vier Karten, darunter eine Karte ohne Start, acht zulässige
 Starts und **11.315 exakt gezählte Sechsschrittrouten**. B2 fordert je Start die
@@ -32,22 +41,31 @@ Ordinalstichprobe, keine repräsentative Zufallsauswahl aller Routen.
 | --- | ---: |
 | Untersuchte Karten / Starts / Zielrouten | 4 / 8 / 16 |
 | Karten ohne zulässigen Start, vollständig erhalten | 1 |
-| Vollständig gespeicherte und global verschiedene Kandidaten | **96** |
-| Irredundante Varianten je Zielroute | **jeweils 6** |
+| Vollständig gespeicherte und global verschiedene Wirkungsvarianten | **95** |
+| Irredundante Varianten je Zielroute | **15 × 6, 1 × 5** |
 | Wahre Hinweiskandidaten über alle Zielrouten | 17.312 |
 | Untersuchte Hinweisparameter | 76.512 |
 | Randomisierte Aufbausuchen | 96 |
-| Solverprüfungen verschiedener Kombinationen | 5.529 |
-| Wiederverwendete Kombinationsprüfungen | 301 |
+| Solverprüfungen verschiedener Kombinationen | 5.528 |
+| Wiederverwendete Kombinationsprüfungen | 298 |
 | Prädikataufrufe für Treffervektoren | 5.151.269 |
-| Gelesene Treffervektorwerte | 12.289.180 |
+| Gelesene Treffervektorwerte | 12.288.359 |
 | B2-Enumerationsknoten / B1-Zielabrufknoten | 16.935 / 397 |
 
 Alle Kandidaten wurden zusätzlich durch `checkIrredundancy({…}, {detailed:true})`
-mit der bestehenden Engine geprüft: **96 eindeutig, Zielroute passend, irredundant**.
+mit der bestehenden Engine geprüft: **95 eindeutig, Zielroute passend, irredundant**.
 Die exakten Auslassungszähler stimmen mit den gespeicherten Nachweisen überein.
+Zusätzlich wurden sämtliche Wirkungsschlüssel anhand der Einzelhinweis-Treffermengen
+über die vollständig enumerierten Engine-Routen unabhängig nachgerechnet.
 Eine zweite vollständige Ausführung erzeugte bytegleiche `manifest.json`,
-`attempts.jsonl`, `candidates.jsonl` und `summary.json`. Die B1-Dateien blieben unverändert.
+`attempts.jsonl`, `candidates.jsonl` und `summary.json`, auch nach Verschieben beider
+Eingabeverzeichnisse. Die B1-Dateien und der Quellbatch blieben unverändert.
+
+Die alten Kandidatenzeilen 73 und 77 ab **E1, Routenindex 0**, haben dieselben
+Einzelhinweiswirkungen über alle **821** legalen Routen. Die erste Repräsentation
+(alte Zeile 73) bleibt erhalten; die alte Zeile 77 entfällt. Für diese Zielroute
+werden innerhalb des unveränderten Budgets nur fünf unterschiedliche Varianten
+gefunden. Alle 95 behalten exakt ihre bisherigen Instanz-/Variantenfingerprints.
 
 Die Suche erreichte bei allen 16 Zielrouten ihr Neustartbudget. Damit ist die
 Kombinationssuche überall **budgetbedingt unvollständig**, obwohl sie erfolgreich
@@ -57,32 +75,32 @@ möglichen Kombinationen.
 
 ## Hinweisarten und redaktionelle Beobachtungen
 
-Die 96 Sätze enthalten insgesamt 385 Hinweise, je Kandidat zwei bis acht:
+Die 95 Sätze enthalten insgesamt 383 Hinweise, je Kandidat zwei bis acht:
 
 | Hinweisart | Anzahl in erfolgreichen Kandidaten |
 | --- | ---: |
-| `countDistanceToPlace` | 308 |
+| `countDistanceToPlace` | 306 |
 | `distanceToPlace` | 20 |
 | `position` | 17 |
 | `turn` | 16 |
 | `distanceBetweenHours` | 13 |
 | `direction` | 11 |
 
-53 Kandidaten verwenden nur eine Hinweisart; fünf verwenden vier Arten. Zählhinweise
+52 Kandidaten verwenden nur eine Hinweisart; fünf verwenden vier Arten. Zählhinweise
 stellen einen großen Teil des endlichen Pools und dominieren entsprechend die
 gleichmäßig gemischten Hinweislisten. Das ist eine beobachtete Eigenschaft der
 Baseline, kein Qualitätsurteil und keine Empfehlung, diese Verteilung festzuschreiben.
 
-39 Hinweise sind für mindestens eine Stunde 1–6 individuell exakt. Vier Kandidaten
-haben mehr als einen solchen Hinweis; 28 bestimmen Stunde 1 mit einem einzelnen
+38 Hinweise sind für mindestens eine Stunde 1–6 individuell exakt. Vier Kandidaten
+haben mehr als einen solchen Hinweis; 27 bestimmen Stunde 1 mit einem einzelnen
 Hinweis, einer verwendet einen Richtungshinweis für Stunde 1. Diese Ergebnisse
 wurden nicht redaktionell abgelehnt. Insbesondere bei einem Zählhinweis kann sich
 individuelle Exaktheit auf eine aus dem Intervall ableitbare Stunde beziehen.
 
 ## Aufwand und erfolglose Schritte
 
-Der gemessene Lauf benötigte **11.352 ms**: Eingangsprüfung 97 ms, Enumeration
-105 ms, Zielabrufe 11 ms, Hinweisproduktion 1.231 ms und Suche 9.902 ms.
+Der gemessene Lauf benötigte **19.786 ms**: Eingangsprüfung 3.927 ms, Enumeration
+341 ms, Zielabrufe 54 ms, Hinweisproduktion 1.642 ms und Suche 13.801 ms.
 Die separat gespeicherten Zeitwerte sind Beobachtungen eines einzelnen Cloudlaufs;
 gleichzeitig liefen bestehende Regressionstests. Sie sind kein stabiler Benchmark
 und gehören nicht zur reproduzierbaren Experimentidentität.
@@ -91,8 +109,10 @@ Die häufigsten Diagnosegründe waren:
 
 - **3.324 `NO_PROGRESS`**: Ein ergänzter Hinweis entfernte keine weitere Route;
   diese Hinweise wurden nicht in den Satz übernommen.
-- **16 `RESTART_BUDGET_EXHAUSTED`**: Nach jeweils sechs erfolgreichen Neustarts
+- **16 `RESTART_BUDGET_EXHAUSTED`**: Nach jeweils sechs Neustarts je Zielroute
   wurde nicht nach weiteren Kombinationen gesucht.
+- **1 `EQUIVALENT_CLUE_EFFECTS`**: Ein weiterer Parameterfingerprint hatte dieselben
+  Einzelhinweiswirkungen und wurde nicht als weiterer Kandidat gespeichert.
 - **1 `NO_ELIGIBLE_START`**: Die leere Eingangskarte hat nachweislich keinen Start.
 
 Im normalen Beispiel trat kein erfolgloser Zielversuch auf. Separat ist ein
@@ -105,8 +125,8 @@ Der Vergleich mit dem bisherigen Solver nutzt den ersten Start mit **1.760 Route
 
 | Gleiche Prüfungen, exakte Zähler geprüft | Bisheriger Solver | B2 einschließlich Workspace |
 | --- | ---: | ---: |
-| Sechs unterschiedliche erfolgreiche Hinweissätze | 300 ms | 81 ms |
-| Dieselben sechs Sätze insgesamt 24-mal | 992 ms | 141 ms |
+| Sechs unterschiedliche erfolgreiche Hinweissätze | 390 ms | 183 ms |
+| Dieselben sechs Sätze insgesamt 24-mal | 950 ms | 203 ms |
 
 Die zweite Messung verwendet sechs neue und 18 gespeicherte Kombinationsprüfungen.
 Beide B2-Messungen benötigen nur eine Enumeration und 29.920 Prädikataufrufe.
@@ -139,9 +159,10 @@ dürfen noch nicht existieren. Der gepinnte Programmcheckout ist für dieselben 
 notwendig. Ein aktueller sauberer Checkout erzeugt ausdrücklich andere Programmprovenienz.
 
 ```sh
-git worktree add --detach /tmp/gk-b2-program f30cf2698600197b651e6919c2872322659b2710
+git worktree add --detach /tmp/gk-b2-program 20c39f73cd83bed5ecb92795128a7b5ec48f8b6b
 node /tmp/gk-b2-program/scripts/run-puzzle-experiment.mjs \
-  --b1 "$PWD/docs/verification/B2-example/b1" --out /tmp/gk-b2-reproduced \
+  --b1 "$PWD/docs/verification/B2-example/b1" \
+  --batch "$PWD/docs/verification/B2-example/source-batch" --out /tmp/gk-b2-reproduced \
   --seed 42 --route-indices 0,25 \
   --max-nodes-per-start 100000 --max-clue-parameters 100000 \
   --max-restarts 6 --max-solver-checks 2000 \
