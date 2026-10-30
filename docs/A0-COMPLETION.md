@@ -44,6 +44,8 @@ PR #81 (Release), #82 (archivierte Freigabe), #83 (Adapter) und #84 (Diagnose) s
 
 Die Kunstfreigaben und `production:enabled` im Arbeitskatalog sind keine neue archivierte Releasefreigabe und keine produktive Veröffentlichung. Ein neuer Kandidat kann aus dem Integration-Commit technisch gebaut und verifiziert werden; `approve` wird für diesen Projektstand nicht ausgeführt. Eine neue reguläre Freigabe und ein Merge bleiben separate Entscheidungen.
 
+Der lokale Kandidat aus Commit `943993802c5bacaf3d3c8ae8a67613dfce885d3c` wurde tatsächlich gebaut und mit `verify --candidate` verifiziert: 55 Bildnachweise, 33 ausgewählte geografische Motive, 674 Anker und beide Rahmen. Katalog-ID `gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3`; Kandidaten-ID `gk-catalog-release-v1-sha256-256ec29ca616aaea94859d0280e1380873b30b682bfec5fc40f7b9d623f04709`. Er liegt außerhalb des Repositorys in der lokalen Ausgabe, besitzt keine `approval.json` und wurde nicht archiviert oder freigegeben.
+
 ## Prüfresultate und Freigabestatus
 
 Abgeschlossen: **254/254 Unit-/Vertrags-/Integrationstests**, vollständiges Assetgate mit **55 Bildern und 25 Python-Regressionen** (14 Bild-, vier Rahmen-, fünf Export- und zwei Wasserprüfungen), **20/20 Inhaltstests**, **19/19 Pakettests**, **2/2 Browserprüfungen** (Chromium Desktop/Mobil), unverändert eindeutige Demo und beide Rahmenprüfungen. Archivprüfung und beide Diagnose-Bytevergleiche bestehen. [Maschinenlesbarer Prüfbeleg mit Werkzeugversionen, Loghashes und Umgebungsbefunden](reviews/a0-completion-2026-10-30/verification.json).

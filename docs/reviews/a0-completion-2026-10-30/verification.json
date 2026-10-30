@@ -144,5 +144,17 @@
     "a0-browser.log": "8d95b99216a8bcef66f4ffb235a44c133edafc94cdee758332846317f6ab7051",
     "a0-chart.log": "7c695ae92bada76c6321b34104e3c3a2b4e84081c80ef7e6d7bb059483c807fa",
     "a0-puzzles.log": "850bb3d01ace7a37fd5227ae02f02fa8e1f541eca021e6d2b96cbd3f06497126"
+  },
+  "technicalCandidate": {
+    "releaseId": "gk-catalog-release-v1-sha256-256ec29ca616aaea94859d0280e1380873b30b682bfec5fc40f7b9d623f04709",
+    "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+    "manifestSha256": "7e877778b1a6c4807434401235816d84e828633d9116589b0556a58663b2f35c",
+    "sourceCommit": "943993802c5bacaf3d3c8ae8a67613dfce885d3c",
+    "verify": "passed",
+    "assets": 55,
+    "selectedGeographicAssets": 33,
+    "anchors": 674,
+    "archivedInProject": false,
+    "approved": false
   }
 }
