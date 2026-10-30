@@ -31,6 +31,15 @@ export function motifName(asset){
  if(technical[asset.id])return technical[asset.id];
  const curated=[...passableSmallPlaces,...flavorPrototypes].find(p=>p.id===asset.id);
  if(curated)return curated.name;
+ const round5=/^(mist-forest|prison-island|hut-settlement|lookout-bay)-(0[1-3])[.]v1$/.exec(asset.id.split('.').slice(-2).join('.'));
+ if(round5)return ({'mist-forest':'Nebelwald','prison-island':'Gefängnisinsel','hut-settlement':'Hüttensiedlung','lookout-bay':'Aussichtsbucht'})[round5[1]]+' '+round5[2];
  const key=asset.id.split('.').slice(-2).join('.');
- return ({'basalt-spire.v1':'Reduzierte Felsnadel','basalt-spire-water.v1':'Wasserreiche Felsnadel (Original)','offcenter-beacon.v1':'Leuchtturm','broken-passages.v1':'Zerbrochenes Atoll','offcenter-sloop.v1':'Versunkenes Wrack','tropical-bays.v1':'Palmenbuchten','massive-volcano.v1':'Glutberg','bent-reefs.v1':'Sandriffbogen – früher Entwurf','sand-reefs.v2':'Sandriffbogen','south-harbor.v1':'Südhafen','smuggler-cove.v1':'Schmugglerbucht','long-sand.v1':'Langer Strand','jungle-temple.v1':'Tempel der Gezeiten','crab-claw.v1':'Krabbenzange v1','crab-claw.v2':'Krabbenzange v2','tesoro.v1':'Tesoro v1','tesoro.v2':'Tesoro v2','tesoro.v3':'Tesoro v3','tesoro.v4':'Tesoro v4','gulls.v1':'Seevögel v1','dolphins.v1':'Delfine v1','turtle.v1':'Meeresschildkröte'})[key]??asset.id;
+ return ({'palm-beach.v1':'Palmeninsel','closed-lagoon.v1':'Geschlossenes Atoll','cyan-magenta-island.v1':'Cyan/magenta Leuchtturminsel','restaurant-island.v1':'Restaurantinsel','basalt-spire.v1':'Reduzierte Felsnadel','basalt-spire-water.v1':'Wasserreiche Felsnadel (Original)','offcenter-beacon.v1':'Leuchtturm','broken-passages.v1':'Zerbrochenes Atoll','offcenter-sloop.v1':'Versunkenes Wrack','tropical-bays.v1':'Palmenbuchten','massive-volcano.v1':'Glutberg','bent-reefs.v1':'Sandriffbogen – früher Entwurf','sand-reefs.v2':'Sandriffbogen','south-harbor.v1':'Südhafen','smuggler-cove.v1':'Schmugglerbucht','long-sand.v1':'Langer Strand','jungle-temple.v1':'Tempel der Gezeiten','crab-claw.v1':'Krabbenzange v1','crab-claw.v2':'Krabbenzange v2','tesoro.v1':'Tesoro v1','tesoro.v2':'Tesoro v2','tesoro.v3':'Tesoro v3','tesoro.v4':'Tesoro v4','gulls.v1':'Seevögel v1','dolphins.v1':'Delfine v1','turtle.v1':'Meeresschildkröte'})[key]??asset.id;
+}
+
+// Describe current catalog properties; IDs remain technical resource identities.
+export function catalogLabel(asset){
+ const family=({'land-coast':'Land/Küste',navigation:'Navigation','sea-life':'Meer/Wasser'})[asset.family]??asset.family;
+ const access=asset.role==='decoration'?'ohne Regelwirkung':asset.passable?'befahrbar':'unbefahrbar';
+ return motifName(asset)+' · '+access+' · '+asset.geometry.cells.length+' Hex · '+family;
 }

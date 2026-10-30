@@ -94,7 +94,7 @@ test('every geometrically fitting translation retains the exact local contract a
    }
   }
  }
- assert.equal(placements,847);
+ assert.equal(placements,1153);
 });
 test('gallery deterministically covers both one-based row parities and all feasible edge/interior categories',()=>{
  for(const cells of [...forms,[[0,0],[-1,0]],[[0,0],[0,-1]],[[0,0],[-1,0],[0,-1]]]){

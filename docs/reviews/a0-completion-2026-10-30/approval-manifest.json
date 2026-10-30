@@ -1,0 +1,498 @@
+{
+  "date": "2026-10-30",
+  "reviewer": "roquas",
+  "decisionSource": "Explicit A0 completion request: integrate all twelve round-5 motifs except prison island 02 (NO/SW). Preserve the four previously accepted singles and six accents unchanged.",
+  "backgroundId": "sea-blue-01",
+  "backgroundSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582",
+  "excluded": [
+    {
+      "variant": "gefaengnis-02-r5",
+      "orientation": "NO/SW",
+      "sha256": "cd3b3db5408b886d64b9540f0ff670688285d6e6a85aa2492b9832ae64a28aed",
+      "reason": "Explicitly excluded by roquas; no catalog entry or approval."
+    }
+  ],
+  "items": [
+    {
+      "variant": "nebelwald-01-r5",
+      "id": "land-coast.island.h2.mist-forest-01.v1",
+      "title": "Nebelwald 01",
+      "orientation": "W/O",
+      "sourceExport": "drafts/nebelwald-01-r5.png",
+      "sourceSha256": "f18ff284a7a330835915ac1eb4b51c2fce37aaa95f14cfa55df263076b143588",
+      "sha256": "742d38ace2b00c7e6b6c51cb507fe9b26bcff8b33763adcfd40c48143207d3c0",
+      "file": "assets/library/mist-forest-h2-01-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "validAnchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "A4",
+        "B4",
+        "C4",
+        "D4",
+        "A5",
+        "B5",
+        "C5",
+        "D5"
+      ],
+      "attempt": 2,
+      "referenceScalePercent": 96.5
+    },
+    {
+      "variant": "nebelwald-02-r5",
+      "id": "land-coast.island.h2.mist-forest-02.v1",
+      "title": "Nebelwald 02",
+      "orientation": "NO/SW",
+      "sourceExport": "drafts/nebelwald-02-r5.png",
+      "sourceSha256": "23982e434c4e534847724547ba160b7cd08daf11d2bcdaf09689eb704c36295c",
+      "sha256": "69c73a2eeac9960c6ae1f0102ac3dac41679f572837e89a1b0b62798496eaf91",
+      "file": "assets/library/mist-forest-h2-02-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "validAnchors": [
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "A4",
+        "B4",
+        "C4",
+        "D4",
+        "A5",
+        "B5",
+        "C5",
+        "D5",
+        "E5"
+      ],
+      "attempt": 2,
+      "referenceScalePercent": 100.0
+    },
+    {
+      "variant": "nebelwald-03-r5",
+      "id": "land-coast.island.h2.mist-forest-03.v1",
+      "title": "Nebelwald 03",
+      "orientation": "NW/SO",
+      "sourceExport": "drafts/nebelwald-03-r5.png",
+      "sourceSha256": "3abd8cf6426f921f4abc379b91f708b883a8f49e20bf71401e6c4b1f2b33a780",
+      "sha256": "c25d0ce042681f4649e110cc7b0dd3eceb877d93fa06bb69807b33108d51f552",
+      "file": "assets/library/mist-forest-h2-03-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "validAnchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "E1",
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "A4",
+        "B4",
+        "C4",
+        "D4"
+      ],
+      "attempt": 2,
+      "referenceScalePercent": 98.0
+    },
+    {
+      "variant": "gefaengnis-01-r5",
+      "id": "land-coast.settlement.h2.prison-island-01.v1",
+      "title": "Gefängnisinsel 01",
+      "orientation": "W/O",
+      "sourceExport": "drafts/gefaengnis-01-r5.png",
+      "sourceSha256": "e07cea3f672a00100245d3c2d2503f9507056aeb5bc855ba11072728c4150fcd",
+      "sha256": "a664be0553214771d8e2fd1064f3973bf39ef06405473d256cc67e42cd1cc713",
+      "file": "assets/library/prison-island-h2-01-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "validAnchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "A4",
+        "B4",
+        "C4",
+        "D4",
+        "A5",
+        "B5",
+        "C5",
+        "D5"
+      ],
+      "attempt": 1,
+      "referenceScalePercent": 97.5
+    },
+    {
+      "variant": "gefaengnis-03-r5",
+      "id": "land-coast.settlement.h2.prison-island-03.v1",
+      "title": "Gefängnisinsel 03",
+      "orientation": "NW/SO",
+      "sourceExport": "drafts/gefaengnis-03-r5.png",
+      "sourceSha256": "9be68c02f9aab039dc7b22cec680a77a545cd3b41ff39e3d3a81b592b22931ef",
+      "sha256": "a558685ddaec7c7bfcef040e26a4c76e4cc98d13b0452ccac4f34eac91c1c299",
+      "file": "assets/library/prison-island-h2-03-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "validAnchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "E1",
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "A4",
+        "B4",
+        "C4",
+        "D4"
+      ],
+      "attempt": 2,
+      "referenceScalePercent": 99.5
+    },
+    {
+      "variant": "huetten-01-r5",
+      "id": "land-coast.settlement.h2.hut-settlement-01.v1",
+      "title": "Hüttensiedlung 01",
+      "orientation": "W/O",
+      "sourceExport": "drafts/huetten-01-r5.png",
+      "sourceSha256": "826eb9fec7d2306822907a54072232d182cdb6a99722aa3f1aa02a5c037eecf1",
+      "sha256": "358aa3a4c4a5dcf8018b98a6152b3cb91e3a0faee306a0b515c8e08116af3675",
+      "file": "assets/library/hut-settlement-h2-01-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "validAnchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "A4",
+        "B4",
+        "C4",
+        "D4",
+        "A5",
+        "B5",
+        "C5",
+        "D5"
+      ],
+      "attempt": 1,
+      "referenceScalePercent": 100.0
+    },
+    {
+      "variant": "huetten-02-r5",
+      "id": "land-coast.settlement.h2.hut-settlement-02.v1",
+      "title": "Hüttensiedlung 02",
+      "orientation": "NO/SW",
+      "sourceExport": "drafts/huetten-02-r5.png",
+      "sourceSha256": "6823c68638ea09c92001e1160efaa94655ecc439e1971ffbb9bacbf95e8b579d",
+      "sha256": "c7a9911a877ae26445aaf4999252098598463296d3e0f7a776fb6eb5950cd44f",
+      "file": "assets/library/hut-settlement-h2-02-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "validAnchors": [
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "A4",
+        "B4",
+        "C4",
+        "D4",
+        "A5",
+        "B5",
+        "C5",
+        "D5",
+        "E5"
+      ],
+      "attempt": 3,
+      "referenceScalePercent": 100.0
+    },
+    {
+      "variant": "huetten-03-r5",
+      "id": "land-coast.settlement.h2.hut-settlement-03.v1",
+      "title": "Hüttensiedlung 03",
+      "orientation": "NW/SO",
+      "sourceExport": "drafts/huetten-03-r5.png",
+      "sourceSha256": "26f120b578f1bd8a1b00639d84a20cf4ba23f45d8af20576231b7fa2b53a49e9",
+      "sha256": "203218a9100ad2b1d305d2d2d63143901ad2e6b187ad6bbf9dd145252af2464a",
+      "file": "assets/library/hut-settlement-h2-03-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "validAnchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "E1",
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "A4",
+        "B4",
+        "C4",
+        "D4"
+      ],
+      "attempt": 2,
+      "referenceScalePercent": 100.0
+    },
+    {
+      "variant": "aussichtsbucht-01-r5",
+      "id": "land-coast.island.h2.lookout-bay-01.v1",
+      "title": "Aussichtsbucht 01",
+      "orientation": "W/O",
+      "sourceExport": "drafts/aussichtsbucht-01-r5.png",
+      "sourceSha256": "230bfc23a7f3b25958f669b625a58da591800b6bfd5a6740d7a4e63a3dcf4c9d",
+      "sha256": "8d9d8a2f456b55a13b10d4fc191a88e4877ea0dc493eeed89008d302cac26ce6",
+      "file": "assets/library/lookout-bay-h2-01-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "validAnchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "A4",
+        "B4",
+        "C4",
+        "D4",
+        "A5",
+        "B5",
+        "C5",
+        "D5"
+      ],
+      "attempt": 2,
+      "referenceScalePercent": 100.0
+    },
+    {
+      "variant": "aussichtsbucht-02-r5",
+      "id": "land-coast.island.h2.lookout-bay-02.v1",
+      "title": "Aussichtsbucht 02",
+      "orientation": "NO/SW",
+      "sourceExport": "drafts/aussichtsbucht-02-r5.png",
+      "sourceSha256": "c6111de9ae7c1f2db8df18d3507662af9bc8ddfc27464c8b50094d384832ba1e",
+      "sha256": "d225d154cd10f94090871f4d58040ac2ece67812fc37cc6d2676abc9c53efe4b",
+      "file": "assets/library/lookout-bay-h2-02-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "validAnchors": [
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "A4",
+        "B4",
+        "C4",
+        "D4",
+        "A5",
+        "B5",
+        "C5",
+        "D5",
+        "E5"
+      ],
+      "attempt": 1,
+      "referenceScalePercent": 92.5
+    },
+    {
+      "variant": "aussichtsbucht-03-r5",
+      "id": "land-coast.island.h2.lookout-bay-03.v1",
+      "title": "Aussichtsbucht 03",
+      "orientation": "NW/SO",
+      "sourceExport": "drafts/aussichtsbucht-03-r5.png",
+      "sourceSha256": "f8d32d4d8f9de6b96bdb6c98b592f456f1dede88fc14b5783c8bf5e246480f26",
+      "sha256": "427d4dd526ade0c574e6131c802bda48857d4385739d88c13fe424bf3725f63d",
+      "file": "assets/library/lookout-bay-h2-03-v1.png",
+      "passable": false,
+      "geometry": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "validAnchors": [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "E1",
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "A3",
+        "B3",
+        "C3",
+        "D3",
+        "E3",
+        "A4",
+        "B4",
+        "C4",
+        "D4"
+      ],
+      "attempt": 1,
+      "referenceScalePercent": 100.0
+    }
+  ]
+}

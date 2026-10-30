@@ -1,0 +1,160 @@
+{
+  "status": "passed",
+  "baseCommit": "cb559f31ec7a0bf739688ce6c128d18ee61c3477",
+  "catalog": {
+    "assets": 55,
+    "approvedReviews": 34,
+    "geographicEnabled": 33,
+    "newRound5Assets": 11,
+    "newRound5Anchors": 206,
+    "allCurrentFittingPlacements": 1153,
+    "currentFixtureAnchors": 674
+  },
+  "priorAcceptedFiles": [
+    {
+      "id": "land-coast.island.h1.palm-beach.v1",
+      "sha256": "9c9225e2d8c1b03a307b54442cc183bb3ba7f1067274aaac282c342380bbb53f",
+      "unchanged": true
+    },
+    {
+      "id": "land-coast.atoll.h1.closed-lagoon.v1",
+      "sha256": "8f837aefda812df14bef108e8e854c8838658cc1bc3bd16e10a76f517275eeee",
+      "unchanged": true
+    },
+    {
+      "id": "navigation.lighthouse.h1.cyan-magenta-island.v1",
+      "sha256": "0c4f978994d6e36b43599ff56fc5ecf374a4d2003f0e0f13fab67d1c20418f7b",
+      "unchanged": true
+    },
+    {
+      "id": "land-coast.settlement.h1.restaurant-island.v1",
+      "sha256": "1b0aae1d8942b52297c5754a932de1b40955e530b26085107779557bb3537329",
+      "unchanged": true
+    },
+    {
+      "id": "sea-life.accent.h1.barrels.v1",
+      "sha256": "d1c19b1bbf4eccbfcd5663f65d624679215cace208589ecf66656c60893ee1ae",
+      "unchanged": true
+    },
+    {
+      "id": "sea-life.accent.h1.buoy.v1",
+      "sha256": "dc75de096edb1061a06c1c7224a7a8388ff85724d67d3abd9bdb9c50b5d925e5",
+      "unchanged": true
+    },
+    {
+      "id": "sea-life.accent.h1.rowboat.v1",
+      "sha256": "aa0b04087dc4cdca9edaf9c92771c371d0988a464bc644cf3141912cbb8e976f",
+      "unchanged": true
+    },
+    {
+      "id": "sea-life.accent.h1.crate.v1",
+      "sha256": "c3c28310db72fd4d46ed9cf369e9cffbd3603e8a332bb9c71594a53ce24accee",
+      "unchanged": true
+    },
+    {
+      "id": "sea-life.accent.h1.bottle.v1",
+      "sha256": "df44a66dac7b54a02c146f6a2fc93367b39a3c4f5389169a348d03ac3858d0f8",
+      "unchanged": true
+    },
+    {
+      "id": "sea-life.accent.h1.driftwood.v1",
+      "sha256": "a224cc0693fe02f357085e86406d757696ff12a1b97181275145142fa74c02f9",
+      "unchanged": true
+    }
+  ],
+  "tools": {
+    "python": "3.9.2",
+    "pillow": "11.3.0",
+    "numpy": "2.0.2",
+    "webp": "1.5.0",
+    "zlib": "1.3.1.zlib-ng",
+    "node": "22.23.3"
+  },
+  "diagnostics": {
+    "currentMainBytesEqual": true,
+    "historicalPr84ReferenceBytesEqual": true,
+    "laterConsolidationCommit": "7d95afc",
+    "historicalAssets": 18,
+    "historicalAnchors": 368,
+    "historicalProfilePlacements": 154
+  },
+  "approvalStatus": {
+    "round5Art": "approved-by-roquas-except-prison-02",
+    "historicalRelease": "unchanged-approved",
+    "newRegularRelease": "not-created-or-approved",
+    "merge": "not-performed",
+    "publication": "not-performed"
+  },
+  "testResults": {
+    "content": {
+      "passed": 20
+    },
+    "package": {
+      "passed": 19
+    },
+    "selection": {
+      "passed": 3
+    },
+    "browser": {
+      "passed": 2,
+      "projects": [
+        "chromium",
+        "mobile-chromium"
+      ]
+    },
+    "unit": {
+      "passed": 254,
+      "failed": 0,
+      "skipped": 0,
+      "temporaryDirectory": "/private/tmp/a0-tests-2026-10-30"
+    },
+    "assets": {
+      "images": 55,
+      "imageRegressions": 14,
+      "frameRegressions": 4,
+      "exportRegressions": 5,
+      "waterRegressions": 2,
+      "passed": true
+    },
+    "chart": {
+      "status": "passed",
+      "pixelSquaresPerFrame": 2234040,
+      "overlappingAlphaPixels": 0
+    },
+    "puzzles": {
+      "model-demo": "unique"
+    },
+    "catalogArchive": {
+      "releases": 1,
+      "unchanged": true
+    }
+  },
+  "environmentNotes": [
+    "Initial Node 22 unit run: 194 passed / 60 failed because macOS /var and /private/var temporary-path aliases prevent exact CLI entry guards and canonical directory assertions from agreeing. Repeated unchanged suite with TMPDIR=/private/tmp/a0-tests-2026-10-30.",
+    "Initial new browser test used a relative href expectation; corrected only the test to match existing absolute renderer URLs. Repeated browser suite: 2 passed."
+  ],
+  "integrityAudit": "integrity-audit.json",
+  "futureBacklog": "../../BACKLOG-A4.md",
+  "technicalCompletionDate": "2026-10-31",
+  "localLogHashes": {
+    "a0-unit-canonical-tmp.log": "9dd0fe6d870585f5aec707f5d056eda2fccbbcd412f0f8b513a859eddb3043f7",
+    "a0-assets.log": "5ef9544397d1b0509544ed1c1f38e12fe23947bd917815efe89a754e9847c15d",
+    "a0-content.log": "c780e0380683b3ace72b5bd78c5591f9ad4a0f4569fe7c5cb93960dd403c34a2",
+    "a0-package.log": "84400b771e6aa5ae62aa9a566ce95e4d27c2535f0d82f72cd54962ee080162f3",
+    "a0-browser.log": "8d95b99216a8bcef66f4ffb235a44c133edafc94cdee758332846317f6ab7051",
+    "a0-chart.log": "7c695ae92bada76c6321b34104e3c3a2b4e84081c80ef7e6d7bb059483c807fa",
+    "a0-puzzles.log": "850bb3d01ace7a37fd5227ae02f02fa8e1f541eca021e6d2b96cbd3f06497126"
+  },
+  "technicalCandidate": {
+    "releaseId": "gk-catalog-release-v1-sha256-256ec29ca616aaea94859d0280e1380873b30b682bfec5fc40f7b9d623f04709",
+    "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+    "manifestSha256": "7e877778b1a6c4807434401235816d84e828633d9116589b0556a58663b2f35c",
+    "sourceCommit": "943993802c5bacaf3d3c8ae8a67613dfce885d3c",
+    "verify": "passed",
+    "assets": 55,
+    "selectedGeographicAssets": 33,
+    "anchors": 674,
+    "archivedInProject": false,
+    "approved": false
+  }
+}

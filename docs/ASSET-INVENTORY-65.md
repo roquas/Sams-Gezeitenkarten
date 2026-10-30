@@ -1,3 +1,5 @@
+> Ergänzung vom 30.10.2026: [A0 abgeschlossen – vier Einzelhexinseln, sechs befahrbare Akzente und elf Zweierinseln](A0-COMPLETION.md). Arbeitskatalog: 55 Assets, 34 exakte Kunstfreigaben, 33 vorgesehene Ortsmotive. Die folgenden PR-65-Zahlen und Hashes dokumentieren den historischen Stand; archivierte Releases bleiben unverändert.
+
 # Vollständige Assetübersicht – PR #65
 
 Abschließende Konsolidierung, 20.10.2026. Künstlerische Produktion vorerst beendet. Maßgeblich ist die tatsächliche Datei in `assets/catalog/library.json`. Frühere Berichte bleiben historische Nachweise. **19 unverändert erhaltene exakte Bild-/Meer-Freigabepaare**: 18 produktiv vorgesehene Orte und die künstlerisch freigegebene, produktiv zurückgestellte Schaumströmung. Keine siebte Ortsfreigabe aus einer Zählung abgeleitet.
