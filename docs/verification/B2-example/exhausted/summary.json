@@ -1,0 +1,37 @@
+{
+  "puzzleExperimentFormatVersion": 1,
+  "experimentId": "gk-b2-run-sha256:3b8461691ad9891672c190c6839871132dd5212ff9ee234ae451bc78e33d77e6",
+  "status": "completed",
+  "mapCount": 4,
+  "startCount": 8,
+  "routeRequests": 0,
+  "targetRoutes": 0,
+  "candidateCount": 0,
+  "incompleteStarts": 8,
+  "incompleteTargets": 0,
+  "uniqueCandidateCount": 0,
+  "distinctTargetInstances": 0,
+  "failures": {
+    "ROUTE_ENUMERATION_BUDGET_EXHAUSTED": 8,
+    "NO_ELIGIBLE_START": 1
+  },
+  "clueTypes": {},
+  "variantsPerTarget": [],
+  "properties": {
+    "individuallyExactClues": 0,
+    "withExactHour1": 0,
+    "withDirectionHour1": 0
+  },
+  "search": {
+    "enumerationNodes": 8,
+    "selectionNodes": 0,
+    "clueParametersExamined": 0,
+    "clueCandidates": 0,
+    "restarts": 0,
+    "solverChecks": 0,
+    "cacheHits": 0,
+    "matchEvaluations": 0,
+    "routeFilterEvaluations": 0
+  },
+  "searchIncomplete": true
+}

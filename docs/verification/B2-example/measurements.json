@@ -1,0 +1,152 @@
+{
+  "program": {
+    "commit": "f30cf2698600197b651e6919c2872322659b2710",
+    "nodeVersion": "v24.19.0"
+  },
+  "sourceBatchProgram": {
+    "commit": "b7b72a7f3f9ee61c792ce347b5092b25ca24f168",
+    "nodeVersion": "v24.19.0"
+  },
+  "independentVerification": {
+    "verifiedCandidates": 96,
+    "method": "existing-checkIrredundancy-detailed"
+  },
+  "byteIdenticalRepeat": true,
+  "originalSourceFileHashesMatchB1Example": true,
+  "deterministicFiles": [
+    "manifest.json",
+    "attempts.jsonl",
+    "candidates.jsonl",
+    "summary.json"
+  ],
+  "benchmarkDistinctSets": {
+    "nodeVersion": "v24.19.0",
+    "inputSha256": "781c81b697419806eb66a8090447dfef6faf590023ff496debf77ca356a8d8ad",
+    "checks": 6,
+    "distinctSets": 6,
+    "legalRoutes": 1760,
+    "existingSolverMs": 300,
+    "cachedSolverMs": 81,
+    "cachedMetrics": {
+      "solverChecks": 6,
+      "cacheHits": 0,
+      "matchEvaluations": 29920,
+      "routeFilterEvaluations": 12409
+    },
+    "enumerationNodes": 2527
+  },
+  "benchmarkWithRepeats": {
+    "nodeVersion": "v24.19.0",
+    "inputSha256": "781c81b697419806eb66a8090447dfef6faf590023ff496debf77ca356a8d8ad",
+    "checks": 24,
+    "distinctSets": 6,
+    "legalRoutes": 1760,
+    "existingSolverMs": 992,
+    "cachedSolverMs": 141,
+    "cachedMetrics": {
+      "solverChecks": 6,
+      "cacheHits": 18,
+      "matchEvaluations": 29920,
+      "routeFilterEvaluations": 12409
+    },
+    "enumerationNodes": 2527
+  },
+  "clueCountHistogram": {
+    "3": 22,
+    "2": 12,
+    "4": 27,
+    "6": 5,
+    "5": 27,
+    "7": 2,
+    "8": 1
+  },
+  "clueTypeDiversityHistogram": {
+    "2": 28,
+    "1": 53,
+    "3": 10,
+    "4": 5
+  },
+  "candidatesWithMultipleIndividuallyExactClues": 4,
+  "files": [
+    {
+      "file": "b1/manifest.json",
+      "bytes": 35970,
+      "sha256": "3a5fdd6425b16e6a971afe489dbd0d5c368e42360dcdcbf72e0996c9cc7d7f8c"
+    },
+    {
+      "file": "b1/maps.jsonl",
+      "bytes": 12180,
+      "sha256": "cadd69735df4a019d328e360c217e8a44bc1b3bbcd3ff4a504289f44b3e9edbb"
+    },
+    {
+      "file": "b1/summary.json",
+      "bytes": 521,
+      "sha256": "07e5916e6a072bac522ac53fda2b88ff95f0906321d3cc5179f6019becda9512"
+    },
+    {
+      "file": "examples/01-combined-deductions.json",
+      "bytes": 4690,
+      "sha256": "660a7a89c23eaebe3b5fa222b5e11ab582ca80c5f36d8b48c9b424cb19eb9e89"
+    },
+    {
+      "file": "examples/02-same-target-alternative.json",
+      "bytes": 4354,
+      "sha256": "58675e3ab55f258ae376a5c5c2bd5ba0a311f9487a145bc2f0134d2c4dfe7919"
+    },
+    {
+      "file": "examples/03-direction-hour-one.json",
+      "bytes": 4742,
+      "sha256": "6159745fe184363c7920168b336604c22e60c24f84b84b02a474fe0483cde11d"
+    },
+    {
+      "file": "exhausted/attempts.jsonl",
+      "bytes": 3800,
+      "sha256": "8773bb29c6120572b2dd8f7fd564e5e9d3974e3c0181edbb5a3e8a7a966ec986"
+    },
+    {
+      "file": "exhausted/candidates.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "exhausted/manifest.json",
+      "bytes": 44018,
+      "sha256": "1cf89b4924bf2056416e1f2e76c1869f98f9dcc8b6542c6a2d9370e5e1a4d3f0"
+    },
+    {
+      "file": "exhausted/summary.json",
+      "bytes": 909,
+      "sha256": "917e12b89066efe84e131d2200dce5c6fa2f4b69c97d759e72d5a529915b6173"
+    },
+    {
+      "file": "exhausted/timings.json",
+      "bytes": 123,
+      "sha256": "ef8ed9430e99c702c5ab7d39152901c477a80aecea7b97fed35ad38b22e1d399"
+    },
+    {
+      "file": "run/attempts.jsonl",
+      "bytes": 27020,
+      "sha256": "a5f18da10eb753f548c3d929008dd618d1f361e1be85e135d015202e4769384b"
+    },
+    {
+      "file": "run/candidates.jsonl",
+      "bytes": 311599,
+      "sha256": "781c81b697419806eb66a8090447dfef6faf590023ff496debf77ca356a8d8ad"
+    },
+    {
+      "file": "run/manifest.json",
+      "bytes": 44023,
+      "sha256": "7f64b4ee0a7f69185865ef81d561a79a333adc8e5cc7db85d6a9cc5b408c4377"
+    },
+    {
+      "file": "run/summary.json",
+      "bytes": 5215,
+      "sha256": "ed77fa3ec29140e772835872cf3e70f9c5f15b7cb340cedfe5ba83c4b1aa9f30"
+    },
+    {
+      "file": "run/timings.json",
+      "bytes": 133,
+      "sha256": "54f0e23749f2d06c58748e3547fdddf3208b1cde9b3a361f03d5af7c4d43d2c2"
+    }
+  ]
+}

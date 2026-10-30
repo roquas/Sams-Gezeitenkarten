@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {GEOMETRY,RULES_VERSION} from '../../src/puzzles/schema.mjs';
 import {validateLogic} from '../../src/engine/validate.mjs';
 import {createRules} from '../../src/engine/puzzle.mjs';
+import {cellsOf} from '../../src/engine/hex.mjs';
 import {checkIrredundancy,analyzeDefinition} from '../../src/puzzles/analysis.mjs';
 import {selectTargetRoute} from '../../scripts/lib/route-experiment.mjs';
 import {generateTrueClues,clueKey} from '../../scripts/lib/puzzle-clues.mjs';
@@ -67,6 +68,19 @@ test('an insufficient clue pool records an unsuccessful budget-limited search, n
  const result=run({cluePool:{clues:[],parametersExamined:1,completed:false}});
  assert.equal(result.status,'not-found-within-budget');assert.equal(result.search.failures.POOL_NOT_UNIQUE,budgets.maxRestarts);
  assert.equal(result.search.solverChecks,1);assert.equal(result.candidates.length,0);
+});
+
+test('complete zero-route workspaces and already unique routes have exact, distinct outcomes',()=>{
+ const restricted=open=>({geometry:GEOMETRY,grid:{columns:5,rows:5},objects:[{id:'port',cells:[open[0]],passable:true},
+  ...cellsOf({columns:5,rows:5}).filter(cell=>!open.includes(cell)).map(cell=>({id:'rock-'+cell,cells:[cell],passable:false}))]});
+ const noRoute={map:restricted(['C3','D3','E3','B4','B5','B2','B1']),start:'C3',steps:6,clues:[]};
+ const none=createRouteWorkspace(noRoute,{maxNodes:100000});assert.equal(none.completed,true);assert.equal(none.routeCount,0);
+ assert.equal(none.forClues([],budgets).check([]).count,0);
+ const path=['A1','B1','C1','D1','E1','E2','E3'],single={map:restricted(path),start:'A1',steps:6,clues:[]};
+ const one=createRouteWorkspace(single,{maxNodes:100000});assert.equal(one.routeCount,1);
+ const result=searchPuzzleCandidates({logic:single,targetRoute:path,workspace:one,cluePool:{clues:[],parametersExamined:0,completed:true},seed:42,budgets});
+ assert.equal(result.candidates.length,1);assert.equal(result.search.exhaustive,true);assert.equal(result.search.incomplete,false);
+ assert.deepEqual(result.candidates[0].definition.logic.clues,[]);assert.equal(checkIrredundancy(result.candidates[0].definition).irredundant,true);
 });
 
 test('individually exact hours agree with solving each clue alone and exclude combined deductions',()=>{

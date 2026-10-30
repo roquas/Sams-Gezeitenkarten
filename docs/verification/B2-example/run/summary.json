@@ -1,0 +1,126 @@
+{
+  "puzzleExperimentFormatVersion": 1,
+  "experimentId": "gk-b2-run-sha256:622a4dd10d3f3061a0ad59765d1b5ab887aa1765657a41472b81a235e80fc99b",
+  "status": "completed",
+  "mapCount": 4,
+  "startCount": 8,
+  "routeRequests": 16,
+  "targetRoutes": 16,
+  "candidateCount": 96,
+  "incompleteStarts": 0,
+  "incompleteTargets": 16,
+  "uniqueCandidateCount": 96,
+  "distinctTargetInstances": 16,
+  "failures": {
+    "NO_PROGRESS": 3324,
+    "RESTART_BUDGET_EXHAUSTED": 16,
+    "NO_ELIGIBLE_START": 1
+  },
+  "clueTypes": {
+    "countDistanceToPlace": 308,
+    "distanceToPlace": 20,
+    "turn": 16,
+    "direction": 11,
+    "distanceBetweenHours": 13,
+    "position": 17
+  },
+  "variantsPerTarget": [
+    {
+      "attemptId": "gk-b2-target-sha256:3717846bb4979cb984b8040d2d92c189a70cb00be2ec0b39cf4fb66eccacd892",
+      "instanceFingerprint": "gk-instance-v2-sha256:04ae9c68f197c521fcdab2eaa29ee977d48258316032ab6d2dcc06158288113a",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:87a919ac2bc0da7ad080ed13feefb3da63ce38b76d3fe7e7784439a5a5f5d019",
+      "instanceFingerprint": "gk-instance-v2-sha256:f8a440c95aaaf2c72a2813f6365094d1964b2dc06f89643e49d30a6101cde34b",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:8783c954055f1428cb060830ad5cdbb8306b2b2217992821e02cd7c98a9e4170",
+      "instanceFingerprint": "gk-instance-v2-sha256:c55f459b56b87fe5aa158fa8b5e804a8fd57831f3284487bfb0da93fe931b17d",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:916d55f90c9893708dc949165b9a7904b699314f4a4fd4eb602b282561900057",
+      "instanceFingerprint": "gk-instance-v2-sha256:9f2ade4748ea50e9aa95d376e50082a0c1e6b1e1fc6d39719425abe1f8131514",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:6755ce286a41fcd006eb5c5cefae23778f590ef3f3b4f7ccbf0dcae3501276fb",
+      "instanceFingerprint": "gk-instance-v2-sha256:2d068cedf77aa69ed4940e5a46dc585d8cd78112d839a5cde5068c609a894354",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:a950acbc5fa05677aefe64d3e7b6bdcb9865a81e4cc84669a875ef91801f6c69",
+      "instanceFingerprint": "gk-instance-v2-sha256:3dd8bbf42084c399564c13f773487373d5f8e3e82784cc27ecf20bab11476439",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:b567e06d6c52bf508c49022b27d1fd71b4888abd8ecd8101a26dabc281c68c76",
+      "instanceFingerprint": "gk-instance-v2-sha256:900dbf31dffc2384e9a28d359a89d43ad4a642bbf8ca6e203d4133e0c8648282",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:ff8847fd915e408835e725e66f7b5f34ccfb7403532c5e06d45626580d374ecd",
+      "instanceFingerprint": "gk-instance-v2-sha256:60d71b357f245803ee7eafd3b8dc1dc64ece3ef12886eb579a0136e137e246cf",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:7fc7ee4e8afc5d0ec35d4f7ecede28e031976798ca56916ed78e177a438d27aa",
+      "instanceFingerprint": "gk-instance-v2-sha256:b2654774af1a03fb5faf58d1c67aa783159fc10ed3ed00952c8f01df76541e8c",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:c0fd7f61d35c4529c1f2f698db3e6d6b54abb31f58bdaaf1d0ec1ed02f64545a",
+      "instanceFingerprint": "gk-instance-v2-sha256:09c3294a91e6db9b429362119b61cfec73801b875a0dc1044414ae659872770f",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:40dbcb62bf37ac784ec2faafacaa9a0d01f5ba8b5b1d83764403bb30af1a406d",
+      "instanceFingerprint": "gk-instance-v2-sha256:c22e7b0c12b4769366f5d1bb4d724de58ca974ccc497a772509b4fc099401085",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:a8fe17f93e21dc12a641d4ce61e82861d0753f2e02994ea7b8dfca476a6b0a11",
+      "instanceFingerprint": "gk-instance-v2-sha256:1b4b8fbfe7f9598b637975b442dcb80ee02bb7099685fad04a79a3b20d9e95a5",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:c0bb3b7ba2ca823b55c7877b4ac5860b70fd472bd77e996482ba5edda94215b6",
+      "instanceFingerprint": "gk-instance-v2-sha256:cef08e69c5c84148c1939d4011f5ccd194c2f48df9994f0127c51b73e62ac35c",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:ffa6e8fb929fbefe44e4daa00ad89653ee460eb8a8a81a2ce38bb79449c3addd",
+      "instanceFingerprint": "gk-instance-v2-sha256:2344d95db60277b7d79d2493c6ae28b50e4d57d238091c01402dd5857d7f843f",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:4eec444482dbe3f9e390c84c668625d848e477428c94b619fc890c60f0d269f0",
+      "instanceFingerprint": "gk-instance-v2-sha256:9464952f02dc042a7648cf221fa733263649cb7cce6d35fb8fa088f124b0c26e",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:d2cdfc807b3085ca26f2d09f3e1845217f145af18fc837988c035dbaaa116857",
+      "instanceFingerprint": "gk-instance-v2-sha256:11b7ffbb54e44ca52f0a7b1f0e80a6749444c6c3c03935e608a4362c2f0f4db9",
+      "count": 6
+    }
+  ],
+  "properties": {
+    "individuallyExactClues": 39,
+    "withExactHour1": 28,
+    "withDirectionHour1": 1
+  },
+  "search": {
+    "enumerationNodes": 16935,
+    "selectionNodes": 397,
+    "clueParametersExamined": 76512,
+    "clueCandidates": 17312,
+    "restarts": 96,
+    "solverChecks": 5529,
+    "cacheHits": 301,
+    "matchEvaluations": 5151269,
+    "routeFilterEvaluations": 12289180
+  },
+  "searchIncomplete": true
+}

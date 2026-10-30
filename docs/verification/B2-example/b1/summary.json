@@ -1,0 +1,23 @@
+{
+  "experimentFormatVersion": 1,
+  "experimentId": "gk-b1-run-sha256:d31d69c42cc44421c7dc976584c9e7fa551a21ea2820e5f7a4d6c5f2e0f7b9ac",
+  "status": "completed",
+  "mapCount": 4,
+  "startCount": 8,
+  "mapStatuses": {
+    "route-found": 3,
+    "no-start": 1
+  },
+  "startStatuses": {
+    "route-found": 8
+  },
+  "routeCountLowerBound": 11315,
+  "countExact": true,
+  "incompleteMaps": 0,
+  "incompleteStarts": 0,
+  "search": {
+    "maxNodesPerStart": 100000,
+    "nodesVisited": 16935,
+    "totalNodeBudget": 800000
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "puzzleExperimentFormatVersion": 1,
+  "experimentId": "gk-b2-run-sha256:622a4dd10d3f3061a0ad59765d1b5ab887aa1765657a41472b81a235e80fc99b",
+  "attemptId": "gk-b2-target-sha256:3717846bb4979cb984b8040d2d92c189a70cb00be2ec0b39cf4fb66eccacd892",
+  "b1MapTrialId": "gk-b1-map-sha256:7e383d7e71f413a17897eace3067bffa98c1ccfd84fb59b5b6c6fd1470f4727b",
+  "b1StartTrialId": "gk-b1-start-sha256:d46dafc7220ba55a157ca421ff6cd7bda4b4bc049737242279093db3ad2d795f",
+  "source": {
+    "acceptedIndex": 0,
+    "candidateIndex": 1,
+    "generationSeed": 1,
+    "assignmentSeed": 100001
+  },
+  "routeSource": {
+    "mapFingerprint": "gk-map-v2-sha256:f603a61d6b0ff1c791681b898cb8c2445489ae5773115748778062dedcec75b0",
+    "start": "A3",
+    "steps": 6,
+    "order": "engine-row-major-1",
+    "routeIndex": 0
+  },
+  "seed": 2774965149,
+  "strategy": "random-incremental-1",
+  "budgets": {
+    "maxNodesPerStart": 100000,
+    "maxClueParameters": 100000,
+    "maxRestarts": 6,
+    "maxSolverChecks": 2000,
+    "maxMatchEvaluations": 5000000,
+    "maxRouteFilterEvaluations": 20000000
+  },
+  "assetPlacements": [
+    {
+      "id": "art-01",
+      "assetId": "sea-life.accent.h1.bottle.v1",
+      "anchor": "C5",
+      "objectId": "geo-01"
+    },
+    {
+      "id": "art-02",
+      "assetId": "sea-life.accent.h1.driftwood.v1",
+      "anchor": "A3",
+      "objectId": "geo-02"
+    },
+    {
+      "id": "art-03",
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "anchor": "E4",
+      "objectId": "geo-03"
+    },
+    {
+      "id": "art-04",
+      "assetId": "sea-life.accent.h1.rowboat.v1",
+      "anchor": "D3",
+      "objectId": "geo-04"
+    }
+  ],
+  "definition": {
+    "schemaVersion": 2,
+    "rulesVersion": "gezeitenkarten-2",
+    "dataVersion": 1,
+    "logic": {
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "id": "geo-01",
+            "cells": [
+              "C5"
+            ],
+            "passable": true
+          },
+          {
+            "id": "geo-02",
+            "cells": [
+              "A3"
+            ],
+            "passable": true
+          },
+          {
+            "id": "geo-03",
+            "cells": [
+              "E4"
+            ],
+            "passable": true
+          },
+          {
+            "id": "geo-04",
+            "cells": [
+              "D3"
+            ],
+            "passable": true
+          }
+        ]
+      },
+      "start": "A3",
+      "steps": 6,
+      "clues": [
+        {
+          "id": "H1",
+          "type": "countDistanceToPlace",
+          "fromHour": 1,
+          "toHour": 4,
+          "placeId": "geo-03",
+          "distance": 6,
+          "count": 1
+        },
+        {
+          "id": "H2",
+          "type": "countDistanceToPlace",
+          "fromHour": 5,
+          "toHour": 6,
+          "placeId": "geo-04",
+          "distance": 2,
+          "count": 2
+        },
+        {
+          "id": "H3",
+          "type": "distanceToPlace",
+          "hour": 5,
+          "placeId": "geo-02",
+          "distance": 4
+        }
+      ]
+    },
+    "solution": [
+      "A3",
+      "A2",
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1"
+    ]
+  },
+  "fingerprints": {
+    "mapStructure": "gk-map-v2-sha256:f603a61d6b0ff1c791681b898cb8c2445489ae5773115748778062dedcec75b0",
+    "instance": "gk-instance-v2-sha256:04ae9c68f197c521fcdab2eaa29ee977d48258316032ab6d2dcc06158288113a",
+    "variant": "gk-variant-v2-sha256:1d09aa4687279361e6566620083de97fa4b4754fe40935c87b25cd1666095a00"
+  },
+  "proof": {
+    "method": "complete-engine-routes-and-predicates-1",
+    "legalRouteCount": 1760,
+    "count": 1,
+    "countExact": true,
+    "uniqueSolution": [
+      "A3",
+      "A2",
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1"
+    ],
+    "targetMatch": true,
+    "irredundant": true,
+    "omissions": [
+      {
+        "clueId": "H1",
+        "count": 94,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H2",
+        "count": 3,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H3",
+        "count": 7,
+        "countExact": true,
+        "necessary": true
+      }
+    ]
+  },
+  "properties": {
+    "clueTypes": [
+      "countDistanceToPlace",
+      "distanceToPlace"
+    ],
+    "individualExactness": [
+      {
+        "clueId": "H1",
+        "hours": []
+      },
+      {
+        "clueId": "H2",
+        "hours": []
+      },
+      {
+        "clueId": "H3",
+        "hours": []
+      }
+    ],
+    "individuallyExactClueCount": 0,
+    "hasIndividuallyExactHour1": false,
+    "hasDirectionHour1": false
+  }
+}
