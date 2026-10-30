@@ -1,0 +1,127 @@
+{
+  "puzzleExperimentFormatVersion": 2,
+  "experimentId": "gk-b2-run-sha256:242b82594e1cd89ac4da8795a13bb373d3f1953f7a604cf99919203b2cf79d17",
+  "status": "completed",
+  "mapCount": 4,
+  "startCount": 8,
+  "routeRequests": 16,
+  "targetRoutes": 16,
+  "candidateCount": 95,
+  "incompleteStarts": 0,
+  "incompleteTargets": 16,
+  "uniqueCandidateCount": 95,
+  "distinctTargetInstances": 16,
+  "failures": {
+    "NO_PROGRESS": 3324,
+    "RESTART_BUDGET_EXHAUSTED": 16,
+    "EQUIVALENT_CLUE_EFFECTS": 1,
+    "NO_ELIGIBLE_START": 1
+  },
+  "clueTypes": {
+    "countDistanceToPlace": 306,
+    "distanceToPlace": 20,
+    "turn": 16,
+    "direction": 11,
+    "distanceBetweenHours": 13,
+    "position": 17
+  },
+  "variantsPerTarget": [
+    {
+      "attemptId": "gk-b2-target-sha256:46cfbfa02b2f11be397863e146d07dc6ebd9927949c490e572c5c7715af62dc1",
+      "instanceFingerprint": "gk-instance-v2-sha256:04ae9c68f197c521fcdab2eaa29ee977d48258316032ab6d2dcc06158288113a",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:9b33daab78fe82afa2ede719bf7c0e5845a02a6d7e581945104891b10acf91d7",
+      "instanceFingerprint": "gk-instance-v2-sha256:f8a440c95aaaf2c72a2813f6365094d1964b2dc06f89643e49d30a6101cde34b",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:66555fed0d29999694bc66549710dd6fcc243a50798cc0392333af282e846afa",
+      "instanceFingerprint": "gk-instance-v2-sha256:c55f459b56b87fe5aa158fa8b5e804a8fd57831f3284487bfb0da93fe931b17d",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:629fd289c611ed02319cc655a515ec0474fb1031648b5ace4ca247d5223b5e59",
+      "instanceFingerprint": "gk-instance-v2-sha256:9f2ade4748ea50e9aa95d376e50082a0c1e6b1e1fc6d39719425abe1f8131514",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:0718c2c6a87f571a5985e10b01f4ad3bc90cb18fe812a29064d536610f8cf108",
+      "instanceFingerprint": "gk-instance-v2-sha256:2d068cedf77aa69ed4940e5a46dc585d8cd78112d839a5cde5068c609a894354",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:c575ff814077f02c68556b07cfde6e1faa0cc82f99f67c3c815f9ba3439699e6",
+      "instanceFingerprint": "gk-instance-v2-sha256:3dd8bbf42084c399564c13f773487373d5f8e3e82784cc27ecf20bab11476439",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:8b081191cfe8a70956d1dedcd185e82b41186062c142e7fa1c0c1133f5f97e25",
+      "instanceFingerprint": "gk-instance-v2-sha256:900dbf31dffc2384e9a28d359a89d43ad4a642bbf8ca6e203d4133e0c8648282",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:e399da611237ca424b448d1435ee95561db6bf726844d78e79cfb242e8f1b2ad",
+      "instanceFingerprint": "gk-instance-v2-sha256:60d71b357f245803ee7eafd3b8dc1dc64ece3ef12886eb579a0136e137e246cf",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:0812760f93b512737406a24cf6a2ddcd04467f4555f45b81ca190231ad25e72d",
+      "instanceFingerprint": "gk-instance-v2-sha256:b2654774af1a03fb5faf58d1c67aa783159fc10ed3ed00952c8f01df76541e8c",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:e0b8bfb52e33a33a29678ab54501360f797c967e6f9a8b70271b1a6724f7ba97",
+      "instanceFingerprint": "gk-instance-v2-sha256:09c3294a91e6db9b429362119b61cfec73801b875a0dc1044414ae659872770f",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:058b9364fed66642e991a2f9b929792bb9f6c3443ecc7cb86d0816b907d7ecba",
+      "instanceFingerprint": "gk-instance-v2-sha256:c22e7b0c12b4769366f5d1bb4d724de58ca974ccc497a772509b4fc099401085",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:5b1a8cd90a4bfe45d5a7f31460597cd6ecce8d8a5520d1ffe46a49f126086fa0",
+      "instanceFingerprint": "gk-instance-v2-sha256:1b4b8fbfe7f9598b637975b442dcb80ee02bb7099685fad04a79a3b20d9e95a5",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:5b5672723124c090403179472e8e7403e60dc0cfdc1b823a22765a231abc7db2",
+      "instanceFingerprint": "gk-instance-v2-sha256:cef08e69c5c84148c1939d4011f5ccd194c2f48df9994f0127c51b73e62ac35c",
+      "count": 5
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:2a3178422fe4d621dc05355838d148249f9d764eb8fece92070b278af313088e",
+      "instanceFingerprint": "gk-instance-v2-sha256:2344d95db60277b7d79d2493c6ae28b50e4d57d238091c01402dd5857d7f843f",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:d87143353719e3345a96638584fa166a6821367a21ee2720a068233d52bbf0c2",
+      "instanceFingerprint": "gk-instance-v2-sha256:9464952f02dc042a7648cf221fa733263649cb7cce6d35fb8fa088f124b0c26e",
+      "count": 6
+    },
+    {
+      "attemptId": "gk-b2-target-sha256:7c5deb62ee400066cd17d89d0a3d20ae9d076070da306f9b3e96ea658b1efc89",
+      "instanceFingerprint": "gk-instance-v2-sha256:11b7ffbb54e44ca52f0a7b1f0e80a6749444c6c3c03935e608a4362c2f0f4db9",
+      "count": 6
+    }
+  ],
+  "properties": {
+    "individuallyExactClues": 38,
+    "withExactHour1": 27,
+    "withDirectionHour1": 1
+  },
+  "search": {
+    "enumerationNodes": 16935,
+    "selectionNodes": 397,
+    "clueParametersExamined": 76512,
+    "clueCandidates": 17312,
+    "restarts": 96,
+    "solverChecks": 5528,
+    "cacheHits": 298,
+    "matchEvaluations": 5151269,
+    "routeFilterEvaluations": 12288359
+  },
+  "searchIncomplete": true
+}

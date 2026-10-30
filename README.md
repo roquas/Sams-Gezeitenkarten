@@ -30,6 +30,7 @@ Hexabstände einschließlich Land. Undo erhält Anzeigeoptionen und bezahlte Hil
 - [Einziger Generatorweg, Zielzahlbatches und Replay](docs/CATALOG-COMPLIANT-GENERATION.md)
 - [Lokale grafische Kontaktübersicht aus Kartenbatches](docs/MAP-CONTACT-SHEET.md)
 - [Privater Sechsschritt-Routenlauf B1](docs/ROUTE-EXPERIMENT-B1.md)
+- [Experimentelle Rätselkandidaten B2](docs/PUZZLE-EXPERIMENT-B2.md)
 - [Architektur](docs/ARCHITECTURE.md)
 - [Konsolidierung, entfernte Schnittstellen und Testtransfer](docs/CONSOLIDATION-F01-F03.md)
 

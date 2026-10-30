@@ -1,0 +1,216 @@
+{
+  "puzzleExperimentFormatVersion": 2,
+  "experimentId": "gk-b2-run-sha256:242b82594e1cd89ac4da8795a13bb373d3f1953f7a604cf99919203b2cf79d17",
+  "attemptId": "gk-b2-target-sha256:d87143353719e3345a96638584fa166a6821367a21ee2720a068233d52bbf0c2",
+  "b1MapTrialId": "gk-b1-map-sha256:5ca8096ec93a50167800d0ed1dd0bddc13e1bbbfff3318793173a2baa280f142",
+  "b1StartTrialId": "gk-b1-start-sha256:48386a92cd9e0dbf33327616a6ec852e45333115e9ededea51a33ed210a19987",
+  "source": {
+    "acceptedIndex": 3,
+    "candidateIndex": 4,
+    "generationSeed": 4,
+    "assignmentSeed": 100004
+  },
+  "routeSource": {
+    "mapFingerprint": "gk-map-v2-sha256:18d8b219d6d0084637b2d4d56a8fba5b73b2eb8bc88e0a8ac6d54832db766621",
+    "start": "A1",
+    "steps": 6,
+    "order": "engine-row-major-1",
+    "routeIndex": 0
+  },
+  "seed": 1775255062,
+  "strategy": "random-incremental-1",
+  "budgets": {
+    "maxNodesPerStart": 100000,
+    "maxClueParameters": 100000,
+    "maxRestarts": 6,
+    "maxSolverChecks": 2000,
+    "maxMatchEvaluations": 5000000,
+    "maxRouteFilterEvaluations": 20000000
+  },
+  "assetPlacements": [
+    {
+      "id": "art-01",
+      "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+      "anchor": "A1",
+      "objectId": "geo-01"
+    }
+  ],
+  "definition": {
+    "schemaVersion": 2,
+    "rulesVersion": "gezeitenkarten-2",
+    "dataVersion": 1,
+    "logic": {
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "id": "geo-01",
+            "cells": [
+              "A1"
+            ],
+            "passable": true
+          }
+        ]
+      },
+      "start": "A1",
+      "steps": 6,
+      "clues": [
+        {
+          "id": "H1",
+          "type": "countDistanceToPlace",
+          "fromHour": 1,
+          "toHour": 6,
+          "placeId": "geo-01",
+          "distance": 2,
+          "count": 1
+        },
+        {
+          "id": "H2",
+          "type": "turn",
+          "hour": 3,
+          "degrees": 0
+        },
+        {
+          "id": "H3",
+          "type": "turn",
+          "hour": 5,
+          "degrees": 120
+        },
+        {
+          "id": "H4",
+          "type": "turn",
+          "hour": 6,
+          "degrees": 60
+        },
+        {
+          "id": "H5",
+          "type": "direction",
+          "hour": 1,
+          "direction": "E"
+        },
+        {
+          "id": "H6",
+          "type": "distanceBetweenHours",
+          "hours": [
+            1,
+            6
+          ],
+          "distance": 2
+        }
+      ]
+    },
+    "solution": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "D2",
+      "C2"
+    ]
+  },
+  "fingerprints": {
+    "mapStructure": "gk-map-v2-sha256:18d8b219d6d0084637b2d4d56a8fba5b73b2eb8bc88e0a8ac6d54832db766621",
+    "instance": "gk-instance-v2-sha256:9464952f02dc042a7648cf221fa733263649cb7cce6d35fb8fa088f124b0c26e",
+    "variant": "gk-variant-v2-sha256:8db7142f1c2086f4c9ea520249152cc77b8507a8c326c96cbeb4f475c23b7b39"
+  },
+  "effectKey": "gk-b2-effects-v1-sha256:b039eba42f60b4244eece1719b3c13a39d12fc3d1dde7ab805a164280e1c2a94",
+  "proof": {
+    "method": "complete-engine-routes-and-predicates-1",
+    "legalRouteCount": 1185,
+    "count": 1,
+    "countExact": true,
+    "uniqueSolution": [
+      "A1",
+      "B1",
+      "C1",
+      "D1",
+      "E1",
+      "D2",
+      "C2"
+    ],
+    "targetMatch": true,
+    "irredundant": true,
+    "omissions": [
+      {
+        "clueId": "H1",
+        "count": 2,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H2",
+        "count": 3,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H3",
+        "count": 3,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H4",
+        "count": 2,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H5",
+        "count": 3,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H6",
+        "count": 3,
+        "countExact": true,
+        "necessary": true
+      }
+    ]
+  },
+  "properties": {
+    "clueTypes": [
+      "countDistanceToPlace",
+      "turn",
+      "direction",
+      "distanceBetweenHours"
+    ],
+    "individualExactness": [
+      {
+        "clueId": "H1",
+        "hours": []
+      },
+      {
+        "clueId": "H2",
+        "hours": []
+      },
+      {
+        "clueId": "H3",
+        "hours": []
+      },
+      {
+        "clueId": "H4",
+        "hours": []
+      },
+      {
+        "clueId": "H5",
+        "hours": [
+          1
+        ]
+      },
+      {
+        "clueId": "H6",
+        "hours": []
+      }
+    ],
+    "individuallyExactClueCount": 1,
+    "hasIndividuallyExactHour1": true,
+    "hasDirectionHour1": true
+  }
+}

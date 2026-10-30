@@ -1,0 +1,198 @@
+{
+  "program": {
+    "commit": "20c39f73cd83bed5ecb92795128a7b5ec48f8b6b",
+    "nodeVersion": "v24.19.0"
+  },
+  "sourceBatchProgram": {
+    "commit": "b7b72a7f3f9ee61c792ce347b5092b25ca24f168",
+    "nodeVersion": "v24.19.0"
+  },
+  "independentVerification": {
+    "verifiedCandidates": 95,
+    "method": "existing-checkIrredundancy-detailed"
+  },
+  "byteIdenticalRepeat": true,
+  "repeatRelocatedBothInputDirectories": true,
+  "originalSourceFileHashesMatchB1Example": true,
+  "unchangedB1Artifacts": true,
+  "unchangedSearchBudgetsAndSeeds": true,
+  "unchangedRetainedLogicalFingerprints": true,
+  "droppedEquivalentParameterFingerprints": [
+    {
+      "originalLine": 77,
+      "variant": "gk-variant-v2-sha256:89744b02e2968fd478e761ab209fce716bb20210d8e29fcdca077b5bae9ddd59",
+      "start": "E1",
+      "routeIndex": 0
+    }
+  ],
+  "regressionBaseline": {
+    "reviewedHead": "c74899a3ba11b7b36ffb4a8cfd95f1f434644816",
+    "effectTestFile": {
+      "tests": 3,
+      "pass": 1,
+      "fail": 2
+    },
+    "provenanceTestsAtIntroduction": {
+      "tests": 13,
+      "pass": 2,
+      "fail": 11
+    },
+    "concreteEffectRegression": "5 distinct individual-effect sets versus 6 stored candidates"
+  },
+  "deterministicFiles": [
+    "manifest.json",
+    "attempts.jsonl",
+    "candidates.jsonl",
+    "summary.json"
+  ],
+  "benchmarkDistinctSets": {
+    "nodeVersion": "v24.19.0",
+    "inputSha256": "d9e62cd6fae2cf03548800d5074f88db1d32a8f9fdc969cd5c807191c84c7137",
+    "checks": 6,
+    "distinctSets": 6,
+    "legalRoutes": 1760,
+    "existingSolverMs": 390,
+    "cachedSolverMs": 183,
+    "cachedMetrics": {
+      "solverChecks": 6,
+      "cacheHits": 0,
+      "matchEvaluations": 29920,
+      "routeFilterEvaluations": 12409
+    },
+    "enumerationNodes": 2527
+  },
+  "benchmarkWithRepeats": {
+    "nodeVersion": "v24.19.0",
+    "inputSha256": "d9e62cd6fae2cf03548800d5074f88db1d32a8f9fdc969cd5c807191c84c7137",
+    "checks": 24,
+    "distinctSets": 6,
+    "legalRoutes": 1760,
+    "existingSolverMs": 950,
+    "cachedSolverMs": 203,
+    "cachedMetrics": {
+      "solverChecks": 6,
+      "cacheHits": 18,
+      "matchEvaluations": 29920,
+      "routeFilterEvaluations": 12409
+    },
+    "enumerationNodes": 2527
+  },
+  "clueCountHistogram": {
+    "3": 22,
+    "2": 11,
+    "4": 27,
+    "6": 5,
+    "5": 27,
+    "7": 2,
+    "8": 1
+  },
+  "clueTypeDiversityHistogram": {
+    "2": 28,
+    "1": 52,
+    "3": 10,
+    "4": 5
+  },
+  "candidatesWithMultipleIndividuallyExactClues": 4,
+  "files": [
+    {
+      "file": "b1/manifest.json",
+      "bytes": 35970,
+      "sha256": "3a5fdd6425b16e6a971afe489dbd0d5c368e42360dcdcbf72e0996c9cc7d7f8c"
+    },
+    {
+      "file": "b1/maps.jsonl",
+      "bytes": 12180,
+      "sha256": "cadd69735df4a019d328e360c217e8a44bc1b3bbcd3ff4a504289f44b3e9edbb"
+    },
+    {
+      "file": "b1/summary.json",
+      "bytes": 521,
+      "sha256": "07e5916e6a072bac522ac53fda2b88ff95f0906321d3cc5179f6019becda9512"
+    },
+    {
+      "file": "examples/01-combined-deductions.json",
+      "bytes": 4797,
+      "sha256": "838bf1f050732751b223fa0c475f42d3fee2a3907f53a85a9d5f2209720bf729"
+    },
+    {
+      "file": "examples/02-same-target-alternative.json",
+      "bytes": 4461,
+      "sha256": "08c07f25420ee570775b50decb2f85c5421294542fa79f39e5d0bea1142c60e6"
+    },
+    {
+      "file": "examples/03-direction-hour-one.json",
+      "bytes": 4849,
+      "sha256": "2827742ce06a0caae8b3e3143ff06ba2b25c23b758875da37994e7225cd3faa8"
+    },
+    {
+      "file": "exhausted/attempts.jsonl",
+      "bytes": 3800,
+      "sha256": "37d0369ecafc1c3cfbab55f26221e08060530ea5059a363a5c4e037d4ab5a70c"
+    },
+    {
+      "file": "exhausted/candidates.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "exhausted/manifest.json",
+      "bytes": 44588,
+      "sha256": "db131505ef387bf549ba179d025965f453ffc926ee7d310d463c0921a505e7e3"
+    },
+    {
+      "file": "exhausted/summary.json",
+      "bytes": 909,
+      "sha256": "51aceb792f5b6e5638c88670904e8eb6121009455154738e871d389abda9599d"
+    },
+    {
+      "file": "exhausted/timings.json",
+      "bytes": 125,
+      "sha256": "2b398535376520f8bf7db2ef4592588ee2289e1a2d607cc741999cd57b2f00fd"
+    },
+    {
+      "file": "run/attempts.jsonl",
+      "bytes": 26960,
+      "sha256": "a1254aa5fbc480284a75b6ea4a353041d2b9ac8b227adc091ceca7308cf538e7"
+    },
+    {
+      "file": "run/candidates.jsonl",
+      "bytes": 318338,
+      "sha256": "d9e62cd6fae2cf03548800d5074f88db1d32a8f9fdc969cd5c807191c84c7137"
+    },
+    {
+      "file": "run/manifest.json",
+      "bytes": 44593,
+      "sha256": "3be4cc81ad0c5be3645397d7867cc40b217b5804a076950ede3fb64ccb4124bb"
+    },
+    {
+      "file": "run/summary.json",
+      "bytes": 5249,
+      "sha256": "9cf748fac6e8f0a8a14113014b7e5399711a5ff6ddbe7bd074dfd71889c45cc4"
+    },
+    {
+      "file": "run/timings.json",
+      "bytes": 136,
+      "sha256": "4f91df40b1b184c361ef94b0038c1e55d6d9c4149c04db004e17e76d9edf6576"
+    },
+    {
+      "file": "source-batch/accepted.jsonl",
+      "bytes": 130357,
+      "sha256": "7a4e45041e2a9634c9615e7617315c8512fc59bb07216e87d42c2f4e2635d728"
+    },
+    {
+      "file": "source-batch/candidates.jsonl",
+      "bytes": 161272,
+      "sha256": "d81c172a624a89093702e7e92ed568e1a678a15c97a953c0b58e691f19a9d4ad"
+    },
+    {
+      "file": "source-batch/manifest.json",
+      "bytes": 19538,
+      "sha256": "8325ab19fdbb071b66cd77215cd835a0fb2105bd0c18a1cce19369537f3b8cac"
+    },
+    {
+      "file": "source-batch/summary.json",
+      "bytes": 8722,
+      "sha256": "7dbdcc3f9f3d82f4559b89b18b70462b2ee13ba6cbaccd230d7e0acb3ebc9eac"
+    }
+  ]
+}

@@ -1,0 +1,1754 @@
+{
+  "puzzleExperimentFormatVersion": 2,
+  "strategy": "random-incremental-1",
+  "routeSelection": {
+    "strategy": "explicit-indices-all-b1-starts-1",
+    "order": "engine-row-major-1",
+    "routeIndices": [
+      0,
+      25
+    ]
+  },
+  "rulesVersion": "gezeitenkarten-2",
+  "steps": 6,
+  "seed": 42,
+  "budgets": {
+    "maxNodesPerStart": 100000,
+    "maxClueParameters": 100000,
+    "maxRestarts": 6,
+    "maxSolverChecks": 2000,
+    "maxMatchEvaluations": 5000000,
+    "maxRouteFilterEvaluations": 20000000
+  },
+  "program": {
+    "commit": "20c39f73cd83bed5ecb92795128a7b5ec48f8b6b",
+    "nodeVersion": "v24.19.0"
+  },
+  "input": {
+    "experimentId": "gk-b1-run-sha256:d31d69c42cc44421c7dc976584c9e7fa551a21ea2820e5f7a4d6c5f2e0f7b9ac",
+    "files": [
+      {
+        "file": "manifest.json",
+        "sha256": "3a5fdd6425b16e6a971afe489dbd0d5c368e42360dcdcbf72e0996c9cc7d7f8c"
+      },
+      {
+        "file": "maps.jsonl",
+        "sha256": "cadd69735df4a019d328e360c217e8a44bc1b3bbcd3ff4a504289f44b3e9edbb"
+      },
+      {
+        "file": "summary.json",
+        "sha256": "07e5916e6a072bac522ac53fda2b88ff95f0906321d3cc5179f6019becda9512"
+      }
+    ],
+    "sourceFiles": [
+      {
+        "file": "manifest.json",
+        "sha256": "8325ab19fdbb071b66cd77215cd835a0fb2105bd0c18a1cce19369537f3b8cac"
+      },
+      {
+        "file": "summary.json",
+        "sha256": "7dbdcc3f9f3d82f4559b89b18b70462b2ee13ba6cbaccd230d7e0acb3ebc9eac"
+      },
+      {
+        "file": "candidates.jsonl",
+        "sha256": "d81c172a624a89093702e7e92ed568e1a678a15c97a953c0b58e691f19a9d4ad"
+      },
+      {
+        "file": "accepted.jsonl",
+        "sha256": "7a4e45041e2a9634c9615e7617315c8512fc59bb07216e87d42c2f4e2635d728"
+      }
+    ],
+    "b1Manifest": {
+      "experimentFormatVersion": 1,
+      "strategy": "all-starts-six-steps-1",
+      "routeOrder": "engine-row-major-1",
+      "rulesVersion": "gezeitenkarten-2",
+      "steps": 6,
+      "budgets": {
+        "maxNodesPerStart": 100000
+      },
+      "program": {
+        "commit": "948b29ec5ddc09952e5edd2a34d86627d89914ad",
+        "nodeVersion": "v24.19.0"
+      },
+      "input": {
+        "files": [
+          {
+            "file": "manifest.json",
+            "sha256": "8325ab19fdbb071b66cd77215cd835a0fb2105bd0c18a1cce19369537f3b8cac"
+          },
+          {
+            "file": "summary.json",
+            "sha256": "7dbdcc3f9f3d82f4559b89b18b70462b2ee13ba6cbaccd230d7e0acb3ebc9eac"
+          },
+          {
+            "file": "candidates.jsonl",
+            "sha256": "d81c172a624a89093702e7e92ed568e1a678a15c97a953c0b58e691f19a9d4ad"
+          },
+          {
+            "file": "accepted.jsonl",
+            "sha256": "7a4e45041e2a9634c9615e7617315c8512fc59bb07216e87d42c2f4e2635d728"
+          }
+        ],
+        "acceptedIndices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "batchManifest": {
+          "batchFormatVersion": 3,
+          "seedScheduleVersion": "sequential-uint32-1",
+          "options": {
+            "targetCount": 12,
+            "maxAttempts": 40,
+            "seedStart": 0,
+            "assignmentSeedStart": 100000,
+            "config": {
+              "objectCount": {
+                "min": 0,
+                "max": 7
+              },
+              "objectSizes": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "passableProbability": 0.5,
+              "maxMapAttempts": 1,
+              "analysis": {
+                "steps": [],
+                "maxNodes": 10000
+              },
+              "filters": {
+                "routeSteps": [],
+                "minLargestComponent": 0
+              }
+            }
+          },
+          "catalogProfile": {
+            "version": "catalog-capacities-1",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112",
+            "placements": [
+              {
+                "cells": [
+                  "A1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A1",
+                  "A2",
+                  "B1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A1",
+                  "A2",
+                  "B1",
+                  "B2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A1",
+                  "B1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A1",
+                  "B1",
+                  "B2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A1",
+                  "B1",
+                  "C1",
+                  "D1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2",
+                  "A3",
+                  "B2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2",
+                  "A3",
+                  "B3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2",
+                  "B1",
+                  "B2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2",
+                  "B1",
+                  "C1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2",
+                  "B2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2",
+                  "B2",
+                  "B3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2",
+                  "B2",
+                  "B3",
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2",
+                  "B2",
+                  "C2",
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A2",
+                  "B2",
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A3",
+                  "A4",
+                  "B3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A3",
+                  "A4",
+                  "B3",
+                  "B4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A3",
+                  "B3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A3",
+                  "B3",
+                  "B4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A3",
+                  "B3",
+                  "C3",
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4",
+                  "A5",
+                  "B4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4",
+                  "A5",
+                  "B5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4",
+                  "B3",
+                  "B4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4",
+                  "B3",
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4",
+                  "B4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4",
+                  "B4",
+                  "B5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4",
+                  "B4",
+                  "B5",
+                  "C5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4",
+                  "B4",
+                  "C4",
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A4",
+                  "B4",
+                  "C5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A5",
+                  "B5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A5",
+                  "B5",
+                  "C5",
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B1",
+                  "B2",
+                  "C1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B1",
+                  "B2",
+                  "C1",
+                  "C2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B1",
+                  "C1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B1",
+                  "C1",
+                  "C2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B1",
+                  "C1",
+                  "D1",
+                  "E1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2",
+                  "B3",
+                  "C2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2",
+                  "B3",
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2",
+                  "C1",
+                  "C2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2",
+                  "C1",
+                  "D1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2",
+                  "C2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2",
+                  "C2",
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2",
+                  "C2",
+                  "C3",
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2",
+                  "C2",
+                  "D2",
+                  "E2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B2",
+                  "C2",
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B3",
+                  "B4",
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B3",
+                  "B4",
+                  "C3",
+                  "C4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B3",
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B3",
+                  "C3",
+                  "C4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B3",
+                  "C3",
+                  "D3",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4",
+                  "B5",
+                  "C4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4",
+                  "B5",
+                  "C5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4",
+                  "C3",
+                  "C4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4",
+                  "C3",
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4",
+                  "C4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4",
+                  "C4",
+                  "C5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4",
+                  "C4",
+                  "C5",
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4",
+                  "C4",
+                  "D4",
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B4",
+                  "C4",
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B5",
+                  "C5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "B5",
+                  "C5",
+                  "D5",
+                  "E5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C1",
+                  "C2",
+                  "D1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C1",
+                  "C2",
+                  "D1",
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C1",
+                  "D1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C1",
+                  "D1",
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C2",
+                  "C3",
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C2",
+                  "C3",
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C2",
+                  "D1",
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C2",
+                  "D1",
+                  "E1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C2",
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C2",
+                  "D2",
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C2",
+                  "D2",
+                  "D3",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C2",
+                  "D2",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C3",
+                  "C4",
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C3",
+                  "C4",
+                  "D3",
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C3",
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C3",
+                  "D3",
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C4",
+                  "C5",
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C4",
+                  "C5",
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C4",
+                  "D3",
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C4",
+                  "D3",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C4",
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C4",
+                  "D4",
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C4",
+                  "D4",
+                  "D5",
+                  "E5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C4",
+                  "D4",
+                  "E5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "C5",
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D1",
+                  "D2",
+                  "E1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D1",
+                  "D2",
+                  "E1",
+                  "E2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D1",
+                  "E1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D1",
+                  "E1",
+                  "E2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D2",
+                  "D3",
+                  "E2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D2",
+                  "D3",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D2",
+                  "E1",
+                  "E2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D2",
+                  "E2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D2",
+                  "E2",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D3",
+                  "D4",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D3",
+                  "D4",
+                  "E3",
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D3",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D3",
+                  "E3",
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D4",
+                  "D5",
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D4",
+                  "D5",
+                  "E5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D4",
+                  "E3",
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D4",
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D4",
+                  "E4",
+                  "E5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "D5",
+                  "E5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "E1"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "E2"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "E5"
+                ],
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A1"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "A2"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "A3"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "A4"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B1"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B2"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B3"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B4"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B5"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "C1"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "C2"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "C3"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "C4"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "C5"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D1"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D2"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D3"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D4"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D5"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "E1"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "E2"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "E3"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "E4"
+                ],
+                "passable": true
+              },
+              {
+                "cells": [
+                  "E5"
+                ],
+                "passable": true
+              }
+            ],
+            "capacities": [
+              {
+                "shape": "0,0",
+                "passable": false,
+                "count": 1
+              },
+              {
+                "shape": "0,0;0,1;1,0",
+                "passable": false,
+                "count": 1
+              },
+              {
+                "shape": "0,0;0,1;1,0;1,1",
+                "passable": false,
+                "count": 2
+              },
+              {
+                "shape": "0,0;1,0",
+                "passable": false,
+                "count": 1
+              },
+              {
+                "shape": "0,0;1,0;1,1",
+                "passable": false,
+                "count": 1
+              },
+              {
+                "shape": "0,0;1,0;2,0;3,0",
+                "passable": false,
+                "count": 1
+              },
+              {
+                "shape": "0,1;1,0;1,1",
+                "passable": false,
+                "count": 1
+              },
+              {
+                "shape": "0,1;1,0;2,0",
+                "passable": false,
+                "count": 1
+              },
+              {
+                "shape": "0,0",
+                "passable": true,
+                "count": 9
+              }
+            ]
+          },
+          "versions": {
+            "generator": "catalog-compliant-maps-2",
+            "assignment": "catalog-assignment-1",
+            "catalogProfile": "catalog-capacities-1",
+            "pixelChecker": "asset-placement-pixels-2",
+            "releaseAdapter": "released-asset-catalog-1",
+            "rules": "gezeitenkarten-2",
+            "acceptance": "catalog-complete-1"
+          },
+          "program": {
+            "commit": "b7b72a7f3f9ee61c792ce347b5092b25ca24f168",
+            "nodeVersion": "v24.19.0"
+          },
+          "provenance": {
+            "adapterVersion": "released-asset-catalog-1",
+            "releaseId": "gk-catalog-release-v1-sha256-cf40f75ef70ec0ce1455c5de1e8ce99d08a57cd29ec4c202aae9c86a7a5a6ed1",
+            "catalogId": "gk-catalog-content-v1-sha256-3f406882907a76f99b3c6f816dc664f28f55d1ba42f01baa5fc637dc0b742bd1",
+            "sourceCommit": "ccab5f41dae380525f7535de4470848a3ab4d214",
+            "archiveCommit": "b7b72a7f3f9ee61c792ce347b5092b25ca24f168",
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "267bc43dd30c7d6d87beedb298e7045281f073d977065dcea3ce843c39f42112"
+          }
+        },
+        "batchSummary": {
+          "batchFormatVersion": 3,
+          "status": "target-reached",
+          "targetCount": 12,
+          "maxAttempts": 40,
+          "attemptedCount": 16,
+          "acceptedCount": 12,
+          "rejectedCount": 4,
+          "rejectionCounts": {
+            "GENERATION_EXHAUSTED": 4,
+            "OBJECT_SPACING_EXHAUSTED": 4
+          },
+          "attempted": {
+            "geography": {
+              "statuses": {
+                "exhausted": 4,
+                "generated": 12
+              },
+              "distinctMaps": 10,
+              "duplicateMaps": 2,
+              "emptyMaps": 3,
+              "mapAttempts": 16,
+              "placementAttempts": 52,
+              "rejectionCounts": {
+                "OBJECT_SPACING_EXHAUSTED": 4
+              },
+              "profileWork": {
+                "preferredPlacements": 48,
+                "footprintChecks": 8008
+              },
+              "histograms": {
+                "objectCount": {
+                  "0": 3,
+                  "1": 2,
+                  "2": 2,
+                  "4": 2,
+                  "5": 2,
+                  "6": 1
+                },
+                "passableObjects": {
+                  "0": 3,
+                  "1": 2,
+                  "2": 3,
+                  "3": 1,
+                  "4": 1,
+                  "5": 2
+                },
+                "blockedObjects": {
+                  "0": 9,
+                  "1": 1,
+                  "2": 2
+                },
+                "occupiedCells": {
+                  "0": 3,
+                  "1": 2,
+                  "2": 2,
+                  "4": 1,
+                  "5": 1,
+                  "6": 1,
+                  "7": 1,
+                  "8": 1
+                },
+                "waterCells": {
+                  "17": 1,
+                  "18": 1,
+                  "19": 1,
+                  "20": 1,
+                  "21": 1,
+                  "23": 2,
+                  "24": 2,
+                  "25": 3
+                },
+                "landFraction": {
+                  "0": 3,
+                  "0.16": 1,
+                  "0.32": 1,
+                  "0.04": 2,
+                  "0.08": 2,
+                  "0.24": 1,
+                  "0.2": 1,
+                  "0.28": 1
+                },
+                "waterFraction": {
+                  "1": 3,
+                  "0.84": 1,
+                  "0.68": 1,
+                  "0.96": 2,
+                  "0.92": 2,
+                  "0.76": 1,
+                  "0.8": 1,
+                  "0.72": 1
+                },
+                "passableComponentCount": {
+                  "1": 12
+                },
+                "blockedComponentCount": {
+                  "0": 9,
+                  "1": 1,
+                  "2": 2
+                },
+                "coastEdges": {
+                  "0": 3,
+                  "2": 2,
+                  "9": 2,
+                  "16": 1,
+                  "22": 1,
+                  "24": 1,
+                  "27": 2
+                },
+                "passableComponentSizes": {
+                  "20": 2,
+                  "24": 1,
+                  "25": 9
+                },
+                "blockedComponentSizes": {
+                  "1": 3,
+                  "4": 2
+                },
+                "objectSizes": {
+                  "1": 28,
+                  "4": 2
+                },
+                "shapesByPassability": {
+                  "true:0,0": 25,
+                  "false:0,0": 3,
+                  "false:0,0;0,1;1,0;1,1": 1,
+                  "false:0,0;1,0;2,0;3,0": 1
+                },
+                "boundaryCells": {
+                  "0": 5,
+                  "1": 24,
+                  "2": 1
+                },
+                "boundaryEdges": {
+                  "0": 5,
+                  "1": 6,
+                  "2": 7,
+                  "3": 7,
+                  "4": 4,
+                  "5": 1
+                },
+                "isolatedCells": {
+                  "0": 12
+                },
+                "deadEnds": {
+                  "0": 10,
+                  "1": 2
+                },
+                "articulationCells": {
+                  "0": 10,
+                  "1": 1,
+                  "4": 1
+                },
+                "startCells": {
+                  "0": 3,
+                  "1": 2,
+                  "2": 3,
+                  "3": 1,
+                  "4": 1,
+                  "5": 2
+                }
+              },
+              "routes": {}
+            },
+            "assignment": {
+              "statuses": {
+                "complete": 12
+              },
+              "nonemptyStatuses": {
+                "complete": 9
+              },
+              "objects": 30,
+              "assigned": 30,
+              "unassigned": 0,
+              "rejectionCounts": {},
+              "assetTypes": {
+                "bottle": 2,
+                "driftwood": 5,
+                "buoy": 3,
+                "rowboat": 2,
+                "island": 4,
+                "settlement": 1,
+                "crate": 3,
+                "lighthouse": 2,
+                "atoll": 2,
+                "barrels": 3,
+                "wreck": 3
+              },
+              "assetUsage": {
+                "sea-life.accent.h1.bottle.v1": 2,
+                "sea-life.accent.h1.driftwood.v1": 5,
+                "sea-life.accent.h1.buoy.v1": 3,
+                "sea-life.accent.h1.rowboat.v1": 2,
+                "land-coast.island.h1.basalt-spire-water.v1": 3,
+                "land-coast.settlement.h4.tesoro.v4": 1,
+                "sea-life.accent.h1.crate.v1": 3,
+                "navigation.lighthouse.h1.offcenter-beacon.v1": 2,
+                "land-coast.atoll.h1.broken-passages.v1": 2,
+                "sea-life.accent.h1.barrels.v1": 3,
+                "navigation.wreck.h1.offcenter-sloop.v1": 3,
+                "land-coast.island.h4.long-sand.v1": 1
+              },
+              "unassignedShapes": {},
+              "unassignedSizesByPassability": {},
+              "candidateChecks": 840,
+              "anchorChecks": 1008
+            },
+            "errors": {}
+          },
+          "accepted": {
+            "geography": {
+              "statuses": {
+                "generated": 12
+              },
+              "distinctMaps": 10,
+              "duplicateMaps": 2,
+              "emptyMaps": 3,
+              "mapAttempts": 12,
+              "placementAttempts": 30,
+              "rejectionCounts": {},
+              "profileWork": {
+                "preferredPlacements": 30,
+                "footprintChecks": 4620
+              },
+              "histograms": {
+                "objectCount": {
+                  "0": 3,
+                  "1": 2,
+                  "2": 2,
+                  "4": 2,
+                  "5": 2,
+                  "6": 1
+                },
+                "passableObjects": {
+                  "0": 3,
+                  "1": 2,
+                  "2": 3,
+                  "3": 1,
+                  "4": 1,
+                  "5": 2
+                },
+                "blockedObjects": {
+                  "0": 9,
+                  "1": 1,
+                  "2": 2
+                },
+                "occupiedCells": {
+                  "0": 3,
+                  "1": 2,
+                  "2": 2,
+                  "4": 1,
+                  "5": 1,
+                  "6": 1,
+                  "7": 1,
+                  "8": 1
+                },
+                "waterCells": {
+                  "17": 1,
+                  "18": 1,
+                  "19": 1,
+                  "20": 1,
+                  "21": 1,
+                  "23": 2,
+                  "24": 2,
+                  "25": 3
+                },
+                "landFraction": {
+                  "0": 3,
+                  "0.16": 1,
+                  "0.32": 1,
+                  "0.04": 2,
+                  "0.08": 2,
+                  "0.24": 1,
+                  "0.2": 1,
+                  "0.28": 1
+                },
+                "waterFraction": {
+                  "1": 3,
+                  "0.84": 1,
+                  "0.68": 1,
+                  "0.96": 2,
+                  "0.92": 2,
+                  "0.76": 1,
+                  "0.8": 1,
+                  "0.72": 1
+                },
+                "passableComponentCount": {
+                  "1": 12
+                },
+                "blockedComponentCount": {
+                  "0": 9,
+                  "1": 1,
+                  "2": 2
+                },
+                "coastEdges": {
+                  "0": 3,
+                  "2": 2,
+                  "9": 2,
+                  "16": 1,
+                  "22": 1,
+                  "24": 1,
+                  "27": 2
+                },
+                "passableComponentSizes": {
+                  "20": 2,
+                  "24": 1,
+                  "25": 9
+                },
+                "blockedComponentSizes": {
+                  "1": 3,
+                  "4": 2
+                },
+                "objectSizes": {
+                  "1": 28,
+                  "4": 2
+                },
+                "shapesByPassability": {
+                  "true:0,0": 25,
+                  "false:0,0": 3,
+                  "false:0,0;0,1;1,0;1,1": 1,
+                  "false:0,0;1,0;2,0;3,0": 1
+                },
+                "boundaryCells": {
+                  "0": 5,
+                  "1": 24,
+                  "2": 1
+                },
+                "boundaryEdges": {
+                  "0": 5,
+                  "1": 6,
+                  "2": 7,
+                  "3": 7,
+                  "4": 4,
+                  "5": 1
+                },
+                "isolatedCells": {
+                  "0": 12
+                },
+                "deadEnds": {
+                  "0": 10,
+                  "1": 2
+                },
+                "articulationCells": {
+                  "0": 10,
+                  "1": 1,
+                  "4": 1
+                },
+                "startCells": {
+                  "0": 3,
+                  "1": 2,
+                  "2": 3,
+                  "3": 1,
+                  "4": 1,
+                  "5": 2
+                }
+              },
+              "routes": {}
+            },
+            "assignment": {
+              "statuses": {
+                "complete": 12
+              },
+              "nonemptyStatuses": {
+                "complete": 9
+              },
+              "objects": 30,
+              "assigned": 30,
+              "unassigned": 0,
+              "rejectionCounts": {},
+              "assetTypes": {
+                "bottle": 2,
+                "driftwood": 5,
+                "buoy": 3,
+                "rowboat": 2,
+                "island": 4,
+                "settlement": 1,
+                "crate": 3,
+                "lighthouse": 2,
+                "atoll": 2,
+                "barrels": 3,
+                "wreck": 3
+              },
+              "assetUsage": {
+                "sea-life.accent.h1.bottle.v1": 2,
+                "sea-life.accent.h1.driftwood.v1": 5,
+                "sea-life.accent.h1.buoy.v1": 3,
+                "sea-life.accent.h1.rowboat.v1": 2,
+                "land-coast.island.h1.basalt-spire-water.v1": 3,
+                "land-coast.settlement.h4.tesoro.v4": 1,
+                "sea-life.accent.h1.crate.v1": 3,
+                "navigation.lighthouse.h1.offcenter-beacon.v1": 2,
+                "land-coast.atoll.h1.broken-passages.v1": 2,
+                "sea-life.accent.h1.barrels.v1": 3,
+                "navigation.wreck.h1.offcenter-sloop.v1": 3,
+                "land-coast.island.h4.long-sand.v1": 1
+              },
+              "unassignedShapes": {},
+              "unassignedSizesByPassability": {},
+              "candidateChecks": 840,
+              "anchorChecks": 1008
+            },
+            "errors": {},
+            "repetitionHistogram": {
+              "0": 12
+            }
+          }
+        }
+      },
+      "experimentId": "gk-b1-run-sha256:d31d69c42cc44421c7dc976584c9e7fa551a21ea2820e5f7a4d6c5f2e0f7b9ac"
+    }
+  },
+  "experimentId": "gk-b2-run-sha256:242b82594e1cd89ac4da8795a13bb373d3f1953f7a604cf99919203b2cf79d17"
+}
