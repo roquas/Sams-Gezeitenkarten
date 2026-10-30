@@ -20,11 +20,21 @@ import {adjacent as neighbor} from '../engine/hex.mjs';
 
 createMobileViews();
 
-const loader=createPuzzleLoader({manifestUrl:new URL('../../puzzles/manifest.json',import.meta.url)});
-const catalog=await loader.manifest();
+const params=new URLSearchParams(window.location.search);
+const b2Development=params.get('dev')==='b2';
+const selectionKey=b2Development?'gezeitenkarten-selected-b2':'gezeitenkarten-selected-puzzle';
+const loader=createPuzzleLoader({manifestUrl:new URL(b2Development?'../../.dev/b2/manifest.json':'../../puzzles/manifest.json',import.meta.url)});
+const catalog=await loader.manifest().catch(error=>{
+ if(b2Development)throw Error(error.message+' B2-Testbestand zuerst mit npm run export:b2 exportieren; oder URL ohne ?dev=b2 öffnen.');
+ throw error;
+});
 if(!catalog.puzzles.length)throw Error('Zurzeit sind keine Rätsel verfügbar.');
 let storage;try{storage=window.localStorage;}catch{}
-let selected;try{selected=storage?.getItem('gezeitenkarten-selected-puzzle');}catch{}
+let selected;try{selected=storage?.getItem(selectionKey);}catch{}
+if(b2Development&&params.has('puzzle')){
+ selected=params.get('puzzle');
+ if(!catalog.puzzles.some(p=>p.id===selected))throw Error('Unbekannter B2-Testname: '+selected+'. Öffne ?dev=b2 für die vollständige Auswahl.');
+}
 let puzzle;
 try{puzzle=await loader.load(catalog.puzzles.some(p=>p.id===selected)?selected:catalog.defaultId);}
 catch(error){
@@ -167,6 +177,14 @@ function changeFrame(){
 frameSelect.addEventListener("input",changeFrame);
 frameSelect.addEventListener("change",changeFrame);
 const select=$('puzzleSelect');
+if(b2Development){
+ document.querySelector('label[for="puzzleSelect"]').remove();
+ const panel=document.createElement('div');panel.id='b2Selection';
+ const label=document.createElement('label');label.htmlFor='puzzleSelect';label.textContent='B2-Entwicklungsauswahl · Testbestand S01';
+ const note=document.createElement('p');note.className='muted';note.textContent='Gleiche M…-Start-R…-Kennung: Varianten derselben Zielroute. Testname beim Berichten angeben.';
+ const exit=document.createElement('a');exit.href=window.location.pathname;exit.textContent='Reguläres Spiel öffnen';
+ panel.append(label,select,$('puzzleStatus'),note,exit);$('puzzleLoadError').before(panel);
+}
 for(const entry of catalog.puzzles){const option=document.createElement('option');option.value=entry.id;option.textContent=entry.title+(entry.difficulty?' · '+entry.difficulty:'');select.append(option);}
 function presentation(){
  document.querySelector('h1').textContent=puzzle.title;document.title='Gezeitenkarten · '+puzzle.title;
@@ -183,7 +201,8 @@ select.addEventListener('change',async()=>{
   save();puzzle=next;$('puzzleLoadError').hidden=true;rules=createRules(puzzle);blocked=rules.blocked;solution=puzzle.solution;hints=puzzle.hints;
   state=loadState(puzzle,storage);history.clear();cancelGesture();dragValue=null;
   checkImages(puzzle);presentation();bordbook.setClues(puzzle.clues.map(({id,text})=>[id,text]));render();
-  try{storage?.setItem('gezeitenkarten-selected-puzzle',puzzle.id);}catch{}
+  try{storage?.setItem(selectionKey,puzzle.id);}catch{}
+  if(b2Development){const url=new URL(window.location.href);url.searchParams.set('puzzle',puzzle.id);window.history.replaceState(window.history.state,'',url);}
   $('puzzleStatus').textContent='Geladen: '+puzzle.title+'. Spielstände bleiben getrennt gespeichert.';
  }catch(error){select.value=puzzle.id;$('puzzleStatus').textContent=error.message;}
  finally{if(token===request)select.disabled=false;}

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "export:b2": "node scripts/export-b2-playtest.mjs",
+    "dev:b2": "npm run export:b2 && python3 scripts/dev-server.py",
+    "inspect:b2": "node scripts/inspect-b2-playtest.mjs",
     "test:unit": "node --test tests/engine/*.test.mjs tests/contracts/*.test.mjs tests/integration/*.test.mjs",
     "test:browser": "playwright test",
     "test:all": "npm run test:unit && npm run test:content && npm run test:puzzles && npm run test:browser",

@@ -17,6 +17,15 @@ spec.loader.exec_module(packager)
 
 
 class PackagingTests(unittest.TestCase):
+    def test_private_b2_stock_is_not_packaged(self):
+        self.assertFalse(any(ref.startswith(('.dev/', 'docs/', 'scripts/')) for ref in self.files))
+        self.assertEqual(json.loads((ROOT / 'puzzles/manifest.json').read_text())['defaultId'], 'model-demo')
+        for ref in self.files:
+            if ref.endswith('.json'):
+                text = (ROOT / ref).read_text()
+                for private_field in ('effectKey', 'individualExactness', 'gk-b2-run-sha256', 'gk-b2-target-sha256'):
+                    self.assertNotIn(private_field, text, ref)
+
     @classmethod
     def setUpClass(cls):
         cls.files = packager.collect(ROOT)

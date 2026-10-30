@@ -192,3 +192,6 @@ main{display:grid;max-width:1340px;grid-template-columns:minmax(0,1.65fr) minmax
 #puzzleSelect{display:block;box-sizing:border-box;width:100%;min-width:0;min-height:44px;margin:6px 0 10px;padding:8px;border:1px solid #967746;border-radius:5px;background:#f2e6c9;color:#274e50;font:inherit}
 
 #hours .hour[hidden]{display:none}
+#b2Selection{margin:12px 0;padding:12px;border:1px solid #ad8e5d;border-radius:4px}
+#b2Selection label{display:block;margin-bottom:6px;font-weight:bold}
+#b2Selection select{display:block;width:100%;max-width:100%;min-height:44px}
