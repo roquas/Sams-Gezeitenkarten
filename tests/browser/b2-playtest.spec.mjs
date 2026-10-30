@@ -1,6 +1,7 @@
-import {test,expect} from '@playwright/test';
+import {test,expect,selectionUse} from '../integration/webkit-startup.mjs';
 import {execFileSync} from 'node:child_process';
 import {readPlaytestSource} from '../../scripts/lib/b2-playtest.mjs';
+test.use({...selectionUse,reducedMotion:'reduce'});
 const {registry,rows}=readPlaytestSource();
 const first=registry.entries[0],second=registry.entries.find(e=>e.testName!==first.testName&&e.fingerprints.instance===first.fingerprints.instance);
 const cell=(page,id)=>page.locator(`#map .cell[data-id="${id}"]`);
@@ -22,7 +23,7 @@ test('all named variants are selectable; state, undo, radar, clues and penalties
  const original=rows.find(r=>r.fingerprints.variant===first.fingerprints.variant);
  await page.locator('[data-tool="route"]').first().click();
  await cell(page,original.definition.solution[1]).focus();await page.keyboard.press('Enter');
- await page.locator('#clueTrack [data-clue]').click();
+ await page.locator('#clueTrack [data-clue]').focus();await page.keyboard.press('Enter');
  await page.locator('#toggleDistances').click();await cell(page,'B2').focus();await page.keyboard.press('Enter');
  await page.locator('#hint').evaluate(n=>n.click());
  expect((await state(page,first.testName)).penalty).toBe(10);
