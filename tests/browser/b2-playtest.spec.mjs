@@ -45,12 +45,13 @@ test('target route stays hidden and existing route tool verifies a B2 solution',
  const original=rows.find(r=>r.fingerprints.variant===first.fingerprints.variant);
  await page.goto('/?dev=b2&puzzle='+first.testName);await expect(page.locator('h1')).toHaveText(first.testName);
  expect((await state(page,first.testName)).route).toEqual([original.definition.logic.start]);
- await expect(page.locator('#map .route-line')).toHaveCount(0);
+ await expect(page.locator('#map .route-stroke')).toHaveCount(0);
  await expect(page.locator('#verifyStatus')).toBeEmpty();
  const dto=await (await page.request.get('/.dev/b2/'+first.testName+'.json')).json();
  expect(dto.puzzle.solution).toBeUndefined();expect(dto.proof).toBeUndefined();expect(dto.routeSource).toBeUndefined();
  await page.locator('[data-tool="route"]').first().click();
  for(const id of original.definition.solution.slice(1)){await cell(page,id).focus();await page.keyboard.press('Enter');}
+ await expect(page.locator('#map .route-stroke')).toHaveCount(6);
  await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig!');
  await expect(page.locator('#puzzleLoadError')).toBeHidden();
 });
