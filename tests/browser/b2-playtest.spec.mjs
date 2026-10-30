@@ -19,6 +19,9 @@ test('all named variants are selectable; state, undo, radar, clues and penalties
  await expect(page.locator('#puzzleSelect option')).toHaveCount(96);
  expect(await page.locator('#puzzleSelect option').evaluateAll(options=>options.map(o=>o.value))).toEqual(['model-demo',...registry.entries.map(e=>e.testName)]);
  await cell(page,'A1').focus();await page.keyboard.press('Enter');
+ const original=rows.find(r=>r.fingerprints.variant===first.fingerprints.variant);
+ await page.locator('[data-tool="route"]').first().click();
+ await cell(page,original.definition.solution[1]).focus();await page.keyboard.press('Enter');
  await page.locator('#clueTrack [data-clue]').click();
  await page.locator('#toggleDistances').click();await cell(page,'B2').focus();await page.keyboard.press('Enter');
  await page.locator('#hint').evaluate(n=>n.click());
