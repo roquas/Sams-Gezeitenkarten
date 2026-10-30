@@ -124,13 +124,16 @@ $("clearLayer").onclick=()=>{snapshot();for(const k of Object.keys(state.marks))
 $("routeBack").onclick=()=>{if(state.route.length>1){snapshot();state.route.pop();state.result="";render()}};
 $("verify").onclick=()=>{if(state.route.length!==puzzle.steps+1){state.result='<div class="notice error">Die Route braucht genau '+puzzle.steps+' Etappen. Aktuell sind es '+(state.route.length-1)+'.</div>'}else if(rules.legal(state.route)&&puzzle.clues.every(clue=>rules.matches(state.route,clue))){state.result='<div class="notice success"><strong>Richtig!</strong> Die Route ist vollständig rekonstruiert. Du hast '+state.penalty+' Strafpunkte gesammelt.</div>'}else{state.result='<div class="notice error">Diese Route erfüllt nicht alle Hinweise. Die korrekte Strecke wird nicht verraten.</div>'}render()};
 $("checkMarks").onclick=()=>{
- snapshot();state.penalty+=5;
  let wrong=0,checked=0;
  for(const [k,v] of Object.entries(state.marks)){
   const [layer,id]=k.split(":");if(v!=="no"&&v!=="yes")continue;checked++;
   const actual=layer==="all"?solution.includes(id):solution[Number(layer)]===id;
   if((v==="yes"&&!actual)||(v==="no"&&actual))wrong++;
  }
+ if(!checked){
+  state.help='<div class="notice">Es gibt noch keine eindeutigen Markierungen zum Prüfen.</div>';render();return;
+ }
+ snapshot();state.penalty+=5;
  state.help='<div class="notice '+(wrong?"error":"success")+'"><strong>Notizprüfung:</strong> '+(wrong?`${wrong} Deiner ${checked} eindeutigen Markierungen widersprechen der tatsächlichen Route.`:`Keine der ${checked} eindeutigen Markierungen widerspricht der Route.`)+' „Möglich“-Markierungen werden nicht bewertet. Die Prüfung verrät nicht, welche Felder betroffen sind.</div>';render();
 };
 $("hint").onclick=()=>{
