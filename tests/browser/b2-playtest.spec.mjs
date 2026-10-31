@@ -1,6 +1,7 @@
 import {test,expect,selectionUse} from '../integration/webkit-startup.mjs';
 import {execFileSync} from 'node:child_process';
 import {readPlaytestSource} from '../../scripts/lib/b2-playtest.mjs';
+import {cluePresentationForm} from '../../scripts/lib/clue-presentation.mjs';
 test.use({...selectionUse,reducedMotion:'reduce'});
 const {registry,rows}=readPlaytestSource();
 const first=registry.entries[0],second=registry.entries.find(e=>e.testName!==first.testName&&e.fingerprints.instance===first.fingerprints.instance);
@@ -83,6 +84,20 @@ test('all six technical clue types reach the existing bordbook with coordinate m
 test('missing local export reports the export command',async({page})=>{
  await page.route('**/.dev/b2/manifest.json',r=>r.fulfill({status:404}));
  await page.goto('/?dev=b2');await expect(page.locator('#puzzleLoadError')).toContainText('npm run export:b2');
+});
+test('historical S01 clues show all three derived forms in the bordbook',async({page})=>{
+ test.setTimeout(60_000);
+ for(const form of ['NotDistanceAt','HasDistanceAt','CountDistanceNever']){
+  const row=rows.find(r=>r.definition.logic.clues.some(c=>cluePresentationForm(c)===form));
+  const clue=row.definition.logic.clues.find(c=>cluePresentationForm(c)===form);
+  const binding=registry.entries.find(e=>e.fingerprints.variant===row.fingerprints.variant);
+  await page.goto('/?dev=b2&puzzle='+binding.testName);
+  await expect(page.locator('h1')).toHaveText(binding.testName);
+  const text=await page.locator('#allClues .clue p').nth(row.definition.logic.clues.indexOf(clue)).textContent();
+  expect(text).toContain(form==='CountDistanceNever'?`In den Stunden ${clue.fromHour} bis ${clue.toHour} (beide einschließlich)`:`In Stunde ${clue.fromHour}`);
+  expect(text).toContain(form==='NotDistanceAt'?`nicht genau ${clue.distance}`:form==='CountDistanceNever'?`niemals genau ${clue.distance}`:`genau ${clue.distance}`);
+  expect(text).not.toContain('in genau 0 Stunden');
+ }
 });
 test('unknown explicit test name does not silently launch another candidate',async({page})=>{
  await page.goto('/?dev=b2&puzzle=unknown');

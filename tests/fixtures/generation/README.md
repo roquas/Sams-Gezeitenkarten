@@ -1,5 +1,23 @@
 # Feste kataloggerechte Generator-Sollvektoren
 
+## Historischer P2-Hinweispool
+
+`b2-p2-historical-pool.json` hält den unveränderten wahren Hinweispool für
+`b2-effect-equivalence.json` fest. Er wurde vor der Ortsreferenzänderung aus
+`generateTrueClues` am aktuellen `main` (`acd8a23e87b7fe840062a697d593d3ac9bbed596`)
+mit der ersten gespeicherten Definition (leere Hinweise), ihrer Lösung und
+`budgets.maxClueParameters` gewonnen: 5.853 geprüfte Parameter, 1.341 wahre Hinweise.
+Der kanonische Poolhash ist
+`513d1e76540ebd88eddafdd11b75eb46869b493cd9920a2dbb3d4357e7a0c05b`.
+
+Die bestehenden P2-Testnamen und Sollwerte bleiben erhalten. Ausschließlich der
+historische Replay liest dieses Fixture; neue B2-Produktion verwendet es nie.
+Ein separater Test vergleicht die neue Enumeration mit dem historischen Pool:
+Alle Nichtpositionsparameter bleiben gleich, nur Positionsreferenzen auf freie
+See entfallen. S01-Artefakte werden weder neu erzeugt noch migriert.
+
+## Kartenfolge
+
 `catalog-vectors.json` schützt die Kartenfolge dauerhaft über
 `tests/contracts/generator-vectors.test.mjs` im regulären Unitlauf. Drei einzelne
 Versuche genügen; es wird kein Batch geschrieben und kein Bild neu geprüft.

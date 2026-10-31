@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import {createRules} from '../../src/engine/puzzle.mjs';
 import {logicalFingerprints} from '../../scripts/lib/publication-archive.mjs';
 import {generateTrueClues,clueKey} from '../../scripts/lib/puzzle-clues.mjs';
+import {canonicalJson,sha256} from '../../scripts/lib/content-hash.mjs';
 import {createRouteWorkspace} from '../../scripts/lib/puzzle-route-solver.mjs';
 import {searchPuzzleCandidates} from '../../scripts/lib/puzzle-candidate-search.mjs';
 
@@ -21,7 +22,12 @@ test('P2-1: old B2 lines 73/77 have distinct parameter fingerprints and equal in
 
 test('P2-1: same seed and six restarts retain one of the equivalent variants without replacement search',()=>{
  const workspace=createRouteWorkspace(logic,{maxNodes:regression.budgets.maxNodesPerStart});
- const pool=generateTrueClues(logic,a.solution,{maxClueParameters:regression.budgets.maxClueParameters});
+ // Replay the reviewed historical pool, independently of new production rules.
+ const historical=JSON.parse(fs.readFileSync(new URL('../fixtures/generation/b2-p2-historical-pool.json',import.meta.url),'utf8'));
+ const pool=historical.pool;
+ assert.equal(sha256(canonicalJson(pool)),historical.sha256);
+ assert.equal(pool.completed,true);
+ assert.ok(pool.clues.every(c=>rules.matches(a.solution,c)));
  const {maxRestarts,maxSolverChecks,maxMatchEvaluations,maxRouteFilterEvaluations}=regression.budgets;
  const result=searchPuzzleCandidates({logic,targetRoute:a.solution,cluePool:pool,workspace,seed:regression.seed,
   budgets:{maxRestarts,maxSolverChecks,maxMatchEvaluations,maxRouteFilterEvaluations}});
@@ -46,4 +52,16 @@ test('P2-1: effect keys ignore clue order and parameter aliases, use complete ro
  const otherBudget=createRouteWorkspace(logic,{maxNodes:1000000}).forClues(clues,regression.budgets);
  assert.equal(key,otherBudget.effectKey(indices(a)));
  assert.equal(createRouteWorkspace(logic,{maxNodes:1}).forClues,undefined);
+});
+
+test('new production restricts only position references while historical non-position parameters stay identical',()=>{
+ const historical=JSON.parse(fs.readFileSync(new URL('../fixtures/generation/b2-p2-historical-pool.json',import.meta.url),'utf8')).pool;
+ const pool=generateTrueClues(logic,a.solution,{maxClueParameters:regression.budgets.maxClueParameters});
+ const nonPositions=clues=>clues.filter(c=>c.type!=='position').map(clueKey).sort();
+ assert.deepEqual(nonPositions(pool.clues),nonPositions(historical.clues));
+ const occupied=new Set(logic.map.objects.flatMap(o=>o.cells));
+ assert.equal(pool.completed,true);
+ assert.equal(historical.parametersExamined-pool.parametersExamined,7*(25-occupied.size));
+ assert.ok(historical.clues.some(c=>c.type==='position'&&!occupied.has(c.cell)));
+ assert.ok(pool.clues.filter(c=>c.type==='position').every(c=>occupied.has(c.cell)));
 });
