@@ -132,7 +132,7 @@ for item in items:
 
 // Tiny XML sink lets the existing DOM-independent renderers write static SVG.
 // Resource URLs are rewritten only at serialization, never in library metadata.
-function elementFactory(resolveImage,prefix){
+export function elementFactory(resolveImage,prefix){
  return (tag,attributes={},text)=>{
   const attrs={...attributes};
   if(tag==='image')attrs.href=resolveImage(attrs.href);

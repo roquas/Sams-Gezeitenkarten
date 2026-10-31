@@ -68,6 +68,12 @@ class PackagingTests(unittest.TestCase):
         self.assertFalse(output.with_suffix('.zip.tmp').exists())
 
     def test_deterministic_runtime_only_archive_and_public_projection(self):
+        # Offline catalog reviews and their browser tooling never enter the game.
+        for ref in ('.dev/catalog-proof/index.html', '.dev/catalog-proof/review-manifest.json',
+                    'dev/catalog-proof.mjs', 'dev/asset-review-layers.mjs'):
+            target = self.root / ref
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text('private review artifact')
         with contextlib.redirect_stdout(io.StringIO()):
             output = packager.package(self.root)
             first = output.read_bytes()
@@ -75,7 +81,8 @@ class PackagingTests(unittest.TestCase):
         with zipfile.ZipFile(output) as archive:
             names = archive.namelist()
             self.assertIn('src/ui/game.js', names)
-            self.assertFalse(any(n.endswith('.mjs') or n.startswith(('tests/', 'docs/', 'archive/', 'prototypes/')) for n in names))
+            self.assertFalse(any(n.endswith('.mjs') or n.startswith(('tests/', 'docs/', 'archive/', 'prototypes/', '.dev/', 'dev/')) for n in names))
+            self.assertFalse(any(n.endswith('review-manifest.json') for n in names))
             self.assertNotIn('src/assets/legacy.js', names)
             self.assertNotIn('scripts/lib/publication-archive.js', names)
             for entry in self.read('puzzles/manifest.json')['puzzles']:
