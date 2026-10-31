@@ -4,6 +4,18 @@ import {logicSchema} from '../../src/puzzles/schema.mjs';
 import {validateLogic,validateTarget} from '../../src/engine/validate.mjs';
 import {createRules} from '../../src/engine/puzzle.mjs';
 import {canonicalJson} from './content-hash.mjs';
+import {cluePresentationForm} from './clue-presentation.mjs';
+import {validatePlacements} from '../../src/assets/library.mjs';
+
+// B2 production boundary only. The existing placement contract checks catalog,
+// illustration approval, footprint and passability; B2 additionally needs full
+// object coverage. General validators intentionally allow partial assignments.
+export function validateB2Places(map,placements,catalog){
+ const errors=validatePlacements(placements,catalog.library,map,catalog.backgroundId);
+ if(errors.length)throw Error('B2 places: '+errors.join('; '));
+ const represented=new Set(placements.map(p=>p.objectId));
+ if(map.objects.some(o=>!represented.has(o.id)))throw Error('B2 places: incomplete object illustrations');
+}
 
 export const clueKey=({id,...parameters})=>canonicalJson(parameters);
 const range=schema=>Array.from({length:schema.maximum-schema.minimum+1},(_,i)=>i+schema.minimum);
@@ -11,7 +23,11 @@ const range=schema=>Array.from({length:schema.maximum-schema.minimum+1},(_,i)=>i
 function* parameters(type,p,map){
  const places=map.objects.map(o=>o.id).sort();
  const hours=range(p.hour??p.fromHour??p.hours.items);
- if(type==='position')for(const hour of hours)for(const cell of createRules({map}).cells)yield {hour,cell};
+ if(type==='position'){
+  const objectCells=new Set(map.objects.flatMap(o=>o.cells));
+  const cells=createRules({map}).cells.filter(cell=>objectCells.has(cell));
+  for(const hour of hours)for(const cell of cells)yield {hour,cell};
+ }
  if(type==='direction')for(const hour of hours)for(const direction of p.direction.enum)yield {hour,direction};
  if(type==='turn')for(const hour of hours)for(const degrees of p.degrees.enum)yield {hour,degrees};
  if(type==='distanceToPlace')for(const hour of hours)for(const placeId of places)for(const distance of range(p.distance))yield {hour,placeId,distance};
@@ -25,7 +41,7 @@ export function generateTrueClues(logic,targetRoute,{maxClueParameters}){
  validateLogic(logic);validateTarget(logic,targetRoute);
  if(logic.steps!==6||logic.clues.length)throw Error('B2 requires six steps and no input clues');
  if(!Number.isSafeInteger(maxClueParameters)||maxClueParameters<1||maxClueParameters>200000)throw Error('Invalid maxClueParameters');
- const rules=createRules(logic),clues=[],seen=new Set(),byType={};let parametersExamined=0;
+ const rules=createRules(logic),clues=[],seen=new Set(),byType={},byPresentationForm={};let parametersExamined=0;
  // Round-robin parameter streams prevent a small budget from consuming an
  // entire large family before any other family can be considered.
  let active=logicSchema.properties.clues.items.oneOf.map(schema=>({type:schema.properties.type.const,
@@ -34,14 +50,17 @@ export function generateTrueClues(logic,targetRoute,{maxClueParameters}){
   const next=[];
   for(const stream of active){
    const item=stream.iterator.next();if(item.done)continue;
-   if(parametersExamined===maxClueParameters){validateLogic({...logic,clues});return {clues,parametersExamined,byType,completed:false};}
+   if(parametersExamined===maxClueParameters){validateLogic({...logic,clues});return {clues,parametersExamined,byType,byPresentationForm,completed:false};}
    parametersExamined++;
    const clue={id:'H'+(clues.length+1),type:stream.type,...item.value},key=clueKey(clue);
-   if(!seen.has(key)&&rules.matches(targetRoute,clue)){seen.add(key);clues.push(clue);byType[clue.type]=(byType[clue.type]??0)+1;}
+   if(!seen.has(key)&&rules.matches(targetRoute,clue)){
+    seen.add(key);clues.push(clue);byType[clue.type]=(byType[clue.type]??0)+1;
+    const form=cluePresentationForm(clue);byPresentationForm[form]=(byPresentationForm[form]??0)+1;
+   }
    next.push(stream);
   }
   active=next;
  }
  validateLogic({...logic,clues});
- return {clues,parametersExamined,byType,completed:true};
+ return {clues,parametersExamined,byType,byPresentationForm,completed:true};
 }

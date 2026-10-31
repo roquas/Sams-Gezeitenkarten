@@ -7,6 +7,8 @@ import {contactBatchFixture} from '../fixtures/contact-sheet/batch.mjs';
 import {readB1Experiment} from '../../scripts/lib/puzzle-experiment.mjs';
 import {checkIrredundancy} from '../../src/puzzles/analysis.mjs';
 import {verifyCandidates} from '../../scripts/verify-puzzle-experiment.mjs';
+import {cluePresentationForm,clueStatistics} from '../../scripts/lib/clue-presentation.mjs';
+import {generateTrueClues} from '../../scripts/lib/puzzle-clues.mjs';
 
 let fixture,b1,serial=0;
 const fresh=name=>path.join(fixture.directory,name+'-'+serial++);
@@ -38,16 +40,34 @@ test('B2 reads a completed B1 corpus, saves full independently verifiable varian
  assert.ok(a.summary.candidateCount>=6);assert.ok(a.summary.variantsPerTarget.every(row=>row.count>1));
  assert.equal(a.summary.failures.NO_ELIGIBLE_START,1);assert.equal(a.summary.searchIncomplete,true);
  const candidates=rows(a.out,'candidates.jsonl');assert.equal(candidates.length,a.summary.candidateCount);
+ const statistics=clueStatistics(candidates.flatMap(c=>c.definition.logic.clues));
+ assert.deepEqual(a.summary.clueTypes,statistics.byType);
+ assert.deepEqual(a.summary.cluePresentationForms,statistics.byPresentationForm);
  assert.equal(verifyCandidates(path.join(a.out,'candidates.jsonl')).verifiedCandidates,candidates.length);
  for(const candidate of candidates){
   const proof=checkIrredundancy(candidate.definition);assert.equal(proof.irredundant,true);assert.equal(proof.target.status,'match');
   assert.equal(candidate.definition.logic.steps,6);assert.equal(candidate.definition.solution.length,7);
   assert.equal(candidate.fingerprints.instance,candidates.find(c=>c.attemptId===candidate.attemptId).fingerprints.instance);
   assert.ok(candidate.assetPlacements.length>0);assert.match(candidate.b1StartTrialId,/^gk-b1-start-sha256:/);
+  assert.deepEqual(candidate.properties.cluePresentationForms,[...new Set(candidate.definition.logic.clues.map(cluePresentationForm))]);
+  const occupied=new Set(candidate.definition.logic.map.objects.flatMap(o=>o.cells));
+  assert.ok(candidate.definition.logic.clues.filter(c=>c.type==='position').every(c=>occupied.has(c.cell)));
  }
  const changed=structuredClone(candidates[0]);changed.proof.count=2;const corrupt=fresh('false-proof.jsonl');
  fs.writeFileSync(corrupt,JSON.stringify(changed)+'\n');assert.throws(()=>verifyCandidates(corrupt));
  const attempts=rows(a.out,'attempts.jsonl');assert.equal(attempts[1].status,'impossible');assert.equal(attempts[1].reason,'NO_ELIGIBLE_START');
+ const pools={byType:{},byPresentationForm:{}};
+ for(const map of attempts)for(const start of map.starts)for(const target of start.targets??[]){
+  if(!target.cluePool)continue;
+  const candidate=candidates.find(c=>c.attemptId===target.attemptId);
+  assert.ok(candidate);
+  const pool=generateTrueClues({...candidate.definition.logic,clues:[]},target.selection.route,{maxClueParameters:100000});
+  assert.deepEqual(target.cluePool,{parametersExamined:pool.parametersExamined,completed:pool.completed,
+   byType:pool.byType,byPresentationForm:pool.byPresentationForm});
+  for(const key of Object.keys(pools))for(const [name,n] of Object.entries(target.cluePool[key]))pools[key][name]=(pools[key][name]??0)+n;
+ }
+ assert.deepEqual(a.summary.cluePool,pools);
+ assert.equal(Object.values(pools.byType).reduce((a,b)=>a+b,0),a.summary.search.clueCandidates);
  assert.ok(JSON.parse(read(a.out,'timings.json')).totalMs>=0);
  for(const [file,bytes] of Object.entries(originals))assert.equal(read(b1,file),bytes);
  const retry=cli(args(a.out));assert.equal(retry.status,1);assert.match(retry.stderr,/EEXIST/);
@@ -58,6 +78,18 @@ test('B2 enumeration exhaustion produces unknown starts and no successful candid
  assert.equal(result.summary.candidateCount,0);assert.equal(result.summary.targetRoutes,0);
  assert.equal(result.summary.incompleteStarts,3);assert.equal(result.summary.failures.ROUTE_ENUMERATION_BUDGET_EXHAUSTED,3);
  assert.equal(read(result.out,'candidates.jsonl'),'');assert.equal(result.summary.search.enumerationNodes,3);
+});
+
+test('B2 counts incomplete true pools even when solver budgets allow no stored candidate',()=>{
+ const result=run(values=>values.map((v,i)=>values[i-1]==='--max-solver-checks'?'1':values[i-1]==='--max-clue-parameters'?'6':v));
+ assert.equal(result.summary.candidateCount,0);
+ assert.deepEqual(result.summary.clueTypes,{});assert.deepEqual(result.summary.cluePresentationForms,{});
+ const totals=Object.values(result.summary.cluePool.byType).reduce((a,b)=>a+b,0);
+ assert.ok(totals>0);assert.equal(totals,result.summary.search.clueCandidates);
+ assert.equal(Object.values(result.summary.cluePool.byPresentationForm).reduce((a,b)=>a+b,0),totals);
+ for(const map of rows(result.out,'attempts.jsonl'))for(const start of map.starts)for(const target of start.targets??[]){
+  if(target.cluePool){assert.equal(target.cluePool.completed,false);assert.equal(target.cluePool.parametersExamined,6);}
+ }
 });
 
 test('missing route ordinals are proven unavailable, with no claim that the map cannot generate puzzles',()=>{

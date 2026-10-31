@@ -81,6 +81,6 @@ test('technical text states all six clue meanings, with signs, interval endpoint
  }
  assert.equal(text({type:'distanceToPlace',hour:0,placeId:'isle',distance:0}),'Hexabstand in Stunde 0 zu Ort isle (B2, C2): genau 0.');
  assert.equal(text({type:'distanceBetweenHours',hours:[0,6],distance:4}),'Hexabstand zwischen den Positionen in Stunde 0 und Stunde 6: genau 4.');
- assert.equal(text({type:'countDistanceToPlace',fromHour:0,toHour:6,placeId:'isle',distance:1,count:0}),'In den Stunden 0 bis 6 (beide einschließlich) beträgt der Hexabstand zu Ort isle (B2, C2) in genau 0 Stunden genau 1.');
+ assert.equal(text({type:'countDistanceToPlace',fromHour:0,toHour:6,placeId:'isle',distance:1,count:0}),'In den Stunden 0 bis 6 (beide einschließlich) beträgt der Hexabstand zu Ort isle (B2, C2) niemals genau 1.');
  assert.throws(()=>text({type:'invented'}),/Unsupported/);
 });

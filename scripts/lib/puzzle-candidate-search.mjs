@@ -2,6 +2,7 @@ import {randomStream,validateSeed} from '../../src/generation/random.mjs';
 import {logicalFingerprints} from './publication-archive.mjs';
 import {SearchBudgetExceeded} from './puzzle-route-solver.mjs';
 import {clueKey} from './puzzle-clues.mjs';
+import {cluePresentationForm} from './clue-presentation.mjs';
 import {RULES_VERSION} from '../../src/puzzles/schema.mjs';
 
 export const SEARCH_STRATEGY='random-incremental-1';
@@ -77,6 +78,7 @@ export function searchPuzzleCandidates({logic,targetRoute,cluePool,workspace,see
   candidates.push({definition,fingerprints,effectKey,proof:{method:'complete-engine-routes-and-predicates-1',
    legalRouteCount:workspace.routeCount,count:1,countExact:true,uniqueSolution:result.uniqueSolution,
    targetMatch:true,irredundant:true,omissions},properties:{clueTypes:[...new Set(definition.logic.clues.map(c=>c.type))],
+   cluePresentationForms:[...new Set(definition.logic.clues.map(cluePresentationForm))],
    individualExactness,individuallyExactClueCount:exactClues.length,
    hasIndividuallyExactHour1:exactClues.some(row=>row.hours.includes(1)),
    hasDirectionHour1:definition.logic.clues.some(c=>c.type==='direction'&&c.hour===1)}});

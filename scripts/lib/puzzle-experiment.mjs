@@ -9,7 +9,8 @@ import {canonicalJson,sha256} from './content-hash.mjs';
 import {mapFingerprint} from './publication-archive.mjs';
 import {analyzeRouteMap,selectTargetRoute,ROUTE_ORDER,ROUTE_STRATEGY} from './route-experiment.mjs';
 import {createRouteWorkspace} from './puzzle-route-solver.mjs';
-import {generateTrueClues} from './puzzle-clues.mjs';
+import {generateTrueClues,validateB2Places} from './puzzle-clues.mjs';
+import {cluePresentationForm} from './clue-presentation.mjs';
 import {SEARCH_STRATEGY,validateSearchBudgets,searchPuzzleCandidates} from './puzzle-candidate-search.mjs';
 import {validateSeed,randomStream} from '../../src/generation/random.mjs';
 import {RULES_VERSION} from '../../src/puzzles/schema.mjs';
@@ -58,6 +59,7 @@ export async function readB1Experiment(directory,{batch,repositoryRoot=PROGRAM_R
    generationSeed:original.generationSeed,assignmentSeed:original.assignmentSeed},'B1 source seed/index mismatch');
   same(row.map,original.generation.map,'B1 source map mismatch');
   same(row.assetPlacements,original.assignment.placements,'B1 source asset placements mismatch');
+  validateB2Places(row.map,row.assetPlacements,source.released.catalog);
   assert(row.source.acceptedIndex===input.acceptedIndices[i]&&row.experimentId===experimentId&&row.mapFingerprint===fingerprint,'invalid B1 map identity');
   const mapTrialId=b1id('map',{experimentId,acceptedIndex:row.source.acceptedIndex,mapFingerprint:fingerprint});
   same(row.mapTrialId,mapTrialId,'B1 map trial mismatch');
@@ -109,7 +111,8 @@ export async function runPuzzleExperiment(options){
  const summary={puzzleExperimentFormatVersion:PUZZLE_EXPERIMENT_FORMAT_VERSION,experimentId,status:'completed',mapCount:loaded.rows.length,startCount:0,
   routeRequests:0,targetRoutes:0,candidateCount:0,incompleteStarts:0,incompleteTargets:0,
   uniqueCandidateCount:0,distinctTargetInstances:0,
-  failures:{},clueTypes:{},variantsPerTarget:[],properties:{individuallyExactClues:0,withExactHour1:0,withDirectionHour1:0},
+  failures:{},clueTypes:{},cluePresentationForms:{},cluePool:{byType:{},byPresentationForm:{}},
+  variantsPerTarget:[],properties:{individuallyExactClues:0,withExactHour1:0,withDirectionHour1:0},
   search:{enumerationNodes:0,selectionNodes:0,clueParametersExamined:0,clueCandidates:0,restarts:0,solverChecks:0,cacheHits:0,
    matchEvaluations:0,routeFilterEvaluations:0}};
  const allEffects=new Set(),allInstances=new Set();
@@ -148,6 +151,9 @@ export async function runPuzzleExperiment(options){
      const targetSeed=randomStream(seed,SEARCH_STRATEGY+'/'+start.trialId+'/'+routeIndex).uint32();
      const attemptId=id('target',{experimentId,b1StartTrialId:start.trialId,routeIndex,instance:selected.instanceFingerprint});
      const pool=measure('clueGenerationMs',()=>generateTrueClues(logic,selected.route,{maxClueParameters}));
+     target.cluePool={parametersExamined:pool.parametersExamined,completed:pool.completed,
+      byType:pool.byType,byPresentationForm:pool.byPresentationForm};
+     for(const key of ['byType','byPresentationForm'])for(const [name,n] of Object.entries(pool[key]))add(summary.cluePool[key],name,n);
      const result=measure('searchMs',()=>searchPuzzleCandidates({logic,targetRoute:selected.route,cluePool:pool,workspace,seed:targetSeed,budgets:searchBudgets}));
      Object.assign(target,{attemptId,seed:targetSeed,status:result.status,search:result.search,candidateIds:result.candidates.map(c=>c.fingerprints.variant)});
      summary.incompleteTargets+=Number(result.search.incomplete);
@@ -160,7 +166,9 @@ export async function runPuzzleExperiment(options){
        assetPlacements:map.assetPlacements,...candidate};
       fs.writeFileSync(successes,JSON.stringify(output)+'\n');summary.candidateCount++;
       allEffects.add(candidate.effectKey);
-      for(const clue of candidate.definition.logic.clues)add(summary.clueTypes,clue.type);
+      for(const clue of candidate.definition.logic.clues){
+       add(summary.clueTypes,clue.type);add(summary.cluePresentationForms,cluePresentationForm(clue));
+      }
       summary.properties.individuallyExactClues+=candidate.properties.individuallyExactClueCount;
       summary.properties.withExactHour1+=Number(candidate.properties.hasIndividuallyExactHour1);
       summary.properties.withDirectionHour1+=Number(candidate.properties.hasDirectionHour1);

@@ -185,6 +185,55 @@ oder Neustarts. Ein Budgetgrund kann auch nach erfolgreichen Kandidaten auftrete
 
 ## Redaktionelle Messwerte
 
+### Abgeleitete Hinweisformen und Ortsreferenzen
+
+`cluePresentationForm()` in `scripts/lib/clue-presentation.mjs` leitet aus
+`countDistanceToPlace` die Formen `NotDistanceAt` (Einzelstunde, Anzahl 0),
+`HasDistanceAt` (Einzelstunde, Anzahl 1) und `CountDistanceNever` (mehrere Stunden,
+Anzahl 0) ab. Einzelstunden haben Vorrang. Andere Fälle behalten ihren logischen
+Typ. Die gemeinsame Ableitung wird für No-Flavor-Texte und Statistik verwendet;
+sie verändert weder Prädikate noch Fingerprints, `effectKey` oder Deduplikation.
+
+Neue Statistikfelder sind additiv, ohne Formatwechsel:
+
+- `summary.clueTypes` zählt weiterhin jeden gespeicherten Kandidatenhinweis einmal;
+  `summary.cluePresentationForms` zählt dieselben Hinweise nach Darstellungsform.
+- `summary.cluePool.byType` / `.byPresentationForm` zählen die wahren Hinweise
+  aller untersuchten Zielpools, jeweils einmal pro Zielversuch, auch ohne Erfolg.
+  Bei erschöpftem Parameterbudget zählt nur der tatsächlich untersuchte Teilpool.
+- `starts[].targets[].cluePool` jeder Kartenzeile in `attempts.jsonl`
+  enthält die beiden Histogramme sowie
+  `parametersExamined` und `completed` für den einzelnen Zielversuch.
+- `candidate.properties.cluePresentationForms` enthält die verschiedenen Formen
+  innerhalb eines Kandidaten, parallel zu den bestehenden `clueTypes`.
+
+Pools werden über Zielversuche summiert; Kandidaten über tatsächlich gespeicherte
+Zeilen nach Wirkungsdeduplikation. Diese beiden Populationen werden nicht vermischt.
+`clueStatistics(clues)` berechnet beide Histogramme auch aus historischen Zeilen
+ohne neue Felder. Die S01-Auswertung ist ohne Dateischreibzugriff verfügbar:
+
+```sh
+npm run inspect:b2 -- --statistics
+```
+
+Sie ergibt 306 logische Zählhinweise: 210 normale, 57 `CountDistanceNever`,
+23 `HasDistanceAt`, 16 `NotDistanceAt`. Die Summe aller Formen entspricht der
+Summe aller logischen Hinweise, auch bei mehreren Formen im selben Kandidaten.
+
+Die neue Positionsenumeration verwendet alle tatsächlichen `object.cells` in
+deterministischer Rasterreihenfolge, einschließlich Mehrhexobjekten und
+befahrbaren Motiven. Freie See und reine Dekorationen gehören nicht zum Parameterraum.
+Distanzhinweise bleiben unverändert an `map.objects` gebunden, auch für Distanz 0.
+Der B2-Eingangsleser prüft vor Ausgabereservierung mit `validatePlacements()` die
+Katalog-/Motivverträge und zusätzlich vollständige Objektillustrationen im
+bereits releasegeprüften Quellbestand. Allgemeine Validatoren bleiben unverändert.
+
+Die Route darf weiterhin über freie See verlaufen. Historische S01-Definitionen,
+Testnamen, Fingerprints und Wirkungsnachweise bleiben erhalten und spielbar;
+nur ihre abgeleiteten Texte ändern sich. Historische P2-Suchergebnisse werden
+mit einem eingefrorenen alten Pool geprüft, getrennt von der neuen Produktion.
+Diese Änderung erzeugt keinen S02-Bestand und keinen neuen Katalogrelease.
+
 Für **jeden Hinweis allein** werden alle legalen Routen auf Übereinstimmung geprüft.
 `individualExactness[].hours` enthält ausschließlich Stunden **1 bis 6**, für die
 sämtliche Treffer dieselbe Position haben. Stunde 0 ist immer durch den Start
