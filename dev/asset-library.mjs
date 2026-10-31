@@ -1,7 +1,8 @@
 import {validateLibrary,validatePlacements,compatibility} from '../src/assets/library.mjs';
 import {HEXES,CHART_BOUNDS} from '../src/ui/chart-geometry.mjs';
 import {drawAssetPlacements} from '../src/ui/asset-layer.mjs';
-import {placedCells,placementContract,assetRectangle} from '../src/assets/geometry.mjs';
+import {placedCells} from '../src/assets/geometry.mjs';
+import {drawAssetReviewLayers} from './asset-review-layers.mjs';
 import {renderAssetInventory} from './asset-inventory.mjs';
 import {availability,catalogLabel} from './asset-curation.mjs';
 import {reviewPositions} from './review-positions.mjs';
@@ -46,20 +47,7 @@ try{
   const objects=el('g',{'data-gallery-layer':'objects','pointer-events':'none'});
   drawAssetPlacements(el,objects,instances,library,byId);
   svg.append(objects);
-  const footprints=el('g',{'data-gallery-layer':'footprints',visibility:document.getElementById('footprints').checked?'visible':'hidden','pointer-events':'none'});
-  for(const p of instances){
-   const a=library.assets.find(a=>a.id===p.assetId),rect=assetRectangle(a,p.anchor,byId);
-   for(const polygon of placementContract(a,p.anchor).polygons){
-    footprints.append(el('polygon',{points:polygon.map(([x,y])=>[x+rect.x+rect.width/2,y+rect.y+rect.height/2].join(',')).join(' '),fill:'#48ddb9','fill-opacity':.14,'data-footprint':p.id}));
-   }
-  }
-  svg.append(footprints);
-  const hexes=el('g',{'data-gallery-layer':'hexes',visibility:document.getElementById('hexes').checked?'visible':'hidden','pointer-events':'none'});
-  for(const h of HEXES){
-   hexes.append(el('polygon',{points:h.polygon.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#fff4d5','stroke-width':1}));
-   hexes.append(el('text',{x:h.center[0],y:h.center[1]+30,'text-anchor':'middle','font-size':9,fill:'#272139'},h.id));
-  }
-  svg.append(hexes);
+  drawAssetReviewLayers(el,svg,instances,library,{footprints:document.getElementById('footprints').checked,hexes:document.getElementById('hexes').checked});
  }
  function render(){
   const errors=validatePlacements(placements,library,map,select.value,{development:true});
