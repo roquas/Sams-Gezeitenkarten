@@ -143,6 +143,16 @@ export function verifyCatalogReleaseCandidate({repositoryRoot,candidate}){
  return {releaseId:checked.manifest.releaseId,catalogId:checked.manifest.catalogId,manifestSha256:checked.manifestSha256};
 }
 
+// Read-only candidate handle: the same verification as `verify`, with captured
+// Git resources. No archive or approval is needed, and no checkout fallback.
+export function loadCatalogReleaseCandidate({repositoryRoot,candidate}){
+ repositoryRoot=repository(repositoryRoot);
+ const checked=verifyDocuments({repositoryRoot,documents:diskDocuments(candidate,CANDIDATE_FILES)});
+ return Object.freeze({manifest:frozen(checked.manifest),manifestSha256:checked.manifestSha256,
+  library:frozen(checked.snapshot.library),selection:frozen(checked.snapshot.selection),validation:frozen(checked.validation),
+  readResource(ref){safePath(ref);assert(checked.resources.has(ref),'resource not in candidate: '+ref);return Buffer.from(checked.resources.get(ref));}});
+}
+
 export function approveCatalogRelease({repositoryRoot,candidate,releaseId,manifestSha256,approvedBy}){
  repositoryRoot=repository(repositoryRoot);
  assert(releaseIdValid(releaseId)&&hash(manifestSha256),'explicit release ID and manifest hash required');
