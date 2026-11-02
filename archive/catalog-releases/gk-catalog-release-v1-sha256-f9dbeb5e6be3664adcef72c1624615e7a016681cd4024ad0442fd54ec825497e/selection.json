@@ -1,0 +1,44 @@
+{
+  "selectionSchemaVersion": 1,
+  "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+  "backgrounds": [
+    {
+      "backgroundId": "sea-blue-01",
+      "geographicAssetIds": [
+        "land-coast.archipelago.h3.sand-reefs.v2",
+        "land-coast.atoll.h1.broken-passages.v1",
+        "land-coast.atoll.h1.closed-lagoon.v1",
+        "land-coast.island.h1.basalt-spire-water.v1",
+        "land-coast.island.h1.palm-beach.v1",
+        "land-coast.island.h2.lookout-bay-01.v1",
+        "land-coast.island.h2.lookout-bay-02.v1",
+        "land-coast.island.h2.lookout-bay-03.v1",
+        "land-coast.island.h2.mist-forest-01.v1",
+        "land-coast.island.h2.mist-forest-02.v1",
+        "land-coast.island.h2.mist-forest-03.v1",
+        "land-coast.island.h2.tropical-bays.v1",
+        "land-coast.island.h3.massive-volcano.v1",
+        "land-coast.island.h3.smuggler-cove.v1",
+        "land-coast.island.h3.south-harbor.v1",
+        "land-coast.island.h4.jungle-temple.v1",
+        "land-coast.island.h4.long-sand.v1",
+        "land-coast.settlement.h1.restaurant-island.v1",
+        "land-coast.settlement.h2.hut-settlement-01.v1",
+        "land-coast.settlement.h2.hut-settlement-02.v1",
+        "land-coast.settlement.h2.hut-settlement-03.v1",
+        "land-coast.settlement.h2.prison-island-01.v1",
+        "land-coast.settlement.h2.prison-island-03.v1",
+        "land-coast.settlement.h4.tesoro.v4",
+        "navigation.lighthouse.h1.cyan-magenta-island.v1",
+        "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "navigation.wreck.h1.offcenter-sloop.v1",
+        "sea-life.accent.h1.barrels.v1",
+        "sea-life.accent.h1.bottle.v1",
+        "sea-life.accent.h1.buoy.v1",
+        "sea-life.accent.h1.crate.v1",
+        "sea-life.accent.h1.driftwood.v1",
+        "sea-life.accent.h1.rowboat.v1"
+      ]
+    }
+  ]
+}
