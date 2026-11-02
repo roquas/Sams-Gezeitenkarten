@@ -70,7 +70,7 @@ class PackagingTests(unittest.TestCase):
     def test_deterministic_runtime_only_archive_and_public_projection(self):
         # Offline catalog reviews and their browser tooling never enter the game.
         for ref in ('.dev/catalog-proof/index.html', '.dev/catalog-proof/review-manifest.json',
-                    'dev/catalog-proof.mjs', 'dev/asset-review-layers.mjs'):
+                    'dev/catalog-proof.mjs', 'dev/catalog-proof.css'):
             target = self.root / ref
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text('private review artifact')

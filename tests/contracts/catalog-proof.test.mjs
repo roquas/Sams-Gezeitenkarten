@@ -5,12 +5,11 @@ import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {catalogProofFixture,project} from '../fixtures/catalog-proof.mjs';
 import {loadCatalogReleaseCandidate} from '../../scripts/lib/catalog-release.mjs';
-import {createCatalogProof,proofPositions,renderProofSvg} from '../../scripts/lib/catalog-proof.mjs';
+import {createCatalogProof,relativeReviewGeometry,renderProofSvg} from '../../scripts/lib/catalog-proof.mjs';
 import {decodeContactImages} from '../../scripts/lib/map-contact-sheet.mjs';
 import {main} from '../../scripts/render-catalog-proof.mjs';
-import {HEXES} from '../../src/ui/chart-geometry.mjs';
-import {assetRectangle,imageContract,placementContract} from '../../src/assets/geometry.mjs';
-import {reviewPositions} from '../../dev/review-positions.mjs';
+import {imageContract} from '../../src/assets/geometry.mjs';
+import {hexCenter,hexVertices} from '../../src/ui/place-labels.mjs';
 import {sha256} from '../../scripts/lib/content-hash.mjs';
 
 let fixture,loaded,output,result,report,html,serial=0;
@@ -36,42 +35,49 @@ test('exactly the verified selection appears once, without extra assets or infer
  assert.deepEqual(fs.readdirSync(fixture.candidate).sort(),['inventory.json','manifest.json','selection.json','validation.json']);
 });
 
-test('exact game polygons, complete multihex art and local graphic contracts match single review at every representative',()=>{
- const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
- let singlePassable=false,multi=false,anchorCount=0;
+test('one relative shape uses original image contracts and gameplay vertices for all selected motifs',()=>{
+ let passable=false,blocked=false,multi=false;
  for(const entry of report.assets){
   const asset=loaded.library.assets.find(a=>a.id===entry.assetId);
-  const checked=loaded.validation.placements.find(p=>p.assetId===entry.assetId&&p.backgroundId===report.backgroundId);
-  assert.deepEqual(entry.positions,reviewPositions(asset));
-  if(asset.passable&&asset.geometry.cells.length===1)singlePassable=true;
-  if(asset.geometry.cells.length>1)multi=true;
-  for(const anchor of checked.anchors){
-   assert.deepEqual(placementContract(asset,anchor),imageContract(asset.geometry.cells));anchorCount++;
-  }
-  for(const position of entry.positions){
-   const svg=renderProofSvg({asset,position,library:loaded.library,background:loaded.library.backgrounds[0],resolveImage:ref=>ref});
-   const rect=assetRectangle(asset,position.anchor,byId);
-   assert.ok(svg.includes('data-art-cells="'+position.cells.join(' ')+'"'));
-   const image=svg.match(/<image[^>]*data-asset-id[^>]*>/)[0];
-   for(const key of ['x','y','width','height'])assert.ok(image.includes(key+'="'+rect[key]+'"'));
-   for(const h of HEXES)assert.ok(svg.includes('data-cell="'+h.id+'" points="'+h.polygon.map(p=>p.join(',')).join(' ')+'"'));
-   const polygons=placementContract(asset,position.anchor).polygons;
-   assert.equal((svg.match(/data-footprint=/g)??[]).length,asset.geometry.cells.length);
-   for(const polygon of polygons)assert.ok(svg.includes('points="'+polygon.map(([x,y])=>[x+rect.x+rect.width/2,y+rect.y+rect.height/2].join(',')).join(' ')+'"'));
-  }
+  assert.deepEqual(entry.occupiedCells,asset.geometry.cells);
+  assert.equal(entry.occupiedHexCount,asset.geometry.cells.length);assert.equal(entry.passable,asset.passable);
+  passable ||= asset.passable;blocked ||= !asset.passable;multi ||= asset.geometry.cells.length>1;
+  const {contract,hexPolygons}=relativeReviewGeometry(asset);
+  assert.deepEqual(contract,imageContract(asset.geometry.cells));
+  // hexCenter's offset-row domain is nonnegative. A common axial translation
+  // into that domain cancels at the centroid; no board anchor is selected.
+  const rowShift=-Math.min(0,...asset.geometry.cells.map(c=>c[1]));
+  const centers=asset.geometry.cells.map(([q,r])=>{r+=rowShift;return hexCenter({q:q+Math.floor(r/2),r});});
+  const centroid=[0,1].map(axis=>centers.reduce((n,c)=>n+c[axis]/centers.length,0));
+  centers.forEach((center,i)=>hexVertices(center[0]-centroid[0],center[1]-centroid[1]).forEach((v,j)=>{
+   for(let axis=0;axis<2;axis++)assert.ok(Math.abs(v[axis]-hexPolygons[i][j][axis])<1e-10);
+  }));
+  const svg=renderProofSvg({asset,background:loaded.library.backgrounds[0],resolveImage:ref=>ref});
+  const image=svg.match(/<image[^>]*data-asset-id[^>]*>/)[0];
+  for(const [key,value] of Object.entries({x:-contract.width/2,y:-contract.height/2,width:contract.width,height:contract.height}))assert.ok(image.includes(key+'="'+value+'"'));
+  assert.equal((svg.match(/data-relative-cell=/g)??[]).length,2*asset.geometry.cells.length);
+  for(const polygon of [...contract.polygons,...hexPolygons])assert.ok(svg.includes('points="'+polygon.map(p=>p.join(',')).join(' ')+'"'));
  }
- assert.ok(singlePassable&&multi);assert.ok(anchorCount>0);
+ assert.ok(passable&&blocked&&multi);
+ assert.equal((html.match(/data-detail="/g)??[]).length,report.selectedCount);
+ assert.equal(report.reviewSchemaVersion,2);assert.equal(report.resourceIntegrity.status,'passed');
+ assert.doesNotMatch(JSON.stringify(report),/positions|anchor|parity|missingClasses|positionSelection/i);
+ assert.doesNotMatch(html,/Prüfposition|Lageklasse|Innenlage|Zeilenparität|whole-board|data-anchor|position-select| Anker/);
 });
 
-test('unavailable classes remain explicit and anchor disagreement is rejected',()=>{
- const entry=report.assets.find(a=>a.missingClasses.length);
- assert.ok(entry,'the current multihex catalog includes unavailable classes');
- const asset=loaded.library.assets.find(a=>a.id===entry.assetId);
- assert.ok(html.includes('Nicht vorhanden:'));
- assert.throws(()=>proofPositions(asset,[]),/anchor mismatch/);
- const huge={id:'board',geometry:{cells:HEXES.map(h=>[h.q-Math.floor(h.r/2),h.r])}};
- const positions=proofPositions(huge,['A1']);
- assert.equal(positions.positions.length,1);assert.equal(positions.missingClasses.length,3);
+test('relative display adds no board-fitting restrictions and preserves concave and negative-coordinate shapes',()=>{
+ const shapes=[[[0,0]],[[0,0],[-1,0],[0,-1]],[[0,0],[1,-1],[2,-1],[2,0],[1,1],[0,1]],Array.from({length:25},(_,q)=>[q,0])];
+ for(const cells of shapes){
+  const asset={id:'relative-form',geometry:{cells},image:{path:'test.png'}};
+  const {contract,hexPolygons}=relativeReviewGeometry(asset);
+  assert.deepEqual(contract,imageContract(cells));assert.equal(hexPolygons.length,cells.length);
+  const svg=renderProofSvg({asset,background:loaded.library.backgrounds[0],resolveImage:ref=>ref});
+  assert.equal((svg.match(/data-relative-cell=/g)??[]).length,2*cells.length);
+  assert.ok(svg.includes('width="'+contract.width+'"'));assert.ok(svg.includes('height="'+contract.height+'"'));
+ }
+ const invalid={geometry:{cells:[[0,0],[2,0]]}};
+ assert.throws(()=>relativeReviewGeometry(invalid),/edge-connected/);
+ assert.throws(()=>imageContract(invalid.geometry.cells),/edge-connected/);
 });
 
 test('export is byte deterministic, uses pinned resource bytes, preserves the candidate and refuses overwrite',()=>{

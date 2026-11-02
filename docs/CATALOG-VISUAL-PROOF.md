@@ -1,117 +1,122 @@
-# Vollständige Katalog-Korrekturfahne
+# Relative Katalog-Korrekturfahne
 
-Die Fahne ist ein offline nutzbares Prüfartefakt eines technisch verifizierten
-Katalogkandidaten. Sie erteilt keine künstlerische oder formale Katalogfreigabe.
-Manuelle Sichtprüfung und formale Freigabe bleiben eigene, ausstehende Schritte.
+Die Fahne zeigt jedes ausgewählte Motiv einmal gegen seine verbindliche relative
+Belegungsform. Eine Übersichtskachel öffnet dieselbe Form vergrößert. Die gelben
+inneren Hexflächen und die türkisfarbene zulässige Grafikfläche sind unabhängig
+schaltbar. „Normalansicht“ blendet beide aus; Vor-/Zurücknavigation wechselt das
+Motiv. Ankerzahlen, Kartenpositionen und Lageklassen gehören nicht zur Fahne.
 
-## Erzeugen
+Die Fahne ist ein Prüfartefakt. Technisch gültiger Kandidat, vollständig erzeugte
+Fahne, manuelle Sichtprüfung und formale Katalogfreigabe bleiben getrennte Zustände.
+Die beiden letzten Schritte werden durch den Export nicht durchgeführt.
 
-Voraussetzungen: Git, Node.js, Python 3 mit Pillow und NumPy, wie beim bestehenden
-Kandidatenbau. Der Export selbst benötigt Pillow nur zum Dekodieren der Bilder.
-Der Ausgabeordner muss neu sein; sein Elternordner muss bereits existieren.
+## Verbindliche relative Geometrie
+
+`imageContract(asset.geometry.cells)` in `src/assets/geometry.mjs` liefert bereits
+Canvasmaße und Grafikpolygone relativ zum gemeinsamen Zellschwerpunkt. Die Grafik
+wird unverändert auf `[-width/2, -height/2, width, height]` dargestellt.
+`drawAssetPlacements` erwartet dagegen einen konkreten Kartenanker und ruft
+`assetRectangle` auf. Die relative Fahne verwendet deshalb direkt die vorhandenen
+Canvasmaße, ohne dafür eine künstliche Kartenplatzierung zu erzeugen. Seitenverhältnis
+und isolierte Bildkomposition bleiben wie im bestehenden Renderer erhalten.
+
+Eine fertige kombinierte relative Darstellung beider Overlayarten existierte
+nicht. `relativeReviewGeometry` in `scripts/lib/catalog-proof.mjs` verwendet deshalb
+unverändert die Grafikpolygone aus `imageContract`. Jedes dieser Polygone ist eine
+Translation von `GRAPHIC_CELL`. Die Differenz ihrer jeweils ersten Eckpunkte ist
+der relative Zellmittelpunkt. `hexVertices` aus `src/ui/place-labels.mjs` liefert
+an diesem Mittelpunkt die tatsächliche innere Hexfläche des Spiels.
+
+Es gibt keine zweite Gitterformel, Polygonannäherung, Koordinatenrundung,
+Randbeschneidung oder zusätzliche Zulässigkeitsregel. Auch negative relative
+Koordinaten und konkave Mehrhexformen bleiben erhalten. Der Meereshintergrund
+ist ein zentrierter Texturausschnitt im bisherigen Maßstab. Er bestimmt keine
+geometrische Gültigkeit. Ein Konflikt mit dem bestehenden Vertrag wurde nicht
+festgestellt; Zuständigkeiten und offene Bereinigungen sind in
+[CATALOG-VALIDATION-AUDIT.md](CATALOG-VALIDATION-AUDIT.md) dokumentiert.
+
+## Export und Integrität
+
+Voraussetzungen: Git, Node.js, Python 3 mit Pillow; für einen **neuen**
+Kandidatenbau zusätzlich NumPy. Zum erneuten Export des vorhandenen Kandidaten
+werden keine neuen Kandidatendokumente erzeugt.
 
 ```sh
-mkdir -p .dev/catalog-visual-proof-511dfcf
-node scripts/catalog-release.mjs build \
-  --source 511dfcf743a6e8c4f0c36b3354dcf36d1afe865e \
-  --out .dev/catalog-visual-proof-511dfcf/candidate
+mkdir -p .dev/catalog-relative-proof-511dfcf
 node scripts/catalog-release.mjs verify \
   --candidate .dev/catalog-visual-proof-511dfcf/candidate
 node scripts/render-catalog-proof.mjs \
   --candidate .dev/catalog-visual-proof-511dfcf/candidate \
-  --out .dev/catalog-visual-proof-511dfcf/proof \
+  --out .dev/catalog-relative-proof-511dfcf/proof \
   --background sea-blue-01 --expected-count 33
 ```
 
-`--repository` unterstützt einen anderen Git-Datenbestand. Der Hintergrund kann
-bei genau einem Kandidatenhintergrund entfallen. `--expected-count` ist eine
-optionale Erwartungsprüfung: Abweichungen erscheinen sichtbar in HTML und JSON,
-ohne die tatsächliche Auswahl einzuschränken.
+Der Ausgabeordner muss neu sein; sein Elternordner muss existieren.
+`--repository` erlaubt einen anderen Git-Datenbestand. Bei genau einem
+Kandidatenhintergrund kann `--background` entfallen. `--expected-count` meldet
+Abweichungen sichtbar, ohne die tatsächliche Auswahl zu verändern.
 
-`proof/index.html` direkt im Browser öffnen. Zum Weitergeben den **gesamten**
-Ordner `proof/` mit `resources/` kopieren oder entpacken. Es gibt keine externen
-Schriftarten, Netzwerkabrufe, Module oder Fetch-Aufrufe. JavaScript ist für
-Detailnavigation, Positionswahl und Overlays erforderlich. Die Übersicht enthält
-statische SVG-Vorschaubilder aller ausgewählten Motive.
+`loadCatalogReleaseCandidate` übernimmt die bestehende strenge Verifikation von
+Dokumenten, Auswahl, Hashes und Git-Ressourcen. Die einzig verbindliche Auswahl
+ist die tatsächliche verifizierte `selection.json`. Historische Ankerevidenz wird
+weder geändert noch als Teil der relativen Einzelassetprüfung ausgewertet.
+Der Quellhashvergleich der verwendeten Geometriefunktionen schützt gegen eine
+unbemerkte Interpretation durch andere Programmverträge; er ist keine neue
+Asset-Gültigkeitsregel.
 
-## Bedienung und Geometrie
+Jedes ausgewählte Motiv bekommt genau eine Kachel und einen Berichtseintrag.
+Darstellungsfehler bleiben als Fehlerkacheln und Einträge sichtbar; die CLI liefert
+bei unvollständiger Fahne Exitcode 1. Ungültige Kandidaten werden vor dem Export
+abgewiesen. Der bestehende SVG-Serializer und Bilddekodierer der
+Karten-Kontaktübersicht werden wiederverwendet.
 
-Eine Kachel öffnet die Detailprüfung. Vorheriges/nächstes Motiv und die Rückkehr
-zur Übersicht erhalten den Vergleichskontext. Spielhexgrenzen (gelb) und erlaubte
-Grafikflächen (türkis) lassen sich unabhängig schalten; „Normalansicht“ blendet
-beide aus. Die Positionswahl nennt Anker, belegte Zellen, Zeilenparität und
-Rand-/Innenlage. „Gesamte Karte“ wechselt nur den SVG-Viewport; die vergrößerte
-Standardansicht zeigt das vollständige Assetrechteck mit Umgebung.
+`review-manifest.json` (Schema 2) bindet Quellcommit, Kandidaten-ID, Manifest- und
+Selektionshash, Hintergrund, exakte Assetauswahl, relative axiale Belegungszellen,
+Hexanzahl, Befahrbarkeit und Darstellungsstatus. Vollständigkeit und
+Ressourcenintegrität sind getrennt ausgewiesen; jede kopierte Bildressource
+enthält ihren Herkunftspfad und SHA-256. Konkrete Kartenanker oder Prüfpositionen
+sind nicht enthalten.
 
-Wiederverwendete Komponenten:
+`proof/index.html` direkt im Browser öffnen. Den gesamten Ordner mit `resources/`
+kopieren oder das portable ZIP vollständig entpacken. JavaScript steuert nur
+Motivnavigation, Overlays und Bildfehleranzeige; es gibt keine Netzwerkabrufe,
+Fetch-Aufrufe, externen Schriften oder Laufzeitmodule. Fehlende oder beschädigte
+kopierte Bilder werden beim Öffnen an den betroffenen Motiven gemeldet. Diese
+Browserdiagnose prüft Dekodierbarkeit; die Berichtshashes belegen die Originalbytes
+beim Export, nicht nachträgliche Änderungen an weiterhin dekodierbaren Bildern.
 
-- `loadCatalogReleaseCandidate`: neuer, ausschließlich lesender Zugriff auf
-  dieselbe strenge Dokument-/Git-Verifikation wie `catalog-release verify`.
-  Die tatsächliche `selection.json`, Bibliothek und Ressourcen werden aus dem
-  verifizierten Snapshot übernommen, ohne Arbeitsverzeichnis-Fallback.
-- `reviewPositions`: unveränderte deterministische Auswahl des ersten Ankers je
-  vorhandener Kombination aus Zeilenparität und Rand-/Innenlage. Keine künstlichen
-  Positionen. Ausrichtungen gehören zu den festen Assetdefinitionen.
-- `drawAssetPlacements` / `assetRectangle`: dieselbe Bildplatzierung wie im Spiel.
-- `drawAssetReviewLayers`: aus der bisherigen Einzelprüfung extrahierte gemeinsame
-  Overlays. Spielgrenzen stammen direkt aus `HEXES[].polygon`; Grafikflächen aus
-  `placementContract`, mit derselben Translation wie zuvor. Keine Rundung und
-  keine Rand-Sonderregeln. Die Einzelprüfung nutzt nun denselben Baustein.
-- `elementFactory` / `decodeContactImages`: vorhandene statische SVG-Serialisierung
-  und Bilddekodierung der Karten-Kontaktübersicht.
+## Konkretes Prüfartefakt vom 02.11.2026
 
-Der Export verweigert abweichende Geometrie-/Renderer-Quellhashes zwischen
-Programm und Kandidat. Die zulässigen Anker werden mit der verifizierten
-Kandidatenevidenz verglichen. Das verhindert eine stillschweigende Interpretation
-historischer Kandidaten durch andere aktuelle Spielverträge.
+- Unveränderter Quellcommit: `511dfcf743a6e8c4f0c36b3354dcf36d1afe865e`.
+- Unveränderter Kandidat: `gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e`.
+- Manifest SHA-256: `1dbded7d0ba7f97b2cc126e62bf64d822dca0d6e46045cdc2d5bfa307b479a68`.
+- HTML: `.dev/catalog-relative-proof-511dfcf/proof/index.html`.
+- Bericht: `.dev/catalog-relative-proof-511dfcf/proof/review-manifest.json`.
+- ZIP: `.dev/catalog-relative-proof-511dfcf/Katalog-Korrekturfahne-relativ-511dfcf.zip`.
+- Hintergrund `sea-blue-01`; 33 ausgewählte Motive aus 55 Bibliotheksassets,
+  davon 24 unbefahrbar und 9 befahrbar, jeweils eine relative Detaildarstellung.
 
-## Vollständigkeit und Fehler
+Der ursprüngliche Kandidat liegt weiterhin im bisherigen Kandidatenordner.
+Die neue Fahne, Ressourcen, JSON und ZIP bleiben im ignorierten Entwicklungsordner
+und werden nicht produktiv ausgeliefert. Die frühere Fahne ist ein altes
+Prüfartefakt und wird durch diese Ausgabe ersetzt.
 
-`review-manifest.json` bindet Quellcommit, Kandidaten-ID, Manifest- und
-Selektionshash, Hintergrund sowie die exakte geordnete Assetauswahl. Pro Motiv
-stehen Status, Befahrbarkeit, Hex-/Ankeranzahl, tatsächliche Prüfpositionen und
-fehlende Lageklassen. Ressourcen sind mit Herkunft und SHA-256 aufgeführt.
+## Regression
 
-Ein Darstellungsfehler erzeugt eine ausdrücklich fehlerhafte Kachel und einen
-Berichtseintrag. Die CLI liefert dann Exitcode 1; die Fahne bleibt als unvollständig
-markiertes Diagnoseartefakt erhalten. Ungültige Kandidaten werden vor dem Export
-abgewiesen. Beschädigte oder fehlende kopierte Bilddateien meldet auch die
-HTML-Fahne beim Öffnen an allen betroffenen Motiven. Diese Browserdiagnose prüft
-Dekodierbarkeit; die Dateihashes dokumentieren die Originalbytes beim Export.
+```sh
+node --test tests/contracts/catalog-proof.test.mjs
+npx playwright test tests/browser/catalog-proof.spec.mjs --project=chromium
+npm run test:unit
+npm run test:assets
+python3 tests/test_package.py
+python3 scripts/package.py
+```
 
-## Konkretes Prüfartefakt vom 31.10.2026
-
-- Festgelegter aktueller `main`: `511dfcf743a6e8c4f0c36b3354dcf36d1afe865e`
-  (einschließlich des gemergten PR #97).
-- Kandidat: `gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e`.
-- Manifest-Hash: `1dbded7d0ba7f97b2cc126e62bf64d822dca0d6e46045cdc2d5bfa307b479a68`.
-- Lokale HTML-Fahne: `.dev/catalog-visual-proof-511dfcf/proof/index.html`.
-- Bericht: `.dev/catalog-visual-proof-511dfcf/proof/review-manifest.json`.
-- 55 Bibliotheksassets; Auswahl für `sea-blue-01`: 33 geografische Motive,
-  davon 24 unbefahrbar und 9 befahrbar; 674 zulässige Anker, 130 Prüfpositionen.
-- Alle 33 Motive erfolgreich dargestellt; Vollständigkeitsprüfung bestanden.
-- `land-coast.island.h4.long-sand.v1` hat für beide Paritäten keine Innenlage.
-  Die übrigen Motive besitzen alle vier Lageklassen.
-
-Kandidat und konkrete Ausgabe liegen ausschließlich unter dem ignorierten
-Entwicklungsordner. Sie gehören weder zum Git-Quellbestand noch zum regulären
-Deployment-ZIP. Die Befehle oben reproduzieren die Ausgabe mit denselben
-Kandidatenbytes. Ein späterer Kandidatenbau kann bei anderen Werkzeugversionen
-eine andere Kandidaten-ID erhalten; diese Versionen gehören zur bestehenden
-Release-Identität.
-
-## Automatische Prüfung
-
-Neue Vertragstests: `node --test tests/contracts/catalog-proof.test.mjs`.
-Offline-Browserprüfung: `npx playwright test tests/browser/catalog-proof.spec.mjs
---project=chromium`. Sie öffnet die erzeugte Datei über `file://`, prüft alle
-Motive und Positionen, unabhängige Overlays, Navigation, Zoom und defekte/fehlende
-Ressourcen. Ein Browser mit Zugriff auf lokale Dateien ist erforderlich.
-
-Zusätzlich prüfen die bestehenden Asset-/Release-/Geometrieverträge und
-`tests/test_package.py` die Integration. Der Verpackungstest legt private
-Prüfdateien an und bestätigt, dass sie nicht ins Spielpaket gelangen.
-
-Es wurde kein neuer Katalog freigegeben oder archiviert. Es wurden keine
-Assetdefinitionen, Motivauswahlen, Spielengine-, Generator- oder Solverdateien
-geändert.
+Die neuen Fahnentests prüfen Auswahlgleichheit, relative Belegungsformen,
+maßgebliche Overlaygeometrie, vollständige Mehrhexformen, Befahrbarkeit,
+Reproduzierbarkeit, unveränderte Kandidatenbytes, Ressourcenfehler und Offline-
+Bedienung. Sie sichern keine Kartenpositionen mehr ab. Die vorhandene
+Asset-Einzelansicht ist wieder unverändert gegenüber der PR-Ausgangsbasis;
+der nur für die frühere Fahne extrahierte absolute Overlaybaustein entfällt.
+Die bestehenden historischen Katalog-, Release- und Geometrietests sowie die
+CI-Ausführung bleiben erhalten.

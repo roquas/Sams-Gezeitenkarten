@@ -24,12 +24,6 @@
  document.getElementById('normal').addEventListener('click',()=>{
   for(const id of ['hexes','footprints']){document.getElementById(id).checked=false;detail.classList.remove('show-'+id);}
  });
- document.querySelectorAll('.position-select').forEach(select=>select.addEventListener('change',()=>{
-  select.closest('article').querySelectorAll('.position').forEach((p,i)=>p.hidden=i!==Number(select.value));
- }));
- document.getElementById('whole-board').addEventListener('change',event=>{
-  detail.querySelectorAll('svg').forEach(svg=>svg.setAttribute('viewBox',event.target.checked?svg.dataset.board:svg.dataset.zoom));
- });
  // A copied folder can lose resources later. Reflect damage on every affected
  // overview/detail entry as well as in a persistent global alert.
  Promise.all(data.resources.map(async r=>{
