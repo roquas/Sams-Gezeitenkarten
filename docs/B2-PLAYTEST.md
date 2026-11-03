@@ -110,13 +110,51 @@ gegen bewusstes Auslesen oder eigenes Lösen per Entwicklerwerkzeugen.
 
 ## Weitere Bestände
 
-Für einen neuen Generatorlauf einen neuen Bestand (`S02` usw.) mit eigener
+### S02: ungefilterter 20-Karten-Probelauf
+
+```sh
+npm run dev:b2:s02
+```
+
+[S02 öffnen](http://localhost:8000/?dev=b2&stock=S02). Dieser Einstieg enthält alle
+**96 Kandidaten** aus 20 Karten und die reguläre Probefahrt. Es gibt keine qualitative
+Vorauswahl. S01 bleibt mit `npm run dev:b2` und `?dev=b2` unverändert erreichbar.
+Beide Exporte können gleichzeitig vorhanden sein: `.dev/b2/` für S01 und
+`.dev/b2-s02/` für S02. Die Bestandskennung wird beim Variantenwechsel in der URL
+beibehalten; die zuletzt gewählten Rätsel und die namensgebundenen Spielstände
+bleiben getrennt. Ein unbekannter Bestand wird ausdrücklich abgewiesen.
+
+Ein direkter Einstieg ist beispielsweise
+[B2-S02-M000-A1-R00-V01](http://localhost:8000/?dev=b2&stock=S02&puzzle=B2-S02-M000-A1-R00-V01).
+
+Bei bereits laufendem Server sowie für private Diagnose:
+
+```sh
+npm run export:b2 -- --stock S02
+npm run inspect:b2 -- --stock S02 B2-S02-M000-A1-R00-V01
+npm run inspect:b2 -- --stock S02 --statistics
+npm run report:b2:s02
+node scripts/inspect-b2-playtest.mjs --stock S02 --report-markdown
+```
+
+Ohne `--stock` verwenden Export und Inspektion weiterhin S01. `--statistics`
+behält sein bisheriges Ausgabeformat; `--report` ergänzt Gesamtzahl, getrennte
+Häufigkeiten, Prozentanteile, Kreuztabelle und jeden gezählten Hinweis mit Testname
+und Hinweis-ID. Die Bestandsauswertung validiert zuvor sämtliche Namens-/Inhaltsbindungen.
+
+[Diagnosebericht, Grenzen und vollständige Reproduktion](verification/B2-S02.md) ·
+[Hinweisauswertung](verification/B2-S02/clue-report.md).
+
+### Spätere Bestände
+
+Für einen neuen Generatorlauf einen neuen Bestand mit eigener
 Zuordnungsdatei und fixiertem Quellmanifest anlegen. Alle gewünschten Kandidaten
 einmal an ihre vollständigen technischen Fingerprints und Inhaltshashes binden;
 neue Namen vergeben, bestehende S01-Zeilen nicht umwidmen. Danach den kleinen
 Adapter explizit um die neue Bestandskonfiguration und Namenskennung erweitern
 und dieselben Export-/Lade-/Pakettests ausführen. Das ist bewusst noch kein
-allgemeines Bestandsverwaltungssystem.
+allgemeines Bestandsverwaltungssystem. S02 benutzt denselben Registryvertrag 1;
+S01-Zeilen, Originalartefakte und Fingerprints wurden weder ersetzt noch migriert.
 
 ## Prüfung
 

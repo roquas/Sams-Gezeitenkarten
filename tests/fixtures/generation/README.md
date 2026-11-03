@@ -1,5 +1,21 @@
 # Feste kataloggerechte Generator-Sollvektoren
 
+## Historischer S01-Spieltestexport
+
+`b2-s01-export.json` bindet den kompletten öffentlichen S01-Export einschließlich
+Manifest an den unveränderten Commit
+`d30c6683e8ba74e72ea1e9aae6e3aaa99295f207`. Die Referenz wurde einmalig durch dessen
+`buildPlaytest()` in einem separaten sauberen Checkout erzeugt, bevor die
+S02-Adapteränderungen angewendet wurden. Die 96 Dateien umfassen 95 Kandidaten
+und das Entwicklungsmanifest; es wird kein Generatorlauf ausgeführt.
+
+Der Gesamthash ist SHA-256 der bestehenden `canonicalJson()` über die nach
+Dateinamen sortierte Liste `{name, sha256}`. Die Einzelhashes beziehen sich auf
+die exakten Exportstrings einschließlich Zeilenumbruch. Der neue S02-Vertragstest
+vergleicht den weiterhin unveränderten S01-Standardexport mit dieser Referenz.
+Er ergänzt die bestehenden Namens-, Loader- und Änderungsablehnungstests;
+Originalkandidaten, Registry und logische Fingerprints werden nicht aktualisiert.
+
 ## Historischer P2-Hinweispool
 
 `b2-p2-historical-pool.json` hält den unveränderten wahren Hinweispool für

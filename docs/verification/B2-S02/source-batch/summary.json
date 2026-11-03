@@ -1,0 +1,519 @@
+{
+  "batchFormatVersion": 3,
+  "status": "target-reached",
+  "targetCount": 20,
+  "maxAttempts": 40,
+  "attemptedCount": 20,
+  "acceptedCount": 20,
+  "rejectedCount": 0,
+  "rejectionCounts": {},
+  "attempted": {
+    "geography": {
+      "statuses": {
+        "generated": 20
+      },
+      "distinctMaps": 20,
+      "duplicateMaps": 0,
+      "emptyMaps": 0,
+      "mapAttempts": 23,
+      "placementAttempts": 98,
+      "rejectionCounts": {
+        "OBJECT_SPACING_EXHAUSTED": 3
+      },
+      "profileWork": {
+        "preferredPlacements": 95,
+        "footprintChecks": 18620
+      },
+      "histograms": {
+        "objectCount": {
+          "2": 5,
+          "3": 5,
+          "4": 2,
+          "5": 2,
+          "6": 5,
+          "7": 1
+        },
+        "passableObjects": {
+          "1": 6,
+          "2": 6,
+          "3": 4,
+          "4": 2,
+          "5": 2
+        },
+        "blockedObjects": {
+          "0": 2,
+          "1": 10,
+          "2": 5,
+          "3": 1,
+          "4": 1,
+          "5": 1
+        },
+        "occupiedCells": {
+          "2": 1,
+          "3": 2,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 2,
+          "8": 2,
+          "9": 3,
+          "10": 1
+        },
+        "waterCells": {
+          "15": 1,
+          "16": 3,
+          "17": 2,
+          "18": 2,
+          "19": 3,
+          "20": 3,
+          "21": 3,
+          "22": 2,
+          "23": 1
+        },
+        "landFraction": {
+          "0.28": 2,
+          "0.32": 2,
+          "0.36": 3,
+          "0.2": 3,
+          "0.12": 2,
+          "0.16": 3,
+          "0.4": 1,
+          "0.24": 3,
+          "0.08": 1
+        },
+        "waterFraction": {
+          "0.72": 2,
+          "0.68": 2,
+          "0.64": 3,
+          "0.8": 3,
+          "0.88": 2,
+          "0.84": 3,
+          "0.6": 1,
+          "0.76": 3,
+          "0.92": 1
+        },
+        "passableComponentCount": {
+          "1": 18,
+          "2": 2
+        },
+        "blockedComponentCount": {
+          "0": 2,
+          "1": 10,
+          "2": 5,
+          "3": 1,
+          "4": 1,
+          "5": 1
+        },
+        "coastEdges": {
+          "7": 1,
+          "8": 1,
+          "12": 2,
+          "13": 1,
+          "16": 1,
+          "17": 4,
+          "22": 1,
+          "25": 1,
+          "26": 2,
+          "27": 2,
+          "29": 1,
+          "31": 1,
+          "33": 1,
+          "34": 1
+        },
+        "passableComponentSizes": {
+          "1": 1,
+          "2": 1,
+          "16": 1,
+          "18": 1,
+          "19": 2,
+          "20": 4,
+          "21": 3,
+          "22": 3,
+          "23": 2,
+          "24": 2,
+          "25": 2
+        },
+        "blockedComponentSizes": {
+          "1": 11,
+          "2": 7,
+          "3": 9,
+          "4": 5
+        },
+        "objectSizes": {
+          "1": 59,
+          "2": 7,
+          "3": 9,
+          "4": 5
+        },
+        "shapesByPassability": {
+          "false:0,1;1,0;1,1": 4,
+          "false:0,0;1,0": 3,
+          "true:0,0": 48,
+          "false:0,0;1,0;2,0;3,0": 2,
+          "false:0,0": 11,
+          "false:0,0;0,1;1,0;1,1": 3,
+          "false:0,0;1,0;1,1": 2,
+          "false:0,1;1,0;2,0": 3,
+          "false:0,1;1,0": 2,
+          "false:0,0;0,1": 2
+        },
+        "boundaryCells": {
+          "0": 14,
+          "1": 54,
+          "2": 9,
+          "3": 2,
+          "4": 1
+        },
+        "boundaryEdges": {
+          "0": 14,
+          "1": 10,
+          "2": 15,
+          "3": 17,
+          "4": 16,
+          "5": 4,
+          "6": 2,
+          "8": 1,
+          "9": 1
+        },
+        "isolatedCells": {
+          "0": 19,
+          "1": 1
+        },
+        "deadEnds": {
+          "0": 11,
+          "1": 8,
+          "2": 1
+        },
+        "articulationCells": {
+          "0": 11,
+          "1": 5,
+          "2": 1,
+          "4": 2,
+          "5": 1
+        },
+        "startCells": {
+          "1": 6,
+          "2": 6,
+          "3": 4,
+          "4": 2,
+          "5": 2
+        }
+      },
+      "routes": {}
+    },
+    "assignment": {
+      "statuses": {
+        "complete": 20
+      },
+      "nonemptyStatuses": {
+        "complete": 20
+      },
+      "objects": 80,
+      "assigned": 80,
+      "unassigned": 0,
+      "rejectionCounts": {},
+      "assetTypes": {
+        "island": 15,
+        "settlement": 9,
+        "wreck": 7,
+        "bottle": 7,
+        "driftwood": 5,
+        "buoy": 6,
+        "lighthouse": 6,
+        "rowboat": 5,
+        "crate": 5,
+        "atoll": 8,
+        "barrels": 5,
+        "archipelago": 2
+      },
+      "assetUsage": {
+        "land-coast.island.h3.massive-volcano.v1": 4,
+        "land-coast.settlement.h2.prison-island-01.v1": 2,
+        "navigation.wreck.h1.offcenter-sloop.v1": 7,
+        "sea-life.accent.h1.bottle.v1": 7,
+        "sea-life.accent.h1.driftwood.v1": 5,
+        "sea-life.accent.h1.buoy.v1": 6,
+        "navigation.lighthouse.h1.offcenter-beacon.v1": 4,
+        "land-coast.island.h4.long-sand.v1": 2,
+        "land-coast.island.h1.palm-beach.v1": 3,
+        "sea-life.accent.h1.rowboat.v1": 5,
+        "land-coast.settlement.h4.tesoro.v4": 3,
+        "sea-life.accent.h1.crate.v1": 5,
+        "land-coast.atoll.h1.broken-passages.v1": 4,
+        "sea-life.accent.h1.barrels.v1": 5,
+        "land-coast.archipelago.h3.sand-reefs.v2": 2,
+        "land-coast.atoll.h1.closed-lagoon.v1": 4,
+        "land-coast.island.h3.smuggler-cove.v1": 3,
+        "land-coast.island.h2.mist-forest-02.v1": 1,
+        "navigation.lighthouse.h1.cyan-magenta-island.v1": 2,
+        "land-coast.island.h1.basalt-spire-water.v1": 1,
+        "land-coast.island.h2.tropical-bays.v1": 1,
+        "land-coast.settlement.h2.prison-island-03.v1": 1,
+        "land-coast.settlement.h1.restaurant-island.v1": 1,
+        "land-coast.settlement.h2.hut-settlement-03.v1": 1,
+        "land-coast.settlement.h2.hut-settlement-02.v1": 1
+      },
+      "unassignedShapes": {},
+      "unassignedSizesByPassability": {},
+      "candidateChecks": 3440,
+      "anchorChecks": 5160
+    },
+    "errors": {}
+  },
+  "accepted": {
+    "geography": {
+      "statuses": {
+        "generated": 20
+      },
+      "distinctMaps": 20,
+      "duplicateMaps": 0,
+      "emptyMaps": 0,
+      "mapAttempts": 23,
+      "placementAttempts": 98,
+      "rejectionCounts": {
+        "OBJECT_SPACING_EXHAUSTED": 3
+      },
+      "profileWork": {
+        "preferredPlacements": 95,
+        "footprintChecks": 18620
+      },
+      "histograms": {
+        "objectCount": {
+          "2": 5,
+          "3": 5,
+          "4": 2,
+          "5": 2,
+          "6": 5,
+          "7": 1
+        },
+        "passableObjects": {
+          "1": 6,
+          "2": 6,
+          "3": 4,
+          "4": 2,
+          "5": 2
+        },
+        "blockedObjects": {
+          "0": 2,
+          "1": 10,
+          "2": 5,
+          "3": 1,
+          "4": 1,
+          "5": 1
+        },
+        "occupiedCells": {
+          "2": 1,
+          "3": 2,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 2,
+          "8": 2,
+          "9": 3,
+          "10": 1
+        },
+        "waterCells": {
+          "15": 1,
+          "16": 3,
+          "17": 2,
+          "18": 2,
+          "19": 3,
+          "20": 3,
+          "21": 3,
+          "22": 2,
+          "23": 1
+        },
+        "landFraction": {
+          "0.28": 2,
+          "0.32": 2,
+          "0.36": 3,
+          "0.2": 3,
+          "0.12": 2,
+          "0.16": 3,
+          "0.4": 1,
+          "0.24": 3,
+          "0.08": 1
+        },
+        "waterFraction": {
+          "0.72": 2,
+          "0.68": 2,
+          "0.64": 3,
+          "0.8": 3,
+          "0.88": 2,
+          "0.84": 3,
+          "0.6": 1,
+          "0.76": 3,
+          "0.92": 1
+        },
+        "passableComponentCount": {
+          "1": 18,
+          "2": 2
+        },
+        "blockedComponentCount": {
+          "0": 2,
+          "1": 10,
+          "2": 5,
+          "3": 1,
+          "4": 1,
+          "5": 1
+        },
+        "coastEdges": {
+          "7": 1,
+          "8": 1,
+          "12": 2,
+          "13": 1,
+          "16": 1,
+          "17": 4,
+          "22": 1,
+          "25": 1,
+          "26": 2,
+          "27": 2,
+          "29": 1,
+          "31": 1,
+          "33": 1,
+          "34": 1
+        },
+        "passableComponentSizes": {
+          "1": 1,
+          "2": 1,
+          "16": 1,
+          "18": 1,
+          "19": 2,
+          "20": 4,
+          "21": 3,
+          "22": 3,
+          "23": 2,
+          "24": 2,
+          "25": 2
+        },
+        "blockedComponentSizes": {
+          "1": 11,
+          "2": 7,
+          "3": 9,
+          "4": 5
+        },
+        "objectSizes": {
+          "1": 59,
+          "2": 7,
+          "3": 9,
+          "4": 5
+        },
+        "shapesByPassability": {
+          "false:0,1;1,0;1,1": 4,
+          "false:0,0;1,0": 3,
+          "true:0,0": 48,
+          "false:0,0;1,0;2,0;3,0": 2,
+          "false:0,0": 11,
+          "false:0,0;0,1;1,0;1,1": 3,
+          "false:0,0;1,0;1,1": 2,
+          "false:0,1;1,0;2,0": 3,
+          "false:0,1;1,0": 2,
+          "false:0,0;0,1": 2
+        },
+        "boundaryCells": {
+          "0": 14,
+          "1": 54,
+          "2": 9,
+          "3": 2,
+          "4": 1
+        },
+        "boundaryEdges": {
+          "0": 14,
+          "1": 10,
+          "2": 15,
+          "3": 17,
+          "4": 16,
+          "5": 4,
+          "6": 2,
+          "8": 1,
+          "9": 1
+        },
+        "isolatedCells": {
+          "0": 19,
+          "1": 1
+        },
+        "deadEnds": {
+          "0": 11,
+          "1": 8,
+          "2": 1
+        },
+        "articulationCells": {
+          "0": 11,
+          "1": 5,
+          "2": 1,
+          "4": 2,
+          "5": 1
+        },
+        "startCells": {
+          "1": 6,
+          "2": 6,
+          "3": 4,
+          "4": 2,
+          "5": 2
+        }
+      },
+      "routes": {}
+    },
+    "assignment": {
+      "statuses": {
+        "complete": 20
+      },
+      "nonemptyStatuses": {
+        "complete": 20
+      },
+      "objects": 80,
+      "assigned": 80,
+      "unassigned": 0,
+      "rejectionCounts": {},
+      "assetTypes": {
+        "island": 15,
+        "settlement": 9,
+        "wreck": 7,
+        "bottle": 7,
+        "driftwood": 5,
+        "buoy": 6,
+        "lighthouse": 6,
+        "rowboat": 5,
+        "crate": 5,
+        "atoll": 8,
+        "barrels": 5,
+        "archipelago": 2
+      },
+      "assetUsage": {
+        "land-coast.island.h3.massive-volcano.v1": 4,
+        "land-coast.settlement.h2.prison-island-01.v1": 2,
+        "navigation.wreck.h1.offcenter-sloop.v1": 7,
+        "sea-life.accent.h1.bottle.v1": 7,
+        "sea-life.accent.h1.driftwood.v1": 5,
+        "sea-life.accent.h1.buoy.v1": 6,
+        "navigation.lighthouse.h1.offcenter-beacon.v1": 4,
+        "land-coast.island.h4.long-sand.v1": 2,
+        "land-coast.island.h1.palm-beach.v1": 3,
+        "sea-life.accent.h1.rowboat.v1": 5,
+        "land-coast.settlement.h4.tesoro.v4": 3,
+        "sea-life.accent.h1.crate.v1": 5,
+        "land-coast.atoll.h1.broken-passages.v1": 4,
+        "sea-life.accent.h1.barrels.v1": 5,
+        "land-coast.archipelago.h3.sand-reefs.v2": 2,
+        "land-coast.atoll.h1.closed-lagoon.v1": 4,
+        "land-coast.island.h3.smuggler-cove.v1": 3,
+        "land-coast.island.h2.mist-forest-02.v1": 1,
+        "navigation.lighthouse.h1.cyan-magenta-island.v1": 2,
+        "land-coast.island.h1.basalt-spire-water.v1": 1,
+        "land-coast.island.h2.tropical-bays.v1": 1,
+        "land-coast.settlement.h2.prison-island-03.v1": 1,
+        "land-coast.settlement.h1.restaurant-island.v1": 1,
+        "land-coast.settlement.h2.hut-settlement-03.v1": 1,
+        "land-coast.settlement.h2.hut-settlement-02.v1": 1
+      },
+      "unassignedShapes": {},
+      "unassignedSizesByPassability": {},
+      "candidateChecks": 3440,
+      "anchorChecks": 5160
+    },
+    "errors": {},
+    "repetitionHistogram": {
+      "0": 20
+    }
+  }
+}

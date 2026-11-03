@@ -1,0 +1,8 @@
+{
+  "inputMs": 1523,
+  "enumerationMs": 374,
+  "selectionMs": 21,
+  "clueGenerationMs": 2620,
+  "searchMs": 5156,
+  "totalMs": 9711
+}
