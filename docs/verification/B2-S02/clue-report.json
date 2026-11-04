@@ -1,0 +1,2234 @@
+{
+  "reportFormatVersion": 1,
+  "stockId": "B2-S02",
+  "experimentId": "gk-b2-run-sha256:4dcf2dcba4af6c718cf5ab5900733d08fa8fe911ed3fd849db2a34679eb9d883",
+  "source": {
+    "manifestSha256": "9f9a3d17b956e153174e801d56dcb03e3b384c3f1e16957cc9f8fda44b180a3c",
+    "candidatesSha256": "84d5b224121047521e6e1b9d7c100270807beaed8482f8d3d72dc4457a3e06e1"
+  },
+  "generationProgram": {
+    "commit": "d30c6683e8ba74e72ea1e9aae6e3aaa99295f207",
+    "nodeVersion": "v24.19.0"
+  },
+  "analysis": {
+    "method": "stored-clue-composition-1",
+    "presentationAssignment": "deterministic-derived",
+    "implementation": [
+      {
+        "path": "scripts/lib/b2-diagnostics.mjs",
+        "sha256": "1b1884ad18be0628487fa7eb78c3f7de4bef0e35dac3a4cd3bc8f650f3afa0e6"
+      },
+      {
+        "path": "scripts/lib/b2-playtest.mjs",
+        "sha256": "3e295a2c33ad4a898990fbf8a7ab75b448a067e38608b96105d2f9b644c7b3d0"
+      },
+      {
+        "path": "scripts/lib/clue-presentation.mjs",
+        "sha256": "d85252b0c75d9f75692dca432858922802ebe5f8864750bb208363b7b1d688c0"
+      },
+      {
+        "path": "scripts/lib/clue-text.mjs",
+        "sha256": "fc9cad6394a694a7eb9948fd170b82a042e734bae30f3c1fcd39f8851e896b31"
+      },
+      {
+        "path": "scripts/lib/content-hash.mjs",
+        "sha256": "020e233bb0bafe0e096fc4b7b9430b3a6c81a891bbfd9c96c900b212846bdbb4"
+      },
+      {
+        "path": "src/puzzles/schema.mjs",
+        "sha256": "13a54b5b0d70299cad7c2f4cfa8022adcb145a66ac56adecf30f23c81f951afb"
+      }
+    ]
+  },
+  "candidateCount": 96,
+  "totalClues": 340,
+  "byType": {
+    "countDistanceToPlace": 283,
+    "direction": 8,
+    "distanceBetweenHours": 15,
+    "distanceToPlace": 26,
+    "position": 1,
+    "turn": 7
+  },
+  "byPresentationForm": {
+    "CountDistanceNever": 56,
+    "HasDistanceAt": 27,
+    "NotDistanceAt": 14,
+    "countDistanceToPlace": 186,
+    "direction": 8,
+    "distanceBetweenHours": 15,
+    "distanceToPlace": 26,
+    "position": 1,
+    "turn": 7
+  },
+  "percentByType": {
+    "countDistanceToPlace": 83.24,
+    "direction": 2.35,
+    "distanceBetweenHours": 4.41,
+    "distanceToPlace": 7.65,
+    "position": 0.29,
+    "turn": 2.06
+  },
+  "percentByPresentationForm": {
+    "CountDistanceNever": 16.47,
+    "HasDistanceAt": 7.94,
+    "NotDistanceAt": 4.12,
+    "countDistanceToPlace": 54.71,
+    "direction": 2.35,
+    "distanceBetweenHours": 4.41,
+    "distanceToPlace": 7.65,
+    "position": 0.29,
+    "turn": 2.06
+  },
+  "crossTable": {
+    "types": [
+      "countDistanceToPlace",
+      "direction",
+      "distanceBetweenHours",
+      "distanceToPlace",
+      "position",
+      "turn"
+    ],
+    "forms": [
+      "CountDistanceNever",
+      "HasDistanceAt",
+      "NotDistanceAt",
+      "countDistanceToPlace",
+      "direction",
+      "distanceBetweenHours",
+      "distanceToPlace",
+      "position",
+      "turn"
+    ],
+    "counts": {
+      "countDistanceToPlace": {
+        "CountDistanceNever": 56,
+        "HasDistanceAt": 27,
+        "NotDistanceAt": 14,
+        "countDistanceToPlace": 186,
+        "direction": 0,
+        "distanceBetweenHours": 0,
+        "distanceToPlace": 0,
+        "position": 0,
+        "turn": 0
+      },
+      "direction": {
+        "CountDistanceNever": 0,
+        "HasDistanceAt": 0,
+        "NotDistanceAt": 0,
+        "countDistanceToPlace": 0,
+        "direction": 8,
+        "distanceBetweenHours": 0,
+        "distanceToPlace": 0,
+        "position": 0,
+        "turn": 0
+      },
+      "distanceBetweenHours": {
+        "CountDistanceNever": 0,
+        "HasDistanceAt": 0,
+        "NotDistanceAt": 0,
+        "countDistanceToPlace": 0,
+        "direction": 0,
+        "distanceBetweenHours": 15,
+        "distanceToPlace": 0,
+        "position": 0,
+        "turn": 0
+      },
+      "distanceToPlace": {
+        "CountDistanceNever": 0,
+        "HasDistanceAt": 0,
+        "NotDistanceAt": 0,
+        "countDistanceToPlace": 0,
+        "direction": 0,
+        "distanceBetweenHours": 0,
+        "distanceToPlace": 26,
+        "position": 0,
+        "turn": 0
+      },
+      "position": {
+        "CountDistanceNever": 0,
+        "HasDistanceAt": 0,
+        "NotDistanceAt": 0,
+        "countDistanceToPlace": 0,
+        "direction": 0,
+        "distanceBetweenHours": 0,
+        "distanceToPlace": 0,
+        "position": 1,
+        "turn": 0
+      },
+      "turn": {
+        "CountDistanceNever": 0,
+        "HasDistanceAt": 0,
+        "NotDistanceAt": 0,
+        "countDistanceToPlace": 0,
+        "direction": 0,
+        "distanceBetweenHours": 0,
+        "distanceToPlace": 0,
+        "position": 0,
+        "turn": 7
+      }
+    },
+    "rowTotals": {
+      "countDistanceToPlace": 283,
+      "direction": 8,
+      "distanceBetweenHours": 15,
+      "distanceToPlace": 26,
+      "position": 1,
+      "turn": 7
+    },
+    "columnTotals": {
+      "CountDistanceNever": 56,
+      "HasDistanceAt": 27,
+      "NotDistanceAt": 14,
+      "countDistanceToPlace": 186,
+      "direction": 8,
+      "distanceBetweenHours": 15,
+      "distanceToPlace": 26,
+      "position": 1,
+      "turn": 7
+    },
+    "total": 340
+  },
+  "occurrences": [
+    {
+      "testName": "B2-S02-M000-A1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M000-A1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "direction",
+      "presentationForm": "direction"
+    },
+    {
+      "testName": "B2-S02-M000-A1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M000-A1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M000-A1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M000-A1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M000-A1-R00-V02",
+      "clueId": "H4",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M000-A5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M000-A5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M000-A5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M000-A5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-A3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-A3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-A3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M001-A3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-A3-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-A3-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-A3-R00-V02",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-C5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M001-C5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-C5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-C5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-D3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M001-D3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-D3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M001-D3-R00-V01",
+      "clueId": "H4",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-D3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "position",
+      "presentationForm": "position"
+    },
+    {
+      "testName": "B2-S02-M001-D3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M001-D3-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M001-E4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M001-E4-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-E4-R00-V01",
+      "clueId": "H3",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-E4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M001-E4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-A1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M002-A1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M002-A1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "turn",
+      "presentationForm": "turn"
+    },
+    {
+      "testName": "B2-S02-M002-A1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-A1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-A1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-A1-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-A1-R00-V02",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-B3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M002-B3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-B3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-B3-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-B3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-B3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-C1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-C1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-C1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-C1-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-C1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M002-C1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M002-C1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-C1-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-C1-R00-V02",
+      "clueId": "H5",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-E1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-E1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M002-E1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M002-E1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M002-E1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M002-E1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M003-A5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M003-A5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M003-A5-R00-V01",
+      "clueId": "H3",
+      "logicalType": "direction",
+      "presentationForm": "direction"
+    },
+    {
+      "testName": "B2-S02-M003-A5-R00-V01",
+      "clueId": "H4",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M003-A5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M003-A5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "direction",
+      "presentationForm": "direction"
+    },
+    {
+      "testName": "B2-S02-M003-A5-R00-V02",
+      "clueId": "H3",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M003-A5-R00-V02",
+      "clueId": "H4",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M004-A1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M004-A1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M004-A1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M004-A1-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M004-A1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M004-A1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M004-A1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M004-A1-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M005-B5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-B5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-B5-R00-V01",
+      "clueId": "H3",
+      "logicalType": "turn",
+      "presentationForm": "turn"
+    },
+    {
+      "testName": "B2-S02-M005-B5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M005-B5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-B5-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-E1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M005-E1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-E1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-E1-R00-V01",
+      "clueId": "H4",
+      "logicalType": "turn",
+      "presentationForm": "turn"
+    },
+    {
+      "testName": "B2-S02-M005-E1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-E1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-E1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "direction",
+      "presentationForm": "direction"
+    },
+    {
+      "testName": "B2-S02-M005-E3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-E3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-E3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-E3-R00-V01",
+      "clueId": "H4",
+      "logicalType": "direction",
+      "presentationForm": "direction"
+    },
+    {
+      "testName": "B2-S02-M005-E3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M005-E3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M005-E3-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M005-E3-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M006-B3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M006-B3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M006-B3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M006-B3-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M006-B3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M006-B3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M006-B3-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M006-B3-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M006-B3-R00-V02",
+      "clueId": "H5",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M007-E4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M007-E4-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M007-E4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M007-E4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-A3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M008-A3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-A3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-A3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-A3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-A5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M008-A5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-A5-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-A5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M008-A5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-A5-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-A5-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-C5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M008-C5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-C5-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-C5-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-C5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M008-C5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-C5-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-C5-R00-V02",
+      "clueId": "H4",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M008-C5-R00-V02",
+      "clueId": "H5",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M009-A2-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M009-A2-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A2-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A2-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M009-A2-R00-V01",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A2-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M009-A2-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A2-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A2-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A4-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A4-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M009-A4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A4-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-A4-R00-V02",
+      "clueId": "H4",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V02",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-C1-R00-V02",
+      "clueId": "H6",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-C5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M009-C5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-C5-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M009-C5-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-C5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M009-C5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-C5-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-D3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M009-D3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M009-D3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-D3-R00-V01",
+      "clueId": "H4",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-D3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M009-D3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-D3-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-D3-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M009-D3-R00-V02",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M010-E4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M010-E4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M010-E4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M010-E4-R00-V02",
+      "clueId": "H3",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M011-A5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M011-A5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M011-A5-R00-V01",
+      "clueId": "H3",
+      "logicalType": "direction",
+      "presentationForm": "direction"
+    },
+    {
+      "testName": "B2-S02-M011-A5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M011-A5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M011-A5-R00-V02",
+      "clueId": "H3",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M011-D3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M011-D3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M011-D3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M011-D3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M011-D3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-C1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M012-C1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-C1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-C1-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-C1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M012-C1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M012-C1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-E3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M012-E3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-E3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-E3-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-E3-R00-V01",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-E3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M012-E3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-E3-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M012-E3-R00-V02",
+      "clueId": "H4",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M013-A4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-A4-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-A4-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-A4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M013-A4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M013-A4-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-A4-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-A4-R00-V02",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-C1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-C1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M013-C1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-C1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-C1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-C1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "direction",
+      "presentationForm": "direction"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V01",
+      "clueId": "H4",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V02",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-C3-R00-V02",
+      "clueId": "H6",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-D4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-D4-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-D4-R00-V01",
+      "clueId": "H3",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M013-D4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M013-D4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M013-D4-R00-V02",
+      "clueId": "H3",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V01",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V02",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M013-E1-R00-V02",
+      "clueId": "H6",
+      "logicalType": "turn",
+      "presentationForm": "turn"
+    },
+    {
+      "testName": "B2-S02-M014-A5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M014-A5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-A5-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-A5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-A5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "turn",
+      "presentationForm": "turn"
+    },
+    {
+      "testName": "B2-S02-M014-A5-R00-V02",
+      "clueId": "H3",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-A5-R00-V02",
+      "clueId": "H4",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V01",
+      "clueId": "H4",
+      "logicalType": "turn",
+      "presentationForm": "turn"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V02",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M014-C1-R00-V02",
+      "clueId": "H6",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M015-A1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M015-A1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-A1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M015-A1-R00-V01",
+      "clueId": "H4",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-A1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M015-A1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-A1-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-A1-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-A1-R00-V02",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-A4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-A4-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-A4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M015-A4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M015-A4-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-E4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-E4-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-E4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M015-E4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M015-E4-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M015-E4-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-A2-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M016-A2-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-A2-R00-V01",
+      "clueId": "H3",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-A2-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M016-A2-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M016-A2-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-E1-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M016-E1-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M016-E1-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-E1-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-E1-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-E1-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-E5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-E5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M016-E5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M016-E5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V01",
+      "clueId": "H5",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V01",
+      "clueId": "H6",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V02",
+      "clueId": "H3",
+      "logicalType": "turn",
+      "presentationForm": "turn"
+    },
+    {
+      "testName": "B2-S02-M017-A4-R00-V02",
+      "clueId": "H4",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V01",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V01",
+      "clueId": "H5",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V01",
+      "clueId": "H6",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "HasDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V02",
+      "clueId": "H4",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M017-C3-R00-V02",
+      "clueId": "H5",
+      "logicalType": "distanceBetweenHours",
+      "presentationForm": "distanceBetweenHours"
+    },
+    {
+      "testName": "B2-S02-M018-A5-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M018-A5-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M018-A5-R00-V01",
+      "clueId": "H3",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M018-A5-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M018-A5-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M018-B4-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "CountDistanceNever"
+    },
+    {
+      "testName": "B2-S02-M018-B4-R00-V01",
+      "clueId": "H2",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M018-B4-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "NotDistanceAt"
+    },
+    {
+      "testName": "B2-S02-M018-B4-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M018-B4-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M018-B4-R00-V02",
+      "clueId": "H4",
+      "logicalType": "distanceToPlace",
+      "presentationForm": "distanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M019-B2-R00-V01",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M019-B2-R00-V01",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M019-B2-R00-V01",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M019-B2-R00-V02",
+      "clueId": "H1",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M019-B2-R00-V02",
+      "clueId": "H2",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M019-B2-R00-V02",
+      "clueId": "H3",
+      "logicalType": "countDistanceToPlace",
+      "presentationForm": "countDistanceToPlace"
+    },
+    {
+      "testName": "B2-S02-M019-B2-R00-V02",
+      "clueId": "H4",
+      "logicalType": "direction",
+      "presentationForm": "direction"
+    }
+  ]
+}

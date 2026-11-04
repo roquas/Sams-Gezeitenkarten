@@ -22,10 +22,13 @@ createMobileViews();
 
 const params=new URLSearchParams(window.location.search);
 const b2Development=params.get('dev')==='b2';
-const selectionKey=b2Development?'gezeitenkarten-selected-b2':'gezeitenkarten-selected-puzzle';
-const loader=createPuzzleLoader({manifestUrl:new URL(b2Development?'../../.dev/b2/manifest.json':'../../puzzles/manifest.json',import.meta.url)});
+const b2Stock=params.get('stock')??'S01';
+if(b2Development&&!['S01','S02'].includes(b2Stock))throw Error('Unbekannter B2-Bestand: '+b2Stock);
+const selectionKey=b2Development?(b2Stock==='S01'?'gezeitenkarten-selected-b2':'gezeitenkarten-selected-b2-S02'):'gezeitenkarten-selected-puzzle';
+const b2Manifest=b2Stock==='S02'?'../../.dev/b2-s02/manifest.json':'../../.dev/b2/manifest.json';
+const loader=createPuzzleLoader({manifestUrl:new URL(b2Development?b2Manifest:'../../puzzles/manifest.json',import.meta.url)});
 const catalog=await loader.manifest().catch(error=>{
- if(b2Development)throw Error(error.message+' B2-Testbestand zuerst mit npm run export:b2 exportieren; oder URL ohne ?dev=b2 öffnen.');
+ if(b2Development)throw Error(error.message+' B2-Testbestand zuerst mit npm run export:b2'+(b2Stock==='S02'?' -- --stock S02':'')+' exportieren; oder URL ohne ?dev=b2 öffnen.');
  throw error;
 });
 if(!catalog.puzzles.length)throw Error('Zurzeit sind keine Rätsel verfügbar.');
@@ -33,7 +36,7 @@ let storage;try{storage=window.localStorage;}catch{}
 let selected;try{selected=storage?.getItem(selectionKey);}catch{}
 if(b2Development&&params.has('puzzle')){
  selected=params.get('puzzle');
- if(!catalog.puzzles.some(p=>p.id===selected))throw Error('Unbekannter B2-Testname: '+selected+'. Öffne ?dev=b2 für die vollständige Auswahl.');
+ if(!catalog.puzzles.some(p=>p.id===selected))throw Error('Unbekannter B2-Testname: '+selected+'. Öffne ?dev=b2'+(b2Stock==='S02'?'&stock=S02':'')+' für die vollständige Auswahl.');
 }
 let puzzle;
 try{puzzle=await loader.load(catalog.puzzles.some(p=>p.id===selected)?selected:catalog.defaultId);}
@@ -183,7 +186,7 @@ const select=$('puzzleSelect');
 if(b2Development){
  document.querySelector('label[for="puzzleSelect"]').remove();
  const panel=document.createElement('div');panel.id='b2Selection';
- const label=document.createElement('label');label.htmlFor='puzzleSelect';label.textContent='B2-Entwicklungsauswahl · Testbestand S01';
+ const label=document.createElement('label');label.htmlFor='puzzleSelect';label.textContent='B2-Entwicklungsauswahl · Testbestand '+b2Stock;
  const note=document.createElement('p');note.className='muted';note.textContent='Gleiche M…-Start-R…-Kennung: Varianten derselben Zielroute. Testname beim Berichten angeben.';
  const exit=document.createElement('a');exit.href=window.location.pathname;exit.textContent='Reguläres Spiel öffnen';
  panel.append(label,select,$('puzzleStatus'),note,exit);$('puzzleLoadError').before(panel);

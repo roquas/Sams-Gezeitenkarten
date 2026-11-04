@@ -33,6 +33,15 @@ jobs:
         env:
           CATALOG_PREVIOUS: ${{ github.event.pull_request.base.sha || github.event.before || 'HEAD^' }}
         run: node scripts/catalog-release.mjs check-archive --previous "$CATALOG_PREVIOUS"
+  b2-s02-reproduction:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        # Exact S02 manifests and derived seeds bind this recorded runtime.
+        with: {node-version: '24.19.0'}
+      - run: npm run test:b2:s02:reproduction
   assets:
     runs-on: ubuntu-latest
     steps:

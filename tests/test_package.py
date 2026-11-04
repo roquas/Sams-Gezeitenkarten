@@ -23,7 +23,8 @@ class PackagingTests(unittest.TestCase):
         for ref in self.files:
             if ref.endswith('.json'):
                 text = (ROOT / ref).read_text()
-                for private_field in ('effectKey', 'individualExactness', 'gk-b2-run-sha256', 'gk-b2-target-sha256'):
+                for private_field in ('effectKey', 'individualExactness', 'gk-b2-run-sha256', 'gk-b2-target-sha256',
+                                      'B2-S01-', 'B2-S02-', 'presentationAssignment', 'crossTable'):
                     self.assertNotIn(private_field, text, ref)
 
     @classmethod
@@ -70,7 +71,10 @@ class PackagingTests(unittest.TestCase):
     def test_deterministic_runtime_only_archive_and_public_projection(self):
         # Offline catalog reviews and their browser tooling never enter the game.
         for ref in ('.dev/catalog-proof/index.html', '.dev/catalog-proof/review-manifest.json',
-                    'dev/catalog-proof.mjs', 'dev/catalog-proof.css'):
+                    'dev/catalog-proof.mjs', 'dev/catalog-proof.css',
+                    '.dev/b2-s02/manifest.json', '.dev/b2-s02/B2-S02-M000-A1-R00-V01.json',
+                    'docs/verification/B2-S02/clue-report.json', 'docs/verification/B2-S02/run/candidates.jsonl',
+                    'scripts/config/b2-playtest-s02.json'):
             target = self.root / ref
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text('private review artifact')
