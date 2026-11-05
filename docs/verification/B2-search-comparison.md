@@ -260,3 +260,22 @@ keine Versuchszahlen; sämtliche erzeugten Kandidaten bleiben gespeichert.
 
 - 6 Hinweise, Quelle B2-S02-M013-D4-R00-V01:
   `gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M013-D4-R00-V01/gk-variant-v2-sha256:63bc61f3048b94eb4096b12e14ddf819e666e181d0039dca3e1854772c7fd2e5`
+
+## Ausgeführte Abnahme am 05.11.2026
+
+- Vollständige Unit-/Contract-/Integration-Suite: **293 bestanden**, 0 Fehler,
+  0 übersprungen (623,24 s, einschließlich bestehender Bild-/Katalogprüfungen).
+- Beide Reproduktionstests: **2 bestanden**; neuer Vergleich bytegleich,
+  bestehende elf S02-Dateien unverändert (47,91 s zusammen).
+- Contenttests: **3 bestanden**. Reguläre Rätselvalidierung erfolgreich.
+- Alle **167** Experimentkandidaten unabhängig auf Zielübereinstimmung,
+  Eindeutigkeit, Auslassungsnachweise, Fingerprints und Wirkungsschlüssel geprüft.
+- `git diff --check` erfolgreich. Kein Diff an `src/`, `puzzles/`, `assets/`,
+  ursprünglichen Such-/Solvermodulen, S02-Registry oder eingefrorenem S02-Bestand.
+- Keine Browserprüfung erforderlich: kein UI- oder Laufzeitpfad verändert.
+
+Die erste Ausführung der vollen Suite in der eingeschränkten Sandbox konnte
+Git-/Prüfunterprozesse nicht vollständig ausführen und wurde beendet. Die oben
+gezählte vollständige Suite lief anschließend mit den benötigten Prozessrechten;
+keine Assertion wurde deaktiviert. Laufzeitmessungen des Experiments bleiben die
+ursprünglichen Einzelbeobachtungen, kein nachträglich ausgewählter schneller Lauf.
