@@ -1,0 +1,82 @@
+{
+  "totalMs": 45309.210442999996,
+  "cpuMicros": 44922657,
+  "peakRssKiB": 212868,
+  "node": "v24.19.0",
+  "platform": "linux",
+  "arch": "x64",
+  "observations": [
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/A/B2-S02-M017-A4-R00-V02",
+      "searchMs": 287.11576199999996,
+      "preparationMsSharedAcrossArms": 67.88232399999998,
+      "cpuSearchMicros": 424982
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M017-A4-R00-V02",
+      "searchMs": 1281.8512239999998,
+      "preparationMsSharedAcrossArms": 67.88232399999998,
+      "cpuSearchMicros": 1328950
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M017-A4-R00-V02",
+      "searchMs": 1889.0223129999995,
+      "preparationMsSharedAcrossArms": 67.88232399999998,
+      "cpuSearchMicros": 2012552
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/A/B2-S02-M003-A5-R00-V02",
+      "searchMs": 35.405212000001484,
+      "preparationMsSharedAcrossArms": 20.349017000000458,
+      "cpuSearchMicros": 45072
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M003-A5-R00-V02",
+      "searchMs": 423.6572359999991,
+      "preparationMsSharedAcrossArms": 20.349017000000458,
+      "cpuSearchMicros": 426178
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M003-A5-R00-V02",
+      "searchMs": 648.6093139999994,
+      "preparationMsSharedAcrossArms": 20.349017000000458,
+      "cpuSearchMicros": 686433
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/A/B2-S02-M005-E3-R00-V01",
+      "searchMs": 96.70890400000098,
+      "preparationMsSharedAcrossArms": 36.77179499999875,
+      "cpuSearchMicros": 97565
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M005-E3-R00-V01",
+      "searchMs": 576.3166180000007,
+      "preparationMsSharedAcrossArms": 36.77179499999875,
+      "cpuSearchMicros": 577851
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M005-E3-R00-V01",
+      "searchMs": 1177.1435209999981,
+      "preparationMsSharedAcrossArms": 36.77179499999875,
+      "cpuSearchMicros": 1200630
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/A/B2-S02-M013-D4-R00-V01",
+      "searchMs": 74.73261800000182,
+      "preparationMsSharedAcrossArms": 70.53940599999987,
+      "cpuSearchMicros": 76586
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M013-D4-R00-V01",
+      "searchMs": 1022.0439000000006,
+      "preparationMsSharedAcrossArms": 70.53940599999987,
+      "cpuSearchMicros": 1017790
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M013-D4-R00-V01",
+      "searchMs": 5195.769,
+      "preparationMsSharedAcrossArms": 70.53940599999987,
+      "cpuSearchMicros": 4912169
+    }
+  ]
+}
