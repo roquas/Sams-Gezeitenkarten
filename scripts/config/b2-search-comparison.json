@@ -1,0 +1,9 @@
+{
+  "protocol": "b2-search-comparison-1",
+  "targets": ["B2-S02-M017-A4-R00-V02", "B2-S02-M003-A5-R00-V02", "B2-S02-M005-E3-R00-V01", "B2-S02-M013-D4-R00-V01"],
+  "arms": [
+    {"id":"A", "strategy":"random-incremental-1", "budgetMultiplier":1},
+    {"id":"B", "strategy":"random-incremental-1", "budgetMultiplier":10},
+    {"id":"C", "strategy":"bounded-weak-reduction-1", "budgetMultiplier":10, "window":8}
+  ]
+}

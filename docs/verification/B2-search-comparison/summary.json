@@ -1,0 +1,2839 @@
+{
+  "experimentId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849",
+  "status": "completed",
+  "generatorCalls": 12,
+  "attempts": [
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/A/B2-S02-M017-A4-R00-V02",
+      "sourceTarget": "B2-S02-M017-A4-R00-V02",
+      "arm": "A",
+      "strategy": "random-incremental-1",
+      "window": null,
+      "seed": 2061408063,
+      "budgets": {
+        "maxRestarts": 2,
+        "maxSolverChecks": 2000,
+        "maxMatchEvaluations": 5000000,
+        "maxRouteFilterEvaluations": 20000000
+      },
+      "legalRouteCount": 1684,
+      "enumerationNodes": 2546,
+      "cluePool": {
+        "size": 817,
+        "parametersExamined": 3571,
+        "completed": true,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 756,
+          "distanceToPlace": 21,
+          "direction": 6,
+          "turn": 5,
+          "position": 1
+        },
+        "byPresentationForm": {
+          "distanceBetweenHours": 28,
+          "NotDistanceAt": 168,
+          "distanceToPlace": 21,
+          "direction": 6,
+          "turn": 5,
+          "position": 1,
+          "HasDistanceAt": 21,
+          "CountDistanceNever": 419,
+          "countDistanceToPlace": 148
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 2,
+        "reducedSets": 2,
+        "failures": {
+          "NO_PROGRESS": 83,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 136,
+        "cacheHits": 8,
+        "matchEvaluations": 168400,
+        "routeFilterEvaluations": 398327,
+        "clueCandidates": 817,
+        "clueParametersExamined": 3571,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 2,
+      "reducedSetsGenerated": 2,
+      "histogram": {
+        "4": 1,
+        "6": 1
+      },
+      "composition": {
+        "totalClues": 10,
+        "byType": {
+          "countDistanceToPlace": 7,
+          "distanceBetweenHours": 1,
+          "distanceToPlace": 1,
+          "turn": 1
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 1,
+          "HasDistanceAt": 2,
+          "countDistanceToPlace": 4,
+          "distanceBetweenHours": 1,
+          "distanceToPlace": 1,
+          "turn": 1
+        },
+        "percentByType": {
+          "countDistanceToPlace": 70,
+          "distanceBetweenHours": 10,
+          "distanceToPlace": 10,
+          "turn": 10
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 10,
+          "HasDistanceAt": 20,
+          "countDistanceToPlace": 40,
+          "distanceBetweenHours": 10,
+          "distanceToPlace": 10,
+          "turn": 10
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "countDistanceToPlace",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 1,
+              "HasDistanceAt": 2,
+              "countDistanceToPlace": 4,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "distanceBetweenHours": 1,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 1,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 1
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 7,
+            "distanceBetweenHours": 1,
+            "distanceToPlace": 1,
+            "turn": 1
+          },
+          "columnTotals": {
+            "CountDistanceNever": 1,
+            "HasDistanceAt": 2,
+            "countDistanceToPlace": 4,
+            "distanceBetweenHours": 1,
+            "distanceToPlace": 1,
+            "turn": 1
+          },
+          "total": 10
+        }
+      },
+      "exactHours": {},
+      "individuallyExactClues": 0,
+      "withExactHour1": 0,
+      "fiveSixSeven": {
+        "5": {
+          "count": 0,
+          "share": 0
+        },
+        "6": {
+          "count": 1,
+          "share": 0.5
+        },
+        "7": {
+          "count": 0,
+          "share": 0
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M017-A4-R00-V02",
+      "sourceTarget": "B2-S02-M017-A4-R00-V02",
+      "arm": "B",
+      "strategy": "random-incremental-1",
+      "window": null,
+      "seed": 2061408063,
+      "budgets": {
+        "maxRestarts": 20,
+        "maxSolverChecks": 20000,
+        "maxMatchEvaluations": 50000000,
+        "maxRouteFilterEvaluations": 100000000
+      },
+      "legalRouteCount": 1684,
+      "enumerationNodes": 2546,
+      "cluePool": {
+        "size": 817,
+        "parametersExamined": 3571,
+        "completed": true,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 756,
+          "distanceToPlace": 21,
+          "direction": 6,
+          "turn": 5,
+          "position": 1
+        },
+        "byPresentationForm": {
+          "distanceBetweenHours": 28,
+          "NotDistanceAt": 168,
+          "distanceToPlace": 21,
+          "direction": 6,
+          "turn": 5,
+          "position": 1,
+          "HasDistanceAt": 21,
+          "CountDistanceNever": 419,
+          "countDistanceToPlace": 148
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 20,
+        "reducedSets": 20,
+        "failures": {
+          "NO_PROGRESS": 537,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 1013,
+        "cacheHits": 87,
+        "matchEvaluations": 804952,
+        "routeFilterEvaluations": 2775974,
+        "clueCandidates": 817,
+        "clueParametersExamined": 3571,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 20,
+      "reducedSetsGenerated": 20,
+      "histogram": {
+        "4": 6,
+        "5": 6,
+        "6": 6,
+        "7": 2
+      },
+      "composition": {
+        "totalClues": 104,
+        "byType": {
+          "countDistanceToPlace": 85,
+          "direction": 4,
+          "distanceBetweenHours": 8,
+          "distanceToPlace": 5,
+          "turn": 2
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 10,
+          "HasDistanceAt": 11,
+          "NotDistanceAt": 5,
+          "countDistanceToPlace": 59,
+          "direction": 4,
+          "distanceBetweenHours": 8,
+          "distanceToPlace": 5,
+          "turn": 2
+        },
+        "percentByType": {
+          "countDistanceToPlace": 81.73,
+          "direction": 3.85,
+          "distanceBetweenHours": 7.69,
+          "distanceToPlace": 4.81,
+          "turn": 1.92
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 9.62,
+          "HasDistanceAt": 10.58,
+          "NotDistanceAt": 4.81,
+          "countDistanceToPlace": 56.73,
+          "direction": 3.85,
+          "distanceBetweenHours": 7.69,
+          "distanceToPlace": 4.81,
+          "turn": 1.92
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 10,
+              "HasDistanceAt": 11,
+              "NotDistanceAt": 5,
+              "countDistanceToPlace": 59,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 4,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 8,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 5,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 2
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 85,
+            "direction": 4,
+            "distanceBetweenHours": 8,
+            "distanceToPlace": 5,
+            "turn": 2
+          },
+          "columnTotals": {
+            "CountDistanceNever": 10,
+            "HasDistanceAt": 11,
+            "NotDistanceAt": 5,
+            "countDistanceToPlace": 59,
+            "direction": 4,
+            "distanceBetweenHours": 8,
+            "distanceToPlace": 5,
+            "turn": 2
+          },
+          "total": 104
+        }
+      },
+      "exactHours": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "individuallyExactClues": 2,
+      "withExactHour1": 1,
+      "fiveSixSeven": {
+        "5": {
+          "count": 6,
+          "share": 0.3
+        },
+        "6": {
+          "count": 6,
+          "share": 0.3
+        },
+        "7": {
+          "count": 2,
+          "share": 0.1
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M017-A4-R00-V02",
+      "sourceTarget": "B2-S02-M017-A4-R00-V02",
+      "arm": "C",
+      "strategy": "bounded-weak-reduction-1",
+      "window": 8,
+      "seed": 2061408063,
+      "budgets": {
+        "maxRestarts": 20,
+        "maxSolverChecks": 20000,
+        "maxMatchEvaluations": 50000000,
+        "maxRouteFilterEvaluations": 100000000
+      },
+      "legalRouteCount": 1684,
+      "enumerationNodes": 2546,
+      "cluePool": {
+        "size": 817,
+        "parametersExamined": 3571,
+        "completed": true,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 756,
+          "distanceToPlace": 21,
+          "direction": 6,
+          "turn": 5,
+          "position": 1
+        },
+        "byPresentationForm": {
+          "distanceBetweenHours": 28,
+          "NotDistanceAt": 168,
+          "distanceToPlace": 21,
+          "direction": 6,
+          "turn": 5,
+          "position": 1,
+          "HasDistanceAt": 21,
+          "CountDistanceNever": 419,
+          "countDistanceToPlace": 148
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 20,
+        "reducedSets": 20,
+        "failures": {
+          "NO_PROGRESS": 1874,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 4992,
+        "cacheHits": 863,
+        "matchEvaluations": 1325308,
+        "routeFilterEvaluations": 17842681,
+        "clueCandidates": 817,
+        "clueParametersExamined": 3571,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 20,
+      "reducedSetsGenerated": 20,
+      "histogram": {
+        "5": 5,
+        "6": 8,
+        "7": 5,
+        "8": 2
+      },
+      "composition": {
+        "totalClues": 124,
+        "byType": {
+          "countDistanceToPlace": 110,
+          "direction": 3,
+          "distanceBetweenHours": 8,
+          "distanceToPlace": 3
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 26,
+          "HasDistanceAt": 6,
+          "NotDistanceAt": 12,
+          "countDistanceToPlace": 66,
+          "direction": 3,
+          "distanceBetweenHours": 8,
+          "distanceToPlace": 3
+        },
+        "percentByType": {
+          "countDistanceToPlace": 88.71,
+          "direction": 2.42,
+          "distanceBetweenHours": 6.45,
+          "distanceToPlace": 2.42
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 20.97,
+          "HasDistanceAt": 4.84,
+          "NotDistanceAt": 9.68,
+          "countDistanceToPlace": 53.23,
+          "direction": 2.42,
+          "distanceBetweenHours": 6.45,
+          "distanceToPlace": 2.42
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 26,
+              "HasDistanceAt": 6,
+              "NotDistanceAt": 12,
+              "countDistanceToPlace": 66,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 3,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 8,
+              "distanceToPlace": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 3
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 110,
+            "direction": 3,
+            "distanceBetweenHours": 8,
+            "distanceToPlace": 3
+          },
+          "columnTotals": {
+            "CountDistanceNever": 26,
+            "HasDistanceAt": 6,
+            "NotDistanceAt": 12,
+            "countDistanceToPlace": 66,
+            "direction": 3,
+            "distanceBetweenHours": 8,
+            "distanceToPlace": 3
+          },
+          "total": 124
+        }
+      },
+      "exactHours": {},
+      "individuallyExactClues": 0,
+      "withExactHour1": 0,
+      "fiveSixSeven": {
+        "5": {
+          "count": 5,
+          "share": 0.25
+        },
+        "6": {
+          "count": 8,
+          "share": 0.4
+        },
+        "7": {
+          "count": 5,
+          "share": 0.25
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/A/B2-S02-M003-A5-R00-V02",
+      "sourceTarget": "B2-S02-M003-A5-R00-V02",
+      "arm": "A",
+      "strategy": "random-incremental-1",
+      "window": null,
+      "seed": 2927950278,
+      "budgets": {
+        "maxRestarts": 2,
+        "maxSolverChecks": 2000,
+        "maxMatchEvaluations": 5000000,
+        "maxRouteFilterEvaluations": 20000000
+      },
+      "legalRouteCount": 746,
+      "enumerationNodes": 1145,
+      "cluePool": {
+        "size": 558,
+        "parametersExamined": 2500,
+        "completed": true,
+        "byType": {
+          "distanceToPlace": 14,
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 504,
+          "turn": 5,
+          "position": 1,
+          "direction": 6
+        },
+        "byPresentationForm": {
+          "distanceToPlace": 14,
+          "distanceBetweenHours": 28,
+          "HasDistanceAt": 14,
+          "turn": 5,
+          "NotDistanceAt": 112,
+          "position": 1,
+          "direction": 6,
+          "countDistanceToPlace": 112,
+          "CountDistanceNever": 266
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 2,
+        "reducedSets": 2,
+        "failures": {
+          "NO_PROGRESS": 25,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 66,
+        "cacheHits": 8,
+        "matchEvaluations": 29840,
+        "routeFilterEvaluations": 64161,
+        "clueCandidates": 558,
+        "clueParametersExamined": 2500,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 2,
+      "reducedSetsGenerated": 2,
+      "histogram": {
+        "4": 2
+      },
+      "composition": {
+        "totalClues": 8,
+        "byType": {
+          "countDistanceToPlace": 3,
+          "direction": 2,
+          "distanceBetweenHours": 1,
+          "distanceToPlace": 2
+        },
+        "byPresentationForm": {
+          "countDistanceToPlace": 3,
+          "direction": 2,
+          "distanceBetweenHours": 1,
+          "distanceToPlace": 2
+        },
+        "percentByType": {
+          "countDistanceToPlace": 37.5,
+          "direction": 25,
+          "distanceBetweenHours": 12.5,
+          "distanceToPlace": 25
+        },
+        "percentByPresentationForm": {
+          "countDistanceToPlace": 37.5,
+          "direction": 25,
+          "distanceBetweenHours": 12.5,
+          "distanceToPlace": 25
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace"
+          ],
+          "forms": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "countDistanceToPlace": 3,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0
+            },
+            "direction": {
+              "countDistanceToPlace": 0,
+              "direction": 2,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0
+            },
+            "distanceBetweenHours": {
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 1,
+              "distanceToPlace": 0
+            },
+            "distanceToPlace": {
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 2
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 3,
+            "direction": 2,
+            "distanceBetweenHours": 1,
+            "distanceToPlace": 2
+          },
+          "columnTotals": {
+            "countDistanceToPlace": 3,
+            "direction": 2,
+            "distanceBetweenHours": 1,
+            "distanceToPlace": 2
+          },
+          "total": 8
+        }
+      },
+      "exactHours": {},
+      "individuallyExactClues": 0,
+      "withExactHour1": 0,
+      "fiveSixSeven": {
+        "5": {
+          "count": 0,
+          "share": 0
+        },
+        "6": {
+          "count": 0,
+          "share": 0
+        },
+        "7": {
+          "count": 0,
+          "share": 0
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M003-A5-R00-V02",
+      "sourceTarget": "B2-S02-M003-A5-R00-V02",
+      "arm": "B",
+      "strategy": "random-incremental-1",
+      "window": null,
+      "seed": 2927950278,
+      "budgets": {
+        "maxRestarts": 20,
+        "maxSolverChecks": 20000,
+        "maxMatchEvaluations": 50000000,
+        "maxRouteFilterEvaluations": 100000000
+      },
+      "legalRouteCount": 746,
+      "enumerationNodes": 1145,
+      "cluePool": {
+        "size": 558,
+        "parametersExamined": 2500,
+        "completed": true,
+        "byType": {
+          "distanceToPlace": 14,
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 504,
+          "turn": 5,
+          "position": 1,
+          "direction": 6
+        },
+        "byPresentationForm": {
+          "distanceToPlace": 14,
+          "distanceBetweenHours": 28,
+          "HasDistanceAt": 14,
+          "turn": 5,
+          "NotDistanceAt": 112,
+          "position": 1,
+          "direction": 6,
+          "countDistanceToPlace": 112,
+          "CountDistanceNever": 266
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 20,
+        "reducedSets": 20,
+        "failures": {
+          "NO_PROGRESS": 812,
+          "EQUIVALENT_CLUE_EFFECTS": 1,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 1262,
+        "cacheHits": 91,
+        "matchEvaluations": 363302,
+        "routeFilterEvaluations": 1594980,
+        "clueCandidates": 558,
+        "clueParametersExamined": 2500,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 19,
+      "reducedSetsGenerated": 20,
+      "histogram": {
+        "2": 1,
+        "3": 2,
+        "4": 8,
+        "5": 5,
+        "6": 1,
+        "7": 2
+      },
+      "composition": {
+        "totalClues": 85,
+        "byType": {
+          "countDistanceToPlace": 54,
+          "direction": 12,
+          "distanceBetweenHours": 5,
+          "distanceToPlace": 5,
+          "turn": 9
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 8,
+          "HasDistanceAt": 1,
+          "NotDistanceAt": 2,
+          "countDistanceToPlace": 43,
+          "direction": 12,
+          "distanceBetweenHours": 5,
+          "distanceToPlace": 5,
+          "turn": 9
+        },
+        "percentByType": {
+          "countDistanceToPlace": 63.53,
+          "direction": 14.12,
+          "distanceBetweenHours": 5.88,
+          "distanceToPlace": 5.88,
+          "turn": 10.59
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 9.41,
+          "HasDistanceAt": 1.18,
+          "NotDistanceAt": 2.35,
+          "countDistanceToPlace": 50.59,
+          "direction": 14.12,
+          "distanceBetweenHours": 5.88,
+          "distanceToPlace": 5.88,
+          "turn": 10.59
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 8,
+              "HasDistanceAt": 1,
+              "NotDistanceAt": 2,
+              "countDistanceToPlace": 43,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 12,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 5,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 5,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 9
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 54,
+            "direction": 12,
+            "distanceBetweenHours": 5,
+            "distanceToPlace": 5,
+            "turn": 9
+          },
+          "columnTotals": {
+            "CountDistanceNever": 8,
+            "HasDistanceAt": 1,
+            "NotDistanceAt": 2,
+            "countDistanceToPlace": 43,
+            "direction": 12,
+            "distanceBetweenHours": 5,
+            "distanceToPlace": 5,
+            "turn": 9
+          },
+          "total": 85
+        }
+      },
+      "exactHours": {
+        "1": 1
+      },
+      "individuallyExactClues": 1,
+      "withExactHour1": 1,
+      "fiveSixSeven": {
+        "5": {
+          "count": 5,
+          "share": 0.2631578947368421
+        },
+        "6": {
+          "count": 1,
+          "share": 0.05263157894736842
+        },
+        "7": {
+          "count": 2,
+          "share": 0.10526315789473684
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M003-A5-R00-V02",
+      "sourceTarget": "B2-S02-M003-A5-R00-V02",
+      "arm": "C",
+      "strategy": "bounded-weak-reduction-1",
+      "window": 8,
+      "seed": 2927950278,
+      "budgets": {
+        "maxRestarts": 20,
+        "maxSolverChecks": 20000,
+        "maxMatchEvaluations": 50000000,
+        "maxRouteFilterEvaluations": 100000000
+      },
+      "legalRouteCount": 746,
+      "enumerationNodes": 1145,
+      "cluePool": {
+        "size": 558,
+        "parametersExamined": 2500,
+        "completed": true,
+        "byType": {
+          "distanceToPlace": 14,
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 504,
+          "turn": 5,
+          "position": 1,
+          "direction": 6
+        },
+        "byPresentationForm": {
+          "distanceToPlace": 14,
+          "distanceBetweenHours": 28,
+          "HasDistanceAt": 14,
+          "turn": 5,
+          "NotDistanceAt": 112,
+          "position": 1,
+          "direction": 6,
+          "countDistanceToPlace": 112,
+          "CountDistanceNever": 266
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 20,
+        "reducedSets": 20,
+        "failures": {
+          "NO_PROGRESS": 5644,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 8400,
+        "cacheHits": 1024,
+        "matchEvaluations": 416268,
+        "routeFilterEvaluations": 13628195,
+        "clueCandidates": 558,
+        "clueParametersExamined": 2500,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 20,
+      "reducedSetsGenerated": 20,
+      "histogram": {
+        "4": 4,
+        "5": 6,
+        "6": 6,
+        "7": 4
+      },
+      "composition": {
+        "totalClues": 110,
+        "byType": {
+          "countDistanceToPlace": 80,
+          "direction": 13,
+          "distanceBetweenHours": 6,
+          "distanceToPlace": 4,
+          "turn": 7
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 11,
+          "HasDistanceAt": 7,
+          "NotDistanceAt": 6,
+          "countDistanceToPlace": 56,
+          "direction": 13,
+          "distanceBetweenHours": 6,
+          "distanceToPlace": 4,
+          "turn": 7
+        },
+        "percentByType": {
+          "countDistanceToPlace": 72.73,
+          "direction": 11.82,
+          "distanceBetweenHours": 5.45,
+          "distanceToPlace": 3.64,
+          "turn": 6.36
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 10,
+          "HasDistanceAt": 6.36,
+          "NotDistanceAt": 5.45,
+          "countDistanceToPlace": 50.91,
+          "direction": 11.82,
+          "distanceBetweenHours": 5.45,
+          "distanceToPlace": 3.64,
+          "turn": 6.36
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 11,
+              "HasDistanceAt": 7,
+              "NotDistanceAt": 6,
+              "countDistanceToPlace": 56,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 13,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 6,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 4,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 7
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 80,
+            "direction": 13,
+            "distanceBetweenHours": 6,
+            "distanceToPlace": 4,
+            "turn": 7
+          },
+          "columnTotals": {
+            "CountDistanceNever": 11,
+            "HasDistanceAt": 7,
+            "NotDistanceAt": 6,
+            "countDistanceToPlace": 56,
+            "direction": 13,
+            "distanceBetweenHours": 6,
+            "distanceToPlace": 4,
+            "turn": 7
+          },
+          "total": 110
+        }
+      },
+      "exactHours": {
+        "1": 10
+      },
+      "individuallyExactClues": 10,
+      "withExactHour1": 10,
+      "fiveSixSeven": {
+        "5": {
+          "count": 6,
+          "share": 0.3
+        },
+        "6": {
+          "count": 6,
+          "share": 0.3
+        },
+        "7": {
+          "count": 4,
+          "share": 0.2
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/A/B2-S02-M005-E3-R00-V01",
+      "sourceTarget": "B2-S02-M005-E3-R00-V01",
+      "arm": "A",
+      "strategy": "random-incremental-1",
+      "window": null,
+      "seed": 1460130840,
+      "budgets": {
+        "maxRestarts": 2,
+        "maxSolverChecks": 2000,
+        "maxMatchEvaluations": 5000000,
+        "maxRouteFilterEvaluations": 20000000
+      },
+      "legalRouteCount": 2166,
+      "enumerationNodes": 3159,
+      "cluePool": {
+        "size": 817,
+        "parametersExamined": 3557,
+        "completed": true,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 756,
+          "position": 1,
+          "turn": 5,
+          "direction": 6,
+          "distanceToPlace": 21
+        },
+        "byPresentationForm": {
+          "distanceBetweenHours": 28,
+          "NotDistanceAt": 168,
+          "position": 1,
+          "turn": 5,
+          "direction": 6,
+          "distanceToPlace": 21,
+          "HasDistanceAt": 21,
+          "CountDistanceNever": 411,
+          "countDistanceToPlace": 156
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 2,
+        "reducedSets": 2,
+        "failures": {
+          "NO_PROGRESS": 45,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 96,
+        "cacheHits": 4,
+        "matchEvaluations": 136458,
+        "routeFilterEvaluations": 365628,
+        "clueCandidates": 817,
+        "clueParametersExamined": 3557,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 2,
+      "reducedSetsGenerated": 2,
+      "histogram": {
+        "4": 2
+      },
+      "composition": {
+        "totalClues": 8,
+        "byType": {
+          "countDistanceToPlace": 7,
+          "direction": 1
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 1,
+          "HasDistanceAt": 1,
+          "countDistanceToPlace": 5,
+          "direction": 1
+        },
+        "percentByType": {
+          "countDistanceToPlace": 87.5,
+          "direction": 12.5
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 12.5,
+          "HasDistanceAt": 12.5,
+          "countDistanceToPlace": 62.5,
+          "direction": 12.5
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "countDistanceToPlace",
+            "direction"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 1,
+              "HasDistanceAt": 1,
+              "countDistanceToPlace": 5,
+              "direction": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 1
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 7,
+            "direction": 1
+          },
+          "columnTotals": {
+            "CountDistanceNever": 1,
+            "HasDistanceAt": 1,
+            "countDistanceToPlace": 5,
+            "direction": 1
+          },
+          "total": 8
+        }
+      },
+      "exactHours": {},
+      "individuallyExactClues": 0,
+      "withExactHour1": 0,
+      "fiveSixSeven": {
+        "5": {
+          "count": 0,
+          "share": 0
+        },
+        "6": {
+          "count": 0,
+          "share": 0
+        },
+        "7": {
+          "count": 0,
+          "share": 0
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M005-E3-R00-V01",
+      "sourceTarget": "B2-S02-M005-E3-R00-V01",
+      "arm": "B",
+      "strategy": "random-incremental-1",
+      "window": null,
+      "seed": 1460130840,
+      "budgets": {
+        "maxRestarts": 20,
+        "maxSolverChecks": 20000,
+        "maxMatchEvaluations": 50000000,
+        "maxRouteFilterEvaluations": 100000000
+      },
+      "legalRouteCount": 2166,
+      "enumerationNodes": 3159,
+      "cluePool": {
+        "size": 817,
+        "parametersExamined": 3557,
+        "completed": true,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 756,
+          "position": 1,
+          "turn": 5,
+          "direction": 6,
+          "distanceToPlace": 21
+        },
+        "byPresentationForm": {
+          "distanceBetweenHours": 28,
+          "NotDistanceAt": 168,
+          "position": 1,
+          "turn": 5,
+          "direction": 6,
+          "distanceToPlace": 21,
+          "HasDistanceAt": 21,
+          "CountDistanceNever": 411,
+          "countDistanceToPlace": 156
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 20,
+        "reducedSets": 20,
+        "failures": {
+          "NO_PROGRESS": 452,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 868,
+        "cacheHits": 69,
+        "matchEvaluations": 935712,
+        "routeFilterEvaluations": 2945896,
+        "clueCandidates": 817,
+        "clueParametersExamined": 3557,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 20,
+      "reducedSetsGenerated": 20,
+      "histogram": {
+        "1": 1,
+        "2": 4,
+        "3": 6,
+        "4": 5,
+        "5": 4
+      },
+      "composition": {
+        "totalClues": 67,
+        "byType": {
+          "countDistanceToPlace": 51,
+          "direction": 4,
+          "distanceBetweenHours": 4,
+          "distanceToPlace": 6,
+          "turn": 2
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 10,
+          "HasDistanceAt": 3,
+          "NotDistanceAt": 5,
+          "countDistanceToPlace": 33,
+          "direction": 4,
+          "distanceBetweenHours": 4,
+          "distanceToPlace": 6,
+          "turn": 2
+        },
+        "percentByType": {
+          "countDistanceToPlace": 76.12,
+          "direction": 5.97,
+          "distanceBetweenHours": 5.97,
+          "distanceToPlace": 8.96,
+          "turn": 2.99
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 14.93,
+          "HasDistanceAt": 4.48,
+          "NotDistanceAt": 7.46,
+          "countDistanceToPlace": 49.25,
+          "direction": 5.97,
+          "distanceBetweenHours": 5.97,
+          "distanceToPlace": 8.96,
+          "turn": 2.99
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 10,
+              "HasDistanceAt": 3,
+              "NotDistanceAt": 5,
+              "countDistanceToPlace": 33,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 4,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 4,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 6,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 2
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 51,
+            "direction": 4,
+            "distanceBetweenHours": 4,
+            "distanceToPlace": 6,
+            "turn": 2
+          },
+          "columnTotals": {
+            "CountDistanceNever": 10,
+            "HasDistanceAt": 3,
+            "NotDistanceAt": 5,
+            "countDistanceToPlace": 33,
+            "direction": 4,
+            "distanceBetweenHours": 4,
+            "distanceToPlace": 6,
+            "turn": 2
+          },
+          "total": 67
+        }
+      },
+      "exactHours": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1
+      },
+      "individuallyExactClues": 1,
+      "withExactHour1": 1,
+      "fiveSixSeven": {
+        "5": {
+          "count": 4,
+          "share": 0.2
+        },
+        "6": {
+          "count": 0,
+          "share": 0
+        },
+        "7": {
+          "count": 0,
+          "share": 0
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M005-E3-R00-V01",
+      "sourceTarget": "B2-S02-M005-E3-R00-V01",
+      "arm": "C",
+      "strategy": "bounded-weak-reduction-1",
+      "window": 8,
+      "seed": 1460130840,
+      "budgets": {
+        "maxRestarts": 20,
+        "maxSolverChecks": 20000,
+        "maxMatchEvaluations": 50000000,
+        "maxRouteFilterEvaluations": 100000000
+      },
+      "legalRouteCount": 2166,
+      "enumerationNodes": 3159,
+      "cluePool": {
+        "size": 817,
+        "parametersExamined": 3557,
+        "completed": true,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 756,
+          "position": 1,
+          "turn": 5,
+          "direction": 6,
+          "distanceToPlace": 21
+        },
+        "byPresentationForm": {
+          "distanceBetweenHours": 28,
+          "NotDistanceAt": 168,
+          "position": 1,
+          "turn": 5,
+          "direction": 6,
+          "distanceToPlace": 21,
+          "HasDistanceAt": 21,
+          "CountDistanceNever": 411,
+          "countDistanceToPlace": 156
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 20,
+        "reducedSets": 20,
+        "failures": {
+          "NO_PROGRESS": 1988,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 5320,
+        "cacheHits": 829,
+        "matchEvaluations": 1700310,
+        "routeFilterEvaluations": 23478637,
+        "clueCandidates": 817,
+        "clueParametersExamined": 3557,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 20,
+      "reducedSetsGenerated": 20,
+      "histogram": {
+        "4": 4,
+        "5": 5,
+        "6": 7,
+        "7": 2,
+        "8": 2
+      },
+      "composition": {
+        "totalClues": 113,
+        "byType": {
+          "countDistanceToPlace": 95,
+          "direction": 1,
+          "distanceBetweenHours": 11,
+          "distanceToPlace": 3,
+          "turn": 3
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 25,
+          "HasDistanceAt": 5,
+          "NotDistanceAt": 16,
+          "countDistanceToPlace": 49,
+          "direction": 1,
+          "distanceBetweenHours": 11,
+          "distanceToPlace": 3,
+          "turn": 3
+        },
+        "percentByType": {
+          "countDistanceToPlace": 84.07,
+          "direction": 0.88,
+          "distanceBetweenHours": 9.73,
+          "distanceToPlace": 2.65,
+          "turn": 2.65
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 22.12,
+          "HasDistanceAt": 4.42,
+          "NotDistanceAt": 14.16,
+          "countDistanceToPlace": 43.36,
+          "direction": 0.88,
+          "distanceBetweenHours": 9.73,
+          "distanceToPlace": 2.65,
+          "turn": 2.65
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 25,
+              "HasDistanceAt": 5,
+              "NotDistanceAt": 16,
+              "countDistanceToPlace": 49,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 1,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 11,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 3,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 3
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 95,
+            "direction": 1,
+            "distanceBetweenHours": 11,
+            "distanceToPlace": 3,
+            "turn": 3
+          },
+          "columnTotals": {
+            "CountDistanceNever": 25,
+            "HasDistanceAt": 5,
+            "NotDistanceAt": 16,
+            "countDistanceToPlace": 49,
+            "direction": 1,
+            "distanceBetweenHours": 11,
+            "distanceToPlace": 3,
+            "turn": 3
+          },
+          "total": 113
+        }
+      },
+      "exactHours": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "individuallyExactClues": 1,
+      "withExactHour1": 1,
+      "fiveSixSeven": {
+        "5": {
+          "count": 5,
+          "share": 0.25
+        },
+        "6": {
+          "count": 7,
+          "share": 0.35
+        },
+        "7": {
+          "count": 2,
+          "share": 0.1
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/A/B2-S02-M013-D4-R00-V01",
+      "sourceTarget": "B2-S02-M013-D4-R00-V01",
+      "arm": "A",
+      "strategy": "random-incremental-1",
+      "window": null,
+      "seed": 1968834179,
+      "budgets": {
+        "maxRestarts": 2,
+        "maxSolverChecks": 2000,
+        "maxMatchEvaluations": 5000000,
+        "maxRouteFilterEvaluations": 20000000
+      },
+      "legalRouteCount": 2145,
+      "enumerationNodes": 3216,
+      "cluePool": {
+        "size": 1595,
+        "parametersExamined": 6791,
+        "completed": true,
+        "byType": {
+          "distanceToPlace": 42,
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 1512,
+          "turn": 5,
+          "direction": 6,
+          "position": 2
+        },
+        "byPresentationForm": {
+          "distanceToPlace": 42,
+          "distanceBetweenHours": 28,
+          "HasDistanceAt": 42,
+          "NotDistanceAt": 336,
+          "turn": 5,
+          "direction": 6,
+          "position": 2,
+          "countDistanceToPlace": 301,
+          "CountDistanceNever": 833
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 2,
+        "reducedSets": 2,
+        "failures": {
+          "NO_PROGRESS": 32,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 69,
+        "cacheHits": 4,
+        "matchEvaluations": 96525,
+        "routeFilterEvaluations": 224839,
+        "clueCandidates": 1595,
+        "clueParametersExamined": 6791,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 2,
+      "reducedSetsGenerated": 2,
+      "histogram": {
+        "3": 2
+      },
+      "composition": {
+        "totalClues": 6,
+        "byType": {
+          "countDistanceToPlace": 4,
+          "distanceBetweenHours": 1,
+          "distanceToPlace": 1
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 1,
+          "HasDistanceAt": 1,
+          "countDistanceToPlace": 2,
+          "distanceBetweenHours": 1,
+          "distanceToPlace": 1
+        },
+        "percentByType": {
+          "countDistanceToPlace": 66.67,
+          "distanceBetweenHours": 16.67,
+          "distanceToPlace": 16.67
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 16.67,
+          "HasDistanceAt": 16.67,
+          "countDistanceToPlace": 33.33,
+          "distanceBetweenHours": 16.67,
+          "distanceToPlace": 16.67
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "distanceBetweenHours",
+            "distanceToPlace"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "countDistanceToPlace",
+            "distanceBetweenHours",
+            "distanceToPlace"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 1,
+              "HasDistanceAt": 1,
+              "countDistanceToPlace": 2,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "distanceBetweenHours": 1,
+              "distanceToPlace": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 1
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 4,
+            "distanceBetweenHours": 1,
+            "distanceToPlace": 1
+          },
+          "columnTotals": {
+            "CountDistanceNever": 1,
+            "HasDistanceAt": 1,
+            "countDistanceToPlace": 2,
+            "distanceBetweenHours": 1,
+            "distanceToPlace": 1
+          },
+          "total": 6
+        }
+      },
+      "exactHours": {},
+      "individuallyExactClues": 0,
+      "withExactHour1": 0,
+      "fiveSixSeven": {
+        "5": {
+          "count": 0,
+          "share": 0
+        },
+        "6": {
+          "count": 0,
+          "share": 0
+        },
+        "7": {
+          "count": 0,
+          "share": 0
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M013-D4-R00-V01",
+      "sourceTarget": "B2-S02-M013-D4-R00-V01",
+      "arm": "B",
+      "strategy": "random-incremental-1",
+      "window": null,
+      "seed": 1968834179,
+      "budgets": {
+        "maxRestarts": 20,
+        "maxSolverChecks": 20000,
+        "maxMatchEvaluations": 50000000,
+        "maxRouteFilterEvaluations": 100000000
+      },
+      "legalRouteCount": 2145,
+      "enumerationNodes": 3216,
+      "cluePool": {
+        "size": 1595,
+        "parametersExamined": 6791,
+        "completed": true,
+        "byType": {
+          "distanceToPlace": 42,
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 1512,
+          "turn": 5,
+          "direction": 6,
+          "position": 2
+        },
+        "byPresentationForm": {
+          "distanceToPlace": 42,
+          "distanceBetweenHours": 28,
+          "HasDistanceAt": 42,
+          "NotDistanceAt": 336,
+          "turn": 5,
+          "direction": 6,
+          "position": 2,
+          "countDistanceToPlace": 301,
+          "CountDistanceNever": 833
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 20,
+        "reducedSets": 20,
+        "failures": {
+          "NO_PROGRESS": 482,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 1001,
+        "cacheHits": 64,
+        "matchEvaluations": 1169025,
+        "routeFilterEvaluations": 3603269,
+        "clueCandidates": 1595,
+        "clueParametersExamined": 6791,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 20,
+      "reducedSetsGenerated": 20,
+      "histogram": {
+        "3": 4,
+        "4": 4,
+        "5": 8,
+        "6": 2,
+        "7": 2
+      },
+      "composition": {
+        "totalClues": 94,
+        "byType": {
+          "countDistanceToPlace": 83,
+          "distanceBetweenHours": 3,
+          "distanceToPlace": 6,
+          "turn": 2
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 12,
+          "HasDistanceAt": 7,
+          "NotDistanceAt": 7,
+          "countDistanceToPlace": 57,
+          "distanceBetweenHours": 3,
+          "distanceToPlace": 6,
+          "turn": 2
+        },
+        "percentByType": {
+          "countDistanceToPlace": 88.3,
+          "distanceBetweenHours": 3.19,
+          "distanceToPlace": 6.38,
+          "turn": 2.13
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 12.77,
+          "HasDistanceAt": 7.45,
+          "NotDistanceAt": 7.45,
+          "countDistanceToPlace": 60.64,
+          "distanceBetweenHours": 3.19,
+          "distanceToPlace": 6.38,
+          "turn": 2.13
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 12,
+              "HasDistanceAt": 7,
+              "NotDistanceAt": 7,
+              "countDistanceToPlace": 57,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "distanceBetweenHours": 3,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 6,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 2
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 83,
+            "distanceBetweenHours": 3,
+            "distanceToPlace": 6,
+            "turn": 2
+          },
+          "columnTotals": {
+            "CountDistanceNever": 12,
+            "HasDistanceAt": 7,
+            "NotDistanceAt": 7,
+            "countDistanceToPlace": 57,
+            "distanceBetweenHours": 3,
+            "distanceToPlace": 6,
+            "turn": 2
+          },
+          "total": 94
+        }
+      },
+      "exactHours": {},
+      "individuallyExactClues": 0,
+      "withExactHour1": 0,
+      "fiveSixSeven": {
+        "5": {
+          "count": 8,
+          "share": 0.4
+        },
+        "6": {
+          "count": 2,
+          "share": 0.1
+        },
+        "7": {
+          "count": 2,
+          "share": 0.1
+        }
+      }
+    },
+    {
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M013-D4-R00-V01",
+      "sourceTarget": "B2-S02-M013-D4-R00-V01",
+      "arm": "C",
+      "strategy": "bounded-weak-reduction-1",
+      "window": 8,
+      "seed": 1968834179,
+      "budgets": {
+        "maxRestarts": 20,
+        "maxSolverChecks": 20000,
+        "maxMatchEvaluations": 50000000,
+        "maxRouteFilterEvaluations": 100000000
+      },
+      "legalRouteCount": 2145,
+      "enumerationNodes": 3216,
+      "cluePool": {
+        "size": 1595,
+        "parametersExamined": 6791,
+        "completed": true,
+        "byType": {
+          "distanceToPlace": 42,
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 1512,
+          "turn": 5,
+          "direction": 6,
+          "position": 2
+        },
+        "byPresentationForm": {
+          "distanceToPlace": 42,
+          "distanceBetweenHours": 28,
+          "HasDistanceAt": 42,
+          "NotDistanceAt": 336,
+          "turn": 5,
+          "direction": 6,
+          "position": 2,
+          "countDistanceToPlace": 301,
+          "CountDistanceNever": 833
+        }
+      },
+      "status": "candidates-found",
+      "search": {
+        "restarts": 20,
+        "reducedSets": 20,
+        "failures": {
+          "NO_PROGRESS": 2948,
+          "RESTART_BUDGET_EXHAUSTED": 1
+        },
+        "exhaustive": false,
+        "solverChecks": 6680,
+        "cacheHits": 831,
+        "matchEvaluations": 3063060,
+        "routeFilterEvaluations": 29844625,
+        "clueCandidates": 1595,
+        "clueParametersExamined": 6791,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "acceptedCandidates": 20,
+      "reducedSetsGenerated": 20,
+      "histogram": {
+        "4": 3,
+        "5": 5,
+        "6": 5,
+        "7": 4,
+        "8": 3
+      },
+      "composition": {
+        "totalClues": 119,
+        "byType": {
+          "countDistanceToPlace": 106,
+          "direction": 2,
+          "distanceBetweenHours": 4,
+          "distanceToPlace": 6,
+          "turn": 1
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 37,
+          "HasDistanceAt": 6,
+          "NotDistanceAt": 15,
+          "countDistanceToPlace": 48,
+          "direction": 2,
+          "distanceBetweenHours": 4,
+          "distanceToPlace": 6,
+          "turn": 1
+        },
+        "percentByType": {
+          "countDistanceToPlace": 89.08,
+          "direction": 1.68,
+          "distanceBetweenHours": 3.36,
+          "distanceToPlace": 5.04,
+          "turn": 0.84
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 31.09,
+          "HasDistanceAt": 5.04,
+          "NotDistanceAt": 12.61,
+          "countDistanceToPlace": 40.34,
+          "direction": 1.68,
+          "distanceBetweenHours": 3.36,
+          "distanceToPlace": 5.04,
+          "turn": 0.84
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 37,
+              "HasDistanceAt": 6,
+              "NotDistanceAt": 15,
+              "countDistanceToPlace": 48,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 2,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 4,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 6,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 1
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 106,
+            "direction": 2,
+            "distanceBetweenHours": 4,
+            "distanceToPlace": 6,
+            "turn": 1
+          },
+          "columnTotals": {
+            "CountDistanceNever": 37,
+            "HasDistanceAt": 6,
+            "NotDistanceAt": 15,
+            "countDistanceToPlace": 48,
+            "direction": 2,
+            "distanceBetweenHours": 4,
+            "distanceToPlace": 6,
+            "turn": 1
+          },
+          "total": 119
+        }
+      },
+      "exactHours": {},
+      "individuallyExactClues": 0,
+      "withExactHour1": 0,
+      "fiveSixSeven": {
+        "5": {
+          "count": 5,
+          "share": 0.25
+        },
+        "6": {
+          "count": 5,
+          "share": 0.25
+        },
+        "7": {
+          "count": 4,
+          "share": 0.2
+        }
+      }
+    }
+  ],
+  "arms": [
+    {
+      "id": "A",
+      "strategy": "random-incremental-1",
+      "budgetMultiplier": 1,
+      "candidates": 8,
+      "histogram": {
+        "3": 2,
+        "4": 5,
+        "6": 1
+      },
+      "search": {
+        "restarts": 8,
+        "reducedSets": 8,
+        "solverChecks": 367,
+        "cacheHits": 24,
+        "matchEvaluations": 431223,
+        "routeFilterEvaluations": 1052955,
+        "clueCandidates": 3787,
+        "clueParametersExamined": 16419
+      },
+      "failures": {
+        "NO_PROGRESS": 185,
+        "RESTART_BUDGET_EXHAUSTED": 4
+      },
+      "composition": {
+        "totalClues": 32,
+        "byType": {
+          "countDistanceToPlace": 21,
+          "direction": 3,
+          "distanceBetweenHours": 3,
+          "distanceToPlace": 4,
+          "turn": 1
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 3,
+          "HasDistanceAt": 4,
+          "countDistanceToPlace": 14,
+          "direction": 3,
+          "distanceBetweenHours": 3,
+          "distanceToPlace": 4,
+          "turn": 1
+        },
+        "percentByType": {
+          "countDistanceToPlace": 65.63,
+          "direction": 9.38,
+          "distanceBetweenHours": 9.38,
+          "distanceToPlace": 12.5,
+          "turn": 3.13
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 9.38,
+          "HasDistanceAt": 12.5,
+          "countDistanceToPlace": 43.75,
+          "direction": 9.38,
+          "distanceBetweenHours": 9.38,
+          "distanceToPlace": 12.5,
+          "turn": 3.13
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 3,
+              "HasDistanceAt": 4,
+              "countDistanceToPlace": 14,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 3,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 3,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 4,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 1
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 21,
+            "direction": 3,
+            "distanceBetweenHours": 3,
+            "distanceToPlace": 4,
+            "turn": 1
+          },
+          "columnTotals": {
+            "CountDistanceNever": 3,
+            "HasDistanceAt": 4,
+            "countDistanceToPlace": 14,
+            "direction": 3,
+            "distanceBetweenHours": 3,
+            "distanceToPlace": 4,
+            "turn": 1
+          },
+          "total": 32
+        }
+      },
+      "individuallyExactClues": 0,
+      "withExactHour1": 0,
+      "exactHours": {},
+      "fiveSixSeven": {
+        "5": {
+          "count": 0,
+          "share": 0
+        },
+        "6": {
+          "count": 1,
+          "share": 0.125
+        },
+        "7": {
+          "count": 0,
+          "share": 0
+        }
+      }
+    },
+    {
+      "id": "B",
+      "strategy": "random-incremental-1",
+      "budgetMultiplier": 10,
+      "candidates": 79,
+      "histogram": {
+        "1": 1,
+        "2": 5,
+        "3": 12,
+        "4": 23,
+        "5": 23,
+        "6": 9,
+        "7": 6
+      },
+      "search": {
+        "restarts": 80,
+        "reducedSets": 80,
+        "solverChecks": 4144,
+        "cacheHits": 311,
+        "matchEvaluations": 3272991,
+        "routeFilterEvaluations": 10920119,
+        "clueCandidates": 3787,
+        "clueParametersExamined": 16419
+      },
+      "failures": {
+        "NO_PROGRESS": 2283,
+        "RESTART_BUDGET_EXHAUSTED": 4,
+        "EQUIVALENT_CLUE_EFFECTS": 1
+      },
+      "composition": {
+        "totalClues": 350,
+        "byType": {
+          "countDistanceToPlace": 273,
+          "direction": 20,
+          "distanceBetweenHours": 20,
+          "distanceToPlace": 22,
+          "turn": 15
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 40,
+          "HasDistanceAt": 22,
+          "NotDistanceAt": 19,
+          "countDistanceToPlace": 192,
+          "direction": 20,
+          "distanceBetweenHours": 20,
+          "distanceToPlace": 22,
+          "turn": 15
+        },
+        "percentByType": {
+          "countDistanceToPlace": 78,
+          "direction": 5.71,
+          "distanceBetweenHours": 5.71,
+          "distanceToPlace": 6.29,
+          "turn": 4.29
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 11.43,
+          "HasDistanceAt": 6.29,
+          "NotDistanceAt": 5.43,
+          "countDistanceToPlace": 54.86,
+          "direction": 5.71,
+          "distanceBetweenHours": 5.71,
+          "distanceToPlace": 6.29,
+          "turn": 4.29
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 40,
+              "HasDistanceAt": 22,
+              "NotDistanceAt": 19,
+              "countDistanceToPlace": 192,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 20,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 20,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 22,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 15
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 273,
+            "direction": 20,
+            "distanceBetweenHours": 20,
+            "distanceToPlace": 22,
+            "turn": 15
+          },
+          "columnTotals": {
+            "CountDistanceNever": 40,
+            "HasDistanceAt": 22,
+            "NotDistanceAt": 19,
+            "countDistanceToPlace": 192,
+            "direction": 20,
+            "distanceBetweenHours": 20,
+            "distanceToPlace": 22,
+            "turn": 15
+          },
+          "total": 350
+        }
+      },
+      "individuallyExactClues": 4,
+      "withExactHour1": 3,
+      "exactHours": {
+        "1": 3,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 1
+      },
+      "fiveSixSeven": {
+        "5": {
+          "count": 23,
+          "share": 0.2911392405063291
+        },
+        "6": {
+          "count": 9,
+          "share": 0.11392405063291139
+        },
+        "7": {
+          "count": 6,
+          "share": 0.0759493670886076
+        }
+      }
+    },
+    {
+      "id": "C",
+      "strategy": "bounded-weak-reduction-1",
+      "budgetMultiplier": 10,
+      "window": 8,
+      "candidates": 80,
+      "histogram": {
+        "4": 11,
+        "5": 21,
+        "6": 26,
+        "7": 15,
+        "8": 7
+      },
+      "search": {
+        "restarts": 80,
+        "reducedSets": 80,
+        "solverChecks": 25392,
+        "cacheHits": 3547,
+        "matchEvaluations": 6504946,
+        "routeFilterEvaluations": 84794138,
+        "clueCandidates": 3787,
+        "clueParametersExamined": 16419
+      },
+      "failures": {
+        "NO_PROGRESS": 12454,
+        "RESTART_BUDGET_EXHAUSTED": 4
+      },
+      "composition": {
+        "totalClues": 466,
+        "byType": {
+          "countDistanceToPlace": 391,
+          "direction": 19,
+          "distanceBetweenHours": 29,
+          "distanceToPlace": 16,
+          "turn": 11
+        },
+        "byPresentationForm": {
+          "CountDistanceNever": 99,
+          "HasDistanceAt": 24,
+          "NotDistanceAt": 49,
+          "countDistanceToPlace": 219,
+          "direction": 19,
+          "distanceBetweenHours": 29,
+          "distanceToPlace": 16,
+          "turn": 11
+        },
+        "percentByType": {
+          "countDistanceToPlace": 83.91,
+          "direction": 4.08,
+          "distanceBetweenHours": 6.22,
+          "distanceToPlace": 3.43,
+          "turn": 2.36
+        },
+        "percentByPresentationForm": {
+          "CountDistanceNever": 21.24,
+          "HasDistanceAt": 5.15,
+          "NotDistanceAt": 10.52,
+          "countDistanceToPlace": 47,
+          "direction": 4.08,
+          "distanceBetweenHours": 6.22,
+          "distanceToPlace": 3.43,
+          "turn": 2.36
+        },
+        "crossTable": {
+          "types": [
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "forms": [
+            "CountDistanceNever",
+            "HasDistanceAt",
+            "NotDistanceAt",
+            "countDistanceToPlace",
+            "direction",
+            "distanceBetweenHours",
+            "distanceToPlace",
+            "turn"
+          ],
+          "counts": {
+            "countDistanceToPlace": {
+              "CountDistanceNever": 99,
+              "HasDistanceAt": 24,
+              "NotDistanceAt": 49,
+              "countDistanceToPlace": 219,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "direction": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 19,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceBetweenHours": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 29,
+              "distanceToPlace": 0,
+              "turn": 0
+            },
+            "distanceToPlace": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 16,
+              "turn": 0
+            },
+            "turn": {
+              "CountDistanceNever": 0,
+              "HasDistanceAt": 0,
+              "NotDistanceAt": 0,
+              "countDistanceToPlace": 0,
+              "direction": 0,
+              "distanceBetweenHours": 0,
+              "distanceToPlace": 0,
+              "turn": 11
+            }
+          },
+          "rowTotals": {
+            "countDistanceToPlace": 391,
+            "direction": 19,
+            "distanceBetweenHours": 29,
+            "distanceToPlace": 16,
+            "turn": 11
+          },
+          "columnTotals": {
+            "CountDistanceNever": 99,
+            "HasDistanceAt": 24,
+            "NotDistanceAt": 49,
+            "countDistanceToPlace": 219,
+            "direction": 19,
+            "distanceBetweenHours": 29,
+            "distanceToPlace": 16,
+            "turn": 11
+          },
+          "total": 466
+        }
+      },
+      "individuallyExactClues": 11,
+      "withExactHour1": 11,
+      "exactHours": {
+        "1": 11,
+        "2": 1,
+        "3": 1
+      },
+      "fiveSixSeven": {
+        "5": {
+          "count": 21,
+          "share": 0.2625
+        },
+        "6": {
+          "count": 26,
+          "share": 0.325
+        },
+        "7": {
+          "count": 15,
+          "share": 0.1875
+        }
+      }
+    }
+  ],
+  "overlaps": [
+    {
+      "arms": [
+        "A",
+        "B"
+      ],
+      "sharedEffects": 8
+    },
+    {
+      "arms": [
+        "A",
+        "C"
+      ],
+      "sharedEffects": 0
+    },
+    {
+      "arms": [
+        "B",
+        "C"
+      ],
+      "sharedEffects": 0
+    }
+  ],
+  "verification": {
+    "verifiedCandidates": 167,
+    "method": "existing-checkIrredundancy-detailed"
+  }
+}
