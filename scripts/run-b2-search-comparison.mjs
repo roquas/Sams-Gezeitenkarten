@@ -1,5 +1,5 @@
 // Private experiment. Writes a new directory; never exports a playtest stock.
-import fs from 'node:fs';
+import fs,{realpathSync} from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
@@ -148,7 +148,7 @@ export function renderComparison(summary){
  for(const a of summary.attempts)lines.push(`| ${a.sourceTarget} | ${a.arm} | ${a.legalRouteCount} | ${a.acceptedCandidates} | ${JSON.stringify(a.histogram)} |`);
  return lines.join('\n')+'\n';
 }
-if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+if(process.argv[1]&&realpathSync(fileURLToPath(import.meta.url))===realpathSync(process.argv[1])){
  try{
   assert.ok(process.argv.length===3||process.argv.length===4,'Usage: node scripts/run-b2-search-comparison.mjs OUT [CONFIG]');
   const config=JSON.parse(fs.readFileSync(process.argv[3]??path.join(ROOT,'scripts/config/b2-search-comparison.json'),'utf8'));

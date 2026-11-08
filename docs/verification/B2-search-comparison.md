@@ -5,9 +5,9 @@
 **Ein höheres Budget allein erschließt bereits längere Sätze.** Die begrenzte
 Suche mit schwächeren Ergänzungen verschiebt die Verteilung zusätzlich, kostet
 aber mehr und legt häufiger Stunde 1 durch einen einzelnen Hinweis fest.
-Empfehlung: zunächst ein kleiner, kontrollierter menschlicher Paarvergleich auf
-denselben Zielrouten. Noch keinen größeren neuen Spieltestbestand oder produktiven
-Filter einführen. Hinweisanzahl ist eine Hypothese, kein bestätigtes Qualitätsmaß.
+Empfehlung: zunächst ein kleiner qualitativer menschlicher Paarvergleich durch
+die derzeit einzige testende Person auf denselben Zielrouten. Noch keinen größeren
+neuen Spieltestbestand oder produktiven Filter einführen. Hinweisanzahl ist eine Hypothese, kein bestätigtes Qualitätsmaß.
 
 [Generierter Messbericht](B2-search-comparison/report.md) ·
 [Alle Messdaten](B2-search-comparison/summary.json) ·
@@ -192,11 +192,16 @@ allgemeine Schwierigkeit, menschliche Qualität oder Typenvielfalt ist bewiesen.
 Die großen Zählhinweisfamilien dominieren auch C. Mehr einzeln exakte Stunde-1-
 Hinweise in C zeigen gerade, warum Länge nicht als Qualitätsfilter taugt.
 
-Empfehlung: zuerst je getesteter Zielroute Original, einen B- und einen C-Kandidaten
-blind in wechselnder Reihenfolge spielen lassen; schrittweise notierte Teilschlüsse,
-mentale Routenprüfung und Stunde-1-Effekt beobachten. Erst bei einem wiederholbaren
-menschlichen Vorteil mehrere Seeds und breitere Karten-/Zielroutenauswahl messen,
-danach separat über einen neuen Spieltestbestand entscheiden. Keine automatische
+Empfehlung: Die derzeit einzige testende Person spielt je Zielroute Original,
+einen B- und einen C-Kandidaten und notiert Teilschlüsse, mentale Routenprüfung
+und Stunde-1-Effekt. Wiederholte Spieltests derselben Zielroute durch diese Person
+sind für die qualitative Entwicklungsarbeit ausdrücklich zulässig. Sie ermöglichen
+Beobachtungen zu Hinweisqualität und Denkprozessen; durch Erinnerung und Lerneffekte
+erlauben sie keinen unverzerrten statistischen Vergleich der Strategien. Ein
+formaler experimenteller Qualitätsnachweis ist derzeit nicht das Ziel; ein
+Mehrpersonentest wird weder verlangt noch vorbereitet. Anhand dieser qualitativen
+Beobachtungen kann anschließend über weitere Seeds, Karten, Zielrouten und einen
+neuen Spieltestbestand entschieden werden. Keine automatische
 Übernahme in S02, keine Veröffentlichung oder Freigabe durch diesen Versuch.
 
 ## Identitäten, Provenienz und Reproduktion
@@ -267,7 +272,8 @@ keine Versuchszahlen; sämtliche erzeugten Kandidaten bleiben gespeichert.
   0 übersprungen (623,24 s, einschließlich bestehender Bild-/Katalogprüfungen).
 - Beide Reproduktionstests: **2 bestanden**; neuer Vergleich bytegleich,
   bestehende elf S02-Dateien unverändert (47,91 s zusammen).
-- Contenttests: **3 bestanden**. Reguläre Rätselvalidierung erfolgreich.
+- Contenttests: **drei Testdateien mit insgesamt 20 bestandenen Tests**.
+  Reguläre Rätselvalidierung erfolgreich.
 - Alle **167** Experimentkandidaten unabhängig auf Zielübereinstimmung,
   Eindeutigkeit, Auslassungsnachweise, Fingerprints und Wirkungsschlüssel geprüft.
 - `git diff --check` erfolgreich. Kein Diff an `src/`, `puzzles/`, `assets/`,
@@ -279,3 +285,34 @@ Git-/Prüfunterprozesse nicht vollständig ausführen und wurde beendet. Die obe
 gezählte vollständige Suite lief anschließend mit den benötigten Prozessrechten;
 keine Assertion wurde deaktiviert. Laufzeitmessungen des Experiments bleiben die
 ursprünglichen Einzelbeobachtungen, kein nachträglich ausgewählter schneller Lauf.
+
+
+## Gezielte Review-Nachbesserung am 08.11.2026
+
+Die aktuelle CLI erkennt ihren direkten Aufruf nun anhand beidseitig mit
+`realpathSync` kanonisierter Dateipfade, wie die bestehende Routen-CLI. Damit
+führen Verzeichnis-Symlinks nicht mehr zu einem erfolgreichen Prozess ohne Suche.
+Der historische Programmcommit bleibt unverändert: Sein Reproduktionstest löst
+stattdessen den temporären Checkout-Pfad auf. Experimentkennung, erwartete
+Kandidatenzahl, tatsächlich angelegtes Ausgabeverzeichnis und bytegleiche Dateien
+müssen weiterhin übereinstimmen; Prozessfehler oder leere Ausgabe bestehen den
+Test nicht.
+
+Ausgeführte Prüfungen mit Node v24.19.0 unter Linux:
+
+- **21 relevante Unit-/Contract-/Integrationstests bestanden**, einschließlich
+  des neuen echten CLI-Aufrufs über einen Verzeichnis-Symlink. Dieser prüft
+  Fehlerstatus bei fehlenden Argumenten sowie Suchergebnis und Ausgabedateien bei
+  gültigem Aufruf. Die erzeugten Testdaten liegen ausschließlich temporär.
+- Negativkontrolle: Derselbe Test scheitert gegen die alte CLI des geprüften
+  Heads `9b1087c3a7009447e830fdf96a175f5a880b3605` am bisherigen stillen Nichtausführen.
+- **Beide Reproduktionstests bestanden**, mit byteweisem Vergleich des historischen
+  Suchvergleichs und der elf S02-Dateien.
+- Historischer Vergleich zusätzlich erfolgreich mit `TMPDIR` über einen
+  `var/folders`-Symlink auf `private/var/folders` reproduziert. Dies stellt die
+  Alias-Situation unter Linux nach; ein nativer macOS-Lauf wurde nicht ausgeführt.
+- Contentprüfung erneut bestanden: **drei Testdateien, insgesamt 20 Tests**.
+- `git diff --check` erfolgreich; alle gespeicherten Experimentartefakte samt
+  167 Kandidaten, Identitäten und Provenienz sowie S02 unverändert gegenüber
+  dem geprüften Head. Keine Änderung an Suchstrategien, Solver, Hinweislogik,
+  Budgets, produktiven Rätseln, UI oder Paketformaten.
