@@ -1,0 +1,2203 @@
+{
+  "protocol": "b2-search-comparison-1",
+  "config": {
+    "protocol": "b2-search-comparison-1",
+    "targets": [
+      "B2-S02-M017-A4-R00-V02",
+      "B2-S02-M003-A5-R00-V02",
+      "B2-S02-M005-E3-R00-V01",
+      "B2-S02-M013-D4-R00-V01"
+    ],
+    "arms": [
+      {
+        "id": "A",
+        "strategy": "random-incremental-1",
+        "budgetMultiplier": 1
+      },
+      {
+        "id": "B",
+        "strategy": "random-incremental-1",
+        "budgetMultiplier": 10
+      },
+      {
+        "id": "C",
+        "strategy": "bounded-weak-reduction-1",
+        "budgetMultiplier": 10,
+        "window": 8
+      }
+    ]
+  },
+  "program": {
+    "commit": "d9791b7016d11062a9668f2acc69e0084ed0329f",
+    "nodeVersion": "v24.19.0"
+  },
+  "inputFiles": [
+    {
+      "file": "docs/verification/B2-S02/run/manifest.json",
+      "sha256": "9f9a3d17b956e153174e801d56dcb03e3b384c3f1e16957cc9f8fda44b180a3c"
+    },
+    {
+      "file": "docs/verification/B2-S02/run/candidates.jsonl",
+      "sha256": "84d5b224121047521e6e1b9d7c100270807beaed8482f8d3d72dc4457a3e06e1"
+    },
+    {
+      "file": "docs/verification/B2-S02/run/attempts.jsonl",
+      "sha256": "91bcc04ea12e3f69e9b0a4829495d13640edece3a03f82e76733624b80e80f30"
+    },
+    {
+      "file": "docs/verification/B2-S02/run/summary.json",
+      "sha256": "2ed5f4a1066e5efbb846433a104fcd33f7a496eb86454a5147d59ec7eae5697d"
+    },
+    {
+      "file": "scripts/config/b2-playtest-s02.json",
+      "sha256": "76bc89a2149f8e1a255783a2af0e14ea08d2c2685cd0e070ea7a2d32ee37d7d1"
+    }
+  ],
+  "sourceExperimentId": "gk-b2-run-sha256:4dcf2dcba4af6c718cf5ab5900733d08fa8fe911ed3fd849db2a34679eb9d883",
+  "seedPolicy": "original-S02-target-seed-paired-across-arms-1",
+  "identityPolicy": "run-hash/arm/target/variant-hash-1",
+  "experimentId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849",
+  "sourceManifest": {
+    "puzzleExperimentFormatVersion": 2,
+    "strategy": "random-incremental-1",
+    "routeSelection": {
+      "strategy": "explicit-indices-all-b1-starts-1",
+      "order": "engine-row-major-1",
+      "routeIndices": [
+        0
+      ]
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "steps": 6,
+    "seed": 42,
+    "budgets": {
+      "maxNodesPerStart": 100000,
+      "maxClueParameters": 100000,
+      "maxRestarts": 2,
+      "maxSolverChecks": 2000,
+      "maxMatchEvaluations": 5000000,
+      "maxRouteFilterEvaluations": 20000000
+    },
+    "program": {
+      "commit": "d30c6683e8ba74e72ea1e9aae6e3aaa99295f207",
+      "nodeVersion": "v24.19.0"
+    },
+    "input": {
+      "experimentId": "gk-b1-run-sha256:b482cf46e97d7711a6c91e5f372c14adf452438867a5f9bdfe59c2ece93bc2d6",
+      "files": [
+        {
+          "file": "manifest.json",
+          "sha256": "5996bde39801f0a08485ca4205f152cca5b50303565f69348bc02b69dfdd3ee0"
+        },
+        {
+          "file": "maps.jsonl",
+          "sha256": "ecc1451f692f352b7e468d860bdbc0fa7345c8ab6b76c0794638aa7f79233aef"
+        },
+        {
+          "file": "summary.json",
+          "sha256": "f7bb1d515c63e7ab6256b12fa8fca4b138acc7ece0b65a597ecf1395f30cccf6"
+        }
+      ],
+      "sourceFiles": [
+        {
+          "file": "manifest.json",
+          "sha256": "e5878cf332f528164a65bb0c8f428157690d867cee5b7d90b9ddcc317b4aff10"
+        },
+        {
+          "file": "summary.json",
+          "sha256": "a95ee0ed5bfc69173998b6f09e33af86a1156c47fb0c7c74175fca53ec880542"
+        },
+        {
+          "file": "candidates.jsonl",
+          "sha256": "a8221fdce76b3aba843c4cf6f4cdea4216ea442140fc64178a24ac63766fc598"
+        },
+        {
+          "file": "accepted.jsonl",
+          "sha256": "a8221fdce76b3aba843c4cf6f4cdea4216ea442140fc64178a24ac63766fc598"
+        }
+      ],
+      "b1Manifest": {
+        "experimentFormatVersion": 1,
+        "strategy": "all-starts-six-steps-1",
+        "routeOrder": "engine-row-major-1",
+        "rulesVersion": "gezeitenkarten-2",
+        "steps": 6,
+        "budgets": {
+          "maxNodesPerStart": 100000
+        },
+        "program": {
+          "commit": "d30c6683e8ba74e72ea1e9aae6e3aaa99295f207",
+          "nodeVersion": "v24.19.0"
+        },
+        "input": {
+          "files": [
+            {
+              "file": "manifest.json",
+              "sha256": "e5878cf332f528164a65bb0c8f428157690d867cee5b7d90b9ddcc317b4aff10"
+            },
+            {
+              "file": "summary.json",
+              "sha256": "a95ee0ed5bfc69173998b6f09e33af86a1156c47fb0c7c74175fca53ec880542"
+            },
+            {
+              "file": "candidates.jsonl",
+              "sha256": "a8221fdce76b3aba843c4cf6f4cdea4216ea442140fc64178a24ac63766fc598"
+            },
+            {
+              "file": "accepted.jsonl",
+              "sha256": "a8221fdce76b3aba843c4cf6f4cdea4216ea442140fc64178a24ac63766fc598"
+            }
+          ],
+          "acceptedIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "batchManifest": {
+            "batchFormatVersion": 3,
+            "seedScheduleVersion": "sequential-uint32-1",
+            "options": {
+              "targetCount": 20,
+              "maxAttempts": 40,
+              "seedStart": 0,
+              "assignmentSeedStart": 0,
+              "config": {
+                "objectCount": {
+                  "min": 2,
+                  "max": 7
+                },
+                "objectSizes": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "passableProbability": 0.5,
+                "maxMapAttempts": 20,
+                "analysis": {
+                  "steps": [],
+                  "maxNodes": 10000
+                },
+                "filters": {
+                  "routeSteps": [],
+                  "minLargestComponent": 0
+                }
+              }
+            },
+            "catalogProfile": {
+              "version": "catalog-capacities-1",
+              "catalogSha256": "ed76bb4402f2eb8111d1d086daac6d336f4236546cf350af85e39855d59e0037",
+              "placements": [
+                {
+                  "cells": [
+                    "A1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A1",
+                    "A2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A1",
+                    "A2",
+                    "B1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A1",
+                    "A2",
+                    "B1",
+                    "B2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A1",
+                    "B1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A1",
+                    "B1",
+                    "B2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A1",
+                    "B1",
+                    "C1",
+                    "D1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "A3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "A3",
+                    "B2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "A3",
+                    "B3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "B1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "B1",
+                    "B2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "B1",
+                    "C1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "B2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "B2",
+                    "B3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "B2",
+                    "B3",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "B2",
+                    "C2",
+                    "D2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "B2",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A2",
+                    "B3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A3",
+                    "A4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A3",
+                    "A4",
+                    "B3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A3",
+                    "A4",
+                    "B3",
+                    "B4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A3",
+                    "B3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A3",
+                    "B3",
+                    "B4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A3",
+                    "B3",
+                    "C3",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "A5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "A5",
+                    "B4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "A5",
+                    "B5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "B3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "B3",
+                    "B4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "B3",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "B4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "B4",
+                    "B5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "B4",
+                    "B5",
+                    "C5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "B4",
+                    "C4",
+                    "D4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "B4",
+                    "C5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A4",
+                    "B5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A5",
+                    "B5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A5",
+                    "B5",
+                    "C5",
+                    "D5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B1",
+                    "B2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B1",
+                    "B2",
+                    "C1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B1",
+                    "B2",
+                    "C1",
+                    "C2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B1",
+                    "C1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B1",
+                    "C1",
+                    "C2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B1",
+                    "C1",
+                    "D1",
+                    "E1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "B3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "B3",
+                    "C2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "B3",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C1",
+                    "C2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C1",
+                    "D1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C2",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C2",
+                    "C3",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C2",
+                    "D2",
+                    "E2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C2",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B3",
+                    "B4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B3",
+                    "B4",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B3",
+                    "B4",
+                    "C3",
+                    "C4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B3",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B3",
+                    "C3",
+                    "C4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B3",
+                    "C3",
+                    "D3",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "B5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "B5",
+                    "C4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "B5",
+                    "C5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "C3",
+                    "C4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "C3",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "C4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "C4",
+                    "C5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "C4",
+                    "C5",
+                    "D5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "C4",
+                    "D4",
+                    "E4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "C4",
+                    "D5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B4",
+                    "C5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B5",
+                    "C5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "B5",
+                    "C5",
+                    "D5",
+                    "E5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C1",
+                    "C2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C1",
+                    "C2",
+                    "D1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C1",
+                    "C2",
+                    "D1",
+                    "D2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C1",
+                    "D1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C1",
+                    "D1",
+                    "D2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "C3",
+                    "D2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "C3",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "D1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "D1",
+                    "D2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "D1",
+                    "E1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "D2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "D2",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "D2",
+                    "D3",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "D2",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C2",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C3",
+                    "C4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C3",
+                    "C4",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C3",
+                    "C4",
+                    "D3",
+                    "D4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C3",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C3",
+                    "D3",
+                    "D4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "C5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "C5",
+                    "D4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "C5",
+                    "D5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "D3",
+                    "D4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "D3",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "D4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "D4",
+                    "D5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "D4",
+                    "D5",
+                    "E5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "D4",
+                    "E5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "D5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "C5",
+                    "D5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D1",
+                    "D2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D1",
+                    "D2",
+                    "E1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D1",
+                    "D2",
+                    "E1",
+                    "E2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D1",
+                    "E1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D1",
+                    "E1",
+                    "E2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D2",
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D2",
+                    "D3",
+                    "E2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D2",
+                    "D3",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D2",
+                    "E1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D2",
+                    "E1",
+                    "E2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D2",
+                    "E2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D2",
+                    "E2",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D2",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D3",
+                    "D4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D3",
+                    "D4",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D3",
+                    "D4",
+                    "E3",
+                    "E4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D3",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D3",
+                    "E3",
+                    "E4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D4",
+                    "D5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D4",
+                    "D5",
+                    "E4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D4",
+                    "D5",
+                    "E5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D4",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D4",
+                    "E3",
+                    "E4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D4",
+                    "E4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D4",
+                    "E4",
+                    "E5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D4",
+                    "E5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "D5",
+                    "E5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E1"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E1",
+                    "E2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E2"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E2",
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E3"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E3",
+                    "E4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E4"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E4",
+                    "E5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E5"
+                  ],
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A1"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "A2"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "A3"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "A4"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "A5"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "B1"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "B2"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "B3"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "B4"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "B5"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "C1"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "C2"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "C3"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "C4"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "C5"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "D1"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "D2"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "D3"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "D4"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "D5"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "E1"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "E2"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "E3"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "E4"
+                  ],
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "E5"
+                  ],
+                  "passable": true
+                }
+              ],
+              "capacities": [
+                {
+                  "shape": "0,0",
+                  "passable": false,
+                  "count": 5
+                },
+                {
+                  "shape": "0,0;0,1",
+                  "passable": false,
+                  "count": 4
+                },
+                {
+                  "shape": "0,0;0,1;1,0",
+                  "passable": false,
+                  "count": 1
+                },
+                {
+                  "shape": "0,0;0,1;1,0;1,1",
+                  "passable": false,
+                  "count": 2
+                },
+                {
+                  "shape": "0,0;1,0",
+                  "passable": false,
+                  "count": 5
+                },
+                {
+                  "shape": "0,0;1,0;1,1",
+                  "passable": false,
+                  "count": 1
+                },
+                {
+                  "shape": "0,0;1,0;2,0;3,0",
+                  "passable": false,
+                  "count": 1
+                },
+                {
+                  "shape": "0,1;1,0",
+                  "passable": false,
+                  "count": 3
+                },
+                {
+                  "shape": "0,1;1,0;1,1",
+                  "passable": false,
+                  "count": 1
+                },
+                {
+                  "shape": "0,1;1,0;2,0",
+                  "passable": false,
+                  "count": 1
+                },
+                {
+                  "shape": "0,0",
+                  "passable": true,
+                  "count": 9
+                }
+              ]
+            },
+            "versions": {
+              "generator": "catalog-compliant-maps-2",
+              "assignment": "catalog-assignment-1",
+              "catalogProfile": "catalog-capacities-1",
+              "pixelChecker": "asset-placement-pixels-2",
+              "releaseAdapter": "released-asset-catalog-1",
+              "rules": "gezeitenkarten-2",
+              "acceptance": "catalog-complete-1"
+            },
+            "program": {
+              "commit": "d30c6683e8ba74e72ea1e9aae6e3aaa99295f207",
+              "nodeVersion": "v24.19.0"
+            },
+            "provenance": {
+              "adapterVersion": "released-asset-catalog-1",
+              "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+              "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+              "sourceCommit": "511dfcf743a6e8c4f0c36b3354dcf36d1afe865e",
+              "archiveCommit": "d30c6683e8ba74e72ea1e9aae6e3aaa99295f207",
+              "backgroundId": "sea-blue-01",
+              "catalogSha256": "ed76bb4402f2eb8111d1d086daac6d336f4236546cf350af85e39855d59e0037"
+            }
+          },
+          "batchSummary": {
+            "batchFormatVersion": 3,
+            "status": "target-reached",
+            "targetCount": 20,
+            "maxAttempts": 40,
+            "attemptedCount": 20,
+            "acceptedCount": 20,
+            "rejectedCount": 0,
+            "rejectionCounts": {},
+            "attempted": {
+              "geography": {
+                "statuses": {
+                  "generated": 20
+                },
+                "distinctMaps": 20,
+                "duplicateMaps": 0,
+                "emptyMaps": 0,
+                "mapAttempts": 23,
+                "placementAttempts": 98,
+                "rejectionCounts": {
+                  "OBJECT_SPACING_EXHAUSTED": 3
+                },
+                "profileWork": {
+                  "preferredPlacements": 95,
+                  "footprintChecks": 18620
+                },
+                "histograms": {
+                  "objectCount": {
+                    "2": 5,
+                    "3": 5,
+                    "4": 2,
+                    "5": 2,
+                    "6": 5,
+                    "7": 1
+                  },
+                  "passableObjects": {
+                    "1": 6,
+                    "2": 6,
+                    "3": 4,
+                    "4": 2,
+                    "5": 2
+                  },
+                  "blockedObjects": {
+                    "0": 2,
+                    "1": 10,
+                    "2": 5,
+                    "3": 1,
+                    "4": 1,
+                    "5": 1
+                  },
+                  "occupiedCells": {
+                    "2": 1,
+                    "3": 2,
+                    "4": 3,
+                    "5": 3,
+                    "6": 3,
+                    "7": 2,
+                    "8": 2,
+                    "9": 3,
+                    "10": 1
+                  },
+                  "waterCells": {
+                    "15": 1,
+                    "16": 3,
+                    "17": 2,
+                    "18": 2,
+                    "19": 3,
+                    "20": 3,
+                    "21": 3,
+                    "22": 2,
+                    "23": 1
+                  },
+                  "landFraction": {
+                    "0.28": 2,
+                    "0.32": 2,
+                    "0.36": 3,
+                    "0.2": 3,
+                    "0.12": 2,
+                    "0.16": 3,
+                    "0.4": 1,
+                    "0.24": 3,
+                    "0.08": 1
+                  },
+                  "waterFraction": {
+                    "0.72": 2,
+                    "0.68": 2,
+                    "0.64": 3,
+                    "0.8": 3,
+                    "0.88": 2,
+                    "0.84": 3,
+                    "0.6": 1,
+                    "0.76": 3,
+                    "0.92": 1
+                  },
+                  "passableComponentCount": {
+                    "1": 18,
+                    "2": 2
+                  },
+                  "blockedComponentCount": {
+                    "0": 2,
+                    "1": 10,
+                    "2": 5,
+                    "3": 1,
+                    "4": 1,
+                    "5": 1
+                  },
+                  "coastEdges": {
+                    "7": 1,
+                    "8": 1,
+                    "12": 2,
+                    "13": 1,
+                    "16": 1,
+                    "17": 4,
+                    "22": 1,
+                    "25": 1,
+                    "26": 2,
+                    "27": 2,
+                    "29": 1,
+                    "31": 1,
+                    "33": 1,
+                    "34": 1
+                  },
+                  "passableComponentSizes": {
+                    "1": 1,
+                    "2": 1,
+                    "16": 1,
+                    "18": 1,
+                    "19": 2,
+                    "20": 4,
+                    "21": 3,
+                    "22": 3,
+                    "23": 2,
+                    "24": 2,
+                    "25": 2
+                  },
+                  "blockedComponentSizes": {
+                    "1": 11,
+                    "2": 7,
+                    "3": 9,
+                    "4": 5
+                  },
+                  "objectSizes": {
+                    "1": 59,
+                    "2": 7,
+                    "3": 9,
+                    "4": 5
+                  },
+                  "shapesByPassability": {
+                    "false:0,1;1,0;1,1": 4,
+                    "false:0,0;1,0": 3,
+                    "true:0,0": 48,
+                    "false:0,0;1,0;2,0;3,0": 2,
+                    "false:0,0": 11,
+                    "false:0,0;0,1;1,0;1,1": 3,
+                    "false:0,0;1,0;1,1": 2,
+                    "false:0,1;1,0;2,0": 3,
+                    "false:0,1;1,0": 2,
+                    "false:0,0;0,1": 2
+                  },
+                  "boundaryCells": {
+                    "0": 14,
+                    "1": 54,
+                    "2": 9,
+                    "3": 2,
+                    "4": 1
+                  },
+                  "boundaryEdges": {
+                    "0": 14,
+                    "1": 10,
+                    "2": 15,
+                    "3": 17,
+                    "4": 16,
+                    "5": 4,
+                    "6": 2,
+                    "8": 1,
+                    "9": 1
+                  },
+                  "isolatedCells": {
+                    "0": 19,
+                    "1": 1
+                  },
+                  "deadEnds": {
+                    "0": 11,
+                    "1": 8,
+                    "2": 1
+                  },
+                  "articulationCells": {
+                    "0": 11,
+                    "1": 5,
+                    "2": 1,
+                    "4": 2,
+                    "5": 1
+                  },
+                  "startCells": {
+                    "1": 6,
+                    "2": 6,
+                    "3": 4,
+                    "4": 2,
+                    "5": 2
+                  }
+                },
+                "routes": {}
+              },
+              "assignment": {
+                "statuses": {
+                  "complete": 20
+                },
+                "nonemptyStatuses": {
+                  "complete": 20
+                },
+                "objects": 80,
+                "assigned": 80,
+                "unassigned": 0,
+                "rejectionCounts": {},
+                "assetTypes": {
+                  "island": 15,
+                  "settlement": 9,
+                  "wreck": 7,
+                  "bottle": 7,
+                  "driftwood": 5,
+                  "buoy": 6,
+                  "lighthouse": 6,
+                  "rowboat": 5,
+                  "crate": 5,
+                  "atoll": 8,
+                  "barrels": 5,
+                  "archipelago": 2
+                },
+                "assetUsage": {
+                  "land-coast.island.h3.massive-volcano.v1": 4,
+                  "land-coast.settlement.h2.prison-island-01.v1": 2,
+                  "navigation.wreck.h1.offcenter-sloop.v1": 7,
+                  "sea-life.accent.h1.bottle.v1": 7,
+                  "sea-life.accent.h1.driftwood.v1": 5,
+                  "sea-life.accent.h1.buoy.v1": 6,
+                  "navigation.lighthouse.h1.offcenter-beacon.v1": 4,
+                  "land-coast.island.h4.long-sand.v1": 2,
+                  "land-coast.island.h1.palm-beach.v1": 3,
+                  "sea-life.accent.h1.rowboat.v1": 5,
+                  "land-coast.settlement.h4.tesoro.v4": 3,
+                  "sea-life.accent.h1.crate.v1": 5,
+                  "land-coast.atoll.h1.broken-passages.v1": 4,
+                  "sea-life.accent.h1.barrels.v1": 5,
+                  "land-coast.archipelago.h3.sand-reefs.v2": 2,
+                  "land-coast.atoll.h1.closed-lagoon.v1": 4,
+                  "land-coast.island.h3.smuggler-cove.v1": 3,
+                  "land-coast.island.h2.mist-forest-02.v1": 1,
+                  "navigation.lighthouse.h1.cyan-magenta-island.v1": 2,
+                  "land-coast.island.h1.basalt-spire-water.v1": 1,
+                  "land-coast.island.h2.tropical-bays.v1": 1,
+                  "land-coast.settlement.h2.prison-island-03.v1": 1,
+                  "land-coast.settlement.h1.restaurant-island.v1": 1,
+                  "land-coast.settlement.h2.hut-settlement-03.v1": 1,
+                  "land-coast.settlement.h2.hut-settlement-02.v1": 1
+                },
+                "unassignedShapes": {},
+                "unassignedSizesByPassability": {},
+                "candidateChecks": 3440,
+                "anchorChecks": 5160
+              },
+              "errors": {}
+            },
+            "accepted": {
+              "geography": {
+                "statuses": {
+                  "generated": 20
+                },
+                "distinctMaps": 20,
+                "duplicateMaps": 0,
+                "emptyMaps": 0,
+                "mapAttempts": 23,
+                "placementAttempts": 98,
+                "rejectionCounts": {
+                  "OBJECT_SPACING_EXHAUSTED": 3
+                },
+                "profileWork": {
+                  "preferredPlacements": 95,
+                  "footprintChecks": 18620
+                },
+                "histograms": {
+                  "objectCount": {
+                    "2": 5,
+                    "3": 5,
+                    "4": 2,
+                    "5": 2,
+                    "6": 5,
+                    "7": 1
+                  },
+                  "passableObjects": {
+                    "1": 6,
+                    "2": 6,
+                    "3": 4,
+                    "4": 2,
+                    "5": 2
+                  },
+                  "blockedObjects": {
+                    "0": 2,
+                    "1": 10,
+                    "2": 5,
+                    "3": 1,
+                    "4": 1,
+                    "5": 1
+                  },
+                  "occupiedCells": {
+                    "2": 1,
+                    "3": 2,
+                    "4": 3,
+                    "5": 3,
+                    "6": 3,
+                    "7": 2,
+                    "8": 2,
+                    "9": 3,
+                    "10": 1
+                  },
+                  "waterCells": {
+                    "15": 1,
+                    "16": 3,
+                    "17": 2,
+                    "18": 2,
+                    "19": 3,
+                    "20": 3,
+                    "21": 3,
+                    "22": 2,
+                    "23": 1
+                  },
+                  "landFraction": {
+                    "0.28": 2,
+                    "0.32": 2,
+                    "0.36": 3,
+                    "0.2": 3,
+                    "0.12": 2,
+                    "0.16": 3,
+                    "0.4": 1,
+                    "0.24": 3,
+                    "0.08": 1
+                  },
+                  "waterFraction": {
+                    "0.72": 2,
+                    "0.68": 2,
+                    "0.64": 3,
+                    "0.8": 3,
+                    "0.88": 2,
+                    "0.84": 3,
+                    "0.6": 1,
+                    "0.76": 3,
+                    "0.92": 1
+                  },
+                  "passableComponentCount": {
+                    "1": 18,
+                    "2": 2
+                  },
+                  "blockedComponentCount": {
+                    "0": 2,
+                    "1": 10,
+                    "2": 5,
+                    "3": 1,
+                    "4": 1,
+                    "5": 1
+                  },
+                  "coastEdges": {
+                    "7": 1,
+                    "8": 1,
+                    "12": 2,
+                    "13": 1,
+                    "16": 1,
+                    "17": 4,
+                    "22": 1,
+                    "25": 1,
+                    "26": 2,
+                    "27": 2,
+                    "29": 1,
+                    "31": 1,
+                    "33": 1,
+                    "34": 1
+                  },
+                  "passableComponentSizes": {
+                    "1": 1,
+                    "2": 1,
+                    "16": 1,
+                    "18": 1,
+                    "19": 2,
+                    "20": 4,
+                    "21": 3,
+                    "22": 3,
+                    "23": 2,
+                    "24": 2,
+                    "25": 2
+                  },
+                  "blockedComponentSizes": {
+                    "1": 11,
+                    "2": 7,
+                    "3": 9,
+                    "4": 5
+                  },
+                  "objectSizes": {
+                    "1": 59,
+                    "2": 7,
+                    "3": 9,
+                    "4": 5
+                  },
+                  "shapesByPassability": {
+                    "false:0,1;1,0;1,1": 4,
+                    "false:0,0;1,0": 3,
+                    "true:0,0": 48,
+                    "false:0,0;1,0;2,0;3,0": 2,
+                    "false:0,0": 11,
+                    "false:0,0;0,1;1,0;1,1": 3,
+                    "false:0,0;1,0;1,1": 2,
+                    "false:0,1;1,0;2,0": 3,
+                    "false:0,1;1,0": 2,
+                    "false:0,0;0,1": 2
+                  },
+                  "boundaryCells": {
+                    "0": 14,
+                    "1": 54,
+                    "2": 9,
+                    "3": 2,
+                    "4": 1
+                  },
+                  "boundaryEdges": {
+                    "0": 14,
+                    "1": 10,
+                    "2": 15,
+                    "3": 17,
+                    "4": 16,
+                    "5": 4,
+                    "6": 2,
+                    "8": 1,
+                    "9": 1
+                  },
+                  "isolatedCells": {
+                    "0": 19,
+                    "1": 1
+                  },
+                  "deadEnds": {
+                    "0": 11,
+                    "1": 8,
+                    "2": 1
+                  },
+                  "articulationCells": {
+                    "0": 11,
+                    "1": 5,
+                    "2": 1,
+                    "4": 2,
+                    "5": 1
+                  },
+                  "startCells": {
+                    "1": 6,
+                    "2": 6,
+                    "3": 4,
+                    "4": 2,
+                    "5": 2
+                  }
+                },
+                "routes": {}
+              },
+              "assignment": {
+                "statuses": {
+                  "complete": 20
+                },
+                "nonemptyStatuses": {
+                  "complete": 20
+                },
+                "objects": 80,
+                "assigned": 80,
+                "unassigned": 0,
+                "rejectionCounts": {},
+                "assetTypes": {
+                  "island": 15,
+                  "settlement": 9,
+                  "wreck": 7,
+                  "bottle": 7,
+                  "driftwood": 5,
+                  "buoy": 6,
+                  "lighthouse": 6,
+                  "rowboat": 5,
+                  "crate": 5,
+                  "atoll": 8,
+                  "barrels": 5,
+                  "archipelago": 2
+                },
+                "assetUsage": {
+                  "land-coast.island.h3.massive-volcano.v1": 4,
+                  "land-coast.settlement.h2.prison-island-01.v1": 2,
+                  "navigation.wreck.h1.offcenter-sloop.v1": 7,
+                  "sea-life.accent.h1.bottle.v1": 7,
+                  "sea-life.accent.h1.driftwood.v1": 5,
+                  "sea-life.accent.h1.buoy.v1": 6,
+                  "navigation.lighthouse.h1.offcenter-beacon.v1": 4,
+                  "land-coast.island.h4.long-sand.v1": 2,
+                  "land-coast.island.h1.palm-beach.v1": 3,
+                  "sea-life.accent.h1.rowboat.v1": 5,
+                  "land-coast.settlement.h4.tesoro.v4": 3,
+                  "sea-life.accent.h1.crate.v1": 5,
+                  "land-coast.atoll.h1.broken-passages.v1": 4,
+                  "sea-life.accent.h1.barrels.v1": 5,
+                  "land-coast.archipelago.h3.sand-reefs.v2": 2,
+                  "land-coast.atoll.h1.closed-lagoon.v1": 4,
+                  "land-coast.island.h3.smuggler-cove.v1": 3,
+                  "land-coast.island.h2.mist-forest-02.v1": 1,
+                  "navigation.lighthouse.h1.cyan-magenta-island.v1": 2,
+                  "land-coast.island.h1.basalt-spire-water.v1": 1,
+                  "land-coast.island.h2.tropical-bays.v1": 1,
+                  "land-coast.settlement.h2.prison-island-03.v1": 1,
+                  "land-coast.settlement.h1.restaurant-island.v1": 1,
+                  "land-coast.settlement.h2.hut-settlement-03.v1": 1,
+                  "land-coast.settlement.h2.hut-settlement-02.v1": 1
+                },
+                "unassignedShapes": {},
+                "unassignedSizesByPassability": {},
+                "candidateChecks": 3440,
+                "anchorChecks": 5160
+              },
+              "errors": {},
+              "repetitionHistogram": {
+                "0": 20
+              }
+            }
+          }
+        },
+        "experimentId": "gk-b1-run-sha256:b482cf46e97d7711a6c91e5f372c14adf452438867a5f9bdfe59c2ece93bc2d6"
+      }
+    },
+    "experimentId": "gk-b2-run-sha256:4dcf2dcba4af6c718cf5ab5900733d08fa8fe911ed3fd849db2a34679eb9d883"
+  }
+}
