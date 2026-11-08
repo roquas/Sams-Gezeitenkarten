@@ -5,7 +5,7 @@ import {ROOT,buildPlaytest,readPlaytestSource,playtestStock,parsePlaytestArgs} f
 
 export function main(argv=process.argv.slice(2)){
  const {stock,args}=parsePlaytestArgs(argv);
- if(args.length)throw Error('Usage: export-b2-playtest.mjs [--stock S01|S02]');
+ if(args.length)throw Error('Usage: export-b2-playtest.mjs [--stock S01|S02|BC]');
  const files=buildPlaytest(readPlaytestSource(stock)); // Validate everything before replacing local output.
  const target=path.join(ROOT,playtestStock(stock).output);
  const identical=()=>{
@@ -25,6 +25,11 @@ export function main(argv=process.argv.slice(2)){
    }
   }
  }finally{fs.rmSync(staging,{recursive:true,force:true});}
+ // mkdtemp creates 700 directories. Static Uberspace serving needs traversal
+ // and readable public DTOs, including after an otherwise identical export.
+ fs.chmodSync(path.dirname(target),0o755);
+ fs.chmodSync(target,0o755);
+ for(const name of files.keys())fs.chmodSync(path.join(target,name),0o644);
  return `B2: ${files.size-1} Kandidaten exportiert. Start: http://localhost:8000/?dev=b2${stock==='S01'?'':'&stock='+stock}`;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){

@@ -5,7 +5,7 @@ import {playtestClueReport,renderClueReport} from './lib/b2-diagnostics.mjs';
 
 export function main(argv=process.argv.slice(2)){
  const {stock,args}=parsePlaytestArgs(argv),name=args[0];
- if(args.length!==1)throw Error('Aufruf: npm run inspect:b2 -- [--stock S01|S02] <Testname|--statistics|--report|--report-markdown>');
+ if(args.length!==1)throw Error('Aufruf: npm run inspect:b2 -- [--stock S01|S02|BC] <Testname|--statistics|--report|--report-markdown>');
  if(name==='--report')return playtestClueReport(stock);
  if(name==='--report-markdown')return renderClueReport(playtestClueReport(stock));
  const source=readPlaytestSource(stock),{registry,rows}=source,byVariant=validatePlaytestBindings(source);
