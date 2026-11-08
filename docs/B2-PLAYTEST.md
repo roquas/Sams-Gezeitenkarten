@@ -145,6 +145,101 @@ und Hinweis-ID. Die Bestandsauswertung validiert zuvor sämtliche Namens-/Inhalt
 [Diagnosebericht, Grenzen und vollständige Reproduktion](verification/B2-S02.md) ·
 [Hinweisauswertung](verification/B2-S02/clue-report.md).
 
+### BC: acht Varianten aus dem Suchvergleich
+
+```sh
+npm run dev:b2:bc
+```
+
+[BC öffnen](http://localhost:8000/?dev=b2&stock=BC) oder direkt
+[T01 starten](http://localhost:8000/?dev=b2&stock=BC&puzzle=B2-BC-T01-M017-A4-R00).
+Die vorhandene Auswahl oberhalb der Seekarte enthält die acht Testvarianten und
+die Probefahrt. Beim Wechsel bleibt `stock=BC` erhalten; direkte Rätsellinks,
+Notizen, Undo und Spielstände funktionieren wie bei S02. Die Testkennung im Titel
+bitte beim Berichten nennen. Die T-Nummer ist eine feste, strategieneutrale
+Testkennung, keine Rangfolge. Gleiche M-/Start-/R-Kennung bedeutet gleiche
+Zielroute; wiederholtes Spielen kann Erinnerungseffekte erzeugen.
+
+[Auswahlbericht mit Einzel-/Paarwirkungen](verification/B2-BC.md) ·
+[Validierungsnachweis](verification/B2-BC-validation.md) ·
+[Vollständige feste Zuordnung](../scripts/config/b2-playtest-bc.json).
+Je vier gespeicherte B-/C-Kandidaten, fünf bis sieben Hinweise; diese Kriterien
+sind Testhypothesen und kein Qualitätsnachweis. Kein Generatoraufruf beim Export.
+Registryvertrag 2 bindet den vollständigen 167-Zeilen-Kandidatenstrom samt Manifest
+und wählt daraus explizite Kandidaten-IDs. S01/S02 behalten Registryvertrag 1 und
+ihre bisherigen Inhalte. Die alten Bestände werden weder ersetzt noch ergänzt.
+
+Bei bereits laufendem Server:
+
+```sh
+npm run export:b2 -- --stock BC
+node scripts/report-b2-bc-playtest.mjs --check
+node --test tests/contracts/b2-bc.test.mjs
+npx playwright test tests/browser/b2-bc.spec.mjs
+```
+
+`npm run report:b2:bc` schreibt den lösungsfreien Auswahlbericht auf stdout.
+`npm run inspect:b2 -- --stock BC <Testkennung>` zeigt privat den vollständigen
+Originalkandidaten **einschließlich Lösung**; diese Ausgabe nicht im Spieltest
+öffnen oder ausliefern. Beim Spielen bleiben Strategie und Suchdiagnosen verborgen.
+S02 ist separat mit `?dev=b2&stock=S02` verfügbar, sofern es exportiert wurde.
+
+#### Lokalen Webordner für Uberspace vorbereiten
+
+Voraussetzungen wie beim regulären Paket: Node 22+, Python 3 mit Pillow, `unzip`.
+Das reguläre ZIP bleibt unverändert frei von Entwicklungsbeständen. Für diesen
+Spieltest wird es in einen neuen temporären Ordner entpackt und **nur** um die
+neun öffentlichen BC-Dateien ergänzt (acht Rätsel und Manifest):
+
+```sh
+npm run export:b2 -- --stock BC
+sh scripts/package.sh
+b2_bc_stage=$(mktemp -d "${TMPDIR:-/tmp}/b2-bc-web.XXXXXX")
+unzip -q dist/Sams-Gezeitenkarten.zip -d "$b2_bc_stage"
+mkdir -p "$b2_bc_stage/.dev"
+cp -R .dev/b2-bc "$b2_bc_stage/.dev/"
+find "$b2_bc_stage" -type d -exec chmod 755 {} +
+find "$b2_bc_stage" -type f -exec chmod 644 {} +
+printf '%s\n' "$b2_bc_stage"
+```
+
+Die vorhandene Paketierung prüft reguläre Inhalte/Bilder und schreibt `.mjs` zu
+`.js` um; das funktioniert auch für die optionale BC-Manifestadresse. So ist keine
+zusätzliche MIME-Konfiguration auf Uberspace nötig. Das BC-Manifest behält seine
+relativen Asset-/Rätselpfade, auch unter einem URL-Unterverzeichnis. `docs/`,
+`scripts/`, Registry und Originalkandidaten werden nicht kopiert. Der Export setzt
+bereits `.dev/` und das Bestandsverzeichnis auf 755, Dateien auf 644; das behebt
+auch vorhandene 700-Exportordner. Die Rechte im fertigen Webordner trotzdem mit
+den obigen Befehlen setzen: Jeder übergeordnete Hostpfad muss durchsuchbar sein.
+
+Optional vor Upload unter dem bestehenden strengen Testhost prüfen:
+
+```sh
+DEPLOY_ROOT="$b2_bc_stage" python3 tests/deployment/static_host.py
+```
+
+Dann [lokalen Export öffnen](http://localhost:4174/gk/pr38/?dev=b2&stock=BC).
+Der Host verwendet einen URL-Unterpfad und `nosniff` ohne `.mjs`-MIME-Zuordnung.
+
+#### Ausschließlich manuell veröffentlichen
+
+Der obige Ablauf bleibt lokal. Erst bei gewünschter Veröffentlichung einen
+**neuen freien** Testpfad wählen; Beispiel für den bestehenden Uberspace-Host:
+
+```sh
+ssh roquas@roquas.uber.space 'test ! -e ~/www/roquas.de/sgk/b2-bc-test-01 && mkdir -p ~/www/roquas.de/sgk/b2-bc-test-01 && chmod 755 ~/www/roquas.de/sgk/b2-bc-test-01'
+rsync -a --chmod=D755,F644 "$b2_bc_stage/" roquas@roquas.uber.space:www/roquas.de/sgk/b2-bc-test-01/
+```
+
+Den Upload nur nach erfolgreicher Anlage des freien Verzeichnisses ausführen.
+Anschließend wäre der Einstieg
+[BC auf dem Beispielpfad](https://roquas.de/sgk/b2-bc-test-01/?dev=b2&stock=BC).
+Dieser Link ist eine Zielvorlage, keine Meldung über erfolgtes Deployment.
+Alle acht Varianten, Auswahlwechsel und eine Markierung mit Neuladen prüfen.
+Bei HTTP 403 besonders `.dev/`, `.dev/b2-bc/` und alle Host-Elternverzeichnisse auf
+755 sowie JSON-Dateien auf 644 prüfen. `scripts/deploy` liefert den regulären
+CI-Bestand ohne BC und wird für diesen Zusatzbestand nicht verwendet.
+
 ### Spätere Bestände
 
 Für einen neuen Generatorlauf einen neuen Bestand mit eigener

@@ -1,0 +1,237 @@
+{
+  "registryVersion": 2,
+  "stockId": "B2-BC",
+  "source": "docs/verification/B2-search-comparison",
+  "experimentId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849",
+  "manifestSha256": "637550b0e953267b46d0e795240c0b1f9782556252cd6ec5d0bbd5001371028b",
+  "candidatesSha256": "1984e96159b1aea61a1cc758903748ae7b40223a36463e181a47b2707511afbf",
+  "sourceCandidateCount": 167,
+  "selection": {
+    "method": "editorial-fixed-existing-candidates-1",
+    "criteria": [
+      "Genau vier Kandidaten je Sucharm B/C; pro Arm jede der vier gespeicherten Zielinstanzen einmal.",
+      "Fünf bis sieben irredundante Hinweise; kein Einzelhinweis legt Stunde 1 exakt fest.",
+      "Mehrere logische Typen und verschiedene Stunden; Einzelhinweise schränken nur teilweise ein, ausgewiesene Paare reduzieren zusätzlich.",
+      "Fünfer- und Siebener-Sätze berücksichtigen; nicht nur Länge wählen. Flächige und punktuelle Ausschlüsse gesondert betrachten.",
+      "Redaktionelle Testhypothesen, keine Schwierigkeitsskala, Qualitätsmetrik oder repräsentative Stichprobe."
+    ]
+  },
+  "entries": [
+    {
+      "testName": "B2-BC-T01-M017-A4-R00",
+      "candidateId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M017-A4-R00-V02/gk-variant-v2-sha256:d2157d7e37fe6056ed66e9dc91416909170cc0b02f1635500a89a756a4cf203a",
+      "arm": "B",
+      "sourceTarget": "B2-S02-M017-A4-R00-V02",
+      "sourceAttemptId": "gk-b2-target-sha256:f35e0b5a99ee82bbcf3adcaa6f5896b1a70622f24fd38f1b01d22b6fa3830e62",
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M017-A4-R00-V02",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:827ab34c65a9a756bfd2baa22ed9779e6a2efc6a8237a9b7b0cd5a70ff305196",
+        "instance": "gk-instance-v2-sha256:1804e9490574672c5a576a54b1b29937205511e028b41311b4ceb0e8bc58e754",
+        "variant": "gk-variant-v2-sha256:d2157d7e37fe6056ed66e9dc91416909170cc0b02f1635500a89a756a4cf203a"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:9ab311b07e4b85050147bbc7180ae3c14e4cb9b9e4f5b1f3279a57b0ad26c30f",
+      "contentSha256": "dcdca0563a3f5850638547f93ddd15fb70dcc8ea8159c31e8c9be2cda815e31c",
+      "recordSha256": "5e8fe7c584a781984d9af9019e6b4b495529fa354f0dc54a90c90c90dd8d2e55",
+      "highlightPairs": [
+        [
+          "H2",
+          "H5"
+        ],
+        [
+          "H6",
+          "H7"
+        ]
+      ],
+      "rationale": "Sieben Hinweise ohne flächigen Niemals-Ausschluss; Kurs in Stunde 4 und zwei Stundenpaare ergänzen Zählintervalle und einen Endstundenabstand."
+    },
+    {
+      "testName": "B2-BC-T02-M017-A4-R00",
+      "candidateId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M017-A4-R00-V02/gk-variant-v2-sha256:12746a2616361c6cf7ca27643591633b2e53004bd9979a3a880a251281ac273e",
+      "arm": "C",
+      "sourceTarget": "B2-S02-M017-A4-R00-V02",
+      "sourceAttemptId": "gk-b2-target-sha256:f35e0b5a99ee82bbcf3adcaa6f5896b1a70622f24fd38f1b01d22b6fa3830e62",
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M017-A4-R00-V02",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:827ab34c65a9a756bfd2baa22ed9779e6a2efc6a8237a9b7b0cd5a70ff305196",
+        "instance": "gk-instance-v2-sha256:1804e9490574672c5a576a54b1b29937205511e028b41311b4ceb0e8bc58e754",
+        "variant": "gk-variant-v2-sha256:12746a2616361c6cf7ca27643591633b2e53004bd9979a3a880a251281ac273e"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:8357faec171cda8ffe6b19796a3433b519a7ae7ed4b87e727c8930fe6ee8a8db",
+      "contentSha256": "239190581d0c00d232173cb045eab0e704e451c0fb07cffea2b822871ee8eccb",
+      "recordSha256": "e5ccb7b9bd718c355d4aae44957a19c45e103dc672c237e58e2f2fd0d3938b82",
+      "highlightPairs": [
+        [
+          "H2",
+          "H4"
+        ],
+        [
+          "H5",
+          "H6"
+        ]
+      ],
+      "rationale": "Sechs Hinweise auf derselben Zielroute wie T01; Kurs bereits in Stunde 2, nur ein kurzer Ausschluss in Stunden 2–3 und dieselben zwei Stundenpaare als Vergleich."
+    },
+    {
+      "testName": "B2-BC-T03-M003-A5-R00",
+      "candidateId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M003-A5-R00-V02/gk-variant-v2-sha256:501a55f30edb6058856b2549672266f5b226c8bd4b63330be64e06f2bc8bfb72",
+      "arm": "C",
+      "sourceTarget": "B2-S02-M003-A5-R00-V02",
+      "sourceAttemptId": "gk-b2-target-sha256:91f051449a6f7dda632d0c5367a2e8f93c59977460b80f43cf13121283f33ab5",
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M003-A5-R00-V02",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:f2f98818665e3dac22373438791482503f0f716ac4a53e5a115ba839bdcf3526",
+        "instance": "gk-instance-v2-sha256:204aae9c5fe469c7f00e9ce5ebe84575a26cf2d9d2f8c15349d07b6178a16d56",
+        "variant": "gk-variant-v2-sha256:501a55f30edb6058856b2549672266f5b226c8bd4b63330be64e06f2bc8bfb72"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:23ab56eb601cee0d73d1724e842972bd906ea6150a77d2fc08aafc78644a7692",
+      "contentSha256": "76ec72e58e074dec24877010367c5eb530d01acf303959bea290940f6d74c98a",
+      "recordSha256": "91ae3c86745ce856cbb9d5c7e1e1d3e3f0d443cc2c77cf2e40726bec5daa7a25",
+      "highlightPairs": [
+        [
+          "H4",
+          "H6"
+        ],
+        [
+          "H2",
+          "H3"
+        ]
+      ],
+      "rationale": "Sechs Hinweise ohne Niemals-Ausschluss; frühe Drehung und Abstände in Stunden 3 und 5 verbinden sich mit überlappenden Zählintervallen. Übernimmt den passenden früheren C-Vorschlag."
+    },
+    {
+      "testName": "B2-BC-T04-M003-A5-R00",
+      "candidateId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M003-A5-R00-V02/gk-variant-v2-sha256:3ca3325645736a077a887b2097d5ec1beffded6f0e38ad729e9c9f4c93f11dab",
+      "arm": "B",
+      "sourceTarget": "B2-S02-M003-A5-R00-V02",
+      "sourceAttemptId": "gk-b2-target-sha256:91f051449a6f7dda632d0c5367a2e8f93c59977460b80f43cf13121283f33ab5",
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M003-A5-R00-V02",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:f2f98818665e3dac22373438791482503f0f716ac4a53e5a115ba839bdcf3526",
+        "instance": "gk-instance-v2-sha256:204aae9c5fe469c7f00e9ce5ebe84575a26cf2d9d2f8c15349d07b6178a16d56",
+        "variant": "gk-variant-v2-sha256:3ca3325645736a077a887b2097d5ec1beffded6f0e38ad729e9c9f4c93f11dab"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:3c9745644074abfe9813f029e8992503125437a7058f583784a884e42ab965d3",
+      "contentSha256": "d79b70697502f8ae63a9eeefecc8fc05b9949e6763aefe463c165a6b3f56f974",
+      "recordSha256": "7dd1ba26da67c8020ff48187da98e1c333b316c870978465913d647de3f71c0b",
+      "highlightPairs": [
+        [
+          "H4",
+          "H6"
+        ],
+        [
+          "H3",
+          "H5"
+        ]
+      ],
+      "rationale": "Vier logische Typen bei sechs Hinweisen; späte Drehung, Ortsabstand in Stunde 3 und Stundenpaar 1/5 ergänzen sich. Ein flächiger Ausschluss und ein Einzelstundenausschluss bleiben als beobachtbarer Aufwand erhalten."
+    },
+    {
+      "testName": "B2-BC-T05-M005-E3-R00",
+      "candidateId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M005-E3-R00-V01/gk-variant-v2-sha256:ba0503ee6beb577b67555f658bee59903d991d84e5141678d15fc1d1d707b800",
+      "arm": "B",
+      "sourceTarget": "B2-S02-M005-E3-R00-V01",
+      "sourceAttemptId": "gk-b2-target-sha256:9faa168bcb80fefe2bc536794e04fa5696f19b09a8dfd5fb66a84bc18a9cf0ba",
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M005-E3-R00-V01",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:a90f1e307a1d5f2d587ee88f82d6e2da3c3ee527f9d619150637ad88d69b846b",
+        "instance": "gk-instance-v2-sha256:92c444fb26e39fd354ec355aa96ced7f54d689a77082680240f1ebf9f7198f0a",
+        "variant": "gk-variant-v2-sha256:ba0503ee6beb577b67555f658bee59903d991d84e5141678d15fc1d1d707b800"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:ecb054a37519d36bd65e0c5da0037c0a1fd540975e45c713e2d20e82a60d1043",
+      "contentSha256": "10a98328767d0c0b15af55f3d589fc914a20cd8ed9298bb29d45a11678ae6ce9",
+      "recordSha256": "0201986c7c38206af8ebee388669b9501bf98b9608104bb5ff3cf46156ddba98",
+      "highlightPairs": [
+        [
+          "H1",
+          "H2"
+        ],
+        [
+          "H2",
+          "H5"
+        ]
+      ],
+      "rationale": "Fünfer-Satz als Längenkontrast: Zählintervalle sowie Drehung und Kurs der letzten Stunde. Nur ein flächiger Ausschluss; auch die letzte Stunde wird einzeln nicht festgelegt."
+    },
+    {
+      "testName": "B2-BC-T06-M005-E3-R00",
+      "candidateId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M005-E3-R00-V01/gk-variant-v2-sha256:7ecddd88a69ece8bd07c42736f97f646f1fc2c490cd3da242914e5429a517e79",
+      "arm": "C",
+      "sourceTarget": "B2-S02-M005-E3-R00-V01",
+      "sourceAttemptId": "gk-b2-target-sha256:9faa168bcb80fefe2bc536794e04fa5696f19b09a8dfd5fb66a84bc18a9cf0ba",
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M005-E3-R00-V01",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:a90f1e307a1d5f2d587ee88f82d6e2da3c3ee527f9d619150637ad88d69b846b",
+        "instance": "gk-instance-v2-sha256:92c444fb26e39fd354ec355aa96ced7f54d689a77082680240f1ebf9f7198f0a",
+        "variant": "gk-variant-v2-sha256:7ecddd88a69ece8bd07c42736f97f646f1fc2c490cd3da242914e5429a517e79"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:a9046b2b34fe7aa573225c86c7574bc3a461cc7ebbb0cca247f3b91316f442e9",
+      "contentSha256": "ac1ac9648d470a0c8718e3cd81ce6f269c6564aedaebcb9c52e63347f1e925bd",
+      "recordSha256": "53781e2a0141152e8b7eb22404c8c318f8d1277e2e62292bf1543f762311e9a6",
+      "highlightPairs": [
+        [
+          "H3",
+          "H4"
+        ],
+        [
+          "H1",
+          "H2"
+        ]
+      ],
+      "rationale": "Fünfer-Satz ohne Niemals-Ausschluss; überlappende kurze Intervalle und zwei weitere Zählbedingungen werden mit einem Kurs in Stunde 5 kombiniert. Direkter Vergleich zur gleichen B-Zielroute."
+    },
+    {
+      "testName": "B2-BC-T07-M013-D4-R00",
+      "candidateId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M013-D4-R00-V01/gk-variant-v2-sha256:deaf5d4808d7e1ab2f2e221d1301f215548bf51aa9c4ae253f10f6d547e4a768",
+      "arm": "C",
+      "sourceTarget": "B2-S02-M013-D4-R00-V01",
+      "sourceAttemptId": "gk-b2-target-sha256:8773c638b60ee76dc0775070a3c303535de16d56fc7a4bf244a8254f828706a0",
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M013-D4-R00-V01",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:736139c12559a4c8547fc5012ceb27b7e916107d11a1f16bf7e3d31be4f852b1",
+        "instance": "gk-instance-v2-sha256:3c1f049067cde52e2cf85e06d2206b48f8046a140692bc9cf91f175577c57afc",
+        "variant": "gk-variant-v2-sha256:deaf5d4808d7e1ab2f2e221d1301f215548bf51aa9c4ae253f10f6d547e4a768"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:5685fee4f12ed714b72a40fa0cd4110c68745b73808bdc036c498706762fb558",
+      "contentSha256": "757c83b2456d5e16a19ae510f06edb37bded16a96206973f6329a1d3f28e4318",
+      "recordSha256": "42928d4a13abc444711c1cbbc006ca8b1421c958eabbf316c01e8713a1bb952d",
+      "highlightPairs": [
+        [
+          "H4",
+          "H6"
+        ],
+        [
+          "H6",
+          "H7"
+        ]
+      ],
+      "rationale": "Sieben Hinweise mit Drehung, frühen Stunden und späteren Einzelstunden; drei punktuelle Ausschlüsse, aber kein flächiger Niemals-Ausschluss. Bewusste Alternative zum früheren C-Vorschlag mit vier flächigen Ausschlüssen."
+    },
+    {
+      "testName": "B2-BC-T08-M013-D4-R00",
+      "candidateId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M013-D4-R00-V01/gk-variant-v2-sha256:57b9fa89b14a42c2f0125055fbcc588596adffd3d4dc6bfb7701554542d057b6",
+      "arm": "B",
+      "sourceTarget": "B2-S02-M013-D4-R00-V01",
+      "sourceAttemptId": "gk-b2-target-sha256:8773c638b60ee76dc0775070a3c303535de16d56fc7a4bf244a8254f828706a0",
+      "attemptId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/B/B2-S02-M013-D4-R00-V01",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:736139c12559a4c8547fc5012ceb27b7e916107d11a1f16bf7e3d31be4f852b1",
+        "instance": "gk-instance-v2-sha256:3c1f049067cde52e2cf85e06d2206b48f8046a140692bc9cf91f175577c57afc",
+        "variant": "gk-variant-v2-sha256:57b9fa89b14a42c2f0125055fbcc588596adffd3d4dc6bfb7701554542d057b6"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:d9e32029a21759b9a9737e0b503d9be0e29e4b16a850fca3189062a25a8dc283",
+      "contentSha256": "1d9eb9c41e079941debea9afef5ad75f94a2fed85f181d6cf626335f434f96bf",
+      "recordSha256": "6bc1e5e372c0e38ce2ea8909e7fb3d97fd9cb68416433ac574df728533506b6b",
+      "highlightPairs": [
+        [
+          "H5",
+          "H6"
+        ],
+        [
+          "H2",
+          "H3"
+        ]
+      ],
+      "rationale": "Sechs Hinweise ohne Niemals-Ausschluss; nicht eindeutiger Abstand in Stunde 1, überlappende Zählintervalle, späte Drehung und Distanz zwischen Start und Stunde 3. Kontrast zum Siebener-Satz T07."
+    }
+  ]
+}

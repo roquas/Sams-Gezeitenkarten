@@ -87,7 +87,13 @@ test('S02 binding rejects changed candidates, rebound names, duplicate identitie
 
 test('S02 report has exact independent marginals, cross table and a trace for every stored clue',()=>{
  const report=playtestClueReport('S02'),stored=read('docs/verification/B2-S02/clue-report.json');
- assert.deepEqual(report,stored);
+ // The frozen S02 report records the implementation used at creation. Adding
+ // an export stock changes today's adapter hash, not S02's historical evidence.
+ for(const {path:ref,sha256:expected} of stored.analysis.implementation){
+  const original=execFileSync('git',['show','f29bb77:'+ref],{cwd:ROOT,maxBuffer:32*1024*1024});
+  assert.equal(sha256(original),expected,ref);
+ }
+ assert.deepEqual({...report,analysis:{...report.analysis,implementation:stored.analysis.implementation}},stored);
  assert.equal(renderClueReport(report),fs.readFileSync(path.join(ROOT,'docs/verification/B2-S02/clue-report.md'),'utf8'));
  assert.equal(report.candidateCount,96);assert.equal(report.totalClues,340);
  assert.deepEqual(report.byType,{countDistanceToPlace:283,direction:8,distanceBetweenHours:15,distanceToPlace:26,position:1,turn:7});

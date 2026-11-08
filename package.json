@@ -6,6 +6,8 @@
     "export:b2": "node scripts/export-b2-playtest.mjs",
     "dev:b2": "npm run export:b2 && python3 scripts/dev-server.py",
     "dev:b2:s02": "npm run export:b2 -- --stock S02 && python3 scripts/dev-server.py",
+    "dev:b2:bc": "npm run export:b2 -- --stock BC && python3 scripts/dev-server.py",
+    "report:b2:bc": "node scripts/report-b2-bc-playtest.mjs",
     "inspect:b2": "node scripts/inspect-b2-playtest.mjs",
     "report:b2:s02": "node scripts/inspect-b2-playtest.mjs --stock S02 --report",
     "test:b2:s02:reproduction": "node --test tests/reproduction/b2-s02.test.mjs",
