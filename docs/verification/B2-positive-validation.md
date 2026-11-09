@@ -53,7 +53,7 @@ oder Assertions wurden dafür deaktiviert.
 ## Tatsächlich exportiertes Paket
 
 `npm run package:b2:positive` erzeugt ein deterministisches ZIP mit 111 Dateien:
-109 unveränderte Laufzeitdateien aus dem bestehenden Packager und genau zwei
+109 reguläre Laufzeitdateien aus dem bestehenden Packager und genau zwei
 öffentliche Referenzdateien. Wiederholter Export bytegleich, Dateirechte im ZIP
 644. Module sind für statisches Hosting nach `.js` umgeschrieben.
 
