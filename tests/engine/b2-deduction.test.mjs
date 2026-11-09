@@ -3,35 +3,12 @@ import assert from 'node:assert/strict';
 import {createRules} from '../../src/engine/puzzle.mjs';
 import {solvePuzzle} from '../../src/engine/solver.mjs';
 import {direction,directions,distance} from '../../src/engine/hex.mjs';
+import {verifyTrace} from '../helpers/b2-deduction-trace.mjs';
 import {localDeduction} from '../../scripts/lib/b2-local-deduction.mjs';
 import {clueSubsets,diagnosePuzzle,projectRoutes,assertLocalSound} from '../../scripts/lib/b2-deduction.mjs';
 
 const base={map:{geometry:'even-row-offset-pointy-v1',grid:{columns:5,rows:5},objects:[
  {id:'port',cells:['A3'],passable:true},{id:'island',cells:['C2','D2'],passable:false}]},start:'A3',steps:6,clues:[]};
-
-function verifyTrace(logic,local,solutions){
- const rules=createRules(logic),cells=rules.cells.filter(c=>!rules.blocked.has(c));
- const domains=Array.from({length:7},()=>[...cells]);
- const transitions=Array.from({length:6},()=>cells.flatMap(a=>cells.filter(b=>distance(a,b)===1).map(b=>`${a}>${b}`)));
- const seen=new Set(),clueIds=new Set(logic.clues.map(c=>c.id));
- for(const t of local.trace){
-  assert.ok(t.premises.every(p=>seen.has(p)),'premises precede their use');
-  assert.ok(t.clueIds.every(id=>clueIds.has(id)));
-  const arrays=t.kind==='field'?domains:transitions,index=t.kind==='field'?t.hour:t.hour-1;
-  assert.deepEqual(t.before,arrays[index]);
-  assert.deepEqual(t.after,t.before.filter(x=>!t.removed.includes(x)));
-  assert.ok(t.removed.length>0);
-  assert.equal(t.fixed,t.after.length===1?t.after[0]:null);
-  for(const route of solutions){
-   const value=t.kind==='field'?route[t.hour]:`${route[t.hour-1]}>${route[t.hour]}`;
-   assert.ok(!t.removed.includes(value),`${t.id} must preserve every solution`);
-   if(t.fixed)assert.equal(t.fixed,value);
-  }
-  arrays[index]=t.after;seen.add(t.id);
- }
- assert.deepEqual(domains.map(d=>[...d].sort()),local.domains.map(d=>[...d].sort()));
- assert.deepEqual(transitions.map(d=>[...d].sort()),local.transitions.map(d=>[...d].sort()));
-}
 
 test('all pairs and triples are enumerated once, plus a separately labelled full control',()=>{
  assert.equal(clueSubsets(6).length,43);assert.equal(clueSubsets(7).length,65);
@@ -64,13 +41,42 @@ test('all current local forms preserve every solution, with replayable provenanc
  }
 });
 
+test('a necessary premise cannot be supplied by an unlinked earlier step or the full solution space',()=>{
+ const local=localDeduction(base),solutions=solvePuzzle(base,{metrics:false}).solutions;
+ verifyTrace(base,local,solutions);
+ const broken=structuredClone(local),step=broken.trace.find(t=>t.rule==='no-revisit-singleton');
+ const [necessary]=step.premises;
+ assert.equal(step.premises.length,1);
+ assert.ok(broken.trace.find(t=>t.id===necessary).fixed===base.start);
+ // Keep every step and all before/after/excluded/fixed values; cut only the edge.
+ step.premises=[];
+ assert.ok(step.removed.every(c=>solutions.every(r=>r[step.hour]!==c)));
+ assert.throws(()=>verifyTrace(base,broken,solutions),
+  {code:'ERR_ASSERTION',message:new RegExp(`${step.id} .*reachable premises justify exclusions`)});
+ // Restoring exactly that edge repairs the graph.
+ step.premises=[necessary];verifyTrace(base,broken,solutions);
+});
+
+test('a necessary transitive restriction must reconstruct the recorded before state',()=>{
+ const logic={...base,clues:[{id:'P',type:'position',hour:5,cell:'B3'}]};
+ const local=localDeduction(logic),solutions=solvePuzzle(logic,{metrics:false}).solutions;
+ assert.ok(solutions.length>0);verifyTrace(logic,local,solutions);
+ const broken=structuredClone(local),step=broken.trace.find(t=>t.rule==='direct-hour');
+ assert.equal(step.premises.length,1);
+ const [necessary]=step.premises;step.premises=[];
+ assert.throws(()=>verifyTrace(logic,broken,solutions),
+  {code:'ERR_ASSERTION',message:new RegExp(`${step.id} .*reachable premises reconstruct before`)});
+ step.premises=[necessary];verifyTrace(logic,broken,solutions);
+});
+
 test('zero/all residual count bounds include hour 0 and use fixed information',()=>{
  const count=(fromHour,toHour,count)=>({id:'N',type:'countDistanceToPlace',fromHour,toHour,placeId:'port',distance:0,count});
  const satisfiable={...base,clues:[count(0,2,1)]};
  const local=localDeduction(satisfiable);
  assert.ok(!local.domains[1].includes(base.start));
  verifyTrace(satisfiable,local,solvePuzzle(satisfiable,{metrics:false}).solutions);
- const impossible=localDeduction({...base,clues:[count(0,0,0)]});
+ const contradictory={...base,clues:[count(0,0,0)]},impossible=localDeduction(contradictory);
+ verifyTrace(contradictory,impossible,[]);
  assert.equal(impossible.status,'inconsistent');
  assert.deepEqual(impossible.fixedHours,[]);assert.deepEqual(impossible.fixedTransitions,[]);
  assert.ok(impossible.trace.some(t=>t.rule==='count-contradiction'));
