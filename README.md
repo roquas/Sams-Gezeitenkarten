@@ -1,5 +1,8 @@
 # Sams Gezeitenkarten
 
+**Handentwickelte B2-Referenz spielen:** `npm run dev:b2:positive`.
+[Lösungsfreie Anleitung und lokaler ZIP-Export](docs/B2-POSITIVE-PLAYTEST.md).
+
 Ein schlankes Hexrouten-Logikspiel mit einem einheitlichen Kartenmodell,
 öffentlichen Rätseldateien und austauschbaren Inhaltspaketen. Der reguläre
 Einstieg enthält die kontrollierte **Probefahrt**; die vier früheren Rätsel

@@ -1,5 +1,9 @@
 # Verifikationsnachweise
 
+Positive B2-Kontrollreferenz: [lösungsfreie Spieltestanleitung](../B2-POSITIVE-PLAYTEST.md).
+Die Nachweise unter `B2-positive/private/` und der Deduktionsvertrag enthalten
+konkrete Lösungsschlüsse; erst nach dem menschlichen Test öffnen.
+
 [B2-Deduktionsdiagnose](B2-deduction/report.md): Offline-Prototyp für T02/T07,
 T07-Kontrollversuch mit vorgegebener Stunde 3 und dokumentierte Modellgrenze der
 historischen Quittung von Nombreo. Reproduktion:
