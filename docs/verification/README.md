@@ -1,5 +1,10 @@
 # Verifikationsnachweise
 
+[B2-Deduktionsdiagnose](B2-deduction/report.md): Offline-Prototyp für T02/T07,
+T07-Kontrollversuch mit vorgegebener Stunde 3 und dokumentierte Modellgrenze der
+historischen Quittung von Nombreo. Reproduktion:
+`npm run report:b2:deduction -- --check`; kein Generatorlauf oder Browserexport.
+
 Aktueller Generator-/Batch-/Sichtungsnachweis:
 [generation-consolidation.md](generation-consolidation.md).
 
