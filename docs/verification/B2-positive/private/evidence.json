@@ -1,0 +1,577 @@
+{
+  "format": "b2-positive-evidence-1",
+  "nodeVersion": "v24.19.0",
+  "baseCommit": "a8f8cbf97005b3ad888d8443fb40e3118781f717",
+  "contractCommit": "ada62ad",
+  "constructionAttempts": 2,
+  "revisions": 1,
+  "inputs": [
+    {
+      "path": "docs/verification/B2-positive/private/definition.json",
+      "sha256": "5ee3b47b314fb978f0ad813bd224645fc338723c6a56fa3649b640f6f2f63e9b"
+    },
+    {
+      "path": "docs/verification/B2-positive/contract.md",
+      "sha256": "a1a4d4faf3a19f25d7466b86af683b50e4b6a9e61fe70fdd4edf2a52ff628461"
+    },
+    {
+      "path": "docs/verification/B2-positive/private/attempt-0.json",
+      "sha256": "ef9d1ab0aa19452c61777b8ac8391f1f8ad85e30465114f8448a05b1ba97dd5b"
+    },
+    {
+      "path": "docs/verification/B2-positive/private/construction.md",
+      "sha256": "377fa4e0ab4c0ea0054932ee71c3374a42ad4df14a32f7e247b7ca324189b251"
+    },
+    {
+      "path": "scripts/report-b2-positive.mjs",
+      "sha256": "6ca3f974f5137a950cfc065a354c5c2cc42962da18facaebda373a1d66ff2467"
+    },
+    {
+      "path": "scripts/lib/b2-positive.mjs",
+      "sha256": "695b02ff0d1305e7b5ff621fdf3e53667e9679db34fb3c7dff8940747c53ba4c"
+    },
+    {
+      "path": "scripts/lib/b2-deduction.mjs",
+      "sha256": "559aee182111e94c9f7f14ad4d9a26fa4831a5f3d8e2a9377e4bbd8930f56441"
+    },
+    {
+      "path": "scripts/lib/b2-local-deduction.mjs",
+      "sha256": "274808453b907f9aa13c1827ac257487b7cbac4206c68698c414ac8accf63dea"
+    },
+    {
+      "path": "src/engine/puzzle.mjs",
+      "sha256": "90c8750e1da208d9cce256a05afa3b9ae819fe56c29822e49b4bdd944a8fa10d"
+    },
+    {
+      "path": "src/engine/hex.mjs",
+      "sha256": "7854533abe9609afcd10b81949e7652359abaedb632758c0812efe7d3e7ed268"
+    },
+    {
+      "path": "src/engine/solver.mjs",
+      "sha256": "674b79e93b11e6a8f9355a844900ded0a60a4b7071baf055b145a0d8282b452d"
+    },
+    {
+      "path": "src/puzzles/schema.mjs",
+      "sha256": "13a54b5b0d70299cad7c2f4cfa8022adcb145a66ac56adecf30f23c81f951afb"
+    },
+    {
+      "path": "src/puzzles/analysis.mjs",
+      "sha256": "183df8abbfcb646d5a5ac1c2fccb874359c3b048bbf3352e0e4c707405d19227"
+    },
+    {
+      "path": "assets/catalog/library.json",
+      "sha256": "a2072c5a1fc6997d6da538cf7ca4fba58ec402b06e27b252af7d859cd69569b5"
+    }
+  ],
+  "fingerprints": {
+    "mapStructure": "gk-map-v2-sha256:493a3578157ce0526c66b2e45340706c48dcd20f20a2f11ba5c41f6e9c8cbf84",
+    "instance": "gk-instance-v2-sha256:a1cbcda54bafc3e21db0baa0234397dfda4cb7237df47ecb75402d0e3645ad7c",
+    "variant": "gk-variant-v2-sha256:9cc07fb6a1832b5db0a72c6a105855b96d75a19283561a5b466a97c225a9db0f"
+  },
+  "proof": {
+    "status": "unique",
+    "count": 1,
+    "countExact": true,
+    "uniqueSolution": [
+      "A1",
+      "B1",
+      "C1",
+      "C2",
+      "D1",
+      "D2",
+      "E2"
+    ],
+    "solutions": [
+      [
+        "A1",
+        "B1",
+        "C1",
+        "C2",
+        "D1",
+        "D2",
+        "E2"
+      ]
+    ],
+    "omissions": [
+      {
+        "clueId": "H1",
+        "count": 4,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H2",
+        "count": 5,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H3",
+        "count": 19,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H4",
+        "count": 4,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H5",
+        "count": 4,
+        "countExact": true,
+        "necessary": true
+      }
+    ],
+    "search": {
+      "strategy": "existing-solver",
+      "completed": true,
+      "legalRoutesVisited": 1185
+    },
+    "target": {
+      "status": "match",
+      "errors": []
+    },
+    "diagnostics": [],
+    "irredundant": true
+  },
+  "contract": {
+    "A": true,
+    "B": true,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": true,
+    "humanPlaytest": "pending",
+    "centralClues": [
+      "H2",
+      "H3",
+      "H4"
+    ],
+    "centralArrivalHour": 1,
+    "followingHour": 2,
+    "traceWitnesses": {
+      "centralField": "D33",
+      "followingField": "D38",
+      "nextField": "D42",
+      "finalField": "D43"
+    },
+    "note": "D fixes a field and its incoming transition. Later steps cite the field certificate, not the terminal transition log entry."
+  },
+  "handCertificate": {
+    "earlyFields": [
+      "A2",
+      "B1"
+    ],
+    "latePredecessor": [
+      "D1"
+    ],
+    "centralField": [
+      "B1"
+    ],
+    "followingField": [
+      "C1"
+    ],
+    "intermediateBefore": [
+      "C1",
+      "C2"
+    ],
+    "intermediateAfter": [
+      "C2"
+    ],
+    "finalBefore": [
+      "C2",
+      "E2"
+    ],
+    "finalAfter": [
+      "E2"
+    ]
+  },
+  "legal": {
+    "routeCount": 1185,
+    "domains": [
+      [
+        "A1"
+      ],
+      [
+        "A2",
+        "B1"
+      ],
+      [
+        "A2",
+        "A3",
+        "B1",
+        "B2",
+        "B3",
+        "C1"
+      ],
+      [
+        "A2",
+        "A3",
+        "A4",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "C1",
+        "C2",
+        "C3",
+        "D1"
+      ],
+      [
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "E1"
+      ],
+      [
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3"
+      ],
+      [
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    ],
+    "transitions": [
+      [
+        "A1>A2",
+        "A1>B1"
+      ],
+      [
+        "A2>A3",
+        "A2>B1",
+        "A2>B2",
+        "A2>B3",
+        "B1>A2",
+        "B1>B2",
+        "B1>C1"
+      ],
+      [
+        "A2>A3",
+        "A2>B2",
+        "A2>B3",
+        "A3>A4",
+        "A3>B3",
+        "B1>B2",
+        "B1>C1",
+        "B2>A2",
+        "B2>B1",
+        "B2>B3",
+        "B2>C1",
+        "B2>C2",
+        "B2>C3",
+        "B3>A3",
+        "B3>A4",
+        "B3>B2",
+        "B3>B4",
+        "B3>C3",
+        "C1>B2",
+        "C1>C2",
+        "C1>D1"
+      ],
+      [
+        "A2>A3",
+        "A2>B3",
+        "A3>A4",
+        "A3>B3",
+        "A4>A5",
+        "A4>B3",
+        "A4>B4",
+        "A4>B5",
+        "B1>C1",
+        "B2>A2",
+        "B2>B1",
+        "B2>B3",
+        "B2>C1",
+        "B2>C2",
+        "B2>C3",
+        "B3>A2",
+        "B3>A3",
+        "B3>A4",
+        "B3>B2",
+        "B3>B4",
+        "B3>C3",
+        "B4>A4",
+        "B4>B5",
+        "B4>C3",
+        "B4>C4",
+        "B4>C5",
+        "C1>B2",
+        "C1>C2",
+        "C1>D1",
+        "C2>B2",
+        "C2>C1",
+        "C2>C3",
+        "C2>D1",
+        "C2>D2",
+        "C2>D3",
+        "C3>B2",
+        "C3>B3",
+        "C3>B4",
+        "C3>C2",
+        "C3>C4",
+        "C3>D3",
+        "D1>C2",
+        "D1>D2",
+        "D1>E1"
+      ],
+      [
+        "A2>A3",
+        "A2>B3",
+        "A3>A4",
+        "A3>B3",
+        "A4>A3",
+        "A4>A5",
+        "A4>B3",
+        "A4>B4",
+        "A4>B5",
+        "A5>B5",
+        "B1>C1",
+        "B2>A2",
+        "B2>B1",
+        "B2>B3",
+        "B2>C1",
+        "B2>C2",
+        "B2>C3",
+        "B3>A2",
+        "B3>A3",
+        "B3>A4",
+        "B3>B2",
+        "B3>B4",
+        "B3>C3",
+        "B4>A4",
+        "B4>B3",
+        "B4>B5",
+        "B4>C3",
+        "B4>C4",
+        "B4>C5",
+        "B5>A4",
+        "B5>A5",
+        "B5>B4",
+        "B5>C5",
+        "C1>C2",
+        "C1>D1",
+        "C2>B2",
+        "C2>C1",
+        "C2>C3",
+        "C2>D1",
+        "C2>D2",
+        "C2>D3",
+        "C3>B2",
+        "C3>B3",
+        "C3>B4",
+        "C3>C2",
+        "C3>C4",
+        "C3>D3",
+        "C4>B4",
+        "C4>C3",
+        "C4>C5",
+        "C4>D3",
+        "C4>D4",
+        "C4>D5",
+        "C5>B5",
+        "C5>C4",
+        "C5>D5",
+        "D1>C1",
+        "D1>C2",
+        "D1>D2",
+        "D1>E1",
+        "D2>C2",
+        "D2>D1",
+        "D2>D3",
+        "D2>E1",
+        "D2>E2",
+        "D2>E3",
+        "D3>C2",
+        "D3>C3",
+        "D3>C4",
+        "D3>D2",
+        "D3>D4",
+        "D3>E3",
+        "E1>D2",
+        "E1>E2"
+      ],
+      [
+        "A2>A3",
+        "A2>B3",
+        "A3>A2",
+        "A3>A4",
+        "A3>B3",
+        "A4>A3",
+        "A4>A5",
+        "A4>B3",
+        "A4>B4",
+        "A4>B5",
+        "A5>A4",
+        "A5>B5",
+        "B1>C1",
+        "B2>A2",
+        "B2>B1",
+        "B2>B3",
+        "B2>C1",
+        "B2>C2",
+        "B2>C3",
+        "B3>A2",
+        "B3>A3",
+        "B3>A4",
+        "B3>B2",
+        "B3>B4",
+        "B3>C3",
+        "B4>A4",
+        "B4>B3",
+        "B4>B5",
+        "B4>C3",
+        "B4>C4",
+        "B4>C5",
+        "B5>A4",
+        "B5>A5",
+        "B5>B4",
+        "B5>C5",
+        "C1>B1",
+        "C1>B2",
+        "C1>C2",
+        "C1>D1",
+        "C2>B2",
+        "C2>C1",
+        "C2>C3",
+        "C2>D1",
+        "C2>D2",
+        "C2>D3",
+        "C3>B2",
+        "C3>B3",
+        "C3>B4",
+        "C3>C2",
+        "C3>C4",
+        "C3>D3",
+        "C4>B4",
+        "C4>C3",
+        "C4>C5",
+        "C4>D3",
+        "C4>D4",
+        "C4>D5",
+        "C5>B4",
+        "C5>B5",
+        "C5>C4",
+        "C5>D5",
+        "D1>C1",
+        "D1>C2",
+        "D1>D2",
+        "D1>E1",
+        "D2>C2",
+        "D2>D1",
+        "D2>D3",
+        "D2>E1",
+        "D2>E2",
+        "D2>E3",
+        "D3>C2",
+        "D3>C3",
+        "D3>C4",
+        "D3>D2",
+        "D3>D4",
+        "D3>E3",
+        "D4>C4",
+        "D4>D3",
+        "D4>D5",
+        "D4>E3",
+        "D4>E4",
+        "D4>E5",
+        "D5>C4",
+        "D5>C5",
+        "D5>D4",
+        "D5>E5",
+        "E1>D1",
+        "E1>D2",
+        "E1>E2",
+        "E2>D2",
+        "E2>E1",
+        "E2>E3",
+        "E3>D2",
+        "E3>D3",
+        "E3>D4",
+        "E3>E2",
+        "E3>E4"
+      ]
+    ]
+  },
+  "fullGap": {
+    "unexplainedFields": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "unexplainedTransitions": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "fieldCount": 0,
+    "transitionCount": 0,
+    "fixedHoursNotExplained": [],
+    "fixedTransitionsNotExplained": []
+  }
+}

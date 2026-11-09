@@ -2,11 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {ROOT,buildPlaytest,readPlaytestSource,playtestStock,parsePlaytestArgs} from './lib/b2-playtest.mjs';
+import {buildPositivePlaytest} from './lib/b2-positive.mjs';
 
 export function main(argv=process.argv.slice(2)){
  const {stock,args}=parsePlaytestArgs(argv);
- if(args.length)throw Error('Usage: export-b2-playtest.mjs [--stock S01|S02|BC]');
- const files=buildPlaytest(readPlaytestSource(stock)); // Validate everything before replacing local output.
+ if(args.length)throw Error('Usage: export-b2-playtest.mjs [--stock S01|S02|BC|POSITIVE]');
+ const files=stock==='POSITIVE'?buildPositivePlaytest():buildPlaytest(readPlaytestSource(stock)); // Validate before replacing output.
  const target=path.join(ROOT,playtestStock(stock).output);
  const identical=()=>{
   try{return fs.readdirSync(target).length===files.size&&[...files].every(([name,bytes])=>fs.readFileSync(path.join(target,name),'utf8')===bytes);}catch{return false;}

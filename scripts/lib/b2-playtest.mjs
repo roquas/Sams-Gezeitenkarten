@@ -16,9 +16,10 @@ export const OUTPUT='.dev/b2';
 // Explicit development stocks, not a general registry or a production catalog.
 const STOCKS={S01:{registry:REGISTRY,output:OUTPUT},
  S02:{registry:'scripts/config/b2-playtest-s02.json',output:'.dev/b2-s02'},
- BC:{registry:'scripts/config/b2-playtest-bc.json',output:'.dev/b2-bc'}};
+ BC:{registry:'scripts/config/b2-playtest-bc.json',output:'.dev/b2-bc'},
+ POSITIVE:{output:'.dev/b2-positive'}};
 export function playtestStock(stock='S01'){
- if(!Object.hasOwn(STOCKS,stock))throw Error('Unknown B2 stock: '+stock+' (expected S01, S02 or BC)');
+ if(!Object.hasOwn(STOCKS,stock))throw Error('Unknown B2 stock: '+stock+' (expected S01, S02, BC or POSITIVE)');
  return {...STOCKS[stock]};
 }
 export function parsePlaytestArgs(argv){
@@ -33,6 +34,7 @@ export function parsePlaytestArgs(argv){
 const read=ref=>JSON.parse(fs.readFileSync(path.join(ROOT,ref),'utf8'));
 export const contentHash=row=>sha256(canonicalJson({definition:row.definition,assetPlacements:row.assetPlacements}));
 export function readPlaytestSource(stock='S01'){
+ if(stock==='POSITIVE')throw Error('Editorial reference: use scripts/report-b2-positive.mjs for private evidence.');
  const registry=read(playtestStock(stock).registry),manifestBytes=fs.readFileSync(path.join(ROOT,registry.source,'manifest.json'));
  if(registry.stockId!=='B2-'+stock)throw Error('B2 stock mismatch');
  if(sha256(manifestBytes)!==registry.manifestSha256)throw Error('B2 source manifest changed');

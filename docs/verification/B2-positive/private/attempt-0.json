@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 2,
+  "rulesVersion": "gezeitenkarten-2",
+  "dataVersion": 1,
+  "id": "B2-POSITIVE-01",
+  "logic": {
+    "map": {
+      "geometry": "even-row-offset-pointy-v1",
+      "grid": {
+        "columns": 5,
+        "rows": 5
+      },
+      "objects": [
+        {
+          "id": "departure",
+          "cells": [
+            "A1"
+          ],
+          "passable": true
+        },
+        {
+          "id": "beacon",
+          "cells": [
+            "E1"
+          ],
+          "passable": true
+        }
+      ]
+    },
+    "start": "A1",
+    "steps": 6,
+    "clues": [
+      {
+        "id": "H1",
+        "type": "direction",
+        "hour": 2,
+        "direction": "E"
+      },
+      {
+        "id": "H2",
+        "type": "direction",
+        "hour": 5,
+        "direction": "E"
+      },
+      {
+        "id": "H3",
+        "type": "distanceToPlace",
+        "hour": 5,
+        "placeId": "beacon",
+        "distance": 0
+      },
+      {
+        "id": "H4",
+        "type": "distanceBetweenHours",
+        "hours": [
+          1,
+          4
+        ],
+        "distance": 2
+      },
+      {
+        "id": "H5",
+        "type": "distanceToPlace",
+        "hour": 6,
+        "placeId": "departure",
+        "distance": 5
+      }
+    ]
+  },
+  "presentation": {
+    "title": "Die stille Boje",
+    "intro": [
+      "Rekonstruiere die Fahrt mit sechs Etappen. Start ist das Wrack.",
+      "Alle Hexfelder sind befahrbar. Hexabstände sind geometrische Abstände, unabhängig vom gefahrenen Weg. Die Boje liegt auf E1."
+    ],
+    "objectNames": {
+      "departure": "Startwrack",
+      "beacon": "Boje"
+    },
+    "clueTexts": {
+      "H1": "Von Stunde 1 zu Stunde 2 fuhr das Schiff nach Osten.",
+      "H2": "Von Stunde 4 zu Stunde 5 fuhr das Schiff nach Osten.",
+      "H3": "In Stunde 5 war das Schiff genau bei der Boje auf E1.",
+      "H4": "Die Positionen in Stunde 1 und Stunde 4 haben genau 2 Hex Abstand.",
+      "H5": "In Stunde 6 hatte das Schiff genau 5 Hex Abstand zum Startwrack."
+    },
+    "hints": [],
+    "background": "sea-blue-01",
+    "assetPlacements": [
+      {
+        "id": "start-wreck",
+        "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+        "anchor": "A1",
+        "objectId": "departure"
+      },
+      {
+        "id": "buoy",
+        "assetId": "sea-life.accent.h1.buoy.v1",
+        "anchor": "E1",
+        "objectId": "beacon"
+      }
+    ]
+  },
+  "solution": [
+    "A1",
+    "B1",
+    "C1",
+    "C2",
+    "D1",
+    "E1",
+    "E2"
+  ],
+  "metadata": {
+    "kind": "editorial",
+    "source": "Handkonstruktion B2-positive-01; Erstentwurf nach vorab committedem Deduktionsvertrag."
+  }
+}

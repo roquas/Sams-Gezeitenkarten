@@ -1,5 +1,8 @@
 # B2-Kandidaten spielen (Testbestand S01)
 
+Einzelner handentwickelter Referenzspieltest: siehe
+[lösungsfreie Anleitung und ZIP-Export](B2-POSITIVE-PLAYTEST.md).
+
 Nach dem Merge im aktuellen Checkout mit Node 22+ und Python 3:
 
 ```sh

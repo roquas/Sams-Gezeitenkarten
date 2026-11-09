@@ -24,7 +24,7 @@ class PackagingTests(unittest.TestCase):
             if ref.endswith('.json'):
                 text = (ROOT / ref).read_text()
                 for private_field in ('effectKey', 'individualExactness', 'gk-b2-run-sha256', 'gk-b2-target-sha256',
-                                      'B2-S01-', 'B2-S02-', 'B2-BC-', 'gk-b2-search-run-sha256', 'presentationAssignment', 'crossTable'):
+                                      'B2-S01-', 'B2-S02-', 'B2-BC-', 'B2-POSITIVE-', 'gk-b2-search-run-sha256', 'presentationAssignment', 'crossTable'):
                     self.assertNotIn(private_field, text, ref)
 
     @classmethod
@@ -74,6 +74,9 @@ class PackagingTests(unittest.TestCase):
                     'dev/catalog-proof.mjs', 'dev/catalog-proof.css',
                     '.dev/b2-s02/manifest.json', '.dev/b2-s02/B2-S02-M000-A1-R00-V01.json',
                     '.dev/b2-bc/manifest.json', '.dev/b2-bc/B2-BC-T01-M017-A4-R00.json',
+                    '.dev/b2-positive/manifest.json', '.dev/b2-positive/B2-POSITIVE-01.json',
+                    'docs/verification/B2-positive/private/definition.json',
+                    'docs/verification/B2-positive/private/diagnosis.jsonl',
                     'scripts/config/b2-playtest-bc.json', 'docs/verification/B2-BC.md',
                     'docs/verification/B2-S02/clue-report.json', 'docs/verification/B2-S02/run/candidates.jsonl',
                     'scripts/config/b2-playtest-s02.json'):
