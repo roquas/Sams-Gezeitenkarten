@@ -20,7 +20,7 @@
     },
     {
       "path": "docs/verification/B2-positive/private/construction.md",
-      "sha256": "377fa4e0ab4c0ea0054932ee71c3374a42ad4df14a32f7e247b7ca324189b251"
+      "sha256": "88718d7391a7d423633cc77af4ff38615b509c8f04938e27c87a50c2a1e3b2d5"
     },
     {
       "path": "scripts/report-b2-positive.mjs",

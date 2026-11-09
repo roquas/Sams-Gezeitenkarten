@@ -38,7 +38,9 @@ behauptet keine bereits beobachtete menschliche Verständlichkeit.
 2. **B / H2:** Die fünfte Etappe verläuft nach Südosten. Das schränkt unabhängig
    von A mögliche späte Übergänge ein, bestimmt aber allein keinen solchen.
 3. **C / H3:** Stunde 5 ist D2. B und C bestimmen deshalb Stunde 4 als D1.
-   In Stunde 3 bleiben lokal C1/C2. A ist hierfür nicht nötig.
+   Dessen Nachbarn sind C1, C2, D2 und E1. D2 ist bereits Stunde 5 zugeordnet;
+   E1 liegt vier Hex vom Start entfernt und ist in Stunde 3 noch nicht erreichbar.
+   In Stunde 3 bleiben deshalb C1/C2. A ist hierfür nicht nötig.
 4. **D / H2+H3+H4:** Unter den beiden möglichen Feldern von Stunde 1 liegt nur
    B1 genau zwei Hex von D1 entfernt; A2 liegt drei Hex entfernt. Damit wird der
    erste Übergang A1→B1 fest. Kein echter Teilhinweissatz dieser Dreierkombination
