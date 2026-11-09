@@ -4,7 +4,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {pathToFileURL} from 'node:url';
 import {ROOT} from './lib/b2-playtest.mjs';
-import {POSITIVE_DIRECTORY,POSITIVE_DEFINITION,readPositiveDefinition} from './lib/b2-positive.mjs';
+import {POSITIVE_DIRECTORY,POSITIVE_DEFINITION,readPositiveDefinition,buildPositivePlaytest} from './lib/b2-positive.mjs';
 import {diagnosePuzzle,projectRoutes,assertLocalSound} from './lib/b2-deduction.mjs';
 import {localDeduction} from './lib/b2-local-deduction.mjs';
 import {checkIrredundancy} from '../src/puzzles/analysis.mjs';
@@ -86,16 +86,19 @@ export function positiveEvidence(definition=readPositiveDefinition()){
 }
 
 export function positiveReportFiles(){
- const definition=readPositiveDefinition(),evidence=positiveEvidence(definition);
+ const definition=readPositiveDefinition(),evidence=positiveEvidence(definition),publicFiles=buildPositivePlaytest(definition);
  const inputs=[POSITIVE_DEFINITION,POSITIVE_DIRECTORY+'/contract.md',POSITIVE_DIRECTORY+'/private/attempt-0.json',
   POSITIVE_DIRECTORY+'/private/construction.md','scripts/report-b2-positive.mjs','scripts/lib/b2-positive.mjs',
   'scripts/lib/b2-deduction.mjs','scripts/lib/b2-local-deduction.mjs','src/engine/puzzle.mjs','src/engine/hex.mjs',
-  'src/engine/solver.mjs','src/puzzles/schema.mjs','src/puzzles/analysis.mjs','assets/catalog/library.json'];
+  'src/engine/solver.mjs','src/engine/validate.mjs','src/puzzles/schema.mjs','src/puzzles/analysis.mjs',
+  'src/puzzles/public.mjs','src/puzzles/validate.mjs','src/puzzles/loader.mjs',
+  'src/assets/library.mjs','src/assets/geometry.mjs','scripts/lib/puzzle-clues.mjs','assets/catalog/library.json'];
  const compact=state=>({...state,local:{...state.local,trace:state.local.trace.map(({before,after,...t})=>t)}});
  return new Map([
-  ['evidence.json',json({format:evidence.format,nodeVersion:process.version,baseCommit:'a8f8cbf97005b3ad888d8443fb40e3118781f717',
+  ['evidence.json',json({format:evidence.format,constructionNodeVersion:'v24.19.0',baseCommit:'a8f8cbf97005b3ad888d8443fb40e3118781f717',
    contractCommit:'ada62ad',constructionAttempts:2,revisions:1,
    inputs:inputs.map(ref=>({path:ref,sha256:sha256(fs.readFileSync(path.join(ROOT,ref)))})),
+   publicFiles:[...publicFiles].map(([name,bytes])=>({name,sha256:sha256(bytes)})),
    fingerprints:logicalFingerprints(definition),proof:evidence.proof,contract:evidence.contract,
    handCertificate:evidence.handCertificate,legal:evidence.diagnosis.legal,
    fullGap:evidence.diagnosis.scenarios.at(-1).gap})],
