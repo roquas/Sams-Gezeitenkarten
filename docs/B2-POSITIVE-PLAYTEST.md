@@ -4,6 +4,8 @@ Dieser Bestand enthält genau ein neues, von Hand entwickeltes Rätsel. Die
 bisherigen S01-/S02-/BC-Bestände bleiben unverändert. Diese Anleitung enthält
 keine Lösungspositionen oder entscheidenden Kombinationen.
 
+[Lösungsfreier technischer Validierungsstand](verification/B2-positive-validation.md).
+
 ## Lokal spielen
 
 Voraussetzungen: Node 22+, Python 3; für den ZIP-Export zusätzlich Pillow.
