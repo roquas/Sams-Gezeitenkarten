@@ -42,7 +42,10 @@ Zwischenergebnisse auf der vorhandenen Oberfläche speicherbar?
 
 Erst danach mit dem privaten Konstruktionsprotokoll und Begründungsgraphen
 vergleichen. Ein abweichender erfolgreicher Weg ist ebenfalls zu dokumentieren.
-Der menschliche Test und die Einstufung „mittelschwer“ stehen noch aus.
+Ein menschlicher Spieltest wurde inzwischen erfolgreich abgeschlossen.
+Die [qualitative Beobachtung](verification/B2-positive-v2-playtest-observation.md)
+bestätigt weder die Einstufung „mittelschwer“ noch eine neue Deduktionsstruktur.
+Das leere Protokoll bleibt für weitere unabhängige Spieltests verfügbar.
 
 ## Öffentliches lokales Paket
 

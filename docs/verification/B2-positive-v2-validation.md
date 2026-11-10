@@ -1,4 +1,4 @@
-# B2 V2 – technischer Prüfstand und offener Spieltest
+# B2 V2 – technischer Prüfstand und qualitativer Spieltest
 
 Prüfung am 10.11.2026 mit Node v24.19.0, Python 3.12.14 und
 Playwright 1.64.0 / Chromium 156. Basis: main nach PR #105 (`21f9bf5`).
@@ -71,7 +71,21 @@ Beide Anfangsansichten wurden zusätzlich visuell geprüft.
 
 Ein möglicher vollständig markierbarer lokaler Lösungsweg ist privat
 dokumentiert; seine benötigten Markierungen wurden technisch erprobt.
-Ein menschlicher lösungsfreier Test steht aus. Weder die Schwierigkeit
-„mittelschwer“ noch der spielerische Gesamterfolg sind damit schon bestätigt.
-Das vorbereitete Beobachtungsprotokoll gibt keine Lösungsreihenfolge vor.
-Erst nach dem Spielen soll mit dem Begründungsgraphen verglichen werden.
+Nach Abschluss der technischen Konstruktion wurde ein menschlicher Spieltest
+erfolgreich und ohne technische Hilfen abgeschlossen. Laut Rückmeldung war der
+Lösungsverlauf nachvollziehbar und angenehm, strukturell aber nahezu identisch
+mit der ersten positiven Referenz. Der Zählhinweis funktioniert, verändert den
+erlebten Lösungsverlauf jedoch nur begrenzt.
+
+Damit ist V2 eine gute zusätzliche positive Kontrollreferenz. Der einzelne
+Spieltest bestätigt weder belastbar den gewünschten mittelschweren
+Schwierigkeitsgrad noch eine neue Deduktionsstruktur.
+Die [qualitative Beobachtung](B2-positive-v2-playtest-observation.md) hält Quelle,
+Einordnung und Grenzen spoilerfrei fest. Das leere Beobachtungsprotokoll bleibt
+für weitere unabhängige Tests verfügbar.
+
+Die privaten technischen Nachweise wurden mit Commit `48f313e` vor dieser
+Rückmeldung eingefroren. Ihr damaliger Status `humanPlaytest: pending` und die
+zugehörigen Tests bleiben als historischer technischer Prüfstand erhalten.
+Die nachträgliche Beobachtung wird separat dokumentiert; Konstruktion, Regeln
+und gespeicherte technische Nachweise werden dafür nicht verändert.
