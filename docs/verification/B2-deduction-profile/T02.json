@@ -1,0 +1,6517 @@
+{
+  "format": "b2-deduction-profile-1",
+  "id": "T02",
+  "label": "BC-T02",
+  "puzzleId": "B2-BC-T02-M017-A4-R00",
+  "inputs": [
+    {
+      "path": "docs/verification/B2-deduction/sources.json",
+      "sha256": "870827ac3b7eba0a45469a1f6c441356fb630628910ae6293ebcf4e9cb11acc4"
+    },
+    {
+      "path": "docs/verification/B2-deduction/T02.jsonl",
+      "sha256": "b00a9e96683a789c27314c4e73819850612c0ffd0b0cf4f126dcbf3643de4038"
+    }
+  ],
+  "evidence": {
+    "initialConditions": [
+      {
+        "hour": 0,
+        "cell": "A4",
+        "origin": "start"
+      }
+    ],
+    "coverage": {
+      "clueIds": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6"
+      ],
+      "stateCount": 43,
+      "totalSubsetCount": 64,
+      "complete": false,
+      "missingStates": [
+        "H1+H2+H3+H4",
+        "H1+H2+H3+H5",
+        "H1+H2+H4+H5",
+        "H1+H3+H4+H5",
+        "H2+H3+H4+H5",
+        "H1+H2+H3+H4+H5",
+        "H1+H2+H3+H6",
+        "H1+H2+H4+H6",
+        "H1+H3+H4+H6",
+        "H2+H3+H4+H6",
+        "H1+H2+H3+H4+H6",
+        "H1+H2+H5+H6",
+        "H1+H3+H5+H6",
+        "H2+H3+H5+H6",
+        "H1+H2+H3+H5+H6",
+        "H1+H4+H5+H6",
+        "H2+H4+H5+H6",
+        "H1+H2+H4+H5+H6",
+        "H3+H4+H5+H6",
+        "H1+H3+H4+H5+H6",
+        "H2+H3+H4+H5+H6"
+      ],
+      "missingStatus": "unknown"
+    },
+    "states": [
+      {
+        "id": "none",
+        "clueIds": [],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 1
+        }
+      },
+      {
+        "id": "H1",
+        "clueIds": [
+          "H1"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 2
+        }
+      },
+      {
+        "id": "H2",
+        "clueIds": [
+          "H2"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 3
+        }
+      },
+      {
+        "id": "H3",
+        "clueIds": [
+          "H3"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 4
+        }
+      },
+      {
+        "id": "H4",
+        "clueIds": [
+          "H4"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 5
+        }
+      },
+      {
+        "id": "H5",
+        "clueIds": [
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 6
+        }
+      },
+      {
+        "id": "H6",
+        "clueIds": [
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 7
+        }
+      },
+      {
+        "id": "H1+H2",
+        "clueIds": [
+          "H1",
+          "H2"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 8
+        }
+      },
+      {
+        "id": "H1+H3",
+        "clueIds": [
+          "H1",
+          "H3"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 9
+        }
+      },
+      {
+        "id": "H1+H4",
+        "clueIds": [
+          "H1",
+          "H4"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 10
+        }
+      },
+      {
+        "id": "H1+H5",
+        "clueIds": [
+          "H1",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 11
+        }
+      },
+      {
+        "id": "H1+H6",
+        "clueIds": [
+          "H1",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 12
+        }
+      },
+      {
+        "id": "H2+H3",
+        "clueIds": [
+          "H2",
+          "H3"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 13
+        }
+      },
+      {
+        "id": "H2+H4",
+        "clueIds": [
+          "H2",
+          "H4"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 14
+        }
+      },
+      {
+        "id": "H2+H5",
+        "clueIds": [
+          "H2",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 15
+        }
+      },
+      {
+        "id": "H2+H6",
+        "clueIds": [
+          "H2",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 16
+        }
+      },
+      {
+        "id": "H3+H4",
+        "clueIds": [
+          "H3",
+          "H4"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 17
+        }
+      },
+      {
+        "id": "H3+H5",
+        "clueIds": [
+          "H3",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 18
+        }
+      },
+      {
+        "id": "H3+H6",
+        "clueIds": [
+          "H3",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 19
+        }
+      },
+      {
+        "id": "H4+H5",
+        "clueIds": [
+          "H4",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 20
+        }
+      },
+      {
+        "id": "H4+H6",
+        "clueIds": [
+          "H4",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 21
+        }
+      },
+      {
+        "id": "H5+H6",
+        "clueIds": [
+          "H5",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 22
+        }
+      },
+      {
+        "id": "H1+H2+H3",
+        "clueIds": [
+          "H1",
+          "H2",
+          "H3"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 23
+        }
+      },
+      {
+        "id": "H1+H2+H4",
+        "clueIds": [
+          "H1",
+          "H2",
+          "H4"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 24
+        }
+      },
+      {
+        "id": "H1+H2+H5",
+        "clueIds": [
+          "H1",
+          "H2",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 25
+        }
+      },
+      {
+        "id": "H1+H2+H6",
+        "clueIds": [
+          "H1",
+          "H2",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 26
+        }
+      },
+      {
+        "id": "H1+H3+H4",
+        "clueIds": [
+          "H1",
+          "H3",
+          "H4"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 27
+        }
+      },
+      {
+        "id": "H1+H3+H5",
+        "clueIds": [
+          "H1",
+          "H3",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 28
+        }
+      },
+      {
+        "id": "H1+H3+H6",
+        "clueIds": [
+          "H1",
+          "H3",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 29
+        }
+      },
+      {
+        "id": "H1+H4+H5",
+        "clueIds": [
+          "H1",
+          "H4",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 30
+        }
+      },
+      {
+        "id": "H1+H4+H6",
+        "clueIds": [
+          "H1",
+          "H4",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 31
+        }
+      },
+      {
+        "id": "H1+H5+H6",
+        "clueIds": [
+          "H1",
+          "H5",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 32
+        }
+      },
+      {
+        "id": "H2+H3+H4",
+        "clueIds": [
+          "H2",
+          "H3",
+          "H4"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 33
+        }
+      },
+      {
+        "id": "H2+H3+H5",
+        "clueIds": [
+          "H2",
+          "H3",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 34
+        }
+      },
+      {
+        "id": "H2+H3+H6",
+        "clueIds": [
+          "H2",
+          "H3",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 35
+        }
+      },
+      {
+        "id": "H2+H4+H5",
+        "clueIds": [
+          "H2",
+          "H4",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 36
+        }
+      },
+      {
+        "id": "H2+H4+H6",
+        "clueIds": [
+          "H2",
+          "H4",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 37
+        }
+      },
+      {
+        "id": "H2+H5+H6",
+        "clueIds": [
+          "H2",
+          "H5",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 38
+        }
+      },
+      {
+        "id": "H3+H4+H5",
+        "clueIds": [
+          "H3",
+          "H4",
+          "H5"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 39
+        }
+      },
+      {
+        "id": "H3+H4+H6",
+        "clueIds": [
+          "H3",
+          "H4",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 40
+        }
+      },
+      {
+        "id": "H3+H5+H6",
+        "clueIds": [
+          "H3",
+          "H5",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 41
+        }
+      },
+      {
+        "id": "H4+H5+H6",
+        "clueIds": [
+          "H4",
+          "H5",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 42
+        }
+      },
+      {
+        "id": "H1+H2+H3+H4+H5+H6",
+        "clueIds": [
+          "H1",
+          "H2",
+          "H3",
+          "H4",
+          "H5",
+          "H6"
+        ],
+        "source": {
+          "path": "docs/verification/B2-deduction/T02.jsonl",
+          "line": 43
+        }
+      }
+    ],
+    "localCoverage": {
+      "baseline": {
+        "local": {
+          "state": "none",
+          "fixedHours": [],
+          "clueDerivedFixedHours": [],
+          "domains": [
+            [
+              "A3",
+              "A5",
+              "B3",
+              "B4",
+              "B5"
+            ],
+            [
+              "A2",
+              "A3",
+              "A5",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C3",
+              "C4",
+              "C5"
+            ],
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A5",
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D3",
+              "D4",
+              "D5"
+            ],
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A5",
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ],
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A5",
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ],
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A5",
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ]
+          ],
+          "transitions": [
+            [
+              "A4>A3",
+              "A4>A5",
+              "A4>B3",
+              "A4>B4",
+              "A4>B5"
+            ],
+            [
+              "A3>A2",
+              "A3>B3",
+              "A5>B5",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>A5",
+              "B5>B4",
+              "B5>C5"
+            ],
+            [
+              "A2>A1",
+              "A2>A3",
+              "A2>B1",
+              "A2>B2",
+              "A2>B3",
+              "A3>A2",
+              "A3>B3",
+              "A5>B5",
+              "B2>A2",
+              "B2>B1",
+              "B2>B3",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>A5",
+              "B5>B4",
+              "B5>C5",
+              "C3>B2",
+              "C3>B3",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>B5",
+              "C5>C4",
+              "C5>D5"
+            ],
+            [
+              "A1>A2",
+              "A1>B1",
+              "A2>A1",
+              "A2>A3",
+              "A2>B1",
+              "A2>B2",
+              "A2>B3",
+              "A3>A2",
+              "A3>B3",
+              "A5>B5",
+              "B1>A1",
+              "B1>A2",
+              "B1>B2",
+              "B1>C1",
+              "B2>A2",
+              "B2>B1",
+              "B2>B3",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>A5",
+              "B5>B4",
+              "B5>C5",
+              "C1>B1",
+              "C1>B2",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C3>B2",
+              "C3>B3",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>B5",
+              "C5>C4",
+              "C5>D5",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>C4",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5"
+            ],
+            [
+              "A1>A2",
+              "A1>B1",
+              "A2>A1",
+              "A2>A3",
+              "A2>B1",
+              "A2>B2",
+              "A2>B3",
+              "A3>A2",
+              "A3>B3",
+              "A5>B5",
+              "B1>A1",
+              "B1>A2",
+              "B1>B2",
+              "B1>C1",
+              "B2>A2",
+              "B2>B1",
+              "B2>B3",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>A5",
+              "B5>B4",
+              "B5>C5",
+              "C1>B1",
+              "C1>B2",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C3>B2",
+              "C3>B3",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>B5",
+              "C5>C4",
+              "C5>D5",
+              "D2>C2",
+              "D2>D3",
+              "D2>E3",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>C4",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5",
+              "E3>D2",
+              "E3>D3",
+              "E3>D4",
+              "E3>E4",
+              "E4>D4",
+              "E4>E3",
+              "E4>E5",
+              "E5>D4",
+              "E5>D5",
+              "E5>E4"
+            ],
+            [
+              "A1>A2",
+              "A1>B1",
+              "A2>A1",
+              "A2>A3",
+              "A2>B1",
+              "A2>B2",
+              "A2>B3",
+              "A3>A2",
+              "A3>B3",
+              "A5>B5",
+              "B1>A1",
+              "B1>A2",
+              "B1>B2",
+              "B1>C1",
+              "B2>A2",
+              "B2>B1",
+              "B2>B3",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>A5",
+              "B5>B4",
+              "B5>C5",
+              "C1>B1",
+              "C1>B2",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C3>B2",
+              "C3>B3",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>B5",
+              "C5>C4",
+              "C5>D5",
+              "D2>C2",
+              "D2>D3",
+              "D2>E3",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>C4",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5",
+              "E3>D2",
+              "E3>D3",
+              "E3>D4",
+              "E3>E4",
+              "E4>D4",
+              "E4>E3",
+              "E4>E5",
+              "E5>D4",
+              "E5>D5",
+              "E5>E4"
+            ]
+          ]
+        },
+        "exact": {
+          "state": "none",
+          "fixedHours": [],
+          "clueDerivedFixedHours": [],
+          "domains": [
+            [
+              "A3",
+              "A5",
+              "B3",
+              "B4",
+              "B5"
+            ],
+            [
+              "A2",
+              "A3",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C3",
+              "C4",
+              "C5"
+            ],
+            [
+              "A1",
+              "A2",
+              "A3",
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D3",
+              "D4",
+              "D5"
+            ],
+            [
+              "A1",
+              "A2",
+              "A3",
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ],
+            [
+              "A1",
+              "A2",
+              "A3",
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ],
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A5",
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ]
+          ],
+          "transitions": [
+            [
+              "A4>A3",
+              "A4>A5",
+              "A4>B3",
+              "A4>B4",
+              "A4>B5"
+            ],
+            [
+              "A3>A2",
+              "A3>B3",
+              "A5>B5",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>B4",
+              "B5>C5"
+            ],
+            [
+              "A2>A1",
+              "A2>B1",
+              "A2>B2",
+              "A2>B3",
+              "A3>A2",
+              "B2>A2",
+              "B2>B1",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>B4",
+              "B5>C5",
+              "C3>B2",
+              "C3>B3",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>C4",
+              "C5>D5"
+            ],
+            [
+              "A1>B1",
+              "A2>A1",
+              "A2>B1",
+              "A2>B2",
+              "A3>A2",
+              "B1>A1",
+              "B1>B2",
+              "B1>C1",
+              "B2>A2",
+              "B2>B1",
+              "B2>B3",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>C5",
+              "C1>B1",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C3>B2",
+              "C3>B3",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>C4",
+              "C5>D5",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5"
+            ],
+            [
+              "A1>A2",
+              "A1>B1",
+              "A2>A1",
+              "A2>A3",
+              "A2>B1",
+              "A2>B2",
+              "A2>B3",
+              "A3>A2",
+              "B1>A1",
+              "B1>A2",
+              "B1>B2",
+              "B1>C1",
+              "B2>A2",
+              "B2>B1",
+              "B2>B3",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>C5",
+              "C1>B1",
+              "C1>B2",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C3>B2",
+              "C3>B3",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>B5",
+              "C5>C4",
+              "C5>D5",
+              "D2>C2",
+              "D2>D3",
+              "D2>E3",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>C4",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5",
+              "E3>D2",
+              "E3>D3",
+              "E3>D4",
+              "E3>E4",
+              "E4>E3",
+              "E4>E5",
+              "E5>D4",
+              "E5>D5",
+              "E5>E4"
+            ],
+            [
+              "A1>A2",
+              "A1>B1",
+              "A2>A1",
+              "A2>A3",
+              "A2>B1",
+              "A2>B2",
+              "A2>B3",
+              "A3>A2",
+              "A3>B3",
+              "B1>A1",
+              "B1>A2",
+              "B1>B2",
+              "B1>C1",
+              "B2>A2",
+              "B2>B1",
+              "B2>B3",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "B3>A2",
+              "B3>A3",
+              "B3>B2",
+              "B3>B4",
+              "B3>C3",
+              "B4>B3",
+              "B4>B5",
+              "B4>C3",
+              "B4>C4",
+              "B4>C5",
+              "B5>A5",
+              "B5>B4",
+              "B5>C5",
+              "C1>B1",
+              "C1>B2",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C3>B2",
+              "C3>B3",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>B5",
+              "C5>C4",
+              "C5>D5",
+              "D2>C2",
+              "D2>D3",
+              "D2>E3",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>C4",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5",
+              "E3>D2",
+              "E3>D3",
+              "E3>D4",
+              "E3>E4",
+              "E4>D4",
+              "E4>E3",
+              "E4>E5",
+              "E5>D4",
+              "E5>D5",
+              "E5>E4"
+            ]
+          ]
+        },
+        "gap": {
+          "state": "none",
+          "fieldCount": 4,
+          "transitionCount": 25,
+          "fields": [
+            [],
+            [
+              "A5"
+            ],
+            [
+              "A5"
+            ],
+            [
+              "A5"
+            ],
+            [
+              "A5"
+            ],
+            []
+          ],
+          "transitions": [
+            [],
+            [
+              "B5>A5"
+            ],
+            [
+              "A2>A3",
+              "A3>B3",
+              "A5>B5",
+              "B2>B3",
+              "B5>A5",
+              "C4>B4",
+              "C5>B5"
+            ],
+            [
+              "A1>A2",
+              "A2>A3",
+              "A2>B3",
+              "A3>B3",
+              "A5>B5",
+              "B1>A2",
+              "B5>A5",
+              "B5>B4",
+              "C1>B2",
+              "C5>B5",
+              "D4>C4"
+            ],
+            [
+              "A3>B3",
+              "A5>B5",
+              "B5>A5",
+              "B5>B4",
+              "E4>D4"
+            ],
+            [
+              "A5>B5"
+            ]
+          ],
+          "exactlyFixedLocallyOpenHours": []
+        }
+      },
+      "full": {
+        "local": {
+          "state": "H1+H2+H3+H4+H5+H6",
+          "fixedHours": [],
+          "clueDerivedFixedHours": [],
+          "domains": [
+            [
+              "A3",
+              "B3",
+              "B4"
+            ],
+            [
+              "A2",
+              "B2",
+              "C3"
+            ],
+            [
+              "A1",
+              "A2",
+              "B1",
+              "B2",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "D3"
+            ],
+            [
+              "A1",
+              "A2",
+              "B1",
+              "B2",
+              "B4",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3"
+            ],
+            [
+              "A1",
+              "B1",
+              "C1",
+              "C2",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ],
+            [
+              "A1",
+              "A2",
+              "B1",
+              "B2",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ]
+          ],
+          "transitions": [
+            [
+              "A4>A3",
+              "A4>B3",
+              "A4>B4"
+            ],
+            [
+              "A3>A2",
+              "B3>B2",
+              "B4>C3"
+            ],
+            [
+              "A2>A1",
+              "A2>B1",
+              "A2>B2",
+              "B2>A2",
+              "B2>B1",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "C3>B2",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3"
+            ],
+            [
+              "A1>A2",
+              "A1>B1",
+              "A2>A1",
+              "A2>B1",
+              "A2>B2",
+              "B1>A1",
+              "B1>A2",
+              "B1>B2",
+              "B1>C1",
+              "B2>A2",
+              "B2>B1",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "C1>B1",
+              "C1>B2",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C3>B2",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3"
+            ],
+            [
+              "A1>B1",
+              "A2>A1",
+              "A2>B1",
+              "B1>A1",
+              "B1>C1",
+              "B2>B1",
+              "B2>C1",
+              "B2>C2",
+              "B4>C4",
+              "B4>C5",
+              "C1>B1",
+              "C1>C2",
+              "C2>C1",
+              "C2>D2",
+              "C2>D3",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>C4",
+              "C5>D5",
+              "D2>C2",
+              "D2>D3",
+              "D2>E3",
+              "D3>C2",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>C4",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5",
+              "E3>D2",
+              "E3>D3",
+              "E3>D4",
+              "E3>E4"
+            ],
+            [
+              "A1>A2",
+              "A1>B1",
+              "B1>A1",
+              "B1>A2",
+              "B1>B2",
+              "B1>C1",
+              "C1>B1",
+              "C1>B2",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>B5",
+              "C5>C4",
+              "C5>D5",
+              "D2>C2",
+              "D2>D3",
+              "D2>E3",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>C4",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5",
+              "E3>D2",
+              "E3>D3",
+              "E3>D4",
+              "E3>E4",
+              "E4>D4",
+              "E4>E3",
+              "E4>E5",
+              "E5>D4",
+              "E5>D5",
+              "E5>E4"
+            ]
+          ]
+        },
+        "exact": {
+          "state": "H1+H2+H3+H4+H5+H6",
+          "fixedHours": [
+            {
+              "hour": 1,
+              "cell": "A3"
+            },
+            {
+              "hour": 2,
+              "cell": "A2"
+            },
+            {
+              "hour": 3,
+              "cell": "A1"
+            },
+            {
+              "hour": 4,
+              "cell": "B1"
+            },
+            {
+              "hour": 5,
+              "cell": "C1"
+            },
+            {
+              "hour": 6,
+              "cell": "B2"
+            }
+          ],
+          "clueDerivedFixedHours": [
+            {
+              "hour": 1,
+              "cell": "A3"
+            },
+            {
+              "hour": 2,
+              "cell": "A2"
+            },
+            {
+              "hour": 3,
+              "cell": "A1"
+            },
+            {
+              "hour": 4,
+              "cell": "B1"
+            },
+            {
+              "hour": 5,
+              "cell": "C1"
+            },
+            {
+              "hour": 6,
+              "cell": "B2"
+            }
+          ],
+          "domains": [
+            [
+              "A3"
+            ],
+            [
+              "A2"
+            ],
+            [
+              "A1"
+            ],
+            [
+              "B1"
+            ],
+            [
+              "C1"
+            ],
+            [
+              "B2"
+            ]
+          ],
+          "transitions": [
+            [
+              "A4>A3"
+            ],
+            [
+              "A3>A2"
+            ],
+            [
+              "A2>A1"
+            ],
+            [
+              "A1>B1"
+            ],
+            [
+              "B1>C1"
+            ],
+            [
+              "C1>B2"
+            ]
+          ]
+        },
+        "gap": {
+          "state": "H1+H2+H3+H4+H5+H6",
+          "fieldCount": 55,
+          "transitionCount": 150,
+          "fields": [
+            [
+              "B3",
+              "B4"
+            ],
+            [
+              "B2",
+              "C3"
+            ],
+            [
+              "A2",
+              "B1",
+              "B2",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "D3"
+            ],
+            [
+              "A1",
+              "A2",
+              "B2",
+              "B4",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3"
+            ],
+            [
+              "A1",
+              "B1",
+              "C2",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ],
+            [
+              "A1",
+              "A2",
+              "B1",
+              "B4",
+              "B5",
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "E3",
+              "E4",
+              "E5"
+            ]
+          ],
+          "transitions": [
+            [
+              "A4>B3",
+              "A4>B4"
+            ],
+            [
+              "B3>B2",
+              "B4>C3"
+            ],
+            [
+              "A2>B1",
+              "A2>B2",
+              "B2>A2",
+              "B2>B1",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "C3>B2",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3"
+            ],
+            [
+              "A1>A2",
+              "A2>A1",
+              "A2>B1",
+              "A2>B2",
+              "B1>A1",
+              "B1>A2",
+              "B1>B2",
+              "B1>C1",
+              "B2>A2",
+              "B2>B1",
+              "B2>C1",
+              "B2>C2",
+              "B2>C3",
+              "C1>B1",
+              "C1>B2",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C3>B2",
+              "C3>B4",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3"
+            ],
+            [
+              "A1>B1",
+              "A2>A1",
+              "A2>B1",
+              "B1>A1",
+              "B2>B1",
+              "B2>C1",
+              "B2>C2",
+              "B4>C4",
+              "B4>C5",
+              "C1>B1",
+              "C1>C2",
+              "C2>C1",
+              "C2>D2",
+              "C2>D3",
+              "C3>C2",
+              "C3>C4",
+              "C3>D3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>C4",
+              "C5>D5",
+              "D2>C2",
+              "D2>D3",
+              "D2>E3",
+              "D3>C2",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>C4",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5",
+              "E3>D2",
+              "E3>D3",
+              "E3>D4",
+              "E3>E4"
+            ],
+            [
+              "A1>A2",
+              "A1>B1",
+              "B1>A1",
+              "B1>A2",
+              "B1>B2",
+              "B1>C1",
+              "C1>B1",
+              "C1>C2",
+              "C2>B2",
+              "C2>C1",
+              "C2>C3",
+              "C2>D2",
+              "C2>D3",
+              "C4>B4",
+              "C4>C3",
+              "C4>C5",
+              "C4>D3",
+              "C4>D4",
+              "C4>D5",
+              "C5>B4",
+              "C5>B5",
+              "C5>C4",
+              "C5>D5",
+              "D2>C2",
+              "D2>D3",
+              "D2>E3",
+              "D3>C2",
+              "D3>C3",
+              "D3>C4",
+              "D3>D2",
+              "D3>D4",
+              "D3>E3",
+              "D4>C4",
+              "D4>D3",
+              "D4>D5",
+              "D4>E3",
+              "D4>E4",
+              "D4>E5",
+              "D5>C4",
+              "D5>C5",
+              "D5>D4",
+              "D5>E5",
+              "E3>D2",
+              "E3>D3",
+              "E3>D4",
+              "E3>E4",
+              "E4>D4",
+              "E4>E3",
+              "E4>E5",
+              "E5>D4",
+              "E5>D5",
+              "E5>E4"
+            ]
+          ],
+          "exactlyFixedLocallyOpenHours": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      }
+    },
+    "entryOffer": {
+      "maxClues": 2,
+      "smallAlternativesMax": 3,
+      "states": [
+        {
+          "state": "H1",
+          "clueIds": [
+            "H1"
+          ],
+          "doesNotRequireClueIds": [
+            "H2",
+            "H3",
+            "H4",
+            "H5",
+            "H6"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "B5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H2",
+          "clueIds": [
+            "H2"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H3",
+            "H4",
+            "H5",
+            "H6"
+          ],
+          "local": [],
+          "exact": [
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E5"
+              ],
+              "removed": [
+                "E4"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H3",
+          "clueIds": [
+            "H3"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H2",
+            "H4",
+            "H5",
+            "H6"
+          ],
+          "local": [],
+          "exact": [
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "C1",
+                "C2"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H4",
+          "clueIds": [
+            "H4"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H2",
+            "H3",
+            "H5",
+            "H6"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3"
+              ],
+              "removed": [
+                "A5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "A5",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "E4",
+                "E5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3"
+              ],
+              "removed": [
+                "A3",
+                "B4",
+                "B5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "B5",
+                "E4",
+                "E5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H6",
+          "clueIds": [
+            "H6"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H2",
+            "H3",
+            "H4",
+            "H5"
+          ],
+          "local": [
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H1+H2",
+          "clueIds": [
+            "H1",
+            "H2"
+          ],
+          "doesNotRequireClueIds": [
+            "H3",
+            "H4",
+            "H5",
+            "H6"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A2",
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "B1",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E5"
+              ],
+              "removed": [
+                "A1",
+                "A2",
+                "A3",
+                "B2",
+                "B5",
+                "E4"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "A3",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A1",
+                "B1",
+                "B2"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H1+H3",
+          "clueIds": [
+            "H1",
+            "H3"
+          ],
+          "doesNotRequireClueIds": [
+            "H2",
+            "H4",
+            "H5",
+            "H6"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C3",
+                "C4",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "B5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H1+H4",
+          "clueIds": [
+            "H1",
+            "H4"
+          ],
+          "doesNotRequireClueIds": [
+            "H2",
+            "H3",
+            "H5",
+            "H6"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "small-alternatives",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4"
+              ],
+              "removed": [
+                "A5",
+                "B5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "small-alternatives",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "D3"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5",
+                "C5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "A5",
+                "B5",
+                "E4",
+                "E5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "small-alternatives",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4"
+              ],
+              "removed": [
+                "A5",
+                "B5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "small-alternatives",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "D3"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5",
+                "C5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "A3",
+                "B5",
+                "E4",
+                "E5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H1+H5",
+          "clueIds": [
+            "H1",
+            "H5"
+          ],
+          "doesNotRequireClueIds": [
+            "H2",
+            "H3",
+            "H4",
+            "H6"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "B5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H1+H6",
+          "clueIds": [
+            "H1",
+            "H6"
+          ],
+          "doesNotRequireClueIds": [
+            "H2",
+            "H3",
+            "H4",
+            "H5"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5",
+                "C3"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A2",
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A1",
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C4",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A2",
+                "A3",
+                "B3",
+                "B4",
+                "B5",
+                "C3",
+                "C5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H2+H3",
+          "clueIds": [
+            "H2",
+            "H3"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H4",
+            "H5",
+            "H6"
+          ],
+          "local": [],
+          "exact": [
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "A3",
+                "B3",
+                "B4",
+                "B5",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "B2"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "B5",
+                "C1",
+                "C2"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E5"
+              ],
+              "removed": [
+                "A1",
+                "E4"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "B1"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H2+H4",
+          "clueIds": [
+            "H2",
+            "H4"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H3",
+            "H5",
+            "H6"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3"
+              ],
+              "removed": [
+                "A5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "A5",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "E4",
+                "E5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "B1",
+                "B2",
+                "B3",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A2",
+                "A3",
+                "B4",
+                "B5",
+                "D3",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A1",
+                "B5",
+                "E3",
+                "E4",
+                "E5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E5"
+              ],
+              "removed": [
+                "E4"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H2+H5",
+          "clueIds": [
+            "H2",
+            "H5"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H3",
+            "H4",
+            "H6"
+          ],
+          "local": [],
+          "exact": [
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E5"
+              ],
+              "removed": [
+                "E4"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H2+H6",
+          "clueIds": [
+            "H2",
+            "H6"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H3",
+            "H4",
+            "H5"
+          ],
+          "local": [
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "B5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "B5",
+                "E4"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H3+H4",
+          "clueIds": [
+            "H3",
+            "H4"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H2",
+            "H5",
+            "H6"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3"
+              ],
+              "removed": [
+                "A5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "A5",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "E4",
+                "E5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "C3",
+                "C4",
+                "C5",
+                "D3"
+              ],
+              "removed": [
+                "A3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "B5",
+                "C1",
+                "C2",
+                "D2",
+                "E3",
+                "E4",
+                "E5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H3+H5",
+          "clueIds": [
+            "H3",
+            "H5"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H2",
+            "H4",
+            "H6"
+          ],
+          "local": [],
+          "exact": [
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "C1",
+                "C2"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A1"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H3+H6",
+          "clueIds": [
+            "H3",
+            "H6"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H2",
+            "H4",
+            "H5"
+          ],
+          "local": [
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C3",
+                "C4",
+                "C5",
+                "D3",
+                "D4",
+                "D5"
+              ],
+              "removed": [
+                "A3",
+                "B1",
+                "C1",
+                "C2"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A1"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H4+H5",
+          "clueIds": [
+            "H4",
+            "H5"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H2",
+            "H3",
+            "H6"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3"
+              ],
+              "removed": [
+                "A5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "A5",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "E4",
+                "E5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "B3",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3"
+              ],
+              "removed": [
+                "A3",
+                "B4",
+                "B5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "B5",
+                "E4",
+                "E5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H4+H6",
+          "clueIds": [
+            "H4",
+            "H6"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H2",
+            "H3",
+            "H5"
+          ],
+          "local": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3"
+              ],
+              "removed": [
+                "A5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "A5",
+                "E4",
+                "E5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5",
+                "C3"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 1,
+              "kind": "exclusions",
+              "remaining": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B4",
+                "C3"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B5",
+                "C4",
+                "C5"
+              ]
+            },
+            {
+              "hour": 3,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "B1",
+                "B2",
+                "B3",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D3"
+              ],
+              "removed": [
+                "A2",
+                "A3",
+                "B4",
+                "B5",
+                "D4",
+                "D5"
+              ]
+            },
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3"
+              ],
+              "removed": [
+                "A1",
+                "B5",
+                "C5",
+                "E4",
+                "E5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5",
+                "C3"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ]
+        },
+        {
+          "state": "H5+H6",
+          "clueIds": [
+            "H5",
+            "H6"
+          ],
+          "doesNotRequireClueIds": [
+            "H1",
+            "H2",
+            "H3",
+            "H4"
+          ],
+          "local": [
+            {
+              "hour": 4,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "A5",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ],
+          "exact": [
+            {
+              "hour": 2,
+              "kind": "exclusions",
+              "remaining": [
+                "A2",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C3",
+                "C4",
+                "C5"
+              ],
+              "removed": [
+                "A3"
+              ]
+            },
+            {
+              "hour": 5,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A3",
+                "B3",
+                "B4",
+                "B5"
+              ]
+            },
+            {
+              "hour": 6,
+              "kind": "exclusions",
+              "remaining": [
+                "A1",
+                "A2",
+                "A3",
+                "B1",
+                "B2",
+                "B3",
+                "B4",
+                "B5",
+                "C1",
+                "C2",
+                "C3",
+                "C4",
+                "C5",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "E3",
+                "E4",
+                "E5"
+              ],
+              "removed": [
+                "A5"
+              ]
+            }
+          ]
+        }
+      ],
+      "independenceScope": "Each stored subset works without the listed other clues, with the same map/start/givens. Not a claim of independent human ideas."
+    },
+    "clueWitnesses": {
+      "local": [
+        {
+          "hour": 1,
+          "cell": "A3",
+          "origin": "clues",
+          "status": "not-locally-fixed",
+          "minimumKnownClueCount": null,
+          "minimumClueCount": null,
+          "cardinalityStatus": "unknown",
+          "missingSmallerStates": [],
+          "witnesses": []
+        },
+        {
+          "hour": 2,
+          "cell": "A2",
+          "origin": "clues",
+          "status": "not-locally-fixed",
+          "minimumKnownClueCount": null,
+          "minimumClueCount": null,
+          "cardinalityStatus": "unknown",
+          "missingSmallerStates": [],
+          "witnesses": []
+        },
+        {
+          "hour": 3,
+          "cell": "A1",
+          "origin": "clues",
+          "status": "not-locally-fixed",
+          "minimumKnownClueCount": null,
+          "minimumClueCount": null,
+          "cardinalityStatus": "unknown",
+          "missingSmallerStates": [],
+          "witnesses": []
+        },
+        {
+          "hour": 4,
+          "cell": "B1",
+          "origin": "clues",
+          "status": "not-locally-fixed",
+          "minimumKnownClueCount": null,
+          "minimumClueCount": null,
+          "cardinalityStatus": "unknown",
+          "missingSmallerStates": [],
+          "witnesses": []
+        },
+        {
+          "hour": 5,
+          "cell": "C1",
+          "origin": "clues",
+          "status": "not-locally-fixed",
+          "minimumKnownClueCount": null,
+          "minimumClueCount": null,
+          "cardinalityStatus": "unknown",
+          "missingSmallerStates": [],
+          "witnesses": []
+        },
+        {
+          "hour": 6,
+          "cell": "B2",
+          "origin": "clues",
+          "status": "not-locally-fixed",
+          "minimumKnownClueCount": null,
+          "minimumClueCount": null,
+          "cardinalityStatus": "unknown",
+          "missingSmallerStates": [],
+          "witnesses": []
+        }
+      ],
+      "exact": [
+        {
+          "hour": 1,
+          "cell": "A3",
+          "origin": "clues",
+          "status": "witnessed",
+          "minimumKnownClueCount": 6,
+          "minimumClueCount": null,
+          "cardinalityStatus": "smallest-known",
+          "missingSmallerStates": [
+            "H1+H2+H3+H4",
+            "H1+H2+H3+H5",
+            "H1+H2+H4+H5",
+            "H1+H3+H4+H5",
+            "H2+H3+H4+H5",
+            "H1+H2+H3+H4+H5",
+            "H1+H2+H3+H6",
+            "H1+H2+H4+H6",
+            "H1+H3+H4+H6",
+            "H2+H3+H4+H6",
+            "H1+H2+H3+H4+H6",
+            "H1+H2+H5+H6",
+            "H1+H3+H5+H6",
+            "H2+H3+H5+H6",
+            "H1+H2+H3+H5+H6",
+            "H1+H4+H5+H6",
+            "H2+H4+H5+H6",
+            "H1+H2+H4+H5+H6",
+            "H3+H4+H5+H6",
+            "H1+H3+H4+H5+H6",
+            "H2+H3+H4+H5+H6"
+          ],
+          "witnesses": [
+            {
+              "state": "H1+H2+H3+H4+H5+H6",
+              "clueIds": [
+                "H1",
+                "H2",
+                "H3",
+                "H4",
+                "H5",
+                "H6"
+              ],
+              "inclusionStatus": "smallest-known",
+              "missingProperSubsets": [
+                "H1+H2+H3+H4",
+                "H1+H2+H3+H5",
+                "H1+H2+H4+H5",
+                "H1+H3+H4+H5",
+                "H2+H3+H4+H5",
+                "H1+H2+H3+H4+H5",
+                "H1+H2+H3+H6",
+                "H1+H2+H4+H6",
+                "H1+H3+H4+H6",
+                "H2+H3+H4+H6",
+                "H1+H2+H3+H4+H6",
+                "H1+H2+H5+H6",
+                "H1+H3+H5+H6",
+                "H2+H3+H5+H6",
+                "H1+H2+H3+H5+H6",
+                "H1+H4+H5+H6",
+                "H2+H4+H5+H6",
+                "H1+H2+H4+H5+H6",
+                "H3+H4+H5+H6",
+                "H1+H3+H4+H5+H6",
+                "H2+H3+H4+H5+H6"
+              ]
+            }
+          ]
+        },
+        {
+          "hour": 2,
+          "cell": "A2",
+          "origin": "clues",
+          "status": "witnessed",
+          "minimumKnownClueCount": 6,
+          "minimumClueCount": null,
+          "cardinalityStatus": "smallest-known",
+          "missingSmallerStates": [
+            "H1+H2+H3+H4",
+            "H1+H2+H3+H5",
+            "H1+H2+H4+H5",
+            "H1+H3+H4+H5",
+            "H2+H3+H4+H5",
+            "H1+H2+H3+H4+H5",
+            "H1+H2+H3+H6",
+            "H1+H2+H4+H6",
+            "H1+H3+H4+H6",
+            "H2+H3+H4+H6",
+            "H1+H2+H3+H4+H6",
+            "H1+H2+H5+H6",
+            "H1+H3+H5+H6",
+            "H2+H3+H5+H6",
+            "H1+H2+H3+H5+H6",
+            "H1+H4+H5+H6",
+            "H2+H4+H5+H6",
+            "H1+H2+H4+H5+H6",
+            "H3+H4+H5+H6",
+            "H1+H3+H4+H5+H6",
+            "H2+H3+H4+H5+H6"
+          ],
+          "witnesses": [
+            {
+              "state": "H1+H2+H3+H4+H5+H6",
+              "clueIds": [
+                "H1",
+                "H2",
+                "H3",
+                "H4",
+                "H5",
+                "H6"
+              ],
+              "inclusionStatus": "smallest-known",
+              "missingProperSubsets": [
+                "H1+H2+H3+H4",
+                "H1+H2+H3+H5",
+                "H1+H2+H4+H5",
+                "H1+H3+H4+H5",
+                "H2+H3+H4+H5",
+                "H1+H2+H3+H4+H5",
+                "H1+H2+H3+H6",
+                "H1+H2+H4+H6",
+                "H1+H3+H4+H6",
+                "H2+H3+H4+H6",
+                "H1+H2+H3+H4+H6",
+                "H1+H2+H5+H6",
+                "H1+H3+H5+H6",
+                "H2+H3+H5+H6",
+                "H1+H2+H3+H5+H6",
+                "H1+H4+H5+H6",
+                "H2+H4+H5+H6",
+                "H1+H2+H4+H5+H6",
+                "H3+H4+H5+H6",
+                "H1+H3+H4+H5+H6",
+                "H2+H3+H4+H5+H6"
+              ]
+            }
+          ]
+        },
+        {
+          "hour": 3,
+          "cell": "A1",
+          "origin": "clues",
+          "status": "witnessed",
+          "minimumKnownClueCount": 6,
+          "minimumClueCount": null,
+          "cardinalityStatus": "smallest-known",
+          "missingSmallerStates": [
+            "H1+H2+H3+H4",
+            "H1+H2+H3+H5",
+            "H1+H2+H4+H5",
+            "H1+H3+H4+H5",
+            "H2+H3+H4+H5",
+            "H1+H2+H3+H4+H5",
+            "H1+H2+H3+H6",
+            "H1+H2+H4+H6",
+            "H1+H3+H4+H6",
+            "H2+H3+H4+H6",
+            "H1+H2+H3+H4+H6",
+            "H1+H2+H5+H6",
+            "H1+H3+H5+H6",
+            "H2+H3+H5+H6",
+            "H1+H2+H3+H5+H6",
+            "H1+H4+H5+H6",
+            "H2+H4+H5+H6",
+            "H1+H2+H4+H5+H6",
+            "H3+H4+H5+H6",
+            "H1+H3+H4+H5+H6",
+            "H2+H3+H4+H5+H6"
+          ],
+          "witnesses": [
+            {
+              "state": "H1+H2+H3+H4+H5+H6",
+              "clueIds": [
+                "H1",
+                "H2",
+                "H3",
+                "H4",
+                "H5",
+                "H6"
+              ],
+              "inclusionStatus": "smallest-known",
+              "missingProperSubsets": [
+                "H1+H2+H3+H4",
+                "H1+H2+H3+H5",
+                "H1+H2+H4+H5",
+                "H1+H3+H4+H5",
+                "H2+H3+H4+H5",
+                "H1+H2+H3+H4+H5",
+                "H1+H2+H3+H6",
+                "H1+H2+H4+H6",
+                "H1+H3+H4+H6",
+                "H2+H3+H4+H6",
+                "H1+H2+H3+H4+H6",
+                "H1+H2+H5+H6",
+                "H1+H3+H5+H6",
+                "H2+H3+H5+H6",
+                "H1+H2+H3+H5+H6",
+                "H1+H4+H5+H6",
+                "H2+H4+H5+H6",
+                "H1+H2+H4+H5+H6",
+                "H3+H4+H5+H6",
+                "H1+H3+H4+H5+H6",
+                "H2+H3+H4+H5+H6"
+              ]
+            }
+          ]
+        },
+        {
+          "hour": 4,
+          "cell": "B1",
+          "origin": "clues",
+          "status": "witnessed",
+          "minimumKnownClueCount": 6,
+          "minimumClueCount": null,
+          "cardinalityStatus": "smallest-known",
+          "missingSmallerStates": [
+            "H1+H2+H3+H4",
+            "H1+H2+H3+H5",
+            "H1+H2+H4+H5",
+            "H1+H3+H4+H5",
+            "H2+H3+H4+H5",
+            "H1+H2+H3+H4+H5",
+            "H1+H2+H3+H6",
+            "H1+H2+H4+H6",
+            "H1+H3+H4+H6",
+            "H2+H3+H4+H6",
+            "H1+H2+H3+H4+H6",
+            "H1+H2+H5+H6",
+            "H1+H3+H5+H6",
+            "H2+H3+H5+H6",
+            "H1+H2+H3+H5+H6",
+            "H1+H4+H5+H6",
+            "H2+H4+H5+H6",
+            "H1+H2+H4+H5+H6",
+            "H3+H4+H5+H6",
+            "H1+H3+H4+H5+H6",
+            "H2+H3+H4+H5+H6"
+          ],
+          "witnesses": [
+            {
+              "state": "H1+H2+H3+H4+H5+H6",
+              "clueIds": [
+                "H1",
+                "H2",
+                "H3",
+                "H4",
+                "H5",
+                "H6"
+              ],
+              "inclusionStatus": "smallest-known",
+              "missingProperSubsets": [
+                "H1+H2+H3+H4",
+                "H1+H2+H3+H5",
+                "H1+H2+H4+H5",
+                "H1+H3+H4+H5",
+                "H2+H3+H4+H5",
+                "H1+H2+H3+H4+H5",
+                "H1+H2+H3+H6",
+                "H1+H2+H4+H6",
+                "H1+H3+H4+H6",
+                "H2+H3+H4+H6",
+                "H1+H2+H3+H4+H6",
+                "H1+H2+H5+H6",
+                "H1+H3+H5+H6",
+                "H2+H3+H5+H6",
+                "H1+H2+H3+H5+H6",
+                "H1+H4+H5+H6",
+                "H2+H4+H5+H6",
+                "H1+H2+H4+H5+H6",
+                "H3+H4+H5+H6",
+                "H1+H3+H4+H5+H6",
+                "H2+H3+H4+H5+H6"
+              ]
+            }
+          ]
+        },
+        {
+          "hour": 5,
+          "cell": "C1",
+          "origin": "clues",
+          "status": "witnessed",
+          "minimumKnownClueCount": 6,
+          "minimumClueCount": null,
+          "cardinalityStatus": "smallest-known",
+          "missingSmallerStates": [
+            "H1+H2+H3+H4",
+            "H1+H2+H3+H5",
+            "H1+H2+H4+H5",
+            "H1+H3+H4+H5",
+            "H2+H3+H4+H5",
+            "H1+H2+H3+H4+H5",
+            "H1+H2+H3+H6",
+            "H1+H2+H4+H6",
+            "H1+H3+H4+H6",
+            "H2+H3+H4+H6",
+            "H1+H2+H3+H4+H6",
+            "H1+H2+H5+H6",
+            "H1+H3+H5+H6",
+            "H2+H3+H5+H6",
+            "H1+H2+H3+H5+H6",
+            "H1+H4+H5+H6",
+            "H2+H4+H5+H6",
+            "H1+H2+H4+H5+H6",
+            "H3+H4+H5+H6",
+            "H1+H3+H4+H5+H6",
+            "H2+H3+H4+H5+H6"
+          ],
+          "witnesses": [
+            {
+              "state": "H1+H2+H3+H4+H5+H6",
+              "clueIds": [
+                "H1",
+                "H2",
+                "H3",
+                "H4",
+                "H5",
+                "H6"
+              ],
+              "inclusionStatus": "smallest-known",
+              "missingProperSubsets": [
+                "H1+H2+H3+H4",
+                "H1+H2+H3+H5",
+                "H1+H2+H4+H5",
+                "H1+H3+H4+H5",
+                "H2+H3+H4+H5",
+                "H1+H2+H3+H4+H5",
+                "H1+H2+H3+H6",
+                "H1+H2+H4+H6",
+                "H1+H3+H4+H6",
+                "H2+H3+H4+H6",
+                "H1+H2+H3+H4+H6",
+                "H1+H2+H5+H6",
+                "H1+H3+H5+H6",
+                "H2+H3+H5+H6",
+                "H1+H2+H3+H5+H6",
+                "H1+H4+H5+H6",
+                "H2+H4+H5+H6",
+                "H1+H2+H4+H5+H6",
+                "H3+H4+H5+H6",
+                "H1+H3+H4+H5+H6",
+                "H2+H3+H4+H5+H6"
+              ]
+            }
+          ]
+        },
+        {
+          "hour": 6,
+          "cell": "B2",
+          "origin": "clues",
+          "status": "witnessed",
+          "minimumKnownClueCount": 6,
+          "minimumClueCount": null,
+          "cardinalityStatus": "smallest-known",
+          "missingSmallerStates": [
+            "H1+H2+H3+H4",
+            "H1+H2+H3+H5",
+            "H1+H2+H4+H5",
+            "H1+H3+H4+H5",
+            "H2+H3+H4+H5",
+            "H1+H2+H3+H4+H5",
+            "H1+H2+H3+H6",
+            "H1+H2+H4+H6",
+            "H1+H3+H4+H6",
+            "H2+H3+H4+H6",
+            "H1+H2+H3+H4+H6",
+            "H1+H2+H5+H6",
+            "H1+H3+H5+H6",
+            "H2+H3+H5+H6",
+            "H1+H2+H3+H5+H6",
+            "H1+H4+H5+H6",
+            "H2+H4+H5+H6",
+            "H1+H2+H4+H5+H6",
+            "H3+H4+H5+H6",
+            "H1+H3+H4+H5+H6",
+            "H2+H3+H4+H5+H6"
+          ],
+          "witnesses": [
+            {
+              "state": "H1+H2+H3+H4+H5+H6",
+              "clueIds": [
+                "H1",
+                "H2",
+                "H3",
+                "H4",
+                "H5",
+                "H6"
+              ],
+              "inclusionStatus": "smallest-known",
+              "missingProperSubsets": [
+                "H1+H2+H3+H4",
+                "H1+H2+H3+H5",
+                "H1+H2+H4+H5",
+                "H1+H3+H4+H5",
+                "H2+H3+H4+H5",
+                "H1+H2+H3+H4+H5",
+                "H1+H2+H3+H6",
+                "H1+H2+H4+H6",
+                "H1+H3+H4+H6",
+                "H2+H3+H4+H6",
+                "H1+H2+H3+H4+H6",
+                "H1+H2+H5+H6",
+                "H1+H3+H5+H6",
+                "H2+H3+H5+H6",
+                "H1+H2+H3+H5+H6",
+                "H1+H4+H5+H6",
+                "H2+H4+H5+H6",
+                "H1+H2+H4+H5+H6",
+                "H3+H4+H5+H6",
+                "H1+H3+H4+H5+H6",
+                "H2+H3+H4+H5+H6"
+              ]
+            }
+          ]
+        }
+      ],
+      "mechanisms": [
+        {
+          "clueId": "H1",
+          "type": "countDistanceToPlace",
+          "mechanism": "multi-hour-zero-count",
+          "effectiveFullTraceSteps": [
+            "D17",
+            "D18"
+          ]
+        },
+        {
+          "clueId": "H2",
+          "type": "countDistanceToPlace",
+          "mechanism": "multi-hour-interior-count",
+          "effectiveFullTraceSteps": []
+        },
+        {
+          "clueId": "H3",
+          "type": "countDistanceToPlace",
+          "mechanism": "multi-hour-interior-count",
+          "effectiveFullTraceSteps": []
+        },
+        {
+          "clueId": "H4",
+          "type": "direction",
+          "mechanism": "direction",
+          "effectiveFullTraceSteps": [
+            "D19"
+          ]
+        },
+        {
+          "clueId": "H5",
+          "type": "distanceBetweenHours",
+          "mechanism": "distanceBetweenHours",
+          "effectiveFullTraceSteps": []
+        },
+        {
+          "clueId": "H6",
+          "type": "distanceBetweenHours",
+          "mechanism": "distanceBetweenHours",
+          "effectiveFullTraceSteps": [
+            "D20",
+            "D31"
+          ]
+        }
+      ]
+    },
+    "representation": {
+      "state": "H1+H2+H3+H4+H5+H6",
+      "fieldMarks": "Remaining cells can be marked per hour; cross-hour associations are not stored by the UI.",
+      "localCouplings": [
+        {
+          "fromHour": 1,
+          "toHour": 2,
+          "fromCells": [
+            "A3",
+            "B3",
+            "B4"
+          ],
+          "toCells": [
+            "A2",
+            "B2",
+            "C3"
+          ],
+          "transitions": [
+            "A3>A2",
+            "B3>B2",
+            "B4>C3"
+          ],
+          "absentCrossPairCount": 6
+        },
+        {
+          "fromHour": 2,
+          "toHour": 3,
+          "fromCells": [
+            "A2",
+            "B2",
+            "C3"
+          ],
+          "toCells": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "D3"
+          ],
+          "transitions": [
+            "A2>A1",
+            "A2>B1",
+            "A2>B2",
+            "B2>A2",
+            "B2>B1",
+            "B2>C1",
+            "B2>C2",
+            "B2>C3",
+            "C3>B2",
+            "C3>C2",
+            "C3>C4",
+            "C3>D3"
+          ],
+          "absentCrossPairCount": 15
+        },
+        {
+          "fromHour": 3,
+          "toHour": 4,
+          "fromCells": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "D3"
+          ],
+          "toCells": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "B4",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "D2",
+            "D3",
+            "D4",
+            "D5",
+            "E3"
+          ],
+          "transitions": [
+            "A1>A2",
+            "A1>B1",
+            "A2>A1",
+            "A2>B1",
+            "A2>B2",
+            "B1>A1",
+            "B1>A2",
+            "B1>B2",
+            "B1>C1",
+            "B2>A2",
+            "B2>B1",
+            "B2>C1",
+            "B2>C2",
+            "B2>C3",
+            "C1>B1",
+            "C1>B2",
+            "C1>C2",
+            "C2>B2",
+            "C2>C1",
+            "C2>C3",
+            "C2>D2",
+            "C2>D3",
+            "C3>B2",
+            "C3>B4",
+            "C3>C2",
+            "C3>C4",
+            "C3>D3",
+            "C4>B4",
+            "C4>C3",
+            "C4>C5",
+            "C4>D3",
+            "C4>D4",
+            "C4>D5",
+            "D3>C2",
+            "D3>C3",
+            "D3>C4",
+            "D3>D2",
+            "D3>D4",
+            "D3>E3"
+          ],
+          "absentCrossPairCount": 96
+        },
+        {
+          "fromHour": 4,
+          "toHour": 5,
+          "fromCells": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "B4",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "D2",
+            "D3",
+            "D4",
+            "D5",
+            "E3"
+          ],
+          "toCells": [
+            "A1",
+            "B1",
+            "C1",
+            "C2",
+            "C4",
+            "C5",
+            "D2",
+            "D3",
+            "D4",
+            "D5",
+            "E3",
+            "E4",
+            "E5"
+          ],
+          "transitions": [
+            "A1>B1",
+            "A2>A1",
+            "A2>B1",
+            "B1>A1",
+            "B1>C1",
+            "B2>B1",
+            "B2>C1",
+            "B2>C2",
+            "B4>C4",
+            "B4>C5",
+            "C1>B1",
+            "C1>C2",
+            "C2>C1",
+            "C2>D2",
+            "C2>D3",
+            "C3>C2",
+            "C3>C4",
+            "C3>D3",
+            "C4>C5",
+            "C4>D3",
+            "C4>D4",
+            "C4>D5",
+            "C5>C4",
+            "C5>D5",
+            "D2>C2",
+            "D2>D3",
+            "D2>E3",
+            "D3>C2",
+            "D3>C4",
+            "D3>D2",
+            "D3>D4",
+            "D3>E3",
+            "D4>C4",
+            "D4>D3",
+            "D4>D5",
+            "D4>E3",
+            "D4>E4",
+            "D4>E5",
+            "D5>C4",
+            "D5>C5",
+            "D5>D4",
+            "D5>E5",
+            "E3>D2",
+            "E3>D3",
+            "E3>D4",
+            "E3>E4"
+          ],
+          "absentCrossPairCount": 149
+        },
+        {
+          "fromHour": 5,
+          "toHour": 6,
+          "fromCells": [
+            "A1",
+            "B1",
+            "C1",
+            "C2",
+            "C4",
+            "C5",
+            "D2",
+            "D3",
+            "D4",
+            "D5",
+            "E3",
+            "E4",
+            "E5"
+          ],
+          "toCells": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "B4",
+            "B5",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "D2",
+            "D3",
+            "D4",
+            "D5",
+            "E3",
+            "E4",
+            "E5"
+          ],
+          "transitions": [
+            "A1>A2",
+            "A1>B1",
+            "B1>A1",
+            "B1>A2",
+            "B1>B2",
+            "B1>C1",
+            "C1>B1",
+            "C1>B2",
+            "C1>C2",
+            "C2>B2",
+            "C2>C1",
+            "C2>C3",
+            "C2>D2",
+            "C2>D3",
+            "C4>B4",
+            "C4>C3",
+            "C4>C5",
+            "C4>D3",
+            "C4>D4",
+            "C4>D5",
+            "C5>B4",
+            "C5>B5",
+            "C5>C4",
+            "C5>D5",
+            "D2>C2",
+            "D2>D3",
+            "D2>E3",
+            "D3>C2",
+            "D3>C3",
+            "D3>C4",
+            "D3>D2",
+            "D3>D4",
+            "D3>E3",
+            "D4>C4",
+            "D4>D3",
+            "D4>D5",
+            "D4>E3",
+            "D4>E4",
+            "D4>E5",
+            "D5>C4",
+            "D5>C5",
+            "D5>D4",
+            "D5>E5",
+            "E3>D2",
+            "E3>D3",
+            "E3>D4",
+            "E3>E4",
+            "E4>D4",
+            "E4>E3",
+            "E4>E5",
+            "E5>D4",
+            "E5>D5",
+            "E5>E4"
+          ],
+          "absentCrossPairCount": 181
+        }
+      ],
+      "exactCouplings": [],
+      "smallEntryCouplings": [
+        {
+          "state": "H1+H4",
+          "local": [
+            {
+              "fromHour": 1,
+              "toHour": 2,
+              "fromCells": [
+                "A3",
+                "B3",
+                "B4"
+              ],
+              "toCells": [
+                "A2",
+                "B2",
+                "C3"
+              ],
+              "transitions": [
+                "A3>A2",
+                "B3>B2",
+                "B4>C3"
+              ],
+              "absentCrossPairCount": 6
+            }
+          ],
+          "exact": [
+            {
+              "fromHour": 1,
+              "toHour": 2,
+              "fromCells": [
+                "A3",
+                "B3",
+                "B4"
+              ],
+              "toCells": [
+                "A2",
+                "B2",
+                "C3"
+              ],
+              "transitions": [
+                "A3>A2",
+                "B3>B2",
+                "B4>C3"
+              ],
+              "absentCrossPairCount": 6
+            }
+          ]
+        }
+      ],
+      "scope": "Missing cross-pairs can follow from adjacency as well as clues. Local edges need not extend to a legal route; higher-order correlations are not represented."
+    },
+    "milestones": {
+      "state": "H1+H2+H3+H4+H5+H6",
+      "items": [],
+      "dependencies": [],
+      "scope": "Field milestones only; fixed edges are attached evidence, not extra milestones. Certificate ancestors are sufficient, not minimal or a human order."
+    }
+  },
+  "possibleInterpretations": [
+    "Concrete anchors and small per-hour alternatives may support practical progress; discoverability and marking effort are unmeasured.",
+    "Shared entry, witness and completion patterns may indicate repetition across a series; no similarity threshold or selection follows.",
+    "Unresolved cross-hour associations may require memory; their presence alone does not establish difficulty."
+  ],
+  "unknowns": [
+    "Human solving order, thought depth, effort, difficulty and enjoyment.",
+    "All alternative human arguments and their independence.",
+    "Whether a local/exact gap is caused by a missing simple rule or a human obstacle.",
+    "Consequences of the explicitly missing clue subsets."
+  ]
+}
