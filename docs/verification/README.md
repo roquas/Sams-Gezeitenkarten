@@ -1,5 +1,9 @@
 # Verifikationsnachweise
 
+B2 V2 mit echtem Zählschluss: [lösungsfreie Spieltestanleitung](../B2-POSITIVE-V2-PLAYTEST.md).
+`B2-positive-v2/private/` enthält Lösung und Begründungsgraphen; erst nach dem
+Spieltest öffnen. Der V2-Vertrag wurde vor der Konstruktion festgeschrieben.
+
 Positive B2-Kontrollreferenz: [lösungsfreie Spieltestanleitung](../B2-POSITIVE-PLAYTEST.md).
 Die Nachweise unter `B2-positive/private/` und der Deduktionsvertrag enthalten
 konkrete Lösungsschlüsse; erst nach dem menschlichen Test öffnen.

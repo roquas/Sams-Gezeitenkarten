@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "rulesVersion": "gezeitenkarten-2",
+  "dataVersion": 1,
+  "id": "B2-POSITIVE-V2-01",
+  "logic": {
+    "map": {
+      "geometry": "even-row-offset-pointy-v1",
+      "grid": {
+        "columns": 5,
+        "rows": 5
+      },
+      "objects": [
+        {
+          "id": "departure",
+          "cells": [
+            "A1"
+          ],
+          "passable": true
+        },
+        {
+          "id": "beacon",
+          "cells": [
+            "D2"
+          ],
+          "passable": true
+        },
+        {
+          "id": "southern-buoy",
+          "cells": [
+            "E5"
+          ],
+          "passable": true
+        },
+        {
+          "id": "count-buoy",
+          "cells": [
+            "C2"
+          ],
+          "passable": true
+        }
+      ]
+    },
+    "start": "A1",
+    "steps": 6,
+    "clues": [
+      {
+        "id": "H1",
+        "type": "direction",
+        "hour": 2,
+        "direction": "E"
+      },
+      {
+        "id": "H2",
+        "type": "direction",
+        "hour": 5,
+        "direction": "SE"
+      },
+      {
+        "id": "H3",
+        "type": "distanceToPlace",
+        "hour": 5,
+        "placeId": "beacon",
+        "distance": 0
+      },
+      {
+        "id": "H4",
+        "type": "distanceBetweenHours",
+        "hours": [
+          1,
+          4
+        ],
+        "distance": 3
+      },
+      {
+        "id": "H5",
+        "type": "distanceToPlace",
+        "hour": 6,
+        "placeId": "southern-buoy",
+        "distance": 3
+      },
+      {
+        "id": "H6",
+        "type": "countDistanceToPlace",
+        "fromHour": 2,
+        "toHour": 4,
+        "placeId": "count-buoy",
+        "distance": 1,
+        "count": 2
+      }
+    ]
+  },
+  "presentation": {
+    "title": "Die drei Peilungen",
+    "intro": [
+      "Rekonstruiere die Fahrt mit sechs Etappen. Start ist das Wrack.",
+      "Alle Hexfelder sind befahrbar. Hexabstände sind geometrische Abstände, unabhängig vom gefahrenen Weg. Die Nordboje liegt auf D2, die Südboje auf E5, die Zählboje auf C2."
+    ],
+    "objectNames": {
+      "departure": "Startwrack",
+      "beacon": "Nordboje",
+      "southern-buoy": "Südboje",
+      "count-buoy": "Zählboje"
+    },
+    "clueTexts": {
+      "H1": "Von Stunde 1 zu Stunde 2 fuhr das Schiff nach Osten.",
+      "H2": "Von Stunde 4 zu Stunde 5 fuhr das Schiff nach Südosten.",
+      "H3": "In Stunde 5 war das Schiff genau bei der Nordboje auf D2.",
+      "H4": "Die Positionen in Stunde 1 und Stunde 4 haben genau 3 Hex Abstand.",
+      "H5": "In Stunde 6 hatte das Schiff genau 3 Hex Abstand zur Südboje auf E5.",
+      "H6": "In genau 2 der Stunden 2, 3 und 4 hatte das Schiff genau 1 Hex Abstand zur Zählboje auf C2."
+    },
+    "hints": [],
+    "background": "sea-blue-01",
+    "assetPlacements": [
+      {
+        "id": "start-wreck",
+        "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+        "anchor": "A1",
+        "objectId": "departure"
+      },
+      {
+        "id": "buoy",
+        "assetId": "sea-life.accent.h1.buoy.v1",
+        "anchor": "D2",
+        "objectId": "beacon"
+      },
+      {
+        "id": "southern-buoy",
+        "assetId": "sea-life.accent.h1.buoy.v1",
+        "anchor": "E5",
+        "objectId": "southern-buoy"
+      },
+      {
+        "id": "count-buoy",
+        "assetId": "sea-life.accent.h1.buoy.v1",
+        "anchor": "C2",
+        "objectId": "count-buoy"
+      }
+    ]
+  },
+  "solution": [
+    "A1",
+    "A2",
+    "B2",
+    "C2",
+    "D1",
+    "D2",
+    "E2"
+  ],
+  "metadata": {
+    "kind": "editorial",
+    "source": "Gezielte Handkonstruktion nach B2-Deduktionsvertrag V2, Commit 95024e5. Erstentwurf."
+  }
+}

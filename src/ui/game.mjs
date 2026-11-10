@@ -23,7 +23,7 @@ createMobileViews();
 const params=new URLSearchParams(window.location.search);
 const b2Development=params.get('dev')==='b2';
 const b2Stock=params.get('stock')??'S01';
-if(b2Development&&!['S01','S02','BC','POSITIVE'].includes(b2Stock))throw Error('Unbekannter B2-Bestand: '+b2Stock);
+if(b2Development&&!['S01','S02','BC','POSITIVE','POSITIVE-V2'].includes(b2Stock))throw Error('Unbekannter B2-Bestand: '+b2Stock);
 const selectionKey=b2Development?(b2Stock==='S01'?'gezeitenkarten-selected-b2':'gezeitenkarten-selected-b2-'+b2Stock):'gezeitenkarten-selected-puzzle';
 const b2Manifest=b2Stock==='S01'?'../../.dev/b2/manifest.json':'../../.dev/b2-'+b2Stock.toLowerCase()+'/manifest.json';
 const loader=createPuzzleLoader({manifestUrl:new URL(b2Development?b2Manifest:'../../puzzles/manifest.json',import.meta.url)});
@@ -187,7 +187,7 @@ if(b2Development){
  document.querySelector('label[for="puzzleSelect"]').remove();
  const panel=document.createElement('div');panel.id='b2Selection';
  const label=document.createElement('label');label.htmlFor='puzzleSelect';label.textContent='B2-Entwicklungsauswahl · Testbestand '+b2Stock;
- const note=document.createElement('p');note.className='muted';note.textContent=b2Stock==='POSITIVE'?'Testkennung: B2-POSITIVE-01. Beobachtungen nach dem Spielen festhalten.':'Gleiche M…-Start-R…-Kennung: Varianten derselben Zielroute. Testname beim Berichten angeben.';
+ const note=document.createElement('p');note.className='muted';note.textContent=b2Stock==='POSITIVE-V2'?'Testkennung: B2-POSITIVE-V2-01. Beobachtungen nach dem Spielen festhalten.':b2Stock==='POSITIVE'?'Testkennung: B2-POSITIVE-01. Beobachtungen nach dem Spielen festhalten.':'Gleiche M…-Start-R…-Kennung: Varianten derselben Zielroute. Testname beim Berichten angeben.';
  const exit=document.createElement('a');exit.href=window.location.pathname;exit.textContent='Reguläres Spiel öffnen';
  panel.append(label,select,$('puzzleStatus'),note,exit);$('puzzleLoadError').before(panel);
 }

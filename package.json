@@ -20,7 +20,10 @@
     "test:all": "npm run test:unit && npm run test:content && npm run test:puzzles && npm run test:browser",
     "test:puzzles": "node scripts/validate-puzzles.mjs",
     "test:assets": "node scripts/validate-assets.mjs && python3 scripts/check-library-images.py && python3 tests/test_library_images.py && python3 tests/test_frame_footprint.py && python3 tests/test_multihex_export.py && python3 tests/test_water_finale.py",
-    "test:content": "node --test tests/content/*.test.mjs"
+    "test:content": "node --test tests/content/*.test.mjs",
+    "dev:b2:positive-v2": "npm run export:b2 -- --stock POSITIVE-V2 && python3 scripts/dev-server.py",
+    "package:b2:positive-v2": "python3 scripts/package-b2-positive-v2.py",
+    "report:b2:positive-v2": "node scripts/report-b2-positive-v2.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.64.0"
