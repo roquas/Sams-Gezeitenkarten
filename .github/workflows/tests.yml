@@ -148,6 +148,7 @@ jobs:
         run: python3 -m pip install --user Pillow
       - run: python3 tests/test_package.py
       - run: python3 tests/test_b2_positive_package.py
+      - run: python3 tests/test_b2_positive_v2_package.py
       - run: sh scripts/package.sh
       - name: Extract actual release ZIP outside the checkout
         run: |

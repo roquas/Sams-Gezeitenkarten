@@ -1,5 +1,9 @@
 # Sams Gezeitenkarten
 
+**B2 V2 mit echtem Zählschluss spielen:** `npm run dev:b2:positive-v2`.
+[Lösungsfreie Anleitung und Beobachtungsprotokoll](docs/B2-POSITIVE-V2-PLAYTEST.md).
+Der menschliche Blindtest und die Schwierigkeitseinstufung stehen aus.
+
 **Handentwickelte B2-Referenz spielen:** `npm run dev:b2:positive`.
 [Lösungsfreie Anleitung und lokaler ZIP-Export](docs/B2-POSITIVE-PLAYTEST.md).
 
