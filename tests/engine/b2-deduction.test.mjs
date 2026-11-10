@@ -69,6 +69,40 @@ test('a necessary transitive restriction must reconstruct the recorded before st
  step.premises=[necessary];verifyTrace(logic,broken,solutions);
 });
 
+test('count-bounds cannot exclude a definite hit hidden by an unlinked clue (534 counterexamples)',()=>{
+ const count={id:'N',type:'countDistanceToPlace',fromHour:0,toHour:1,placeId:'port',distance:1,count:1};
+ const hidden={id:'P',type:'position',hour:1,cell:'B3'};
+ // Test-only open-board variant: every legal first step is already a hit.
+ const unconstrained={...base,map:{...base.map,objects:[base.map.objects[0]]}};
+ const logic={...unconstrained,clues:[count,hidden]},rules=createRules(logic);
+ const reachableSolutions=solvePuzzle({...logic,clues:[count]},{metrics:false}).solutions;
+ assert.equal(reachableSolutions.filter(r=>r[1]==='A2').length,534);
+ const globalSolutions=solvePuzzle(logic,{metrics:false}).solutions;
+ assert.ok(globalSolutions.length>0);
+ assert.ok(globalSolutions.every(r=>r[1]!=='A2'));
+
+ // Keep an honest, replayable structural trace, then append only the bad claim.
+ // P occurs nowhere in the trace and must not justify the N-labelled step.
+ const forged=localDeduction(unconstrained);
+ verifyTrace(logic,forged,globalSolutions);
+ assert.ok(forged.trace.every(t=>t.clueIds.length===0));
+ const before=[...forged.domains[1]],after=before.filter(c=>c!=='A2');
+ assert.deepEqual(before,['A2','B3','A4']);
+ assert.ok(before.every(c=>rules.distanceToPlace(c,'port')===1));
+ const parent=forged.trace.findLast(t=>t.kind==='field'&&t.hour===1);
+ const step={id:'D'+(forged.trace.length+1),round:parent.round+1,rule:'count-bounds',
+  clueIds:['N'],premises:[parent.id],kind:'field',hour:1,before,after,removed:['A2'],fixed:null,
+  explanation:'Forged exclusion of an already definite hit.'};
+ forged.trace.push(step);forged.domains[1]=after;
+ // With P explicitly cited this same trace shape carries a sound exclusion.
+ const structuralControl=structuredClone(forged);
+ Object.assign(structuralControl.trace.at(-1),{rule:'direct-hour',clueIds:['P']});
+ verifyTrace(logic,structuralControl,globalSolutions);
+ // Even the globally filtered solutions must not mask this local rule error.
+ assert.throws(()=>verifyTrace(logic,forged,globalSolutions),
+  {code:'ERR_ASSERTION',message:new RegExp(`${step.id} .*count-bounds requires both hits and non-hits`)});
+});
+
 test('zero/all residual count bounds include hour 0 and use fixed information',()=>{
  const count=(fromHour,toHour,count)=>({id:'N',type:'countDistanceToPlace',fromHour,toHour,placeId:'port',distance:0,count});
  const satisfiable={...base,clues:[count(0,2,1)]};

@@ -101,6 +101,8 @@ export function verifyTrace(logic,local,solutions,{givens=[]}={}){
     if(t.rule==='count-contradiction'){
      assert.ok(min>c.count||max<c.count,`${label}: contradictory count bounds`);allowed=[];
     }else{
+     assert.ok(domains[h].some(match)&&domains[h].some(x=>!match(x)),
+      `${label}: count-bounds requires both hits and non-hits`);
      assert.ok(min<=c.count&&c.count<=max,`${label}: feasible count bounds`);
      assert.ok(min===c.count||max===c.count,`${label}: tight count bound`);
      allowed=domains[h].filter(x=>min===c.count?!match(x):match(x));
