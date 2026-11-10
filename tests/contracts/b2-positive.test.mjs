@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
+import {verifyTrace} from '../helpers/b2-deduction-trace.mjs';
+import {solvePuzzle} from '../../src/engine/solver.mjs';
 import {ROOT} from '../../scripts/lib/b2-playtest.mjs';
 import {readPositiveDefinition,buildPositivePlaytest,POSITIVE_ID,POSITIVE_DIRECTORY} from '../../scripts/lib/b2-positive.mjs';
 import {positiveEvidence,positiveReportFiles} from '../../scripts/report-b2-positive.mjs';
@@ -15,6 +17,11 @@ import {checkIrredundancy} from '../../src/puzzles/analysis.mjs';
 const definition=readPositiveDefinition();
 test('hand-authored reference meets the precommitted A–F contract without changing deduction rules',()=>{
  const evidence=positiveEvidence();
+ for(const state of [...evidence.diagnosis.scenarios,...evidence.ablations]){
+  const clues=definition.logic.clues.filter(c=>state.clueIds?state.clueIds.includes(c.id):c.id!==state.omitted);
+  const logic={...definition.logic,clues};
+  verifyTrace(logic,state.local,solvePuzzle(logic,{metrics:false}).solutions);
+ }
  assert.equal(definition.logic.steps,6);assert.equal(definition.logic.clues.length,5);
  assert.equal(evidence.proof.count,1);assert.equal(evidence.proof.target.status,'match');
  assert.ok(evidence.proof.omissions.every(o=>o.necessary&&o.countExact&&o.count>=2));

@@ -3,13 +3,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import {verifyTrace} from '../helpers/b2-deduction-trace.mjs';
 import {solvePuzzle} from '../../src/engine/solver.mjs';
 import {buildDeductionReport,projectRoutes,historicalReference,REFERENCE_PATH} from '../../scripts/lib/b2-deduction.mjs';
 import {reportFiles,OUTPUT,main} from '../../scripts/report-b2-deduction.mjs';
 import {ROOT} from '../../scripts/lib/b2-playtest.mjs';
 
 const report=buildDeductionReport();
-test('every exact reference subset agrees with existing solver, including the hypothetical given',()=>{
+test('every reference subset has sufficient reachable premises and agrees with the solver, including the hypothetical given',()=>{
  for(const c of report.cases)for(const s of c.analysis.scenarios){
   const logic={...c.logic,clues:[...c.logic.clues.filter(clue=>s.clueIds.includes(clue.id)),
    ...c.analysis.givens.map((g,i)=>({id:`G${i}`,type:'position',...g}))]};
@@ -17,14 +18,8 @@ test('every exact reference subset agrees with existing solver, including the hy
   assert.deepEqual(projection,{routeCount:s.exact.routeCount,domains:s.exact.domains,transitions:s.exact.transitions});
   for(const property of ['domains','transitions'])for(let h=0;h<projection[property].length;h++)
    assert.ok(projection[property][h].every(value=>s.local[property][h].includes(value)));
-  const seen=new Set();
-  for(const step of s.local.trace){
-   assert.ok(step.premises.every(id=>seen.has(id)));
-   const values=projection[step.kind==='field'?'domains':'transitions'][step.kind==='field'?step.hour:step.hour-1];
-   assert.ok(step.removed.every(value=>!values.includes(value)));
-   if(step.fixed)assert.deepEqual(values,[step.fixed]);
-   seen.add(step.id);
-  }
+  verifyTrace({...c.logic,clues:c.logic.clues.filter(clue=>s.clueIds.includes(clue.id))},
+   s.local,oracle.solutions,{givens:c.analysis.givens});
   assert.equal(s.local.unsupported.length,0);
  }
 });
