@@ -1,5 +1,10 @@
 # Verifikationsnachweise
 
+[B2-Deduktionsprofile](B2-deduction-profile/report.md): beschreibender Offline-Vergleich
+von V1/V2, T02/T07 und der T07-Kontrolle; enthält Lösungsschlüsse.
+[Datenformat und Grenzen](B2-deduction-profile.md). Reproduktion:
+`npm run report:b2:profile -- --check`; keine Schwierigkeitsschätzung oder Auswahl.
+
 B2 V2 mit echtem Zählschluss: [lösungsfreie Spieltestanleitung](../B2-POSITIVE-V2-PLAYTEST.md).
 `B2-positive-v2/private/` enthält Lösung und Begründungsgraphen; erst nach dem
 Spieltest öffnen. Der V2-Vertrag wurde vor der Konstruktion festgeschrieben.
