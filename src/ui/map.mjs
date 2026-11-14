@@ -18,7 +18,7 @@ function fitLabels(svg){
   if(measured>available)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*available/measured);
  }
 }
-export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,frameStyle}){
+export function drawMap({state,puzzle,rules,cells,byId,blocked,pretty,key,onActivate,frameStyle}){
  const $=id=>document.getElementById(id);
  const svg=$("map");const focusedId=svg.contains(document.activeElement)?document.activeElement?.dataset.id:null;
  // Avoid repeated viewBox writes that can invalidate WebKit SVG layout,
@@ -112,14 +112,17 @@ export function drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate,f
  for(const node of svg.children)node.setAttribute('data-static-chart','true');
  staticCharts.set(svg,{puzzle,mode,art});
  }
- // 1c: Große, transparente Abstandszahlen auf Wasserfeldern; über den Illustrationen,
+ // 1c: Große, transparente Abstandszahlen auf allen Feldern; über den Illustrationen,
  // aber unter interaktiven Hexflächen, Routenlinie und Markierungen.
  if(state.distanceMode && state.distanceOrigin){
+   // Resolve the concrete logical object, independently of its name or artwork.
+   // Reuse the clue engine's full-footprint distance; sea keeps point distance.
+   const originObject=puzzle.map.objects.find(o=>o.cells.includes(state.distanceOrigin));
    const layer=el("g",{class:"distance-overlay","data-distance-origin":state.distanceOrigin,"pointer-events":"none","aria-hidden":"true"});
    const shades=["#bc388b","#aa438f","#80539f","#536da2","#348ca4","#259eaa","#268e98"];
    for(const c of cells){
      // Distances include island / blocked hexes too: geometry is independent of sailing.
-     const d=dist(state.distanceOrigin,c.id),[x,y]=coords(c);
+     const d=originObject?rules.distanceToPlace(c.id,originObject.id):dist(state.distanceOrigin,c.id),[x,y]=coords(c);
      const col=shades[Math.min(d,shades.length-1)];
      layer.append(el("text",{class:"distance-value","data-distance-cell":c.id,"data-distance":d,x,y:y+17,"text-anchor":"middle","font-family":"system-ui, sans-serif","font-size":"51","font-weight":"900",fill:col,opacity:Math.max(.31,.66-d*.055),stroke:"#fff6df","stroke-width":"1.8","paint-order":"stroke"},String(d)));
    }
