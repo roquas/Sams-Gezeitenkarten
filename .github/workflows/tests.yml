@@ -43,6 +43,16 @@ jobs:
         with: {node-version: '24.19.0'}
       - run: npm run test:b2:s02:reproduction
       - run: node --test tests/reproduction/b2-search-comparison.test.mjs
+  s03-reproduction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.19.0'}
+      - run: npm run test:s03:evidence
+      - run: npm run test:s03:reproduction
   assets:
     runs-on: ubuntu-latest
     steps:
