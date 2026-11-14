@@ -123,13 +123,13 @@ test('S02 report has exact independent marginals, cross table and a trace for ev
  assert.equal(inspect(['--stock','S02','--report-markdown']),renderClueReport(report));
 });
 
-test('S01 defaults, stored bytes and public export are unchanged from the pinned main',()=>{
+test('S01 defaults and stored bytes stay pinned; the public export uses H1 count texts',()=>{
  assert.equal(REGISTRY,'scripts/config/b2-playtest-s01.json');assert.equal(OUTPUT,'.dev/b2');
  assert.deepEqual(readPlaytestSource(),readPlaytestSource('S01'));
  const s01=readPlaytestSource(),actual=buildPlaytest(),expected=read('tests/fixtures/generation/b2-s01-export.json');
  assert.equal(actual.size,expected.fileCount);
  assert.equal(sha256(canonicalJson([...actual].sort(([a],[b])=>a<b?-1:a>b?1:0)
-  .map(([name,bytes])=>({name,sha256:sha256(bytes)})))),expected.sha256);
+  .map(([name,bytes])=>({name,sha256:sha256(bytes)})))),expected.h1Sha256);
  assert.deepEqual(inspect(['--statistics']),{stockId:'B2-S01',candidates:{
   byType:{countDistanceToPlace:306,distanceToPlace:20,turn:16,direction:11,distanceBetweenHours:13,position:17},
   byPresentationForm:{countDistanceToPlace:210,distanceToPlace:20,CountDistanceNever:57,NotDistanceAt:16,HasDistanceAt:23,
