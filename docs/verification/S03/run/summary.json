@@ -1,0 +1,611 @@
+{
+  "experimentId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55",
+  "status": "completed",
+  "targets": 20,
+  "reducedSets": 80,
+  "distinctRawCandidates": 80,
+  "rejections": {
+    "LOCAL_REMAINDER": 19,
+    "CLUE_COUNT": 8,
+    "DIAGNOSIS_BUDGET_EXHAUSTED": 48
+  },
+  "diagnoses": 24,
+  "diagnosisStates": 705,
+  "finalists": 5,
+  "verification": {
+    "verifiedCandidates": 5,
+    "method": "existing-checkIrredundancy-detailed"
+  },
+  "compiledPublicFiles": 5,
+  "selected": [
+    {
+      "testName": "B2-S03-M001-A3-R751-V01",
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001/gk-variant-v2-sha256:0aa48e5c47ae2839fd40026b2631facbb03e2c246f6d50c753da64ee3553d6b8",
+      "clueCount": 6,
+      "signals": {
+        "signature": "{\"completionRules\":[{\"hour\":1,\"rule\":\"successor-support\"},{\"hour\":2,\"rule\":\"successor-support\"},{\"hour\":3,\"rule\":\"count-bounds\"},{\"hour\":4,\"rule\":\"no-revisit-singleton\"}],\"directHours\":[3],\"minima\":[{\"count\":2,\"hour\":1,\"known\":2,\"status\":\"proven-minimum\"},{\"count\":2,\"hour\":2,\"known\":2,\"status\":\"proven-minimum\"},{\"count\":1,\"hour\":3,\"known\":1,\"status\":\"proven-minimum\"},{\"count\":3,\"hour\":4,\"known\":3,\"status\":\"proven-minimum\"},{\"count\":null,\"hour\":5,\"known\":null,\"status\":\"unknown\"},{\"count\":null,\"hour\":6,\"known\":null,\"status\":\"unknown\"}],\"open\":[{\"hour\":5,\"size\":2},{\"hour\":6,\"size\":3}]}",
+        "features": [
+          "certificate-reuse",
+          "certificate-root-count:1",
+          "chain-follow-ups:3",
+          "count-certificate-reuse",
+          "entry-hour:1",
+          "entry-hour:2",
+          "entry-hour:3",
+          "entry-hour:4",
+          "entry-hour:5",
+          "entry-hour:6",
+          "exclusion-before-subset-fixation",
+          "mechanism:multi-hour-interior-count",
+          "mechanism:multi-hour-zero-count",
+          "mechanism:single-hour-count-exclusion",
+          "mechanism:single-hour-count-hit",
+          "mechanism:turn",
+          "minimum:1:2",
+          "minimum:2:2",
+          "minimum:3:1",
+          "minimum:4:3",
+          "minimum:5:unknown",
+          "minimum:6:unknown",
+          "mixed-combination",
+          "open-hours:2"
+        ],
+        "entryStates": [
+          "H1",
+          "H2",
+          "H3",
+          "H5",
+          "H6",
+          "H1+H2",
+          "H1+H3",
+          "H1+H4",
+          "H1+H5",
+          "H1+H6",
+          "H2+H3",
+          "H2+H4",
+          "H2+H5",
+          "H2+H6",
+          "H3+H4",
+          "H3+H5",
+          "H3+H6",
+          "H4+H5",
+          "H4+H6",
+          "H5+H6"
+        ],
+        "exclusionEntryStates": [
+          "H1",
+          "H2",
+          "H5",
+          "H6",
+          "H1+H2",
+          "H1+H4",
+          "H1+H5",
+          "H1+H6",
+          "H2+H4",
+          "H2+H5",
+          "H2+H6",
+          "H4+H5",
+          "H4+H6",
+          "H5+H6"
+        ],
+        "minimumCluesByHour": [
+          {
+            "hour": 1,
+            "count": 2,
+            "known": 2,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 2,
+            "count": 2,
+            "known": 2,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 3,
+            "count": 1,
+            "known": 1,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 4,
+            "count": 3,
+            "known": 3,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 5,
+            "count": null,
+            "known": null,
+            "status": "unknown"
+          },
+          {
+            "hour": 6,
+            "count": null,
+            "known": null,
+            "status": "unknown"
+          }
+        ],
+        "directHours": [
+          3
+        ],
+        "mixedCombinationHours": [
+          1,
+          2,
+          4
+        ],
+        "reusedFieldSteps": 17,
+        "maxFixedCertificateFollowUps": 3,
+        "certificateRoots": [
+          3
+        ],
+        "countReuse": true,
+        "openHours": [
+          {
+            "hour": 5,
+            "size": 2
+          },
+          {
+            "hour": 6,
+            "size": 3
+          }
+        ],
+        "localCouplings": 1,
+        "exactCouplings": 0,
+        "missingSubsetCount": 21,
+        "scope": "Known local certificates and exact projections, not human solving order, necessary thought depth or enjoyment."
+      }
+    },
+    {
+      "testName": "B2-S03-M002-A1-R532-V03",
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M002/gk-variant-v2-sha256:4d73b56f93be56e26d3c00f1b16b996a461dd3362f24fad7038a3168766649c4",
+      "clueCount": 3,
+      "signals": {
+        "signature": "{\"completionRules\":[{\"hour\":1,\"rule\":\"count-bounds\"},{\"hour\":2,\"rule\":\"count-bounds\"},{\"hour\":3,\"rule\":\"successor-support\"},{\"hour\":4,\"rule\":\"predecessor-support\"},{\"hour\":5,\"rule\":\"no-revisit-singleton\"},{\"hour\":6,\"rule\":\"predecessor-support\"}],\"directHours\":[1,2],\"minima\":[{\"count\":1,\"hour\":1,\"known\":1,\"status\":\"proven-minimum\"},{\"count\":1,\"hour\":2,\"known\":1,\"status\":\"proven-minimum\"},{\"count\":2,\"hour\":3,\"known\":2,\"status\":\"proven-minimum\"},{\"count\":2,\"hour\":4,\"known\":2,\"status\":\"proven-minimum\"},{\"count\":2,\"hour\":5,\"known\":2,\"status\":\"proven-minimum\"},{\"count\":3,\"hour\":6,\"known\":3,\"status\":\"proven-minimum\"}],\"open\":[]}",
+        "features": [
+          "certificate-reuse",
+          "certificate-root-count:2",
+          "chain-follow-ups:5",
+          "count-certificate-reuse",
+          "entry-hour:1",
+          "entry-hour:2",
+          "entry-hour:3",
+          "entry-hour:4",
+          "entry-hour:5",
+          "entry-hour:6",
+          "exclusion-before-subset-fixation",
+          "mechanism:multi-hour-all-count",
+          "mechanism:multi-hour-interior-count",
+          "minimum:1:1",
+          "minimum:2:1",
+          "minimum:3:2",
+          "minimum:4:2",
+          "minimum:5:2",
+          "minimum:6:3",
+          "open-hours:0"
+        ],
+        "entryStates": [
+          "H2",
+          "H3",
+          "H1+H2",
+          "H1+H3",
+          "H2+H3"
+        ],
+        "exclusionEntryStates": [
+          "H3",
+          "H1+H3"
+        ],
+        "minimumCluesByHour": [
+          {
+            "hour": 1,
+            "count": 1,
+            "known": 1,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 2,
+            "count": 1,
+            "known": 1,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 3,
+            "count": 2,
+            "known": 2,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 4,
+            "count": 2,
+            "known": 2,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 5,
+            "count": 2,
+            "known": 2,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 6,
+            "count": 3,
+            "known": 3,
+            "status": "proven-minimum"
+          }
+        ],
+        "directHours": [
+          1,
+          2
+        ],
+        "mixedCombinationHours": [],
+        "reusedFieldSteps": 19,
+        "maxFixedCertificateFollowUps": 5,
+        "certificateRoots": [
+          1,
+          2
+        ],
+        "countReuse": true,
+        "openHours": [],
+        "localCouplings": 0,
+        "exactCouplings": 0,
+        "missingSubsetCount": 0,
+        "scope": "Known local certificates and exact projections, not human solving order, necessary thought depth or enjoyment."
+      }
+    },
+    {
+      "testName": "B2-S03-M003-A5-R436-V02",
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M003/gk-variant-v2-sha256:2d3793abafe2d1b17fefd961b789caea1ef73e07f07861aa7bc284374b8ea34d",
+      "clueCount": 5,
+      "signals": {
+        "signature": "{\"completionRules\":[{\"hour\":1,\"rule\":\"no-revisit-singleton\"},{\"hour\":2,\"rule\":\"successor-support\"},{\"hour\":3,\"rule\":\"predecessor-support\"},{\"hour\":4,\"rule\":\"predecessor-support\"},{\"hour\":5,\"rule\":\"predecessor-support\"},{\"hour\":6,\"rule\":\"no-revisit-singleton\"}],\"directHours\":[],\"minima\":[{\"count\":null,\"hour\":1,\"known\":5,\"status\":\"smallest-known\"},{\"count\":null,\"hour\":2,\"known\":5,\"status\":\"smallest-known\"},{\"count\":null,\"hour\":3,\"known\":5,\"status\":\"smallest-known\"},{\"count\":null,\"hour\":4,\"known\":5,\"status\":\"smallest-known\"},{\"count\":null,\"hour\":5,\"known\":5,\"status\":\"smallest-known\"},{\"count\":null,\"hour\":6,\"known\":5,\"status\":\"smallest-known\"}],\"open\":[]}",
+        "features": [
+          "certificate-reuse",
+          "certificate-root-count:1",
+          "chain-follow-ups:6",
+          "count-certificate-reuse",
+          "entry-hour:2",
+          "entry-hour:3",
+          "entry-hour:4",
+          "entry-hour:5",
+          "entry-hour:6",
+          "exclusion-before-subset-fixation",
+          "mechanism:direction",
+          "mechanism:multi-hour-interior-count",
+          "mechanism:multi-hour-zero-count",
+          "mechanism:turn",
+          "minimum:1:unknown",
+          "minimum:2:unknown",
+          "minimum:3:unknown",
+          "minimum:4:unknown",
+          "minimum:5:unknown",
+          "minimum:6:unknown",
+          "open-hours:0"
+        ],
+        "entryStates": [
+          "H1",
+          "H4",
+          "H5",
+          "H1+H2",
+          "H1+H3",
+          "H1+H4",
+          "H1+H5",
+          "H2+H4",
+          "H2+H5",
+          "H3+H4",
+          "H3+H5",
+          "H4+H5"
+        ],
+        "exclusionEntryStates": [
+          "H1",
+          "H4",
+          "H5",
+          "H1+H2",
+          "H1+H3",
+          "H1+H4",
+          "H1+H5",
+          "H2+H4",
+          "H2+H5",
+          "H3+H4",
+          "H3+H5",
+          "H4+H5"
+        ],
+        "minimumCluesByHour": [
+          {
+            "hour": 1,
+            "count": null,
+            "known": 5,
+            "status": "smallest-known"
+          },
+          {
+            "hour": 2,
+            "count": null,
+            "known": 5,
+            "status": "smallest-known"
+          },
+          {
+            "hour": 3,
+            "count": null,
+            "known": 5,
+            "status": "smallest-known"
+          },
+          {
+            "hour": 4,
+            "count": null,
+            "known": 5,
+            "status": "smallest-known"
+          },
+          {
+            "hour": 5,
+            "count": null,
+            "known": 5,
+            "status": "smallest-known"
+          },
+          {
+            "hour": 6,
+            "count": null,
+            "known": 5,
+            "status": "smallest-known"
+          }
+        ],
+        "directHours": [],
+        "mixedCombinationHours": [],
+        "reusedFieldSteps": 16,
+        "maxFixedCertificateFollowUps": 6,
+        "certificateRoots": [
+          2
+        ],
+        "countReuse": true,
+        "openHours": [],
+        "localCouplings": 0,
+        "exactCouplings": 0,
+        "missingSubsetCount": 5,
+        "scope": "Known local certificates and exact projections, not human solving order, necessary thought depth or enjoyment."
+      }
+    },
+    {
+      "testName": "B2-S03-M004-A1-R347-V03",
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M004/gk-variant-v2-sha256:984c5051c73109644b0ddb711021a6715681ed1e2bfe05772df9f5f2e9531ed7",
+      "clueCount": 4,
+      "signals": {
+        "signature": "{\"completionRules\":[{\"hour\":1,\"rule\":\"count-bounds\"},{\"hour\":2,\"rule\":\"no-revisit-singleton\"},{\"hour\":3,\"rule\":\"no-revisit-singleton\"},{\"hour\":4,\"rule\":\"predecessor-support\"},{\"hour\":5,\"rule\":\"predecessor-support\"},{\"hour\":6,\"rule\":\"no-revisit-singleton\"}],\"directHours\":[1],\"minima\":[{\"count\":1,\"hour\":1,\"known\":1,\"status\":\"proven-minimum\"},{\"count\":2,\"hour\":2,\"known\":2,\"status\":\"proven-minimum\"},{\"count\":2,\"hour\":3,\"known\":2,\"status\":\"proven-minimum\"},{\"count\":2,\"hour\":4,\"known\":2,\"status\":\"proven-minimum\"},{\"count\":3,\"hour\":5,\"known\":3,\"status\":\"proven-minimum\"},{\"count\":4,\"hour\":6,\"known\":4,\"status\":\"proven-minimum\"}],\"open\":[]}",
+        "features": [
+          "certificate-reuse",
+          "certificate-root-count:1",
+          "chain-follow-ups:5",
+          "count-certificate-reuse",
+          "entry-hour:1",
+          "entry-hour:2",
+          "entry-hour:3",
+          "entry-hour:4",
+          "entry-hour:5",
+          "entry-hour:6",
+          "exclusion-before-subset-fixation",
+          "mechanism:distanceBetweenHours",
+          "mechanism:multi-hour-zero-count",
+          "minimum:1:1",
+          "minimum:2:2",
+          "minimum:3:2",
+          "minimum:4:2",
+          "minimum:5:3",
+          "minimum:6:4",
+          "mixed-combination",
+          "open-hours:0"
+        ],
+        "entryStates": [
+          "H1",
+          "H2",
+          "H3",
+          "H4",
+          "H1+H2",
+          "H1+H3",
+          "H1+H4",
+          "H2+H3",
+          "H2+H4",
+          "H3+H4"
+        ],
+        "exclusionEntryStates": [
+          "H2",
+          "H3",
+          "H4",
+          "H2+H3",
+          "H2+H4",
+          "H3+H4"
+        ],
+        "minimumCluesByHour": [
+          {
+            "hour": 1,
+            "count": 1,
+            "known": 1,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 2,
+            "count": 2,
+            "known": 2,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 3,
+            "count": 2,
+            "known": 2,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 4,
+            "count": 2,
+            "known": 2,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 5,
+            "count": 3,
+            "known": 3,
+            "status": "proven-minimum"
+          },
+          {
+            "hour": 6,
+            "count": 4,
+            "known": 4,
+            "status": "proven-minimum"
+          }
+        ],
+        "directHours": [
+          1
+        ],
+        "mixedCombinationHours": [
+          5,
+          6
+        ],
+        "reusedFieldSteps": 23,
+        "maxFixedCertificateFollowUps": 5,
+        "certificateRoots": [
+          1
+        ],
+        "countReuse": true,
+        "openHours": [],
+        "localCouplings": 0,
+        "exactCouplings": 0,
+        "missingSubsetCount": 0,
+        "scope": "Known local certificates and exact projections, not human solving order, necessary thought depth or enjoyment."
+      }
+    }
+  ],
+  "diversity": {
+    "decisions": [
+      {
+        "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001/gk-variant-v2-sha256:0aa48e5c47ae2839fd40026b2631facbb03e2c246f6d50c753da64ee3553d6b8",
+        "newFeatures": [
+          "certificate-reuse",
+          "certificate-root-count:1",
+          "chain-follow-ups:3",
+          "count-certificate-reuse",
+          "entry-hour:1",
+          "entry-hour:2",
+          "entry-hour:3",
+          "entry-hour:4",
+          "entry-hour:5",
+          "entry-hour:6",
+          "exclusion-before-subset-fixation",
+          "mechanism:multi-hour-interior-count",
+          "mechanism:multi-hour-zero-count",
+          "mechanism:single-hour-count-exclusion",
+          "mechanism:single-hour-count-hit",
+          "mechanism:turn",
+          "minimum:1:2",
+          "minimum:2:2",
+          "minimum:3:1",
+          "minimum:4:3",
+          "minimum:5:unknown",
+          "minimum:6:unknown",
+          "mixed-combination",
+          "open-hours:2"
+        ]
+      },
+      {
+        "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M002/gk-variant-v2-sha256:4d73b56f93be56e26d3c00f1b16b996a461dd3362f24fad7038a3168766649c4",
+        "newFeatures": [
+          "certificate-root-count:2",
+          "chain-follow-ups:5",
+          "mechanism:multi-hour-all-count",
+          "minimum:1:1",
+          "minimum:2:1",
+          "minimum:3:2",
+          "minimum:4:2",
+          "minimum:5:2",
+          "minimum:6:3",
+          "open-hours:0"
+        ]
+      },
+      {
+        "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M003/gk-variant-v2-sha256:2d3793abafe2d1b17fefd961b789caea1ef73e07f07861aa7bc284374b8ea34d",
+        "newFeatures": [
+          "chain-follow-ups:6",
+          "mechanism:direction",
+          "minimum:1:unknown",
+          "minimum:2:unknown",
+          "minimum:3:unknown",
+          "minimum:4:unknown"
+        ]
+      },
+      {
+        "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M004/gk-variant-v2-sha256:984c5051c73109644b0ddb711021a6715681ed1e2bfe05772df9f5f2e9531ed7",
+        "newFeatures": [
+          "mechanism:distanceBetweenHours",
+          "minimum:5:3",
+          "minimum:6:4"
+        ]
+      }
+    ],
+    "features": [
+      "certificate-reuse",
+      "certificate-root-count:1",
+      "certificate-root-count:2",
+      "chain-follow-ups:3",
+      "chain-follow-ups:5",
+      "chain-follow-ups:6",
+      "count-certificate-reuse",
+      "entry-hour:1",
+      "entry-hour:2",
+      "entry-hour:3",
+      "entry-hour:4",
+      "entry-hour:5",
+      "entry-hour:6",
+      "exclusion-before-subset-fixation",
+      "mechanism:direction",
+      "mechanism:distanceBetweenHours",
+      "mechanism:multi-hour-all-count",
+      "mechanism:multi-hour-interior-count",
+      "mechanism:multi-hour-zero-count",
+      "mechanism:single-hour-count-exclusion",
+      "mechanism:single-hour-count-hit",
+      "mechanism:turn",
+      "minimum:1:1",
+      "minimum:1:2",
+      "minimum:1:unknown",
+      "minimum:2:1",
+      "minimum:2:2",
+      "minimum:2:unknown",
+      "minimum:3:1",
+      "minimum:3:2",
+      "minimum:3:unknown",
+      "minimum:4:2",
+      "minimum:4:3",
+      "minimum:4:unknown",
+      "minimum:5:2",
+      "minimum:5:3",
+      "minimum:5:unknown",
+      "minimum:6:3",
+      "minimum:6:4",
+      "minimum:6:unknown",
+      "mixed-combination",
+      "open-hours:0",
+      "open-hours:2"
+    ],
+    "distinctSignatures": 4,
+    "distinctMaps": 4
+  },
+  "notSelected": [
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001/gk-variant-v2-sha256:814b36d62760540cecc72a82a21922ca8b6aa46b9a71c3e39736e924fa16ad57",
+      "reason": "SERIES_NOT_SELECTED",
+      "constraint": "MAP_ALREADY_SELECTED"
+    }
+  ],
+  "unmetGoals": [
+    "Only 4 of up to ten selected",
+    "Human enjoyment, difficulty and series variety remain untested."
+  ],
+  "searchFailures": {
+    "NO_PROGRESS": 3411,
+    "LOCAL_REMAINDER": 19,
+    "CLUE_COUNT": 8,
+    "RESTART_BUDGET_EXHAUSTED": 20,
+    "DIAGNOSIS_BUDGET_EXHAUSTED": 48
+  },
+  "searchCosts": {
+    "restarts": 80,
+    "solverChecks": 5343,
+    "matchEvaluations": 3759673,
+    "routeFilterEvaluations": 9838193
+  }
+}

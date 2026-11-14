@@ -21,6 +21,7 @@ test('S03 uses the existing selection, isolated marks, public DTO and solution c
   await page.locator('#puzzleSelect').selectOption(last.testName);await expect(page.locator('h1')).toHaveText(last.testName);
   await page.reload();await expect(page.locator('h1')).toHaveText(last.testName);
   await page.locator('#puzzleSelect').selectOption(first.testName);
+  await expect(page.locator('h1')).toHaveText(first.testName);
   expect((await state()).marks).toEqual({'1:A1':'maybe'});
  }
  const dto=await (await page.request.get('/.dev/b2-s03/'+first.testName+'.json')).json();

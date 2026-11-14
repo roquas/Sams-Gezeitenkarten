@@ -1,0 +1,211 @@
+{
+  "totalMs": 3466.2297100000005,
+  "node": "v24.19.0",
+  "peakRssKiB": 266924,
+  "cpuUsage": {
+    "user": 3862457,
+    "system": 917396
+  },
+  "costs": [
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M000/gk-variant-v2-sha256:b84da7ab442f3cec7ab0d24ea5c42a7a3de0fdea0b633f6dfa9f79d614ba6f4e",
+      "diagnosisMs": 26.001457000000073,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M000/gk-variant-v2-sha256:4748c18f4ffe649cecc22f5e0de641be91df6fa4dd2b8079657eccdb81371e3d",
+      "diagnosisMs": 12.392859000000044,
+      "states": 8
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M000/gk-variant-v2-sha256:22e05e694c238e714fb54f00eefefbb4f1d8987bcc65bdc7b60baeaf313b64a7",
+      "diagnosisMs": 25.903962999999976,
+      "states": 27
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M000",
+      "targetMs": 116.800659
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001/gk-variant-v2-sha256:0aa48e5c47ae2839fd40026b2631facbb03e2c246f6d50c753da64ee3553d6b8",
+      "diagnosisMs": 97.58087,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001/gk-variant-v2-sha256:814b36d62760540cecc72a82a21922ca8b6aa46b9a71c3e39736e924fa16ad57",
+      "diagnosisMs": 75.22818800000005,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001/gk-variant-v2-sha256:bc55b6fa1312e5e5e4811aeb38f758e18847edcf88b7defca6b37a098a741ac5",
+      "diagnosisMs": 72.38973400000009,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001/gk-variant-v2-sha256:801836f53fe80ac357e3d946b9b2e3506dee5cd9beb9faad0845e906ffde5708",
+      "diagnosisMs": 103.037151,
+      "states": 65
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001",
+      "targetMs": 677.9211159999999
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M002/gk-variant-v2-sha256:36ecd5ef6151243e0ff999da2a2cc9968e4cad7a3924821c9e553ce0443be609",
+      "diagnosisMs": 27.12799300000006,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M002/gk-variant-v2-sha256:d2862b61dbf384857938ea0ed9c8ccb8e82d7dda0d05c56a52dbe52d135385b3",
+      "diagnosisMs": 30.944002000000182,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M002/gk-variant-v2-sha256:4d73b56f93be56e26d3c00f1b16b996a461dd3362f24fad7038a3168766649c4",
+      "diagnosisMs": 14.61107099999981,
+      "states": 8
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M002/gk-variant-v2-sha256:4b37f12e4f55fd9683a9d6342952448d7bebc1c7dee935bcc0e0964c712ad1c0",
+      "diagnosisMs": 54.449199000000135,
+      "states": 43
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M002",
+      "targetMs": 206.56392300000016
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M003/gk-variant-v2-sha256:9eef5f23e158efd0438be3265e09b027292c2b53c9ed2a5789b4721a1104688c",
+      "diagnosisMs": 43.71605999999997,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M003/gk-variant-v2-sha256:2d3793abafe2d1b17fefd961b789caea1ef73e07f07861aa7bc284374b8ea34d",
+      "diagnosisMs": 45.23279000000002,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M003/gk-variant-v2-sha256:f428cb60de0095fdea53e02e573bfdf80e8f3deb71c0b83416bab8698547a7d8",
+      "diagnosisMs": 35.23724400000037,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M003/gk-variant-v2-sha256:41b70f840026dfee1069e3feaf2008d96c04003d4e402992469bfd6cbcc2c324",
+      "diagnosisMs": 53.108058000000256,
+      "states": 43
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M003",
+      "targetMs": 472.48947699999985
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M004/gk-variant-v2-sha256:9a7eea7a981bae0df25b9e71a3a168fb87bb197347b7154d3581d1d9682c6e41",
+      "diagnosisMs": 75.99634699999979,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M004/gk-variant-v2-sha256:372bc56adb4de808571286af9c36c9f850e45ff4a2c32920ecc4da730f316f55",
+      "diagnosisMs": 30.196082999999817,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M004/gk-variant-v2-sha256:984c5051c73109644b0ddb711021a6715681ed1e2bfe05772df9f5f2e9531ed7",
+      "diagnosisMs": 16.746309999999994,
+      "states": 16
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M004",
+      "targetMs": 170.05059299999994
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M005/gk-variant-v2-sha256:d7b38c2b04b4439df727b3b87c5c93098c3759c4664283c3eb188a0c688a0e9f",
+      "diagnosisMs": 96.83183899999995,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M005/gk-variant-v2-sha256:7164e6c6b0efaf77446904b787ce633ac43b2cf78105a9a8c275cd13e44fe47c",
+      "diagnosisMs": 54.94425699999965,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M005/gk-variant-v2-sha256:f93b0fbe9821adf509114c9348a5e76c34ae9e451e640a56ec7136307615ad59",
+      "diagnosisMs": 49.65555200000017,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M005/gk-variant-v2-sha256:9da1e799e28fa46b5c10d928c24a5d10ce0cd52367d811abab6b5a779f6605a0",
+      "diagnosisMs": 52.21814899999981,
+      "states": 27
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M005",
+      "targetMs": 532.3915139999999
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M006/gk-variant-v2-sha256:653bec29d213e31cb1696dedeefa838ca6ab8f6557d7e5d14d8ff521bc2e97d7",
+      "diagnosisMs": 40.72878200000014,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M006/gk-variant-v2-sha256:3756198bad7f8670ca204effcc18828d55e9aaaa06fbd69c4c47fb21b98da217",
+      "diagnosisMs": 31.687946999999895,
+      "states": 16
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M006",
+      "targetMs": 170.0698150000003
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M007",
+      "targetMs": 30.57861600000024
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M008",
+      "targetMs": 52.59026700000004
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M009",
+      "targetMs": 184.87506600000006
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M010",
+      "targetMs": 70.87649099999999
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M011",
+      "targetMs": 61.39789500000006
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M012",
+      "targetMs": 113.91995700000007
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M013",
+      "targetMs": 148.71891099999993
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M014",
+      "targetMs": 36.26307200000019
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M015",
+      "targetMs": 37.49520399999983
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M016",
+      "targetMs": 44.51813899999979
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M017",
+      "targetMs": 166.05679499999997
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M018",
+      "targetMs": 29.252406000000065
+    },
+    {
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M019",
+      "targetMs": 68.33960999999954
+    }
+  ]
+}

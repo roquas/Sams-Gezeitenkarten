@@ -1,0 +1,62 @@
+{
+  "registryVersion": 1,
+  "stockId": "B2-S03",
+  "source": "docs/verification/S03/run",
+  "experimentId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55",
+  "manifestSha256": "00f019e6c1aa0f38322b0f85d094185607f0a895dd0103a3217d36b9d0e568a7",
+  "candidatesSha256": "110a2ec3a3814b0a3b7cb55f8fa7915395ceefadec99bfc5287d7710e43f50c6",
+  "entries": [
+    {
+      "testName": "B2-S03-M001-A3-R751-V01",
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001/gk-variant-v2-sha256:0aa48e5c47ae2839fd40026b2631facbb03e2c246f6d50c753da64ee3553d6b8",
+      "recordSha256": "389775bb16c14412b62316fbd14a88c1ff339d5a05c351063606de2e0b16f06d",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:6259806f779f0cf3a734b77e2c8f014e42214316880222ceda01f07d97067982",
+        "instance": "gk-instance-v2-sha256:d1a706c04ef30d584c9c604f184cce6cec2a23437462346622dc27b621711035",
+        "variant": "gk-variant-v2-sha256:0aa48e5c47ae2839fd40026b2631facbb03e2c246f6d50c753da64ee3553d6b8"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:7f5acb9b0e7455a34c4cbefe56d7deb1358ad962278e11df1121415447eebbe7",
+      "contentSha256": "e15ab0e09f55f79c23b2695295d5365f95963e08d40f987c46d03240ca271477",
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M001"
+    },
+    {
+      "testName": "B2-S03-M002-A1-R532-V03",
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M002/gk-variant-v2-sha256:4d73b56f93be56e26d3c00f1b16b996a461dd3362f24fad7038a3168766649c4",
+      "recordSha256": "bd1d3b89161e09d5f674688cc2713d0072a880f862f90e41c7bcdd1f524b8390",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:32ef4cf70dd743b4c4de8236988c05b721114761c2271d27f39931535a2ffa95",
+        "instance": "gk-instance-v2-sha256:d11f88c7b38a21aa58ecbe2d0e30c70b4c1324b5b47d50d63eb0415b29bcd497",
+        "variant": "gk-variant-v2-sha256:4d73b56f93be56e26d3c00f1b16b996a461dd3362f24fad7038a3168766649c4"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:254d66fc53d88e8cc325b98ffbd7995057e03f4d6142b1c1064316a3cbe05761",
+      "contentSha256": "bb4eb59885fd36fc6b89aff6760ee51dfcc91cff51e2f508b718ef5dddac290f",
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M002"
+    },
+    {
+      "testName": "B2-S03-M003-A5-R436-V02",
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M003/gk-variant-v2-sha256:2d3793abafe2d1b17fefd961b789caea1ef73e07f07861aa7bc284374b8ea34d",
+      "recordSha256": "a0bd2b779882c1d0ea5c75b06cd50de05b3eb0e515e2558b1774a6605a2831be",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:f2f98818665e3dac22373438791482503f0f716ac4a53e5a115ba839bdcf3526",
+        "instance": "gk-instance-v2-sha256:289817ade7006e56cac066237781f255f63f2acd40ef233eb43a9b31410cef83",
+        "variant": "gk-variant-v2-sha256:2d3793abafe2d1b17fefd961b789caea1ef73e07f07861aa7bc284374b8ea34d"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:4ba5dc9f0ac78c2023e7d7fc7d2343f6bbc64189d5c314f216d722d027201560",
+      "contentSha256": "3dc0f3ae8fc8e996cb919b4d93eeb24b3c6ede277c763af702e875e34f393b6f",
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M003"
+    },
+    {
+      "testName": "B2-S03-M004-A1-R347-V03",
+      "candidateId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M004/gk-variant-v2-sha256:984c5051c73109644b0ddb711021a6715681ed1e2bfe05772df9f5f2e9531ed7",
+      "recordSha256": "128075a10fa7fa3a4f4b240278e04c1b2f1cfeb5c552a7d5daca79722ebdb1c1",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:1e9e328b8fa6f3d1b9de6de8b8ecf106135cd3a7ab8eb29a69a8e6be496c7983",
+        "instance": "gk-instance-v2-sha256:0e055c4c7e5982921735f932c40188d1f002726008ad25fdd3d9f4774b332a64",
+        "variant": "gk-variant-v2-sha256:984c5051c73109644b0ddb711021a6715681ed1e2bfe05772df9f5f2e9531ed7"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:cc42f9062638b402420c63f539dc125f36e71624f9504c6120d0944cdb6c4d82",
+      "contentSha256": "90bca165b018c02894cf02f23977e15deb3eaf3e5f3a47f6ae60a9592c3c82a7",
+      "attemptId": "gk-s03-run-sha256:7029ae823102e6f9d2bc07a063d2d61a59f45021cf6f13ed642e30059e2dae55/M004"
+    }
+  ]
+}

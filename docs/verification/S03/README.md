@@ -5,6 +5,7 @@ ist keine menschliche Bestätigung von Schwierigkeit, Spielspaß oder Abwechslun
 Der Tagesrätselbetrieb und historische Bestände werden nicht verändert.
 
 - [Vorab festgelegter Architektur- und Auswahlvertrag](contract.md)
+- [Auswertung, Grenzen und Abnahme](pilot-assessment.md) – enthält Diagnoseinformationen
 - [Technischer Pilotbericht](run/report.md) – enthält Diagnoseinformationen
 - [Lösungsfreie Spieltestübersicht](../../S03-PLAYTEST.md)
 - `run/manifest.json`: Programmcommit, Node, Konfiguration, Vertrag und Quellhashes

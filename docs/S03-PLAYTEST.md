@@ -20,6 +20,13 @@ Veröffentlichung oder Umstellung der täglichen Rätsel. Bei späterer Bereitst
 wird aus dem dann freigegebenen Stand erneut exportiert, damit dessen freigegebene
 Hinweisformulierungen verwendet werden.
 
+## Testkennungen
+
+- `B2-S03-M001-A3-R751-V01`
+- `B2-S03-M002-A1-R532-V03`
+- `B2-S03-M003-A5-R436-V02`
+- `B2-S03-M004-A1-R347-V03`
+
 ## Testprotokoll
 
 Bitte je gespieltem Rätsel die angezeigte Kennung festhalten. Freie Wahl der
