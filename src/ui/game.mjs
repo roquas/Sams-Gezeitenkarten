@@ -23,7 +23,7 @@ createMobileViews();
 const params=new URLSearchParams(window.location.search);
 const b2Development=params.get('dev')==='b2';
 const b2Stock=params.get('stock')??'S01';
-if(b2Development&&!['S01','S02','BC','POSITIVE','POSITIVE-V2'].includes(b2Stock))throw Error('Unbekannter B2-Bestand: '+b2Stock);
+if(b2Development&&!['S01','S02','S03','BC','POSITIVE','POSITIVE-V2'].includes(b2Stock))throw Error('Unbekannter B2-Bestand: '+b2Stock);
 const selectionKey=b2Development?(b2Stock==='S01'?'gezeitenkarten-selected-b2':'gezeitenkarten-selected-b2-'+b2Stock):'gezeitenkarten-selected-puzzle';
 const b2Manifest=b2Stock==='S01'?'../../.dev/b2/manifest.json':'../../.dev/b2-'+b2Stock.toLowerCase()+'/manifest.json';
 const loader=createPuzzleLoader({manifestUrl:new URL(b2Development?b2Manifest:'../../puzzles/manifest.json',import.meta.url)});

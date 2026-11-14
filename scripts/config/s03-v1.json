@@ -1,0 +1,28 @@
+{
+  "protocol": "s03-quality-pilot-1",
+  "seed": 303,
+  "maxTargets": 20,
+  "maxDiagnoses": 24,
+  "maxSelected": 10,
+  "timeoutMs": 600000,
+  "maxNodes": 100000,
+  "maxClueParameters": 100000,
+  "cluePolicy": "s03-no-multihour-zero-1",
+  "search": {
+    "maxRestarts": 4,
+    "maxSolverChecks": 2000,
+    "maxMatchEvaluations": 5000000,
+    "maxRouteFilterEvaluations": 20000000
+  },
+  "quality": {
+    "minRoutes": 16,
+    "maxBaselineFixed": 2,
+    "minClues": 3,
+    "maxClues": 7,
+    "maxSingleFixed": 3,
+    "maxOpenHours": 2,
+    "maxOpenDomain": 3,
+    "maxCouplings": 2
+  },
+  "maxPerSignature": 2
+}

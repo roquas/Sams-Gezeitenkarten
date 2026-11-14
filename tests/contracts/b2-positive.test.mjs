@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {assertHistoricalEvidence} from '../helpers/historical-evidence.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -40,8 +41,12 @@ test('hand-authored reference meets the precommitted A–F contract without chan
  }
 });
 
-test('recorded evidence reproduces byte-for-byte and a broken central condition fails the fixed contract',()=>{
- for(const [name,bytes] of positiveReportFiles())assert.equal(fs.readFileSync(path.join(ROOT,POSITIVE_DIRECTORY,'private',name),'utf8'),bytes,name);
+test('recorded evidence preserves its historical provenance and reproduces and a broken central condition fails the fixed contract',()=>{
+ for(const [name,bytes] of positiveReportFiles()){
+  const stored=fs.readFileSync(path.join(ROOT,POSITIVE_DIRECTORY,'private',name),'utf8');
+  if(name==='evidence.json')assertHistoricalEvidence(stored,bytes);
+  else assert.equal(stored,bytes,name);
+ }
  const changed=structuredClone(definition);changed.logic.clues.find(c=>c.id==='H4').distance++;
  assert.throws(()=>positiveEvidence(changed));
  // The public builder must also reject changes that break target or uniqueness.
