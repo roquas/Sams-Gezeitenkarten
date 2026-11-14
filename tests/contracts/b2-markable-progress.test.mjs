@@ -78,6 +78,16 @@ test('D preserves exclusions, possible hour 6 and non-representable associations
  assert.equal(profile('D').intermediateProgress.relationalEvidence.associationMarksAvailable,false);
 });
 
+test('large transition sets keep directed-transition units and field-set wording',()=>{
+ const report=renderProgressReport(profiles);
+ const relations=report.match(/\*\*Relationale Restalternativen:\*\* [^\n]+/g);
+ assert.ok(relations?.length);
+ assert.ok(relations.some(line=>line.includes('14 gerichtete Übergänge (im JSON vollständig)')));
+ for(const line of relations)assert.doesNotMatch(line,/\d+ Felder/);
+ assert.match(report,/23 Felder \(im JSON vollständig\)/);
+ assert.match(report,/Stunde 3→4: \{A1→A2, A2→A1\}/);
+});
+
 test('version 2 is additive, preserves all base fields and leaves version 1 byte-identical',()=>{
  for(const input of inputs){
   const p=profile(input.id),{format,baseFormat,intermediateProgress,...rest}=p;

@@ -114,7 +114,7 @@ Alle untersuchten Zustände, konkreten Markierungen, direkten Prämissen und bek
 | [H1+H4](../../../docs/verification/B2-deduction/T02.jsonl#L10) | Stunde 1: × {A5, B5}; ? {A3, B3, B4} | D21 (`successor-support`; H1+H4); bekannte Weitergabe z. B. D21→D22 |
 | [H1+H4](../../../docs/verification/B2-deduction/T02.jsonl#L10) | Stunde 2: × 7 Felder (im JSON vollständig); ? {A2, B2, C3} | D22 (`predecessor-support`; H1+H4) (weitere Zeugen im JSON); bekannte Weitergabe z. B. D22→D23 |
 
-**Relationale Restalternativen:** Stunde 1→2: {A3→A2, B3→B2, B4→C3}; Stunde 2→3: 12 Felder (im JSON vollständig); Stunde 3→4: 39 Felder (im JSON vollständig); Stunde 4→5: 46 Felder (im JSON vollständig); Stunde 5→6: 53 Felder (im JSON vollständig). Feldmarkierungen können die Endpunkte festhalten, ihre Zuordnungen bleiben in der heutigen GUI unvollständig darstellbar. Lokale Kanten sind keine bewiesenen Restwege.
+**Relationale Restalternativen:** Stunde 1→2: {A3→A2, B3→B2, B4→C3}; Stunde 2→3: 12 gerichtete Übergänge (im JSON vollständig); Stunde 3→4: 39 gerichtete Übergänge (im JSON vollständig); Stunde 4→5: 46 gerichtete Übergänge (im JSON vollständig); Stunde 5→6: 53 gerichtete Übergänge (im JSON vollständig). Feldmarkierungen können die Endpunkte festhalten, ihre Zuordnungen bleiben in der heutigen GUI unvollständig darstellbar. Lokale Kanten sind keine bewiesenen Restwege.
 
 Alle untersuchten Zustände, konkreten Markierungen, direkten Prämissen und bekannten Folgefestlegungen: [Profilversion 2](T02.json). Exakte Projektionen stehen dort getrennt unter `intermediateProgress.states[].exact` und tragen keine lokalen Regelzertifikate.
 
@@ -127,7 +127,7 @@ Alle untersuchten Zustände, konkreten Markierungen, direkten Prämissen und bek
 | [H1+H2+H3+H4+H5+H6+H7](../../../docs/verification/B2-deduction/T07.jsonl#L65) | Stunde 3: × 16 Felder (im JSON vollständig); ? {B2, C1, C3} | D55 (`successor-support`; H1+H2+H3+H4+H5+H7) (weitere Zeugen im JSON); bekannte Weitergabe z. B. D55→D56 |
 | [H1+H2+H3+H4+H5+H6+H7](../../../docs/verification/B2-deduction/T07.jsonl#L65) | Stunde 4: × 19 Felder (im JSON vollständig); ? {B1, B2, B3, B4} | D56 (`predecessor-support`; H1+H2+H3+H4+H5+H7) (weitere Zeugen im JSON); bekannte Weitergabe z. B. D56→D57 |
 
-**Relationale Restalternativen:** Stunde 3→4: {B2→B3, C1→B1, C1→B2, C3→B2, C3→B3, C3→B4}; Stunde 4→5: {B1→A2, B2→A2, B2→C3, B3→A4, B3→B4, B4→C5}; Stunde 5→6: 14 Felder (im JSON vollständig). Feldmarkierungen können die Endpunkte festhalten, ihre Zuordnungen bleiben in der heutigen GUI unvollständig darstellbar. Lokale Kanten sind keine bewiesenen Restwege.
+**Relationale Restalternativen:** Stunde 3→4: {B2→B3, C1→B1, C1→B2, C3→B2, C3→B3, C3→B4}; Stunde 4→5: {B1→A2, B2→A2, B2→C3, B3→A4, B3→B4, B4→C5}; Stunde 5→6: 14 gerichtete Übergänge (im JSON vollständig). Feldmarkierungen können die Endpunkte festhalten, ihre Zuordnungen bleiben in der heutigen GUI unvollständig darstellbar. Lokale Kanten sind keine bewiesenen Restwege.
 
 Alle untersuchten Zustände, konkreten Markierungen, direkten Prämissen und bekannten Folgefestlegungen: [Profilversion 2](T07.json). Exakte Projektionen stehen dort getrennt unter `intermediateProgress.states[].exact` und tragen keine lokalen Regelzertifikate.
 

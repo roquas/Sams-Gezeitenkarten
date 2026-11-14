@@ -7,7 +7,7 @@ import {buildProgressProfiles} from './lib/b2-markable-progress.mjs';
 
 export const OUTPUT='docs/verification/B2-deduction-profile-v2';
 const table=(head,rows)=>['| '+head.join(' | ')+' |','| '+head.map(()=>'---').join(' | ')+' |',...rows.map(row=>'| '+row.join(' | ')+' |')].join('\n');
-const cells=values=>values.length<=6?'{'+values.join(', ')+'}':`${values.length} Felder (im JSON vollständig)`;
+const cells=(values,unit='Felder')=>values.length<=6?'{'+values.join(', ')+'}':`${values.length} ${unit} (im JSON vollständig)`;
 // Fixed reading examples, not ranked candidates or a proposed solution plan.
 const READINGS={
  A:[['H1',[1,2]]], B:[['H1',[1]],['H2+H3',[3,4,5,6]],['full',[2]]],
@@ -58,7 +58,7 @@ export function renderProgressReport(profiles){
    p.id==='C'?'Die ersten beiden Paarzustände sind alternative nutzbare Teilbefunde, keine erzwungene Reihenfolge. Beim markierten D19-Beispiel zeigt × nur dessen fünf Ausschlüsse; ? zeigt den Fixpunkt des gesamten Zustands einschließlich weiterer Propagation.\n\n':
    p.id==='D'?'Stunde 6 ist im frühen H1+H2+H5-Zustand als Alternativmenge markierbar, noch nicht als sichere Position. „H6“ bezeichnet hier Stunde 6, keinen sechsten Hinweis.\n\n':'';
   const coupled=p.evidence.representation.localCouplings;
-  const relation=coupled.length?'**Relationale Restalternativen:** '+coupled.map(r=>`Stunde ${r.fromHour}→${r.toHour}: ${cells(r.transitions.map(t=>t.replace('>','→')))}`).join('; ')+
+  const relation=coupled.length?'**Relationale Restalternativen:** '+coupled.map(r=>`Stunde ${r.fromHour}→${r.toHour}: ${cells(r.transitions.map(t=>t.replace('>','→')),'gerichtete Übergänge')}`).join('; ')+
    '. Feldmarkierungen können die Endpunkte festhalten, ihre Zuordnungen bleiben in der heutigen GUI unvollständig darstellbar. Lokale Kanten sind keine bewiesenen Restwege.\n\n':'';
   return `## ${p.id} – ${p.label}\n\n`+special+table(['Bekannter Zustand','Zusätzlicher feldbezogener Befund am Fixpunkt','Regelzeugen / Begründungsweitergabe'],rows)+'\n\n'+relation+
    `Alle untersuchten Zustände, konkreten Markierungen, direkten Prämissen und bekannten Folgefestlegungen: [Profilversion 2](${p.id}.json). `+
