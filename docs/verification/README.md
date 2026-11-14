@@ -1,5 +1,10 @@
 # Verifikationsnachweise
 
+[Markierbare Zwischenfortschritte, Profilversion 2](B2-deduction-profile-v2/report.md):
+konkrete ×/?/✓ mit Zustands- und Regelzeugen für A–D und die bisherigen Referenzen.
+[Datenformat und Reproduktion](B2-markable-progress.md),
+`npm run report:b2:progress -- --check`. Enthält Lösungsschlüsse; Version 1 bleibt unverändert.
+
 [B2-Deduktionsprofile](B2-deduction-profile/report.md): beschreibender Offline-Vergleich
 von V1/V2, T02/T07 und der T07-Kontrolle; enthält Lösungsschlüsse.
 [Datenformat und Grenzen](B2-deduction-profile.md). Reproduktion:
