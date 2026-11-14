@@ -76,7 +76,7 @@ let dragging=false,dragValue=null;
 const $=id=>document.getElementById(id);
 function save(){saveState(puzzle,state,storage)}
 function snapshot(){history.push(state)}
-function renderMap(){drawMap({state,puzzle,cells,byId,blocked,pretty,key,onActivate:apply,frameStyle})}
+function renderMap(){drawMap({state,puzzle,rules,cells,byId,blocked,pretty,key,onActivate:apply,frameStyle})}
 const renderToolbar=createToolbar({...puzzle,steps:6,rules});
 function render(){if(state.layer==="all")state.layer=1;
  renderToolbar(state,{...puzzle,rules});
