@@ -1,0 +1,386 @@
+{
+  "format": "b2-progress-evidence-1",
+  "implementation": [
+    {
+      "path": "scripts/report-b2-progress-evidence.mjs",
+      "sha256": "b4d1d733aaad1c5e7527c97547c11ec7636cbc7637dd68af00768f5658ccd9b4"
+    },
+    {
+      "path": "scripts/lib/b2-deduction.mjs",
+      "sha256": "559aee182111e94c9f7f14ad4d9a26fa4831a5f3d8e2a9377e4bbd8930f56441"
+    },
+    {
+      "path": "scripts/lib/b2-local-deduction.mjs",
+      "sha256": "274808453b907f9aa13c1827ac257487b7cbac4206c68698c414ac8accf63dea"
+    },
+    {
+      "path": "src/engine/solver.mjs",
+      "sha256": "674b79e93b11e6a8f9355a844900ded0a60a4b7071baf055b145a0d8282b452d"
+    },
+    {
+      "path": "src/engine/puzzle.mjs",
+      "sha256": "90c8750e1da208d9cce256a05afa3b9ae819fe56c29822e49b4bdd944a8fa10d"
+    },
+    {
+      "path": "src/engine/hex.mjs",
+      "sha256": "7854533abe9609afcd10b81949e7652359abaedb632758c0812efe7d3e7ed268"
+    }
+  ],
+  "scope": "Four fixed existing cases; no stored answers passed to diagnosis.",
+  "cases": [
+    {
+      "id": "A",
+      "label": "B2-S02-M010-E4-R00-V01",
+      "variant": "gk-variant-v2-sha256:a0101c10fac0c59439c960659d0375de9ed2c3f54f88238c2db0cf4f3f019997",
+      "logic": {
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "id": "geo-01",
+              "cells": [
+                "A5",
+                "B5"
+              ],
+              "passable": false
+            },
+            {
+              "id": "geo-02",
+              "cells": [
+                "E4"
+              ],
+              "passable": true
+            }
+          ]
+        },
+        "start": "E4",
+        "steps": 6,
+        "clues": [
+          {
+            "id": "H1",
+            "type": "countDistanceToPlace",
+            "fromHour": 0,
+            "toHour": 6,
+            "placeId": "geo-01",
+            "distance": 4,
+            "count": 7
+          }
+        ]
+      },
+      "givens": [],
+      "inputs": [
+        {
+          "path": "scripts/config/b2-playtest-s02.json",
+          "sha256": "76bc89a2149f8e1a255783a2af0e14ea08d2c2685cd0e070ea7a2d32ee37d7d1"
+        },
+        {
+          "path": "docs/verification/B2-S02/run/candidates.jsonl",
+          "sha256": "84d5b224121047521e6e1b9d7c100270807beaed8482f8d3d72dc4457a3e06e1"
+        }
+      ],
+      "states": {
+        "path": "docs/verification/B2-deduction-progress/private/A.jsonl",
+        "sha256": "e27e33b4a90e948c498df2485158ce63901b296894d4d13836bf752bba73e3a4",
+        "count": 2
+      }
+    },
+    {
+      "id": "B",
+      "label": "B2-S02-M000-A1-R00-V01",
+      "variant": "gk-variant-v2-sha256:4b10a91e8fbd2246da8d157947196e69af86d6c3db8864149f9b79d80f3a80cd",
+      "logic": {
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "id": "geo-01",
+              "cells": [
+                "B4",
+                "C3",
+                "C4"
+              ],
+              "passable": false
+            },
+            {
+              "id": "geo-02",
+              "cells": [
+                "C1",
+                "D1"
+              ],
+              "passable": false
+            },
+            {
+              "id": "geo-03",
+              "cells": [
+                "A5"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-04",
+              "cells": [
+                "A1"
+              ],
+              "passable": true
+            }
+          ]
+        },
+        "start": "A1",
+        "steps": 6,
+        "clues": [
+          {
+            "id": "H1",
+            "type": "countDistanceToPlace",
+            "fromHour": 0,
+            "toHour": 1,
+            "placeId": "geo-03",
+            "distance": 3,
+            "count": 0
+          },
+          {
+            "id": "H2",
+            "type": "direction",
+            "hour": 6,
+            "direction": "NE"
+          },
+          {
+            "id": "H3",
+            "type": "distanceBetweenHours",
+            "hours": [
+              2,
+              6
+            ],
+            "distance": 4
+          }
+        ]
+      },
+      "givens": [],
+      "inputs": [
+        {
+          "path": "scripts/config/b2-playtest-s02.json",
+          "sha256": "76bc89a2149f8e1a255783a2af0e14ea08d2c2685cd0e070ea7a2d32ee37d7d1"
+        },
+        {
+          "path": "docs/verification/B2-S02/run/candidates.jsonl",
+          "sha256": "84d5b224121047521e6e1b9d7c100270807beaed8482f8d3d72dc4457a3e06e1"
+        }
+      ],
+      "states": {
+        "path": "docs/verification/B2-deduction-progress/private/B.jsonl",
+        "sha256": "4e410d6868cdcf16fd6bacf1fe6564a80867e22c110f9cae4de4da044f39bfa6",
+        "count": 8
+      }
+    },
+    {
+      "id": "C",
+      "label": "B2-BC-T06-M005-E3-R00",
+      "variant": "gk-variant-v2-sha256:7ecddd88a69ece8bd07c42736f97f646f1fc2c490cd3da242914e5429a517e79",
+      "logic": {
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "id": "geo-01",
+              "cells": [
+                "B5"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-02",
+              "cells": [
+                "E3"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-03",
+              "cells": [
+                "E1"
+              ],
+              "passable": true
+            }
+          ]
+        },
+        "start": "E3",
+        "steps": 6,
+        "clues": [
+          {
+            "id": "H1",
+            "type": "countDistanceToPlace",
+            "fromHour": 2,
+            "toHour": 3,
+            "placeId": "geo-02",
+            "distance": 3,
+            "count": 1
+          },
+          {
+            "id": "H2",
+            "type": "countDistanceToPlace",
+            "fromHour": 2,
+            "toHour": 4,
+            "placeId": "geo-02",
+            "distance": 3,
+            "count": 1
+          },
+          {
+            "id": "H3",
+            "type": "countDistanceToPlace",
+            "fromHour": 0,
+            "toHour": 3,
+            "placeId": "geo-03",
+            "distance": 1,
+            "count": 2
+          },
+          {
+            "id": "H4",
+            "type": "countDistanceToPlace",
+            "fromHour": 1,
+            "toHour": 6,
+            "placeId": "geo-03",
+            "distance": 4,
+            "count": 2
+          },
+          {
+            "id": "H5",
+            "type": "direction",
+            "hour": 5,
+            "direction": "W"
+          }
+        ]
+      },
+      "givens": [],
+      "inputs": [
+        {
+          "path": "scripts/config/b2-playtest-bc.json",
+          "sha256": "6d2bd5bdfc1e4e4ff5df7b5eac7979fe5fe6ded38e652d08500266f0ddc42249"
+        },
+        {
+          "path": "docs/verification/B2-search-comparison/candidates.jsonl",
+          "sha256": "1984e96159b1aea61a1cc758903748ae7b40223a36463e181a47b2707511afbf"
+        }
+      ],
+      "states": {
+        "path": "docs/verification/B2-deduction-progress/private/C.jsonl",
+        "sha256": "59bdba23c77b8bb07c7222e8a22cbadd3c930e278ed21f6198e50d7b16d2e990",
+        "count": 32
+      }
+    },
+    {
+      "id": "D",
+      "label": "B2-S02-M017-C3-R00-V02",
+      "variant": "gk-variant-v2-sha256:862126daefe06859d980d85132f7e9b735d37c52257ddd7564a5410d9beadc91",
+      "logic": {
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "id": "geo-01",
+              "cells": [
+                "C3"
+              ],
+              "passable": true
+            },
+            {
+              "id": "geo-02",
+              "cells": [
+                "D1",
+                "E1",
+                "E2"
+              ],
+              "passable": false
+            },
+            {
+              "id": "geo-03",
+              "cells": [
+                "A4"
+              ],
+              "passable": true
+            }
+          ]
+        },
+        "start": "C3",
+        "steps": 6,
+        "clues": [
+          {
+            "id": "H1",
+            "type": "countDistanceToPlace",
+            "fromHour": 1,
+            "toHour": 1,
+            "placeId": "geo-03",
+            "distance": 3,
+            "count": 0
+          },
+          {
+            "id": "H2",
+            "type": "countDistanceToPlace",
+            "fromHour": 1,
+            "toHour": 1,
+            "placeId": "geo-02",
+            "distance": 2,
+            "count": 1
+          },
+          {
+            "id": "H3",
+            "type": "countDistanceToPlace",
+            "fromHour": 1,
+            "toHour": 6,
+            "placeId": "geo-01",
+            "distance": 1,
+            "count": 2
+          },
+          {
+            "id": "H4",
+            "type": "countDistanceToPlace",
+            "fromHour": 3,
+            "toHour": 4,
+            "placeId": "geo-02",
+            "distance": 3,
+            "count": 2
+          },
+          {
+            "id": "H5",
+            "type": "distanceBetweenHours",
+            "hours": [
+              0,
+              6
+            ],
+            "distance": 1
+          }
+        ]
+      },
+      "givens": [],
+      "inputs": [
+        {
+          "path": "scripts/config/b2-playtest-s02.json",
+          "sha256": "76bc89a2149f8e1a255783a2af0e14ea08d2c2685cd0e070ea7a2d32ee37d7d1"
+        },
+        {
+          "path": "docs/verification/B2-S02/run/candidates.jsonl",
+          "sha256": "84d5b224121047521e6e1b9d7c100270807beaed8482f8d3d72dc4457a3e06e1"
+        }
+      ],
+      "states": {
+        "path": "docs/verification/B2-deduction-progress/private/D.jsonl",
+        "sha256": "9db5d00cd1ca2b89e3af17d55d4b522c72eb17c10de02ba9b03c99d3c1f5c668",
+        "count": 32
+      }
+    }
+  ]
+}

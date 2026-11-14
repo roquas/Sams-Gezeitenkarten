@@ -12,6 +12,7 @@
     "report:b2:bc": "node scripts/report-b2-bc-playtest.mjs",
     "report:b2:deduction": "node scripts/report-b2-deduction.mjs",
     "report:b2:profile": "node scripts/report-b2-profile.mjs",
+    "report:b2:progress": "node scripts/report-b2-progress.mjs",
     "report:b2:positive": "node scripts/report-b2-positive.mjs",
     "inspect:b2": "node scripts/inspect-b2-playtest.mjs",
     "report:b2:s02": "node scripts/inspect-b2-playtest.mjs --stock S02 --report",
