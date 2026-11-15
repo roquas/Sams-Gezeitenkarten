@@ -1,0 +1,127 @@
+{
+  "registryVersion": 1,
+  "stockId": "B2-S03-V2",
+  "source": "docs/verification/S03-v2/run",
+  "experimentId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58",
+  "manifestSha256": "fcb20d8e332837fd70de8190d7292eab2fbc6bffe8e8f28c6d3ab5779817d92d",
+  "candidatesSha256": "46b90026ef3a345527e22f33d46af4bc9546cc8bff4b0c1f1ba1a39d0a9f8f90",
+  "entries": [
+    {
+      "testName": "B2-S03-V2-M001-A3-R751-V01",
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M001/gk-variant-v2-sha256:0aa48e5c47ae2839fd40026b2631facbb03e2c246f6d50c753da64ee3553d6b8",
+      "recordSha256": "c1b1efdab5404691fc612798e92fb97d6ddadcc7c12d64f7e4a24245896ddc00",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:6259806f779f0cf3a734b77e2c8f014e42214316880222ceda01f07d97067982",
+        "instance": "gk-instance-v2-sha256:d1a706c04ef30d584c9c604f184cce6cec2a23437462346622dc27b621711035",
+        "variant": "gk-variant-v2-sha256:0aa48e5c47ae2839fd40026b2631facbb03e2c246f6d50c753da64ee3553d6b8"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:7f5acb9b0e7455a34c4cbefe56d7deb1358ad962278e11df1121415447eebbe7",
+      "contentSha256": "e15ab0e09f55f79c23b2695295d5365f95963e08d40f987c46d03240ca271477",
+      "attemptId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M001"
+    },
+    {
+      "testName": "B2-S03-V2-M016-A2-R116-V01",
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M016/gk-variant-v2-sha256:1fc5bcf643bc916dc3ae0543afb45c331bcbe0e7a0d3d7d0d2b4b5aeecf7d9c0",
+      "recordSha256": "0ed23e45a64cf2a1ad0af6cb79fb33680e6261178383de5801c45d89c7747059",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:1c0b2f38abc37e5009681d80ba7165b3447b1fb75900596b7b386ce7dbab6f2c",
+        "instance": "gk-instance-v2-sha256:17f6fb3207fb1474951fc002879a13980c8d27d72afbbd3e86a55d3ce6ddb715",
+        "variant": "gk-variant-v2-sha256:1fc5bcf643bc916dc3ae0543afb45c331bcbe0e7a0d3d7d0d2b4b5aeecf7d9c0"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:8cc93b845e2425cd496110e0afeb36f2da56af37c1180937593bdb1aa52c7120",
+      "contentSha256": "8f2675a01006963375d0b371bc71f0c01461820b2f687e37a34cd4e2cc4169ef",
+      "attemptId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M016"
+    },
+    {
+      "testName": "B2-S03-V2-M008-A3-R51-V02",
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M008/gk-variant-v2-sha256:870052e80053b558ee57830fabc5a4d24ab3ebf11a89e2e298049e61bc0d32d6",
+      "recordSha256": "1d3aea7b0d73bdee5acb70c607b23ba92817c588cb82f27d34b5418a55582cbb",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:c5af292067b054efe4acad3cba3ae63ac490b08222a5064ac0a7371752a3d9d8",
+        "instance": "gk-instance-v2-sha256:78e76ac4acfa1b67d5cfcee200a2c21bc94227e8f694f23d7ede36e6262be3d1",
+        "variant": "gk-variant-v2-sha256:870052e80053b558ee57830fabc5a4d24ab3ebf11a89e2e298049e61bc0d32d6"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:1b1cc30d94c01ed418ce6eac76b02fd96b7be182a70969170ebb562d0107d8e1",
+      "contentSha256": "19580de1c6c81ba5f4188d20559febe6121ddc8e119f9552be92a6518e81fd1a",
+      "attemptId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M008"
+    },
+    {
+      "testName": "B2-S03-V2-M011-A5-R787-V01",
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M011/gk-variant-v2-sha256:d572d8075329714bfe1087957d91293abab1721a5a7e836c4bceac9c5a733550",
+      "recordSha256": "cd948aff537836a3fc7e73e907bfffd70e3039f064aba1344309542588fcc03f",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:a981cd702a3e34dab959e756cf9b53ea72d1323873a73232cca742d52fa680bd",
+        "instance": "gk-instance-v2-sha256:1ab0329ded900509d38a8bc8d817fcc12a304c74b9d618b5aaba5f7cbc27177c",
+        "variant": "gk-variant-v2-sha256:d572d8075329714bfe1087957d91293abab1721a5a7e836c4bceac9c5a733550"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:7812148bc102cb37fb76142259b3cf03503b1c107247f0aefe0451523a110212",
+      "contentSha256": "79472fee740627fc4bd055e4ebe4ee09572f6a9fbd05506d674c6fb3d3a76872",
+      "attemptId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M011"
+    },
+    {
+      "testName": "B2-S03-V2-M018-A5-R30-V04",
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M018/gk-variant-v2-sha256:679397b307d61eb10b3de7a5b64fed93b61bd7f70bf32aeda4332a7508d65b1d",
+      "recordSha256": "b0bac72e63dc96e09a5d95706c7a63792908b253a7bbe1c5670b35dfcdf014e3",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:d6c61a6821e820923c245f850c3b09609817a131779380c2872455b7cc64bdaa",
+        "instance": "gk-instance-v2-sha256:67b28588ad33e0066585d3950f98ca087ef2d9ff44348821d77a1dfed2b379b5",
+        "variant": "gk-variant-v2-sha256:679397b307d61eb10b3de7a5b64fed93b61bd7f70bf32aeda4332a7508d65b1d"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:865c6dd885b7602446850518fd738c679f6d703df91bb233a9e66bed66913076",
+      "contentSha256": "fb253caf91b15b59cae07ef09b86a055cd359cd85cd1e4ed96a6944c1f7cef6e",
+      "attemptId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M018"
+    },
+    {
+      "testName": "B2-S03-V2-M003-A5-R436-V02",
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M003/gk-variant-v2-sha256:2d3793abafe2d1b17fefd961b789caea1ef73e07f07861aa7bc284374b8ea34d",
+      "recordSha256": "e45eb3078bb4a8738d2546a094e836a179bdafece528ab1b15770c182ccfe107",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:f2f98818665e3dac22373438791482503f0f716ac4a53e5a115ba839bdcf3526",
+        "instance": "gk-instance-v2-sha256:289817ade7006e56cac066237781f255f63f2acd40ef233eb43a9b31410cef83",
+        "variant": "gk-variant-v2-sha256:2d3793abafe2d1b17fefd961b789caea1ef73e07f07861aa7bc284374b8ea34d"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:4ba5dc9f0ac78c2023e7d7fc7d2343f6bbc64189d5c314f216d722d027201560",
+      "contentSha256": "3dc0f3ae8fc8e996cb919b4d93eeb24b3c6ede277c763af702e875e34f393b6f",
+      "attemptId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M003"
+    },
+    {
+      "testName": "B2-S03-V2-M014-A5-R160-V01",
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M014/gk-variant-v2-sha256:25d0c81d39abf535da14031d6c8493079cc17c8f4c4004ae9794888e9cf81d3c",
+      "recordSha256": "27ab83ae4e07b7c2d6b14e1418e2d499423f15287cba8353073e00d72c39458c",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:e91107e10eff8807f28b304795502ff6befbbe7f6dcc8481edffbe972ae3c676",
+        "instance": "gk-instance-v2-sha256:ac4642a254868b0fcf88a0bf1ac43da131a2dc72278b9e6dfda73fedfcb6906a",
+        "variant": "gk-variant-v2-sha256:25d0c81d39abf535da14031d6c8493079cc17c8f4c4004ae9794888e9cf81d3c"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:b51466031e318705d1216cac1ef76314c91876386c690d2feab21e881d477864",
+      "contentSha256": "0edb1931f103ed6750424972d1a8123f114570ba1bdbd4fa997e46846896bd73",
+      "attemptId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M014"
+    },
+    {
+      "testName": "B2-S03-V2-M017-A4-R74-V02",
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M017/gk-variant-v2-sha256:53a5b35e4cdaaa049a1740669a47791f82ea1e49d353e56902c5e6825e6a2384",
+      "recordSha256": "44185ca4b1ba8a733446166df4196c60d887c38cd07d7de5fe4a4fe25262b8de",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:827ab34c65a9a756bfd2baa22ed9779e6a2efc6a8237a9b7b0cd5a70ff305196",
+        "instance": "gk-instance-v2-sha256:5ecd8683f4ce8a2d108eb4952664d88fec81050304da393879bb282484426f6a",
+        "variant": "gk-variant-v2-sha256:53a5b35e4cdaaa049a1740669a47791f82ea1e49d353e56902c5e6825e6a2384"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:f660e0d8bfc6fe8e805118e6e29e605eb8c4a9774b05b4efe197acc1b58b9355",
+      "contentSha256": "0481cbb295fed106f18021cd0fac6c111b2a8a41c6e1ae268a51a2cfdbef59a6",
+      "attemptId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M017"
+    },
+    {
+      "testName": "B2-S03-V2-M010-E4-R568-V01",
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M010/gk-variant-v2-sha256:b0c96e709fd3696eeb048c6b81ab37960ace55ee8f7837275b84c3b51a80e34a",
+      "recordSha256": "09d6d9afbcc8c98591b2aa89ae21d86b45017cf49154f1348a4a586111336d8e",
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:f5077cf8c8b198f255f2a97c110a57da0d3cab98ffcc55bb39f20d0620a22837",
+        "instance": "gk-instance-v2-sha256:2df69565e60e100c612fa7696399ad0b1e4c0cc0c993788913d35a521f3687cc",
+        "variant": "gk-variant-v2-sha256:b0c96e709fd3696eeb048c6b81ab37960ace55ee8f7837275b84c3b51a80e34a"
+      },
+      "effectKey": "gk-b2-effects-v1-sha256:ea3793ed903d5a61f0b557578b430747a145e81c9e33e29ad8c2a0100413eb96",
+      "contentSha256": "959c227643ab5169b3717bcfd30a98b22f4ec11849593b96a1da46d49f1c2372",
+      "attemptId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M010"
+    }
+  ]
+}

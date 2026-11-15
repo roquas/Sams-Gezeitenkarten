@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 2,
+  "rulesVersion": "gezeitenkarten-2",
+  "dataVersion": 1,
+  "logic": {
+    "map": {
+      "geometry": "even-row-offset-pointy-v1",
+      "grid": {
+        "columns": 5,
+        "rows": 5
+      },
+      "objects": [
+        {
+          "id": "geo-01",
+          "cells": [
+            "D3"
+          ],
+          "passable": true
+        },
+        {
+          "id": "geo-02",
+          "cells": [
+            "A5"
+          ],
+          "passable": true
+        }
+      ]
+    },
+    "start": "A5",
+    "steps": 6,
+    "clues": [
+      {
+        "id": "H1",
+        "type": "countDistanceToPlace",
+        "fromHour": 1,
+        "toHour": 5,
+        "placeId": "geo-02",
+        "distance": 2,
+        "count": 2
+      },
+      {
+        "id": "H2",
+        "type": "countDistanceToPlace",
+        "fromHour": 1,
+        "toHour": 5,
+        "placeId": "geo-01",
+        "distance": 3,
+        "count": 2
+      },
+      {
+        "id": "H3",
+        "type": "countDistanceToPlace",
+        "fromHour": 3,
+        "toHour": 6,
+        "placeId": "geo-01",
+        "distance": 2,
+        "count": 3
+      },
+      {
+        "id": "H4",
+        "type": "turn",
+        "hour": 5,
+        "degrees": -60
+      },
+      {
+        "id": "H5",
+        "type": "distanceBetweenHours",
+        "hours": [
+          1,
+          4
+        ],
+        "distance": 3
+      }
+    ]
+  },
+  "solution": [
+    "A5",
+    "B5",
+    "B4",
+    "B3",
+    "B2",
+    "B1",
+    "C1"
+  ]
+}

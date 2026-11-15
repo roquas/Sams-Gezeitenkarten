@@ -6,6 +6,8 @@ Round-robin-Plan verteilt höchstens 40 Diagnosen über alle geeigneten Karten;
 Qualitätskriterien, lokale Regeln und Serienauswahl bleiben unverändert.
 
 - [Vorab festgelegter Vertrag v2](contract.md)
+- [Auswertung und technische Abnahme](pilot-assessment.md) – Diagnoseinformationen
+- [Tatsächlicher Export und sprachliche Sonderfälle](export-audit.md) – Hinweisbeispiele
 - [Reproduzierbarer Bericht und Vergleich](run/report.md) – Diagnoseinformationen
 - [Strikt lösungsfreie Übersicht](../../S03-PLAYTEST.md)
 - [v1-Vertrag und unveränderte Artefakte](../S03/contract.md)
