@@ -117,9 +117,9 @@ test('export is byte-identical, repairs 700 directories, and protected source in
   assert.equal(fs.readFileSync(path.join(output,name),'utf8'),bytes);
   assert.equal(fs.statSync(path.join(output,name)).mode&0o777,0o644);
  }
- // Digests measured by executing the unchanged adapter from PR101 main.
- for(const [stock,expected] of Object.entries({S01:'eca7d23853d8d24294d7263aae297e8f72d867cb9fef824aa2efd50ecb96a927',
-  S02:'63a3a1735db51ff543607f12584a88cc4ea9e79bea13f10f4a8faef2e4a2c347'})){
+ // H1 export digests: compared against 6445021; only count clue texts differ.
+ for(const [stock,expected] of Object.entries({S01:'30e95411d280fff58650cffefdcaaacb5371ae28eacfb9d8d2ab7e8b7768c2d6',
+  S02:'8ac59ef110ecb1cea56d076a2bf81a535a9b83658e40ca55b306219f5715d532'})){
   const exported=[...buildPlaytest(readPlaytestSource(stock))].sort(([a],[b])=>a.localeCompare(b))
    .map(([name,bytes])=>({name,sha256:sha256(bytes)}));
   assert.equal(sha256(canonicalJson(exported)),expected,stock+' public export changed');
