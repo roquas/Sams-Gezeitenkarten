@@ -7,7 +7,7 @@ import {buildPositivePlaytest} from './lib/b2-positive.mjs';
 
 export function main(argv=process.argv.slice(2)){
  const {stock,args}=parsePlaytestArgs(argv);
- if(args.length)throw Error('Usage: export-b2-playtest.mjs [--stock S01|S02|S03|BC|POSITIVE|POSITIVE-V2]');
+ if(args.length)throw Error('Usage: export-b2-playtest.mjs [--stock S01|S02|S03|S03-V2|BC|POSITIVE|POSITIVE-V2]');
  const files=stock==='POSITIVE-V2'?buildPositiveV2Playtest():stock==='POSITIVE'?buildPositivePlaytest():buildPlaytest(readPlaytestSource(stock)); // Validate before replacing output.
  const target=path.join(ROOT,playtestStock(stock).output);
  const identical=()=>{

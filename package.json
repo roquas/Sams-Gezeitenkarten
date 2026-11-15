@@ -27,9 +27,13 @@
     "package:b2:positive-v2": "python3 scripts/package-b2-positive-v2.py",
     "report:b2:positive-v2": "node scripts/report-b2-positive-v2.mjs",
     "generate:s03": "node scripts/run-s03-pilot.mjs",
-    "dev:b2:s03": "npm run export:b2 -- --stock S03 && python3 scripts/dev-server.py",
+    "dev:b2:s03": "npm run export:b2 -- --stock S03-V2 && python3 scripts/dev-server.py",
     "test:s03:reproduction": "node --test tests/reproduction/s03.test.mjs",
-    "test:s03:evidence": "node --test tests/reproduction/s03-evidence.test.mjs"
+    "test:s03:evidence": "node --test tests/reproduction/s03-evidence.test.mjs",
+    "generate:s03:v2": "node scripts/run-s03-v2-pilot.mjs",
+    "dev:b2:s03-v2": "npm run export:b2 -- --stock S03-V2 && python3 scripts/dev-server.py",
+    "test:s03:v2:evidence": "node --test tests/reproduction/s03-v2-evidence.test.mjs",
+    "test:s03:v2:reproduction": "node --test tests/reproduction/s03-v2.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.64.0"
