@@ -47,6 +47,7 @@ test('v2 uses exactly the same eighty sources, unchanged criteria and a precompu
 
 test('all new v2 diagnosis sources and reachable certificates are sound, including rejected candidates',()=>{
  let count=0,stateCount=0;
+ const prior=new Map(rows('docs/verification/S03/run/raw.jsonl').map(r=>[r.candidateId,r]));
  for(const r of raw){
   if(!r.diagnosis)continue;count++;
   const {definition,states:ref}=r.diagnosis;
@@ -65,6 +66,8 @@ test('all new v2 diagnosis sources and reachable certificates are sound, includi
   const profile=buildProgressProfile({id:r.testName,label:r.testName,puzzleId:r.testName,
    logic,givens:[],states,inputs:[definition,{path:ref.path,sha256:ref.sha256}]});
   assert.deepEqual(qualitySignals(profile),r.signals);
+  if(prior.get(r.source.candidateId).signals)assert.deepEqual(r.signals,prior.get(r.source.candidateId).signals,
+   'The same logic retains identical quality signals across main synchronization');
   assert.equal(lateRejection(r.signals,configV2.quality),r.reason);
  }
  assert.equal(count,40);assert.equal(stateCount,summary.diagnosisStates);
