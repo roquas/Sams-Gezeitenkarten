@@ -94,8 +94,8 @@ test('historical S01 clues show all three derived forms in the bordbook',async({
   await page.goto('/?dev=b2&puzzle='+binding.testName);
   await expect(page.locator('h1')).toHaveText(binding.testName);
   const text=await page.locator('#allClues .clue p').nth(row.definition.logic.clues.indexOf(clue)).textContent();
-  expect(text).toContain(form==='CountDistanceNever'?`In den Stunden ${clue.fromHour} bis ${clue.toHour} (beide einschließlich)`:`In Stunde ${clue.fromHour}`);
-  expect(text).toContain(form==='NotDistanceAt'?`nicht genau ${clue.distance}`:form==='CountDistanceNever'?`niemals genau ${clue.distance}`:`genau ${clue.distance}`);
+  expect(text).toContain(form==='CountDistanceNever'?`Von Stunde ${clue.fromHour} bis Stunde ${clue.toHour}`:`In Stunde ${clue.fromHour}`);
+  expect(text).toContain(form==='NotDistanceAt'?'war das Schiff nicht ':form==='CountDistanceNever'?'war das Schiff nie ':'war das Schiff ');
   expect(text).not.toContain('in genau 0 Stunden');
  }
 });

@@ -12,10 +12,20 @@ export function technicalClueText(clue,map){
   case 'turn':return `Kurswechsel in Stunde ${clue.hour} gegenüber der unmittelbar vorherigen Fahrtrichtung: ${clue.degrees===0?'geradeaus (0°)':`${Math.abs(clue.degrees)}° ${clue.degrees>0?'rechts':'links'}`}.`;
   case 'distanceToPlace':return `Hexabstand in Stunde ${clue.hour} zu ${place()}: genau ${clue.distance}.`;
   case 'distanceBetweenHours':return `Hexabstand zwischen den Positionen in Stunde ${clue.hours[0]} und Stunde ${clue.hours[1]}: genau ${clue.distance}.`;
-  case 'NotDistanceAt':return `In Stunde ${clue.fromHour} beträgt der Hexabstand zu ${place()} nicht genau ${clue.distance}.`;
-  case 'HasDistanceAt':return `In Stunde ${clue.fromHour} beträgt der Hexabstand zu ${place()} genau ${clue.distance}.`;
-  case 'CountDistanceNever':return `In den Stunden ${clue.fromHour} bis ${clue.toHour} (beide einschließlich) beträgt der Hexabstand zu ${place()} niemals genau ${clue.distance}.`;
-  case 'countDistanceToPlace':return `In den Stunden ${clue.fromHour} bis ${clue.toHour} (beide einschließlich) beträgt der Hexabstand zu ${place()} in genau ${clue.count} Stunden genau ${clue.distance}.`;
+  case 'NotDistanceAt':
+  case 'HasDistanceAt':
+  case 'CountDistanceNever':
+  case 'countDistanceToPlace':{
+   const duration=clue.toHour-clue.fromHour+1;
+   const time=duration===1?`In Stunde ${clue.fromHour}`:`Von Stunde ${clue.fromHour} bis Stunde ${clue.toHour}`;
+   const times=['nullmal','einmal','zweimal','dreimal','viermal','fünfmal','sechsmal','siebenmal'];
+   const frequency=duration===1&&clue.count===1?'':clue.count===0?(duration===1?'nicht ':'nie '):
+    duration>1&&clue.count===duration?'in jeder Stunde ':`genau ${times[clue.count]??`${clue.count} Mal`} `;
+   // This technical formatter uses "Ort <id>", not inflected editorial names.
+   const location=clue.distance===0?`auf dem ${place()}`:clue.distance===1?`neben dem ${place()}`:
+    `genau ${clue.distance} Hexfelder von dem ${place()} entfernt`;
+   return `${time} war das Schiff ${frequency}${location}.`;
+  }
   default:throw Error('Unsupported clue text type '+clue.type);
  }
 }

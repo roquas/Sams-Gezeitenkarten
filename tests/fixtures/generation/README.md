@@ -12,7 +12,11 @@ und das Entwicklungsmanifest; es wird kein Generatorlauf ausgeführt.
 Der Gesamthash ist SHA-256 der bestehenden `canonicalJson()` über die nach
 Dateinamen sortierte Liste `{name, sha256}`. Die Einzelhashes beziehen sich auf
 die exakten Exportstrings einschließlich Zeilenumbruch. Der neue S02-Vertragstest
-vergleicht den weiterhin unveränderten S01-Standardexport mit dieser Referenz.
+vergleicht den S01-Standardexport nach H1 mit `h1Sha256`. Dieser zusätzliche
+Hash wurde gegen `6445021` geprüft: Ausschließlich die 306
+`countDistanceToPlace`-Texte unterscheiden sich; Manifest und alle übrigen
+Exportfelder sind identisch. `sha256` und `programCommit` bleiben als historische
+Referenz erhalten.
 Er ergänzt die bestehenden Namens-, Loader- und Änderungsablehnungstests;
 Originalkandidaten, Registry und logische Fingerprints werden nicht aktualisiert.
 
