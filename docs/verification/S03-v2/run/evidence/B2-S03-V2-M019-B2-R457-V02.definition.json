@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 2,
+  "rulesVersion": "gezeitenkarten-2",
+  "dataVersion": 1,
+  "logic": {
+    "map": {
+      "geometry": "even-row-offset-pointy-v1",
+      "grid": {
+        "columns": 5,
+        "rows": 5
+      },
+      "objects": [
+        {
+          "id": "geo-01",
+          "cells": [
+            "D4",
+            "D5",
+            "E5"
+          ],
+          "passable": false
+        },
+        {
+          "id": "geo-02",
+          "cells": [
+            "B2"
+          ],
+          "passable": true
+        }
+      ]
+    },
+    "start": "B2",
+    "steps": 6,
+    "clues": [
+      {
+        "id": "H1",
+        "type": "countDistanceToPlace",
+        "fromHour": 1,
+        "toHour": 3,
+        "placeId": "geo-01",
+        "distance": 3,
+        "count": 1
+      },
+      {
+        "id": "H2",
+        "type": "countDistanceToPlace",
+        "fromHour": 2,
+        "toHour": 6,
+        "placeId": "geo-02",
+        "distance": 3,
+        "count": 3
+      },
+      {
+        "id": "H3",
+        "type": "distanceToPlace",
+        "hour": 2,
+        "placeId": "geo-01",
+        "distance": 4
+      }
+    ]
+  },
+  "solution": [
+    "B2",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "B5",
+    "C5"
+  ]
+}

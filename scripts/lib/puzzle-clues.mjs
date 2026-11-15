@@ -20,7 +20,7 @@ export function validateB2Places(map,placements,catalog){
 export const clueKey=({id,...parameters})=>canonicalJson(parameters);
 const range=schema=>Array.from({length:schema.maximum-schema.minimum+1},(_,i)=>i+schema.minimum);
 
-function* parameters(type,p,map){
+function* parameters(type,p,map,policy){
  const places=map.objects.map(o=>o.id).sort();
  const hours=range(p.hour??p.fromHour??p.hours.items);
  if(type==='position'){
@@ -32,12 +32,14 @@ function* parameters(type,p,map){
  if(type==='turn')for(const hour of hours)for(const degrees of p.degrees.enum)yield {hour,degrees};
  if(type==='distanceToPlace')for(const hour of hours)for(const placeId of places)for(const distance of range(p.distance))yield {hour,placeId,distance};
  if(type==='distanceBetweenHours')for(const a of hours)for(const b of hours.filter(b=>b>=a))for(const distance of range(p.distance))yield {hours:[a,b],distance};
- if(type==='countDistanceToPlace')for(const fromHour of hours)for(const toHour of hours.filter(h=>h>=fromHour))
+ if(type==='countDistanceToPlace')for(const fromHour of hours)for(const toHour of hours.filter(h=>h>=fromHour&&
+  (policy!=='s03-no-multihour-zero-1'||fromHour!==0||h===0)))
   for(const placeId of places)for(const distance of range(p.distance))for(const count of range(p.count).filter(n=>n<=toHour-fromHour+1))
    yield {fromHour,toHour,placeId,distance,count};
 }
 
-export function generateTrueClues(logic,targetRoute,{maxClueParameters}){
+export function generateTrueClues(logic,targetRoute,{maxClueParameters,policy='b2-historical-1'}){
+ if(!['b2-historical-1','s03-no-multihour-zero-1'].includes(policy))throw Error('Unknown clue generation policy');
  validateLogic(logic);validateTarget(logic,targetRoute);
  if(logic.steps!==6||logic.clues.length)throw Error('B2 requires six steps and no input clues');
  if(!Number.isSafeInteger(maxClueParameters)||maxClueParameters<1||maxClueParameters>200000)throw Error('Invalid maxClueParameters');
@@ -45,7 +47,7 @@ export function generateTrueClues(logic,targetRoute,{maxClueParameters}){
  // Round-robin parameter streams prevent a small budget from consuming an
  // entire large family before any other family can be considered.
  let active=logicSchema.properties.clues.items.oneOf.map(schema=>({type:schema.properties.type.const,
-  iterator:parameters(schema.properties.type.const,schema.properties,logic.map)}));
+  iterator:parameters(schema.properties.type.const,schema.properties,logic.map,policy)}));
  while(active.length){
   const next=[];
   for(const stream of active){

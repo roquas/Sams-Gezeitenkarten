@@ -1,0 +1,22 @@
+{
+  "protocol": "s03-quality-pilot-2",
+  "sourceSnapshot": "7aa284d19a20b5f31a8c1c454561698ad968c6fa",
+  "maxTargets": 20,
+  "maxRawCandidates": 80,
+  "maxDiagnoses": 40,
+  "maxDiagnosisStates": 2600,
+  "maxStatesPerDiagnosis": 65,
+  "timeoutMs": 120000,
+  "maxSelected": 10,
+  "maxPerSignature": 2,
+  "quality": {
+    "minRoutes": 16,
+    "maxBaselineFixed": 2,
+    "minClues": 3,
+    "maxClues": 7,
+    "maxSingleFixed": 3,
+    "maxOpenHours": 2,
+    "maxOpenDomain": 3,
+    "maxCouplings": 2
+  }
+}

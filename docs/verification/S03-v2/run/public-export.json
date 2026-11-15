@@ -1,0 +1,48 @@
+{
+  "formatter": {
+    "path": "scripts/lib/clue-text.mjs",
+    "sha256": "c0b9f8f341d54927ae0ce64a89d22c9673edeafcd92a2cef5c10552be742226c"
+  },
+  "files": [
+    {
+      "name": "B2-S03-V2-M001-A3-R751-V01.json",
+      "sha256": "97c7574caa224c168b915faf2ecc48885e0799820e3a25c05401ff5b4f8f2ca3"
+    },
+    {
+      "name": "B2-S03-V2-M003-A5-R436-V02.json",
+      "sha256": "2d9a7d776024c516c71e8f139c5accb7294df57f24501d7f74a11488e553fc6b"
+    },
+    {
+      "name": "B2-S03-V2-M008-A3-R51-V02.json",
+      "sha256": "e24a3cfa1fe443a5d17772f0991d516124b798a8d5646493ac923340d103d785"
+    },
+    {
+      "name": "B2-S03-V2-M010-E4-R568-V01.json",
+      "sha256": "9a5e98ef7c2760e95141e04cffb25fcb2652a003df142499cb8f20394fd5ee9a"
+    },
+    {
+      "name": "B2-S03-V2-M011-A5-R787-V01.json",
+      "sha256": "ba2998299a76b4b8c033a781ab1c97733306735ae1be9c1ca89160932cd13d58"
+    },
+    {
+      "name": "B2-S03-V2-M014-A5-R160-V01.json",
+      "sha256": "7bcb1aec624335a9408ef599fea7c2c9d7de4cc74be3416ddb104680d1974e61"
+    },
+    {
+      "name": "B2-S03-V2-M016-A2-R116-V01.json",
+      "sha256": "79ced3581cdc2a039fb02e6f82d5c2573e1b1610ac7ab7ba276f6a8b4c32c948"
+    },
+    {
+      "name": "B2-S03-V2-M017-A4-R74-V02.json",
+      "sha256": "0e527acb81c50bd6b506888ba71967a3afd1faf300152b850a52dc8dedda0790"
+    },
+    {
+      "name": "B2-S03-V2-M018-A5-R30-V04.json",
+      "sha256": "b69d9e939f18032c31f815cf20ab5eef05a7fec31bbcc97b551f2f7b4f876414"
+    },
+    {
+      "name": "manifest.json",
+      "sha256": "86fe8a806387595a546603e45d66e274a877d03d59e832200b993c1539227fc7"
+    }
+  ]
+}

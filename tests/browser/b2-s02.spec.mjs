@@ -86,7 +86,7 @@ test('all nine actual S02 forms reach the unchanged bordbook texts',async({page}
 });
 
 test('unknown stocks, names from another stock and missing exports never silently select a puzzle',async({page})=>{
- await page.goto('/?dev=b2&stock=S03');await expect(page.locator('#puzzleLoadError')).toContainText('Unbekannter B2-Bestand');
+ await page.goto('/?dev=b2&stock=UNKNOWN');await expect(page.locator('#puzzleLoadError')).toContainText('Unbekannter B2-Bestand');
  await expect(page.locator('#map .cell')).toHaveCount(0);
  await page.goto(url(s01.registry.entries[0].testName));await expect(page.locator('#puzzleLoadError')).toContainText('Unbekannter B2-Testname');
  await page.route('**/.dev/b2-s02/manifest.json',route=>route.fulfill({status:404}));

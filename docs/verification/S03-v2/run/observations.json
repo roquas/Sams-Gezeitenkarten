@@ -1,0 +1,293 @@
+{
+  "totalMs": 3932.459561,
+  "preparationMs": 929.406362,
+  "diagnosisMs": 2126.550761999998,
+  "peakRssKiB": 334544,
+  "cpuUsage": {
+    "user": 3761362,
+    "system": 992767
+  },
+  "node": "v24.19.0",
+  "costs": [
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M000/gk-variant-v2-sha256:b84da7ab442f3cec7ab0d24ea5c42a7a3de0fdea0b633f6dfa9f79d614ba6f4e",
+      "mapIndex": 0,
+      "round": 1,
+      "diagnosisMs": 24.492524000000003,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M001/gk-variant-v2-sha256:0aa48e5c47ae2839fd40026b2631facbb03e2c246f6d50c753da64ee3553d6b8",
+      "mapIndex": 1,
+      "round": 1,
+      "diagnosisMs": 74.35445499999992,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M002/gk-variant-v2-sha256:36ecd5ef6151243e0ff999da2a2cc9968e4cad7a3924821c9e553ce0443be609",
+      "mapIndex": 2,
+      "round": 1,
+      "diagnosisMs": 26.251850999999988,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M003/gk-variant-v2-sha256:9eef5f23e158efd0438be3265e09b027292c2b53c9ed2a5789b4721a1104688c",
+      "mapIndex": 3,
+      "round": 1,
+      "diagnosisMs": 32.34543000000008,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M004/gk-variant-v2-sha256:9a7eea7a981bae0df25b9e71a3a168fb87bb197347b7154d3581d1d9682c6e41",
+      "mapIndex": 4,
+      "round": 1,
+      "diagnosisMs": 65.81075099999998,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M005/gk-variant-v2-sha256:d7b38c2b04b4439df727b3b87c5c93098c3759c4664283c3eb188a0c688a0e9f",
+      "mapIndex": 5,
+      "round": 1,
+      "diagnosisMs": 262.06778899999995,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M006/gk-variant-v2-sha256:653bec29d213e31cb1696dedeefa838ca6ab8f6557d7e5d14d8ff521bc2e97d7",
+      "mapIndex": 6,
+      "round": 1,
+      "diagnosisMs": 45.101812999999765,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M007/gk-variant-v2-sha256:ae408344c13544e454d432540e4bb0c124a8ab2ec9f65f602adb280dd930a24a",
+      "mapIndex": 7,
+      "round": 1,
+      "diagnosisMs": 8.663692999999967,
+      "states": 8
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M008/gk-variant-v2-sha256:85e2bde75c269005e7206fce02014ea2ba7507458b9f943883409efcdd83e98f",
+      "mapIndex": 8,
+      "round": 1,
+      "diagnosisMs": 20.79526799999985,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M009/gk-variant-v2-sha256:35d965a459239b5b9e7a310987bc78d22dbd3e6fdd77c8c0401bcf0b989836b1",
+      "mapIndex": 9,
+      "round": 1,
+      "diagnosisMs": 75.39855999999963,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M010/gk-variant-v2-sha256:b0c96e709fd3696eeb048c6b81ab37960ace55ee8f7837275b84c3b51a80e34a",
+      "mapIndex": 10,
+      "round": 1,
+      "diagnosisMs": 136.22793999999976,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M011/gk-variant-v2-sha256:d572d8075329714bfe1087957d91293abab1721a5a7e836c4bceac9c5a733550",
+      "mapIndex": 11,
+      "round": 1,
+      "diagnosisMs": 32.821429999999964,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M012/gk-variant-v2-sha256:18560b188e8305cbc7de7d00c0efd5ad4887cf7106cd31a647e92eb789a344cb",
+      "mapIndex": 12,
+      "round": 1,
+      "diagnosisMs": 75.23944099999972,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M013/gk-variant-v2-sha256:67e21ac6fcf073950739ce557be762a1604eb374a87609633db3778fc23872d8",
+      "mapIndex": 13,
+      "round": 1,
+      "diagnosisMs": 86.23260900000014,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M014/gk-variant-v2-sha256:25d0c81d39abf535da14031d6c8493079cc17c8f4c4004ae9794888e9cf81d3c",
+      "mapIndex": 14,
+      "round": 1,
+      "diagnosisMs": 45.53178700000035,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M015/gk-variant-v2-sha256:a8a3d322e174b9eff98e973381cad03e3deb903356a4cdd1dd68e8e0fcfad7e9",
+      "mapIndex": 15,
+      "round": 1,
+      "diagnosisMs": 36.99993200000017,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M016/gk-variant-v2-sha256:1fc5bcf643bc916dc3ae0543afb45c331bcbe0e7a0d3d7d0d2b4b5aeecf7d9c0",
+      "mapIndex": 16,
+      "round": 1,
+      "diagnosisMs": 8.655361000000084,
+      "states": 8
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M017/gk-variant-v2-sha256:a06cbb1cb34a20d5fc920ed2020705bd0ede5bb1e2d2e389abd11bf35ad4b366",
+      "mapIndex": 17,
+      "round": 1,
+      "diagnosisMs": 108.49886399999968,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M018/gk-variant-v2-sha256:eae6f62d51171d8499f9d3c81c1c1a57c9ae627f9136dc9f6a552a5555df86da",
+      "mapIndex": 18,
+      "round": 1,
+      "diagnosisMs": 9.754479000000174,
+      "states": 8
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M019/gk-variant-v2-sha256:f1eb2f385f12879fd4867b551a2fdbcc86250fbd30ba4590f10b077e3e839c26",
+      "mapIndex": 19,
+      "round": 1,
+      "diagnosisMs": 70.52176599999984,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M000/gk-variant-v2-sha256:4748c18f4ffe649cecc22f5e0de641be91df6fa4dd2b8079657eccdb81371e3d",
+      "mapIndex": 0,
+      "round": 2,
+      "diagnosisMs": 7.523753999999826,
+      "states": 8
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M001/gk-variant-v2-sha256:814b36d62760540cecc72a82a21922ca8b6aa46b9a71c3e39736e924fa16ad57",
+      "mapIndex": 1,
+      "round": 2,
+      "diagnosisMs": 54.20684799999981,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M002/gk-variant-v2-sha256:d2862b61dbf384857938ea0ed9c8ccb8e82d7dda0d05c56a52dbe52d135385b3",
+      "mapIndex": 2,
+      "round": 2,
+      "diagnosisMs": 31.359592999999677,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M003/gk-variant-v2-sha256:2d3793abafe2d1b17fefd961b789caea1ef73e07f07861aa7bc284374b8ea34d",
+      "mapIndex": 3,
+      "round": 2,
+      "diagnosisMs": 40.70364699999982,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M004/gk-variant-v2-sha256:372bc56adb4de808571286af9c36c9f850e45ff4a2c32920ecc4da730f316f55",
+      "mapIndex": 4,
+      "round": 2,
+      "diagnosisMs": 28.484300000000076,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M005/gk-variant-v2-sha256:7164e6c6b0efaf77446904b787ce633ac43b2cf78105a9a8c275cd13e44fe47c",
+      "mapIndex": 5,
+      "round": 2,
+      "diagnosisMs": 52.78247199999987,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M006/gk-variant-v2-sha256:3756198bad7f8670ca204effcc18828d55e9aaaa06fbd69c4c47fb21b98da217",
+      "mapIndex": 6,
+      "round": 2,
+      "diagnosisMs": 29.457459999999628,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M007/gk-variant-v2-sha256:c582d79dac42c34e48a1f3e2915f434ce2bbe362fbecefb5bd6205fc1d60298a",
+      "mapIndex": 7,
+      "round": 2,
+      "diagnosisMs": 21.052974999999606,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M008/gk-variant-v2-sha256:870052e80053b558ee57830fabc5a4d24ab3ebf11a89e2e298049e61bc0d32d6",
+      "mapIndex": 8,
+      "round": 2,
+      "diagnosisMs": 38.704417999999805,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M009/gk-variant-v2-sha256:1d05b5af30f7107083bedd7573249d7af6368a010609f533b046c7fef1f4a0b1",
+      "mapIndex": 9,
+      "round": 2,
+      "diagnosisMs": 148.33838000000014,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M010/gk-variant-v2-sha256:94422ddbda2bea5a8a2a886591ac48e32b074cd6693b94a4f528630dffbe2277",
+      "mapIndex": 10,
+      "round": 2,
+      "diagnosisMs": 74.90992800000004,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M011/gk-variant-v2-sha256:6cd8b66cc74a6579a0afb8e8123ad71d82947994ef92927d77c453d11b1f849d",
+      "mapIndex": 11,
+      "round": 2,
+      "diagnosisMs": 61.85646100000031,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M012/gk-variant-v2-sha256:16e01ac455120efc9f6294e51ab618dd67775f7a340be0459b4e6daf845e777a",
+      "mapIndex": 12,
+      "round": 2,
+      "diagnosisMs": 42.39427100000012,
+      "states": 27
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M013/gk-variant-v2-sha256:ebd75f20c24f91de620a8d7cb9ef6bd5221f6d41d1c469bb339637940ff18d2c",
+      "mapIndex": 13,
+      "round": 2,
+      "diagnosisMs": 74.92461000000003,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M014/gk-variant-v2-sha256:dca78ad4cf155a582ee96991a51c5d51a669496b966d02871e978cd5806d7406",
+      "mapIndex": 14,
+      "round": 2,
+      "diagnosisMs": 26.479334000000108,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M015/gk-variant-v2-sha256:8394885bf41049b8085f02c27d4a35ae914ff960c00b87b9f4806c4718b6102b",
+      "mapIndex": 15,
+      "round": 2,
+      "diagnosisMs": 16.84563500000013,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M016/gk-variant-v2-sha256:e3cc5bab1e41dbd50b3a23a3edfbcef2bbd07c997fcfaf3e3f424c41d3ca6c75",
+      "mapIndex": 16,
+      "round": 2,
+      "diagnosisMs": 16.532064999999875,
+      "states": 16
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M017/gk-variant-v2-sha256:53a5b35e4cdaaa049a1740669a47791f82ea1e49d353e56902c5e6825e6a2384",
+      "mapIndex": 17,
+      "round": 2,
+      "diagnosisMs": 80.60006199999998,
+      "states": 43
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M018/gk-variant-v2-sha256:679397b307d61eb10b3de7a5b64fed93b61bd7f70bf32aeda4332a7508d65b1d",
+      "mapIndex": 18,
+      "round": 2,
+      "diagnosisMs": 13.463983000000098,
+      "states": 8
+    },
+    {
+      "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M019/gk-variant-v2-sha256:255bc69dd0217c981fc595f88ad2cbaac0b3dc1ff147f3e952283040415b8753",
+      "mapIndex": 19,
+      "round": 2,
+      "diagnosisMs": 20.16482300000007,
+      "states": 8
+    }
+  ]
+}

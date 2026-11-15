@@ -1,0 +1,61 @@
+{
+  "stock": "S03-V2",
+  "mainCommit": "70e563d9612d02013fe7cad1e4d5a72e9dc2ea7e",
+  "experimentId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58",
+  "formatter": {
+    "path": "scripts/lib/clue-text.mjs",
+    "sha256": "c0b9f8f341d54927ae0ce64a89d22c9673edeafcd92a2cef5c10552be742226c"
+  },
+  "publicFiles": 10,
+  "publicBytesVerified": true,
+  "logicUnchanged": true,
+  "count": {
+    "countClues": 33,
+    "never": 12,
+    "everyHour": 1,
+    "on": 3,
+    "nextTo": 4,
+    "singleHour": 8,
+    "singleHourNegative": 5,
+    "multihexPlace": 15,
+    "multiHourIncludingZero": 0
+  },
+  "examples": {
+    "singleHour": {
+      "testName": "B2-S03-V2-M001-A3-R751-V01",
+      "clueId": "H1",
+      "text": "In Stunde 6 war das Schiff nicht genau 3 Hexfelder von dem Ort geo-02 (A3) entfernt."
+    },
+    "singleHourNegative": {
+      "testName": "B2-S03-V2-M001-A3-R751-V01",
+      "clueId": "H1",
+      "text": "In Stunde 6 war das Schiff nicht genau 3 Hexfelder von dem Ort geo-02 (A3) entfernt."
+    },
+    "never": {
+      "testName": "B2-S03-V2-M001-A3-R751-V01",
+      "clueId": "H2",
+      "text": "Von Stunde 4 bis Stunde 5 war das Schiff nie genau 4 Hexfelder von dem Ort geo-05 (B1, C1, D1, E1) entfernt."
+    },
+    "multihexPlace": {
+      "testName": "B2-S03-V2-M001-A3-R751-V01",
+      "clueId": "H2",
+      "text": "Von Stunde 4 bis Stunde 5 war das Schiff nie genau 4 Hexfelder von dem Ort geo-05 (B1, C1, D1, E1) entfernt."
+    },
+    "on": {
+      "testName": "B2-S03-V2-M001-A3-R751-V01",
+      "clueId": "H3",
+      "text": "In Stunde 3 war das Schiff auf dem Ort geo-01 (C5)."
+    },
+    "everyHour": {
+      "testName": "B2-S03-V2-M016-A2-R116-V01",
+      "clueId": "H3",
+      "text": "Von Stunde 3 bis Stunde 4 war das Schiff in jeder Stunde neben dem Ort geo-05 (C1, C2)."
+    },
+    "nextTo": {
+      "testName": "B2-S03-V2-M016-A2-R116-V01",
+      "clueId": "H3",
+      "text": "Von Stunde 3 bis Stunde 4 war das Schiff in jeder Stunde neben dem Ort geo-05 (C1, C2)."
+    }
+  },
+  "scope": "Actual exported selected puzzles. Counts overlap; no difficulty or human-quality claim."
+}

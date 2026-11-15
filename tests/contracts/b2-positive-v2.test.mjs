@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {assertHistoricalEvidence} from '../helpers/historical-evidence.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -26,8 +27,12 @@ test('V2 validates all 64 reachable-premise graphs and a necessary count edge ca
  assert.throws(()=>verifyTrace(definition.logic,broken,e.proof.solutions),/reachable premises/);
  assert.equal(e.contract.humanPlaytest,'pending');assert.equal(e.contract.difficulty,'unrated');
 });
-test('V2 evidence reproduces, changed count fails, and the first design remains the delivered design',()=>{
- for(const [name,bytes] of positiveV2ReportFiles())assert.equal(fs.readFileSync(path.join(ROOT,POSITIVE_V2_DIRECTORY,'private',name),'utf8'),bytes);
+test('V2 evidence preserves its historical provenance and reproduces, changed count fails, and the first design remains the delivered design',()=>{
+ for(const [name,bytes] of positiveV2ReportFiles()){
+  const stored=fs.readFileSync(path.join(ROOT,POSITIVE_V2_DIRECTORY,'private',name),'utf8');
+  if(name==='evidence.json')assertHistoricalEvidence(stored,bytes);
+  else assert.equal(stored,bytes,name);
+ }
  const base=path.join(ROOT,POSITIVE_V2_DIRECTORY,'private');
  assert.deepEqual(fs.readFileSync(path.join(base,'attempt-0.json')),fs.readFileSync(path.join(base,'definition.json')));
  const changed=structuredClone(definition);changed.logic.clues.find(c=>c.id==='H6').count=1;

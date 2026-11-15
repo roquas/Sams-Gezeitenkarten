@@ -54,7 +54,7 @@ export function randomIncrementalSearch({clues,solver,seed,budgets,onCandidate})
 }
 
 export function searchPuzzleCandidates({logic,targetRoute,cluePool,workspace,seed,budgets,
- strategy=randomIncrementalSearch}){
+ strategy=randomIncrementalSearch,evaluateCandidate}){
  validateSeed(seed);validateSearchBudgets(budgets);
  if(!workspace.completed)throw Error('Complete route workspace required');
  const solver=workspace.forClues(cluePool.clues,budgets),candidates=[],variants=new Set(),effects=new Set();
@@ -75,14 +75,19 @@ export function searchPuzzleCandidates({logic,targetRoute,cluePool,workspace,see
   });
   const individualExactness=ordered.map((index,i)=>({clueId:'H'+(i+1),hours:solver.exactHours(index)}));
   const exactClues=individualExactness.filter(row=>row.hours.length);
-  candidates.push({definition,fingerprints,effectKey,proof:{method:'complete-engine-routes-and-predicates-1',
+  const candidate={definition,fingerprints,effectKey,proof:{method:'complete-engine-routes-and-predicates-1',
    legalRouteCount:workspace.routeCount,count:1,countExact:true,uniqueSolution:result.uniqueSolution,
    targetMatch:true,irredundant:true,omissions},properties:{clueTypes:[...new Set(definition.logic.clues.map(c=>c.type))],
    cluePresentationForms:[...new Set(definition.logic.clues.map(cluePresentationForm))],
    individualExactness,individuallyExactClueCount:exactClues.length,
    hasIndividuallyExactHour1:exactClues.some(row=>row.hours.includes(1)),
-   hasDirectionHour1:definition.logic.clues.some(c=>c.type==='direction'&&c.hour===1)}});
-  variants.add(fingerprints.variant);effects.add(effectKey);return true;
+   hasDirectionHour1:definition.logic.clues.some(c=>c.type==='direction'&&c.hour===1)}};
+  // Remember rejected identities too: another restart cannot spend diagnosis
+  // budget again on the same variant or equivalent clue effects.
+  variants.add(fingerprints.variant);effects.add(effectKey);
+  const decision=evaluateCandidate?.(candidate)??true;
+  if(decision!==true)return typeof decision==='string'?decision:'QUALITY_REJECTED';
+  candidates.push(candidate);return true;
  }});
  if(!cluePool.completed)search.failures.CLUE_PARAMETER_BUDGET_EXHAUSTED=1;
  return {status:candidates.length?'candidates-found':search.exhaustive?'impossible':'not-found-within-budget',

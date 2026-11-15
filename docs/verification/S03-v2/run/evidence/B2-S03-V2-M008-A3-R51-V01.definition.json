@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "rulesVersion": "gezeitenkarten-2",
+  "dataVersion": 1,
+  "logic": {
+    "map": {
+      "geometry": "even-row-offset-pointy-v1",
+      "grid": {
+        "columns": 5,
+        "rows": 5
+      },
+      "objects": [
+        {
+          "id": "geo-01",
+          "cells": [
+            "C2",
+            "C3",
+            "D3"
+          ],
+          "passable": false
+        },
+        {
+          "id": "geo-02",
+          "cells": [
+            "E5"
+          ],
+          "passable": false
+        },
+        {
+          "id": "geo-03",
+          "cells": [
+            "A3"
+          ],
+          "passable": true
+        },
+        {
+          "id": "geo-04",
+          "cells": [
+            "A5"
+          ],
+          "passable": true
+        },
+        {
+          "id": "geo-05",
+          "cells": [
+            "A1",
+            "B1"
+          ],
+          "passable": false
+        },
+        {
+          "id": "geo-06",
+          "cells": [
+            "E1"
+          ],
+          "passable": false
+        },
+        {
+          "id": "geo-07",
+          "cells": [
+            "C5"
+          ],
+          "passable": true
+        }
+      ]
+    },
+    "start": "A3",
+    "steps": 6,
+    "clues": [
+      {
+        "id": "H1",
+        "type": "countDistanceToPlace",
+        "fromHour": 1,
+        "toHour": 5,
+        "placeId": "geo-04",
+        "distance": 1,
+        "count": 0
+      },
+      {
+        "id": "H2",
+        "type": "countDistanceToPlace",
+        "fromHour": 4,
+        "toHour": 4,
+        "placeId": "geo-05",
+        "distance": 3,
+        "count": 0
+      },
+      {
+        "id": "H3",
+        "type": "countDistanceToPlace",
+        "fromHour": 2,
+        "toHour": 6,
+        "placeId": "geo-02",
+        "distance": 1,
+        "count": 1
+      },
+      {
+        "id": "H4",
+        "type": "turn",
+        "hour": 6,
+        "degrees": 120
+      }
+    ]
+  },
+  "solution": [
+    "A3",
+    "A2",
+    "B3",
+    "B4",
+    "C5",
+    "C4",
+    "D5"
+  ]
+}

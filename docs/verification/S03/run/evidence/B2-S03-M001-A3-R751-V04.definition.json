@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 2,
+  "rulesVersion": "gezeitenkarten-2",
+  "dataVersion": 1,
+  "logic": {
+    "map": {
+      "geometry": "even-row-offset-pointy-v1",
+      "grid": {
+        "columns": 5,
+        "rows": 5
+      },
+      "objects": [
+        {
+          "id": "geo-01",
+          "cells": [
+            "C5"
+          ],
+          "passable": true
+        },
+        {
+          "id": "geo-02",
+          "cells": [
+            "A3"
+          ],
+          "passable": true
+        },
+        {
+          "id": "geo-03",
+          "cells": [
+            "E4"
+          ],
+          "passable": true
+        },
+        {
+          "id": "geo-04",
+          "cells": [
+            "D3"
+          ],
+          "passable": true
+        },
+        {
+          "id": "geo-05",
+          "cells": [
+            "B1",
+            "C1",
+            "D1",
+            "E1"
+          ],
+          "passable": false
+        }
+      ]
+    },
+    "start": "A3",
+    "steps": 6,
+    "clues": [
+      {
+        "id": "H1",
+        "type": "countDistanceToPlace",
+        "fromHour": 6,
+        "toHour": 6,
+        "placeId": "geo-05",
+        "distance": 2,
+        "count": 0
+      },
+      {
+        "id": "H2",
+        "type": "countDistanceToPlace",
+        "fromHour": 2,
+        "toHour": 6,
+        "placeId": "geo-03",
+        "distance": 4,
+        "count": 0
+      },
+      {
+        "id": "H3",
+        "type": "countDistanceToPlace",
+        "fromHour": 2,
+        "toHour": 4,
+        "placeId": "geo-04",
+        "distance": 1,
+        "count": 1
+      },
+      {
+        "id": "H4",
+        "type": "countDistanceToPlace",
+        "fromHour": 1,
+        "toHour": 4,
+        "placeId": "geo-01",
+        "distance": 1,
+        "count": 2
+      },
+      {
+        "id": "H5",
+        "type": "countDistanceToPlace",
+        "fromHour": 3,
+        "toHour": 6,
+        "placeId": "geo-04",
+        "distance": 1,
+        "count": 2
+      },
+      {
+        "id": "H6",
+        "type": "countDistanceToPlace",
+        "fromHour": 2,
+        "toHour": 6,
+        "placeId": "geo-01",
+        "distance": 2,
+        "count": 2
+      },
+      {
+        "id": "H7",
+        "type": "countDistanceToPlace",
+        "fromHour": 1,
+        "toHour": 5,
+        "placeId": "geo-05",
+        "distance": 3,
+        "count": 2
+      }
+    ]
+  },
+  "solution": [
+    "A3",
+    "B3",
+    "B4",
+    "C5",
+    "C4",
+    "D3",
+    "D4"
+  ]
+}

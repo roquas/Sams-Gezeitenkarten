@@ -146,7 +146,7 @@ test('explicit stock selection rejects unknown or duplicate flags before touchin
  assert.deepEqual(parsePlaytestArgs([]),{stock:'S01',args:[]});
  assert.deepEqual(parsePlaytestArgs(['--statistics','--stock','S02']),{stock:'S02',args:['--statistics']});
  assert.equal(playtestStock('S02').output,'.dev/b2-s02');
- for(const args of [['--stock'],['--stock','S03'],['--stock','S02','--stock','S01'],['--other']])
+ for(const args of [['--stock'],['--stock','UNKNOWN'],['--stock','S02','--stock','S01'],['--other']])
   assert.throws(()=>exportStock(args));
  assert.throws(()=>inspect(['--stock','S02','--statistics','extra']));
 });

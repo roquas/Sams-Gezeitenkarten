@@ -16,18 +16,20 @@ export const OUTPUT='.dev/b2';
 // Explicit development stocks, not a general registry or a production catalog.
 const STOCKS={S01:{registry:REGISTRY,output:OUTPUT},
  S02:{registry:'scripts/config/b2-playtest-s02.json',output:'.dev/b2-s02'},
+ S03:{registry:'docs/verification/S03/run/registry.json',output:'.dev/b2-s03'},
+ 'S03-V2':{registry:'docs/verification/S03-v2/run/registry.json',output:'.dev/b2-s03-v2'},
  BC:{registry:'scripts/config/b2-playtest-bc.json',output:'.dev/b2-bc'},
  POSITIVE:{output:'.dev/b2-positive'},
  'POSITIVE-V2':{output:'.dev/b2-positive-v2'}};
 export function playtestStock(stock='S01'){
- if(!Object.hasOwn(STOCKS,stock))throw Error('Unknown B2 stock: '+stock+' (expected S01, S02, BC, POSITIVE or POSITIVE-V2)');
+ if(!Object.hasOwn(STOCKS,stock))throw Error('Unknown B2 stock: '+stock+' (expected S01, S02, S03, S03-V2, BC, POSITIVE or POSITIVE-V2)');
  return {...STOCKS[stock]};
 }
 export function parsePlaytestArgs(argv){
  let stock='S01',explicit=false;const args=[];
  for(let i=0;i<argv.length;i++){
   if(argv[i]!=='--stock'){args.push(argv[i]);continue;}
-  if(explicit||!argv[i+1])throw Error('Expected one --stock S01, S02, BC, POSITIVE or POSITIVE-V2');
+  if(explicit||!argv[i+1])throw Error('Expected one --stock S01, S02, S03, S03-V2, BC, POSITIVE or POSITIVE-V2');
   stock=argv[++i];explicit=true;
  }
  playtestStock(stock);return {stock,args};
@@ -42,7 +44,11 @@ export function readPlaytestSource(stock='S01'){
  const manifest=JSON.parse(manifestBytes);
  if(manifest.experimentId!==registry.experimentId)throw Error('B2 experiment mismatch');
  const candidateBytes=fs.readFileSync(path.join(ROOT,registry.source,'candidates.jsonl'));
- let rows=candidateBytes.toString('utf8').trim().split('\n').map(JSON.parse);
+ let rows=candidateBytes.toString('utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
+ if(['S03','S03-V2'].includes(stock)){
+  if(fs.existsSync(path.join(ROOT,registry.source,'ABORTED.json')))throw Error('Aborted S03 pilot');
+  if(sha256(candidateBytes)!==registry.candidatesSha256)throw Error('S03 candidate inventory changed');
+ }
  if(stock==='BC'){
   if(sha256(candidateBytes)!==registry.candidatesSha256||rows.length!==registry.sourceCandidateCount)
    throw Error('B2 comparison candidate inventory changed');
@@ -61,7 +67,9 @@ export function validatePlaytestBindings({registry,manifest,rows}){
  const comparison=registry.stockId==='B2-BC';
  assert(comparison?registry.registryVersion===2&&manifest.protocol==='b2-search-comparison-1':
   registry.registryVersion===1&&manifest.puzzleExperimentFormatVersion===2,'unsupported stock version');
- assert(['B2-S01','B2-S02','B2-BC'].includes(registry.stockId),'unsupported stock');
+ assert(['B2-S01','B2-S02','B2-S03','B2-S03-V2','B2-BC'].includes(registry.stockId),'unsupported stock');
+ if(registry.stockId==='B2-S03')assert(manifest.protocol==='s03-quality-pilot-1','unsupported S03 protocol');
+ if(registry.stockId==='B2-S03-V2')assert(manifest.protocol==='s03-quality-pilot-2','unsupported S03 v2 protocol');
  assert(manifest.experimentId===registry.experimentId,'experiment mismatch');
  const names=registry.entries.map(e=>e.testName),variants=registry.entries.map(e=>e.fingerprints.variant);
  const namePattern=new RegExp('^'+registry.stockId+(comparison?'-T\\d{2}':'')+'-M\\d{3}-[A-E][1-5]-R\\d+'+(comparison?'':'-V\\d+')+'$');
@@ -78,6 +86,19 @@ export function validatePlaytestBindings({registry,manifest,rows}){
     row.sourceTarget===entry.sourceTarget&&row.sourceAttemptId===entry.sourceAttemptId,'comparison identity changed: '+entry.testName);
    assert(sha256(JSON.stringify(row))===entry.recordSha256,'comparison record changed: '+entry.testName);
    assert(entry.testName.endsWith(entry.sourceTarget.match(/M\d{3}-[A-E][1-5]-R\d+/)?.[0]),'comparison target name mismatch');
+  }
+  if(['B2-S03','B2-S03-V2'].includes(registry.stockId)){
+   assert(row.candidateId===row.attemptId+'/'+row.fingerprints.variant&&row.candidateId===entry.candidateId,
+    'S03 candidate identity changed');
+   assert(row.testName===entry.testName&&sha256(JSON.stringify(row))===entry.recordSha256,'S03 record changed');
+   assert(row.definition.logic.clues.every(c=>c.type!=='countDistanceToPlace'||c.fromHour===c.toHour||c.fromHour>=1),
+    'S03 multi-hour CD includes hour zero');
+  }
+  if(registry.stockId==='B2-S03-V2'){
+   assert(row.source.experimentId===manifest.sourceExperimentId&&
+    row.source.candidateId===row.source.attemptId+'/'+row.fingerprints.variant&&
+    row.source.testName.replace('B2-S03-','B2-S03-V2-')===row.testName,'S03 v2 source identity changed');
+   assert(row.source.contentSha256===contentHash(row),'S03 v2 source content changed');
   }
   assert(contentHash(row)===entry.contentSha256,'candidate content changed: '+entry.testName);
   assert(row.effectKey===entry.effectKey&&isDeepStrictEqual(row.fingerprints,entry.fingerprints),'identity changed: '+entry.testName);

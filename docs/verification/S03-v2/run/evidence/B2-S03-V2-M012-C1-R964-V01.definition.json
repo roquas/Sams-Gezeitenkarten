@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 2,
+  "rulesVersion": "gezeitenkarten-2",
+  "dataVersion": 1,
+  "logic": {
+    "map": {
+      "geometry": "even-row-offset-pointy-v1",
+      "grid": {
+        "columns": 5,
+        "rows": 5
+      },
+      "objects": [
+        {
+          "id": "geo-01",
+          "cells": [
+            "C1"
+          ],
+          "passable": true
+        },
+        {
+          "id": "geo-02",
+          "cells": [
+            "E3"
+          ],
+          "passable": true
+        },
+        {
+          "id": "geo-03",
+          "cells": [
+            "C4",
+            "D5"
+          ],
+          "passable": false
+        }
+      ]
+    },
+    "start": "C1",
+    "steps": 6,
+    "clues": [
+      {
+        "id": "H1",
+        "type": "countDistanceToPlace",
+        "fromHour": 5,
+        "toHour": 6,
+        "placeId": "geo-02",
+        "distance": 3,
+        "count": 0
+      },
+      {
+        "id": "H2",
+        "type": "countDistanceToPlace",
+        "fromHour": 1,
+        "toHour": 5,
+        "placeId": "geo-02",
+        "distance": 2,
+        "count": 1
+      },
+      {
+        "id": "H3",
+        "type": "countDistanceToPlace",
+        "fromHour": 3,
+        "toHour": 3,
+        "placeId": "geo-01",
+        "distance": 2,
+        "count": 1
+      },
+      {
+        "id": "H4",
+        "type": "countDistanceToPlace",
+        "fromHour": 2,
+        "toHour": 3,
+        "placeId": "geo-02",
+        "distance": 4,
+        "count": 1
+      },
+      {
+        "id": "H5",
+        "type": "countDistanceToPlace",
+        "fromHour": 2,
+        "toHour": 5,
+        "placeId": "geo-03",
+        "distance": 3,
+        "count": 2
+      },
+      {
+        "id": "H6",
+        "type": "distanceBetweenHours",
+        "hours": [
+          0,
+          6
+        ],
+        "distance": 3
+      }
+    ]
+  },
+  "solution": [
+    "C1",
+    "C2",
+    "B2",
+    "A2",
+    "B3",
+    "A3",
+    "A4"
+  ]
+}
