@@ -119,7 +119,8 @@ nur den UI-Tests.
   Gradienten und Kappenverrechnung. Ergebnis:
   [route-pixel-comparison.json](route-pixel-comparison.json).
 - **20 Reviewbilder** aufgenommen; Original-HTML ohne externe Zugriffe geprüft.
-- Gesamte Unit-Suite: läuft noch.
+- Gesamte Unit-Suite: **368 Tests bestanden**, 0 Fehler, 0 übersprungen
+  (`npm run test:unit`, Laufzeit 18 Minuten 25 Sekunden).
 
 Der Referenzvergleich verwendet unabhängig vom Produktionsmodul aus dem
 hochgeladenen Originalskript berechnete SHA-256-Werte für **alle zwölf Band-
