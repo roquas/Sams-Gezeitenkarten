@@ -198,6 +198,8 @@ test('37 reports reproduce byte-for-byte; CLI validates arguments and retains ex
  const report=renderStageReport(diagnoses,routes);
  assert.match(report,/75 exakt unterstützte gegenüber 107/);
  assert.match(report,/keine zusätzliche Routenberechnung angefordert/);
+ assert.match(report,/Vollständige kleine Teilroutenmenge/);
+ assert.match(report,/Anzeigebegrenzung ist kein Qualitätskriterium/);
  const module=fs.readFileSync(path.join(ROOT,'scripts/lib/b2-stage-diagnostics.mjs'),'utf8');
  assert.doesNotMatch(module,/from ['"].*(?:engine|b2-local-deduction|s03-quality|b2-stage-routes)/);
  for(const d of diagnoses)assert.equal(Object.hasOwn(d,'score'),false);

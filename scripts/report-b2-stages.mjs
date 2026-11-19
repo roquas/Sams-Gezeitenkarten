@@ -40,6 +40,16 @@ export function renderStageReport(diagnoses,routes){
   const routeTable=rs.length?table(['Zustand','Lokal: Felder / +Kanten','Exakt unterstützt','Exakte Felder/Kanten rekombiniert'],
    rs.map(s=>[source(s),`${s.localFieldsOnly.routeCount} / ${s.localFieldsAndEdges.routeCount}`,
     s.exactSupported.routeCount,s.recombinedExactFieldsAndEdges.routeCount]))+'\n\n':'';
+  // At most one small window per representation/state, in the fixed window order.
+  // The display cap is not a quality threshold or a choice of human solving stage.
+  const fragments=rs.flatMap(s=>[['localFieldsAndEdges','lokal kompatibel'],['exactSupported','exakt unterstützt']].flatMap(([key,label])=>{
+   const part=s[key].sections.find(p=>p.alternatives.count>1&&p.alternatives.count<=4);
+   return part?[[s.state,label,`S${part.fromHour}–S${part.toHour}`,
+    part.alternatives.shown.map(v=>v.replaceAll('>','→')).join('; '),
+    part.suffix.length?part.suffix.join('→'):'keines']]:[];
+  }));
+  const fragmentTable=fragments.length?table(['Zustand','Darstellung','Fenster','Vollständige kleine Teilroutenmenge','Gemeinsames Endstück'],fragments)+
+   '\n\nLesebeispiele mit zwei bis vier Alternativen, höchstens ein festes Fenster je Darstellung/Zustand. Die Anzeigebegrenzung ist kein Qualitätskriterium; Teilstücke sind nicht unabhängig kombinierbar.\n\n':'';
   const singles=r.singleIntersection?.status==='complete'?
    `Schnitt aller gespeicherten Einzelhinweise, ohne Propagation: **${r.singleIntersection.localFieldsOnly.routeCount}** feldkompatible, `+
    `mit Nachbarkanten **${r.singleIntersection.localFieldsAndEdges.routeCount}** legale Wege. Keine beobachtete menschliche Arbeitslast.\n\n`:'';
@@ -53,7 +63,7 @@ export function renderStageReport(diagnoses,routes){
    `Fehlende Teilmengen: ${d.coverage.missingStates.join('; ')||'keine'}. `+
    'Die vollständigen Quellen, direkten Prämissen, lokalen Nachbarkopplungen und exakten Zeugen stehen im JSON.\n\n'+
    (reuse.length?`Beispiel belegter Weiterverwendung: ${reuse[0]}. Weitere Nachfolger stehen pro Feldzeuge im JSON.\n\n`:'')+
-   routeTable+singles+(gaps?gaps+'\n\n':'')+
+   routeTable+fragmentTable+singles+(gaps?gaps+'\n\n':'')+
    `[Etappendaten](${d.id}.json) · [Begrenzte Routenansicht](${d.id}.routes.json). `+
    (rs.length?'Dort stehen für S0–S3, S3–S6 und S1–S5 genaue Teilroutenzahlen, gemeinsame Anfangs-/Endstücke und bis zu zwölf konkrete Alternativen; größere Listen sind als gekürzt gekennzeichnet.':
     'Für diesen Fall wurde keine zusätzliche Routenberechnung angefordert; mehrstündige Beziehungen bleiben ungeprüft.')+'\n\n';

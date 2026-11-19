@@ -80,6 +80,9 @@ Je Ansicht werden die drei festen Fenster S0–S3, S3–S6 und S1–S5 betrachte
 Anzahl verschiedener Teilrouten, gemeinsame Anfangs-/Endstücke, bis zu zwölf
 konkrete Alternativen. Diese Teilrouten sind Projektionen global legaler Wege
 unter der jeweiligen Ansicht, keine unabhängig kombinierbaren Optionen.
+Der Markdownbericht zeigt zusätzlich vollständige kleine Teilroutenmengen mit
+zwei bis vier Alternativen, höchstens ein Fenster je Darstellung/Zustand in der
+festen Fensterreihenfolge. Das ist eine Anzeigebegrenzung, kein Qualitätskriterium.
 `allSha256` bindet die vollständige sortierte Alternativenmenge; `complete: false`
 bezeichnet eine gekürzte Anzeigeliste, nicht unvollständige Enumeration.
 

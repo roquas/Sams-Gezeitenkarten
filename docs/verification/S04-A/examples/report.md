@@ -278,6 +278,12 @@ Beispiel belegter Weiterverwendung: [H3+H6+H7](../../../../docs/verification/B2-
 | --- | --- | --- | --- |
 | [H3+H6+H7](../../../../docs/verification/B2-deduction/T07-given-3.jsonl#L60) | 6 / 4 | 1 | 1 |
 
+| Zustand | Darstellung | Fenster | Vollständige kleine Teilroutenmenge | Gemeinsames Endstück |
+| --- | --- | --- | --- | --- |
+| H3+H6+H7 | lokal kompatibel | S3–S6 | C1→B1→A2→A3; C1→B1→A2→B2; C1→B2→C3→B4; C1→B2→C3→C4 | keines |
+
+Lesebeispiele mit zwei bis vier Alternativen, höchstens ein festes Fenster je Darstellung/Zustand. Die Anzeigebegrenzung ist kein Qualitätskriterium; Teilstücke sind nicht unabhängig kombinierbar.
+
 Schnitt aller gespeicherten Einzelhinweise, ohne Propagation: **5** feldkompatible, mit Nachbarkanten **3** legale Wege. Keine beobachtete menschliche Arbeitslast.
 
 [Etappendaten](T07-given-3.json) · [Begrenzte Routenansicht](T07-given-3.routes.json). Dort stehen für S0–S3, S3–S6 und S1–S5 genaue Teilroutenzahlen, gemeinsame Anfangs-/Endstücke und bis zu zwölf konkrete Alternativen; größere Listen sind als gekürzt gekennzeichnet.
@@ -308,6 +314,14 @@ Beispiel belegter Weiterverwendung: [H3](../../../../docs/verification/S03-v2/ru
 | --- | --- | --- | --- |
 | [H2+H3+H6](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M001-A3-R751-V01.states.jsonl#L35) | 13 / 13 | 13 | 13 |
 | [H1+H2+H3+H4+H5+H6](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M001-A3-R751-V01.states.jsonl#L43) | 3 / 3 | 1 | 1 |
+
+| Zustand | Darstellung | Fenster | Vollständige kleine Teilroutenmenge | Gemeinsames Endstück |
+| --- | --- | --- | --- | --- |
+| H2+H3+H6 | lokal kompatibel | S1–S5 | B3→B4→C5→C4→C3; B3→B4→C5→C4→D3; B3→B4→C5→C4→D4 | keines |
+| H2+H3+H6 | exakt unterstützt | S1–S5 | B3→B4→C5→C4→C3; B3→B4→C5→C4→D3; B3→B4→C5→C4→D4 | keines |
+| H1+H2+H3+H4+H5+H6 | lokal kompatibel | S3–S6 | C5→C4→D3→C3; C5→C4→D3→D4; C5→C4→D4→E5 | keines |
+
+Lesebeispiele mit zwei bis vier Alternativen, höchstens ein festes Fenster je Darstellung/Zustand. Die Anzeigebegrenzung ist kein Qualitätskriterium; Teilstücke sind nicht unabhängig kombinierbar.
 
 Schnitt aller gespeicherten Einzelhinweise, ohne Propagation: **7** feldkompatible, mit Nachbarkanten **7** legale Wege. Keine beobachtete menschliche Arbeitslast.
 
@@ -456,6 +470,12 @@ Beispiel belegter Weiterverwendung: [H1+H2](../../../../docs/verification/S03-v2
 | --- | --- | --- | --- |
 | [H1+H5+H6](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M014-A5-R160-V01.states.jsonl#L32) | 154 / 154 | 4 | 4 |
 
+| Zustand | Darstellung | Fenster | Vollständige kleine Teilroutenmenge | Gemeinsames Endstück |
+| --- | --- | --- | --- | --- |
+| H1+H5+H6 | exakt unterstützt | S0–S3 | A5→A4→B3→A3; A5→A4→B3→C3 | keines |
+
+Lesebeispiele mit zwei bis vier Alternativen, höchstens ein festes Fenster je Darstellung/Zustand. Die Anzeigebegrenzung ist kein Qualitätskriterium; Teilstücke sind nicht unabhängig kombinierbar.
+
 Schnitt aller gespeicherten Einzelhinweise, ohne Propagation: **81** feldkompatible, mit Nachbarkanten **81** legale Wege. Keine beobachtete menschliche Arbeitslast.
 
 [Etappendaten](S03-06.json) · [Begrenzte Routenansicht](S03-06.routes.json). Dort stehen für S0–S3, S3–S6 und S1–S5 genaue Teilroutenzahlen, gemeinsame Anfangs-/Endstücke und bis zu zwölf konkrete Alternativen; größere Listen sind als gekürzt gekennzeichnet.
@@ -485,6 +505,13 @@ Beispiel belegter Weiterverwendung: [H2](../../../../docs/verification/S03-v2/ru
 | --- | --- | --- | --- |
 | [H2](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M016-A2-R116-V01.states.jsonl#L3) | 30 / 30 | 30 | 30 |
 | [H2+H3](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M016-A2-R116-V01.states.jsonl#L7) | 4 / 4 | 4 | 4 |
+
+| Zustand | Darstellung | Fenster | Vollständige kleine Teilroutenmenge | Gemeinsames Endstück |
+| --- | --- | --- | --- | --- |
+| H2+H3 | lokal kompatibel | S0–S3 | A2→A3→B3→C3; A2→B1→B2→C3; A2→B2→B3→C3; A2→B3→B2→C3 | C3 |
+| H2+H3 | exakt unterstützt | S0–S3 | A2→A3→B3→C3; A2→B1→B2→C3; A2→B2→B3→C3; A2→B3→B2→C3 | C3 |
+
+Lesebeispiele mit zwei bis vier Alternativen, höchstens ein festes Fenster je Darstellung/Zustand. Die Anzeigebegrenzung ist kein Qualitätskriterium; Teilstücke sind nicht unabhängig kombinierbar.
 
 Schnitt aller gespeicherten Einzelhinweise, ohne Propagation: **1** feldkompatible, mit Nachbarkanten **1** legale Wege. Keine beobachtete menschliche Arbeitslast.
 
@@ -516,6 +543,14 @@ Beispiel belegter Weiterverwendung: [H1+H2+H5](../../../../docs/verification/S03
 | --- | --- | --- | --- |
 | [H1+H2+H5](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M017-A4-R74-V02.states.jsonl#L25) | 29 / 29 | 17 | 22 |
 | [H2+H5+H6](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M017-A4-R74-V02.states.jsonl#L38) | 101 / 62 | 20 | 38 |
+
+| Zustand | Darstellung | Fenster | Vollständige kleine Teilroutenmenge | Gemeinsames Endstück |
+| --- | --- | --- | --- | --- |
+| H1+H2+H5 | lokal kompatibel | S0–S3 | A4→A3→A2→B2; A4→A3→A2→B3; A4→B3→A2→B2 | keines |
+| H1+H2+H5 | exakt unterstützt | S0–S3 | A4→A3→A2→B3; A4→B3→A2→B2 | keines |
+| H2+H5+H6 | exakt unterstützt | S0–S3 | A4→A3→A2→B3; A4→B3→A2→B2 | keines |
+
+Lesebeispiele mit zwei bis vier Alternativen, höchstens ein festes Fenster je Darstellung/Zustand. Die Anzeigebegrenzung ist kein Qualitätskriterium; Teilstücke sind nicht unabhängig kombinierbar.
 
 Schnitt aller gespeicherten Einzelhinweise, ohne Propagation: **18** feldkompatible, mit Nachbarkanten **6** legale Wege. Keine beobachtete menschliche Arbeitslast.
 
@@ -551,6 +586,17 @@ Beispiel belegter Weiterverwendung: [H2](../../../../docs/verification/S03-v2/ru
 | [H2](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M018-A5-R30-V04.states.jsonl#L3) | 6 / 6 | 6 | 6 |
 | [H1+H2](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M018-A5-R30-V04.states.jsonl#L5) | 3 / 3 | 3 | 3 |
 | [H2+H3](../../../../docs/verification/S03-v2/run/evidence/B2-S03-V2-M018-A5-R30-V04.states.jsonl#L7) | 2 / 2 | 2 | 2 |
+
+| Zustand | Darstellung | Fenster | Vollständige kleine Teilroutenmenge | Gemeinsames Endstück |
+| --- | --- | --- | --- | --- |
+| H2 | lokal kompatibel | S3–S6 | C3→D3→D2→D1; C4→D3→D2→D1 | D3→D2→D1 |
+| H2 | exakt unterstützt | S3–S6 | C3→D3→D2→D1; C4→D3→D2→D1 | D3→D2→D1 |
+| H1+H2 | lokal kompatibel | S0–S3 | A5→A4→B3→C3; A5→A4→B4→C3; A5→B5→B4→C3 | C3 |
+| H1+H2 | exakt unterstützt | S0–S3 | A5→A4→B3→C3; A5→A4→B4→C3; A5→B5→B4→C3 | C3 |
+| H2+H3 | lokal kompatibel | S0–S3 | A5→A4→B3→C3; A5→B5→C5→C4 | keines |
+| H2+H3 | exakt unterstützt | S0–S3 | A5→A4→B3→C3; A5→B5→C5→C4 | keines |
+
+Lesebeispiele mit zwei bis vier Alternativen, höchstens ein festes Fenster je Darstellung/Zustand. Die Anzeigebegrenzung ist kein Qualitätskriterium; Teilstücke sind nicht unabhängig kombinierbar.
 
 Schnitt aller gespeicherten Einzelhinweise, ohne Propagation: **1** feldkompatible, mit Nachbarkanten **1** legale Wege. Keine beobachtete menschliche Arbeitslast.
 
