@@ -1,0 +1,175 @@
+{
+  "source": "User-supplied A3-Routenvergleich.html, iteration 4 / K-final (14 November 2026)",
+  "sourceSha256": "fd4ae18d8650e5ec73a1098b533958f31da1ee4ca9c6ed8ef6954d2f4b1dca7a",
+  "description": "Geometry hashes and arrival positions evaluated directly from the original study, not the production implementation.",
+  "scenes": [
+    {
+      "id": "referenz",
+      "route": [
+        "A1",
+        "A2",
+        "B3",
+        "B2",
+        "C2",
+        "D3",
+        "E3"
+      ],
+      "segments": [
+        {
+          "hour": 1,
+          "source": "A1",
+          "target": "A2",
+          "number": [
+            88.72582771553044,
+            105.4388391715184
+          ],
+          "bandSha256": "4be473932a565010d3f072c969b897e6349e668c8625167b5b7fa04bff80522b",
+          "directionSha256": "12523ea7ff8f5cd4ef7a664f570f43c2bfb836c3918777987317977020cd0545"
+        },
+        {
+          "hour": 2,
+          "source": "A2",
+          "target": "B3",
+          "number": [
+            129.72582771553044,
+            173.4388391715184
+          ],
+          "bandSha256": "4a87d32e834b906e83b8a261f39cc29d38aaf6655f2a4e4603d9301f9a62d9eb",
+          "directionSha256": "4f897ac0568c8bf7f11a4d36758499196b1d3542e40f8eea5e9396ca5ac0e4eb"
+        },
+        {
+          "hour": 3,
+          "source": "B3",
+          "target": "B2",
+          "number": [
+            172.31417228446952,
+            143.5188391715184
+          ],
+          "bandSha256": "673813e54f46e841a7b2f026e90f79e7059703e1946825a7c4b48adf66005f52",
+          "directionSha256": "94d215403be448965f0a36e7c69fa327bbd850eaed746b199eccc8f29e3f1876"
+        },
+        {
+          "hour": 4,
+          "source": "B2",
+          "target": "C2",
+          "number": [
+            242.04000000000002,
+            124.92736
+          ],
+          "bandSha256": "17c25ab9d89317533066cc76849dbbaee9447cd1828f32b4f05373301546feef",
+          "directionSha256": "2ba62d7da998613771da23dc0ba2452e8003d63d428b595a47460d2864644d69"
+        },
+        {
+          "hour": 5,
+          "source": "C2",
+          "target": "D3",
+          "number": [
+            293.72582771553044,
+            173.4388391715184
+          ],
+          "bandSha256": "0089e0403538bedfdedc038e70a37b4788571b406c5b45e129485f3c79f285b1",
+          "directionSha256": "cb76c414308fba53d95e31b445fb4a327b846d6f00d09f118410c1a0161cc835"
+        },
+        {
+          "hour": 6,
+          "source": "D3",
+          "target": "E3",
+          "number": [
+            365.03999999999996,
+            192.92736000000002
+          ],
+          "bandSha256": "c10c4e6b8420b5f14c6f95cd2961d154d9fec9593b2cac6d51d4961b80233719",
+          "directionSha256": "ea5f604dacad83aa9dc00e046b1e050262eec7e3c60f96a4e2e52902e7cd8e43"
+        }
+      ]
+    },
+    {
+      "id": "gerade",
+      "route": [
+        "A5",
+        "B5",
+        "C5",
+        "D5"
+      ],
+      "segments": [
+        {
+          "hour": 1,
+          "source": "A5",
+          "target": "B5",
+          "number": [
+            119.03999999999999,
+            328.92736
+          ],
+          "bandSha256": "db5eda8129d91e76a0b73f1154ccddd41d36161bed11e8b512aa6a5c7421832c",
+          "directionSha256": "5529728d241e3034247b3c82841096ad9691280aaaa41e66c751504a09f58b3b"
+        },
+        {
+          "hour": 2,
+          "source": "B5",
+          "target": "C5",
+          "number": [
+            201.04000000000002,
+            328.92736
+          ],
+          "bandSha256": "383f4ed0ee04137d54c4e6cc03074726a56bbee8563fb844de089f85445672dd",
+          "directionSha256": "43baa3b19ab5bc984b34c33daba35ebb10d483f3ed994b62280276e942422aa4"
+        },
+        {
+          "hour": 3,
+          "source": "C5",
+          "target": "D5",
+          "number": [
+            283.03999999999996,
+            328.92736
+          ],
+          "bandSha256": "f67a983ddeac632648c755f5bd967535f4300211102e1d908f863a5630138a6e",
+          "directionSha256": "c2e12aed9973937bc7a5f9a73b17eeba3daf434f427e0c07c17b407d72723ef8"
+        }
+      ]
+    },
+    {
+      "id": "knick",
+      "route": [
+        "A5",
+        "A4",
+        "B4",
+        "C3"
+      ],
+      "segments": [
+        {
+          "hour": 1,
+          "source": "A5",
+          "target": "A4",
+          "number": [
+            90.31417228446955,
+            279.5188391715184
+          ],
+          "bandSha256": "21cbf63043b16808f7bc94e0a307a529a1b7d2de69e5f21676b0bfb5807391ab",
+          "directionSha256": "43bd6d75b49084e166d4b4c45664f1a30b9a791bc4c18e29a617f5509fe71986"
+        },
+        {
+          "hour": 2,
+          "source": "A4",
+          "target": "B4",
+          "number": [
+            160.04000000000002,
+            260.92736
+          ],
+          "bandSha256": "b0729327ca743fc66509c766613a4306efced91ec6b36b8dff2c7d7a3ba8a386",
+          "directionSha256": "6a54610682924e7461096e247d00b71dcdafab2c4bd616ee0a60d478fc912f27"
+        },
+        {
+          "hour": 3,
+          "source": "B4",
+          "target": "C3",
+          "number": [
+            213.31417228446952,
+            211.51883917151838
+          ],
+          "bandSha256": "1380a72580a6e00e55dcba05fcd0d29a2ff2d94ddc452a719558a80183a0041d",
+          "directionSha256": "ea615b519b257f3592c67cb8e64997055714d02f2b2a3f86a8b0b941e02aa431"
+        }
+      ]
+    }
+  ]
+}

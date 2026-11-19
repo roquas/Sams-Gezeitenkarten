@@ -93,19 +93,21 @@ export function registerInkStatusTests(url){
    expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')).marks)).toEqual({});
   });
   });
-  test('route contrast, equal other hours and active edges follow the selected hour',async({page})=>{
+  test('K-final keeps a shared band and only the chosen direction accent follows the selected hour',async({page})=>{
    // Route entry is already covered by the route/undo suites. This case
    // exercises the real hour transition with that same legal route restored.
    await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5','B5','C5','D5'],layer:1,tool:'route'})));
    await page.goto(url);await ready(page);await expect(cell(page,'D4')).toBeVisible();
    await page.locator('[data-hour="2"]').click();
-   const paths=page.locator('.route-stroke');await expect(paths).toHaveCount(3);
-   const styles=await paths.evaluateAll(nodes=>nodes.map(n=>({current:n.dataset.routeCurrent,stroke:n.getAttribute('stroke'),width:n.getAttribute('stroke-width'),opacity:+n.getAttribute('opacity'),dash:n.getAttribute('stroke-dasharray')})));
-   expect(styles[0]).toEqual(styles[2]);
-   expect(styles[1].current).toBe('true');expect(styles[1].dash).toBeNull();
-   expect(styles[0].dash).toBe('8 5');expect(+styles[1].width).toBeGreaterThan(+styles[0].width);
-   expect(styles.every(s=>s.opacity>=.9)).toBe(true);
-   for(const style of styles)expect(contrast(style.stroke,'#fff0ce')).toBeGreaterThan(4.5);
+   const paths=page.locator('.route-direction');await expect(paths).toHaveCount(3);
+   const styles=await paths.evaluateAll(nodes=>nodes.map(n=>{
+    const gradient=document.getElementById(n.getAttribute('fill').slice(5,-1));
+    return {current:n.dataset.routeCurrent,stops:[...gradient.children].map(s=>[s.getAttribute('stop-color'),+s.getAttribute('stop-opacity')])};
+   }));
+   expect(styles[0]).toEqual(styles[2]);expect(styles[1].current).toBe('true');
+   expect(styles[0].stops[1]).toEqual(['#452d21',.64]);expect(styles[1].stops[1]).toEqual(['#a15f43',.84]);
+   await expect(page.locator('.route-band')).toHaveAttribute('opacity','0.68');
+   await expect(page.locator('.route-band > g').first()).toHaveAttribute('fill','#694934');
    await expect(page.locator('.blocked-cell .active-hour-edge')).toHaveCount(0);
    await expect(page.locator('.edge-ink')).toHaveCount(22);
    const edge=page.locator('.edge-ink').first();await expect(edge).toHaveAttribute('data-active-hour','2');
@@ -113,7 +115,7 @@ export function registerInkStatusTests(url){
    // Retain the original transition while the decorative chart is disabled.
    await page.locator('#showChart').evaluate(el=>{el.checked=false;el.dispatchEvent(new Event('change'));});
    await page.locator('[data-hour="3"]').click();await expect(page.locator('.edge-ink').first()).toHaveAttribute('data-active-hour','3');
-   await expect(page.locator('.route-stroke[data-route-current="true"]')).toHaveAttribute('data-route-hour','3');
+   await expect(page.locator('.route-direction[data-route-current="true"]')).toHaveAttribute('data-route-hour','3');
   });
   test('radar status screenshot below the toolbar',async({page},info)=>{
    await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'yes',distanceMode:true,distanceOrigin:'A1'})));
@@ -130,7 +132,7 @@ export function registerInkStatusTests(url){
    await page.goto(url);await ready(page);await expect(page.locator('.route-stroke')).toHaveCount(3);
    await expect(page.locator('.edge-ink').first()).toHaveAttribute('data-active-hour','2');
    await page.locator('#showChart').evaluate((el,checked)=>{el.checked=checked;el.dispatchEvent(new Event('change'));},art);
-   await expect(page.locator('.route-stroke[data-route-current="true"]')).toHaveCount(1);
+   await expect(page.locator('.route-direction[data-route-current="true"]')).toHaveCount(1);
    const map=page.locator('.mapbox');await map.scrollIntoViewIfNeeded();
    const sizes=await page.locator('#map').evaluate(async svg=>{
     await document.fonts.ready;
