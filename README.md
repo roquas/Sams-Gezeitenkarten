@@ -45,6 +45,8 @@ Hexabstände einschließlich Land. Undo erhält Anzeigeoptionen und bezahlte Hil
 - [Privater Sechsschritt-Routenlauf B1](docs/ROUTE-EXPERIMENT-B1.md)
 - [Experimentelle Rätselkandidaten B2](docs/PUZZLE-EXPERIMENT-B2.md)
 - [Offline-Deduktionsdiagnose B2: Ergebnisse, Grenzen und Ausführung](docs/verification/B2-deduction/report.md)
+- [Dauerhafte menschliche Spielbeobachtungen](docs/observations/README.md)
+- [S04-A: Etappendiagnose und begrenzte Restalternativen](docs/verification/S04-A/README.md)
 - [Architektur](docs/ARCHITECTURE.md)
 - [Konsolidierung, entfernte Schnittstellen und Testtransfer](docs/CONSOLIDATION-F01-F03.md)
 

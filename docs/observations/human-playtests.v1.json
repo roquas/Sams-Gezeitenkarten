@@ -1,0 +1,1183 @@
+{
+  "format": "human-play-observations-1",
+  "notation": {
+    "H1": "Hinweis 1",
+    "S1": "Stunde 1",
+    "S0": "bekannte Startposition"
+  },
+  "scope": "Manuell kuratierte Erfahrungsevidenz, keine Qualitätslabels, Gewichte oder Schwierigkeitsskala. Quellenform und Wissenslücken bleiben explizit.",
+  "sources": [
+    {
+      "id": "s04-request",
+      "path": "docs/observations/sources/s04-a-request.md",
+      "sha256": "38b57cbedba28a1c5c8f815f17277dc23eafc0fea8b4846ed8af894db61cee37",
+      "description": "Zusammenfassungen im ursprünglichen S04-A-Auftrag; vom Nutzer bereitgestellt. In der gespeicherten Kopie wurden nur Markdown-Umbruchleerzeichen am Zeilenende entfernt."
+    },
+    {
+      "id": "s03-analysis",
+      "path": "docs/observations/sources/s03-analysis-excerpts.md",
+      "sha256": "d1099a9a0f2083bb2cab08b2bc9ce5ec30e355d53f639f5c6de3bf62aa926209",
+      "description": "Unveränderte Auszüge aus dem vom Nutzer nachgereichten S03-Analysebericht; sekundäre Erfahrungsevidenz, keine verfügbaren Rohprotokolle."
+    },
+    {
+      "id": "ten-series",
+      "path": "docs/observations/sources/ten-series-supplement.md",
+      "sha256": "69412207ce2062b7988e8597a76c3e516f22256b11591edae38effbfcc7dfb4e",
+      "description": "Vom Nutzer nachgereichte Zusammenfassungen tatsächlicher Spielerangaben aus dem ursprünglichen Spieltestchat; Primärbeobachtungen in Zusammenfassung."
+    },
+    {
+      "id": "v2-observation",
+      "path": "docs/verification/B2-positive-v2-playtest-observation.md",
+      "sha256": "d40ca3e5b8c75f82e892d0802aedde0f8457f7018e8e32b69fd3e9e46f697671",
+      "description": "Bereits versionierte qualitative Zusammenfassung vom 10.11.2026."
+    },
+    {
+      "id": "profile-report",
+      "path": "docs/verification/B2-deduction-profile/report.md",
+      "sha256": "315383027431606eb10edf099ce73346dac0ba67c73783723604b3882e10939a",
+      "description": "Bereits versionierter Profilvergleich mit sekundären menschlichen Einordnungen."
+    }
+  ],
+  "observations": [
+    {
+      "id": "historical-A",
+      "puzzleId": "B2-S02-M010-E4-R00-V01",
+      "aliases": [
+        "A"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s04-request",
+          "line": 43
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "user-supplied-summary",
+        "overallAssessment": "ein Hinweis löst praktisch alles; langweilig.",
+        "observedCourse": [
+          "Ein Hinweis löst praktisch alles."
+        ],
+        "positiveAspects": [],
+        "negativeAspects": [
+          "langweilig"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Vollständiger damaliger Wortlaut, genaue Reihenfolge und Einzelheiten fehlen.",
+        "Der S03-Bericht führte das menschliche Urteil irrtümlich als unbekannt; diese aktuelle belegte Zusammenfassung berichtigt den Stand."
+      ]
+    },
+    {
+      "id": "historical-B",
+      "puzzleId": "B2-S02-M000-A1-R00-V01",
+      "aliases": [
+        "B"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s04-request",
+          "line": 44
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "user-supplied-summary",
+        "overallAssessment": "eher langweilig, wenig echte Entscheidungen.",
+        "observedCourse": [],
+        "positiveAspects": [],
+        "negativeAspects": [
+          "eher langweilig",
+          "wenig echte Entscheidungen"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Vollständiger damaliger Wortlaut, genaue Reihenfolge und Einzelheiten fehlen.",
+        "Der S03-Bericht führte das menschliche Urteil irrtümlich als unbekannt; diese aktuelle belegte Zusammenfassung berichtigt den Stand."
+      ]
+    },
+    {
+      "id": "historical-C",
+      "puzzleId": "B2-BC-T06-M005-E3-R00",
+      "aliases": [
+        "C"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s04-request",
+          "line": 45
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "user-supplied-summary",
+        "overallAssessment": "gelungener Kombinationsfall mit markierbaren Zwischenfortschritten.",
+        "observedCourse": [
+          "Markierbare Zwischenfortschritte in einem Kombinationsfall."
+        ],
+        "positiveAspects": [
+          "gelungene Kombination",
+          "markierbare Zwischenfortschritte"
+        ],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Vollständiger damaliger Wortlaut, genaue Reihenfolge und Einzelheiten fehlen.",
+        "Der S03-Bericht führte das menschliche Urteil irrtümlich als unbekannt; diese aktuelle belegte Zusammenfassung berichtigt den Stand."
+      ]
+    },
+    {
+      "id": "historical-D",
+      "puzzleId": "B2-S02-M017-C3-R00-V02",
+      "aliases": [
+        "D"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s04-request",
+          "line": 46
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "user-supplied-summary",
+        "overallAssessment": "anspruchsvoller Fall mit gekoppelten Alternativen, gelegentlich akzeptabel.",
+        "observedCourse": [
+          "Gekoppelte Alternativen."
+        ],
+        "positiveAspects": [
+          "gelegentlich akzeptabel"
+        ],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Vollständiger damaliger Wortlaut, genaue Reihenfolge und Einzelheiten fehlen.",
+        "Der S03-Bericht führte das menschliche Urteil irrtümlich als unbekannt; diese aktuelle belegte Zusammenfassung berichtigt den Stand."
+      ]
+    },
+    {
+      "id": "positive-v1",
+      "puzzleId": "B2-POSITIVE-01",
+      "aliases": [
+        "POSITIVE V1"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s04-request",
+          "line": 47
+        },
+        {
+          "sourceId": "profile-report",
+          "line": 83
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "angenehm und eher leicht",
+        "observedCourse": [],
+        "positiveAspects": [
+          "angenehm"
+        ],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Kein vollständiger menschlicher Lösungsverlauf verfügbar.",
+        "V1/V2 sind verwandte Konstruktionen; Ähnlichkeit ist kein unabhängiger Doppelbeleg."
+      ]
+    },
+    {
+      "id": "positive-v2",
+      "puzzleId": "B2-POSITIVE-V2-01",
+      "aliases": [
+        "POSITIVE V2"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "v2-observation",
+          "line": 8
+        },
+        {
+          "sourceId": "s04-request",
+          "line": 47
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "recorded-summary",
+        "overallAssessment": "nachvollziehbar und angenehm; nahezu identisch mit der ersten positiven Referenz",
+        "observedCourse": [
+          "Erfolgreich und ohne technische Hilfen gelöst.",
+          "Der neue Zählhinweis funktioniert, verändert den erlebten Lösungsverlauf aber nur begrenzt."
+        ],
+        "positiveAspects": [
+          "nachvollziehbar und angenehm"
+        ],
+        "negativeAspects": [
+          "Struktur nahezu identisch mit der ersten positiven Referenz"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Keine konkrete menschliche Schlussreihenfolge verfügbar.",
+        "Keine unabhängige Bestätigung eines Schwierigkeitsgrads."
+      ]
+    },
+    {
+      "id": "historical-T02",
+      "puzzleId": "B2-BC-T02-M017-A4-R00",
+      "aliases": [
+        "BC-T02"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s04-request",
+          "line": 48
+        },
+        {
+          "sourceId": "profile-report",
+          "line": 83
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "schwieriger und teilweise frustrierend",
+        "observedCourse": [
+          "Teilweise frustrierende mentale Alternativenlast."
+        ],
+        "positiveAspects": [],
+        "negativeAspects": [
+          "mentale Alternativenlast",
+          "teilweise frustrierend"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Nur knappe gemeinsame Einordnung verfügbar; Details und genaue Reihenfolge je Fall unbekannt."
+      ]
+    },
+    {
+      "id": "historical-T07",
+      "puzzleId": "B2-BC-T07-M013-D4-R00",
+      "aliases": [
+        "BC-T07"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s04-request",
+          "line": 48
+        },
+        {
+          "sourceId": "profile-report",
+          "line": 83
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "schwieriger und teilweise frustrierend",
+        "observedCourse": [
+          "Teilweise frustrierende mentale Alternativenlast."
+        ],
+        "positiveAspects": [],
+        "negativeAspects": [
+          "mentale Alternativenlast",
+          "teilweise frustrierend"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Nur knappe gemeinsame Einordnung verfügbar; Details und genaue Reihenfolge je Fall unbekannt."
+      ]
+    },
+    {
+      "id": "historical-T07-given-3",
+      "puzzleId": "B2-BC-T07-M013-D4-R00",
+      "aliases": [
+        "BC-T07 mit vorgegebenem S3"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 83
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "problematischer Rest",
+        "observedCourse": [],
+        "positiveAspects": [],
+        "negativeAspects": [
+          "problematischer Rest"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Künstliche Kontrolle mit vorgegebenem S3; keine unabhängige Wiederholung.",
+        "Details der damaligen Spielerangabe fehlen."
+      ],
+      "condition": {
+        "givenHour": 3,
+        "cell": null,
+        "note": "Die Position stammt im technischen Kontrollprofil aus der eindeutigen Solver-Lösung; hier keine Position als Spielerbeobachtung ergänzt."
+      }
+    },
+    {
+      "id": "ten-01",
+      "puzzleId": "B2-S02-M002-A1-R00-V01",
+      "aliases": [
+        "Zehnerserie 01"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 9
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": "Fast langweilig, aber gutes Einstiegsrätsel.",
+        "observedCourse": [
+          "H1/H2 machen S4 eindeutig.",
+          "Wegen der Geometrie und der erreichbaren Route werden dadurch S1–S3 klar.",
+          "H1 und das Wiederbesuchsverbot bestimmen S5.",
+          "H3 bestimmt S6.",
+          "Sehr schneller, weitgehend zwangsläufiger Lösungsverlauf."
+        ],
+        "positiveAspects": [
+          "gutes Einstiegsrätsel"
+        ],
+        "negativeAspects": [
+          "fast langweilig"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": []
+    },
+    {
+      "id": "ten-02",
+      "puzzleId": "B2-S02-M004-A1-R00-V01",
+      "aliases": [
+        "Zehnerserie 02"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 19
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": "Nett, aber wenig Denkarbeit.",
+        "observedCourse": [
+          "H1 schränkt S5 stark ein.",
+          "H2 fixiert S1.",
+          "H4 fixiert S2.",
+          "H3 und die Kartengeometrie bestimmen weitgehend S3/S4.",
+          "H1 entscheidet zwischen den verbleibenden Möglichkeiten für S5, H3 anschließend S6.",
+          "Die Route wird eher als Ganzes geometrisch erschlossen als durch einzelne markierbare Fortschritte."
+        ],
+        "positiveAspects": [
+          "nett"
+        ],
+        "negativeAspects": [
+          "wenig Denkarbeit",
+          "Einbeziehung von S0 in H2/H4 wirkt unnötig kompliziert."
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": []
+    },
+    {
+      "id": "ten-03",
+      "puzzleId": "B2-S01-M001-A1-R25-V03",
+      "aliases": [
+        "Zehnerserie 03"
+      ],
+      "documentedStatus": "previously-played-no-new-test",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 32
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": null,
+        "observedCourse": [],
+        "positiveAspects": [],
+        "negativeAspects": [],
+        "verbatimQuotes": [
+          "Hatte ich schon gelöst, k.A. was ich Dir dazu schrieb :-)"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Bereits früher gespielt; kein neuer Blindtest und keine neue qualitative Bewertung.",
+        "Eine etwaige frühere Bewertung ist nicht verfügbar."
+      ]
+    },
+    {
+      "id": "ten-04",
+      "puzzleId": "B2-S02-M011-A5-R00-V02",
+      "aliases": [
+        "Zehnerserie 04"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 42
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": "Schöne Umsetzung eines geometrischen Lösungsprinzips.",
+        "observedCourse": [
+          "H1 schließt einen großen Ring für S1–S5 aus.",
+          "H3 legt S4 auf einen Abstandring und erzwingt aufgrund der erforderlichen Weglänge faktisch auch S1–S3.",
+          "Durch den H1-Sperrring werden S1–S3 schnell fix.",
+          "S4 wird zunächst eingeschränkt und anschließend durch die notwendige Fortsetzung eindeutig.",
+          "H2 entscheidet zwischen den verbleibenden Möglichkeiten für S6.",
+          "Viel Geometrie, aber als Rätsel angenehm umgesetzt."
+        ],
+        "positiveAspects": [
+          "angenehme geometrische Umsetzung"
+        ],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": []
+    },
+    {
+      "id": "ten-05",
+      "puzzleId": "B2-S02-M015-E4-R00-V01",
+      "aliases": [
+        "Zehnerserie 05"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 53
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": "Fast langweilig, trotzdem nett als leichtes Rätsel.",
+        "observedCourse": [
+          "H1 enthält eine unglücklich formulierte Mehrstundenzählung mit S0.",
+          "Dadurch ergibt sich eine Aufteilung des erreichbaren Bereichs.",
+          "H2 entscheidet aufgrund der Zahl überhaupt geeigneter Felder, welcher Kartenbereich benutzt werden muss.",
+          "Von den sehr wenigen geometrisch möglichen Routen bleibt eine übrig.",
+          "Sehr wenig weitere Denkarbeit."
+        ],
+        "positiveAspects": [
+          "nett als leichtes Rätsel"
+        ],
+        "negativeAspects": [
+          "fast langweilig",
+          "unglücklich formulierte Mehrstundenzählung mit S0"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Im menschlichen Bericht steht B2-S02-M015-A4-R00-V01; die ursprüngliche Spieltestübersicht nennt B2-S02-M015-E4-R00-V01. Zuordnung anhand Testposition und Kontext, keine fehlerfrei verifizierte Kennungsidentität."
+      ],
+      "identityUncertainty": {
+        "reportedId": "B2-S02-M015-A4-R00-V01",
+        "overviewId": "B2-S02-M015-E4-R00-V01",
+        "binding": "test-position-and-context"
+      }
+    },
+    {
+      "id": "ten-06",
+      "puzzleId": "B2-BC-T04-M003-A5-R00",
+      "aliases": [
+        "Zehnerserie 06"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 65
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": "Prinzipiell super, sehr erfüllender Aha-Moment; die längere mentale Verwaltung zweier Routenalternativen ist allerdings störend.",
+        "observedCourse": [
+          "H1 schließt drei Felder für S4 aus.",
+          "H2 schließt einen Ring für S3–S6 aus.",
+          "H3 und H2 ergänzen sich durch unterschiedliche Zählintervalle.",
+          "Mit H5 ergibt das zwei Möglichkeiten für S1/S2 und anschließend zwei grundsätzliche Fortsetzungen.",
+          "H6 muss für beide Routenoptionen geprüft werden; zusammen mit H4 lässt sich eine ausschließen.",
+          "Sehr befriedigender Kombinationsschluss.",
+          "Gleichzeitig müssen zwei komplette Routen zu lange ausschließlich gedanklich offen gehalten werden."
+        ],
+        "positiveAspects": [
+          "sehr erfüllender Aha-Moment",
+          "befriedigender Kombinationsschluss"
+        ],
+        "negativeAspects": [
+          "zwei komplette Routen zu lange gedanklich offen halten"
+        ],
+        "additionalFeedback": [
+          "Weitere Markierungsmöglichkeiten erwogen; Spieler zweifelt selbst, ob das die richtige Lösung wäre."
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": []
+    },
+    {
+      "id": "ten-07",
+      "puzzleId": "B2-S02-M014-A5-R00-V02",
+      "aliases": [
+        "Zehnerserie 07"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 79
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": "Gut, allerdings etwas umständlich zu markieren.",
+        "observedCourse": [
+          "H3 legt einen Abstandring für S4 fest.",
+          "H4 einen für S5.",
+          "Zusammen mit H2 ist der spätere Routenabschnitt S4–S6 nahezu eindeutig.",
+          "Zwei mögliche Anfangsrouten bleiben.",
+          "H1 schließt eine davon aus.",
+          "Interessanter rückwärts gerichteter Lösungsverlauf."
+        ],
+        "positiveAspects": [
+          "gut",
+          "rückwärts gerichteter Lösungsverlauf"
+        ],
+        "negativeAspects": [
+          "etwas umständlich zu markieren"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": []
+    },
+    {
+      "id": "ten-08",
+      "puzzleId": "B2-S02-M007-E4-R00-V02",
+      "aliases": [
+        "Zehnerserie 08"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 90
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": "Nett, aber nahezu trivial.",
+        "observedCourse": [
+          "H2 schränkt S6 auf zwei Positionen ein.",
+          "H1 schließt einen Ring für S1–S3 aus und fixiert dadurch S1.",
+          "Wegen der zugestellten Karte ist nur eine der S6-Positionen über einen legalen Weg erreichbar.",
+          "Die restliche Route ergibt sich nahezu automatisch aus der Geometrie."
+        ],
+        "positiveAspects": [
+          "nett"
+        ],
+        "negativeAspects": [
+          "nahezu trivial"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": []
+    },
+    {
+      "id": "ten-09",
+      "puzzleId": "B2-S01-M003-A1-R25-V01",
+      "aliases": [
+        "Zehnerserie 09"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 99
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": "Prinzipiell gut, mittelschwer und geeignetes Material für tägliche Rätsel, sofern diese Art nicht dominiert.",
+        "observedCourse": [
+          "H1 fixiert S5 unmittelbar.",
+          "H3 und die Startgeometrie begrenzen stark, welche frühen Felder besucht werden können.",
+          "H1 schließt weitere Möglichkeiten aus, insbesondere wegen Wiederbesuch und Erreichbarkeit von S5.",
+          "H4 erlaubt die Prüfung verschiedener S3/S4-Anschlüsse.",
+          "Nur eine Fortsetzung erreicht das feststehende S5 regelkonform.",
+          "Damit sind S1–S5 fix.",
+          "H2 entscheidet zwischen zwei verbleibenden S6-Positionen.",
+          "Interessante Kombination, aber relativ viel mentale Routenprüfung."
+        ],
+        "positiveAspects": [
+          "prinzipiell gut",
+          "Material für tägliche Rätsel, sofern diese Art nicht dominiert"
+        ],
+        "negativeAspects": [
+          "relativ viel mentale Routenprüfung"
+        ],
+        "additionalFeedback": [
+          "Direkter Stundenpositionshinweis für spätere Generierung unerwünscht: Designvorgabe, kein Fehler dieses historischen Rätsels."
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": []
+    },
+    {
+      "id": "ten-10",
+      "puzzleId": "B2-S02-M009-A4-R00-V02",
+      "aliases": [
+        "Zehnerserie 10"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "ten-series",
+          "line": 114
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "primary-observation-summary",
+        "overallAssessment": "Nett.",
+        "observedCourse": [
+          "H4 grenzt S6 ein.",
+          "H2 verlangt für S3–S5 einen bestimmten Abstandbereich.",
+          "H3 macht Vorgaben über drei zu besuchende Felder innerhalb S1–S4.",
+          "H1 schließt weitere S6-Positionen und Felder aus.",
+          "Anschließend müssen mögliche Routen vor allem gedanklich anhand der Geometrie geprüft werden.",
+          "S1/S2 werden vergleichsweise schnell fix.",
+          "Nur eine S6-Position ist schließlich auf einem zulässigen Weg erreichbar."
+        ],
+        "positiveAspects": [
+          "nett"
+        ],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": []
+    },
+    {
+      "id": "s03-01",
+      "puzzleId": "B2-S03-V2-M001-A3-R751-V01",
+      "aliases": [
+        "S03-v2 01"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 27
+        },
+        {
+          "sourceId": "s03-analysis",
+          "line": 17
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "sehr schön, klar positiv",
+        "observedCourse": [
+          "frühe Markierbarkeit, S3-Anker, S1/S2 über H6, weiterer Fortschritt an S4/S5 und ein befriedigendes finales Aha."
+        ],
+        "positiveAspects": [
+          "frühe Markierbarkeit",
+          "befriedigendes finales Aha"
+        ],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Sekundärzusammenfassung aus Analysebericht; ursprüngliches auftrag.md und vollständiger Spielerwortlaut liegen hier nicht vor.",
+        "Keine vollständigen Zwischenzustandsprotokolle oder objektiven Zeitmessungen.",
+        "Berichtete fünf S6-Möglichkeiten sind nicht die sechs des isolierten H1+H5-Zustands.",
+        "Berichtete S5-Zweiermenge ist nicht der isolierte Dreierzustand; damals benutzter Kontext unbekannt."
+      ]
+    },
+    {
+      "id": "s03-02",
+      "puzzleId": "B2-S03-V2-M003-A5-R436-V02",
+      "aliases": [
+        "S03-v2 02"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 33
+        },
+        {
+          "sourceId": "s03-analysis",
+          "line": 18
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "sehr schwer, machbar, eher negativ",
+        "observedCourse": [
+          "H1 erlaubt Markierungen, danach belastende Prüfung ganzer Routen und spät eine Entscheidung für S6."
+        ],
+        "positiveAspects": [
+          "H1 erlaubt Markierungen"
+        ],
+        "negativeAspects": [
+          "belastende Prüfung ganzer Routen"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Sekundärzusammenfassung aus Analysebericht; ursprüngliches auftrag.md und vollständiger Spielerwortlaut liegen hier nicht vor.",
+        "Keine vollständigen Zwischenzustandsprotokolle oder objektiven Zeitmessungen."
+      ]
+    },
+    {
+      "id": "s03-03",
+      "puzzleId": "B2-S03-V2-M008-A3-R51-V02",
+      "aliases": [
+        "S03-v2 03"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 37
+        },
+        {
+          "sourceId": "s03-analysis",
+          "line": 19
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "okay, nicht wirklich gut",
+        "observedCourse": [
+          "viel Markierbarkeit, zunächst kein erkannter Fixpunkt, dann ein großer geometrischer Kombinationsschluss; zu wenig aufeinander aufbauende Teilerkenntnisse."
+        ],
+        "positiveAspects": [
+          "viel Markierbarkeit"
+        ],
+        "negativeAspects": [
+          "zu wenig aufeinander aufbauende Teilerkenntnisse"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Sekundärzusammenfassung aus Analysebericht; ursprüngliches auftrag.md und vollständiger Spielerwortlaut liegen hier nicht vor.",
+        "Keine vollständigen Zwischenzustandsprotokolle oder objektiven Zeitmessungen.",
+        "Berichtete vier S6-Möglichkeiten lassen sich keinem der isolierten genannten Fixpunkte gleichsetzen."
+      ]
+    },
+    {
+      "id": "s03-04",
+      "puzzleId": "B2-S03-V2-M010-E4-R568-V01",
+      "aliases": [
+        "S03-v2 04"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 43
+        },
+        {
+          "sourceId": "s03-analysis",
+          "line": 20
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "besser als 02/03, weiter kopflastig",
+        "observedCourse": [
+          "zunächst zwei Anfangskombinationen, danach drei Fortsetzungen, H2 entscheidet S1–S5, H3 beendet die Route; besser, aber kopflastig."
+        ],
+        "positiveAspects": [
+          "mehrere Einsichten",
+          "besser als 02/03"
+        ],
+        "negativeAspects": [
+          "kopflastig"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Sekundärzusammenfassung aus Analysebericht; ursprüngliches auftrag.md und vollständiger Spielerwortlaut liegen hier nicht vor.",
+        "Keine vollständigen Zwischenzustandsprotokolle oder objektiven Zeitmessungen.",
+        "Berichtete drei Fortsetzungen beziehen sich laut Bericht auf größere Kombination als die diagnostizierten Tripel."
+      ]
+    },
+    {
+      "id": "s03-05",
+      "puzzleId": "B2-S03-V2-M011-A5-R787-V01",
+      "aliases": [
+        "S03-v2 05"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 47
+        },
+        {
+          "sourceId": "s03-analysis",
+          "line": 21
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "nett, eher einfach, gelegentlich positiv",
+        "observedCourse": [
+          "leicht, nett, einige Kopfarbeit, überschaubare Alternativen; H2/H3 verbinden mehrere Stunden über dasselbe Distanzziel."
+        ],
+        "positiveAspects": [
+          "leicht und nett",
+          "überschaubare Alternativen"
+        ],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Sekundärzusammenfassung aus Analysebericht; ursprüngliches auftrag.md und vollständiger Spielerwortlaut liegen hier nicht vor.",
+        "Keine vollständigen Zwischenzustandsprotokolle oder objektiven Zeitmessungen."
+      ]
+    },
+    {
+      "id": "s03-06",
+      "puzzleId": "B2-S03-V2-M014-A5-R160-V01",
+      "aliases": [
+        "S03-v2 06"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 51
+        },
+        {
+          "sourceId": "s03-analysis",
+          "line": 22
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "lohnend, aber anstrengend",
+        "observedCourse": [
+          "H2/H3 wirken unnötig aufgeteilt und verursachen Kontrollarbeit; H5/H6 zum selben Radarziel helfen schließlich, S6 und die Route zu finden."
+        ],
+        "positiveAspects": [
+          "lohnend"
+        ],
+        "negativeAspects": [
+          "unnötige Aufteilung H2/H3",
+          "Kontrollarbeit",
+          "anstrengend"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Sekundärzusammenfassung aus Analysebericht; ursprüngliches auftrag.md und vollständiger Spielerwortlaut liegen hier nicht vor.",
+        "Keine vollständigen Zwischenzustandsprotokolle oder objektiven Zeitmessungen."
+      ]
+    },
+    {
+      "id": "s03-07",
+      "puzzleId": "B2-S03-V2-M016-A2-R116-V01",
+      "aliases": [
+        "S03-v2 07"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 55
+        },
+        {
+          "sourceId": "s03-analysis",
+          "line": 23
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "nett, simpel, gutes Einstiegsrätsel",
+        "observedCourse": [
+          "direkter S6-Anker, Markierungen, danach geometrisch eindeutige Route; angenehm als Einstieg."
+        ],
+        "positiveAspects": [
+          "angenehm als Einstieg"
+        ],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Sekundärzusammenfassung aus Analysebericht; ursprüngliches auftrag.md und vollständiger Spielerwortlaut liegen hier nicht vor.",
+        "Keine vollständigen Zwischenzustandsprotokolle oder objektiven Zeitmessungen."
+      ]
+    },
+    {
+      "id": "s03-08",
+      "puzzleId": "B2-S03-V2-M017-A4-R74-V02",
+      "aliases": [
+        "S03-v2 08"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 59
+        },
+        {
+          "sourceId": "s03-analysis",
+          "line": 24
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "sehr gut, klar positiv; viel Markierarbeit",
+        "observedCourse": [
+          "mehrere getrennte Erkenntnismomente, kurze Prüfung von S3/S4-Fortsetzungen, Rückwärtsbestimmung von S1/S2, erneute Nutzung früherer H4-Markierungen für S5/S6; klar positiv."
+        ],
+        "positiveAspects": [
+          "mehrere getrennte Erkenntnismomente",
+          "Wiederverwendung früherer Markierungen"
+        ],
+        "negativeAspects": [
+          "viel Markierarbeit"
+        ]
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Sekundärzusammenfassung aus Analysebericht; ursprüngliches auftrag.md und vollständiger Spielerwortlaut liegen hier nicht vor.",
+        "Keine vollständigen Zwischenzustandsprotokolle oder objektiven Zeitmessungen.",
+        "Berichtete H4-Markierbarkeit ist nicht der lokale Einzelhinweis-Fixpunkt.",
+        "H6 im menschlichen Bericht nicht gesondert erklärt."
+      ]
+    },
+    {
+      "id": "s03-09",
+      "puzzleId": "B2-S03-V2-M018-A5-R30-V04",
+      "aliases": [
+        "S03-v2 09"
+      ],
+      "documentedStatus": "played",
+      "actuallyPlayed": true,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 65
+        },
+        {
+          "sourceId": "s03-analysis",
+          "line": 25
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "secondary-summary",
+        "overallAssessment": "gut, anspruchsvoll, eher schnell",
+        "observedCourse": [
+          "wenige H1-Markierungen, S2-Alternativen aus H3, ungewöhnlich frühe S5/S6-Festlegung aus H2, danach überschaubare Rückprüfung; gut und schnell für den geübten Spieler."
+        ],
+        "positiveAspects": [
+          "frühe späte Anker",
+          "überschaubare Rückprüfung"
+        ],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Sekundärzusammenfassung aus Analysebericht; ursprüngliches auftrag.md und vollständiger Spielerwortlaut liegen hier nicht vor.",
+        "Keine vollständigen Zwischenzustandsprotokolle oder objektiven Zeitmessungen."
+      ]
+    },
+    {
+      "id": "technical-combination",
+      "puzzleId": "B2-S01-M000-A3-R00-V01",
+      "aliases": [
+        "S01 combination"
+      ],
+      "documentedStatus": "technical-only",
+      "actuallyPlayed": null,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 77
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "no-human-account",
+        "overallAssessment": null,
+        "observedCourse": [],
+        "positiveAspects": [],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Menschliche Bewertung und tatsächliches Spielen unbekannt.",
+        "Keine lokalen Zustandsprofile in der bereitgestellten Analyse."
+      ]
+    },
+    {
+      "id": "technical-course",
+      "puzzleId": "B2-S01-M003-A1-R00-V04",
+      "aliases": [
+        "S01 course"
+      ],
+      "documentedStatus": "technical-only",
+      "actuallyPlayed": null,
+      "sources": [
+        {
+          "sourceId": "s03-analysis",
+          "line": 78
+        }
+      ],
+      "playerAccount": {
+        "form": "summary",
+        "provenance": "no-human-account",
+        "overallAssessment": null,
+        "observedCourse": [],
+        "positiveAspects": [],
+        "negativeAspects": []
+      },
+      "technicalFindings": [],
+      "laterInterpretations": [],
+      "uncertainties": [
+        "Menschliche Bewertung und tatsächliches Spielen unbekannt.",
+        "Keine lokalen Zustandsprofile in der bereitgestellten Analyse."
+      ]
+    }
+  ],
+  "seriesFeedback": {
+    "series": "S01/S02/BC Zehnerserie",
+    "sources": [
+      {
+        "sourceId": "ten-series",
+        "line": 126
+      }
+    ],
+    "form": "primary-observation-summary",
+    "text": "Häufig entstehen über Kartengeometrie große Teilrouten oder ganze Routen statt einzelner Stundenfixierungen.",
+    "positiveAspects": [
+      "sinnvoll kombinierbare Hinweise",
+      "markierbare Zwischenergebnisse",
+      "befriedigende Aha-Momente",
+      "überschaubare geometrische Einschränkungen"
+    ],
+    "negativeAspects": [
+      "zu viele gleichzeitig gedanklich verwaltete Routenalternativen",
+      "Einpassen einer vollständigen Route",
+      "vermeidbar komplizierte Formulierungen unter Einbeziehung von S0"
+    ],
+    "preference": "Geometrische und einfache Rätsel sollen Teil einer abwechslungsreichen Serie bleiben."
+  },
+  "limits": [
+    "Keine automatischen Urteile aus diesen Erfahrungen ableiten.",
+    "Reihenfolge innerhalb eines Verlaufs stammt nur aus der jeweiligen Quelle, nie aus einem Trace.",
+    "Spielzeiten, Klickzahlen und Schwierigkeitsgrade werden nicht ergänzt.",
+    "Historische Quellen waren teils nachträgliche Zusammenfassungen; kein wortgetreues Transkript behauptet.",
+    "Die Kennungsabweichung in Zehnerserie 05 und das fehlende ältere Urteil für Test 03 bleiben offen."
+  ]
+}

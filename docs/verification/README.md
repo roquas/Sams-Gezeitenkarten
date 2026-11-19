@@ -1,5 +1,12 @@
 # Verifikationsnachweise
 
+[S04-A: Etappendiagnose](S04-A/examples/report.md): alternative Hinweiszeugen,
+lokale Markierungen, späte Anker und getrennte budgetierte Teilroutenansichten.
+[Architektur, Format und Grenzen](S04-A/README.md),
+`npm run report:b2:stages -- --check`. Enthält Lösungen; keine Qualitätsrangliste.
+[Versionierte menschliche Spielbeobachtungen](../observations/README.md) sind
+eigenständige Erfahrungsevidenz, einschließlich der historischen Zehnerserie.
+
 [Markierbare Zwischenfortschritte, Profilversion 2](B2-deduction-profile-v2/report.md):
 konkrete ×/?/✓ mit Zustands- und Regelzeugen für A–D und die bisherigen Referenzen.
 [Datenformat und Reproduktion](B2-markable-progress.md),
