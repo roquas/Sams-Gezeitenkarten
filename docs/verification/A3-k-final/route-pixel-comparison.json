@@ -1,0 +1,59 @@
+{
+  "description": "Browser raster comparison of the original K-final band and direction overlay against the production module, including texture, cap compositing and gradients. Transparent 563×473 canvas; base chart and optional numbers excluded.",
+  "comparisons": [
+    {
+      "scene": "referenz",
+      "hour": 1,
+      "changedPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "scene": "referenz",
+      "hour": 3,
+      "changedPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "scene": "referenz",
+      "hour": 6,
+      "changedPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "scene": "gerade",
+      "hour": 1,
+      "changedPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "scene": "gerade",
+      "hour": 2,
+      "changedPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "scene": "gerade",
+      "hour": 3,
+      "changedPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "scene": "knick",
+      "hour": 1,
+      "changedPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "scene": "knick",
+      "hour": 2,
+      "changedPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "scene": "knick",
+      "hour": 3,
+      "changedPixels": 0,
+      "maxChannelDifference": 0
+    }
+  ]
+}

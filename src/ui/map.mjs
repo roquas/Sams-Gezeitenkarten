@@ -6,6 +6,7 @@ import {CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
 import {distancePhase} from '../state/distance-overlay.mjs';
 import {GREEK_SYMBOLS, ROWCOLORS} from './coordinates.mjs';
+import {routeSegments,drawRouteInk,drawRouteNumbers} from './route-ink.mjs';
 function poly(x,y){return hexVertices(x,y).map(([x,y])=>`${x.toFixed(2)},${y.toFixed(2)}`).join(" ")}
 const coords=hexCenter;
 const staticCharts=new WeakMap();
@@ -112,8 +113,12 @@ export function drawMap({state,puzzle,rules,cells,byId,blocked,pretty,key,onActi
  for(const node of svg.children)node.setAttribute('data-static-chart','true');
  staticCharts.set(svg,{puzzle,mode,art});
  }
- // 1c: Große, transparente Abstandszahlen auf allen Feldern; über den Illustrationen,
- // aber unter interaktiven Hexflächen, Routenlinie und Markierungen.
+ // K-final: art → brush/direction → radar → hex surfaces → optional numbers
+ // → interactive cells with all game information → start marker.
+ const selected=Number.isInteger(state.layer)?state.layer:state.route.length-1;
+ const segments=routeSegments(state.route,byId);
+ svg.append(drawRouteInk(el,segments,selected,svg.id+'-route'));
+ // Radar retains its existing geometry, semantics and independent visibility.
  if(state.distanceMode && state.distanceOrigin){
    // Resolve the concrete logical object, independently of its name or artwork.
    // Reuse the clue engine's full-footprint distance; sea keeps point distance.
@@ -128,11 +133,20 @@ export function drawMap({state,puzzle,rules,cells,byId,blocked,pretty,key,onActi
    }
    svg.append(layer);
  }
+ const surfaces=el('g',{class:'hex-surfaces','pointer-events':'none','aria-hidden':'true'});
+ const information=el('g',{class:'cell-information'});
+ svg.append(surfaces);
+ if(state.showRouteNumbers)svg.append(drawRouteNumbers(el,segments,selected));
+ svg.append(information);
  for(const c of cells){
   const [x,y]=coords(c),land=blocked.has(c.id),m=land?undefined:state.marks[key(state.layer,c.id)];
   const colors={no:"#c9a6a02c",maybe:"#efd38b29",yes:"#90c4a229"};
   const g=el("g",{class:land?"cell blocked-cell":"cell",tabindex:"0",role:"button","aria-label":pretty(c.id)+(land?" Land":""),"data-id":c.id,"data-object-id":puzzle.map.objects.find(o=>o.cells.includes(c.id))?.id??''});
-  g.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#d6c59a":"#ece3c1","stroke-width":"1.05","stroke-opacity":land?".62":".56",...(land?{"stroke-dasharray":"4 3"}:{}),"stroke-linejoin":"round","pointer-events":"all"}));
+  surfaces.append(el("polygon",{points:poly(x,y),fill:land?"transparent":colors[m]||"transparent",stroke:land?"#d6c59a":"#ece3c1","stroke-width":"1.05","stroke-opacity":land?".62":".56",...(land?{"stroke-dasharray":"4 3"}:{}),"stroke-linejoin":"round"}));
+  // Keep the existing cell DOM, keyboard handler and hover outline. Its
+  // transparent hit area is above decorative numbers; the visible fill/grid
+  // is below them. All game annotations stay in the same interactive cell.
+  g.append(el('polygon',{points:poly(x,y),fill:'transparent',stroke:'none','pointer-events':'all'}));
   // Illustrationen liegen bereits auf der unteren, markierungsunabhängigen Ebene.
   // Markierungen dürfen Motive niemals aus dem DOM entfernen.
   // The active hour highlights the entire corresponding hex EDGE, even when unmarked.
@@ -160,42 +174,14 @@ export function drawMap({state,puzzle,rules,cells,byId,blocked,pretty,key,onActi
     g.append(el("circle",{cx,cy,r:9.2,fill:fills[mark],opacity:state.layer===h?.98:.58,stroke:state.layer===h?"#ffffff":"#f8f3e6","stroke-width":state.layer===h?"1.5":".8"}));
     g.append(el("text",{x:cx,y:cy+3.4,"font-size":"11.8","font-weight":"900","text-anchor":"middle",fill:"white",opacity:state.layer===h?1:.72},({no:"×",maybe:"?",yes:"✓"})[mark]));
   }
-  // The route is a continuous line only; corner annotations stay unobstructed.
   // Blocked hexes are hit targets only for distance selection, never for notes
   // or route editing. Do not initiate a drag from a blocked hex in normal mode.
   const mayActivate=()=>!land||distancePhase(state)==='waiting';
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();if(mayActivate())onActivate(c.id,true)}});
-  svg.append(g);
+  information.append(g);
  }
- // Handgezeichnete Route: weicher Schein + warmer Tintenstrich + feine Lichtkante.
- // Only the selected hour differs: other hours share the same readable ink.
- const selected=Number.isInteger(state.layer)?state.layer:state.route.length-1;
- const routeInk=el("g",{class:"route-ink","pointer-events":"none","aria-hidden":"true"});
- for(let i=1;i<state.route.length;i++){
-   const [x1,y1]=coords(byId[state.route[i-1]]),[x2,y2]=coords(byId[state.route[i]]);
-   const current=i===selected, dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy),nx=-dy/len,ny=dx/len;
-   // Leicht gebogener Pinselzug statt geometrisch steriler Gerade.
-   const curve=`M ${x1} ${y1} Q ${(x1+x2)/2+nx*2.3} ${(y1+y2)/2+ny*2.3} ${x2} ${y2}`;
-   const lines=[
-     {stroke:"#f9ebc7",width:current?10:7,opacity:.3},
-     {stroke:"#fff0ce",width:current?7:5.5,opacity:.94},
-     {stroke:current?"#79502f":"#496369",width:current?3.8:2.8,opacity:.96},
-     {stroke:"#fff1cb",width:current?1.1:.8,opacity:.55,offset:-1.3}
-   ];
-   for(const [index,l] of lines.entries()){routeInk.append(el("path",{class:index===2?'route-stroke':index===1?'route-contour':'route-wash',"data-route-hour":i,"data-route-current":String(current),d:curve,fill:"none",stroke:l.stroke,"stroke-width":l.width,opacity:l.opacity,...(!current?{"stroke-dasharray":"8 5"}:{}),"stroke-linecap":"round","stroke-linejoin":"round",transform:l.offset?`translate(${(nx*l.offset).toFixed(2)} ${(ny*l.offset).toFixed(2)})`:""}))}
- }
- svg.append(routeInk);
  // Distinguish the actual departure point from the wreck's identical anchor icon.
  const [sx,sy]=coords(byId[puzzle.start]);
  svg.append(el("ellipse",{cx:sx,cy:sy+5,rx:22,ry:15.5,fill:"none",stroke:"#e8c383","stroke-width":"1.5",opacity:".7","data-start-marker":"true","pointer-events":"none"}));
- if(state.showRouteNumbers){
-   const numbers=el("g",{"pointer-events":"none","aria-hidden":"true"});
-   state.route.forEach((id,i)=>{
-     const [x,y]=coords(byId[id]);
-     numbers.append(el("circle",{cx:x,cy:y,r:i?12.4:11.8,fill:"#fff4d5",stroke:"#76512b","stroke-width":"2",opacity:".95"}));
-     numbers.append(el("text",{x,y:y+5,"text-anchor":"middle","font-family":"Georgia,serif","font-size":i?"16":"14","font-weight":"900",fill:"#50391e"},i?String(i):"S"));
-   });
-   svg.append(numbers);
- }
  if(focusedId)svg.querySelector(`[data-id="${focusedId}"]`)?.focus({preventScroll:true});
 }
