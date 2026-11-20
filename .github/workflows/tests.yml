@@ -13,19 +13,14 @@ jobs:
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
-      - name: Frozen PR-117 rapid replacement test
-        continue-on-error: true
-        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/place-references.spec.mjs --grep 'rapid manual' --retries=0 --trace=on --output=original-results
-        env:
-          PLAYWRIGHT_JSON_OUTPUT_NAME: original-results.json
       - name: Native replacement timeline probe
-        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/rapid-native-probe.spec.mjs --retries=0 --trace=on --output=probe-results
+        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/rapid-minimal-probe.spec.mjs --retries=0 --trace=on --output=probe-results
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: probe-results.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rapid-place-animation-investigation
+          name: rapid-place-animation-minimal
           retention-days: 3
           path: |
             original-results/

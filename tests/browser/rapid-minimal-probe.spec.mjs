@@ -22,7 +22,7 @@ async function open(page,dto=fixture()){
  await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25,{timeout:15000});
  await expect(page.locator('#puzzleLoadError')).toBeHidden();
 }
-test('observe rapid native replacements and the final animation without timeline control',async({page},info)=>{
+test('observe rapid replacements without style or layout sampling',async({page},info)=>{
  test.setTimeout(60_000);
  await page.addInitScript(()=>{
   const entries=window.rapidEntries=[],events=window.rapidEvents=[],unhandled=window.rapidUnhandled=[];
@@ -33,8 +33,7 @@ test('observe rapid native replacements and the final animation without timeline
    const node=this,id=entries.length,created=performance.now();
    const entry={id,created,samples:[]};entries.push(entry);
    const sample=event=>{
-    const style=getComputedStyle(node),rect=node.getBoundingClientRect();
-    const state={id,event,wall:performance.now(),timeline:document.timeline.currentTime,currentTime:a.currentTime,startTime:a.startTime,playState:a.playState,pending:a.pending,opacity:style.opacity,connected:node.isConnected,display:style.display,visibility:style.visibility,rect:{x:rect.x,y:rect.y,width:rect.width,height:rect.height},groupCount:document.querySelectorAll('#map .place-references').length,labelCount:document.querySelectorAll('#map .reference-label').length,mapAnimations:document.querySelector('#map')?.getAnimations({subtree:true}).length,documentVisibility:document.visibilityState};
+    const state={id,event,wall:performance.now(),timeline:document.timeline.currentTime,currentTime:a.currentTime,startTime:a.startTime,playState:a.playState,pending:a.pending,connected:node.isConnected,groupCount:document.querySelectorAll('#map .place-references').length,labelCount:document.querySelectorAll('#map .reference-label').length,documentVisibility:document.visibilityState};
     entry.samples.push(state);return state;
    };
    const timer=setInterval(()=>{sample('interval');if(!node.isConnected)clearInterval(timer);},100);
