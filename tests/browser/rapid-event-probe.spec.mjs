@@ -22,7 +22,7 @@ async function open(page,dto=fixture()){
  await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25,{timeout:15000});
  await expect(page.locator('#puzzleLoadError')).toBeHidden();
 }
-test('observe rapid replacements without style or layout sampling',async({page},info)=>{
+test('observe replacement promises with the frozen action and assertion sequence',async({page},info)=>{
  test.setTimeout(60_000);
  await page.addInitScript(()=>{
   const entries=window.rapidEntries=[],events=window.rapidEvents=[],unhandled=window.rapidUnhandled=[];
@@ -33,11 +33,10 @@ test('observe rapid replacements without style or layout sampling',async({page},
    const node=this,id=entries.length,created=performance.now();
    const entry={id,created,samples:[]};entries.push(entry);
    const sample=event=>{
-    const state={id,event,wall:performance.now(),timeline:document.timeline.currentTime,currentTime:a.currentTime,startTime:a.startTime,playState:a.playState,pending:a.pending,connected:node.isConnected,groupCount:document.querySelectorAll('#map .place-references').length,labelCount:document.querySelectorAll('#map .reference-label').length,documentVisibility:document.visibilityState};
+    const state={id,event,outcomeBeforeReadingState:entry.outcome??null,wall:performance.now(),timeline:document.timeline.currentTime,currentTime:a.currentTime,startTime:a.startTime,playState:a.playState,pending:a.pending,connected:node.isConnected,groupCount:document.querySelectorAll('#map .place-references').length,labelCount:document.querySelectorAll('#map .reference-label').length,documentVisibility:document.visibilityState};
     entry.samples.push(state);return state;
    };
-   const timer=setInterval(()=>{sample('interval');if(!node.isConnected)clearInterval(timer);},100);
-   sample('create');
+   entry.samples.push({event:'created',wall:created});
    a.ready.then(()=>sample('ready'),()=>sample('ready-rejected'));
    a.finished.then(()=>{entry.outcome='finished';sample('finished');},e=>{entry.outcome=e.name;sample('rejected');});
    window.rapidSnapshot=event=>{events.push(sample(event));};
@@ -47,10 +46,8 @@ test('observe rapid replacements without style or layout sampling',async({page},
  try{
   await open(page);await page.locator('#showPlaces').click();await page.waitForTimeout(2200);
   for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
-  await page.evaluate(()=>window.rapidSnapshot('last-click-returned'));
   await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
   await page.waitForTimeout(3400);await expect(labels(page)).toHaveCount(3);
-  await page.evaluate(()=>window.rapidSnapshot('old-removal-deadline-start'));
   try{await expect(labels(page)).toHaveCount(0,{timeout:3500});}
   catch(e){await page.evaluate(()=>window.rapidSnapshot('old-removal-deadline-failed'));console.log('original deadline failed',e.message);}
   // Diagnostic observation only: determine whether the native animation actually

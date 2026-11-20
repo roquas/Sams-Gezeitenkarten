@@ -14,13 +14,13 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
       - name: Native replacement timeline probe
-        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/rapid-minimal-probe.spec.mjs --retries=0 --trace=on --output=probe-results
+        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/rapid-event-probe.spec.mjs --retries=0 --trace=on --output=probe-results
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: probe-results.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rapid-place-animation-minimal
+          name: rapid-place-animation-events
           retention-days: 3
           path: |
             original-results/
