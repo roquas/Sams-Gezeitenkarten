@@ -19,6 +19,15 @@ Darstellung:
 - `title`, `intro`, `hints`: öffentliche Texte.
 - `objectNames`: optionale Namen für bekannte Objekt-IDs. Keine Klassentabelle.
 - `clueTexts`: genau ein öffentlicher Text je strukturierter Hinweis-ID.
+- `cluePlaceRefs` (optional): Zuordnung Hinweis-ID → Liste stabiler Objekt-IDs,
+  die im angezeigten Text ausdrücklich referenziert werden. Ein vorhandener
+  Eintrag ersetzt für diesen Hinweis die automatische Referenz auf dessen
+  strukturiertes `placeId`; `[]` bedeutet keine Ortsreferenz. Ohne Eintrag gilt
+  `placeId` (bei Distanz-/Zählhinweisen), sonst keine Referenz. Mehrere IDs sind
+  möglich; unbekannte Hinweis-/Objekt-IDs und doppelte IDs werden abgewiesen.
+  Nur benannte Objekte erhalten ein Band. Keine Ableitung aus Positionen,
+  Textsuche, Motiven oder Solver-Ergebnissen. Dies ist ausschließlich optionale
+  Präsentationsinformation, ohne Änderung der Hinweislogik oder Spielstände.
 - `background`: Referenz in einem ausdrücklich übergebenen Assetkatalog.
 - `assetPlacements`: moderne Platzierungen; keine Größen, Rotationen oder Overlays.
 
@@ -111,8 +120,15 @@ oder Repository-Split wird eingeführt.
 
 ## Aktuelle Beschriftung
 
-Unbefahrbare Mehrfeldobjekte tragen Pergamentlabels; fehlt ein Name, erscheinen
-Koordinaten. Einzelobjekte behalten das Pergament, ihre Hinweise können Koordinaten
-verwenden. Befahrbare Objekte tragen weder permanentes Namensschild noch orange
-Ortsringe. Der Start hat eine eigene Markierung. Freie Dekoration besitzt keine
-Hinweisreferenz. Ein Ortsverzeichnis oder temporäre Labels sind spätere Arbeit.
+Benannte logische Objekte tragen ausschließlich temporäre Pergamentbänder:
+beim initialen Hinweis, beim Hinweiswechsel für dessen explizite Referenzen
+oder über „Orte zeigen“ für alle benannten Objekte. Befahrbarkeit und Hexzahl
+sind dafür unerheblich; unbenannte Objekte und freie Dekoration bleiben ohne
+Beschriftung. Jedes Band sitzt am Schwerpunkt der vollständigen Objektfläche
+und wird nur an den sichtbaren Kartenrand verschoben. Es darf Meer, Motive
+und Route überdecken. Die Startmarkierung bleibt dauerhaft erhalten.
+
+Eine gemeinsame, nicht interaktive SVG-Ebene animiert 0,4 s Einblenden,
+3 s Halten und 2 s Ausblenden; reduzierte Bewegung zeigt sie 3 s ohne Übergänge.
+Neue Auslöser ersetzen den Ablauf, ohne Spielstand oder Undo zu verändern.
+Ein Orts-/Assetverzeichnis gehört nicht zu dieser Darstellung.

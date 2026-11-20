@@ -103,7 +103,7 @@ test('changed comparison provenance, selection identities and diagnostics fail c
  for(const mutate of mutations){const changed=structuredClone(source);mutate(changed);assert.throws(()=>validatePlaytestBindings(changed),/B2 export:/);}
 });
 
-test('export is byte-identical, repairs 700 directories, and protected source inventories stay byte-identical to PR101 main',()=>{
+test('export is byte-identical, repairs 700 directories, and protected inventories retain PR101 bytes except the optional A2b presentation field',()=>{
  const output=path.join(ROOT,playtestStock('BC').output);
  const previousUmask=process.umask(0o077);
  try{
@@ -129,6 +129,14 @@ test('export is byte-identical, repairs 700 directories, and protected source in
   'scripts/config/b2-playtest-s02.json','puzzles','assets'],{cwd:ROOT,encoding:'utf8'}).trim().split('\n');
  for(const ref of refs){
   const original=execFileSync('git',['show',base+':'+ref],{cwd:ROOT,maxBuffer:32*1024*1024});
-  assert.equal(sha256(fs.readFileSync(path.join(ROOT,ref))),sha256(original),ref);
+  const current=fs.readFileSync(path.join(ROOT,ref));
+  if(['puzzles/schema/puzzle-v2.schema.json','puzzles/schema/public-puzzle-v2.schema.json'].includes(ref)){
+   const schema=JSON.parse(current),old=JSON.parse(original);
+   const presentation=ref.includes('public-puzzle')?schema.properties.puzzle.properties.presentation:schema.properties.presentation;
+   assert.deepEqual(presentation.properties.cluePlaceRefs,{type:'object',propertyNames:{type:'string',pattern:'^[A-Za-z0-9][A-Za-z0-9._-]*$',maxLength:80},additionalProperties:{type:'array',items:{type:'string',pattern:'^[A-Za-z0-9][A-Za-z0-9._-]*$',maxLength:80},minItems:0,uniqueItems:true}});
+   assert.equal(presentation.required.includes('cluePlaceRefs'),false);
+   delete presentation.properties.cluePlaceRefs;
+   assert.deepEqual(schema,old,ref+' changed beyond optional presentation references');
+  }else assert.equal(sha256(current),sha256(original),ref);
  }
 });

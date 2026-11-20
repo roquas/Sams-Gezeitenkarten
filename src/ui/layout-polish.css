@@ -143,3 +143,11 @@
  .map-actions .route-actions{grid-column:1/-1;display:flex;justify-content:center;gap:12px;margin:0;width:100%}
  .map-actions .route-actions .rail-button{flex:0 0 48px}
 }
+
+/* One momentary place action, with a visible caption and no selected mode. */
+.places-caption{position:relative;z-index:2}
+.map-actions #showPlaces{width:64px;flex:0 0 64px;font:600 13px/1.15 Georgia,serif;white-space:normal;padding:4px}
+@container chart (max-width:560px){
+ .map-actions{grid-template-columns:repeat(5,minmax(44px,1fr))}
+ .map-actions #showPlaces{width:100%;max-width:64px;min-width:44px}
+}
