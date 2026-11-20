@@ -14,6 +14,7 @@ import {DIVERSIFIED_STRATEGY,weakReductionSearch} from './lib/b2-search-variatio
 import {clueComposition} from './lib/b2-diagnostics.mjs';
 import {solvePuzzle} from '../src/engine/solver.mjs';
 import {verifyCandidates} from './verify-puzzle-experiment.mjs';
+import {legacyVerificationContext} from './lib/candidate-origin-contract.mjs';
 const json=x=>JSON.stringify(x,null,2)+'\n';
 const hashFile=ref=>sha256(fs.readFileSync(path.join(ROOT,ref)));
 const add=(counts,key)=>{counts[key]=(counts[key]??0)+1;};
@@ -108,7 +109,7 @@ export function runComparison({out,config}){
   }
  }
  write('candidates.jsonl',records.map(r=>JSON.stringify(r)+'\n').join(''));
- const verification=verifyCandidates(path.join(out,'candidates.jsonl'));
+ const verification=verifyCandidates(path.join(out,'candidates.jsonl'),legacyVerificationContext(records));
  const arms=config.arms.map(arm=>{
   const rows=attempts.filter(a=>a.arm===arm.id),histogram={},search={},failures={};
   for(const row of rows){for(const [k,v] of Object.entries(row.histogram))histogram[k]=(histogram[k]??0)+v;

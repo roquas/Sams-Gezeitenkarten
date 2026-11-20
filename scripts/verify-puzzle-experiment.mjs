@@ -9,6 +9,7 @@ import {logicalFingerprints} from './lib/publication-archive.mjs';
 import {createRules} from '../src/engine/puzzle.mjs';
 import {createClueEffectKey} from './lib/puzzle-clue-effects.mjs';
 import {canonicalJson} from './lib/content-hash.mjs';
+import {verifyCandidateOrigins} from './lib/candidate-origin-contract.mjs';
 
 // Independent provenance replay: do not call the candidate normalizer. Check
 // structural equivalence as well as every group's truth on every legal route.
@@ -47,8 +48,11 @@ function verifyNormalization(record,{rules,routes}){
  assert.equal(used.size,raw.size);assert.ok(merged>0);
 }
 
-export function verifyCandidates(file){
+export function verifyCandidates(file,originContext){
  const records=fs.readFileSync(file,'utf8').split('\n').filter(Boolean).map(JSON.parse);
+ // This decision comes from a trusted external inventory, never an optional
+ // candidate field or a row-declared downgrade to an old format.
+ verifyCandidateOrigins(records,originContext);
  const variants=new Set(),effects=new Set(),workspaces=new Map();
  for(const record of records){
   const result=checkIrredundancy(record.definition,{detailed:true,maxNodes:1000000});
@@ -68,7 +72,7 @@ export function verifyCandidates(file){
     workspaces.set(scope,{rules,routes,keyForMasks:createClueEffectKey(record.definition.logic,routes)});
    }
    const {rules,routes,keyForMasks}=workspaces.get(scope);
-   if(record.normalization)verifyNormalization(record,{rules,routes});
+   if(record.preparation?.status==='normalized')verifyNormalization(record,{rules,routes});
    const effectKey=keyForMasks(record.definition.logic.clues.map(clue=>Uint8Array.from(routes,route=>Number(rules.matches(route,clue)))));
    assert.equal(record.effectKey,effectKey);
    const attemptEffect=record.attemptId+'/'+effectKey;assert.ok(!effects.has(attemptEffect),'equivalent clue effects for target attempt');effects.add(attemptEffect);
@@ -77,6 +81,12 @@ export function verifyCandidates(file){
  return {verifiedCandidates:records.length,method:'existing-checkIrredundancy-detailed'};
 }
 if(process.argv[1]&&realpathSync(fileURLToPath(import.meta.url))===realpathSync(process.argv[1])){
- try{if(process.argv.length!==3)throw Error('Usage: node scripts/verify-puzzle-experiment.mjs candidates.jsonl');console.log(JSON.stringify(verifyCandidates(process.argv[2])));}
+ try{
+  const [file,...args]=process.argv.slice(2);
+  if(!file||(args.length!==0&&!(args.length===4&&args[0]==='--origin-contract'&&args[2]==='--expect-origin-contract-sha256')))
+   throw Error('Usage: node scripts/verify-puzzle-experiment.mjs candidates.jsonl [--origin-contract file --expect-origin-contract-sha256 trusted-digest]');
+  const context=args.length?{originContract:JSON.parse(fs.readFileSync(args[1],'utf8')),expectedOriginContractSha256:args[3]}:undefined;
+  console.log(JSON.stringify(verifyCandidates(file,context)));
+ }
  catch(error){console.error(error.message);process.exitCode=1;}
 }

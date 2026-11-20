@@ -22,7 +22,8 @@ import {diagnosePuzzle,clueSubsets} from '../../scripts/lib/b2-deduction.mjs';
 import {buildProgressProfile} from '../../scripts/lib/b2-markable-progress.mjs';
 import {createPuzzleLoader} from '../../src/puzzles/loader.mjs';
 import {sha256} from '../../scripts/lib/content-hash.mjs';
-import {main as normalizationReport} from '../../scripts/report-count-clue-normalization.mjs';
+import {main as normalizationReport,referenceOriginContext} from '../../scripts/report-count-clue-normalization.mjs';
+import {candidateOriginContract,pinOriginContract,rawClueOrigin,originContractSha256,verifyCandidateOrigins} from '../../scripts/lib/candidate-origin-contract.mjs';
 
 // Fixed reference cases, no generator run. Each workspace/independent oracle
 // uses at most 100,000 nodes; the one existing diagnosis has its 250,000 cap.
@@ -132,17 +133,94 @@ test('even an equivalent transformation cannot pass a redundant candidate from a
 test('independent persisted-candidate verification detects damaged provenance',t=>{
  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'s04-b-proof-'));
  t.after(()=>fs.rmSync(directory,{recursive:true,force:true}));const file=path.join(directory,'candidates.jsonl');
- const row={...normalized,puzzleExperimentFormatVersion:2,attemptId:'S04-B-06'};
- fs.writeFileSync(file,JSON.stringify(row)+'\n');assert.equal(verifyCandidates(file).verifiedCandidates,1);
+ const row={...normalized,puzzleExperimentFormatVersion:2,attemptId:'S04-B-reference-06'},context=referenceOriginContext();
+ fs.writeFileSync(file,JSON.stringify(row)+'\n');assert.equal(verifyCandidates(file,context).verifiedCandidates,1);
  for(const change of [
+  r=>delete r.normalization,
+  r=>r.normalization=null,
+  r=>{r.normalization.rawClues.find(c=>c.id==='H2').id='FORGED-ORIGIN';
+   for(const o of r.normalization.outputs)for(const s of o.sources)if(s.id==='H2')s.id='FORGED-ORIGIN';},
+  r=>r.normalization.rawOriginFingerprint='gk-raw-clues-v1-sha256:'+'0'.repeat(64),
+  r=>r.preparation.status='unchanged',
+  r=>r.preparation.policy='none',
+  r=>r.normalization.format='none',
+  r=>delete r.preparation,
+  r=>{delete r.preparation;delete r.normalization;r.puzzleExperimentFormatVersion=1;},
+  r=>{r.puzzleExperimentFormatVersion=1;r.normalization.outputs.pop();},
+  r=>{delete r.normalization;r.preparation.status='unchanged';
+   r.preparation.rawOriginFingerprint=rawClueOrigin(r.definition.logic.clues);},
+  r=>{const p=r.normalization;p.rawClues.find(c=>c.id==='H2').id='FORGED-ORIGIN';
+   for(const o of p.outputs)for(const s of o.sources)if(s.id==='H2')s.id='FORGED-ORIGIN';
+   p.rawOriginFingerprint=rawClueOrigin(p.rawClues);r.preparation.rawOriginFingerprint=p.rawOriginFingerprint;},
   r=>r.normalization.outputs.find(o=>o.sources.length===2).sources.pop(),
   r=>r.normalization.outputs[0].sources[0].key='wrong',
   r=>r.normalization.rawFingerprints.variant=r.fingerprints.variant,
   r=>r.normalization.outputs.find(o=>o.sources.length===2).rule='all-union'
  ]){
   const bad=structuredClone(row);change(bad);fs.writeFileSync(file,JSON.stringify(bad)+'\n');
-  assert.throws(()=>verifyCandidates(file));
+  assert.throws(()=>verifyCandidates(file,context));
+  assert.throws(()=>verifyCandidates(file),'unknown files cannot downgrade to the implicit historical inventory');
  }
+ // The raw-ID rebind must still leave the existing logical fingerprints intact.
+ const rebound=structuredClone(row);rebound.normalization.rawClues.find(c=>c.id==='H2').id='FORGED-ORIGIN';
+ assert.deepEqual(logicalFingerprints({...row.definition,logic:{...logic,clues:rebound.normalization.rawClues}}),row.normalization.rawFingerprints);
+ fs.writeFileSync(file,JSON.stringify(row)+'\n');
+ assert.equal(verifyCandidates(file,JSON.parse(JSON.stringify(context))).verifiedCandidates,1);
+ // Mutating the sidecar as well does not change the independently expected digest.
+ for(const change of [c=>c.policy='none',c=>c.entries[0].status='unchanged',
+  c=>c.entries[0].rawClues.find(r=>r.id==='H2').id='FORGED-ORIGIN',
+  c=>c.entries[0].source.commit='0'.repeat(40),c=>c.entries.pop()]){
+  const bad=structuredClone(context);change(bad.originContract);
+  assert.throws(()=>verifyCandidates(file,bad),/trust anchor mismatch/);
+ }
+ // Even a deliberately re-pinned receipt must agree with its historical Git
+ // source; a self-consistent hash of forged raw IDs is insufficient.
+ const forged=structuredClone(context);forged.originContract.entries[0].rawClues.find(c=>c.id==='H2').id='FORGED-ORIGIN';
+ forged.originContract.entries[0].rawOriginFingerprint=rawClueOrigin(forged.originContract.entries[0].rawClues);
+ forged.expectedOriginContractSha256=originContractSha256(forged.originContract);
+ assert.throws(()=>verifyCandidates(file,forged),/pinned Git source/);
+});
+
+test('trusted live raw capture survives a self-consistent rewrite of candidate origin IDs during evaluation',()=>{
+ const result=run({evaluateCandidate(c){
+  c.normalization.rawClues.find(r=>r.id==='H2').id='FORGED-ORIGIN';
+  for(const o of c.normalization.outputs)for(const s of o.sources)if(s.id==='H2')s.id='FORGED-ORIGIN';
+  c.normalization.rawOriginFingerprint=rawClueOrigin(c.normalization.rawClues);
+  c.preparation.rawOriginFingerprint=c.normalization.rawOriginFingerprint;return true;
+ }});
+ const row={...result.candidates[0],attemptId:'live',puzzleExperimentFormatVersion:2};
+ const context=pinOriginContract(candidateOriginContract('count-distance-extremes-1',
+  result.originReceipts.map(r=>({...r,attemptId:'live'}))));
+ assert.throws(()=>verifyCandidateOrigins([row],context),/preparation/);
+ assert.ok(result.originReceipts[0].rawClues.some(c=>c.id==='H2'));
+});
+
+test('new unchanged candidates and old historical rows have separate valid contracts',t=>{
+ const old=source.rows.find(r=>r.testName==='B2-S03-V2-M011-A5-R787-V01'),base={...old.definition.logic,clues:[]};
+ const own=createRouteWorkspace(base,{maxNodes:100000});
+ const result=run({logic:base,targetRoute:old.definition.solution,workspace:own,
+  cluePool:{clues:old.definition.logic.clues,completed:true,parametersExamined:4}});
+ const row={...result.candidates[0],attemptId:'unchanged-control',puzzleExperimentFormatVersion:2};
+ assert.equal(row.preparation.status,'unchanged');assert.ok(!Object.hasOwn(row,'normalization'));
+ const contract=candidateOriginContract('count-distance-extremes-1',result.originReceipts.map(r=>({...r,attemptId:row.attemptId})));
+ verifyCandidateOrigins([row],pinOriginContract(contract));
+ const directory=fs.mkdtempSync(path.join(os.tmpdir(),'s04-b-unchanged-'));
+ t.after(()=>fs.rmSync(directory,{recursive:true,force:true}));
+ const file=path.join(directory,'candidate.jsonl');fs.writeFileSync(file,JSON.stringify(row)+'\n');
+ assert.equal(verifyCandidates(file,pinOriginContract(contract)).verifiedCandidates,1);
+ const bad=structuredClone(row);bad.normalization=null;
+ assert.throws(()=>verifyCandidateOrigins([bad],pinOriginContract(contract)));
+ const originalOrigin=rawClueOrigin(old.definition.logic.clues);
+ assert.equal(originalOrigin,rawClueOrigin([...old.definition.logic.clues].reverse()));
+ assert.equal(row.preparation.rawOriginFingerprint,originalOrigin);
+ assert.deepEqual(row.fingerprints,old.fingerprints);
+ // The complete frozen record (including its old IDs and metadata) is recognized
+ // without any newly required provenance field, even from a temporary file.
+ verifyCandidateOrigins([old]);
+ const downgraded=structuredClone(row);delete downgraded.preparation;
+ assert.throws(()=>verifyCandidateOrigins([downgraded]));
+ const inconsistent=structuredClone(contract);inconsistent.entries[0].status='normalized';
+ assert.throws(()=>verifyCandidateOrigins([row],pinOriginContract(inconsistent)));
 });
 
 test('normalized zero/all text is natural using the unchanged technical formatter',()=>{

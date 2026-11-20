@@ -1,6 +1,10 @@
 {
   "format": "s04-b-normalization-evidence-1",
   "normalization": "count-distance-extremes-1",
+  "originContract": {
+    "path": "docs/verification/S04-B/origin-contract.json",
+    "canonicalSha256": "334e17e2ade76e7bb8032d4b4ee00f05bd9fd8a4443747e6c983a88fc57b6b6c"
+  },
   "baseline": "974931e95d434a35ce34094f4d5244e289d6fd76",
   "budgets": {
     "maxNodesPerEnumeration": 100000,
@@ -277,6 +281,11 @@
           "hasIndividuallyExactHour1": true,
           "hasDirectionHour1": false
         },
+        "preparation": {
+          "policy": "count-distance-extremes-1",
+          "status": "normalized",
+          "rawOriginFingerprint": "gk-raw-clues-v1-sha256:53b467752be20274ac1d14c9593d95000aa59839bf0fee8d9f506215aefea1d4"
+        },
         "normalization": {
           "format": "count-distance-extremes-1",
           "rawClues": [
@@ -391,6 +400,7 @@
               ]
             }
           ],
+          "rawOriginFingerprint": "gk-raw-clues-v1-sha256:53b467752be20274ac1d14c9593d95000aa59839bf0fee8d9f506215aefea1d4",
           "rawFingerprints": {
             "mapStructure": "gk-map-v2-sha256:e91107e10eff8807f28b304795502ff6befbbe7f6dcc8481edffbe972ae3c676",
             "instance": "gk-instance-v2-sha256:ac4642a254868b0fcf88a0bf1ac43da131a2dc72278b9e6dfda73fedfcb6906a",

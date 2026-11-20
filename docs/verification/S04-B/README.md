@@ -2,6 +2,8 @@
 
 Basis: `974931e95d434a35ce34094f4d5244e289d6fd76`, aktueller `main` nach
 PR #112. [Reproduzierbarer Nachweis](evidence.json), [Reviewfragen](review.md).
+[Gezielte R1/R2-Korrektur und Vertrauensgrenzen](provenance-contract.md),
+[gezielte Nachreview](review-r1-r2.md).
 Enthält Lösungen. Die vorhandenen [menschlichen Beobachtungen](../../observations/README.md),
 die [S03-Auszüge vom 19.11.2026](../../observations/sources/s03-analysis-excerpts.md)
 und [S04-A](../S04-A/README.md) begründen den engen Umfang. Der optionale externe
@@ -100,18 +102,28 @@ Nur bei tatsächlicher Vereinigung enthält `candidate.normalization`:
 
 - die versionierte Politik und die vollständigen Rohhinweise mit ursprünglichen IDs;
 - die unveränderten logischen Rohfingerprints;
+- den separaten `rawOriginFingerprint`, der IDs und Parameter gemeinsam bindet;
 - für jede neue Aussage ihre Ausgabe-ID, `zero-union`/`all-union` oder `unchanged`
   sowie Quell-IDs und kanonische Parameterschlüssel.
 
-Die Quell-IDs gehören zum durch `rawFingerprints` gebundenen Rohsatz, die
-Ausgabe-IDs zur neuen Definition. Weder Rohdefinitionen noch Poolobjekte werden
+`rawFingerprints` beschreibt die logische Identität des Rohsatzes;
+die Ausgabe-IDs gehören zur neuen Definition. Die **logischen** Rohfingerprints
+authentifizieren keine Quell-ID. Dafür bindet der gesonderte Herkunftsvertrag
+den ID-inklusive gehashten Rohsatz an eine unabhängige Quelle bzw. einen separat
+bestätigten Erzeugerbeleg. Jeder neue Kandidat trägt `preparation` mit Politik,
+Status (`unchanged`/`normalized`) und Herkunftsfingerprint; der Prüfer erwartet
+diese Angaben aus dem extern bestätigten Vertrag. Historische Datensätze erhalten
+keine neuen Felder. Weder Rohdefinitionen noch Poolobjekte werden
 mutiert. Eingabereihenfolge und Paarung ändern die kanonische Normalform nicht;
 erneute Normalisierung ändert deren Hinweise nicht. Die Provenienz beschreibt
 den ursprünglichen Transformationsschritt und wird beim Einlesen nicht ersetzt.
 JSON-Rundlauf, Reihenfolge und Identitäten sind vertraglich geprüft.
 
 `verify-puzzle-experiment.mjs` prüft gespeicherte Kandidaten weiterhin mit dem
-unabhängigen bestehenden Solver. Für neue Provenienz prüft es zusätzlich ohne
+unabhängigen bestehenden Solver. Für neue Kandidaten ist außerdem ein separat
+gehashter Herkunftsvertrag samt unabhängig erwartetem Digest erforderlich;
+ohne diesen werden ausschließlich unveränderte Datensätze aus dem festen
+historischen Git-Inventar erkannt. Für neue Provenienz prüft es zusätzlich ohne
 Aufruf des Normalisierers: Rohfingerprints, vollständige eindeutige Quellenabdeckung,
 Prädikat/Objekt/Distanz/Modus, lückenlose Vereinigungsgrenzen und pro Ausgabe die
 Äquivalenz auf **jeder** legalen Route. Manipulierte Provenienz fällt durch.

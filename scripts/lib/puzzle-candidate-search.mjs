@@ -5,6 +5,7 @@ import {clueKey} from './puzzle-clues.mjs';
 import {cluePresentationForm} from './clue-presentation.mjs';
 import {RULES_VERSION} from '../../src/puzzles/schema.mjs';
 import {COUNT_NORMALIZATION,normalizeCountClues,countNormalizationPool} from './count-clue-normalization.mjs';
+import {rawClueOrigin,canonicalRawClues} from './candidate-origin-contract.mjs';
 
 export const SEARCH_STRATEGY='random-incremental-1';
 export const SEARCH_LIMITS={maxRestarts:10000,maxSolverChecks:100000,maxMatchEvaluations:100000000,maxRouteFilterEvaluations:100000000};
@@ -61,7 +62,7 @@ export function searchPuzzleCandidates({logic,targetRoute,cluePool,workspace,see
  if(!workspace.completed)throw Error('Complete route workspace required');
  const solverClues=normalization==='none'?cluePool.clues:countNormalizationPool(cluePool.clues);
  const byKey=new Map(solverClues.map((clue,index)=>[clueKey(clue),index]));
- const solver=workspace.forClues(solverClues,budgets),candidates=[],variants=new Set(),effects=new Set();
+ const solver=workspace.forClues(solverClues,budgets),candidates=[],originReceipts=[],variants=new Set(),effects=new Set();
  const search=strategy({clues:cluePool.clues,solver,seed,budgets,onCandidate(indices){
   let ordered=[...indices].sort((a,b)=>{const x=clueKey(cluePool.clues[a]),y=clueKey(cluePool.clues[b]);return x<y?-1:x>y?1:0;});
   const rawClues=ordered.map(index=>cluePool.clues[index]);
@@ -96,18 +97,25 @@ export function searchPuzzleCandidates({logic,targetRoute,cluePool,workspace,see
    individualExactness,individuallyExactClueCount:exactClues.length,
    hasIndividuallyExactHour1:exactClues.some(row=>row.hours.includes(1)),
    hasDirectionHour1:definition.logic.clues.some(c=>c.type==='direction'&&c.hour===1)}};
-  if(prepared?.changed)candidate.normalization={...prepared.provenance,
+  // Capture the raw set before handing the mutable candidate to evaluation.
+  // The independent receipt is kept outside the candidate serialization.
+  const originClues=canonicalRawClues(prepared?rawClues:definition.logic.clues);
+  const status=prepared?(prepared.changed?'normalized':'unchanged'):'historical';
+  const origin={variant:fingerprints.variant,status,rawClues:originClues,
+   rawOriginFingerprint:rawClueOrigin(originClues),source:{kind:'captured-raw-set'}};
+  if(prepared)candidate.preparation={policy:normalization,status,rawOriginFingerprint:origin.rawOriginFingerprint};
+  if(prepared?.changed)candidate.normalization={...prepared.provenance,rawOriginFingerprint:origin.rawOriginFingerprint,
    rawFingerprints:logicalFingerprints({...definition,logic:{...logic,clues:prepared.provenance.rawClues}})};
   // Remember rejected identities too: another restart cannot spend diagnosis
   // budget again on the same variant or equivalent clue effects.
   variants.add(fingerprints.variant);effects.add(effectKey);
   const decision=evaluateCandidate?.(candidate)??true;
   if(decision!==true)return typeof decision==='string'?decision:'QUALITY_REJECTED';
-  candidates.push(candidate);return true;
+  candidates.push(candidate);originReceipts.push(origin);return true;
  }});
  if(!cluePool.completed)search.failures.CLUE_PARAMETER_BUDGET_EXHAUSTED=1;
  return {status:candidates.length?'candidates-found':search.exhaustive?'impossible':'not-found-within-budget',
-  candidates,search:{...search,...solver.metrics,clueCandidates:cluePool.clues.length,
+  candidates,originReceipts,search:{...search,...solver.metrics,clueCandidates:cluePool.clues.length,
    clueParametersExamined:cluePool.parametersExamined,clueGenerationCompleted:cluePool.completed,
    incomplete:!search.exhaustive||!cluePool.completed}};
 }

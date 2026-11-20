@@ -16,6 +16,7 @@ import {projectRoutes,diagnosePuzzle} from './b2-deduction.mjs';
 import {buildProgressProfile} from './b2-markable-progress.mjs';
 import {earlyRejection,qualitySignals,lateRejection,selectSeries} from './s03-quality.mjs';
 import {verifyCandidates} from '../verify-puzzle-experiment.mjs';
+import {legacyVerificationContext} from './candidate-origin-contract.mjs';
 
 export const CONFIG='scripts/config/s03-v1.json';
 export const CONTRACT='docs/verification/S03/contract.md';
@@ -141,7 +142,7 @@ export function runS03(out){
   costs.push({attemptId,targetMs:performance.now()-started});
  }
  write('finalists.jsonl',jsonl(finalists));
- const verification=verifyCandidates(path.join(out,'finalists.jsonl'));
+ const verification=verifyCandidates(path.join(out,'finalists.jsonl'),legacyVerificationContext(finalists));
  const series=selectSeries(finalists,config),selected=series.selected;
  write('candidates.jsonl',jsonl(selected));
  const manifestBytes=fs.readFileSync(path.join(out,'manifest.json'));
