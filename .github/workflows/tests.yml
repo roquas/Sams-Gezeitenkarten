@@ -1,10 +1,10 @@
-name: Place animation investigation
+name: Place animation fixed regression
 on:
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  probe:
+  regression:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -13,23 +13,15 @@ jobs:
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
-      - name: Frozen original test
-        continue-on-error: true
-        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/place-references.spec.mjs --grep 'normal fade' --retries=0 --trace=on --output=original-results
+      - name: Native playback and deterministic phases
+        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/place-references.spec.mjs --grep 'normal fade|own timeline' --retries=0 --trace=on --output=fixed-results
         env:
-          PLAYWRIGHT_JSON_OUTPUT_NAME: original-results.json
-      - name: Native timeline probe
-        continue-on-error: true
-        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/place-references-probe.spec.mjs --retries=0 --trace=on --output=probe-results
-        env:
-          PLAYWRIGHT_JSON_OUTPUT_NAME: probe-results.json
+          PLAYWRIGHT_JSON_OUTPUT_NAME: fixed-results.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: place-animation-investigation
+          name: place-animation-fixed
           retention-days: 3
           path: |
-            original-results/
-            original-results.json
-            probe-results/
-            probe-results.json
+            fixed-results/
+            fixed-results.json
