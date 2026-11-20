@@ -65,7 +65,7 @@ export function runComparison({out,config}){
     [k,Math.min(SEARCH_LIMITS[k],source.manifest.budgets[k]*arm.budgetMultiplier)])));
    const strategy=arm.strategy===SEARCH_STRATEGY?randomIncrementalSearch:options=>weakReductionSearch({...options,window:arm.window});
    const armBegin=performance.now(),before=process.resourceUsage();
-   const result=searchPuzzleCandidates({logic,targetRoute:row.definition.solution,cluePool:pool,workspace,seed:row.seed,budgets,strategy});
+   const result=searchPuzzleCandidates({logic,targetRoute:row.definition.solution,cluePool:pool,workspace,seed:row.seed,budgets,strategy,normalization:'none'});
    const searchMs=performance.now()-armBegin,after=process.resourceUsage();
    const attemptId=experimentId+'/'+arm.id+'/'+name;
    // A must reproduce the exact original baseline candidates and counters.

@@ -14,6 +14,7 @@ import {cluePresentationForm} from './clue-presentation.mjs';
 import {SEARCH_STRATEGY,validateSearchBudgets,searchPuzzleCandidates} from './puzzle-candidate-search.mjs';
 import {validateSeed,randomStream} from '../../src/generation/random.mjs';
 import {RULES_VERSION} from '../../src/puzzles/schema.mjs';
+import {COUNT_NORMALIZATION} from './count-clue-normalization.mjs';
 
 export const PUZZLE_EXPERIMENT_FORMAT_VERSION=2;
 const assert=(yes,message)=>{if(!yes)throw Error('puzzle-experiment: '+message);};
@@ -101,6 +102,7 @@ export async function runPuzzleExperiment(options){
  }
  const program=programState(),loaded=await readB1Experiment(b1,{batch}),inputMs=Math.round(performance.now()-begin);
  const settings={puzzleExperimentFormatVersion:PUZZLE_EXPERIMENT_FORMAT_VERSION,strategy:SEARCH_STRATEGY,
+  clueNormalization:COUNT_NORMALIZATION,
   routeSelection:{strategy:'explicit-indices-all-b1-starts-1',order:ROUTE_ORDER,routeIndices},rulesVersion:RULES_VERSION,steps:6,seed,
   budgets:{maxNodesPerStart,maxClueParameters,...searchBudgets},program,
   input:{experimentId:loaded.manifest.experimentId,files:loaded.files,sourceFiles:loaded.sourceFiles}};

@@ -99,7 +99,8 @@ export function runS03(out){
     if(!pool.completed)attempt.reason='CLUE_PARAMETER_BUDGET_EXHAUSTED';
     else{
      let ordinal=0;
-     const result=searchPuzzleCandidates({logic,targetRoute,cluePool:pool,workspace,seed:attempt.seed,budgets:config.search,
+     // Frozen S03-v1 protocol: new normalization belongs to future runs only.
+     const result=searchPuzzleCandidates({logic,targetRoute,cluePool:pool,workspace,seed:attempt.seed,budgets:config.search,normalization:'none',
       evaluateCandidate(candidate){
        const name=`B2-S03-M${String(mapIndex).padStart(3,'0')}-${logic.start}-R${String(routeIndex).padStart(2,'0')}-V${String(++ordinal).padStart(2,'0')}`;
        const record={puzzleExperimentFormatVersion:2,experimentId,attemptId,

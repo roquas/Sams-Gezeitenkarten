@@ -8,6 +8,44 @@ import {checkIrredundancy} from '../src/puzzles/analysis.mjs';
 import {logicalFingerprints} from './lib/publication-archive.mjs';
 import {createRules} from '../src/engine/puzzle.mjs';
 import {createClueEffectKey} from './lib/puzzle-clue-effects.mjs';
+import {canonicalJson} from './lib/content-hash.mjs';
+
+// Independent provenance replay: do not call the candidate normalizer. Check
+// structural equivalence as well as every group's truth on every legal route.
+function verifyNormalization(record,{rules,routes}){
+ const p=record.normalization,clues=record.definition.logic.clues;
+ const key=({id,...parameters})=>canonicalJson(parameters);
+ assert.equal(p.format,'count-distance-extremes-1');
+ const rawDefinition={...record.definition,logic:{...record.definition.logic,clues:p.rawClues}};
+ assert.deepEqual(logicalFingerprints(rawDefinition),p.rawFingerprints);
+ assert.notEqual(p.rawFingerprints.variant,record.fingerprints.variant);
+ const raw=new Map(p.rawClues.map(c=>[c.id,c])),used=new Set();let merged=0;
+ assert.deepEqual(p.outputs.map(o=>o.clueId),clues.map(c=>c.id));
+ for(const [i,output] of p.outputs.entries()){
+  const clue=clues[i],sources=output.sources.map(source=>{
+   const c=raw.get(source.id);assert.ok(c&&!used.has(c.id),'missing or reused raw clue');
+   used.add(c.id);assert.equal(key(c),source.key);return c;
+  });
+  if(output.rule==='unchanged'){
+   assert.equal(sources.length,1);assert.equal(key(sources[0]),key(clue));
+  }else{
+   merged++;assert.ok(sources.length>=2);
+   assert.ok(['zero-union','all-union'].includes(output.rule));
+   assert.equal(clue.type,'countDistanceToPlace');
+   const all=output.rule==='all-union',ordered=[...sources].sort((a,b)=>a.fromHour-b.fromHour);
+   let end=ordered[0].toHour;
+   for(const c of ordered){
+    assert.equal(c.type,clue.type);assert.equal(c.placeId,clue.placeId);assert.equal(c.distance,clue.distance);
+    assert.equal(c.count,all?c.toHour-c.fromHour+1:0);
+    assert.ok(c.fromHour<=end+1,'raw intervals have a gap');end=Math.max(end,c.toHour);
+   }
+   assert.equal(clue.fromHour,ordered[0].fromHour);assert.equal(clue.toHour,end);
+   assert.equal(clue.count,all?end-clue.fromHour+1:0);
+  }
+  for(const route of routes)assert.equal(rules.matches(route,clue),sources.every(c=>rules.matches(route,c)));
+ }
+ assert.equal(used.size,raw.size);assert.ok(merged>0);
+}
 
 export function verifyCandidates(file){
  const records=fs.readFileSync(file,'utf8').split('\n').filter(Boolean).map(JSON.parse);
@@ -30,6 +68,7 @@ export function verifyCandidates(file){
     workspaces.set(scope,{rules,routes,keyForMasks:createClueEffectKey(record.definition.logic,routes)});
    }
    const {rules,routes,keyForMasks}=workspaces.get(scope);
+   if(record.normalization)verifyNormalization(record,{rules,routes});
    const effectKey=keyForMasks(record.definition.logic.clues.map(clue=>Uint8Array.from(routes,route=>Number(rules.matches(route,clue)))));
    assert.equal(record.effectKey,effectKey);
    const attemptEffect=record.attemptId+'/'+effectKey;assert.ok(!effects.has(attemptEffect),'equivalent clue effects for target attempt');effects.add(attemptEffect);
