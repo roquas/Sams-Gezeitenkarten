@@ -1,8 +1,8 @@
 import {createActiveClock} from './clock.mjs';
 import {puzzleIdentity,recordId} from './storage.mjs';
-export function createBetaSession({store,puzzle,scope,replay=false,paused=false,state,host}){
+export function createBetaSession({store,puzzle,scope,replay=false,resume=false,paused=false,state,host}){
  const identity=puzzleIdentity(puzzle,scope);
- store.start(identity,puzzle.title,{replay,paused,counters:state?{hints:state.hintCount,noteChecks:Math.floor(Math.max(0,state.penalty-state.hintPenalty)/5),penaltyPoints:state.penalty}:{}});
+ store.start(identity,puzzle.title,{replay,resume,paused,counters:state?{hints:state.hintCount,noteChecks:Math.floor(Math.max(0,state.penalty-state.hintPenalty)/5),penaltyPoints:state.penalty}:{}});
  // Existing test profiles (or browser settings) may clear storage before reload.
  const phase=()=>store.get(identity)?.phases.at(-1)??{phaseId:null,status:'removed',paused:true},phaseId=phase().phaseId;
  const isCurrentOpen=()=>phase().phaseId===phaseId&&phase().status==='open';
@@ -40,7 +40,7 @@ export function createBetaSession({store,puzzle,scope,replay=false,paused=false,
  const timer=setInterval(()=>{clock.set({open:isCurrentOpen(),paused:phase().paused});flush();if(!isCurrentOpen()||clock.reason==='idle')release?.();else acquire();},5000);
  acquire();draw();
  return {identity,flush,
-  count(name,penalty=0){store.phaseUpdate(identity,p=>{if(p.phaseId===phaseId){p[name]++;p.penaltyPoints+=penalty;}});},
+  count(name,penalty=0){store.phaseUpdate(identity,p=>{if(p.phaseId===phaseId&&p.status==='open'){p[name]++;p.penaltyPoints+=penalty;}});},
   solve(){flush();store.phaseUpdate(identity,(p,r)=>{const stamp=new Date().toISOString();if(p.phaseId===phaseId){p.status='solved';p.endedAt??=stamp;}r.solvedAt??=stamp;});clock.set({open:false});release?.();draw();},
   dispose(){flush();disposed=true;release?.();clearInterval(timer);controls.remove();document.removeEventListener('visibilitychange',visibility);document.removeEventListener('pointerdown',activity);document.removeEventListener('keydown',activity);window.removeEventListener('pagehide',pagehide);}
  };

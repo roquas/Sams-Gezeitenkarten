@@ -74,9 +74,9 @@ if(!frameParam){
  if(storedFrame==='final'||storedFrame==='quiet')frameStyle=storedFrame;
 }
 let state=loadState(puzzle,storage);
-const replay=params.get('phase')==='new',newPhase=replay||params.get('phase')==='resume';
+const replay=params.get('phase')==='new',resume=params.get('phase')==='resume',newPhase=replay||resume;
 if(replay)state=initial();
-let betaSession=createBetaSession({store:betaStore,puzzle,scope,replay:newPhase,state,host:document.getElementById('betaTime')});
+let betaSession=createBetaSession({store:betaStore,puzzle,scope,replay,resume,state,host:document.getElementById('betaTime')});
 // Consume a deliberate new phase once; reloading never creates another attempt.
 if(newPhase){const url=new URL(window.location.href);url.searchParams.delete('phase');window.history.replaceState(window.history.state,'',url);}
 const selectionLink=document.getElementById('backToSelection');selectionLink.href=puzzleUrl(null);

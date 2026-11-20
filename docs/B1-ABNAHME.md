@@ -280,3 +280,89 @@ Ein isolierter Nachlauf der separaten Ergebnistext-/Mehrtab-Szenarien ergab
 Das Browserlog meldete dabei `CVDisplayLinkCreateWithCGDisplay failed`,
 `CVReturn: -6670`; es scheiterte dort keine Zeitfortschritts-Assertion.
 Auch dieser Nachlauf wird nicht als vollständig bestanden gewertet.
+
+## Gezielte P2-Korrektur R1/R2 nach Review von `587fde7`
+
+R1 betraf die Vermischung von editierbarer Rückmeldung, abgeschlossener Phase
+und dem bisherigen gemeinsamen Neustart-/Fortsetzen-Pfad. „Noch offen“ änderte
+nur das Feedback; die Auswahl zeigte weiter „bewusst aufgegeben“. Beim Fortsetzen
+wurde die bisherige Phase nachträglich mit dem inzwischen korrigierten Feedback
+archiviert und das aktuelle Feedback wie bei einem neuen Spiel geleert.
+
+Die Aufgabe archiviert jetzt ihre Rückmeldung sofort in `feedbackAtEnd`. Eine
+spätere Feedbackkorrektur verändert diese historische Phase nicht und startet
+keine Zeitmessung. Erst „Fortsetzen“ legt aus einer aufgegebenen Phase eine neue
+Phase mit eigener ID und eigenen Zählern an. Route, Notizen und normale
+Spielstandzähler werden weiter geladen. Aktuelle Bewertungen bleiben erhalten;
+ein noch auf „Aufgegeben“ stehendes Feedback wird beim ausdrücklichen Fortsetzen
+auf „Noch offen“ gesetzt. Ein wiederholt verwendeter Fortsetzen-Link erzeugt bei
+bereits offener Phase keine weitere Phase. Eine gelöste Phase und `solvedAt`
+werden durch manuelle Feedbackänderungen oder einen Fortsetzen-Link nicht geöffnet
+oder gelöscht. Die Auswahlaktion richtet sich nach der tatsächlichen Phase.
+
+R2 lag in `createBetaSession().count()`: Die Phasen-ID wurde geprüft, der offene
+Status fehlte. Die zentrale Funktion zählt nun nur bei passender ID **und**
+`status === 'open'`. Nach der Lösung bleiben die Betatest-Zähler und die dortigen
+Strafpunkte unverändert. Die bestehenden Hilfe-/Notiz-/Routenbedienelemente und
+die normalen Spielstand-Strafpunkte behalten ihre bisherigen Verträge.
+
+Geändert sind nur `src/beta/storage.mjs`, `src/beta/session.mjs`,
+`src/beta/landing.mjs`, die Weitergabe der getrennten Startoptionen in
+`src/ui/game.mjs`, die zwei Betatest-Testdateien und dieser Bericht. Keine
+Änderung an Zeitmessungsalgorithmus, Lock-Protokoll, Schema, Identitäten,
+Katalog, Engine, Deduktion, Kartenrenderer oder A2b; kein Rebase oder Merge.
+
+### Nachvollziehbarer negativer Gegenlauf
+
+Die endgültigen neuen Browserfälle wurden mit den unveränderten vier
+Produktdateien aus `587fde7964a8eac80237d9eb438a08def08c8fc9` ausgeführt:
+
+```sh
+npm exec playwright test -- --config=playwright.b1.config.mjs \
+  --project=chromium --project=mobile-chromium \
+  --grep 'abandonment feedback correction|solved beta counters' \
+  --workers=2 --retries=0 --reporter=line
+```
+
+Ergebnis vor der Korrektur: **6/6 erwartete Fehlschläge**. Die vier R1-Fälle
+(mit/ohne Reload, Desktop/Mobil) meldeten nach der Feedbackkorrektur weiter
+`Begonnen · bewusst aufgegeben`. Die beiden R2-Fälle zeigten im Export statt
+`hints=1, noteChecks=1, routeChecks=1, penaltyPoints=15` die Werte
+`2, 2, 2, 30`. Ein früherer negativer R1-Durchlauf erreichte außerdem den
+Fortsetzen-Pfad und wies die nachträgliche Änderung von `feedbackAtEnd` nach.
+Vier neue Speicherfälle scheiterten am Original ebenfalls: Der explizite
+Resume-Übergang legte noch keine neue Phase an. Der bestehende Lösungsnachweis
+blieb bereits vor der Korrektur erhalten und wird weiterhin positiv abgesichert.
+
+Nach dem Gegenlauf wurden die gesicherten Korrekturdateien bytegleich
+wiederhergestellt. Der gleiche Browserbefehl ohne Projektfilter bestand danach
+**12/12 Fälle** über Chromium/WebKit, jeweils Desktop/Mobil. Diese Fälle prüfen
+auch erhaltene Daten und Feedbackhistorie, exakt neue Zeitdeltas, Reload,
+wiederholte Fortsetzen-Links in zwei Tabs, unveränderte abgeschlossene Zähler,
+neue eigene Zähler und tatsächliche JSON-Downloads. Keine zusätzlichen Retries,
+Skips, festen Wartezeiten oder abgeschwächten Zählererwartungen.
+
+Weitere tatsächliche Ergebnisse werden im PR-Bericht ergänzt. Bereits bestanden:
+**17/17 B1-Unit-/Integrationstests** und **156/156 Engine-/Integrations-/Loader-/
+Modelltests**, jeweils ohne Fehler oder übersprungene Fälle.
+
+Die bestehende Näherung der Zeitmessung und Speichergrenzen gelten weiter.
+Bei bereits vor dieser Korrektur aufgegebenen Datensätzen ohne `feedbackAtEnd`
+kann nur die noch vorhandene Rückmeldung archiviert werden; eine damals nicht
+gespeicherte frühere Bewertung lässt sich nicht nachträglich rekonstruieren.
+Echte Mobilgeräte und die separate Integration mit dem aktuellen A2b-Stand
+bleiben eigene Abnahmeschritte.
+
+Abgeschlossene Gesamtläufe auf der Korrektur, jeweils ohne Retries:
+
+- `node --test tests/integration/beta-*.test.mjs`: **17/17 bestanden**.
+- `node --test tests/integration/*.test.mjs tests/engine/*.test.mjs tests/contracts/loader.test.mjs tests/contracts/model.test.mjs`: **156/156 bestanden**, einschließlich der 17 B1-Fälle.
+- `npm exec playwright test -- --config=playwright.b1.config.mjs --workers=2 --retries=0`: **76/76 bestanden** (19 Fälle × vier Browserprofile).
+- Bestehende `note-check.spec.mjs`, `model.spec.mjs` und `ui-page-resume.spec.mjs`
+  auf beiden Chromium-Profilen mit unveränderter Konfiguration der Fälle und
+  eigenem Serverport: **40/40 bestanden**.
+- `git diff --check`: bestanden.
+
+Der zusätzliche fokussierte Nachher-Lauf mit 12 bestandenen Fällen ist ein
+separater Lauf; die 17 B1-Unitfälle sind in den 156 Fällen enthalten. Die Zahlen
+werden deshalb nicht als Anzahl unterschiedlicher Tests addiert.

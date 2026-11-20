@@ -54,3 +54,26 @@ test('cell registry replaces both list and lookup when rule cell sets change',()
 test('a new phase never counts old saved help usage twice',()=>{
  const {store}=setup();store.start(identity,'One',{counters:{hints:2,noteChecks:1,penaltyPoints:25}});store.start(identity,'One',{replay:true,counters:{hints:2,noteChecks:1,penaltyPoints:25}});const r=store.get(identity);assert.equal(r.phases[0].hints,2);assert.equal(r.phases[1].hints,0);assert.equal(r.phases[1].penaltyPoints,0);
 });
+
+for(const corrected of [false,true])for(const reload of [false,true])test(`abandonment resumes once with history and feedback intact (corrected=${corrected}, reload=${reload})`,()=>{
+ const {store,options}=setup();let current=store;
+ current.start(identity,'One');current.phaseUpdate(identity,p=>{p.activeMs=7500;p.hints=2;p.noteChecks=1;p.routeChecks=1;p.penaltyPoints=25;});
+ current.feedback(identity,{status:'abandoned',difficulty:'hard',comment:'Erster Eindruck'},'One');
+ const ended=current.get(identity).phases[0];
+ if(corrected)current.feedback(identity,{status:'open'},'One');
+ assert.equal(current.get(identity).phases.length,1);assert.equal(current.get(identity).phases[0].status,'abandoned');
+ if(reload)current=createBetaStore(options);
+ current.start(identity,'One',{resume:true});
+ let r=current.get(identity);assert.equal(r.phases.length,2);assert.notEqual(r.phases[0].phaseId,r.phases[1].phaseId);
+ assert.equal(r.phases[0].endedAt,ended.endedAt);assert.equal(r.phases[0].status,'abandoned');assert.equal(r.phases[0].activeMs,7500);
+ assert.equal(r.phases[0].hints,2);assert.equal(r.phases[0].noteChecks,1);assert.equal(r.phases[0].routeChecks,1);assert.equal(r.phases[0].penaltyPoints,25);
+ assert.equal(r.phases[0].feedbackAtEnd.status,'abandoned');assert.equal(r.phases[0].feedbackAtEnd.comment,'Erster Eindruck');
+ assert.equal(r.feedback.status,'open');assert.equal(r.feedback.difficulty,'hard');assert.equal(r.feedback.comment,'Erster Eindruck');
+ assert.equal(r.phases[1].status,'open');assert.equal(r.phases[1].activeMs,0);assert.equal(r.phases[1].hints,0);assert.equal(r.phases[1].penaltyPoints,0);
+ current.start(identity,'One',{resume:true});current=createBetaStore(options);current.start(identity,'One',{resume:true});
+ r=current.exportData({}).puzzles[0];assert.equal(r.phases.length,2);assert.equal(r.phases.filter(p=>p.status==='open').length,1);assert.equal(r.solvedAt,null);
+});
+test('feedback corrections preserve solved evidence and cannot reopen a solved phase',()=>{
+ const {store}=setup();store.start(identity,'One');store.phaseUpdate(identity,(p,r)=>{p.status='solved';p.endedAt='solved-end';r.solvedAt='solved-proof';});
+ for(const status of ['abandoned','open','solved']){store.feedback(identity,{status},'One');store.start(identity,'One',{resume:true});const r=store.get(identity);assert.equal(r.solvedAt,'solved-proof');assert.equal(r.phases.length,1);assert.equal(r.phases[0].status,'solved');assert.equal(r.phases[0].endedAt,'solved-end');}
+});

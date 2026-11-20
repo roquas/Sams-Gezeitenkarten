@@ -62,8 +62,8 @@ export async function showLanding(){
     const action=document.createElement('a');action.className='btn primary';action.href=puzzleUrl(entry.id,{replay:solved||abandoned});action.textContent=solved?'Erneut spielen':begun?'Fortsetzen':'Beginnen';card.append(action);
     const refresh=()=>{
      const current=store.get(identity),phase=current?.phases.at(-1),done=!!current?.solvedAt,working=phase?.status==='open';
-     const givenUp=phase?.status==='abandoned'||current?.feedback.status==='abandoned',started=begun||current?.phases.length;
-     status.textContent=(done?'Gelöst':started?'Begonnen':'Neu')+(givenUp?' · bewusst aufgegeben':done&&working?' · erneut begonnen':'');
+     const givenUp=phase?.status==='abandoned',started=begun||current?.phases.length;
+     status.textContent=(done?'Gelöst':started?'Begonnen':'Neu')+(givenUp&&current?.feedback.status==='abandoned'?' · bewusst aufgegeben':done&&working?' · erneut begonnen':'');
      action.textContent=working||givenUp?'Fortsetzen':done?'Erneut spielen':started?'Fortsetzen':'Beginnen';
      action.href=puzzleUrl(entry.id,{replay:done&&!working&&!givenUp,resume:givenUp&&!working});
     };refreshCards.push(refresh);refresh();

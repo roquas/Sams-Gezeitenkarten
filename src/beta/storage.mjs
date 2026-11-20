@@ -51,11 +51,14 @@ export function createBetaStore({storage,report=()=>{},now=()=>new Date().toISOS
   let record=get(identity)??{recordId:id,identity,title,createdAt:stamp,updatedAt:stamp,revision:0,solvedAt:null,phases:[],feedback:{difficulty:null,fairness:null,comment:'',status:null,updatedAt:null}};
   change(record);record.updatedAt=stamp;record.revision++;write(PREFIX+'record:'+id,record);return record;
  }
- function start(identity,title,{replay=false,paused=false,counters={}}={}){
+ function start(identity,title,{replay=false,resume=false,paused=false,counters={}}={}){
   return update(identity,r=>{
    const phase=r.phases.at(-1),initialCounters=phase?{}:counters;
-   if(replay&&phase){phase.endedAt??=now();phase.feedbackAtEnd=structuredClone(r.feedback);r.feedback={difficulty:null,fairness:null,comment:'',status:null,updatedAt:null};}
-   if(!phase||replay)r.phases.push({phaseId:newId(),startedAt:now(),endedAt:null,status:'open',activeMs:0,paused,hints:initialCounters.hints??0,noteChecks:initialCounters.noteChecks??0,routeChecks:0,penaltyPoints:initialCounters.penaltyPoints??0,timeTracking:'available',feedbackAtEnd:null});
+   const resuming=resume&&phase?.status==='abandoned';
+   if((replay||resuming)&&phase){phase.endedAt??=now();phase.feedbackAtEnd??=structuredClone(r.feedback);}
+   if(replay&&phase)r.feedback={difficulty:null,fairness:null,comment:'',status:null,updatedAt:null};
+   if(resuming&&r.feedback.status==='abandoned'){r.feedback.status='open';r.feedback.updatedAt=now();}
+   if(!phase||replay||resuming)r.phases.push({phaseId:newId(),startedAt:now(),endedAt:null,status:'open',activeMs:0,paused,hints:initialCounters.hints??0,noteChecks:initialCounters.noteChecks??0,routeChecks:0,penaltyPoints:initialCounters.penaltyPoints??0,timeTracking:'available',feedbackAtEnd:null});
   },{title});
  }
  function phaseUpdate(identity,change){return update(identity,r=>{const phase=r.phases.at(-1);if(phase)change(phase,r);});}
@@ -63,7 +66,7 @@ export function createBetaStore({storage,report=()=>{},now=()=>new Date().toISOS
   for(const key of ['difficulty','fairness','comment','status'])if(Object.hasOwn(values,key))r.feedback[key]=values[key];
   r.feedback.updatedAt=now();
   if(values.status==='abandoned'){
-   const phase=r.phases.at(-1);if(phase?.status==='open'){phase.status='abandoned';phase.endedAt=now();}
+   const phase=r.phases.at(-1);if(phase?.status==='open'){phase.status='abandoned';phase.endedAt=now();phase.feedbackAtEnd=structuredClone(r.feedback);}
   }
  },{title});}
  return {get,update,start,phaseUpdate,feedback,records,general,
