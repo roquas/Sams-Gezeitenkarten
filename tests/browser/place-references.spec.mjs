@@ -64,27 +64,149 @@ test('manual action shows each named instance once, including passable hexes, ex
  await page.locator('.mapbox').screenshot({path,scale:'css'});
  await page.locator('#mapActions').screenshot({path:info.outputPath('place-actions-'+(isMobile?'mobile':'desktop')+'.png'),scale:'css'});await info.attach('multiple places including multihex',{path,contentType:'image/png'});
 });
-test('normal fade completes, removes all place names, and restores the ordinary chart',async({page})=>{
- await open(page);await page.locator('#showPlaces').click();
- await page.waitForTimeout(650);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
- expect(await page.locator('.place-references').evaluate(n=>+getComputedStyle(n).opacity)).toBe(1);
- await page.waitForTimeout(3300);
- const fading=await page.locator('.place-references').evaluate(n=>+getComputedStyle(n).opacity);expect(fading).toBeGreaterThan(0);expect(fading).toBeLessThan(1);
- await expect(labels(page)).toHaveCount(0,{timeout:3500});await expect(page.locator('.place-references')).toHaveCount(0);
- await expect(page.locator('.start-label')).toHaveText('Start');await expect(page.locator('[data-start-marker]')).toHaveCount(1);
+test('normal fade reaches a visible hold, completes, and restores the ordinary chart',async({page},info)=>{
+ await open(page);
+ // Observe in the renderer before the native trigger. Node timers and protocol
+ // round trips do not measure the Web Animation's start or sampled frame time.
+ // Retain phase evidence even if the test process receives it much later.
+ await page.evaluate(()=>{
+  const lifecycle=window.placeLifecycle={samples:[],finished:false,removed:false};
+  const observer=new MutationObserver(records=>{
+   const group=records.flatMap(r=>[...r.addedNodes]).find(n=>n.nodeType===1&&n.matches('.place-references'));
+   if(!group)return;
+   observer.disconnect();
+   const animation=group.getAnimations()[0];
+   const sample=()=>{
+    const style=getComputedStyle(group),rect=group.getBoundingClientRect();
+    const state={wall:performance.now(),currentTime:animation.currentTime,startTime:animation.startTime,
+     playState:animation.playState,pending:animation.pending,opacity:+style.opacity,
+     visible:group.isConnected&&style.display!=='none'&&style.visibility==='visible'&&rect.width>0&&rect.height>0,
+     inViewport:rect.bottom>0&&rect.right>0&&rect.top<innerHeight&&rect.left<innerWidth};
+    lifecycle.samples.push(state);
+    lifecycle.removed=!group.isConnected;
+    if(!group.isConnected)clearInterval(timer);
+   };
+   animation.finished.then(()=>{lifecycle.finished=true;},()=>{lifecycle.cancelled=true;});
+   const timer=setInterval(sample,100);
+   sample();
+  });
+  observer.observe(document.querySelector('#map'),{childList:true});
+ });
+ try{
+  await page.locator('#showPlaces').click();
+  await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
+  // Visibility alone ignores opacity in Playwright. Require a rendered,
+  // non-transparent hold on the actual timeline, not merely existing labels.
+  await expect.poll(()=>page.evaluate(()=>window.placeLifecycle.samples.some(s=>
+   s.visible&&s.inViewport&&s.opacity===1&&!s.pending&&s.playState==='running'&&s.currentTime>=400&&s.currentTime<=3400))).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.placeLifecycle.samples.some(s=>
+   s.currentTime>3400&&s.opacity>0&&s.opacity<1))).toBe(true);
+  await expect(labels(page)).toHaveCount(0,{timeout:3500});
+  await expect(page.locator('.place-references')).toHaveCount(0);
+  expect(await page.evaluate(()=>window.placeLifecycle.finished)).toBe(true);
+  expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+  await expect(page.locator('.start-label')).toHaveText('Start');
+  await expect(page.locator('[data-start-marker]')).toHaveCount(1);
+ }finally{
+  await info.attach('place-lifecycle',{body:JSON.stringify(await page.evaluate(()=>window.placeLifecycle),null,2),contentType:'application/json'});
+ }
 });
-test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName})=>{
- // CI traces show native WebKit clicks consuming 1.5–3 s each; the full
- // lifecycle plus eight triggers needs more than the default 30 s in total.
- // Keep the 3.5 s disappearance deadline and every behavioral assertion.
- if(browserName==='webkit')test.setTimeout(60_000);
- await open(page);await page.locator('#showPlaces').click();await page.waitForTimeout(2200);
- for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
- await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
- await page.waitForTimeout(3400);await expect(labels(page)).toHaveCount(3);
- // Old completions must not remove this newer group; no animation backlog remains.
+test('place animation renders fade-in, the full hold, and fade-out at its own timeline positions',async({page})=>{
+ await open(page);await page.locator('#showPlaces').click();
+ const group=page.locator('.place-references');
+ // A separate rendering contract samples each phase deterministically. Seeking
+ // is confined to this test; the test above requires unmodified native playback
+ // and natural finished/DOM cleanup, so seeking cannot hide a stalled animation.
+ const phases=await group.evaluate(async node=>{
+  const animation=node.getAnimations()[0];
+  animation.pause();await animation.ready;
+  const duration=animation.effect.getComputedTiming().duration;
+  const samples=[0,200,400,1900,3399,3400,4400,5399].map(time=>{
+   animation.currentTime=time;
+   return {time,opacity:+getComputedStyle(node).opacity};
+  });
+  animation.play();
+  return {duration,samples};
+ });
+ expect(phases.duration).toBe(5400);
+ const opacity=phases.samples.map(s=>s.opacity);
+ expect(opacity[0]).toBe(0);
+ expect(opacity[1]).toBeGreaterThan(0);expect(opacity[1]).toBeLessThan(1);
+ expect(opacity.slice(2,6)).toEqual([1,1,1,1]);
+ expect(opacity[6]).toBeGreaterThan(0);expect(opacity[6]).toBeLessThan(1);
+ expect(opacity[7]).toBeGreaterThanOrEqual(0);expect(opacity[7]).toBeLessThan(opacity[6]);
  await expect(labels(page)).toHaveCount(0,{timeout:3500});
- expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+ await expect(group).toHaveCount(0);
+});
+test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName},info)=>{
+ if(browserName==='webkit')test.setTimeout(60_000);
+ await open(page);
+ // Observe the same native animations returned to the controller. No pause,
+ // seek, finish, cancellation, changed durations, or wall-time sleeps.
+ await page.evaluate(()=>{
+  const entries=[],refs=[],unhandled=[];
+  window.rapidLifecycle={entries,unhandled};
+  window.addEventListener('unhandledrejection',e=>unhandled.push(String(e.reason)));
+  const animate=Element.prototype.animate;
+  Element.prototype.animate=function(...args){
+   const animation=animate.apply(this,args);
+   if(!this.matches('.place-references'))return animation;
+   const node=this,entry={duration:animation.effect.getComputedTiming().duration,samples:[]};
+   entries.push(entry);refs.push({node,animation});
+   const sample=event=>{
+    entry.samples.push({event,wall:performance.now(),currentTime:animation.currentTime,startTime:animation.startTime,
+     playState:animation.playState,pending:animation.pending,connected:node.isConnected,
+     groups:document.querySelectorAll('#map .place-references').length,labels:document.querySelectorAll('#map .reference-label').length});
+    if(!node.isConnected)clearInterval(timer);
+   };
+   const timer=setInterval(()=>sample('interval'),100);
+   sample('created');
+   animation.finished.then(()=>{entry.outcome='finished';entry.finishedAt=performance.now();sample('finished');},e=>{
+    entry.outcome=e.name;sample('rejected');
+   });
+   return animation;
+  };
+  new MutationObserver(()=>refs.forEach(({node},i)=>{
+   if(!node.isConnected&&entries[i].removedAt===undefined)entries[i].removedAt=performance.now();
+  })).observe(document.querySelector('#map'),{childList:true});
+  window.rapidAnimationStates=()=>refs.map(({node,animation})=>({connected:node.isConnected,playState:animation.playState,pending:animation.pending}));
+ });
+ try{
+  await page.locator('#showPlaces').click();
+  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries[0]?.samples.some(s=>
+   s.connected&&s.playState==='running'&&s.currentTime>=2200))).toBe(true);
+  for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
+  await expect(page.locator('.place-references')).toHaveCount(1);
+  await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
+  // A replaced animation must not shorten the last group's own lifetime.
+  // Keep renderer-side evidence if protocol replies arrive after this phase.
+  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
+   s.connected&&s.currentTime>=3400&&s.groups===1&&s.labels===3))).toBe(true);
+  // playState can reach the end before WebKit dispatches the native finished
+  // promise. Start the unchanged cleanup deadline at observed animation end.
+  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
+   s.playState==='finished'))).toBe(true);
+  await expect(labels(page)).toHaveCount(0,{timeout:3500});
+  await expect(page.locator('.place-references')).toHaveCount(0);
+  const report=await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()}));
+  expect(report.entries).toHaveLength(7);
+  expect(report.entries.map(e=>e.duration)).toEqual(Array(7).fill(5400));
+  expect(report.entries.map(e=>e.samples[0].currentTime)).toEqual(Array(7).fill(0));
+  expect(report.entries.flatMap(e=>e.samples).every(s=>s.groups<=1&&s.labels<=3)).toBe(true);
+  expect(report.entries.slice(0,-1).every(e=>['AbortError','finished'].includes(e.outcome))).toBe(true);
+  // Native clicks can be slow enough for an older animation to finish before
+  // its next trigger. Still require actual overlapping lifetimes and aborts.
+  expect(report.entries.slice(0,-1).filter(e=>e.outcome==='AbortError').length).toBeGreaterThan(0);
+  const last=report.entries.at(-1);
+  expect(last.outcome).toBe('finished');
+  expect(last.removedAt).toBeGreaterThanOrEqual(last.finishedAt);
+  expect(last.removedAt-last.finishedAt).toBeLessThan(3500);
+  expect(report.states).toEqual(Array.from({length:7},()=>({connected:false,playState:'idle',pending:false})));
+  expect(report.unhandled).toEqual([]);
+  expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+ }finally{
+  await info.attach('rapid-place-lifecycle',{body:JSON.stringify(await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()})),null,2),contentType:'application/json'});
+ }
 });
 test('reduced motion is immediate but still expires and does not retrigger on ordinary renders',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await open(page);

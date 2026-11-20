@@ -1,10 +1,10 @@
-name: Rapid place animation investigation
+name: Rapid place animation regression
 on:
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  probe:
+  regression:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -13,17 +13,15 @@ jobs:
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps webkit
-      - name: Native replacement timeline probe
-        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/rapid-event-probe.spec.mjs --retries=0 --trace=on --output=probe-results
+      - name: State-based native lifecycle and replacement regressions
+        run: npx playwright test --config playwright.webkit.config.mjs tests/browser/place-references.spec.mjs --grep 'normal fade|own timeline|rapid manual' --retries=0 --trace=on --output=fixed-results
         env:
-          PLAYWRIGHT_JSON_OUTPUT_NAME: probe-results.json
+          PLAYWRIGHT_JSON_OUTPUT_NAME: fixed-results.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rapid-place-animation-events
+          name: rapid-place-animation-fixed
           retention-days: 3
           path: |
-            original-results/
-            original-results.json
-            probe-results/
-            probe-results.json
+            fixed-results/
+            fixed-results.json
