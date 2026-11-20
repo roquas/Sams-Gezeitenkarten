@@ -19,7 +19,7 @@ export function registerModelTests(url){
   await expect(page.locator('#map [data-object-id="o2"]')).toHaveCount(2);
   await expect(page.locator('#map .blocked-cell')).toHaveCount(3);
   await expect(page.locator('#map [data-placement-id]')).toHaveCount(3);
-  await expect(page.locator('#map .reference-label')).toHaveCount(0);await expect(page.locator('#map .start-label')).toHaveCount(1);
+  await expect(page.locator('#map .reference-label')).toHaveCount(0);await expect(page.locator('#map .start-glow')).toHaveCount(1);
   await page.locator('#showPlaces').click();await expect(page.locator('#map .reference-label')).toHaveText('Zwilling');
   await expect(page.locator('#map [data-start-marker]')).toHaveCount(1);expect(errors).toEqual([]);
   const dto=await (await page.request.get(new URL('puzzles/model-demo.json',page.url()).href)).json();
@@ -72,9 +72,9 @@ export function registerModelTests(url){
   const manifest=read('puzzles/manifest.json');manifest.puzzles.push({id:'second-demo',title:'Zweite Probefahrt',path:'second-demo.json',kind:'test'});
   await page.route('**/puzzles/manifest.json',r=>r.fulfill({json:manifest}));await page.route('**/puzzles/second-demo.json',r=>r.fulfill({json:other}));
   await page.goto(url);await expect(cell(page,'A5')).toBeVisible();await cell(page,'A1').click();
-  await settings(page);await page.locator('#puzzleSelect').selectOption('second-demo');await chart(page);await expect(page.locator('h1')).toHaveText('Zweite Probefahrt');await expect(page.locator('.start-label')).toHaveAttribute('data-label-cell','B5');await expect(cell(page,'A1')).not.toContainText('?');
+  await settings(page);await page.locator('#puzzleSelect').selectOption('second-demo');await chart(page);await expect(page.locator('h1')).toHaveText('Zweite Probefahrt');await expect(page.locator('.start-glow')).toHaveAttribute('data-start-cell','B5');await expect(cell(page,'A1')).not.toContainText('?');
   await cell(page,'B1').click();await page.reload();await expect(cell(page,'B1')).toContainText('?');
-  await settings(page);await page.locator('#puzzleSelect').selectOption('model-demo');await chart(page);await expect(page.locator('.start-label')).toHaveAttribute('data-label-cell','A5');await expect(cell(page,'A1')).toContainText('?');await expect(cell(page,'B1')).not.toContainText('?');
+  await settings(page);await page.locator('#puzzleSelect').selectOption('model-demo');await chart(page);await expect(page.locator('.start-glow')).toHaveAttribute('data-start-cell','A5');await expect(cell(page,'A1')).toContainText('?');await expect(cell(page,'B1')).not.toContainText('?');
  });
  test('multi-cell passable illustration uses the same renderer and no permanent name plaque',async({page})=>{
   const dto=read('puzzles/model-demo.json'),library=read('assets/catalog/library.json');

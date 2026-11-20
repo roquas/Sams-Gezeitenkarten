@@ -120,7 +120,7 @@ $("toggleHourMarks").addEventListener("click",()=>{if(!Number.isInteger(state.la
 
 function selectTool(e){const b=e.target.closest('[data-tool]');if(!b)return;cancelGesture();state=selectChartTool(state,b.dataset.tool);render();}
 for(const id of ['tools','mapActions'])$(id).addEventListener('click',selectTool);
-$("showPlaces").onclick=()=>placeReferencesFor($("map")).show(namedPlaceIds(puzzle));
+$("showPlaces").onclick=()=>placeReferencesFor($("map")).show(namedPlaceIds(puzzle),{start:true});
 $("undo").onclick=()=>{cancelGesture();state=history.undo(state);render()};
 $("toggleRouteNumbers").onclick=()=>{state.showRouteNumbers=!state.showRouteNumbers;render()};
 $("toggleDistances").onclick=()=>{cancelGesture();state=toggleDistance(state);render()};
@@ -153,7 +153,8 @@ $("hint").onclick=()=>{
  render();
 };
 $("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){cancelGesture();state=initial();history.clear();render()}};
-const bordbook=createBordbook({clues,onSelect:id=>placeReferencesFor($("map")).show(cluePlaceIds(puzzle,id)),getState:()=>state,markup:safeMarkup,toggleClue:id=>{
+let initialPlaces=false;
+const bordbook=createBordbook({clues,onSelect:id=>{placeReferencesFor($("map")).show(cluePlaceIds(puzzle,id),{start:initialPlaces});initialPlaces=false;},getState:()=>state,markup:safeMarkup,toggleClue:id=>{
  snapshot();state.doneClues=state.doneClues.includes(id)?state.doneClues.filter(v=>v!==id):[...state.doneClues,id];save();
 }});
 $("showChart").addEventListener("change",()=>renderMap());
@@ -208,14 +209,14 @@ select.addEventListener('change',async()=>{
   const next=await loader.load(id);if(token!==request)return;
   save();puzzle=next;$('puzzleLoadError').hidden=true;rules=createRules(puzzle);blocked=rules.blocked;solution=puzzle.solution;hints=puzzle.hints;
   state=loadState(puzzle,storage);history.clear();cancelGesture();dragValue=null;
-  checkImages(puzzle);presentation();bordbook.setClues(puzzle.clues.map(({id,text})=>[id,text]));render();bordbook.selectCurrent();
+  checkImages(puzzle);presentation();bordbook.setClues(puzzle.clues.map(({id,text})=>[id,text]));render();initialPlaces=true;bordbook.selectCurrent();
   try{storage?.setItem(selectionKey,puzzle.id);}catch{}
   if(b2Development){const url=new URL(window.location.href);url.searchParams.set('puzzle',puzzle.id);window.history.replaceState(window.history.state,'',url);}
   $('puzzleStatus').textContent='Geladen: '+puzzle.title+'. Spielstände bleiben getrennt gespeichert.';
  }catch(error){select.value=puzzle.id;$('puzzleStatus').textContent=error.message;}
  finally{if(token===request)select.disabled=false;}
 });
-presentation();render();bordbook.selectCurrent();checkImages(puzzle);
+presentation();render();initialPlaces=true;bordbook.selectCurrent();checkImages(puzzle);
 })().catch(error=>{
  const status=document.getElementById('puzzleLoadError');status.hidden=false;status.textContent=error.message;
 });

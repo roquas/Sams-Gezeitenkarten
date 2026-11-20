@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 const read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));
 const demo=read('puzzles/model-demo.json');
 const cell=(page,id)=>page.locator(`#map .cell[data-id="${id}"]`);
-const labels=page=>page.locator('#map .reference-label');
+const labels=page=>page.locator('#map .place-label');
 const names=page=>labels(page).locator('text');
 const saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));
 function fixture(){
@@ -23,14 +23,14 @@ async function open(page,dto=fixture()){
  await expect(page.locator('#puzzleLoadError')).toBeHidden();
 }
 test('initial clue shows exactly its explicit places on first start and saved-game reload',async({page})=>{
- await open(page);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling']);
+ await open(page);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Start']);
  await cell(page,'A1').focus();await page.keyboard.press('Enter');
- await page.reload();await expect(names(page)).toHaveText(['Roberts Boot','Zwilling']);
+ await page.reload();await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Start']);
  expect((await saved(page)).marks).toEqual({'1:A1':'maybe'});
  await expect(cell(page,'A1')).toContainText('?');
 });
 test('navigation replaces references, checkboxes do not retrigger, and a clue without references clears immediately',async({page})=>{
- await open(page);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling']);
+ await open(page);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Start']);
  await page.locator('#nextClue').click();await expect(names(page)).toHaveText(['Kiste']);
  // Check off the current clue via keyboard. The visible group stays the same.
  await page.locator('.place-references').evaluate(n=>window.referenceGroup=n);
@@ -51,47 +51,94 @@ test('manual action shows each named instance once, including passable hexes, ex
  await page.route('**/assets/catalog/library.json',r=>r.fulfill({json:library}));
  await open(page,dto);
  await page.locator('#showPlaces').focus();await page.keyboard.press('Enter');
- await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
+ await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
  await expect(page.locator('[data-label-object="o1"]')).toHaveAttribute('data-label-cells','A5 B5');
  await expect(page.locator('[data-label-object="o2"]')).toHaveAttribute('data-label-cells','B2 C2');
  await expect(page.locator('[data-label-object="o4"]')).toHaveAttribute('data-label-cells','D3');
  await expect(page.locator('[data-placement-id="flavor"]')).toHaveCount(1);
  await expect(page.locator('[data-label-object="o3"]')).toHaveCount(0);
  const positions=await labels(page).evaluateAll(ns=>ns.map(n=>({id:n.dataset.labelObject,x:n.transform.baseVal.getItem(0).matrix.e,y:n.transform.baseVal.getItem(0).matrix.f})));
- expect(positions).toEqual([{id:'o1',x:101,y:328},{id:'o2',x:224,y:124},{id:'o4',x:306,y:192}]);
+ expect(positions).toEqual([{id:'o1',x:101,y:328},{id:'o2',x:224,y:124},{id:'o4',x:306,y:192},{id:undefined,x:60,y:328}]);
  await page.waitForTimeout(500);
  const path=info.outputPath('place-references-'+(isMobile?'mobile':'desktop')+'.png');
  await page.locator('.mapbox').screenshot({path,scale:'css'});
  await page.locator('#mapActions').screenshot({path:info.outputPath('place-actions-'+(isMobile?'mobile':'desktop')+'.png'),scale:'css'});await info.attach('multiple places including multihex',{path,contentType:'image/png'});
 });
-test('normal fade completes, removes all place names, and restores the ordinary chart',async({page})=>{
+test('independent paper and ink phases share a clock and finish at 4.9 seconds',async({page})=>{
  await open(page);await page.locator('#showPlaces').click();
- await page.waitForTimeout(650);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
- expect(await page.locator('.place-references').evaluate(n=>+getComputedStyle(n).opacity)).toBe(1);
- await page.waitForTimeout(3300);
- const fading=await page.locator('.place-references').evaluate(n=>+getComputedStyle(n).opacity);expect(fading).toBeGreaterThan(0);expect(fading).toBeLessThan(1);
- await expect(labels(page)).toHaveCount(0,{timeout:3500});await expect(page.locator('.place-references')).toHaveCount(0);
- await expect(page.locator('.start-label')).toHaveText('Start');await expect(page.locator('[data-start-marker]')).toHaveCount(1);
+ const phases=await page.locator('.place-references').evaluate(layer=>{
+  const animations=layer.getAnimations({subtree:true}),starts=animations.map(a=>a.startTime);
+  const phases=[0,200,400,900,1900,2900,3900,4899].map(time=>{
+   animations.forEach(a=>{a.pause();a.currentTime=time;});
+   return {time,paper:+getComputedStyle(layer.querySelector('.label-paper')).opacity,ink:+getComputedStyle(layer.querySelector('.label-ink')).opacity};
+  });
+  return {starts,durations:animations.map(a=>a.effect.getTiming().duration),phases};
+ });
+ expect(new Set(phases.starts).size).toBe(1);expect(phases.durations.every(d=>d===4900)).toBe(true);
+ for(const p of phases.phases){
+  if(p.time===0){expect(p.paper).toBe(0);expect(p.ink).toBe(0);}
+  if(p.time===200){expect(p.paper).toBeGreaterThan(0);expect(p.paper).toBeLessThan(1);expect(p.ink).toBeCloseTo(p.paper);}
+  if(p.time===400||p.time===900){expect(p.paper).toBe(1);expect(p.ink).toBe(1);}
+  if(p.time===1900){expect(p.paper).toBeGreaterThan(0);expect(p.paper).toBeLessThan(1);expect(p.ink).toBe(1);}
+  if(p.time>=2900)expect(p.paper).toBe(0);
+  if(p.time===2900)expect(p.ink).toBe(1);
+  if(p.time===3900){expect(p.ink).toBeGreaterThan(0);expect(p.ink).toBeLessThan(1);}
+ }
+ await page.locator('.place-references').evaluate(n=>n.getAnimations({subtree:true}).forEach(a=>{a.finish();}));
+ await expect(labels(page)).toHaveCount(0);expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+});
+test('normal animation expires naturally within the 4.9-second contract',async({page},info)=>{
+ await open(page);
+ const timing=await page.evaluate(()=>new Promise(resolve=>{
+  const button=document.getElementById('showPlaces');button.click();
+  const layer=document.querySelector('.place-references'),started=performance.now(),timelineStarted=document.timeline.currentTime;
+  const tracks=layer.getAnimations({subtree:true}).map(animation=>{
+   const sample=()=>({wall:performance.now()-started,timeline:document.timeline.currentTime,start:animation.startTime,current:animation.currentTime,state:animation.playState});
+   const track={duration:animation.effect.getTiming().duration,created:sample()};
+   animation.ready.then(()=>{track.ready=sample();},()=>{});
+   animation.finished.then(()=>{track.finished=sample();},()=>{});
+   return track;
+  });
+  const observer=new MutationObserver(()=>{if(!layer.isConnected){
+   observer.disconnect();resolve({elapsed:performance.now()-started,timelineStarted,timelineRemoved:document.timeline.currentTime,tracks});
+  }});
+  observer.observe(document.getElementById('map'),{childList:true});
+ }));
+ await info.attach('natural-animation-timing',{body:JSON.stringify(timing,null,2),contentType:'application/json'});
+ expect(timing.elapsed).toBeGreaterThanOrEqual(4800);expect(timing.elapsed,JSON.stringify(timing)).toBeLessThan(5400);
+ await expect(labels(page)).toHaveCount(0);await expect(page.locator('.start-label, #map ellipse[data-start-marker]')).toHaveCount(0);
+ await expect(page.locator('.start-glow')).toHaveCount(1);
 });
 test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName})=>{
  // CI traces show native WebKit clicks consuming 1.5–3 s each; the full
  // lifecycle plus eight triggers needs more than the default 30 s in total.
  // Keep the 3.5 s disappearance deadline and every behavioral assertion.
  if(browserName==='webkit')test.setTimeout(60_000);
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.addInitScript(()=>{
+  window.addEventListener('unhandledrejection',e=>{throw e.reason;});
+  window.placeTracks=[];const animate=Element.prototype.animate;
+  Element.prototype.animate=function(...args){
+   const animation=animate.apply(this,args);
+   if(this.closest('.place-references'))window.placeTracks.push(animation);
+   return animation;
+  };
+ });
  await open(page);await page.locator('#showPlaces').click();await page.waitForTimeout(2200);
  for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
- await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
- await page.waitForTimeout(3400);await expect(labels(page)).toHaveCount(3);
+ await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
+ await page.waitForTimeout(3400);await expect(labels(page)).toHaveCount(4);
  // Old completions must not remove this newer group; no animation backlog remains.
  await expect(labels(page)).toHaveCount(0,{timeout:3500});
- expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+ expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);expect(errors).toEqual([]);
+ expect(await page.evaluate(()=>window.placeTracks.length>8&&window.placeTracks.every(a=>['idle','finished'].includes(a.playState)))).toBe(true);
 });
 test('reduced motion is immediate but still expires and does not retrigger on ordinary renders',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await open(page);
- expect(await page.locator('.place-references').evaluate(n=>+getComputedStyle(n).opacity)).toBe(1);
+ expect(await page.locator('.label-paper').first().evaluate(n=>+getComputedStyle(n).opacity)).toBe(1);
  await page.waitForTimeout(1800);await cell(page,'A1').focus();await page.keyboard.press('Enter');
  await expect(labels(page)).toHaveCount(0,{timeout:2200});
- await page.locator('#showPlaces').click();await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
+ await page.locator('#showPlaces').click();await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
  await expect(labels(page)).toHaveCount(0,{timeout:4000});
 });
 test('overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence',async({page,isMobile,browserName})=>{
@@ -145,8 +192,8 @@ test('puzzle selection cancels old labels and starts the new initial clue, inclu
  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
  await page.locator('#puzzleSelect').evaluate(n=>n.closest('details').open=true);
  await page.locator('#puzzleSelect').selectOption('other-demo');
- await expect(page.locator('h1')).toHaveText('Andere Karte');await expect(names(page)).toHaveText(['Kiste']);
- await page.reload();await expect(names(page)).toHaveText(['Kiste']);
+ await expect(page.locator('h1')).toHaveText('Andere Karte');await expect(names(page)).toHaveText(['Kiste','Start']);
+ await page.reload();await expect(names(page)).toHaveText(['Kiste','Start']);
 });
 test('touch swipe replaces the displayed hint references without marking or checking a clue',async({page,isMobile})=>{
  test.skip(!isMobile,'Touch navigation is checked on the mobile project.');
@@ -155,4 +202,78 @@ test('touch swipe replaces the displayed hint references without marking or chec
  await page.locator('#clueViewport').dispatchEvent('touchend',{changedTouches:[{identifier:0,clientX:80,clientY:102}]});
  await expect(page.locator('#cluePosition')).toHaveText('Ort / III');await expect(names(page)).toHaveText(['Kiste']);
  expect((await saved(page)).doneClues).toEqual([]);expect((await saved(page)).marks).toEqual({});
+});
+
+test('start inner glow is unique, clipped to illustrated start hex, and below route and interaction ink',async({page,isMobile})=>{
+ const dto=structuredClone(demo);dto.puzzle.logic.start='D3';
+ for(const clue of dto.puzzle.logic.clues){
+  clue.direction='W';dto.puzzle.presentation.clueTexts[clue.id]=`In Stunde ${clue.hour} fuhren wir nach Westen.`;
+ }
+ dto.puzzle.presentation.hints=['Die erste Etappe führt von D3 nach C3.'];
+ await open(page,dto);await page.locator('#nextClue').click();await expect(page.locator('.start-label')).toHaveCount(0);
+ await expect(page.locator('#map ellipse[data-start-marker], [data-static-chart] .place-label')).toHaveCount(0);
+ await expect(page.locator('.start-glow')).toHaveCount(1);
+ const glow=await page.locator('.start-glow').evaluate(n=>{
+  const svg=n.ownerSVGElement,polygon=n.querySelector(':scope > g > polygon'),clip=n.querySelector('clipPath polygon');
+  return {cell:n.dataset.startCell,events:getComputedStyle(n).pointerEvents,points:polygon.getAttribute('points'),clip:clip.getAttribute('points'),
+   interactive:svg.querySelector('.cell[data-id="D3"] polygon').getAttribute('points'),color:polygon.getAttribute('stroke'),
+   below:['.route-ink','.hex-surfaces','.cell-information'].every(s=>!!(n.compareDocumentPosition(svg.querySelector(s))&Node.DOCUMENT_POSITION_FOLLOWING))};
+ });
+ expect(glow).toMatchObject({cell:'D3',events:'none',color:'#694934',below:true});expect(glow.points).toBe(glow.clip);expect(glow.points).toBe(glow.interactive);
+ await expect(page.locator('image[data-placement-id="beacon"]')).toHaveCount(1);
+ await page.locator('#routeTool').click();await cell(page,'C3').focus();await page.keyboard.press('Enter');
+ await expect(page.locator('.route-stroke,.route-direction')).toHaveCount(2);await expect(cell(page,'D3').locator('.edge-ink')).toHaveCount(1);
+ if(!isMobile){await cell(page,'D3').hover();expect(await cell(page,'D3').locator('polygon').evaluate(n=>getComputedStyle(n).strokeWidth)).toBe('3px');}
+});
+test('square accessible X action fits all existing responsive action rows',async({page})=>{
+ await open(page);const button=page.getByRole('button',{name:'Orte zeigen',exact:true});
+ await expect(button).toHaveAttribute('title','Orte zeigen');await expect(button).not.toHaveAttribute('aria-pressed',/./);await expect(button).toHaveText('');
+ for(const width of [320,390,600,900,1440]){
+  await page.setViewportSize({width,height:1000});
+  await expect.poll(()=>button.evaluate(n=>Math.abs(n.clientWidth-n.clientHeight))).toBe(0);
+  const box=await button.boundingBox();expect(box.width).toBeGreaterThanOrEqual(44);
+  const style=await button.evaluate(n=>({clip:getComputedStyle(n,'::after').clipPath,bezel:getComputedStyle(n,'::before').borderImageSource}));
+  expect(style.clip).toContain('polygon');expect(style.bezel).toContain('brass-bezel.webp');
+  const count=await page.locator('#mapActions button').evaluateAll(ns=>new Set(ns.map(n=>Math.round(n.getBoundingClientRect().top+n.getBoundingClientRect().height/2))).size);
+  expect(count).toBe((await page.locator('.map-panel').boundingBox()).width<=560?2:1);
+ }
+});
+test('redraws preserve animation identity and long names fit organic paper in all three visual phases',async({page,isMobile},info)=>{
+ const dto=fixture();dto.puzzle.presentation.objectNames.o1='Roberts verborgene Zuflucht hinter den flüsternden Klippen der vergessenen Gezeiten';
+ await open(page,dto);await page.locator('#showPlaces').click();
+ const before=await page.locator('.place-references').evaluate(n=>{window.activePlaces=n;window.activeTracks=n.getAnimations({subtree:true});return window.activeTracks.map(a=>a.startTime);});
+ await cell(page,'A1').focus();await page.keyboard.press('Enter');
+ await page.evaluate(()=>{
+  const art=document.getElementById('showChart'),frame=document.getElementById('frameStyle');
+  for(const value of [false,true]){art.checked=value;art.dispatchEvent(new Event('change'));}
+  for(const value of ['quiet','final']){frame.value=value;frame.dispatchEvent(new Event('change'));}
+ });
+ expect(await page.locator('.place-references').evaluate(n=>n===window.activePlaces&&n.getAnimations({subtree:true}).every(a=>window.activeTracks.includes(a)))).toBe(true);
+ expect(await page.locator('.place-references').evaluate(n=>n.getAnimations({subtree:true}).map(a=>a.startTime))).toEqual(before);
+ const long=page.locator('[data-label-object="o1"]');
+ const fitting=await long.evaluate(n=>{
+  const text=n.querySelector('text');
+  return {measured:text.getComputedTextLength(),available:Number(n.dataset.labelWidth)-16,fontSize:+text.getAttribute('font-size'),computedFont:getComputedStyle(text).fontSize,scale:text.getScreenCTM().a};
+ });
+ await info.attach('long-name-fitting',{body:JSON.stringify(fitting,null,2),contentType:'application/json'});
+ // Linux/Chromium font quantization can leave 0.14 SVG units of residual
+ // width after fitting. Half a unit is <0.35 CSS px in the mobile profile
+ // and still preserves at least 15.5 units of the 16-unit text padding.
+ expect(fitting.measured,JSON.stringify(fitting)).toBeLessThanOrEqual(fitting.available+.5);
+ expect(await long.locator('text').evaluate(n=>+n.getAttribute('font-size'))).toBeLessThan(18);
+ expect(await long.locator('.label-paper>path').first().getAttribute('d')).toContain(' Q ');
+ // Use a representative atmospheric name for the phase comparison images.
+ dto.puzzle.presentation.objectNames={o2:'Die Bucht der flüsternden Gezeiten',o4:'Kiste'};
+ await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
+ await page.locator('#showPlaces').click();await page.evaluate(()=>document.activeElement?.blur());
+ await page.mouse.move(0,0);
+ for(const [phase,time] of [['paper',650],['ink',3000],['normal',4900]]){
+  await page.locator('.place-references').evaluate((n,time)=>n.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=time;if(time===4900)a.finish();}),time);
+  if(time===4900)await expect(labels(page)).toHaveCount(0);
+  const path=info.outputPath(`polish-${isMobile?'mobile':'desktop'}-${phase}.png`);
+  await page.locator('.mapbox').screenshot({path,scale:'css',animations:'allow'});
+  await info.attach(phase,{path,contentType:'image/png'});
+ }
+ const path=info.outputPath(`polish-${isMobile?'mobile':'desktop'}-actions.png`);
+ await page.locator('#mapActions').screenshot({path,scale:'css'});await info.attach('actions',{path,contentType:'image/png'});
 });
