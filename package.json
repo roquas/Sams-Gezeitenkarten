@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "report:b2:stages": "node scripts/report-b2-stages.mjs",
     "export:b2": "node scripts/export-b2-playtest.mjs",
     "dev:b2": "npm run export:b2 && python3 scripts/dev-server.py",
     "dev:b2:s02": "npm run export:b2 -- --stock S02 && python3 scripts/dev-server.py",
