@@ -64,14 +64,79 @@ test('manual action shows each named instance once, including passable hexes, ex
  await page.locator('.mapbox').screenshot({path,scale:'css'});
  await page.locator('#mapActions').screenshot({path:info.outputPath('place-actions-'+(isMobile?'mobile':'desktop')+'.png'),scale:'css'});await info.attach('multiple places including multihex',{path,contentType:'image/png'});
 });
-test('normal fade completes, removes all place names, and restores the ordinary chart',async({page})=>{
+test('normal fade reaches a visible hold, completes, and restores the ordinary chart',async({page},info)=>{
+ await open(page);
+ // Observe in the renderer before the native trigger. Node timers and protocol
+ // round trips do not measure the Web Animation's start or sampled frame time.
+ // Retain phase evidence even if the test process receives it much later.
+ await page.evaluate(()=>{
+  const lifecycle=window.placeLifecycle={samples:[],finished:false,removed:false};
+  const observer=new MutationObserver(records=>{
+   const group=records.flatMap(r=>[...r.addedNodes]).find(n=>n.nodeType===1&&n.matches('.place-references'));
+   if(!group)return;
+   observer.disconnect();
+   const animation=group.getAnimations()[0];
+   const sample=()=>{
+    const style=getComputedStyle(group),rect=group.getBoundingClientRect();
+    const state={wall:performance.now(),currentTime:animation.currentTime,startTime:animation.startTime,
+     playState:animation.playState,pending:animation.pending,opacity:+style.opacity,
+     visible:group.isConnected&&style.display!=='none'&&style.visibility==='visible'&&rect.width>0&&rect.height>0,
+     inViewport:rect.bottom>0&&rect.right>0&&rect.top<innerHeight&&rect.left<innerWidth};
+    lifecycle.samples.push(state);
+    lifecycle.removed=!group.isConnected;
+    if(!group.isConnected)clearInterval(timer);
+   };
+   animation.finished.then(()=>{lifecycle.finished=true;},()=>{lifecycle.cancelled=true;});
+   const timer=setInterval(sample,100);
+   sample();
+  });
+  observer.observe(document.querySelector('#map'),{childList:true});
+ });
+ try{
+  await page.locator('#showPlaces').click();
+  await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
+  // Visibility alone ignores opacity in Playwright. Require a rendered,
+  // non-transparent hold on the actual timeline, not merely existing labels.
+  await expect.poll(()=>page.evaluate(()=>window.placeLifecycle.samples.some(s=>
+   s.visible&&s.inViewport&&s.opacity===1&&!s.pending&&s.playState==='running'&&s.currentTime>=400&&s.currentTime<=3400))).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.placeLifecycle.samples.some(s=>
+   s.currentTime>3400&&s.opacity>0&&s.opacity<1))).toBe(true);
+  await expect(labels(page)).toHaveCount(0,{timeout:3500});
+  await expect(page.locator('.place-references')).toHaveCount(0);
+  expect(await page.evaluate(()=>window.placeLifecycle.finished)).toBe(true);
+  expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+  await expect(page.locator('.start-label')).toHaveText('Start');
+  await expect(page.locator('[data-start-marker]')).toHaveCount(1);
+ }finally{
+  await info.attach('place-lifecycle',{body:JSON.stringify(await page.evaluate(()=>window.placeLifecycle),null,2),contentType:'application/json'});
+ }
+});
+test('place animation renders fade-in, the full hold, and fade-out at its own timeline positions',async({page})=>{
  await open(page);await page.locator('#showPlaces').click();
- await page.waitForTimeout(650);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
- expect(await page.locator('.place-references').evaluate(n=>+getComputedStyle(n).opacity)).toBe(1);
- await page.waitForTimeout(3300);
- const fading=await page.locator('.place-references').evaluate(n=>+getComputedStyle(n).opacity);expect(fading).toBeGreaterThan(0);expect(fading).toBeLessThan(1);
- await expect(labels(page)).toHaveCount(0,{timeout:3500});await expect(page.locator('.place-references')).toHaveCount(0);
- await expect(page.locator('.start-label')).toHaveText('Start');await expect(page.locator('[data-start-marker]')).toHaveCount(1);
+ const group=page.locator('.place-references');
+ // A separate rendering contract samples each phase deterministically. Seeking
+ // is confined to this test; the test above requires unmodified native playback
+ // and natural finished/DOM cleanup, so seeking cannot hide a stalled animation.
+ const phases=await group.evaluate(async node=>{
+  const animation=node.getAnimations()[0];
+  animation.pause();await animation.ready;
+  const duration=animation.effect.getComputedTiming().duration;
+  const samples=[0,200,400,1900,3399,3400,4400,5399].map(time=>{
+   animation.currentTime=time;
+   return {time,opacity:+getComputedStyle(node).opacity};
+  });
+  animation.play();
+  return {duration,samples};
+ });
+ expect(phases.duration).toBe(5400);
+ const opacity=phases.samples.map(s=>s.opacity);
+ expect(opacity[0]).toBe(0);
+ expect(opacity[1]).toBeGreaterThan(0);expect(opacity[1]).toBeLessThan(1);
+ expect(opacity.slice(2,6)).toEqual([1,1,1,1]);
+ expect(opacity[6]).toBeGreaterThan(0);expect(opacity[6]).toBeLessThan(1);
+ expect(opacity[7]).toBeGreaterThanOrEqual(0);expect(opacity[7]).toBeLessThan(opacity[6]);
+ await expect(labels(page)).toHaveCount(0,{timeout:3500});
+ await expect(group).toHaveCount(0);
 });
 test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName})=>{
  // CI traces show native WebKit clicks consuming 1.5–3 s each; the full
