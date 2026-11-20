@@ -41,7 +41,7 @@ export function registerModelTests(url){
   await page.goto(url);await expect(cell(page,'A5')).toBeVisible();
   await page.locator('#routeTool').click();await cell(page,'B2').click();expect((await saved(page)).route).toEqual(['A5']);
   for(const id of ['B5','C5','D5']){await cell(page,id).focus();await page.keyboard.press('Enter');}
-  await expect(page.locator('#verify')).toBeEnabled();await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig');
+  await expect(page.locator('#verify')).toBeEnabled();await page.locator('#verify').click();await expect(page.locator('#verifyStatus')).toContainText('Richtig');await page.getByRole('button',{name:'Überspringen / Schließen'}).click();
   await page.locator('#routeBack').click();await expect(page.locator('#verify')).toBeDisabled();
   await page.reload();await expect(cell(page,'A5')).toBeVisible();expect((await saved(page)).route).toEqual(['A5','B5','C5']);
  });

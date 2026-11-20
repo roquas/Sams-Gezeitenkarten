@@ -8,7 +8,7 @@ test.beforeAll(()=>execFileSync('node',['scripts/export-b2-playtest.mjs','--stoc
 
 test('S03 uses the existing selection, isolated marks, public DTO and solution control',async({page})=>{
  const requests=[];page.on('request',r=>requests.push(new URL(r.url()).pathname));
- await page.goto('/?stock=S03');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
+ await page.goto('/?play=1&stock=S03');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
  expect(requests.some(p=>p.includes('/.dev/'))).toBe(false);
  await page.goto('/?dev=b2&stock=S03&puzzle='+first.testName);
  await expect(page.locator('h1')).toHaveText(first.testName);

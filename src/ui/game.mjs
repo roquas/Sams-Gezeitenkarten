@@ -1,3 +1,10 @@
+import {downloadFeedback} from '../beta/export.mjs';
+import {createCellRegistry} from './cell-registry.mjs';
+import {puzzleContext,puzzleUrl} from '../beta/context.mjs';
+import {createBetaStore} from '../beta/storage.mjs';
+import {localStorageAccess,storageNotice,setEmergencyExport} from '../beta/local-storage.mjs';
+import {createBetaSession} from '../beta/session.mjs';
+import {showResult} from '../beta/result-dialog.mjs';
 import {createMobileViews} from './mobile-views.mjs';
 import {createBordbook} from './bordbook.mjs';
 import {createToolbar} from './toolbar.mjs';
@@ -6,7 +13,6 @@ import {createChartGestures} from './chart-gestures.mjs';
 import {frameMode} from './parchment-frame.mjs';
 import {pretty, coordinateMarkup, coordinateTextMarkup} from './coordinates.mjs';
 import {verifyPuzzleImages} from './asset-resources.mjs';
-import {createPuzzleLoader} from '../puzzles/loader.mjs';
 import {initialState, createHistory} from '../state/game-state.mjs';
 import {distancePhase,toggleDistance,chooseDistanceOrigin,selectChartTool} from '../state/distance-overlay.mjs';
 import {loadState,saveState} from '../persistence/storage.mjs';
@@ -15,33 +21,31 @@ import {createRules} from '../engine/puzzle.mjs';
 import {adjacent as neighbor} from '../engine/hex.mjs';
 
 
-(async()=>{
+export async function mountGame(){
+try{
 "use strict";
 
 createMobileViews();
 
-const params=new URLSearchParams(window.location.search);
-const b2Development=params.get('dev')==='b2';
-const b2Stock=params.get('stock')??'S01';
-if(b2Development&&!['S01','S02','S03','S03-V2','BC','POSITIVE','POSITIVE-V2'].includes(b2Stock))throw Error('Unbekannter B2-Bestand: '+b2Stock);
+const {params,development:b2Development,stock:b2Stock,scope,loader}=puzzleContext();
 const selectionKey=b2Development?(b2Stock==='S01'?'gezeitenkarten-selected-b2':'gezeitenkarten-selected-b2-'+b2Stock):'gezeitenkarten-selected-puzzle';
-const b2Manifest=b2Stock==='S01'?'../../.dev/b2/manifest.json':'../../.dev/b2-'+b2Stock.toLowerCase()+'/manifest.json';
-const loader=createPuzzleLoader({manifestUrl:new URL(b2Development?b2Manifest:'../../puzzles/manifest.json',import.meta.url)});
 const catalog=await loader.manifest().catch(error=>{
  if(b2Development)throw Error(error.message+' B2-Testbestand zuerst mit npm run export:b2'+(b2Stock==='S01'?'':' -- --stock '+b2Stock)+' exportieren; oder URL ohne ?dev=b2 öffnen.');
  throw error;
 });
 if(!catalog.puzzles.length)throw Error('Zurzeit sind keine Rätsel verfügbar.');
-let storage;try{storage=window.localStorage;}catch{}
+const storage=localStorageAccess();
+const betaStore=createBetaStore({storage,report:storageNotice});
+setEmergencyExport(()=>downloadFeedback(betaStore,{scope,catalogSchemaVersion:catalog.schemaVersion}));
 let selected;try{selected=storage?.getItem(selectionKey);}catch{}
-if(b2Development&&params.has('puzzle')){
+if(params.has('puzzle')){
  selected=params.get('puzzle');
- if(!catalog.puzzles.some(p=>p.id===selected))throw Error('Unbekannter B2-Testname: '+selected+'. Öffne ?dev=b2'+(b2Stock==='S01'?'':'&stock='+b2Stock)+' für die vollständige Auswahl.');
+ if(!catalog.puzzles.some(p=>p.id===selected))throw Error((b2Development?'Unbekannter B2-Testname: ':'Unbekanntes Rätsel: ')+selected+'. Öffne die Rätselauswahl für diesen Bestand.');
 }
 let puzzle;
 try{puzzle=await loader.load(catalog.puzzles.some(p=>p.id===selected)?selected:catalog.defaultId);}
 catch(error){
- if(!selected||selected===catalog.defaultId)throw error;
+ if(params.has('puzzle')||!selected||selected===catalog.defaultId)throw error;
  puzzle=await loader.load(catalog.defaultId);
  const notice=document.getElementById('puzzleLoadError');notice.hidden=false;notice.textContent=error.message+' Das Standardrätsel bleibt verfügbar.';
 }
@@ -57,8 +61,7 @@ const escapeText=text=>String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt
 const safeMarkup=text=>coordinateTextMarkup(escapeText(text));
 // The loader has independently established uniqueness before mounting the game.
 const clues=puzzle.clues.map(({id,text})=>[id,text]);
-const cells=rules.cells.map(id=>({q:id.charCodeAt(0)-65,r:Number(id.slice(1))-1,id}));
-const byId=Object.fromEntries(cells.map(c=>[c.id,c]));
+let {cells,byId}=createCellRegistry(rules);
 
 const key=(layer,id)=>layer+":"+id;
 const initial=()=>initialState(puzzle);
@@ -71,10 +74,21 @@ if(!frameParam){
  if(storedFrame==='final'||storedFrame==='quiet')frameStyle=storedFrame;
 }
 let state=loadState(puzzle,storage);
+const replay=params.get('phase')==='new',newPhase=replay||params.get('phase')==='resume';
+if(replay)state=initial();
+let betaSession=createBetaSession({store:betaStore,puzzle,scope,replay:newPhase,state,host:document.getElementById('betaTime')});
+// Consume a deliberate new phase once; reloading never creates another attempt.
+if(newPhase){const url=new URL(window.location.href);url.searchParams.delete('phase');window.history.replaceState(window.history.state,'',url);}
+const selectionLink=document.getElementById('backToSelection');selectionLink.href=puzzleUrl(null);
+selectionLink.addEventListener('click',event=>{
+ betaSession.flush();
+ if(!save()&&!confirm('Der Spielstand konnte nicht gespeichert werden. Trotzdem zur Auswahl wechseln?'))event.preventDefault();
+});
+window.addEventListener('pagehide',()=>save());
 const history=createHistory();
 let dragging=false,dragValue=null;
 const $=id=>document.getElementById(id);
-function save(){saveState(puzzle,state,storage)}
+function save(){return saveState(puzzle,state,storage)}
 function snapshot(){history.push(state)}
 function renderMap(){drawMap({state,puzzle,rules,cells,byId,blocked,pretty,key,onActivate:apply,frameStyle})}
 const renderToolbar=createToolbar({...puzzle,steps:6,rules});
@@ -125,7 +139,15 @@ $("toggleDistances").onclick=()=>{cancelGesture();state=toggleDistance(state);re
 $("hideRouteMarks").addEventListener("change",e=>{state.hideRouteMarks=e.target.checked;render()});
 $("clearLayer").onclick=()=>{snapshot();for(const k of Object.keys(state.marks))if(k.startsWith(state.layer+":"))delete state.marks[k];render()};
 $("routeBack").onclick=()=>{if(state.route.length>1){snapshot();state.route.pop();state.result="";render()}};
-$("verify").onclick=()=>{if(state.route.length!==puzzle.steps+1){state.result='<div class="notice error">Die Route braucht genau '+puzzle.steps+' Etappen. Aktuell sind es '+(state.route.length-1)+'.</div>'}else if(rules.legal(state.route)&&puzzle.clues.every(clue=>rules.matches(state.route,clue))){state.result='<div class="notice success"><strong>Richtig!</strong> Die Route ist vollständig rekonstruiert. Du hast '+state.penalty+' Strafpunkte gesammelt.</div>'}else{state.result='<div class="notice error">Diese Route erfüllt nicht alle Hinweise. Die korrekte Strecke wird nicht verraten.</div>'}render()};
+$("verify").onclick=()=>{
+ if(state.route.length!==puzzle.steps+1){state.result='<div class="notice error">Die Route braucht genau '+puzzle.steps+' Etappen. Aktuell sind es '+(state.route.length-1)+'.</div>';render();return;}
+ // This remains the single existing route decision. The modal only consumes its result.
+ const correct=rules.legal(state.route)&&puzzle.clues.every(clue=>rules.matches(state.route,clue));
+ betaSession.count('routeChecks');
+ if(correct){betaSession.solve();state.result='<div class="notice success"><strong>Richtig!</strong> Die Route ist vollständig rekonstruiert. Du hast '+state.penalty+' Strafpunkte gesammelt.</div>';}
+ else state.result='<div class="notice error">Diese Route erfüllt nicht alle Hinweise. Die korrekte Strecke wird nicht verraten.</div>';
+ render();showResult({puzzle,correct,penalty:state.penalty,store:betaStore,identity:betaSession.identity,opener:$('verify')});
+};
 $("checkMarks").onclick=()=>{
  let wrong=0,checked=0;
  for(const [k,v] of Object.entries(state.marks)){
@@ -136,11 +158,11 @@ $("checkMarks").onclick=()=>{
  if(!checked){
   state.help='<div class="notice">Es gibt noch keine eindeutigen Markierungen zum Prüfen.</div>';render();return;
  }
- snapshot();state.penalty+=5;
+ snapshot();state.penalty+=5;betaSession.count('noteChecks',5);
  state.help='<div class="notice '+(wrong?"error":"success")+'"><strong>Notizprüfung:</strong> '+(wrong?`${wrong} Deiner ${checked} eindeutigen Markierungen widersprechen der tatsächlichen Route.`:`Keine der ${checked} eindeutigen Markierungen widerspricht der Route.`)+' „Möglich“-Markierungen werden nicht bewertet. Die Prüfung verrät nicht, welche Felder betroffen sind.</div>';render();
 };
 $("hint").onclick=()=>{
- state.penalty+=10;state.hintPenalty+=10;state.hintCount++;
+ state.penalty+=10;state.hintPenalty+=10;state.hintCount++;betaSession.count('hints',10);
  
  // choose hint according to visible certainty and route progress, then move forward on repeated requests
  const certainHours=Array.from({length:puzzle.steps+1},(_,h)=>Object.entries(state.marks).some(([k,v])=>k.startsWith(h+":")&&v==="yes"));
@@ -191,9 +213,9 @@ if(b2Development){
  const exit=document.createElement('a');exit.href=window.location.pathname;exit.textContent='Reguläres Spiel öffnen';
  panel.append(label,select,$('puzzleStatus'),note,exit);$('puzzleLoadError').before(panel);
 }
-for(const entry of catalog.puzzles){const option=document.createElement('option');option.value=entry.id;option.textContent=entry.title+(entry.difficulty?' · '+entry.difficulty:'');select.append(option);}
+for(const entry of catalog.puzzles){const option=document.createElement('option');option.value=entry.id;option.textContent=entry.title;select.append(option);}
 function presentation(){
- document.querySelector('h1').textContent=puzzle.title;document.title='Gezeitenkarten · '+puzzle.title;
+ document.querySelector('#gameSurface h1').textContent=puzzle.title;document.title='Gezeitenkarten · '+puzzle.title;
  const story=$('puzzleStory');story.replaceChildren();
  for(const paragraph of puzzle.intro){const p=document.createElement('p');p.className='story';p.innerHTML=safeMarkup(paragraph);story.append(p);}
  select.value=puzzle.id;
@@ -204,16 +226,19 @@ select.addEventListener('change',async()=>{
  const id=select.value,token=++request;select.disabled=true;$('puzzleStatus').textContent='Rätsel wird geladen …';
  try{
   const next=await loader.load(id);if(token!==request)return;
-  save();puzzle=next;$('puzzleLoadError').hidden=true;rules=createRules(puzzle);blocked=rules.blocked;solution=puzzle.solution;hints=puzzle.hints;
-  state=loadState(puzzle,storage);history.clear();cancelGesture();dragValue=null;
+  if(!save()&&!confirm('Der aktuelle Spielstand konnte nicht gespeichert werden. Trotzdem wechseln?')){select.value=puzzle.id;return;}
+  betaSession.dispose();puzzle=next;$('puzzleLoadError').hidden=true;rules=createRules(puzzle);blocked=rules.blocked;solution=puzzle.solution;hints=puzzle.hints;
+  ({cells,byId}=createCellRegistry(rules));
+  state=loadState(puzzle,storage);betaSession=createBetaSession({store:betaStore,puzzle,scope,state,host:document.getElementById('betaTime')});history.clear();cancelGesture();dragValue=null;
   checkImages(puzzle);presentation();bordbook.setClues(puzzle.clues.map(({id,text})=>[id,text]));render();
   try{storage?.setItem(selectionKey,puzzle.id);}catch{}
-  if(b2Development){const url=new URL(window.location.href);url.searchParams.set('puzzle',puzzle.id);window.history.replaceState(window.history.state,'',url);}
-  $('puzzleStatus').textContent='Geladen: '+puzzle.title+'. Spielstände bleiben getrennt gespeichert.';
+  window.history.replaceState(window.history.state,'',puzzleUrl(puzzle.id));
+  $('puzzleStatus').textContent='Geladen: '+puzzle.title+'. Spielstände bleiben getrennt.';
  }catch(error){select.value=puzzle.id;$('puzzleStatus').textContent=error.message;}
  finally{if(token===request)select.disabled=false;}
 });
 presentation();render();checkImages(puzzle);
-})().catch(error=>{
+}catch(error){
  const status=document.getElementById('puzzleLoadError');status.hidden=false;status.textContent=error.message;
-});
+}
+}

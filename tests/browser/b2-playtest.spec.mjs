@@ -10,7 +10,7 @@ const state=(page,name)=>page.evaluate(id=>JSON.parse(localStorage.getItem(`geze
 test.beforeAll(()=>execFileSync('node',['scripts/export-b2-playtest.mjs']));
 test('developer catalog is opt-in; regular entry never requests private or experimental content',async({page})=>{
  const requests=[];page.on('request',r=>requests.push(new URL(r.url()).pathname));
- await page.goto('/');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
+ await page.goto('/?play=1');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
  await expect(page.locator('#puzzleSelect option')).toHaveCount(1);
  await expect(page.locator('#b2Selection')).toHaveCount(0);
  expect(requests.some(p=>p.includes('/.dev/')||p.includes('/docs/'))).toBe(false);

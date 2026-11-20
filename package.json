@@ -34,7 +34,8 @@
     "generate:s03:v2": "node scripts/run-s03-v2-pilot.mjs",
     "dev:b2:s03-v2": "npm run export:b2 -- --stock S03-V2 && python3 scripts/dev-server.py",
     "test:s03:v2:evidence": "node --test tests/reproduction/s03-v2-evidence.test.mjs",
-    "test:s03:v2:reproduction": "node --test tests/reproduction/s03-v2.test.mjs"
+    "test:s03:v2:reproduction": "node --test tests/reproduction/s03-v2.test.mjs",
+    "test:beta": "playwright test --config=playwright.b1.config.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.64.0"

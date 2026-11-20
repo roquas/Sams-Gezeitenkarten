@@ -1,2 +1,2 @@
 import {registerChartScrollTests} from '../integration/chart-scroll.mjs';
-registerChartScrollTests('/');
+registerChartScrollTests('/?play=1');

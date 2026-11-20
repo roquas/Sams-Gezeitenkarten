@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.beforeEach(async({page})=>{await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25);});
+test.beforeEach(async({page})=>{await page.goto('/?play=1');await expect(page.locator('#map .cell')).toHaveCount(25);});
 test('raster upper materials load and stay clear of hit targets at desktop and mobile widths',async({page})=>{
  const failed=[];page.on('response',r=>{if(r.status()>=400&&r.url().includes('/assets/'))failed.push(r.url());});
  await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
