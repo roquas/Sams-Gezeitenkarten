@@ -12,7 +12,7 @@ const values=page=>page.locator('.distance-value').evaluateAll(nodes=>Object.fro
 const saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));
 async function open(page,dto=demo){
  await page.route('**/puzzles/model-demo.json',route=>route.fulfill({json:dto}));
- await page.goto('/');
+ await page.goto('/?play=1');
  await expect(page.locator('#map .cell')).toHaveCount(25);
  await expect(page.locator('#puzzleLoadError')).toBeHidden();
 }

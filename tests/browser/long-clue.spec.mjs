@@ -4,7 +4,7 @@ import fs from 'node:fs';
 test('long clue text stays readable above the page controls at narrow widths',async({page})=>{
  const dto=JSON.parse(fs.readFileSync(new URL('../../puzzles/model-demo.json',import.meta.url)));
  dto.puzzle.presentation.clueTexts.I='In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.';
- await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));await page.goto('/');
+ await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));await page.goto('/?play=1');
  await expect(page.locator('#map .cell')).toHaveCount(25);
  for(const width of [320,390,768]){
   await page.setViewportSize({width,height:950});

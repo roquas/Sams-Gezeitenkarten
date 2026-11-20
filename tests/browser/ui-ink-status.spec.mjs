@@ -1,2 +1,2 @@
 import {registerInkStatusTests} from '../integration/ui-ink-status.mjs';
-registerInkStatusTests('/');
+registerInkStatusTests('/?play=1');

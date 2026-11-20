@@ -15,7 +15,7 @@ test.beforeAll(()=>{
 
 test('S02 is explicit, all 96 stable names are selectable, and the regular game ignores stock alone',async({page})=>{
  const requests=[];page.on('request',r=>requests.push(new URL(r.url()).pathname));
- await page.goto('/?stock=S02');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
+ await page.goto('/?play=1&stock=S02');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
  expect(requests.some(p=>p.includes('/.dev/')||p.includes('/docs/'))).toBe(false);
  await page.goto(url());await expect(page.locator('h1')).toHaveText(first.testName);
  await expect(page.locator('#b2Selection label')).toHaveText('B2-Entwicklungsauswahl · Testbestand S02');

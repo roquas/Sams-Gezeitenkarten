@@ -12,6 +12,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 
+class DevelopmentServer(ThreadingHTTPServer):
+    # Parallel browser contexts load an ESM graph through many short connections.
+    # A backlog of five can leave a module's TCP connection waiting for a retry.
+    request_queue_size = 128
+
+
 class NoCacheHandler(SimpleHTTPRequestHandler):
     def send_head(self):
         # Python's default handler may return 304 based on mtime (rounded to
@@ -72,7 +78,7 @@ def main():
         self_test()
         return
     handler = partial(NoCacheHandler, directory=str(ROOT))
-    with ThreadingHTTPServer((args.host, args.port), handler) as httpd:
+    with DevelopmentServer((args.host, args.port), handler) as httpd:
         print(f"No-cache development server: http://{args.host}:{args.port}/", flush=True)
         print(f"Files from: {ROOT}", flush=True)
         try:

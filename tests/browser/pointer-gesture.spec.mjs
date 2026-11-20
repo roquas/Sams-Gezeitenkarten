@@ -7,7 +7,7 @@ async function center(page,id){
  return {x:box.x+box.width/2,y:box.y+box.height/2};
 }
 test.beforeEach(async({page})=>{
- await page.goto('/');
+ await page.goto('/?play=1');
  await expect(page.locator('#map .cell')).toHaveCount(25);
 });
 
