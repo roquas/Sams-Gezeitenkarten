@@ -14,7 +14,7 @@ let fixture,b1,serial=0;
 const fresh=name=>path.join(fixture.directory,name+'-'+serial++);
 const read=(directory,file)=>fs.readFileSync(path.join(directory,file),'utf8');
 const rows=(directory,file)=>read(directory,file).split('\n').filter(Boolean).map(JSON.parse);
-const deterministic=['manifest.json','attempts.jsonl','candidates.jsonl','summary.json'];
+const deterministic=['manifest.json','attempts.jsonl','candidates.jsonl','candidate-origins.json','summary.json'];
 function cli(args,entry=path.join(fixture.program,'scripts/run-puzzle-experiment.mjs')){
  const result=spawnSync(process.execPath,[entry,...args],{encoding:'utf8'});assert.ifError(result.error);return result;
 }
@@ -43,7 +43,9 @@ test('B2 reads a completed B1 corpus, saves full independently verifiable varian
  const statistics=clueStatistics(candidates.flatMap(c=>c.definition.logic.clues));
  assert.deepEqual(a.summary.clueTypes,statistics.byType);
  assert.deepEqual(a.summary.cluePresentationForms,statistics.byPresentationForm);
- assert.equal(verifyCandidates(path.join(a.out,'candidates.jsonl')).verifiedCandidates,candidates.length);
+ const originContext={originContract:JSON.parse(read(a.out,a.summary.originContract.path)),
+  expectedOriginContractSha256:a.summary.originContract.canonicalSha256};
+ assert.equal(verifyCandidates(path.join(a.out,'candidates.jsonl'),originContext).verifiedCandidates,candidates.length);
  for(const candidate of candidates){
   const proof=checkIrredundancy(candidate.definition);assert.equal(proof.irredundant,true);assert.equal(proof.target.status,'match');
   assert.equal(candidate.definition.logic.steps,6);assert.equal(candidate.definition.solution.length,7);
@@ -54,7 +56,7 @@ test('B2 reads a completed B1 corpus, saves full independently verifiable varian
   assert.ok(candidate.definition.logic.clues.filter(c=>c.type==='position').every(c=>occupied.has(c.cell)));
  }
  const changed=structuredClone(candidates[0]);changed.proof.count=2;const corrupt=fresh('false-proof.jsonl');
- fs.writeFileSync(corrupt,JSON.stringify(changed)+'\n');assert.throws(()=>verifyCandidates(corrupt));
+ fs.writeFileSync(corrupt,JSON.stringify(changed)+'\n');assert.throws(()=>verifyCandidates(corrupt,originContext));
  const attempts=rows(a.out,'attempts.jsonl');assert.equal(attempts[1].status,'impossible');assert.equal(attempts[1].reason,'NO_ELIGIBLE_START');
  const pools={byType:{},byPresentationForm:{}};
  for(const map of attempts)for(const start of map.starts)for(const target of start.targets??[]){

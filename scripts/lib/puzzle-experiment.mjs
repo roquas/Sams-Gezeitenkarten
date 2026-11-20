@@ -14,6 +14,8 @@ import {cluePresentationForm} from './clue-presentation.mjs';
 import {SEARCH_STRATEGY,validateSearchBudgets,searchPuzzleCandidates} from './puzzle-candidate-search.mjs';
 import {validateSeed,randomStream} from '../../src/generation/random.mjs';
 import {RULES_VERSION} from '../../src/puzzles/schema.mjs';
+import {COUNT_NORMALIZATION} from './count-clue-normalization.mjs';
+import {ORIGIN_CONTRACT,candidateOriginContract,originContractSha256} from './candidate-origin-contract.mjs';
 
 export const PUZZLE_EXPERIMENT_FORMAT_VERSION=2;
 const assert=(yes,message)=>{if(!yes)throw Error('puzzle-experiment: '+message);};
@@ -101,6 +103,8 @@ export async function runPuzzleExperiment(options){
  }
  const program=programState(),loaded=await readB1Experiment(b1,{batch}),inputMs=Math.round(performance.now()-begin);
  const settings={puzzleExperimentFormatVersion:PUZZLE_EXPERIMENT_FORMAT_VERSION,strategy:SEARCH_STRATEGY,
+  clueNormalization:COUNT_NORMALIZATION,
+  originContractVersion:ORIGIN_CONTRACT,
   routeSelection:{strategy:'explicit-indices-all-b1-starts-1',order:ROUTE_ORDER,routeIndices},rulesVersion:RULES_VERSION,steps:6,seed,
   budgets:{maxNodesPerStart,maxClueParameters,...searchBudgets},program,
   input:{experimentId:loaded.manifest.experimentId,files:loaded.files,sourceFiles:loaded.sourceFiles}};
@@ -115,7 +119,7 @@ export async function runPuzzleExperiment(options){
   variantsPerTarget:[],properties:{individuallyExactClues:0,withExactHour1:0,withDirectionHour1:0},
   search:{enumerationNodes:0,selectionNodes:0,clueParametersExamined:0,clueCandidates:0,restarts:0,solverChecks:0,cacheHits:0,
    matchEvaluations:0,routeFilterEvaluations:0}};
- const allEffects=new Set(),allInstances=new Set();
+ const allEffects=new Set(),allInstances=new Set(),origins=[];
  const timings={inputMs,enumerationMs:0,selectionMs:0,clueGenerationMs:0,searchMs:0};
  const measure=(key,fn)=>{const start=performance.now(),result=fn();timings[key]+=Math.round(performance.now()-start);return result;};
  try{
@@ -155,6 +159,7 @@ export async function runPuzzleExperiment(options){
       byType:pool.byType,byPresentationForm:pool.byPresentationForm};
      for(const key of ['byType','byPresentationForm'])for(const [name,n] of Object.entries(pool[key]))add(summary.cluePool[key],name,n);
      const result=measure('searchMs',()=>searchPuzzleCandidates({logic,targetRoute:selected.route,cluePool:pool,workspace,seed:targetSeed,budgets:searchBudgets}));
+     origins.push(...result.originReceipts.map(origin=>({...origin,attemptId})));
      Object.assign(target,{attemptId,seed:targetSeed,status:result.status,search:result.search,candidateIds:result.candidates.map(c=>c.fingerprints.variant)});
      summary.incompleteTargets+=Number(result.search.incomplete);
      for(const key of Object.keys(summary.search))if(key in result.search)summary.search[key]+=result.search[key];
@@ -179,6 +184,9 @@ export async function runPuzzleExperiment(options){
   }
  }finally{fs.closeSync(attempts);fs.closeSync(successes);}
  summary.uniqueCandidateCount=allEffects.size;summary.distinctTargetInstances=allInstances.size;
+ const originContract=candidateOriginContract(COUNT_NORMALIZATION,origins);
+ fs.writeFileSync(path.join(out,'candidate-origins.json'),json(originContract),{flag:'wx'});
+ summary.originContract={path:'candidate-origins.json',canonicalSha256:originContractSha256(originContract)};
  summary.searchIncomplete=summary.incompleteStarts>0||summary.incompleteTargets>0;
  same(loaded.files,fingerprints(b1),'B1 input changed during run');
  same(loaded.sourceFiles,fingerprints(batch,batchFiles),'source batch changed during run');

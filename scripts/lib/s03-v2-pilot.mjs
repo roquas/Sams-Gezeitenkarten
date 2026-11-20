@@ -12,6 +12,7 @@ import {clueSubsets,diagnosePuzzle} from './b2-deduction.mjs';
 import {buildProgressProfile} from './b2-markable-progress.mjs';
 import {qualitySignals,lateRejection,selectSeries} from './s03-quality.mjs';
 import {verifyCandidates} from '../verify-puzzle-experiment.mjs';
+import {legacyVerificationContext} from './candidate-origin-contract.mjs';
 
 export const RUN_V2='docs/verification/S03-v2/run';
 export const CONTRACT_V2='docs/verification/S03-v2/contract.md';
@@ -45,7 +46,7 @@ export function runV2(out){
  // Plan is persisted before any local diagnosis. It consumes no old outcomes.
  const plan=planDiagnoses(records,configV2);
  write('plan.json',json(plan));write('source-candidates.jsonl',jsonl(records));
- const sourceVerification=verifyCandidates(path.join(out,'source-candidates.jsonl'));
+ const sourceVerification=verifyCandidates(path.join(out,'source-candidates.jsonl'),legacyVerificationContext(records));
  const byId=new Map(records.map(c=>[c.candidateId,c])),diagnosed=new Set(),costs=[];
  const perMap=plan.perMap.map(p=>({...p,raw:records.filter(c=>c.mapIndex===p.mapIndex).length,
   diagnoses:0,diagnosisStates:0,finalists:0,v1Diagnoses:source.priorDiagnosisCounts[p.mapIndex]}));
@@ -87,7 +88,7 @@ export function runV2(out){
  }
  write('raw.jsonl',jsonl(records));
  const finalists=records.filter(c=>c.decision==='finalist');write('finalists.jsonl',jsonl(finalists));
- const verification=verifyCandidates(path.join(out,'finalists.jsonl'));
+ const verification=verifyCandidates(path.join(out,'finalists.jsonl'),legacyVerificationContext(finalists));
  const series=selectSeries(finalists,configV2),selected=series.selected;
  write('candidates.jsonl',jsonl(selected));
  const registry={registryVersion:1,stockId:'B2-S03-V2',source:RUN_V2,experimentId,

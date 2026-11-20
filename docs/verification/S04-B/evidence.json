@@ -1,0 +1,554 @@
+{
+  "format": "s04-b-normalization-evidence-1",
+  "normalization": "count-distance-extremes-1",
+  "originContract": {
+    "path": "docs/verification/S04-B/origin-contract.json",
+    "canonicalSha256": "334e17e2ade76e7bb8032d4b4ee00f05bd9fd8a4443747e6c983a88fc57b6b6c"
+  },
+  "baseline": "974931e95d434a35ce34094f4d5244e289d6fd76",
+  "budgets": {
+    "maxNodesPerEnumeration": 100000,
+    "maxEnumerations": 7,
+    "search": {
+      "maxRestarts": 1,
+      "maxSolverChecks": 100,
+      "maxMatchEvaluations": 1000000,
+      "maxRouteFilterEvaluations": 1000000
+    }
+  },
+  "scope": "Fixed reference and two positive countercontrols; no generator run, new route selection or human quality claim.",
+  "cases": [
+    {
+      "name": "B2-S03-V2-M014-A5-R160-V01",
+      "source": {
+        "path": "docs/verification/S03-v2/run/candidates.jsonl",
+        "sha256": "46b90026ef3a345527e22f33d46af4bc9546cc8bff4b0c1f1ba1a39d0a9f8f90",
+        "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M014/gk-variant-v2-sha256:25d0c81d39abf535da14031d6c8493079cc17c8f4c4004ae9794888e9cf81d3c",
+        "recordSha256": "27ab83ae4e07b7c2d6b14e1418e2d499423f15287cba8353073e00d72c39458c",
+        "fingerprints": {
+          "mapStructure": "gk-map-v2-sha256:e91107e10eff8807f28b304795502ff6befbbe7f6dcc8481edffbe972ae3c676",
+          "instance": "gk-instance-v2-sha256:ac4642a254868b0fcf88a0bf1ac43da131a2dc72278b9e6dfda73fedfcb6906a",
+          "variant": "gk-variant-v2-sha256:25d0c81d39abf535da14031d6c8493079cc17c8f4c4004ae9794888e9cf81d3c"
+        }
+      },
+      "changed": true,
+      "rawClueCount": 6,
+      "clueCount": 5,
+      "legalRouteCount": 242,
+      "enumerationNodes": 365,
+      "legalRoutesSha256": "afda544a903cfc11c40343e6f9727270c70fc54b8dae2995762cdfd88b485d4c",
+      "rawSolutionsSha256": "889fcbeefd0db428911215f8f3083fa9f7a26be797816a406c41c8923cef3aec",
+      "normalizedSolutionsSha256": "889fcbeefd0db428911215f8f3083fa9f7a26be797816a406c41c8923cef3aec",
+      "uniqueSolution": [
+        "A5",
+        "A4",
+        "B3",
+        "C3",
+        "C2",
+        "D2",
+        "E3"
+      ],
+      "omissions": [
+        {
+          "clueId": "H1",
+          "count": 9,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H2",
+          "count": 3,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H3",
+          "count": 2,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H4",
+          "count": 8,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H5",
+          "count": 2,
+          "countExact": true,
+          "necessary": true
+        }
+      ],
+      "transformedGroup": {
+        "sourceIds": [
+          "H2",
+          "H3"
+        ],
+        "rawRouteCount": 124,
+        "mergedRouteCount": 124,
+        "routesSha256": "b6f4a5a305b32dd45add3fa61dbbd3393ad4a9429f2b56d5ec4f7e72e3a339b4"
+      },
+      "candidate": {
+        "puzzleExperimentFormatVersion": 2,
+        "attemptId": "S04-B-reference-06",
+        "definition": {
+          "schemaVersion": 2,
+          "rulesVersion": "gezeitenkarten-2",
+          "dataVersion": 1,
+          "logic": {
+            "map": {
+              "geometry": "even-row-offset-pointy-v1",
+              "grid": {
+                "columns": 5,
+                "rows": 5
+              },
+              "objects": [
+                {
+                  "id": "geo-01",
+                  "cells": [
+                    "A5"
+                  ],
+                  "passable": true
+                },
+                {
+                  "id": "geo-02",
+                  "cells": [
+                    "C1"
+                  ],
+                  "passable": true
+                },
+                {
+                  "id": "geo-03",
+                  "cells": [
+                    "B4",
+                    "C4",
+                    "C5",
+                    "D5"
+                  ],
+                  "passable": false
+                }
+              ]
+            },
+            "start": "A5",
+            "steps": 6,
+            "clues": [
+              {
+                "id": "H1",
+                "type": "countDistanceToPlace",
+                "fromHour": 4,
+                "toHour": 5,
+                "placeId": "geo-03",
+                "distance": 1,
+                "count": 0
+              },
+              {
+                "id": "H2",
+                "type": "countDistanceToPlace",
+                "fromHour": 3,
+                "toHour": 6,
+                "placeId": "geo-01",
+                "distance": 2,
+                "count": 0
+              },
+              {
+                "id": "H3",
+                "type": "countDistanceToPlace",
+                "fromHour": 1,
+                "toHour": 6,
+                "placeId": "geo-01",
+                "distance": 6,
+                "count": 0
+              },
+              {
+                "id": "H4",
+                "type": "countDistanceToPlace",
+                "fromHour": 3,
+                "toHour": 6,
+                "placeId": "geo-02",
+                "distance": 3,
+                "count": 1
+              },
+              {
+                "id": "H5",
+                "type": "countDistanceToPlace",
+                "fromHour": 1,
+                "toHour": 5,
+                "placeId": "geo-02",
+                "distance": 2,
+                "count": 3
+              }
+            ]
+          },
+          "solution": [
+            "A5",
+            "A4",
+            "B3",
+            "C3",
+            "C2",
+            "D2",
+            "E3"
+          ]
+        },
+        "fingerprints": {
+          "mapStructure": "gk-map-v2-sha256:e91107e10eff8807f28b304795502ff6befbbe7f6dcc8481edffbe972ae3c676",
+          "instance": "gk-instance-v2-sha256:ac4642a254868b0fcf88a0bf1ac43da131a2dc72278b9e6dfda73fedfcb6906a",
+          "variant": "gk-variant-v2-sha256:32bed5b659a1f53e3f65fdd71e4a9c65060f55493146c7f32d9756860d79f8ca"
+        },
+        "effectKey": "gk-b2-effects-v1-sha256:5ec098ea118adddc14887f720b351ab4d3bb3170716b7085b37de6ad20df0c8d",
+        "proof": {
+          "method": "complete-engine-routes-and-predicates-1",
+          "legalRouteCount": 242,
+          "count": 1,
+          "countExact": true,
+          "uniqueSolution": [
+            "A5",
+            "A4",
+            "B3",
+            "C3",
+            "C2",
+            "D2",
+            "E3"
+          ],
+          "targetMatch": true,
+          "irredundant": true,
+          "omissions": [
+            {
+              "clueId": "H1",
+              "count": 9,
+              "countExact": true,
+              "necessary": true
+            },
+            {
+              "clueId": "H2",
+              "count": 3,
+              "countExact": true,
+              "necessary": true
+            },
+            {
+              "clueId": "H3",
+              "count": 2,
+              "countExact": true,
+              "necessary": true
+            },
+            {
+              "clueId": "H4",
+              "count": 8,
+              "countExact": true,
+              "necessary": true
+            },
+            {
+              "clueId": "H5",
+              "count": 2,
+              "countExact": true,
+              "necessary": true
+            }
+          ]
+        },
+        "properties": {
+          "clueTypes": [
+            "countDistanceToPlace"
+          ],
+          "cluePresentationForms": [
+            "CountDistanceNever",
+            "countDistanceToPlace"
+          ],
+          "individualExactness": [
+            {
+              "clueId": "H1",
+              "hours": []
+            },
+            {
+              "clueId": "H2",
+              "hours": [
+                1
+              ]
+            },
+            {
+              "clueId": "H3",
+              "hours": []
+            },
+            {
+              "clueId": "H4",
+              "hours": []
+            },
+            {
+              "clueId": "H5",
+              "hours": []
+            }
+          ],
+          "individuallyExactClueCount": 1,
+          "hasIndividuallyExactHour1": true,
+          "hasDirectionHour1": false
+        },
+        "preparation": {
+          "policy": "count-distance-extremes-1",
+          "status": "normalized",
+          "rawOriginFingerprint": "gk-raw-clues-v1-sha256:53b467752be20274ac1d14c9593d95000aa59839bf0fee8d9f506215aefea1d4"
+        },
+        "normalization": {
+          "format": "count-distance-extremes-1",
+          "rawClues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 4,
+              "toHour": 5,
+              "placeId": "geo-03",
+              "distance": 1,
+              "count": 0
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 5,
+              "placeId": "geo-01",
+              "distance": 2,
+              "count": 0
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 4,
+              "toHour": 6,
+              "placeId": "geo-01",
+              "distance": 2,
+              "count": 0
+            },
+            {
+              "id": "H4",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 6,
+              "placeId": "geo-01",
+              "distance": 6,
+              "count": 0
+            },
+            {
+              "id": "H5",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 3,
+              "count": 1
+            },
+            {
+              "id": "H6",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 5,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 3
+            }
+          ],
+          "outputs": [
+            {
+              "clueId": "H1",
+              "rule": "unchanged",
+              "sources": [
+                {
+                  "id": "H1",
+                  "key": "{\"count\":0,\"distance\":1,\"fromHour\":4,\"placeId\":\"geo-03\",\"toHour\":5,\"type\":\"countDistanceToPlace\"}"
+                }
+              ]
+            },
+            {
+              "clueId": "H2",
+              "rule": "zero-union",
+              "sources": [
+                {
+                  "id": "H2",
+                  "key": "{\"count\":0,\"distance\":2,\"fromHour\":3,\"placeId\":\"geo-01\",\"toHour\":5,\"type\":\"countDistanceToPlace\"}"
+                },
+                {
+                  "id": "H3",
+                  "key": "{\"count\":0,\"distance\":2,\"fromHour\":4,\"placeId\":\"geo-01\",\"toHour\":6,\"type\":\"countDistanceToPlace\"}"
+                }
+              ]
+            },
+            {
+              "clueId": "H3",
+              "rule": "unchanged",
+              "sources": [
+                {
+                  "id": "H4",
+                  "key": "{\"count\":0,\"distance\":6,\"fromHour\":1,\"placeId\":\"geo-01\",\"toHour\":6,\"type\":\"countDistanceToPlace\"}"
+                }
+              ]
+            },
+            {
+              "clueId": "H4",
+              "rule": "unchanged",
+              "sources": [
+                {
+                  "id": "H5",
+                  "key": "{\"count\":1,\"distance\":3,\"fromHour\":3,\"placeId\":\"geo-02\",\"toHour\":6,\"type\":\"countDistanceToPlace\"}"
+                }
+              ]
+            },
+            {
+              "clueId": "H5",
+              "rule": "unchanged",
+              "sources": [
+                {
+                  "id": "H6",
+                  "key": "{\"count\":3,\"distance\":2,\"fromHour\":1,\"placeId\":\"geo-02\",\"toHour\":5,\"type\":\"countDistanceToPlace\"}"
+                }
+              ]
+            }
+          ],
+          "rawOriginFingerprint": "gk-raw-clues-v1-sha256:53b467752be20274ac1d14c9593d95000aa59839bf0fee8d9f506215aefea1d4",
+          "rawFingerprints": {
+            "mapStructure": "gk-map-v2-sha256:e91107e10eff8807f28b304795502ff6befbbe7f6dcc8481edffbe972ae3c676",
+            "instance": "gk-instance-v2-sha256:ac4642a254868b0fcf88a0bf1ac43da131a2dc72278b9e6dfda73fedfcb6906a",
+            "variant": "gk-variant-v2-sha256:25d0c81d39abf535da14031d6c8493079cc17c8f4c4004ae9794888e9cf81d3c"
+          }
+        }
+      },
+      "search": {
+        "restarts": 1,
+        "reducedSets": 1,
+        "failures": {},
+        "exhaustive": false,
+        "solverChecks": 12,
+        "cacheHits": 0,
+        "matchEvaluations": 1694,
+        "routeFilterEvaluations": 5099,
+        "clueCandidates": 6,
+        "clueParametersExamined": 6,
+        "clueGenerationCompleted": true,
+        "incomplete": true
+      },
+      "texts": {
+        "H1": "Von Stunde 4 bis Stunde 5 war das Schiff nie neben dem Ort geo-03 (B4, C4, C5, D5).",
+        "H2": "Von Stunde 3 bis Stunde 6 war das Schiff nie genau 2 Hexfelder von dem Ort geo-01 (A5) entfernt.",
+        "H3": "Von Stunde 1 bis Stunde 6 war das Schiff nie genau 6 Hexfelder von dem Ort geo-01 (A5) entfernt.",
+        "H4": "Von Stunde 3 bis Stunde 6 war das Schiff genau einmal genau 3 Hexfelder von dem Ort geo-02 (C1) entfernt.",
+        "H5": "Von Stunde 1 bis Stunde 5 war das Schiff genau dreimal genau 2 Hexfelder von dem Ort geo-02 (C1) entfernt."
+      }
+    },
+    {
+      "name": "B2-S03-V2-M011-A5-R787-V01",
+      "source": {
+        "path": "docs/verification/S03-v2/run/candidates.jsonl",
+        "sha256": "46b90026ef3a345527e22f33d46af4bc9546cc8bff4b0c1f1ba1a39d0a9f8f90",
+        "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M011/gk-variant-v2-sha256:d572d8075329714bfe1087957d91293abab1721a5a7e836c4bceac9c5a733550",
+        "recordSha256": "cd948aff537836a3fc7e73e907bfffd70e3039f064aba1344309542588fcc03f",
+        "fingerprints": {
+          "mapStructure": "gk-map-v2-sha256:a981cd702a3e34dab959e756cf9b53ea72d1323873a73232cca742d52fa680bd",
+          "instance": "gk-instance-v2-sha256:1ab0329ded900509d38a8bc8d817fcc12a304c74b9d618b5aaba5f7cbc27177c",
+          "variant": "gk-variant-v2-sha256:d572d8075329714bfe1087957d91293abab1721a5a7e836c4bceac9c5a733550"
+        }
+      },
+      "changed": false,
+      "rawClueCount": 4,
+      "clueCount": 4,
+      "legalRouteCount": 1185,
+      "enumerationNodes": 1657,
+      "legalRoutesSha256": "3c078daa62910490e844ca5715b1a376ccbafedd4ab0c6cc49ec91d6c42c64ea",
+      "rawSolutionsSha256": "f00ac9d573e6b6a6633489b83e9be56d9a875bcde34cad7f9e7a8a5453623279",
+      "normalizedSolutionsSha256": "f00ac9d573e6b6a6633489b83e9be56d9a875bcde34cad7f9e7a8a5453623279",
+      "uniqueSolution": [
+        "A5",
+        "B5",
+        "B4",
+        "B3",
+        "B2",
+        "B1",
+        "C1"
+      ],
+      "omissions": [
+        {
+          "clueId": "H1",
+          "count": 2,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H2",
+          "count": 17,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H3",
+          "count": 35,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H4",
+          "count": 3,
+          "countExact": true,
+          "necessary": true
+        }
+      ]
+    },
+    {
+      "name": "B2-BC-T06-M005-E3-R00",
+      "source": {
+        "path": "docs/verification/B2-search-comparison/candidates.jsonl",
+        "sha256": "1984e96159b1aea61a1cc758903748ae7b40223a36463e181a47b2707511afbf",
+        "candidateId": "gk-b2-search-run-sha256:6630f89033685ef231b0a841a803d7fde146249f1da9b4906e9644b57ab0c849/C/B2-S02-M005-E3-R00-V01/gk-variant-v2-sha256:7ecddd88a69ece8bd07c42736f97f646f1fc2c490cd3da242914e5429a517e79",
+        "recordSha256": "53781e2a0141152e8b7eb22404c8c318f8d1277e2e62292bf1543f762311e9a6",
+        "fingerprints": {
+          "mapStructure": "gk-map-v2-sha256:a90f1e307a1d5f2d587ee88f82d6e2da3c3ee527f9d619150637ad88d69b846b",
+          "instance": "gk-instance-v2-sha256:92c444fb26e39fd354ec355aa96ced7f54d689a77082680240f1ebf9f7198f0a",
+          "variant": "gk-variant-v2-sha256:7ecddd88a69ece8bd07c42736f97f646f1fc2c490cd3da242914e5429a517e79"
+        }
+      },
+      "changed": false,
+      "rawClueCount": 5,
+      "clueCount": 5,
+      "legalRouteCount": 2166,
+      "enumerationNodes": 3159,
+      "legalRoutesSha256": "b78341d181d93af5ad1ca22c2198a412df6d0031bfc0c599ebff5315abae3704",
+      "rawSolutionsSha256": "fd296d5b22aff6c156039c42d9880a35acfa8e162cbac4fc5e11e932f8abc954",
+      "normalizedSolutionsSha256": "fd296d5b22aff6c156039c42d9880a35acfa8e162cbac4fc5e11e932f8abc954",
+      "uniqueSolution": [
+        "E3",
+        "D2",
+        "D1",
+        "C1",
+        "B1",
+        "A1",
+        "A2"
+      ],
+      "omissions": [
+        {
+          "clueId": "H1",
+          "count": 5,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H2",
+          "count": 3,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H3",
+          "count": 17,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H4",
+          "count": 5,
+          "countExact": true,
+          "necessary": true
+        },
+        {
+          "clueId": "H5",
+          "count": 3,
+          "countExact": true,
+          "necessary": true
+        }
+      ]
+    }
+  ]
+}
