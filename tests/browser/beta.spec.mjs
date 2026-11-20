@@ -63,7 +63,9 @@ test('unsolved feedback and deliberate abandonment are independent of ordinary n
 test('timer persists reload and manual pause, excludes solved reopening, and never double counts tabs',async({page,context})=>{
  await page.clock.install();await game(page);await expect(page.locator('#betaTime')).toContainText('läuft');await page.clock.runFor(6000);const initial=await time(page);expect(initial).toBeGreaterThanOrEqual(4000);
  await page.locator('#betaTime button').click();await expect(page.locator('#betaTime')).toContainText('Zeit pausiert');await page.clock.runFor(10000);const paused=await time(page);await page.clock.runFor(10000);expect(await time(page)).toBe(paused);
- await page.reload();await expect(page.locator('#betaTime')).toContainText('Zeit pausiert');await page.locator('#betaTime button').click();await page.clock.runFor(6000);expect(await time(page)).toBeGreaterThan(paused);
+ await page.reload();await expect(page.locator('#betaTime')).toContainText('Zeit pausiert');await page.locator('#betaTime button').click();
+ await expect(page.locator('#betaTime [role="status"]')).toHaveText('Aktive Zeit läuft · Näherungswert');
+ await page.clock.runFor(6000);expect(await time(page)).toBeGreaterThan(paused);
  const other=await context.newPage();await other.goto('/?puzzle=model-demo');await expect(other.locator('#betaTime')).toContainText(/anderen Tab|läuft/);await other.close();
  await solve(page);await page.getByRole('button',{name:'Überspringen / Schließen'}).click();const solved=await time(page);await page.clock.runFor(15000);expect(await time(page)).toBe(solved);await page.reload();await expect(page.locator('#betaTime')).toContainText('beendet');await page.clock.runFor(10000);expect(await time(page)).toBe(solved);
 });
@@ -71,8 +73,39 @@ test('background time and 15 minute inactivity stop; explicit interaction resume
  // Document visibility is driven at the adapter boundary; both browser engines run this deterministic case.
  await page.clock.install();await game(page);await expect(page.locator('#betaTime')).toContainText('läuft');await page.clock.runFor(5000);
  await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});const before=await time(page);await page.clock.runFor(30000);expect(await time(page)).toBe(before);
- await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:false});document.dispatchEvent(new Event('visibilitychange'));});await page.clock.runFor(5000);expect(await time(page)).toBeGreaterThan(before);
- await page.clock.runFor(15*60*1000);await expect(page.locator('#betaTime')).toContainText('15 Min.');const idle=await time(page);await page.clock.runFor(10000);expect(await time(page)).toBe(idle);await page.locator('#betaTime button').click();await page.clock.runFor(5000);expect(await time(page)).toBeGreaterThan(idle);
+ await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:false});document.dispatchEvent(new Event('visibilitychange'));});
+ // Advancing mocked timers does not await the browser's native Web Lock grant.
+ await expect(page.locator('#betaTime [role="status"]')).toHaveText('Aktive Zeit läuft · Näherungswert');
+ await page.clock.runFor(5000);expect(await time(page)).toBeGreaterThan(before);
+ await page.clock.runFor(15*60*1000);await expect(page.locator('#betaTime')).toContainText('15 Min.');const idle=await time(page);await page.clock.runFor(10000);expect(await time(page)).toBe(idle);
+ await page.locator('#betaTime button').click();
+ await expect(page.locator('#betaTime [role="status"]')).toHaveText('Aktive Zeit läuft · Näherungswert');
+ await page.clock.runFor(5000);expect(await time(page)).toBeGreaterThan(idle);
+});
+test('inactivity resume counts only after a delayed native Web Lock grant',async({page})=>{
+ await page.addInitScript(()=>{
+  const manager=Object.getPrototypeOf(navigator.locks),request=manager.request;
+  // Keep real exclusive locks; control only delivery of the resumed grant.
+  manager.request=function(name,options,callback){return request.call(this,name,options,async lock=>{
+   if(lock&&window.deferBetaGrant)await new Promise(resolve=>{window.deliverBetaGrant=resolve;});
+   return callback(lock);
+  });};
+ });
+ await page.clock.install({time:new Date('2026-11-20T12:00:00Z')});
+ await page.clock.pauseAt(new Date('2026-11-20T12:00:01Z'));
+ await game(page);await expect(page.locator('#betaTime [role="status"]')).toHaveText('Aktive Zeit läuft · Näherungswert');
+ await page.clock.runFor(15*60*1000);await expect(page.locator('#betaTime')).toContainText('15 Min.');
+ const idle=await time(page);
+ await expect.poll(()=>page.evaluate(async()=>(await navigator.locks.query()).held.length)).toBe(0);
+ await page.evaluate(()=>{window.deferBetaGrant=true;});await page.locator('#betaTime button').click();
+ await expect.poll(()=>page.evaluate(()=>typeof window.deliverBetaGrant)).toBe('function');
+ expect((await records(page))[0].phases.at(-1).paused).toBe(false);
+ await page.clock.runFor(5000);expect(await time(page)).toBe(idle);
+ await page.evaluate(()=>window.deliverBetaGrant());
+ await expect(page.locator('#betaTime [role="status"]')).toHaveText('Aktive Zeit läuft · Näherungswert');
+ await page.clock.runFor(5000);expect(await time(page)).toBe(idle+5000);
+ await page.locator('#backToSelection').click();
+ expect((await download(page)).puzzles[0].phases.at(-1).activeMs).toBe(idle+5000);
 });
 test('revision and catalog removal keep distinct records in export',async({page})=>{
  await game(page);await page.locator('#backToSelection').click();const details=await feedbackDetails(page);await details.locator('[name=comment]').fill('Version eins');

@@ -204,3 +204,79 @@ Kein automatischer Merge oder eigenständige Freigabe.
    einzelne lesbare JSON-Datei kontrollieren. Export ohne Rätselbewertung und nur
    mit allgemeinem Kommentar separat ausprobieren. Die Datei wird ausschließlich
    durch die Testperson selbst weitergegeben.
+
+## Gezielte Browser-CI-Korrektur: aktive Zeit nach Inaktivität
+
+Ausgangspunkt ist PR-Head `10c4d86614558d3aede617a9e9cd5dac8181abc5`,
+fehlgeschlagener Workflow
+[44719546273](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/44719546273).
+Dort bestanden zwölf Jobs; `browser` meldete 455 bestandene Tests, einen Skip,
+einen fehlgeschlagenen Mobile-Chromium-Fall und denselben Desktop-Fall als flaky.
+
+**Ursache: Synchronisationsproblem im Test.** Der Klick auf „Zeit fortsetzen“
+fordert nach der automatischen Pause erneut die exklusive Web-Lock-Zuteilung an.
+`page.clock.runFor(5000)` steuert JavaScript-Timer und die gemockten Uhren, wartet
+aber nicht auf die native Lock-Antwort des Browsers. Im Fehlerfall liefen die fünf
+virtuellen Sekunden vollständig vor dem Ownership-Callback ab. Die Produktuhr
+zählte währenddessen korrekt nichts; beim Callback setzte sie ihren monotonen
+Ausgangspunkt. Die ursprüngliche Assertion verlangte Fortschritt, bevor überhaupt
+fünf aktive Sekunden unter Lock-Besitz stattgefunden hatten.
+
+Instrumentierter Nachweis mit unveränderten Produktdateien, beispielhafter Lauf:
+
+| Ereignis | `performance.now()` (ms) | kumulierte aktive Zeit (ms) |
+| --- | ---: | ---: |
+| Expliziter Fortsetzen-Klick | 950167 | 905001 |
+| Native Lock-Anfrage | 950168 | 905001 |
+| Native Zuteilung erst am Ende der virtuellen fünf Sekunden | 955168 | 905001 |
+| Nächster Zeitschritt, ohne weiteren Klick | später | 909935 |
+
+Die Phase blieb offen und `paused=false`. In zwölf instrumentierten Läufen
+(sechs je Desktop/Mobil) trat der ausbleibende Fortschritt elfmal an der alten
+Prüfstelle auf; im nächsten Zeitschritt stieg die Zeit in allen zwölf Läufen ohne
+weitere Benutzeraktion. Im Vergleichslauf mit bestätigter Zuteilung vor dem
+Vorspulen stieg sie in allen zwölf Läufen bereits am vorgesehenen Prüfpunkt.
+Eine anfängliche unveränderte Zieltestserie hatte zehn erfolgreiche Läufe und
+zwei Start-Timeouts; diese Startfehler sind kein Nachweis des CI-Zeitfehlers.
+
+**Korrektur:** Ausschließlich `tests/browser/beta.spec.mjs` wartet nun nach
+Sichtbarwerden, nach explizitem Fortsetzen aus Inaktivität und nach manueller
+Wiederaufnahme beim Reload auf den bereits vorhandenen Status „Aktive Zeit läuft“.
+Dieser wird von `session.mjs` erst nach gesetztem Lock-Besitz ausgegeben. Die
+bestehenden Zeitfortschritts-Assertions bleiben erhalten. Keine festen Sleeps,
+zusätzlichen Retries oder großzügigeren Zahlen-/Zeitgrenzen. Die 15-Minuten-Grenze,
+Produktdateien, Web-Lock-Schutz, Speicherung und UI-Anbindung bleiben unverändert.
+
+**Regression:** Ein zusätzlicher Browserfall verzögert gezielt die Zustellung der
+nativen Lock-Zuteilung. Der reale exklusive Lock bleibt aktiv; nur sein Callback
+zur Produktuhr wird durch eine explizite Testbarriere zurückgehalten. Der Test
+prüft: `paused=false`, trotzdem keinerlei Zeit während des Wartens, anschließend
+exakt 5000 ms zusätzliche aktive Zeit nach Zuteilung sowie denselben Wert im
+JSON-Export. Die Interzeption liegt auf dem nativen Methodenprototyp und gilt
+nur im isolierten Testkontext. Es gibt keine Produktinstrumentierung.
+
+Lokale Nachweise ohne automatische Retries:
+
+- B1-Unit-/Integrationstests: **12/12 bestanden**.
+- Korrigierter CI-Fall und deterministischer Regressionstest: jeweils zehnmal
+  in Chromium, Mobile-Chromium, WebKit und Mobile-WebKit; **80/80 bestanden**.
+- Vollständige B1-Matrix: **63 bestanden**, ein Timeout im separaten
+  Ergebnistext-Szenario; kein fehlgeschlagener Zeitmessungsfall.
+- Vollständiger Browserlauf mit sämtlichen Dateien und beiden Chromium-Profilen:
+  **454 bestanden, 1 übersprungen, 5 Timeouts**. Betroffen waren Katalog-Proof,
+  Mehrtab-Szenario, zwei K-final-Screenshotfälle und S03-v2-Hinweistexte.
+  Auch hier kein Fehler der untersuchten Inaktivitäts-Wiederaufnahme.
+
+Die lokalen Timeout-Läufe werden ausdrücklich nicht als grüne Gesamtläufe gewertet.
+Aktuelle isolierte Nachläufe und die vollständige GitHub-CI des Korrektur-Heads
+werden im PR-Bericht ausgewiesen. Es werden weder parallele B2-/A2b-Dateien
+geändert noch neue Branches integriert oder Rebase-/Merge-Aktionen ausgeführt.
+Restrisiken sind die tatsächliche native Lock-Latenz und Last-/Rendererunterschiede
+zwischen Desktop, Mobilprofilen und CI; die Tests synchronisieren deshalb den
+Ownership-Zustand und behalten die unabhängigen Mehrtab-/Hintergrundprüfungen bei.
+
+Ein isolierter Nachlauf der separaten Ergebnistext-/Mehrtab-Szenarien ergab
+3 bestandene Fälle und einen Timeout beim Schließen des Mobile-Chromium-Kontexts.
+Das Browserlog meldete dabei `CVDisplayLinkCreateWithCGDisplay failed`,
+`CVReturn: -6670`; es scheiterte dort keine Zeitfortschritts-Assertion.
+Auch dieser Nachlauf wird nicht als vollständig bestanden gewertet.
