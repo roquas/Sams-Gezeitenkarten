@@ -44,7 +44,7 @@ test('cropped full-size left page preserves heading, text space and clue navigat
  expect(await page.evaluate(()=>!!(document.getElementById('routeView').compareDocumentPosition(document.getElementById('toolLegend'))&Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
 });
 test('temporary labels retain their full object footprint and column guides stay behind hex ink',async({page})=>{
- await expect(page.locator('.start-label')).toHaveAttribute('data-label-cell','A5');
+ await expect(page.locator('.start-glow')).toHaveAttribute('data-start-cell','A5');
  await page.locator('#showPlaces').click();
  await expect(page.locator('.reference-label').filter({hasText:'Zwilling'})).toHaveAttribute('data-label-cells','B2 C2');
  const guides=await page.locator('.coordinate-guides>path').evaluateAll(ns=>ns.filter(n=>!n.hasAttribute('stroke-dasharray')).map(n=>Number(n.getAttribute('opacity'))));

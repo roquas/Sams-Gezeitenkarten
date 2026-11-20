@@ -13,40 +13,51 @@ export function cluePlaceIds(puzzle,id){
 const overlays=new WeakMap();
 export function placeReferencesFor(svg){
  if(overlays.has(svg))return overlays.get(svg);
- let context,layer,animation,ids=[];
+ let context,layer,animations=[],ids=[],includeStart=false;
  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
  function clear(){
-  animation?.cancel();animation=null;layer?.remove();layer=null;ids=[];
+  for(const animation of animations)if(animation.playState!=='finished')animation.cancel();
+  animations=[];layer?.remove();layer=null;ids=[];includeStart=false;
  }
- function show(next){
+ function show(next,{start=false}={}){
   clear();if(!context)return;
   const {puzzle,byId,el}=context,wanted=new Set(next);
   ids=namedPlaceIds(puzzle).filter(id=>wanted.has(id));
-  if(!ids.length)return;
+  includeStart=start;
+  if(!ids.length&&!start)return;
   layer=el('g',{class:'place-references','pointer-events':'none','aria-hidden':'true'});
   for(const id of ids){
    const object=puzzle.map.objects.find(o=>o.id===id),name=puzzle.objectNames[id];
    const layout=placeLabelLayout(object.cells,name,byId,CHART_BOUNDS);
    if(layout)layer.append(drawParchmentLabel(el,layout,name,{objectId:id}));
   }
+  if(start){
+   const layout=placeLabelLayout([puzzle.start],'Start',byId,CHART_BOUNDS);
+   if(layout)layer.append(drawParchmentLabel(el,layout,'Start',{start:true}));
+  }
   svg.append(layer);
   // Constrain unusually long editorial names using actual browser font metrics.
   for(const label of layer.children){
-   const text=label.querySelector('text'),width=Number(label.querySelector('rect').getAttribute('width'))-16;
+   const text=label.querySelector('text'),width=Number(label.dataset.labelWidth)-16;
    const measured=text.getComputedTextLength();
-   if(measured>width)text.setAttribute('font-size',22*width/measured);
+   if(measured>width)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*width/measured);
   }
-  // One Web Animation for the whole group, including its hold. No timers or
-  // per-label animations. Cancellation rejects finished; stale completions
-  // cannot clear a newer trigger. Reduced motion holds for 3s without fades.
-  const active=layer;
-  animation=layer.animate(motion.matches?[{opacity:1},{opacity:1}]:[
-   {opacity:0,offset:0,easing:'ease-in-out'},
-   {opacity:1,offset:400/5400},
-   {opacity:1,offset:3400/5400,easing:'ease-in-out'},
-   {opacity:0,offset:1}
-  ],{duration:motion.matches?3000:5400,fill:'both'});
-  animation.finished.then(()=>{if(layer===active)clear();},()=>{});
+  // Independent paper/ink tracks share one timeline origin for the entire
+  // trigger. Subscribe to every finished promise immediately, also on cancel.
+  const active=layer,duration=motion.matches?3000:4900;
+  const startTime=document.timeline.currentTime;
+  const paper=[{opacity:0,offset:0,easing:'ease-in-out'},{opacity:1,offset:400/4900},
+   {opacity:1,offset:900/4900,easing:'ease-in-out'},{opacity:0,offset:2900/4900},{opacity:0,offset:1}];
+  const ink=[{opacity:0,offset:0,easing:'ease-in-out'},{opacity:1,offset:400/4900},
+   {opacity:1,offset:2900/4900,easing:'ease-in-out'},{opacity:0,offset:1}];
+  const finished=[];
+  for(const target of layer.querySelectorAll('.label-paper,.label-ink')){
+   const animation=target.animate(motion.matches?[{opacity:1},{opacity:1}]:target.classList.contains('label-paper')?paper:ink,{duration,fill:'both'});
+   if(startTime!==null)animation.startTime=startTime;
+   animations.push(animation);
+   finished.push(animation.finished.then(()=>true,()=>false));
+  }
+  Promise.all(finished).then(done=>{if(layer===active&&done.every(Boolean))clear();});
  }
  const controller={show,clear,mount(next){
   if(context?.puzzle!==next.puzzle)clear();
@@ -54,7 +65,7 @@ export function placeReferencesFor(svg){
   // Normal map redraws and frame changes preserve the same running animation.
   if(layer)svg.append(layer);
  }};
- motion.addEventListener?.('change',()=>{if(layer)show(ids.slice());});
+ motion.addEventListener?.('change',()=>{if(layer)show(ids.slice(),{start:includeStart});});
  window.addEventListener('pagehide',clear);
  overlays.set(svg,controller);return controller;
 }

@@ -5,6 +5,7 @@ const svg=body=>`<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">$
 const icons={
  undo:rasterIcon('undo'),
  distance:rasterIcon('distance'),
+ places:`<span class="places-emblem">${svg('<path d="M5 5Q11 3 17 5T27 4L26 12L28 25Q22 28 15 26T4 27L6 17L4 10Z" fill="#f3e5c5" stroke="#9e7b45" stroke-width=".7"/><path d="M7 7Q6 11 8 14M25 23L24 18" fill="none" stroke="#9e7b45" opacity=".45"/><path d="M11 10L22 23M21 9L11 23" fill="none" stroke="#783e2c" stroke-width="3.4" stroke-linecap="round"/>')}</span>`,
  marks:`<span class="mark-emblem">${rasterIcon('eye')}${svg('<path class="hour-hex" d="M16 2L28 9V23L16 30L4 23V9Z"/><line class="hour-edge" x1="28" y1="9" x2="16" y2="2"/><path class="eye-slash" d="M5 27L27 5"/>')}</span>`,
  numbers:`<span class="numbers-emblem">${rasterIcon('eye')}<span class="route-numerals" aria-hidden="true">①②··</span></span>`,
  verify:rasterIcon('yes')
@@ -22,7 +23,7 @@ export function createToolbar(puzzle){
  }).join('');
  mountUpperMaterials();
  const button=(id,label,icon)=>`<button class="rail-button" id="${id}" type="button" aria-label="${label}" title="${label}">${icons[icon]}</button>`;
- $('mapActions').innerHTML=button('undo','Letzte Aktion rückgängig machen','undo')+button('toggleDistances','Abstände einblenden','distance')+'<button class="rail-button" id="showPlaces" type="button"><span class="places-caption">Orte zeigen</span></button>'+'<span class="rail-separator" aria-hidden="true"></span>'+button('toggleHourMarks','Markierungen der aktuellen Stunde anzeigen','marks')+button('toggleRouteNumbers','Routennummern anzeigen','numbers')+'<span class="rail-separator" aria-hidden="true"></span>'+button('verify','Route überprüfen','verify');
+ $('mapActions').innerHTML=button('undo','Letzte Aktion rückgängig machen','undo')+button('toggleDistances','Abstände einblenden','distance')+button('showPlaces','Orte zeigen','places')+'<span class="rail-separator" aria-hidden="true"></span>'+button('toggleHourMarks','Markierungen der aktuellen Stunde anzeigen','marks')+button('toggleRouteNumbers','Routennummern anzeigen','numbers')+'<span class="rail-separator" aria-hidden="true"></span>'+button('verify','Route überprüfen','verify');
  const route=document.querySelector('[data-tool="route"]'),back=$('routeBack');
  route.id='routeTool';route.classList.add('rail-button');back.classList.add('rail-button');
  const routeGroup=document.createElement('div');routeGroup.className='route-actions';
