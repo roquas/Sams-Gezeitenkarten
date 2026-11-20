@@ -1,5 +1,9 @@
 # WebKit: Wandzeit ist keine gesampelte Animationszeit
 
+Dieser Bericht dokumentiert den ersten Fix (`627d0c7`). Die nachfolgende
+vollständige PR-CI blieb wegen des separaten Ersetzungstests rot; dessen
+[Untersuchung und Korrektur](WEBKIT-RAPID-REPLACEMENT.md) ergänzen diesen Befund.
+
 ## Befund und Abgrenzung
 
 Der Fehler aus [PR #115 / Lauf 44749575218](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/44749575218)

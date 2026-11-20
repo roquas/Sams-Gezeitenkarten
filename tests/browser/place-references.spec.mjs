@@ -138,18 +138,78 @@ test('place animation renders fade-in, the full hold, and fade-out at its own ti
  await expect(labels(page)).toHaveCount(0,{timeout:3500});
  await expect(group).toHaveCount(0);
 });
-test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName})=>{
- // CI traces show native WebKit clicks consuming 1.5–3 s each; the full
- // lifecycle plus eight triggers needs more than the default 30 s in total.
- // Keep the 3.5 s disappearance deadline and every behavioral assertion.
+test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName},info)=>{
  if(browserName==='webkit')test.setTimeout(60_000);
- await open(page);await page.locator('#showPlaces').click();await page.waitForTimeout(2200);
- for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
- await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
- await page.waitForTimeout(3400);await expect(labels(page)).toHaveCount(3);
- // Old completions must not remove this newer group; no animation backlog remains.
- await expect(labels(page)).toHaveCount(0,{timeout:3500});
- expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+ await open(page);
+ // Observe the same native animations returned to the controller. No pause,
+ // seek, finish, cancellation, changed durations, or wall-time sleeps.
+ await page.evaluate(()=>{
+  const entries=[],refs=[],unhandled=[];
+  window.rapidLifecycle={entries,unhandled};
+  window.addEventListener('unhandledrejection',e=>unhandled.push(String(e.reason)));
+  const animate=Element.prototype.animate;
+  Element.prototype.animate=function(...args){
+   const animation=animate.apply(this,args);
+   if(!this.matches('.place-references'))return animation;
+   const node=this,entry={duration:animation.effect.getComputedTiming().duration,samples:[]};
+   entries.push(entry);refs.push({node,animation});
+   const sample=event=>{
+    entry.samples.push({event,wall:performance.now(),currentTime:animation.currentTime,startTime:animation.startTime,
+     playState:animation.playState,pending:animation.pending,connected:node.isConnected,
+     groups:document.querySelectorAll('#map .place-references').length,labels:document.querySelectorAll('#map .reference-label').length});
+    if(!node.isConnected)clearInterval(timer);
+   };
+   const timer=setInterval(()=>sample('interval'),100);
+   sample('created');
+   animation.finished.then(()=>{entry.outcome='finished';entry.finishedAt=performance.now();sample('finished');},e=>{
+    entry.outcome=e.name;sample('rejected');
+   });
+   return animation;
+  };
+  new MutationObserver(()=>refs.forEach(({node},i)=>{
+   if(!node.isConnected&&entries[i].removedAt===undefined)entries[i].removedAt=performance.now();
+  })).observe(document.querySelector('#map'),{childList:true});
+  window.rapidAnimationStates=()=>refs.map(({node,animation})=>({connected:node.isConnected,playState:animation.playState,pending:animation.pending}));
+ });
+ try{
+  await page.locator('#showPlaces').click();
+  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries[0]?.samples.some(s=>
+   s.connected&&s.playState==='running'&&s.currentTime>=2200))).toBe(true);
+  for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
+  await expect(page.locator('.place-references')).toHaveCount(1);
+  await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
+  // A replaced animation must not shorten the last group's own lifetime.
+  // Keep renderer-side evidence if protocol replies arrive after this phase.
+  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
+   s.connected&&s.currentTime>=3400&&s.groups===1&&s.labels===3))).toBe(true);
+  // playState can reach the end before WebKit dispatches the native finished
+  // promise. Start the unchanged cleanup deadline at observed animation end.
+  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
+   s.playState==='finished'))).toBe(true);
+  await expect(labels(page)).toHaveCount(0,{timeout:3500});
+  await expect(page.locator('.place-references')).toHaveCount(0);
+  const report=await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()}));
+  expect(report.entries).toHaveLength(7);
+  expect(report.entries.map(e=>e.duration)).toEqual(Array(7).fill(5400));
+  expect(report.entries.map(e=>e.samples[0].currentTime)).toEqual(Array(7).fill(0));
+  expect(report.entries.flatMap(e=>e.samples).every(s=>s.groups<=1&&s.labels<=3)).toBe(true);
+  expect(report.entries.slice(0,-1).every(e=>['AbortError','finished'].includes(e.outcome))).toBe(true);
+  // Native clicks can be slow enough for an older animation to finish before
+  // its next trigger. Still require actual overlapping lifetimes and aborts.
+  expect(report.entries.slice(0,-1).filter(e=>e.outcome==='AbortError').length).toBeGreaterThan(0);
+  const last=report.entries.at(-1);
+  expect(last.outcome).toBe('finished');
+  expect(last.removedAt).toBeGreaterThanOrEqual(last.finishedAt);
+  expect(last.removedAt-last.finishedAt).toBeLessThan(3500);
+  const endObservedAt=last.samples.find(s=>s.playState==='finished').wall;
+  expect(last.removedAt).toBeGreaterThanOrEqual(endObservedAt);
+  expect(last.removedAt-endObservedAt).toBeLessThan(3500);
+  expect(report.states).toEqual(Array.from({length:7},()=>({connected:false,playState:'idle',pending:false})));
+  expect(report.unhandled).toEqual([]);
+  expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+ }finally{
+  await info.attach('rapid-place-lifecycle',{body:JSON.stringify(await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()})),null,2),contentType:'application/json'});
+ }
 });
 test('reduced motion is immediate but still expires and does not retrigger on ordinary renders',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await open(page);
