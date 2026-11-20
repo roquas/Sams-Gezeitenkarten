@@ -279,7 +279,7 @@ test('historical mode and historical exports keep S03-06 as six separately ident
  assert.deepEqual(readPlaytestSource('S03-V2'),source);
 });
 
-test('historical artifacts, text formatter, engine, solver and deduction bytes equal the fixed main baseline',()=>{
+test('historical artifacts and this PR preserve the fixed baseline; merged program files match their checkout',()=>{
  const base='974931e95d434a35ce34094f4d5244e289d6fd76';
  const paths=['docs/observations','docs/verification/S03','docs/verification/S03-v2','docs/verification/S04-A',
   'docs/verification/B2-deduction','docs/verification/B2-deduction-profile','docs/verification/B2-deduction-profile-v2',
@@ -289,10 +289,23 @@ test('historical artifacts, text formatter, engine, solver and deduction bytes e
   'scripts/lib/clue-text.mjs','scripts/lib/clue-presentation.mjs','scripts/lib/s03-quality.mjs'];
  const tree=execFileSync('git',['ls-tree','-r',base,'--',...paths],{cwd:ROOT,encoding:'utf8'}).trim().split('\n');
  assert.ok(tree.length>100);
+ // Actions tests a synthetic merge with today's main. Unrelated main changes
+ // (e.g. PR #114's public DTO) are not modifications made by this PR. Inspect
+ // the actual PR head for the preservation claim, while still checking every
+ // historical artifact in the working checkout against the fixed baseline.
+ const event=process.env.GITHUB_EVENT_NAME==='pull_request'?
+  JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH,'utf8')):null;
+ const head=event?.pull_request.head.sha??'HEAD';
+ const blobs=revision=>new Map(execFileSync('git',['ls-tree','-r',revision,'--',...paths],{cwd:ROOT,encoding:'utf8'})
+  .trim().split('\n').map(line=>{const [,hash,ref]=/^\d+ blob ([a-f0-9]+)\t(.+)$/.exec(line);return [ref,hash];}));
+ const preserved=blobs(head),checkedOut=blobs('HEAD');
+ assert.equal(preserved.size,tree.length,'Protected PR file inventory changed');
  for(const line of tree){
   const [,hash,ref]=/^\d+ blob ([a-f0-9]+)\t(.+)$/.exec(line);
+  assert.equal(preserved.get(ref),hash,'PR modified protected file: '+ref);
   const bytes=fs.readFileSync(path.join(ROOT,ref));
-  assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'),hash,ref);
+  assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'),
+   ref.startsWith('docs/')?hash:checkedOut.get(ref),ref);
  }
  assert.equal(sha256(fs.readFileSync(path.join(ROOT,'docs/verification/S03-v2/run/candidates.jsonl'))),source.registry.candidatesSha256);
 });

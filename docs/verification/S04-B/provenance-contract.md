@@ -137,3 +137,10 @@ Die Regressionen umfassen die gespeicherten S03-v1/v2-Nachweise und historischen
 Exporte. Kein neuer Generator- oder Pilotlauf und keine vollständige lokal
 generatorgestützte Unit-Suite wurden für diese Korrektur gestartet. Der
 CI-Abschlussstand des neuen Heads steht im PR.
+
+Die Byte-Erhaltung des Programmcodes wird gegen den tatsächlichen PR-Head
+geprüft. GitHub Actions testet zusätzlich einen synthetischen Merge mit dem
+aktuellen `main`; dessen unabhängig gemergte Änderungen werden nicht als
+S04-B-Änderung ausgegeben. Historische Artefakte werden weiterhin auch im
+Arbeitscheckout gegen die unveränderte feste Basis geprüft. Arbeitskopien des
+Programmcodes müssen außerdem mit ihrem jeweiligen Checkout übereinstimmen.
