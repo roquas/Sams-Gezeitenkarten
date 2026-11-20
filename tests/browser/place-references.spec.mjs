@@ -87,15 +87,25 @@ test('independent paper and ink phases share a clock and finish at 4.9 seconds',
  await page.locator('.place-references').evaluate(n=>n.getAnimations({subtree:true}).forEach(a=>{a.finish();}));
  await expect(labels(page)).toHaveCount(0);expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
 });
-test('normal animation expires naturally within the 4.9-second contract',async({page})=>{
+test('normal animation expires naturally within the 4.9-second contract',async({page},info)=>{
  await open(page);
- const elapsed=await page.evaluate(()=>new Promise(resolve=>{
+ const timing=await page.evaluate(()=>new Promise(resolve=>{
   const button=document.getElementById('showPlaces');button.click();
-  const layer=document.querySelector('.place-references'),started=performance.now();
-  const observer=new MutationObserver(()=>{if(!layer.isConnected){observer.disconnect();resolve(performance.now()-started);}});
+  const layer=document.querySelector('.place-references'),started=performance.now(),timelineStarted=document.timeline.currentTime;
+  const tracks=layer.getAnimations({subtree:true}).map(animation=>{
+   const sample=()=>({wall:performance.now()-started,timeline:document.timeline.currentTime,start:animation.startTime,current:animation.currentTime,state:animation.playState});
+   const track={duration:animation.effect.getTiming().duration,created:sample()};
+   animation.ready.then(()=>{track.ready=sample();},()=>{});
+   animation.finished.then(()=>{track.finished=sample();},()=>{});
+   return track;
+  });
+  const observer=new MutationObserver(()=>{if(!layer.isConnected){
+   observer.disconnect();resolve({elapsed:performance.now()-started,timelineStarted,timelineRemoved:document.timeline.currentTime,tracks});
+  }});
   observer.observe(document.getElementById('map'),{childList:true});
  }));
- expect(elapsed).toBeGreaterThanOrEqual(4800);expect(elapsed).toBeLessThan(5400);
+ await info.attach('natural-animation-timing',{body:JSON.stringify(timing,null,2),contentType:'application/json'});
+ expect(timing.elapsed).toBeGreaterThanOrEqual(4800);expect(timing.elapsed,JSON.stringify(timing)).toBeLessThan(5400);
  await expect(labels(page)).toHaveCount(0);await expect(page.locator('.start-label, #map ellipse[data-start-marker]')).toHaveCount(0);
  await expect(page.locator('.start-glow')).toHaveCount(1);
 });
@@ -241,7 +251,12 @@ test('redraws preserve animation identity and long names fit organic paper in al
  expect(await page.locator('.place-references').evaluate(n=>n===window.activePlaces&&n.getAnimations({subtree:true}).every(a=>window.activeTracks.includes(a)))).toBe(true);
  expect(await page.locator('.place-references').evaluate(n=>n.getAnimations({subtree:true}).map(a=>a.startTime))).toEqual(before);
  const long=page.locator('[data-label-object="o1"]');
- expect(await long.evaluate(n=>n.querySelector('text').getComputedTextLength()<=Number(n.dataset.labelWidth)-15.9)).toBe(true);
+ const fitting=await long.evaluate(n=>{
+  const text=n.querySelector('text');
+  return {measured:text.getComputedTextLength(),available:Number(n.dataset.labelWidth)-16,fontSize:+text.getAttribute('font-size'),computedFont:getComputedStyle(text).fontSize,scale:text.getScreenCTM().a};
+ });
+ await info.attach('long-name-fitting',{body:JSON.stringify(fitting,null,2),contentType:'application/json'});
+ expect(fitting.measured,JSON.stringify(fitting)).toBeLessThanOrEqual(fitting.available+.1);
  expect(await long.locator('text').evaluate(n=>+n.getAttribute('font-size'))).toBeLessThan(18);
  expect(await long.locator('.label-paper>path').first().getAttribute('d')).toContain(' Q ');
  // Use a representative atmospheric name for the phase comparison images.
