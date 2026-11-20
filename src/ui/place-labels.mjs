@@ -1,4 +1,3 @@
-import {adjacent} from '../engine/hex.mjs';
 export const HEX_RADIUS=36;
 // The same geometry supplies interactive polygons and label containment.
 export function hexCenter(c){return [60+c.q*82+(c.r%2)*41,56+c.r*68];}
@@ -28,27 +27,29 @@ function labelSize(text){
 export function labelFootprint(p,margin=0){
  return [[-1,-1],[1,-1],[1,1],[-1,1]].map(([dx,dy])=>[p.x+dx*(p.width/2+margin),p.y+dy*(p.height/2+margin)]);
 }
-export function placeLabelLayout(ids,text,blocked,byId){
- const remaining=new Set(ids.filter(id=>blocked.has(id)&&byId[id]));
- if(!remaining.size)return null;
- const components=[];
- while(remaining.size){
-  const first=remaining.values().next().value,component=[first];remaining.delete(first);
-  for(let i=0;i<component.length;i++)for(const id of remaining)if(adjacent(component[i],id)){remaining.delete(id);component.push(id);}
-  components.push(component);
- }
- const land=components.sort((a,b)=>b.length-a.length)[0];
- const centers=land.map(id=>({id,point:hexCenter(byId[id])}));
- // Equal-area hexes: their area centroid is the mean of all constituent centers.
- const centroid=centers.reduce((a,c)=>[a[0]+c.point[0]/centers.length,a[1]+c.point[1]/centers.length],[0,0]);
- const polygon=convexHull(centers.flatMap(c=>hexVertices(...c.point)));
- const water=Object.values(byId).filter(c=>!blocked.has(c.id)).map(c=>hexVertices(...hexCenter(c)));
- const size=labelSize(text);
- const anchors=[centroid,...centers.sort((a,b)=>Math.hypot(a.point[0]-centroid[0],a.point[1]-centroid[1])-Math.hypot(b.point[0]-centroid[0],b.point[1]-centroid[1])).map(c=>c.point)];
- for(const [x,baseY] of anchors)for(let drop=HEX_RADIUS/2;drop>=0;drop-=.25){
-  const p={x,y:baseY+drop,...size},footprint=labelFootprint(p,size.margin);
-  if(footprint.every(v=>containsPoint(polygon,v))&&!water.some(w=>polygonsOverlap(footprint,w)))return {...p,cell:land[0],cells:land,polygon,centroid,drop};
- }return null;
+// Equal-area hexes: use the centroid of the complete logical footprint.
+// Temporary plaques may cover sea/art; only the visible chart bounds constrain them.
+export function placeLabelLayout(ids,text,byId,bounds){
+ const cells=[...new Set(ids)].filter(id=>byId[id]);
+ if(!cells.length)return null;
+ const centroid=cells.reduce((sum,id)=>hexCenter(byId[id]).map((v,i)=>sum[i]+v/cells.length),[0,0]);
+ const margin=8,fontSize=22,height=34;
+ const width=Math.min(bounds.width-2*margin,Math.max(92,text.length*fontSize*.58+24));
+ const clamp=(v,lo,hi)=>Math.max(lo,Math.min(v,hi));
+ return {x:clamp(centroid[0],bounds.x+margin+width/2,bounds.x+bounds.width-margin-width/2),
+  y:clamp(centroid[1],bounds.y+margin+height/2,bounds.y+bounds.height-margin-height/2),
+  width,height,fontSize,margin,cells,cell:cells[0],centroid};
+}
+export function drawParchmentLabel(el,layout,text,{start=false,objectId}={}){
+ const {x,y,width,height,fontSize,cell}=layout;
+ const g=el('g',{class:start?'place-label start-label':'place-label reference-label',transform:`translate(${x} ${y})`,
+  'data-label-cell':cell,'data-label-cells':layout.cells.join(' '),...(objectId?{'data-label-object':objectId}:{}),
+  'pointer-events':'none','aria-hidden':'true'});
+ g.append(el('rect',{x:-width/2,y:-height/2,width,height,rx:2,fill:'#f3e5c5',stroke:'#9e7b45','stroke-width':'.5',opacity:start?'.62':'.96'}));
+ g.append(el('image',{href:'assets/ui/paper-grain.webp',x:-width/2+.5,y:-height/2+.5,width:width-1,height:height-1,preserveAspectRatio:'none',opacity:'.12'}));
+ g.append(el('text',{x:0,y:0,dy:'.35em','text-anchor':'middle','font-family':"Georgia,'Times New Roman',serif",'font-size':fontSize,
+  'font-weight':'600',fill:start?'#8c3e2c':'#392b19',stroke:'#f6e8cd','stroke-width':'.35','paint-order':'stroke'},text));
+ return g;
 }
 export function startLabelLayout(cell){
  const [x,baseY]=hexCenter(cell),size=labelSize('Start'),polygon=hexVertices(x,baseY);

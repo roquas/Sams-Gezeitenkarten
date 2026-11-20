@@ -1,0 +1,85 @@
+{
+  "kind": "Corrected tests; application code unchanged",
+  "stats": {
+    "startTime": "2026-11-20T10:08:37.501Z",
+    "duration": 339442.493,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "test": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+      "profile": "webkit-desktop",
+      "status": "passed",
+      "durationMs": 25602
+    },
+    {
+      "test": "overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence",
+      "profile": "webkit-desktop",
+      "status": "passed",
+      "durationMs": 20090
+    },
+    {
+      "test": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+      "profile": "webkit-desktop",
+      "status": "passed",
+      "durationMs": 24612
+    },
+    {
+      "test": "overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence",
+      "profile": "webkit-desktop",
+      "status": "passed",
+      "durationMs": 23904
+    },
+    {
+      "test": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+      "profile": "webkit-desktop",
+      "status": "passed",
+      "durationMs": 25317
+    },
+    {
+      "test": "overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence",
+      "profile": "webkit-desktop",
+      "status": "passed",
+      "durationMs": 19073
+    },
+    {
+      "test": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+      "profile": "webkit-mobile",
+      "status": "passed",
+      "durationMs": 14693
+    },
+    {
+      "test": "overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence",
+      "profile": "webkit-mobile",
+      "status": "passed",
+      "durationMs": 6909
+    },
+    {
+      "test": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+      "profile": "webkit-mobile",
+      "status": "passed",
+      "durationMs": 21600
+    },
+    {
+      "test": "overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence",
+      "profile": "webkit-mobile",
+      "status": "passed",
+      "durationMs": 13734
+    },
+    {
+      "test": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+      "profile": "webkit-mobile",
+      "status": "passed",
+      "durationMs": 20209
+    },
+    {
+      "test": "overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence",
+      "profile": "webkit-mobile",
+      "status": "passed",
+      "durationMs": 11041
+    }
+  ]
+}

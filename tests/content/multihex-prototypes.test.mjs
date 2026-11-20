@@ -3,15 +3,15 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {multihexPrototypes,multihexCandidates,multihexFixture} from '../../dev/multihex-prototypes.mjs';
 import {reviewPositions} from '../../dev/review-positions.mjs';
-import {HEXES} from '../../src/ui/chart-geometry.mjs';
+import {CHART_BOUNDS,HEXES} from '../../src/ui/chart-geometry.mjs';
 import {imageContract,placedCells} from '../../src/assets/geometry.mjs';
 import {compatibility,validatePlacements} from '../../src/assets/library.mjs';
-import {placeLabelLayout,labelFootprint,hexVertices,hexCenter,polygonsOverlap,containsPoint} from '../../src/ui/place-labels.mjs';
+import {placeLabelLayout,labelFootprint} from '../../src/ui/place-labels.mjs';
 const library=JSON.parse(fs.readFileSync(new URL('../../assets/catalog/library.json',import.meta.url)));
 const byId=Object.fromEntries(HEXES.map(h=>[h.id,h]));
 const board=new Set(HEXES.map(h=>h.id));
 const counts={tropical:20,volcano:16,archipelago:14,harbor:16,smuggler:14,sand:10,claw:14,temple:14,tesoro:14,'tesoro-v1':14,'tesoro-v2':14,'tesoro-v3':14};
-for(const p of multihexPrototypes)test(p.key+': single whole image, explicit review, every occupied hex blocked and labels safe at every valid anchor',()=>{
+for(const p of multihexPrototypes)test(p.key+': single whole image, explicit review, every occupied hex blocked and temporary labels bounded at every valid anchor',()=>{
  const asset=library.assets.find(a=>a.id===p.id);
  assert.equal(asset.passable,false);assert.equal(asset.stage,'illustration');
  assert.equal(asset.geometry.cells.length,p.key==='tropical'?2:['volcano','archipelago','harbor','smuggler'].includes(p.key)?3:4);
@@ -26,11 +26,10 @@ for(const p of multihexPrototypes)test(p.key+': single whole image, explicit rev
   const {blocked,puzzle}=multihexFixture(library,p,h.id);
   assert.deepEqual([...blocked],cells);assert.deepEqual(puzzle.map.objects[0].cells,cells);
   assert.equal(puzzle.assetPlacements.length,1);
-  const label=placeLabelLayout(cells,p.name,blocked,byId);assert.ok(label);
+  const label=placeLabelLayout(cells,p.name,byId,CHART_BOUNDS);assert.ok(label);
   assert.equal(label.cells.length,cells.length);
   const footprint=labelFootprint(label,label.margin);
-  assert.ok(footprint.every(v=>containsPoint(label.polygon,v)));
-  for(const water of HEXES.filter(c=>!blocked.has(c.id)))assert.equal(polygonsOverlap(footprint,hexVertices(...hexCenter(water))),false);
+  assert.ok(footprint.every(([x,y])=>x>=CHART_BOUNDS.x&&x<=CHART_BOUNDS.x+CHART_BOUNDS.width&&y>=CHART_BOUNDS.y&&y<=CHART_BOUNDS.y+CHART_BOUNDS.height));
   const logic=puzzle.map;
   assert.equal(validatePlacements(puzzle.assetPlacements,library,logic,'sea-blue-01').some(e=>e.includes('not visually approved')),!p.approved);
 

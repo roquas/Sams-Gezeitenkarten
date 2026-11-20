@@ -19,13 +19,13 @@ export function registerModelTests(url){
   await expect(page.locator('#map [data-object-id="o2"]')).toHaveCount(2);
   await expect(page.locator('#map .blocked-cell')).toHaveCount(3);
   await expect(page.locator('#map [data-placement-id]')).toHaveCount(3);
-  await expect(page.locator('#map .island-label')).toHaveCount(2);await expect(page.locator('#map .start-label')).toHaveCount(1);
-  await expect(page.locator('#map .island-label')).toContainText(['Zwilling','D1']);
+  await expect(page.locator('#map .reference-label')).toHaveCount(0);await expect(page.locator('#map .start-label')).toHaveCount(1);
+  await page.locator('#showPlaces').click();await expect(page.locator('#map .reference-label')).toHaveText('Zwilling');
   await expect(page.locator('#map [data-start-marker]')).toHaveCount(1);expect(errors).toEqual([]);
   const dto=await (await page.request.get(new URL('puzzles/model-demo.json',page.url()).href)).json();
   expect(dto.puzzle.solution).toBeUndefined();expect(dto.puzzle.metadata).toBeUndefined();expect(dto.puzzle.generator).toBeUndefined();
  });
- test('prototype property IDs use coordinate fallbacks and explicit own object names',async({page})=>{
+ test('prototype property IDs only label explicit own object names',async({page})=>{
   const dto=read('puzzles/model-demo.json'),objects=dto.puzzle.logic.map.objects;
   for(const [old,id] of [['o2','constructor'],['o3','toString']]){
    objects.find(o=>o.id===old).id=id;
@@ -33,9 +33,9 @@ export function registerModelTests(url){
   }
   objects.push({id:'hasOwnProperty',cells:['E1'],passable:false});dto.puzzle.presentation.objectNames={};
   await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));await page.goto(url);
-  await expect(page.locator('#map .island-label text')).toHaveText(['B2 / C2','D1','E1']);
+  await page.locator('#showPlaces').click();await expect(page.locator('#map .reference-label')).toHaveCount(0);
   dto.puzzle.presentation.objectNames={constructor:'Eigener Name',toString:'Eigener Turm',hasOwnProperty:'Eigene Insel'};
-  await page.reload();await expect(page.locator('#map .island-label text')).toHaveText(['Eigener Name','Eigener Turm','Eigene Insel']);
+  await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);await page.locator('#showPlaces').click();await expect(page.locator('#map .reference-label text')).toHaveText(['Eigener Name','Eigener Turm','Eigene Insel']);
  });
  test('route interaction and verification use the new logic; blocked cells cannot be edited',async({page})=>{
   await page.goto(url);await expect(cell(page,'A5')).toBeVisible();
@@ -84,7 +84,7 @@ export function registerModelTests(url){
   dto.puzzle.presentation.assetPlacements.push({id:'multi-port',assetId:a.id,anchor:'A5',objectId:'o1'});dto.puzzle.presentation.objectNames.o1='Testhafen';
   await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));await page.route('**/assets/catalog/library.json',r=>r.fulfill({json:library}));
   await page.goto(url);await expect(page.locator('#map [data-placement-id="multi-port"]')).toHaveAttribute('data-art-cells','A5 B5');
-  await expect(page.locator('#map .island-label')).not.toContainText(['Testhafen']);await expect(page.locator('#map [data-legacy-asset]')).toHaveCount(0);
+  await expect(page.locator('#map .reference-label')).toHaveCount(0);await page.locator('#showPlaces').click();await expect(page.locator('#map .reference-label text')).toHaveText(['Testhafen','Zwilling']);await expect(page.locator('#map [data-legacy-asset]')).toHaveCount(0);
  });
  test('both frame variants preserve marks and responsive geometry',async({page},info)=>{
   await page.goto(url);await expect(cell(page,'A1')).toBeVisible();await cell(page,'A1').click();

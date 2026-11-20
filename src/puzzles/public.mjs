@@ -28,7 +28,7 @@ export function projectPublicPuzzle(internal,{identity,...options}={}){
  requireContract(internal,options);
  const puzzle=pick(internal,['schemaVersion','rulesVersion','dataVersion','id']);
  puzzle.logic=publicLogic(internal.logic);
- puzzle.presentation=pick(internal.presentation,['title','intro','objectNames','clueTexts','hints','background']);
+ puzzle.presentation=pick(internal.presentation,['title','intro','objectNames','clueTexts','cluePlaceRefs','hints','background']);
  puzzle.presentation.assetPlacements=internal.presentation?.assetPlacements?.map(p=>pick(p,['id','assetId','anchor','objectId']));
  if(Object.hasOwn(internal,'resultTexts'))puzzle.resultTexts=pick(internal.resultTexts,['correct','incorrect']);
  validateDefinition({...puzzle,...(Object.hasOwn(internal,'solution')?{solution:internal.solution}:{})},options);
