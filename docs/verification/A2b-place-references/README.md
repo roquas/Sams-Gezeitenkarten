@@ -127,3 +127,5 @@ Verbleibende bewusste Begrenzung: gleichzeitige Bänder dürfen einander überde
 Die Vollständigkeit zusätzlicher redaktioneller Referenzen liegt bei deren
 expliziten Präsentationsmetadaten; bestehende `placeId`-Hinweise funktionieren
 weiterhin ohne solche Ergänzungen.
+
+Nachprüfung der späteren CI-Zeitüberschreitungen: [WebKit-Ursachenanalyse und Wiederholungsnachweise](WEBKIT-CI.md).

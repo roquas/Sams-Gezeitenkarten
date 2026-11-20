@@ -73,7 +73,11 @@ test('normal fade completes, removes all place names, and restores the ordinary 
  await expect(labels(page)).toHaveCount(0,{timeout:3500});await expect(page.locator('.place-references')).toHaveCount(0);
  await expect(page.locator('.start-label')).toHaveText('Start');await expect(page.locator('[data-start-marker]')).toHaveCount(1);
 });
-test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page})=>{
+test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName})=>{
+ // CI traces show native WebKit clicks consuming 1.5–3 s each; the full
+ // lifecycle plus eight triggers needs more than the default 30 s in total.
+ // Keep the 3.5 s disappearance deadline and every behavioral assertion.
+ if(browserName==='webkit')test.setTimeout(60_000);
  await open(page);await page.locator('#showPlaces').click();await page.waitForTimeout(2200);
  for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
  await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
@@ -90,7 +94,10 @@ test('reduced motion is immediate but still expires and does not retrigger on or
  await page.locator('#showPlaces').click();await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
  await expect(labels(page)).toHaveCount(0,{timeout:4000});
 });
-test('overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence',async({page,isMobile})=>{
+test('overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence',async({page,isMobile,browserName})=>{
+ // Allow the complete sequence of native actions on software-rendered WebKit.
+ // Individual assertions retain their existing timeouts.
+ if(browserName==='webkit')test.setTimeout(60_000);
  await open(page);const before=await saved(page);
  if(isMobile)await page.locator('#showPlaces').tap();else await page.locator('#showPlaces').click();
  expect(await saved(page)).toEqual(before);await expect(page.locator('#showPlaces')).not.toHaveAttribute('aria-pressed',/./);
@@ -107,8 +114,12 @@ test('overlay passes pointer and keyboard operations through, preserves route, r
  await expect(page.locator('.route-stroke')).toHaveCount(1);await expect(page.locator('.route-direction')).toHaveCount(1);
  const geometry=await page.locator('.place-references').evaluate(n=>({events:getComputedStyle(n).pointerEvents,last:n===n.parentNode.lastElementChild,focusable:n.querySelectorAll('[tabindex],a,button').length}));
  expect(geometry).toEqual({events:'none',last:true,focusable:0});
- await page.locator('#routeBack').click();await expect(page.locator('.route-stroke')).toHaveCount(0);
- await page.locator('#undo').click();await expect(page.locator('.route-stroke')).toHaveCount(1);
+ await page.locator('#routeBack').click();
+ await expect.poll(()=>saved(page)).toMatchObject({route:['A5'],distanceOrigin:'B2',marks:{}});
+ await expect(page.locator('.route-stroke')).toHaveCount(0);
+ await page.locator('#undo').click();
+ await expect.poll(()=>saved(page)).toMatchObject({route:['A5','B5'],distanceOrigin:'B2',marks:{}});
+ await expect(page.locator('.route-stroke')).toHaveCount(1);
  const state=await saved(page);expect(state.route).toEqual(['A5','B5']);expect(state.distanceOrigin).toBe('B2');expect(state.marks).toEqual({});
  expect(Object.keys(state).some(k=>/place|overlay|reference/i.test(k))).toBe(false);
 });
