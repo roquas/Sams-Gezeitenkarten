@@ -125,3 +125,6 @@ Anordnung des X-Buttons. Es wurden keine Bildinhalte nachbearbeitet.
 | Chromium Mobil | [Bild](chromium-polish-mobile-paper.png) | [Bild](chromium-polish-mobile-ink.png) | [Bild](chromium-polish-mobile-normal.png) | [X-Button](chromium-polish-mobile-actions.png) |
 | WebKit Desktop | [Bild](webkit-polish-desktop-paper.png) | [Bild](webkit-polish-desktop-ink.png) | [Bild](webkit-polish-desktop-normal.png) | [X-Button](webkit-polish-desktop-actions.png) |
 | WebKit Mobil | [Bild](webkit-polish-mobile-paper.png) | [Bild](webkit-polish-mobile-ink.png) | [Bild](webkit-polish-mobile-normal.png) | [X-Button](webkit-polish-mobile-actions.png) |
+
+Die spätere gezielte CI-Nachkorrektur ist separat in
+[CI-CORRECTION.md](CI-CORRECTION.md) dokumentiert.

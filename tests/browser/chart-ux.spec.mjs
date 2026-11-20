@@ -66,9 +66,11 @@ test('chart labels sit in parchment, are legible and do not intercept map contro
    const text=n.querySelector('text'),style=getComputedStyle(text);
    return {text:text.textContent,cell:n.dataset.labelCell,events:getComputedStyle(n).pointerEvents,size:Number(text.getAttribute('font-size')),computed:style.fontSize,family:style.fontFamily,measured:text.getComputedTextLength(),box:text.getBBox().width,available:Number(n.dataset.labelWidth)-16,scale:text.getScreenCTM().a};
   }));
+  expect(labels).toHaveLength(2);
   expect(labels.every(l=>l.events==='none'&&l.size>=11),`viewport ${width}: ${JSON.stringify(labels)}`).toBe(true);
   for(const label of labels){
    expect(Number.isFinite(label.available)&&label.available>0).toBe(true);
+   expect(label.measured).toBeGreaterThan(0);
    expect(label.measured,`${label.text} at ${width}px: text must fit inside parchment padding`).toBeLessThanOrEqual(label.available+.1);
   }
   const bounds=await page.locator('#map .coordinate-guides').evaluate(g=>{const b=g.getBBox();return {x:b.x,y:b.y,width:b.width,height:b.height};});
