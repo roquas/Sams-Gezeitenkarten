@@ -131,15 +131,61 @@ test('budget failure, unrequested and missing states never become complete or ze
  const input=byId.get('S03-02'),incomplete=buildRouteEvidence(input,['H1+H4'],{maxNodes:1});
  assert.equal(incomplete.status,'incomplete-budget');assert.equal(incomplete.states[0].counts,null);
  assert.equal(incomplete.legalRouteCount,undefined);assert.equal(incomplete.singleIntersection,undefined);
+ const renderWith=r=>renderStageReport(diagnoses,routes.map(original=>original.id===r.id?r:original));
+ const budgetReport=renderWith(incomplete),budgetSection=budgetReport.split('## S03-02 —')[1].split('\n## ')[0];
+ assert.match(budgetSection,/H1\+H4: wegen Budget unvollständig/);
+ assert.doesNotMatch(budgetSection,/keine zusätzliche Routenberechnung angefordert|genaue Teilroutenzahlen/);
+ assert.doesNotMatch(budgetReport,/S03-02\/H1\+H4 reproduziert|Die 32 zusätzlichen Wege/);
+ assert.match(budgetReport,/S03-02\/H1\+H4: kein vollständiger Routenvergleich verfügbar/);
  const missing=buildRouteEvidence(input,['H1+H2+H3+H4']);
  assert.equal(missing.status,'no-known-requested-states');assert.equal(missing.states[0].status,'unknown-state');
  assert.equal(missing.states[0].source,null);assert.equal(missing.states[0].exactSupported,undefined);
+ const missingReport=renderWith(missing),missingSection=missingReport.split('## S03-02 —')[1].split('\n## ')[0];
+ assert.match(missingSection,/H1\+H2\+H3\+H4: unbekannt\/nicht verfügbar/);
+ assert.doesNotMatch(missingSection,/keine zusätzliche Routenberechnung angefordert|genaue Teilroutenzahlen/);
+ assert.doesNotMatch(missingReport,/S03-02\/H1\+H4 reproduziert|Die 32 zusätzlichen Wege/);
  assert.equal(route('B').status,'not-requested');
+ assert.match(renderStageReport(diagnoses,routes).split('## B —')[1].split('\n## ')[0],/keine zusätzliche Routenberechnung angefordert/);
  assert.throws(()=>buildRouteEvidence(input,['H1'],{maxNodes:250001}),/budget/);
  assert.throws(()=>buildRouteEvidence(input,['H1','H1']),/distinct/);
  assert.throws(()=>buildRouteEvidence(input,['H1','H2','H3','H4']),/three/);
  const altered=structuredClone(byId.get('C'));altered.states=altered.states.filter(s=>stateKey(s.clueIds)!=='H1');
  assert.equal(buildRouteEvidence(altered,['H1+H2']).singleIntersection.status,'unknown-missing-single-states');
+});
+
+test('Markdown distinguishes mixed complete/unknown states and absent route evidence',()=>{
+ const input=byId.get('S03-02'),mixed=buildRouteEvidence(input,['H1+H4','H1+H2+H3+H4']);
+ const report=renderStageReport(diagnoses,routes.map(r=>r.id===mixed.id?mixed:r));
+ const section=report.split('## S03-02 —')[1].split('\n## ')[0];
+ assert.match(section,/H1\+H4: vollständig berechnet/);
+ assert.match(section,/H1\+H2\+H3\+H4: unbekannt\/nicht verfügbar/);
+ assert.doesNotMatch(section,/keine zusätzliche Routenberechnung angefordert/);
+ assert.match(report,/S03-02\/H1\+H4 reproduziert 75 exakt unterstützte gegenüber 107/);
+ const absent=renderStageReport(diagnoses,routes.filter(r=>r.id!=='S03-02'));
+ assert.match(absent.split('## S03-02 —')[1].split('\n## ')[0],/Routenberechnung unbekannt\/nicht verfügbar/);
+ assert.doesNotMatch(absent,/S03-02\/H1\+H4 reproduziert|Die 32 zusätzlichen Wege/);
+});
+
+test('Markdown reproduction claims require complete parent, state and single-intersection evidence',()=>{
+ const renderWith=r=>renderStageReport(diagnoses,routes.map(original=>original.id===r.id?r:original));
+ const incompleteState=structuredClone(route('S03-02'));incompleteState.states[0].status='incomplete-budget';
+ const incompleteReport=renderWith(incompleteState);
+ assert.match(incompleteReport,/H1\+H4: wegen Budget unvollständig/);
+ assert.doesNotMatch(incompleteReport,/S03-02\/H1\+H4 reproduziert|Die 32 zusätzlichen Wege/);
+ const stale=structuredClone(route('S03-05'));stale.status='incomplete-budget';
+ const staleReport=renderWith(stale),staleSection=staleReport.split('## S03-05 —')[1].split('\n## ')[0];
+ assert.doesNotMatch(staleSection,/\| Lokal: Felder|genaue Teilroutenzahlen|\*\*509\*\*/);
+ assert.doesNotMatch(staleReport,/S03-05\/H2\+H3 besitzt acht|lässt sogar 509/);
+ const input=structuredClone(byId.get('S03-05'));input.states=input.states.filter(s=>stateKey(s.clueIds)!=='H1');
+ const missingSingle=buildRouteEvidence(input,['H2+H3']),report=renderWith(missingSingle);
+ assert.match(report,/S03-05\/H2\+H3 besitzt acht exakte Routen/);
+ assert.match(report,/Schnitt aller gespeicherten Einzelhinweise: unbekannt\/nicht verfügbar \(H1\)/);
+ assert.doesNotMatch(report,/lässt sogar 509 feldkompatible bzw. 301/);
+ const changed=structuredClone(route('S03-02'));
+ changed.states[0].exactSupported.routeCount=74;changed.states[0].recombinedExactFieldsAndEdges.routeCount=106;
+ const changedReport=renderWith(changed);
+ assert.match(changedReport,/S03-02\/H1\+H4 reproduziert 74 exakt unterstützte gegenüber 106/);
+ assert.doesNotMatch(changedReport,/S03-02\/H1\+H4 reproduziert 75/);
 });
 
 test('sources and exact projections are checked; changed logic or givens have distinct bindings',()=>{
