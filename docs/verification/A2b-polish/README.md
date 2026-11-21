@@ -88,8 +88,10 @@ separat gestartet, ihr Status steht im PR.
 
 Die Phasenprüfung setzt die unveränderten Animationen an definierte Zeitpunkte
 und prüft die getrennten Deckkräfte, gemeinsame Startzeiten und 4900-ms-Dauern.
-Ein separater Test lässt den Ablauf natürlich auslaufen: Entfernung nach etwa
-4900 ms (Messfenster 4800–5400 ms für Frame-/Beobachterzustellung). Schnelle
+Ein separater Test lässt alle acht Tracks natürlich mit exakt 4900 ms Dauer
+auslaufen. Die reale Abschlusszustellung erhält ein eigenes Beobachtungsfenster
+von insgesamt 7900 ms; nach dem letzten zugestellten Track ist das Aufräumen
+zusätzlich auf 1000 ms begrenzt (Begründung und Messwerte in der CI-Nachkorrektur). Schnelle
 Auslöser laufen zuletzt ebenfalls natürlich aus und prüfen unbehandelte
 Rejections sowie zurückbleibende Gruppen und Animationen.
 

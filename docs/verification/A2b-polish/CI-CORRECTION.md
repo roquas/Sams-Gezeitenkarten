@@ -103,3 +103,84 @@ und Redraws in allen vier Geräte-/Browserprofilen: Chromium **6/6**, WebKit
 **6/6 bestanden**. Zusätzlich besteht die explizite Nichtleer-/Positivbreitenprüfung
 mit jeweils **2/2** in beiden Browserfamilien. Der neue exakte Review-Head
 und der für ihn erneut gestartete vollständige CI-Lauf stehen im PR.
+
+## CI #479: Animationsdauer und Abschlusszustellung getrennt prüfen
+
+Ausgangspunkt: `27c69f594d93cbe60a740b1bb5169a4d8ab712a9`.
+[CI #479](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/44806070842),
+[WebKit-Shard 3 / Job 136530292746](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/44806070842/job/136530292746).
+Alle übrigen zwölf Jobs bestanden, einschließlich Chromium und Deployment.
+
+Die diagnostischen Messungen zeigen in beiden Versuchen acht regulär beendete
+Tracks mit exakt 4900 ms Dauer, gemeinsamem unverändertem Start und
+`currentTime: 4900`, `playState: finished`. Die alte Assertion setzte dennoch
+Animationsdauer und reale Callback-/Observer-Zustellung gleich:
+
+| Versuch | Beobachtete Entfernung | Abweichung vom nominellen 4900-ms-Ende | Entfernung nach letzter zugestellter Track-Fertigmeldung |
+| --- | ---: | ---: | ---: |
+| Erster | 5797 ms | 897 ms | 0 ms |
+| Retry | 5757 ms | 857 ms | 0 ms |
+
+Damit ist in diesen Messungen kein dauerhaftes Overlay nach zugestelltem
+Animationsabschluss belegt. Der zuvor erfolgreiche Linux-Lauf #478 hatte
+5164 ms beobachtet; #477 bis zu 6001 ms. Ein einzelner erfolgreicher Lauf
+rechtfertigte die feste 5400-ms-Wanduhrgrenze folglich nicht.
+
+### Korrigierter Prüfvertrag
+
+- Die Phasenprüfung bleibt unverändert streng: 0/200/400/900/1900/2900/3900/4899 ms,
+  unabhängige Papier-/Schriftdeckkräfte, acht Tracks, gemeinsame endliche
+  Startzeit und exakt 4900 ms Dauer. Acht Tracks sind jetzt ausdrücklich geprüft,
+  damit leere Animationslisten nicht scheinbar bestehen können.
+- Der natürliche Lauf verwendet weder Seek, `finish()`, `cancel()` noch
+  geänderte Animationsparameter. Alle acht Tracks müssen regulär erfüllen:
+  Dauer und Endzeit 4900 ms, keine Start-/Endverzögerung, eine Iteration,
+  Wiedergabefaktor 1, unveränderte gemeinsame Startzeiten, Endposition 4900 ms,
+  Zustand `finished`, keine abgelehnten Bereitschafts-/Abschlusspromises.
+- Nur die reale Abschlussbeobachtung erhält **4900 + 3000 = 7900 ms**. Der
+  zusätzliche Zustellungsspielraum von 3000 ms deckt die bisher größte gemessene
+  Abweichung von 1101 ms mit knapp 1900 ms Reserve. Er verändert keine
+  Animationsdauer und kein globales oder individuelles Test-Gesamtbudget.
+- Zusätzlich läuft nach dem letzten zugestellten Track ein separates
+  **1000-ms-Aufräumfenster**. Ein fertiger Track allein reicht nicht zum Bestehen:
+  die konkrete SVG-Gruppe muss entfernt sein; keine Labels, Overlay-Gruppen,
+  SVG-Animationen oder verbundenen Track-Ziele dürfen zurückbleiben. In den
+  beobachteten natürlichen Läufen benötigt dieser Schritt 0–1 ms.
+- Entfernung vor dem fachlichen Ende wird weiterhin ausgeschlossen: die
+  Dokumentzeit bei Entfernung muss mindestens `gemeinsame Startzeit + 4900`
+  erreichen. Bei jeder Beobachtungsauflösung werden Testtimer und Observer
+  entfernt; beide Promise-Ausgänge sind behandelt.
+
+`tests/helpers/place-reference-completion.mjs` enthält ausschließlich diesen
+Browser-Testbeobachter. Anwendungscode, Animationscontroller, Browserprofile,
+DPR, Trace-Einstellungen, fachliche Phasen und die übrigen Lebenszyklustests
+bleiben unverändert.
+
+### Nachweise
+
+[Gesicherte CI-Messungen, lokale Wiederholungen und Kontrollproben](ci-479-natural-completion.json).
+
+- WebKit Desktop (DPR 2) und Mobil, Phasen plus natürlicher Abschluss je dreimal:
+  **12/12 bestanden**, keine Skips oder Retries. Natürliche Entfernung nach
+  4904–5043 ms; Aufräumen nach letztem Track in 0–1 ms.
+- Chromium Desktop/Mobil, dieselben zwei Tests: **4/4 bestanden**.
+- Gezielte WebKit-Kontrollprobe mit 1400 ms blockiertem Hauptthread nahe dem
+  Animationsende: reguläre 4900-ms-Tracks, Abschlusszustellung/Entfernung nach
+  **6095 ms**, neues Beobachtungsfenster bestanden, kein Overlay zurückgeblieben.
+  Die frühere 5400-ms-Wanduhrassertion hätte diesen Fall fälschlich verworfen.
+- Unabhängige Negativkontrolle: ausschließlich das Entfernen der neuen
+  Vier-Label-Gruppe wird testweise unterdrückt. Alle acht Tracks enden regulär;
+  der Beobachter meldet trotzdem **`cleanup-timeout`** nach 5924 ms, letzte
+  Track-Fertigmeldung bei 4923 ms, eine Gruppe/vier Labels/acht gefüllte
+  Animationen bleiben erhalten. Das erkennt einen echten Aufräumfehler auch
+  innerhalb des großzügigeren Gesamtbeobachtungsfensters. Dieser Eingriff findet
+  ausschließlich in der lokalen Kontrollprobe statt, nicht im Anwendungscode
+  oder im natürlichen Regressionstest.
+
+```sh
+node node_modules/@playwright/test/cli.js test --config=playwright.webkit.config.mjs tests/browser/place-references.spec.mjs --grep 'independent paper|natural 4.9-second' --repeat-each=3
+node node_modules/@playwright/test/cli.js test tests/browser/place-references.spec.mjs --grep 'independent paper|natural 4.9-second' --workers=1
+```
+
+Der neue exakte Review-Head und die erneut gestartete vollständige CI stehen
+im PR. Die Nachkorrektur für #479 umfasst nur Tests und deren Nachweise.

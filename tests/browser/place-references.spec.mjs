@@ -1,5 +1,6 @@
 import {test,expect} from '../integration/webkit-startup.mjs';
 import {readFileSync} from 'node:fs';
+import {observePlaceReferenceCompletion} from '../helpers/place-reference-completion.mjs';
 const read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));
 const demo=read('puzzles/model-demo.json');
 const cell=(page,id)=>page.locator(`#map .cell[data-id="${id}"]`);
@@ -74,7 +75,8 @@ test('independent paper and ink phases share a clock and finish at 4.9 seconds',
   });
   return {starts,durations:animations.map(a=>a.effect.getTiming().duration),phases};
  });
- expect(new Set(phases.starts).size).toBe(1);expect(phases.durations.every(d=>d===4900)).toBe(true);
+ expect(phases.starts).toHaveLength(8);expect(phases.starts.every(t=>Number.isFinite(t))).toBe(true);
+ expect(new Set(phases.starts).size).toBe(1);expect(phases.durations).toEqual(Array(8).fill(4900));
  for(const p of phases.phases){
   if(p.time===0){expect(p.paper).toBe(0);expect(p.ink).toBe(0);}
   if(p.time===200){expect(p.paper).toBeGreaterThan(0);expect(p.paper).toBeLessThan(1);expect(p.ink).toBeCloseTo(p.paper);}
@@ -87,25 +89,28 @@ test('independent paper and ink phases share a clock and finish at 4.9 seconds',
  await page.locator('.place-references').evaluate(n=>n.getAnimations({subtree:true}).forEach(a=>{a.finish();}));
  await expect(labels(page)).toHaveCount(0);expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
 });
-test('normal animation expires naturally within the 4.9-second contract',async({page},info)=>{
+test('natural 4.9-second tracks finish and their delivered completion removes the overlay',async({page},info)=>{
  await open(page);
- const timing=await page.evaluate(()=>new Promise(resolve=>{
-  const button=document.getElementById('showPlaces');button.click();
-  const layer=document.querySelector('.place-references'),started=performance.now(),timelineStarted=document.timeline.currentTime;
-  const tracks=layer.getAnimations({subtree:true}).map(animation=>{
-   const sample=()=>({wall:performance.now()-started,timeline:document.timeline.currentTime,start:animation.startTime,current:animation.currentTime,state:animation.playState});
-   const track={duration:animation.effect.getTiming().duration,created:sample()};
-   animation.ready.then(()=>{track.ready=sample();},()=>{});
-   animation.finished.then(()=>{track.finished=sample();},()=>{});
-   return track;
-  });
-  const observer=new MutationObserver(()=>{if(!layer.isConnected){
-   observer.disconnect();resolve({elapsed:performance.now()-started,timelineStarted,timelineRemoved:document.timeline.currentTime,tracks});
-  }});
-  observer.observe(document.getElementById('map'),{childList:true});
- }));
+ // CI #477/#479 delivered native completion up to 1101 ms after the nominal
+ // end. Allow 3000 ms delivery headroom, not a longer animation. After the
+ // last finished callback, cleanup has its own, much shorter 1000 ms limit.
+ const deliveryTimeout=4900+3000,cleanupTimeout=1000;
+ const timing=await page.evaluate(observePlaceReferenceCompletion,{deliveryTimeout,cleanupTimeout});
  await info.attach('natural-animation-timing',{body:JSON.stringify(timing,null,2),contentType:'application/json'});
- expect(timing.elapsed).toBeGreaterThanOrEqual(4800);expect(timing.elapsed,JSON.stringify(timing)).toBeLessThan(5400);
+ expect(timing.reason,JSON.stringify(timing)).toBe('complete');
+ expect(timing.elapsed,JSON.stringify(timing)).toBeLessThanOrEqual(deliveryTimeout);
+ expect(timing.tracks).toHaveLength(8);
+ const starts=timing.tracks.map(t=>t.created.start);
+ expect(starts.every(t=>Number.isFinite(t))).toBe(true);expect(new Set(starts).size).toBe(1);
+ for(const track of timing.tracks){
+  expect(track).toMatchObject({duration:4900,delay:0,endDelay:0,iterations:1,endTime:4900,playbackRate:1,
+   created:{start:starts[0],current:0,state:'running'},ready:{start:starts[0]},
+   finished:{start:starts[0],current:4900,state:'finished'}});
+  expect(track.rejected).toBeUndefined();expect(track.readyRejected).toBeUndefined();
+ }
+ expect(timing.removed.timeline-starts[0]).toBeGreaterThanOrEqual(4900);
+ expect(timing.cleanupAfterLastTrack,JSON.stringify(timing)).toBeLessThanOrEqual(cleanupTimeout);
+ expect(timing).toMatchObject({overlayConnected:false,overlays:0,labels:0,svgAnimations:0,connectedTargets:0});
  await expect(labels(page)).toHaveCount(0);await expect(page.locator('.start-label, #map ellipse[data-start-marker]')).toHaveCount(0);
  await expect(page.locator('.start-glow')).toHaveCount(1);
 });
