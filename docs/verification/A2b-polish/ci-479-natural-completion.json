@@ -599,5 +599,28 @@
         4900
       ]
     }
-  ]
+  ],
+  "mainIntegration": {
+    "main": "756e53e",
+    "conflictingFiles": [
+      "tests/browser/place-references.spec.mjs"
+    ],
+    "applicationChanged": false,
+    "webkit": {
+      "startTime": "2026-11-21T21:26:36.914Z",
+      "duration": 40066.719,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "chromium": {
+      "startTime": "2026-11-21T21:28:23.638Z",
+      "duration": 34685.061,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  }
 }

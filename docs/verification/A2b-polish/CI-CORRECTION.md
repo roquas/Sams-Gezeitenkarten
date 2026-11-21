@@ -153,8 +153,9 @@ rechtfertigte die feste 5400-ms-Wanduhrgrenze folglich nicht.
 
 `tests/helpers/place-reference-completion.mjs` enthält ausschließlich diesen
 Browser-Testbeobachter. Anwendungscode, Animationscontroller, Browserprofile,
-DPR, Trace-Einstellungen, fachliche Phasen und die übrigen Lebenszyklustests
-bleiben unverändert.
+DPR, Trace-Einstellungen, fachliche Phasen und Test-Gesamtbudgets bleiben
+unverändert. Die Integration des inzwischen aktualisierten main ist unten
+separat erläutert.
 
 ### Nachweise
 
@@ -184,3 +185,27 @@ node node_modules/@playwright/test/cli.js test tests/browser/place-references.sp
 
 Der neue exakte Review-Head und die erneut gestartete vollständige CI stehen
 im PR. Die Nachkorrektur für #479 umfasst nur Tests und deren Nachweise.
+
+### Integration des inzwischen aktualisierten main
+
+Während der Nachkorrektur meldete GitHub PR #118 als konfliktbehaftet; daher
+wurde zunächst der vollständige Workflow ausdrücklich für den Zwischen-Head
+`e4dbfabedacef836a2ad359c268ca1144a820767` gestartet
+([Lauf 44951230777](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/44951230777)).
+Der lesende Vergleich zeigte ausschließlich Test-/Nachweisänderungen aus dem
+inzwischen gemergten PR #117, main `756e53e`. Konfliktbehaftet war nur
+`tests/browser/place-references.spec.mjs`, kein Anwendungscode.
+
+Der Merge erhält die neue Zweiphasenprüfung und den hier beschriebenen
+natürlichen Abschluss. Die Upstream-Korrektur für schnelle Neuauslösungen wird
+für die jetzt mehreren Tracks pro Labelgruppe übernommen: native Zeitleisten-
+und Abschlussbeobachtung statt Wanduhr-Schlafzeiten, sieben Triggergruppen mit
+46 Tracks (je zwei pro Label), unveränderte vollständige Lebensdauer und
+unveränderte 3500-ms-Aufräumfrist ab beobachtetem nativen Ende. Abbrüche,
+Einzelgruppen, Labels, alle Track-Zustände und unbehandelte Rejections bleiben
+geprüft; eigene Testbeobachter und Intervalle werden anschließend entsorgt.
+Historische Nachweise aus PR #117 bleiben erhalten.
+
+Die zusammengeführte Prüfung für Phasen, natürlichen Abschluss und native
+Mehrfachauslösung besteht in WebKit Desktop/Mobil mit **6/6** und Chromium
+Desktop/Mobil mit **6/6**, jeweils ohne Skips oder Retries. Der finale Review-Head und sein vollständiger CI-Lauf stehen im PR.

@@ -114,29 +114,89 @@ test('natural 4.9-second tracks finish and their delivered completion removes th
  await expect(labels(page)).toHaveCount(0);await expect(page.locator('.start-label, #map ellipse[data-start-marker]')).toHaveCount(0);
  await expect(page.locator('.start-glow')).toHaveCount(1);
 });
-test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName})=>{
- // CI traces show native WebKit clicks consuming 1.5–3 s each; the full
- // lifecycle plus eight triggers needs more than the default 30 s in total.
- // Keep the 3.5 s disappearance deadline and every behavioral assertion.
+test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName},info)=>{
  if(browserName==='webkit')test.setTimeout(60_000);
- const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.addInitScript(()=>{
-  window.addEventListener('unhandledrejection',e=>{throw e.reason;});
-  window.placeTracks=[];const animate=Element.prototype.animate;
+ await open(page);
+ // PR #117 observes native timeline/finished delivery rather than wall-time
+ // sleeps. A2b now has two tracks per label, so observe all tracks per group.
+ await page.evaluate(()=>{
+  const entries=[],refs=[],byNode=new WeakMap(),unhandled=[];
+  window.rapidLifecycle={entries,unhandled};
+  const rejection=e=>unhandled.push(String(e.reason));
+  window.addEventListener('unhandledrejection',rejection);
+  const animate=Element.prototype.animate;
   Element.prototype.animate=function(...args){
-   const animation=animate.apply(this,args);
-   if(this.closest('.place-references'))window.placeTracks.push(animation);
+   const animation=animate.apply(this,args),node=this.closest('.place-references');
+   if(!node)return animation;
+   let ref=byNode.get(node);
+   if(!ref){
+    const entry={tracks:[],samples:[]};ref={node,entry,animations:[]};
+    entries.push(entry);refs.push(ref);byNode.set(node,ref);
+    ref.sample=event=>{
+     entry.samples.push({event,wall:performance.now(),currentTimes:ref.animations.map(a=>a.currentTime),
+      states:ref.animations.map(a=>a.playState),connected:node.isConnected,
+      groups:document.querySelectorAll('#map .place-references').length,labels:document.querySelectorAll('#map .place-label').length});
+     if(!node.isConnected)clearInterval(ref.timer);
+    };
+    ref.timer=setInterval(()=>ref.sample('interval'),100);
+   }
+   ref.animations.push(animation);
+   const track={duration:animation.effect.getComputedTiming().duration,createdCurrent:animation.currentTime};
+   ref.entry.tracks.push(track);ref.sample('created');
+   animation.finished.then(()=>{
+    track.outcome='finished';
+    if(ref.entry.tracks.every(t=>t.outcome==='finished'))ref.entry.finishedAt=performance.now();
+    ref.sample('finished');
+   },error=>{track.outcome=error.name;ref.sample('rejected');});
    return animation;
   };
+  const observer=new MutationObserver(()=>refs.forEach(({node,entry})=>{
+   if(!node.isConnected&&entry.removedAt===undefined)entry.removedAt=performance.now();
+  }));
+  observer.observe(document.querySelector('#map'),{childList:true});
+  window.rapidAnimationStates=()=>refs.flatMap(({node,animations})=>animations.map(animation=>({connected:node.isConnected,playState:animation.playState,pending:animation.pending})));
+  window.disposeRapidProbe=()=>{
+   observer.disconnect();refs.forEach(ref=>clearInterval(ref.timer));
+   Element.prototype.animate=animate;window.removeEventListener('unhandledrejection',rejection);
+  };
  });
- await open(page);await page.locator('#showPlaces').click();await page.waitForTimeout(2200);
- for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
- await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
- await page.waitForTimeout(3400);await expect(labels(page)).toHaveCount(4);
- // Old completions must not remove this newer group; no animation backlog remains.
- await expect(labels(page)).toHaveCount(0,{timeout:3500});
- expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);expect(errors).toEqual([]);
- expect(await page.evaluate(()=>window.placeTracks.length>8&&window.placeTracks.every(a=>['idle','finished'].includes(a.playState)))).toBe(true);
+ try{
+  await page.locator('#showPlaces').click();
+  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries[0]?.samples.some(s=>
+   s.connected&&s.states.every(v=>v==='running')&&s.currentTimes.every(t=>t>=2200)))).toBe(true);
+  for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
+  await expect(page.locator('.place-references')).toHaveCount(1);
+  await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
+  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
+   s.connected&&s.currentTimes.every(t=>t>=3400)&&s.groups===1&&s.labels===4))).toBe(true);
+  // Preserve PR #117's 3.5s cleanup deadline, starting at native end observation.
+  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
+   s.states.every(v=>v==='finished')))).toBe(true);
+  await expect(labels(page)).toHaveCount(0,{timeout:3500});
+  await expect(page.locator('.place-references')).toHaveCount(0);
+  const report=await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()}));
+  expect(report.entries).toHaveLength(7);
+  expect(report.entries.map(e=>e.tracks.length)).toEqual([8,2,8,8,8,4,8]);
+  const tracks=report.entries.flatMap(e=>e.tracks);
+  expect(tracks.map(t=>t.duration)).toEqual(Array(46).fill(4900));
+  expect(tracks.map(t=>t.createdCurrent)).toEqual(Array(46).fill(0));
+  expect(report.entries.flatMap(e=>e.samples).every(s=>s.groups<=1&&s.labels<=4)).toBe(true);
+  expect(tracks.every(t=>['AbortError','finished'].includes(t.outcome))).toBe(true);
+  expect(tracks.filter(t=>t.outcome==='AbortError').length).toBeGreaterThan(0);
+  const last=report.entries.at(-1);
+  expect(last.tracks.every(t=>t.outcome==='finished')).toBe(true);
+  expect(last.removedAt).toBeGreaterThanOrEqual(last.finishedAt);
+  expect(last.removedAt-last.finishedAt).toBeLessThan(3500);
+  const endObservedAt=last.samples.find(s=>s.states.every(v=>v==='finished')).wall;
+  expect(last.removedAt).toBeGreaterThanOrEqual(endObservedAt);
+  expect(last.removedAt-endObservedAt).toBeLessThan(3500);
+  expect(report.states.every(s=>!s.connected&&!s.pending&&['idle','finished'].includes(s.playState))).toBe(true);
+  expect(report.unhandled).toEqual([]);
+  expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+ }finally{
+  await info.attach('rapid-place-lifecycle',{body:JSON.stringify(await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()})),null,2),contentType:'application/json'});
+  await page.evaluate(()=>window.disposeRapidProbe());
+ }
 });
 test('reduced motion is immediate but still expires and does not retrigger on ordinary renders',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await open(page);
