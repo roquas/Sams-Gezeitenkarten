@@ -67,7 +67,7 @@ test('rules incorporate all editorial corrections without inventing a global dis
  await expect(rules.locator('h3')).toBeVisible();
  for(const text of ['aufeinanderfolgende Blätter','Wattenmeer','wo','wann','Land ist nicht befahrbar','Befahrbare Orte','nicht in jedem Rätsel','beispielsweise','In allen Stunden radieren','unterhalb der Karte','Stunden nacheinander','Schritte nummerieren','Notizprüfung (hier in der Hilfe weiter unten','Denkanstoß (hier in der Hilfe weiter unten'])await expect(rules).toContainText(text);
  await expect(rules).not.toContainText('eine Berührung an der Ecke');await expect(rules).not.toContainText('Das Riff bei Alpha/Violett');
- await expect(page.locator('#mapActions button')).toHaveCount(7);
+ await expect(page.locator('#mapActions button')).toHaveCount(8);
 });
 for(const width of [1440,1024,900,768,540,390,320])test.describe(`rail screenshot viewport ${width}px`,()=>{
  test.use({viewport:{width,height:width===1440?1080:844}});

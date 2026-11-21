@@ -58,7 +58,8 @@ for(const width of [320,390,768])test.describe(`mobile navigation layout ${width
  });
 });
 test('chart labels sit in parchment, are legible and do not intercept map controls',async({page})=>{
- await expect(page.locator('#map .place-label')).toHaveCount(3);
+ await expect(page.locator('#map .reference-label')).toHaveCount(0);await page.locator('#showPlaces').click();
+ await expect(page.locator('#map .place-label')).toHaveCount(2);
  for(const width of [390,1440]){
   await page.setViewportSize({width,height:1000});
   const labels=await page.locator('#map .place-label').evaluateAll(ns=>ns.map(n=>{
