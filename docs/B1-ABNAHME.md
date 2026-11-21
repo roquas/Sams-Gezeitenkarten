@@ -433,3 +433,45 @@ Landingpage-Gestaltung, illustrierte/redaktionelle Regeln, Koordinatenformat der
 Regeln, ein sechsstündiges Demonstrationsrätsel und neue Generatorfunktionen
 sind nicht Bestandteil dieser Integration. Die unabhängige Integrationsreview
 mit Schwerpunkt Erhalt von A2b bleibt erforderlich; es erfolgt kein PR-Merge.
+
+## Abschließende main-Integration nach PR #115 (S04-B)
+
+Tatsächlicher B1-Ausgangspunkt ist `5c19f086ee959e79ac4199ee0d16e32984ef8967`,
+der bereits `528a05d` (R1/R2) und A2b-main `4d7c3ac` enthält. Der nun aktuelle
+main `8dafebfec0fdd87d22ba378a3dad360358408519` ist der verifizierte Merge von
+PR #115 (S04-B, Head `7676d7c`). Beide Merges #115/#118 sind darin enthalten.
+Vor der Integration lagen vier B1-eigene und sechs main-eigene Commits vor.
+
+Die Integration erfolgt erneut als main-Merge in den bestehenden B1-Branch.
+**Keine Textkonflikte:** Alle 21 seit A2b-main geänderten S04-B-Dateien werden
+automatisch übernommen. Die Normalisierung, Kandidatensuche, Herkunftsprüfung,
+S04-B-Nachweise und ihre Regressionstests entsprechen unverändert `8dafebf`.
+Sämtliche bereits integrierten UI-/A2b-/B1-Dateien und R1-/R2-Tests entsprechen
+unverändert `5c19f08`. Es gibt keine erneute Implementierung von #115 oder #118.
+
+S04-B ändert private Kandidatenvorbereitung/Herkunftsverträge und die Politik
+neuer Suchläufe. Historische S02-/S03-/Suchvergleichsläufe bleiben ausdrücklich
+auf ihren festgehaltenen Politiken/Programmständen. Öffentlicher Rätselkatalog,
+öffentliche Datenformate, Engine, Solver und npm-Abhängigkeiten werden durch
+diesen Merge nicht zusätzlich verändert. Der bereits vorhandene B1-npm-Befehl
+`test:beta` bleibt erhalten. Die Quellenprüfungen benötigen die vollständigen
+Git-Objekte und einen auf den verifizierten main gesetzten `origin/main`-Ref.
+Die eingefrorenen Reproduktionen werden mit dem aufgezeichneten Node v24.19.0
+geprüft; die normale Unit-Suite verwendet Node 22. Auf macOS benötigen die
+Dateifixtures `TMPDIR=/private/tmp` und die vorhandenen Pillow-/numpy-Werkzeuge.
+
+Der vorherige lokale A2b-Gesamtnachweis bestand 136 Browserfälle bei vier bereits
+vorhandenen Maus-/Touch-Geräteskips; die damalige CI bestand 406 Unitfälle.
+Im weiterlaufenden alten CI-Lauf `44954733220` ist anschließend ein Fehler bei
+WebKit/reduzierter Bewegung sichtbar geworden: Nach manueller Ortsanzeige standen
+vier Labels noch an der viersekündigen Wall-Clock-Prüfstelle. Dieser Befund trat
+**vor** der Übernahme von #115 auf und wird getrennt untersucht. Er ist nicht
+als neue Engine-/Generatorregression zu werten. Auf dem A2b-main-Lauf
+`44953860888` war außerdem ein anderer bestehender Touch-/Scrollfall flaky.
+Die Befunde werden nicht durch Retries, neue Skips oder Engineänderungen verdeckt.
+
+Die abschließenden Tests, eine etwaige gesonderte testbezogene Korrektur und die
+CI des finalen Heads werden im PR-Bericht mit Ergebnissen und Einschränkungen
+zugeordnet. Der abschließende CI-Lauf wird erst nach den lokalen Prüfungen
+angefordert. Keine funktionale Erweiterung, keine optische/Regelüberarbeitung
+und kein Merge von PR #116 in main.

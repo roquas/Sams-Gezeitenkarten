@@ -1,0 +1,75 @@
+{
+  "format": "candidate-origins-1",
+  "policy": "count-distance-extremes-1",
+  "entries": [
+    {
+      "attemptId": "S04-B-reference-06",
+      "variant": "gk-variant-v2-sha256:32bed5b659a1f53e3f65fdd71e4a9c65060f55493146c7f32d9756860d79f8ca",
+      "status": "normalized",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 1,
+          "fromHour": 4,
+          "id": "H1",
+          "placeId": "geo-03",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 3,
+          "id": "H2",
+          "placeId": "geo-01",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 4,
+          "id": "H3",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 6,
+          "fromHour": 1,
+          "id": "H4",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 3,
+          "id": "H5",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 3,
+          "distance": 2,
+          "fromHour": 1,
+          "id": "H6",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "source": {
+        "kind": "git-record",
+        "commit": "974931e95d434a35ce34094f4d5244e289d6fd76",
+        "path": "docs/verification/S03-v2/run/candidates.jsonl",
+        "candidateId": "gk-s03-v2-run-sha256:06482bf625006e10ce844b47105fbc54df23c232911cbc828833d96f7eae0f58/M014/gk-variant-v2-sha256:25d0c81d39abf535da14031d6c8493079cc17c8f4c4004ae9794888e9cf81d3c",
+        "recordSha256": "cd3b8f2f3724c6c14e550d28918d5f6069c272503b77891a2c929a4c2394ff04"
+      },
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:53b467752be20274ac1d14c9593d95000aa59839bf0fee8d9f506215aefea1d4"
+    }
+  ]
+}
