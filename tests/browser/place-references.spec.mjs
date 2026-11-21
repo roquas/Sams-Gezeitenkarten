@@ -1,9 +1,10 @@
 import {test,expect} from '../integration/webkit-startup.mjs';
 import {readFileSync} from 'node:fs';
+import {observePlaceReferenceCompletion} from '../helpers/place-reference-completion.mjs';
 const read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));
 const demo=read('puzzles/model-demo.json');
 const cell=(page,id)=>page.locator(`#map .cell[data-id="${id}"]`);
-const labels=page=>page.locator('#map .reference-label');
+const labels=page=>page.locator('#map .place-label');
 const names=page=>labels(page).locator('text');
 const saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));
 function fixture(){
@@ -23,14 +24,14 @@ async function open(page,dto=fixture()){
  await expect(page.locator('#puzzleLoadError')).toBeHidden();
 }
 test('initial clue shows exactly its explicit places on first start and saved-game reload',async({page})=>{
- await open(page);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling']);
+ await open(page);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Start']);
  await cell(page,'A1').focus();await page.keyboard.press('Enter');
- await page.reload();await expect(names(page)).toHaveText(['Roberts Boot','Zwilling']);
+ await page.reload();await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Start']);
  expect((await saved(page)).marks).toEqual({'1:A1':'maybe'});
  await expect(cell(page,'A1')).toContainText('?');
 });
 test('navigation replaces references, checkboxes do not retrigger, and a clue without references clears immediately',async({page})=>{
- await open(page);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling']);
+ await open(page);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Start']);
  await page.locator('#nextClue').click();await expect(names(page)).toHaveText(['Kiste']);
  // Check off the current clue via keyboard. The visible group stays the same.
  await page.locator('.place-references').evaluate(n=>window.referenceGroup=n);
@@ -51,172 +52,158 @@ test('manual action shows each named instance once, including passable hexes, ex
  await page.route('**/assets/catalog/library.json',r=>r.fulfill({json:library}));
  await open(page,dto);
  await page.locator('#showPlaces').focus();await page.keyboard.press('Enter');
- await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
+ await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
  await expect(page.locator('[data-label-object="o1"]')).toHaveAttribute('data-label-cells','A5 B5');
  await expect(page.locator('[data-label-object="o2"]')).toHaveAttribute('data-label-cells','B2 C2');
  await expect(page.locator('[data-label-object="o4"]')).toHaveAttribute('data-label-cells','D3');
  await expect(page.locator('[data-placement-id="flavor"]')).toHaveCount(1);
  await expect(page.locator('[data-label-object="o3"]')).toHaveCount(0);
  const positions=await labels(page).evaluateAll(ns=>ns.map(n=>({id:n.dataset.labelObject,x:n.transform.baseVal.getItem(0).matrix.e,y:n.transform.baseVal.getItem(0).matrix.f})));
- expect(positions).toEqual([{id:'o1',x:101,y:328},{id:'o2',x:224,y:124},{id:'o4',x:306,y:192}]);
+ expect(positions).toEqual([{id:'o1',x:101,y:328},{id:'o2',x:224,y:124},{id:'o4',x:306,y:192},{id:undefined,x:60,y:328}]);
  await page.waitForTimeout(500);
  const path=info.outputPath('place-references-'+(isMobile?'mobile':'desktop')+'.png');
  await page.locator('.mapbox').screenshot({path,scale:'css'});
  await page.locator('#mapActions').screenshot({path:info.outputPath('place-actions-'+(isMobile?'mobile':'desktop')+'.png'),scale:'css'});await info.attach('multiple places including multihex',{path,contentType:'image/png'});
 });
-test('normal fade reaches a visible hold, completes, and restores the ordinary chart',async({page},info)=>{
- await open(page);
- // Observe in the renderer before the native trigger. Node timers and protocol
- // round trips do not measure the Web Animation's start or sampled frame time.
- // Retain phase evidence even if the test process receives it much later.
- await page.evaluate(()=>{
-  const lifecycle=window.placeLifecycle={samples:[],finished:false,removed:false};
-  const observer=new MutationObserver(records=>{
-   const group=records.flatMap(r=>[...r.addedNodes]).find(n=>n.nodeType===1&&n.matches('.place-references'));
-   if(!group)return;
-   observer.disconnect();
-   const animation=group.getAnimations()[0];
-   const sample=()=>{
-    const style=getComputedStyle(group),rect=group.getBoundingClientRect();
-    const state={wall:performance.now(),currentTime:animation.currentTime,startTime:animation.startTime,
-     playState:animation.playState,pending:animation.pending,opacity:+style.opacity,
-     visible:group.isConnected&&style.display!=='none'&&style.visibility==='visible'&&rect.width>0&&rect.height>0,
-     inViewport:rect.bottom>0&&rect.right>0&&rect.top<innerHeight&&rect.left<innerWidth};
-    lifecycle.samples.push(state);
-    lifecycle.removed=!group.isConnected;
-    if(!group.isConnected)clearInterval(timer);
-   };
-   animation.finished.then(()=>{lifecycle.finished=true;},()=>{lifecycle.cancelled=true;});
-   const timer=setInterval(sample,100);
-   sample();
-  });
-  observer.observe(document.querySelector('#map'),{childList:true});
- });
- try{
-  await page.locator('#showPlaces').click();
-  await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
-  // Visibility alone ignores opacity in Playwright. Require a rendered,
-  // non-transparent hold on the actual timeline, not merely existing labels.
-  await expect.poll(()=>page.evaluate(()=>window.placeLifecycle.samples.some(s=>
-   s.visible&&s.inViewport&&s.opacity===1&&!s.pending&&s.playState==='running'&&s.currentTime>=400&&s.currentTime<=3400))).toBe(true);
-  await expect.poll(()=>page.evaluate(()=>window.placeLifecycle.samples.some(s=>
-   s.currentTime>3400&&s.opacity>0&&s.opacity<1))).toBe(true);
-  await expect(labels(page)).toHaveCount(0,{timeout:3500});
-  await expect(page.locator('.place-references')).toHaveCount(0);
-  expect(await page.evaluate(()=>window.placeLifecycle.finished)).toBe(true);
-  expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
-  await expect(page.locator('.start-label')).toHaveText('Start');
-  await expect(page.locator('[data-start-marker]')).toHaveCount(1);
- }finally{
-  await info.attach('place-lifecycle',{body:JSON.stringify(await page.evaluate(()=>window.placeLifecycle),null,2),contentType:'application/json'});
- }
-});
-test('place animation renders fade-in, the full hold, and fade-out at its own timeline positions',async({page})=>{
+test('independent paper and ink phases share a clock and finish at 4.9 seconds',async({page})=>{
  await open(page);await page.locator('#showPlaces').click();
- const group=page.locator('.place-references');
- // A separate rendering contract samples each phase deterministically. Seeking
- // is confined to this test; the test above requires unmodified native playback
- // and natural finished/DOM cleanup, so seeking cannot hide a stalled animation.
- const phases=await group.evaluate(async node=>{
-  const animation=node.getAnimations()[0];
-  animation.pause();await animation.ready;
-  const duration=animation.effect.getComputedTiming().duration;
-  const samples=[0,200,400,1900,3399,3400,4400,5399].map(time=>{
-   animation.currentTime=time;
-   return {time,opacity:+getComputedStyle(node).opacity};
+ const phases=await page.locator('.place-references').evaluate(layer=>{
+  const animations=layer.getAnimations({subtree:true}),starts=animations.map(a=>a.startTime);
+  const phases=[0,200,400,900,1900,2900,3900,4899].map(time=>{
+   animations.forEach(a=>{a.pause();a.currentTime=time;});
+   return {time,paper:+getComputedStyle(layer.querySelector('.label-paper')).opacity,ink:+getComputedStyle(layer.querySelector('.label-ink')).opacity};
   });
-  animation.play();
-  return {duration,samples};
+  return {starts,durations:animations.map(a=>a.effect.getTiming().duration),phases};
  });
- expect(phases.duration).toBe(5400);
- const opacity=phases.samples.map(s=>s.opacity);
- expect(opacity[0]).toBe(0);
- expect(opacity[1]).toBeGreaterThan(0);expect(opacity[1]).toBeLessThan(1);
- expect(opacity.slice(2,6)).toEqual([1,1,1,1]);
- expect(opacity[6]).toBeGreaterThan(0);expect(opacity[6]).toBeLessThan(1);
- expect(opacity[7]).toBeGreaterThanOrEqual(0);expect(opacity[7]).toBeLessThan(opacity[6]);
- await expect(labels(page)).toHaveCount(0,{timeout:3500});
- await expect(group).toHaveCount(0);
+ expect(phases.starts).toHaveLength(8);expect(phases.starts.every(t=>Number.isFinite(t))).toBe(true);
+ expect(new Set(phases.starts).size).toBe(1);expect(phases.durations).toEqual(Array(8).fill(4900));
+ for(const p of phases.phases){
+  if(p.time===0){expect(p.paper).toBe(0);expect(p.ink).toBe(0);}
+  if(p.time===200){expect(p.paper).toBeGreaterThan(0);expect(p.paper).toBeLessThan(1);expect(p.ink).toBeCloseTo(p.paper);}
+  if(p.time===400||p.time===900){expect(p.paper).toBe(1);expect(p.ink).toBe(1);}
+  if(p.time===1900){expect(p.paper).toBeGreaterThan(0);expect(p.paper).toBeLessThan(1);expect(p.ink).toBe(1);}
+  if(p.time>=2900)expect(p.paper).toBe(0);
+  if(p.time===2900)expect(p.ink).toBe(1);
+  if(p.time===3900){expect(p.ink).toBeGreaterThan(0);expect(p.ink).toBeLessThan(1);}
+ }
+ await page.locator('.place-references').evaluate(n=>n.getAnimations({subtree:true}).forEach(a=>{a.finish();}));
+ await expect(labels(page)).toHaveCount(0);expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
+});
+test('natural 4.9-second tracks finish and their delivered completion removes the overlay',async({page},info)=>{
+ await open(page);
+ // CI #477/#479 delivered native completion up to 1101 ms after the nominal
+ // end. Allow 3000 ms delivery headroom, not a longer animation. After the
+ // last finished callback, cleanup has its own, much shorter 1000 ms limit.
+ const deliveryTimeout=4900+3000,cleanupTimeout=1000;
+ const timing=await page.evaluate(observePlaceReferenceCompletion,{deliveryTimeout,cleanupTimeout});
+ await info.attach('natural-animation-timing',{body:JSON.stringify(timing,null,2),contentType:'application/json'});
+ expect(timing.reason,JSON.stringify(timing)).toBe('complete');
+ expect(timing.elapsed,JSON.stringify(timing)).toBeLessThanOrEqual(deliveryTimeout);
+ expect(timing.tracks).toHaveLength(8);
+ const starts=timing.tracks.map(t=>t.created.start);
+ expect(starts.every(t=>Number.isFinite(t))).toBe(true);expect(new Set(starts).size).toBe(1);
+ for(const track of timing.tracks){
+  expect(track).toMatchObject({duration:4900,delay:0,endDelay:0,iterations:1,endTime:4900,playbackRate:1,
+   created:{start:starts[0],current:0,state:'running'},ready:{start:starts[0]},
+   finished:{start:starts[0],current:4900,state:'finished'}});
+  expect(track.rejected).toBeUndefined();expect(track.readyRejected).toBeUndefined();
+ }
+ expect(timing.removed.timeline-starts[0]).toBeGreaterThanOrEqual(4900);
+ expect(timing.cleanupAfterLastTrack,JSON.stringify(timing)).toBeLessThanOrEqual(cleanupTimeout);
+ expect(timing).toMatchObject({overlayConnected:false,overlays:0,labels:0,svgAnimations:0,connectedTargets:0});
+ await expect(labels(page)).toHaveCount(0);await expect(page.locator('.start-label, #map ellipse[data-start-marker]')).toHaveCount(0);
+ await expect(page.locator('.start-glow')).toHaveCount(1);
 });
 test('rapid manual and clue triggers replace one animation and restart its complete lifetime',async({page,browserName},info)=>{
  if(browserName==='webkit')test.setTimeout(60_000);
  await open(page);
- // Observe the same native animations returned to the controller. No pause,
- // seek, finish, cancellation, changed durations, or wall-time sleeps.
+ // PR #117 observes native timeline/finished delivery rather than wall-time
+ // sleeps. A2b now has two tracks per label, so observe all tracks per group.
  await page.evaluate(()=>{
-  const entries=[],refs=[],unhandled=[];
+  const entries=[],refs=[],byNode=new WeakMap(),unhandled=[];
   window.rapidLifecycle={entries,unhandled};
-  window.addEventListener('unhandledrejection',e=>unhandled.push(String(e.reason)));
+  const rejection=e=>unhandled.push(String(e.reason));
+  window.addEventListener('unhandledrejection',rejection);
   const animate=Element.prototype.animate;
   Element.prototype.animate=function(...args){
-   const animation=animate.apply(this,args);
-   if(!this.matches('.place-references'))return animation;
-   const node=this,entry={duration:animation.effect.getComputedTiming().duration,samples:[]};
-   entries.push(entry);refs.push({node,animation});
-   const sample=event=>{
-    entry.samples.push({event,wall:performance.now(),currentTime:animation.currentTime,startTime:animation.startTime,
-     playState:animation.playState,pending:animation.pending,connected:node.isConnected,
-     groups:document.querySelectorAll('#map .place-references').length,labels:document.querySelectorAll('#map .reference-label').length});
-    if(!node.isConnected)clearInterval(timer);
-   };
-   const timer=setInterval(()=>sample('interval'),100);
-   sample('created');
-   animation.finished.then(()=>{entry.outcome='finished';entry.finishedAt=performance.now();sample('finished');},e=>{
-    entry.outcome=e.name;sample('rejected');
-   });
+   const animation=animate.apply(this,args),node=this.closest('.place-references');
+   if(!node)return animation;
+   let ref=byNode.get(node);
+   if(!ref){
+    const entry={tracks:[],samples:[]};ref={node,entry,animations:[]};
+    entries.push(entry);refs.push(ref);byNode.set(node,ref);
+    ref.sample=event=>{
+     entry.samples.push({event,wall:performance.now(),currentTimes:ref.animations.map(a=>a.currentTime),
+      states:ref.animations.map(a=>a.playState),connected:node.isConnected,
+      groups:document.querySelectorAll('#map .place-references').length,labels:document.querySelectorAll('#map .place-label').length});
+     if(!node.isConnected)clearInterval(ref.timer);
+    };
+    ref.timer=setInterval(()=>ref.sample('interval'),100);
+   }
+   ref.animations.push(animation);
+   const track={duration:animation.effect.getComputedTiming().duration,createdCurrent:animation.currentTime};
+   ref.entry.tracks.push(track);ref.sample('created');
+   animation.finished.then(()=>{
+    track.outcome='finished';
+    if(ref.entry.tracks.every(t=>t.outcome==='finished'))ref.entry.finishedAt=performance.now();
+    ref.sample('finished');
+   },error=>{track.outcome=error.name;ref.sample('rejected');});
    return animation;
   };
-  new MutationObserver(()=>refs.forEach(({node},i)=>{
-   if(!node.isConnected&&entries[i].removedAt===undefined)entries[i].removedAt=performance.now();
-  })).observe(document.querySelector('#map'),{childList:true});
-  window.rapidAnimationStates=()=>refs.map(({node,animation})=>({connected:node.isConnected,playState:animation.playState,pending:animation.pending}));
+  const observer=new MutationObserver(()=>refs.forEach(({node,entry})=>{
+   if(!node.isConnected&&entry.removedAt===undefined)entry.removedAt=performance.now();
+  }));
+  observer.observe(document.querySelector('#map'),{childList:true});
+  window.rapidAnimationStates=()=>refs.flatMap(({node,animations})=>animations.map(animation=>({connected:node.isConnected,playState:animation.playState,pending:animation.pending})));
+  window.disposeRapidProbe=()=>{
+   observer.disconnect();refs.forEach(ref=>clearInterval(ref.timer));
+   Element.prototype.animate=animate;window.removeEventListener('unhandledrejection',rejection);
+  };
  });
  try{
   await page.locator('#showPlaces').click();
   await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries[0]?.samples.some(s=>
-   s.connected&&s.playState==='running'&&s.currentTime>=2200))).toBe(true);
+   s.connected&&s.states.every(v=>v==='running')&&s.currentTimes.every(t=>t>=2200)))).toBe(true);
   for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
   await expect(page.locator('.place-references')).toHaveCount(1);
-  await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
-  // A replaced animation must not shorten the last group's own lifetime.
-  // Keep renderer-side evidence if protocol replies arrive after this phase.
+  await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
   await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
-   s.connected&&s.currentTime>=3400&&s.groups===1&&s.labels===3))).toBe(true);
-  // playState can reach the end before WebKit dispatches the native finished
-  // promise. Start the unchanged cleanup deadline at observed animation end.
+   s.connected&&s.currentTimes.every(t=>t>=3400)&&s.groups===1&&s.labels===4))).toBe(true);
+  // Preserve PR #117's 3.5s cleanup deadline, starting at native end observation.
   await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
-   s.playState==='finished'))).toBe(true);
+   s.states.every(v=>v==='finished')))).toBe(true);
   await expect(labels(page)).toHaveCount(0,{timeout:3500});
   await expect(page.locator('.place-references')).toHaveCount(0);
   const report=await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()}));
   expect(report.entries).toHaveLength(7);
-  expect(report.entries.map(e=>e.duration)).toEqual(Array(7).fill(5400));
-  expect(report.entries.map(e=>e.samples[0].currentTime)).toEqual(Array(7).fill(0));
-  expect(report.entries.flatMap(e=>e.samples).every(s=>s.groups<=1&&s.labels<=3)).toBe(true);
-  expect(report.entries.slice(0,-1).every(e=>['AbortError','finished'].includes(e.outcome))).toBe(true);
-  // Native clicks can be slow enough for an older animation to finish before
-  // its next trigger. Still require actual overlapping lifetimes and aborts.
-  expect(report.entries.slice(0,-1).filter(e=>e.outcome==='AbortError').length).toBeGreaterThan(0);
+  expect(report.entries.map(e=>e.tracks.length)).toEqual([8,2,8,8,8,4,8]);
+  const tracks=report.entries.flatMap(e=>e.tracks);
+  expect(tracks.map(t=>t.duration)).toEqual(Array(46).fill(4900));
+  expect(tracks.map(t=>t.createdCurrent)).toEqual(Array(46).fill(0));
+  expect(report.entries.flatMap(e=>e.samples).every(s=>s.groups<=1&&s.labels<=4)).toBe(true);
+  expect(tracks.every(t=>['AbortError','finished'].includes(t.outcome))).toBe(true);
+  expect(tracks.filter(t=>t.outcome==='AbortError').length).toBeGreaterThan(0);
   const last=report.entries.at(-1);
-  expect(last.outcome).toBe('finished');
+  expect(last.tracks.every(t=>t.outcome==='finished')).toBe(true);
   expect(last.removedAt).toBeGreaterThanOrEqual(last.finishedAt);
   expect(last.removedAt-last.finishedAt).toBeLessThan(3500);
-  const endObservedAt=last.samples.find(s=>s.playState==='finished').wall;
+  const endObservedAt=last.samples.find(s=>s.states.every(v=>v==='finished')).wall;
   expect(last.removedAt).toBeGreaterThanOrEqual(endObservedAt);
   expect(last.removedAt-endObservedAt).toBeLessThan(3500);
-  expect(report.states).toEqual(Array.from({length:7},()=>({connected:false,playState:'idle',pending:false})));
+  expect(report.states.every(s=>!s.connected&&!s.pending&&['idle','finished'].includes(s.playState))).toBe(true);
   expect(report.unhandled).toEqual([]);
   expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);
  }finally{
   await info.attach('rapid-place-lifecycle',{body:JSON.stringify(await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()})),null,2),contentType:'application/json'});
+  await page.evaluate(()=>window.disposeRapidProbe());
  }
 });
 test('reduced motion is immediate but still expires and does not retrigger on ordinary renders',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await open(page);
- expect(await page.locator('.place-references').evaluate(n=>+getComputedStyle(n).opacity)).toBe(1);
+ expect(await page.locator('.label-paper').first().evaluate(n=>+getComputedStyle(n).opacity)).toBe(1);
  await page.waitForTimeout(1800);await cell(page,'A1').focus();await page.keyboard.press('Enter');
  await expect(labels(page)).toHaveCount(0,{timeout:2200});
- await page.locator('#showPlaces').click();await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);
+ await page.locator('#showPlaces').click();await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
  await expect(labels(page)).toHaveCount(0,{timeout:4000});
 });
 test('overlay passes pointer and keyboard operations through, preserves route, radar, marks, undo and persistence',async({page,isMobile,browserName})=>{
@@ -270,8 +257,8 @@ test('puzzle selection cancels old labels and starts the new initial clue, inclu
  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
  await page.locator('#puzzleSelect').evaluate(n=>n.closest('details').open=true);
  await page.locator('#puzzleSelect').selectOption('other-demo');
- await expect(page.locator('h1')).toHaveText('Andere Karte');await expect(names(page)).toHaveText(['Kiste']);
- await page.reload();await expect(names(page)).toHaveText(['Kiste']);
+ await expect(page.locator('h1')).toHaveText('Andere Karte');await expect(names(page)).toHaveText(['Kiste','Start']);
+ await page.reload();await expect(names(page)).toHaveText(['Kiste','Start']);
 });
 test('touch swipe replaces the displayed hint references without marking or checking a clue',async({page,isMobile})=>{
  test.skip(!isMobile,'Touch navigation is checked on the mobile project.');
@@ -280,4 +267,78 @@ test('touch swipe replaces the displayed hint references without marking or chec
  await page.locator('#clueViewport').dispatchEvent('touchend',{changedTouches:[{identifier:0,clientX:80,clientY:102}]});
  await expect(page.locator('#cluePosition')).toHaveText('Ort / III');await expect(names(page)).toHaveText(['Kiste']);
  expect((await saved(page)).doneClues).toEqual([]);expect((await saved(page)).marks).toEqual({});
+});
+
+test('start inner glow is unique, clipped to illustrated start hex, and below route and interaction ink',async({page,isMobile})=>{
+ const dto=structuredClone(demo);dto.puzzle.logic.start='D3';
+ for(const clue of dto.puzzle.logic.clues){
+  clue.direction='W';dto.puzzle.presentation.clueTexts[clue.id]=`In Stunde ${clue.hour} fuhren wir nach Westen.`;
+ }
+ dto.puzzle.presentation.hints=['Die erste Etappe führt von D3 nach C3.'];
+ await open(page,dto);await page.locator('#nextClue').click();await expect(page.locator('.start-label')).toHaveCount(0);
+ await expect(page.locator('#map ellipse[data-start-marker], [data-static-chart] .place-label')).toHaveCount(0);
+ await expect(page.locator('.start-glow')).toHaveCount(1);
+ const glow=await page.locator('.start-glow').evaluate(n=>{
+  const svg=n.ownerSVGElement,polygon=n.querySelector(':scope > g > polygon'),clip=n.querySelector('clipPath polygon');
+  return {cell:n.dataset.startCell,events:getComputedStyle(n).pointerEvents,points:polygon.getAttribute('points'),clip:clip.getAttribute('points'),
+   interactive:svg.querySelector('.cell[data-id="D3"] polygon').getAttribute('points'),color:polygon.getAttribute('stroke'),
+   below:['.route-ink','.hex-surfaces','.cell-information'].every(s=>!!(n.compareDocumentPosition(svg.querySelector(s))&Node.DOCUMENT_POSITION_FOLLOWING))};
+ });
+ expect(glow).toMatchObject({cell:'D3',events:'none',color:'#694934',below:true});expect(glow.points).toBe(glow.clip);expect(glow.points).toBe(glow.interactive);
+ await expect(page.locator('image[data-placement-id="beacon"]')).toHaveCount(1);
+ await page.locator('#routeTool').click();await cell(page,'C3').focus();await page.keyboard.press('Enter');
+ await expect(page.locator('.route-stroke,.route-direction')).toHaveCount(2);await expect(cell(page,'D3').locator('.edge-ink')).toHaveCount(1);
+ if(!isMobile){await cell(page,'D3').hover();expect(await cell(page,'D3').locator('polygon').evaluate(n=>getComputedStyle(n).strokeWidth)).toBe('3px');}
+});
+test('square accessible X action fits all existing responsive action rows',async({page})=>{
+ await open(page);const button=page.getByRole('button',{name:'Orte zeigen',exact:true});
+ await expect(button).toHaveAttribute('title','Orte zeigen');await expect(button).not.toHaveAttribute('aria-pressed',/./);await expect(button).toHaveText('');
+ for(const width of [320,390,600,900,1440]){
+  await page.setViewportSize({width,height:1000});
+  await expect.poll(()=>button.evaluate(n=>Math.abs(n.clientWidth-n.clientHeight))).toBe(0);
+  const box=await button.boundingBox();expect(box.width).toBeGreaterThanOrEqual(44);
+  const style=await button.evaluate(n=>({clip:getComputedStyle(n,'::after').clipPath,bezel:getComputedStyle(n,'::before').borderImageSource}));
+  expect(style.clip).toContain('polygon');expect(style.bezel).toContain('brass-bezel.webp');
+  const count=await page.locator('#mapActions button').evaluateAll(ns=>new Set(ns.map(n=>Math.round(n.getBoundingClientRect().top+n.getBoundingClientRect().height/2))).size);
+  expect(count).toBe((await page.locator('.map-panel').boundingBox()).width<=560?2:1);
+ }
+});
+test('redraws preserve animation identity and long names fit organic paper in all three visual phases',async({page,isMobile},info)=>{
+ const dto=fixture();dto.puzzle.presentation.objectNames.o1='Roberts verborgene Zuflucht hinter den flüsternden Klippen der vergessenen Gezeiten';
+ await open(page,dto);await page.locator('#showPlaces').click();
+ const before=await page.locator('.place-references').evaluate(n=>{window.activePlaces=n;window.activeTracks=n.getAnimations({subtree:true});return window.activeTracks.map(a=>a.startTime);});
+ await cell(page,'A1').focus();await page.keyboard.press('Enter');
+ await page.evaluate(()=>{
+  const art=document.getElementById('showChart'),frame=document.getElementById('frameStyle');
+  for(const value of [false,true]){art.checked=value;art.dispatchEvent(new Event('change'));}
+  for(const value of ['quiet','final']){frame.value=value;frame.dispatchEvent(new Event('change'));}
+ });
+ expect(await page.locator('.place-references').evaluate(n=>n===window.activePlaces&&n.getAnimations({subtree:true}).every(a=>window.activeTracks.includes(a)))).toBe(true);
+ expect(await page.locator('.place-references').evaluate(n=>n.getAnimations({subtree:true}).map(a=>a.startTime))).toEqual(before);
+ const long=page.locator('[data-label-object="o1"]');
+ const fitting=await long.evaluate(n=>{
+  const text=n.querySelector('text');
+  return {measured:text.getComputedTextLength(),available:Number(n.dataset.labelWidth)-16,fontSize:+text.getAttribute('font-size'),computedFont:getComputedStyle(text).fontSize,scale:text.getScreenCTM().a};
+ });
+ await info.attach('long-name-fitting',{body:JSON.stringify(fitting,null,2),contentType:'application/json'});
+ // Linux/Chromium font quantization can leave 0.14 SVG units of residual
+ // width after fitting. Half a unit is <0.35 CSS px in the mobile profile
+ // and still preserves at least 15.5 units of the 16-unit text padding.
+ expect(fitting.measured,JSON.stringify(fitting)).toBeLessThanOrEqual(fitting.available+.5);
+ expect(await long.locator('text').evaluate(n=>+n.getAttribute('font-size'))).toBeLessThan(18);
+ expect(await long.locator('.label-paper>path').first().getAttribute('d')).toContain(' Q ');
+ // Use a representative atmospheric name for the phase comparison images.
+ dto.puzzle.presentation.objectNames={o2:'Die Bucht der flüsternden Gezeiten',o4:'Kiste'};
+ await page.reload();await expect(page.locator('#map .cell')).toHaveCount(25);
+ await page.locator('#showPlaces').click();await page.evaluate(()=>document.activeElement?.blur());
+ await page.mouse.move(0,0);
+ for(const [phase,time] of [['paper',650],['ink',3000],['normal',4900]]){
+  await page.locator('.place-references').evaluate((n,time)=>n.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=time;if(time===4900)a.finish();}),time);
+  if(time===4900)await expect(labels(page)).toHaveCount(0);
+  const path=info.outputPath(`polish-${isMobile?'mobile':'desktop'}-${phase}.png`);
+  await page.locator('.mapbox').screenshot({path,scale:'css',animations:'allow'});
+  await info.attach(phase,{path,contentType:'image/png'});
+ }
+ const path=info.outputPath(`polish-${isMobile?'mobile':'desktop'}-actions.png`);
+ await page.locator('#mapActions').screenshot({path,scale:'css'});await info.attach('actions',{path,contentType:'image/png'});
 });

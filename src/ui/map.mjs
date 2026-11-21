@@ -2,7 +2,7 @@ import {placeReferencesFor} from './place-references.mjs';
 import {CHART_BOUNDS} from './chart-geometry.mjs';
 import {drawAssetPlacements} from './asset-layer.mjs';
 import {frameMode,drawSea,drawFrame} from './parchment-frame.mjs';
-import {hexCenter,hexVertices,drawParchmentLabel,startLabelLayout} from './place-labels.mjs';
+import {hexCenter,hexVertices} from './place-labels.mjs';
 import {CHART_VIEWBOX, parchmentHeading} from './chart-art.mjs';
 import {distance as dist} from '../engine/hex.mjs';
 import {distancePhase} from '../state/distance-overlay.mjs';
@@ -15,7 +15,7 @@ const observedCharts=new WeakSet();
 function fitLabels(svg){
  if(!svg.getBoundingClientRect().width)return;
  for(const label of svg.querySelectorAll('.place-label')){
-  const text=label.querySelector('text'),available=Number(label.querySelector('rect').getAttribute('width'))-6;
+  const text=label.querySelector('text'),available=Number(label.dataset.labelWidth)-16;
   const measured=text.getComputedTextLength();
   if(measured>available)text.setAttribute('font-size',Number(text.getAttribute('font-size'))*available/measured);
  }
@@ -50,11 +50,7 @@ export function drawMap({state,puzzle,rules,cells,byId,blocked,pretty,key,onActi
  const objects=el('g',{'data-chart-layer':'objects','pointer-events':'none','aria-hidden':'true'});art.append(objects);
  if(puzzle.assetPlacements?.length)drawAssetPlacements(el,objects,puzzle.assetPlacements,puzzle.assetLibrary,byId,puzzle.resourceBaseUrl);
  art.append(drawFrame(el,mode));
- // The departure plaque is a game marker, independent of temporary place names.
- art.append(drawParchmentLabel(el,startLabelLayout(byId[puzzle.start]),'Start',{start:true}));
  svg.append(art);
- // Fit actual browser font metrics without expanding the safe land footprint.
- fitLabels(svg);
  // Geographic coordinate guides and margin headings remain visible even when
  // the decorative chart is disabled. The staggered rows bend column guides.
  const graticule=el("g",{class:"coordinate-guides","pointer-events":"none","aria-hidden":"true"});
@@ -97,11 +93,20 @@ export function drawMap({state,puzzle,rules,cells,byId,blocked,pretty,key,onActi
    }
  }
  svg.append(graticule);
+ // A clipped, blurred boundary stroke fades inward over the illustration.
+ // Separate from art visibility, below every A3 route and interactive contour.
+ const [sx,sy]=coords(byId[puzzle.start]),glow=el('g',{class:'start-glow','data-start-marker':'true','data-start-cell':puzzle.start,'pointer-events':'none','aria-hidden':'true'});
+ const defs=el('defs'),clipId=svg.id+'-start-clip',filterId=svg.id+'-start-soft';
+ const clip=el('clipPath',{id:clipId,clipPathUnits:'userSpaceOnUse'});clip.append(el('polygon',{points:poly(sx,sy)}));
+ const filter=el('filter',{id:filterId,filterUnits:'userSpaceOnUse',x:sx-48,y:sy-48,width:96,height:96,'color-interpolation-filters':'sRGB'});
+ filter.append(el('feGaussianBlur',{stdDeviation:4}));defs.append(clip,filter);glow.append(defs);
+ const clipped=el('g',{'clip-path':`url(#${clipId})`});
+ clipped.append(el('polygon',{points:poly(sx,sy),fill:'none',stroke:'#694934','stroke-width':13,opacity:'.65',filter:`url(#${filterId})`}));glow.append(clipped);svg.append(glow);
  for(const node of svg.children)node.setAttribute('data-static-chart','true');
  staticCharts.set(svg,{puzzle,mode,art});
  }
- // K-final: art → brush/direction → radar → hex surfaces → optional numbers
- // → interactive cells with all game information → start marker.
+ // K-final: art → start inner glow → brush/direction → radar → hex surfaces
+ // → optional numbers → interactive cells with all game information.
  const selected=Number.isInteger(state.layer)?state.layer:state.route.length-1;
  const segments=routeSegments(state.route,byId);
  svg.append(drawRouteInk(el,segments,selected,svg.id+'-route'));
@@ -167,9 +172,6 @@ export function drawMap({state,puzzle,rules,cells,byId,blocked,pretty,key,onActi
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();if(mayActivate())onActivate(c.id,true)}});
   information.append(g);
  }
- // Distinguish the actual departure point from the wreck's identical anchor icon.
- const [sx,sy]=coords(byId[puzzle.start]);
- svg.append(el("ellipse",{cx:sx,cy:sy+5,rx:22,ry:15.5,fill:"none",stroke:"#e8c383","stroke-width":"1.5",opacity:".7","data-start-marker":"true","pointer-events":"none"}));
  // Last paint layer: temporary names take priority, never pointer events.
  placeReferencesFor(svg).mount({puzzle,byId,el});
  fitLabels(svg);

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {hexCenter,containsPoint,placeLabelLayout,labelFootprint,startLabelLayout} from '../../src/ui/place-labels.mjs';
+import {hexCenter,placeLabelLayout,labelFootprint,parchmentPath} from '../../src/ui/place-labels.mjs';
 import {CHART_BOUNDS,HEXES} from '../../src/ui/chart-geometry.mjs';
 const byId=Object.fromEntries(HEXES.map(c=>[c.id,c]));
 test('temporary plaques include passable single hexes and the full multihex centroid',()=>{
@@ -9,7 +9,7 @@ test('temporary plaques include passable single hexes and the full multihex cent
   assert.deepEqual(p.cells,ids);
   const center=ids.reduce((a,id)=>hexCenter(byId[id]).map((v,i)=>a[i]+v/ids.length),[0,0]);
   assert.deepEqual(p.centroid,center);assert.deepEqual([p.x,p.y],center);
-  assert.equal(p.fontSize,22);assert.equal(p.height,34);assert.ok(p.width>92);
+  assert.equal(p.fontSize,18);assert.equal(p.height,28);assert.ok(p.width>66);
  }
  assert.equal(placeLabelLayout([],'No place',byId,CHART_BOUNDS),null);
 });
@@ -22,9 +22,10 @@ test('even long names at all chart edges stay within the visible chart',()=>{
   }
  }
 });
-test('start plaque retains dimensions and sits safely in the lower part of its hex',()=>{
- const p=startLabelLayout(byId.D4);
- assert.equal(p.x,hexCenter(byId.D4)[0]);assert.equal(p.height,18);assert.equal(p.fontSize,13);
- assert.ok(p.y>hexCenter(byId.D4)[1]+8);assert.ok(p.y<hexCenter(byId.D4)[1]+18);
- assert.ok(labelFootprint(p,4).every(v=>containsPoint(p.polygon,v)));
+test('organic edges add waves at longer widths instead of stretching their amplitude',()=>{
+ for(const width of [66,140,520]){
+  const d=parchmentPath(width,28);
+  assert.ok(d.endsWith(' Z'));assert.equal((d.match(/ Q /g)||[]).length,2*Math.ceil((width-12)/24));
+  assert.ok(!d.includes('NaN'));
+ }
 });

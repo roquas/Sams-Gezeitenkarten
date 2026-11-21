@@ -59,7 +59,7 @@ test('SVG paint order protects radar and game information, with transparent deco
  await open(page,scenes[0],{hour:3,dense:true});
  const order=await page.locator('#map').evaluate(svg=>{
   const root=n=>{while(n.parentNode!==svg)n=n.parentNode;return [...svg.children].indexOf(n);};
-  return ['.route-ink','.distance-overlay','.hex-surfaces','.route-numbers','.cell-information','[data-start-marker]'].map(s=>root(svg.querySelector(s)));
+  return ['[data-start-marker]','.route-ink','.distance-overlay','.hex-surfaces','.route-numbers','.cell-information'].map(s=>root(svg.querySelector(s)));
  });
  expect(order).toEqual([...order].sort((a,b)=>a-b));expect(new Set(order).size).toBe(order.length);
  for(const selector of ['.route-ink','.route-direction','.route-numbers','.hex-surfaces']){
