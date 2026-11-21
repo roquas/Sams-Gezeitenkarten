@@ -28,7 +28,8 @@ export const puzzleSchema={
  title:'Gezeitenkarten puzzle v2 (5×5 chart, 1–6 hours)',
  ...object({schemaVersion:{const:2},rulesVersion:{const:RULES_VERSION},dataVersion:integer(1,2147483647),id,
  logic:logicSchema,
- presentation:object({title:text,intro:list(text,1),objectNames:dict(text),clueTexts:dict(text),hints:list(text),background:id,assetPlacements:list(placementSchema)}),
+ presentation:object({title:text,intro:list(text,1),objectNames:dict(text),clueTexts:dict(text),hints:list(text),background:id,assetPlacements:list(placementSchema),
+  cluePlaceRefs:dict(list(id,0,{uniqueItems:true}))},['title','intro','objectNames','clueTexts','hints','background','assetPlacements']),
  solution:list(cell,2,{uniqueItems:true}),
  resultTexts:object({correct:text,incorrect:text},[]),
  metadata:object({kind:{enum:['demo','test','editorial']},source:text,difficulty:text},['kind','source'])

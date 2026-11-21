@@ -5,7 +5,7 @@ test('instrument placement, two mobile rows, generous hit areas and compact rout
  await expect(page.locator('.chart-toolbar .wheel-emblem,.chart-toolbar .hour-label')).toHaveCount(0);
  await expect(page.locator('.hours-group .hourglass-emblem')).toHaveCount(1);
  await expect(page.locator('#tools [data-tool]')).toHaveCount(5);
- await expect(page.locator('#mapActions button')).toHaveCount(7);
+ await expect(page.locator('#mapActions button')).toHaveCount(8);
  await expect(page.locator('#toggleRouteNumbers .route-numerals')).toHaveText('①②··');
  for(const width of [320,390,600,900,1440]){
   await page.setViewportSize({width,height:1000});
@@ -14,7 +14,7 @@ test('instrument placement, two mobile rows, generous hit areas and compact rout
   expect(boxes.every(b=>b.width>=43.9&&b.height>=44)).toBe(true);
   expect(await rows(page.locator('.chart-toolbar button:visible'))).toBeLessThanOrEqual(2);
   const chartWidth=(await page.locator('.map-panel').boundingBox()).width;
-  expect(await rows(page.locator('#mapActions button'))).toBe(chartWidth<=560?2:1);
+  await expect.poll(()=>rows(page.locator('#mapActions button')),{message:'responsive action rows at '+width}).toBe(chartWidth<=560?2:1);
   if(width<=600){const verify=await page.locator('#verify').boundingBox();expect(verify.width).toBe(48);const numbers=await page.locator('#toggleRouteNumbers').boundingBox();expect(numbers.width).toBeLessThanOrEqual(72);}
  }
  await page.locator('#routeTool').focus();await page.keyboard.press('Enter');
@@ -43,9 +43,10 @@ test('cropped full-size left page preserves heading, text space and clue navigat
  await page.locator('#clueTrack [data-clue]').focus();await page.keyboard.press('Space');await expect(page.locator('#clueTrack [data-clue]')).toHaveAttribute('aria-checked','true');
  expect(await page.evaluate(()=>!!(document.getElementById('routeView').compareDocumentPosition(document.getElementById('toolLegend'))&Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
 });
-test('lowered labels retain footprint safety and column guides stay behind hex ink',async({page})=>{
- await expect(page.locator('.start-label')).toHaveAttribute('data-label-cell','A5');
- await expect(page.locator('.island-label').filter({hasText:'Zwilling'})).toHaveAttribute('data-label-cells','B2 C2');
+test('temporary labels retain their full object footprint and column guides stay behind hex ink',async({page})=>{
+ await expect(page.locator('.start-glow')).toHaveAttribute('data-start-cell','A5');
+ await page.locator('#showPlaces').click();
+ await expect(page.locator('.reference-label').filter({hasText:'Zwilling'})).toHaveAttribute('data-label-cells','B2 C2');
  const guides=await page.locator('.coordinate-guides>path').evaluateAll(ns=>ns.filter(n=>!n.hasAttribute('stroke-dasharray')).map(n=>Number(n.getAttribute('opacity'))));
  expect(guides.every(o=>o>=.19&&o<.56)).toBe(true);
 });

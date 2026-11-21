@@ -1,6 +1,6 @@
 export function nextClue(index,delta,count){return ((index+delta)%count+count)%count;}
 export function swipeDirection(dx,dy){return Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.25?(dx<0?1:-1):0;}
-export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
+export function createBordbook({clues,getState,toggleClue,markup=t=>t,onSelect=()=>{}}){
  const $=id=>document.getElementById(id);
  let current=0,touch=null,suppressClickUntil=0,animation,leaf;
  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -23,6 +23,7 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
  function shift(delta){
   const previous=clues[current];animation?.cancel();leaf?.remove();
   current=nextClue(current,delta,clues.length);render();
+  if(previous!==clues[current])onSelect(clues[current][0]);
   if(!motion.matches&&$('clueViewport').animate){
    const turning=document.createElement('div');turning.className='turning-leaf';turning.setAttribute('aria-hidden','true');
    const number=document.createElement('span');number.className='leaf-number';number.textContent=previous[0];
@@ -54,5 +55,5 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t}){
   container.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('[data-clue]')){e.preventDefault();e.target.closest('[data-clue]').click();}});
  }
  motion.addEventListener?.('change',()=>{if(motion.matches){animation?.cancel();leaf?.remove();}});
- return {render,setClues(next){animation?.cancel();leaf?.remove();clues=next;current=0;touch=null;render();}};
+ return {render,selectCurrent:()=>onSelect(clues[current][0]),setClues(next){animation?.cancel();leaf?.remove();clues=next;current=0;touch=null;render();}};
 }

@@ -366,3 +366,70 @@ Abgeschlossene Gesamtläufe auf der Korrektur, jeweils ohne Retries:
 Der zusätzliche fokussierte Nachher-Lauf mit 12 bestandenen Fällen ist ein
 separater Lauf; die 17 B1-Unitfälle sind in den 156 Fällen enthalten. Die Zahlen
 werden deshalb nicht als Anzahl unterschiedlicher Tests addiert.
+
+## Technische Integration mit dem gemergten A2b-Stand
+
+B1-Ausgangspunkt: `528a05db0f872de33cc22e6fc3f73d210ed0c62e`.
+Integrierter `main`: `4d7c3ac3a042e43a7d15461f2ca0ac32aa942f72`
+(PR #118, einschließlich PR #117 und vorherigem A2b). Die Integration erfolgt
+als Merge von main **in den bestehenden B1-Branch**, ohne Umschreiben der
+reviewten B1-Commits. PR #116 wird damit nicht in main gemergt.
+
+### Tatsächlicher Textkonflikt und fachliche Auflösung
+
+Git meldete ausschließlich `src/ui/game.mjs` als konfliktbehaftet, an drei Stellen:
+
+1. **Imports:** Die sieben B1-Imports und A2bs Import von `placeReferencesFor`,
+   `cluePlaceIds` und `namedPlaceIds` bleiben gemeinsam erhalten.
+2. **Rätselwechsel:** B1 speichert mit Fehlerbehandlung, beendet die bisherige
+   Betatest-Sitzung, erneuert das Zellregister und lädt Spielstand sowie Sitzung
+   des Zielrätsels. Anschließend bleiben A2bs `initialPlaces=true` und
+   `bordbook.selectCurrent()` erhalten. Damit erscheinen die Orte des neuen
+   ersten Hinweises; die alten Referenzen werden durch A2bs bestehenden
+   Renderer-Lebenszyklus entfernt.
+3. **Spielstart/Fehlerpfad:** B1s exportiertes `mountGame()` mit Fehlerbehandlung
+   bleibt bestehen. Nach Präsentation und Rendern werden A2bs initiale
+   Ortsreferenzen wie auf main ausgewählt und die Bildprüfung gestartet.
+
+Die gemeinsam geänderten bestehenden Browserdateien und `model-game.mjs`
+wurden automatisch zusammengeführt und auf beide Verträge geprüft: expliziter
+B1-Spieleinstieg/Ergebnisdialog und aktuelle A2b-Assertions. Im neu auf main
+hinzugekommenen `place-references.spec.mjs` ändert sich ausschließlich der
+Spieleinstieg von `/` auf `/?play=1`, da `/` jetzt die Landingpage öffnet.
+Kein bestehender Test und keine Assertion wurden für die Integration entfernt,
+gelockert oder zusätzlich übersprungen. Die schon vorhandenen A2b-Skips trennen
+Maus-Hover und Touch-Navigation nach Geräteeignung.
+
+### Erhaltungsnachweise und gemeinsame Prüfungen
+
+`map.mjs`, `place-references.mjs`, `place-labels.mjs`, `toolbar.mjs`, `bordbook.mjs`,
+`game.css` und `layout-polish.css` entsprechen unverändert dem gemergten main.
+Auch die A2b-Animations-/Lifecycle-Helfer bleiben erhalten. Die B1-Module unter
+`src/beta/`, `beta.spec.mjs` und `beta-storage.test.mjs` entsprechen unverändert
+dem R1-/R2-Head `528a05d`; Zeitmessung und Web Locks wurden nicht umgebaut.
+
+Die neue Datei `tests/browser/beta-a2b.spec.mjs` ergänzt zwei kombinierte Abläufe:
+
+- Landingpage → Beginnen → initiale Ortsreferenzen, Hinweisnavigation mit
+  Tastatur/Touch, Maus-Hover auf Land beziehungsweise Touch auf der Karte,
+  Markierung und gerichtete Route → Auswahl/Feedbackexport → Fortsetzen und
+  Reload. Phasen-ID, Route, Notizen und Rückmeldung müssen erhalten bleiben.
+- A2b-Ortsanzeige während Routenprüfung und B1-Ergebnisdialog → freiwilliges
+  Feedback → erneute Ortsanzeige/Hilfe bei bereits gelöster Phase → Export und
+  gespeicherte Lösungsansicht. R2-Zähler bleiben eingefroren; alle drei
+  Routensegmente und Richtungsmarkierungen bleiben sichtbar.
+
+Desktop-/Mobilbilder von Landingpage, Spiel und Ergebnisdialog werden als
+`ink-b1-a2b-*.png` im Playwright-Testausgabeordner und als Testanhänge erzeugt.
+Die bestehenden CI-Schritte behalten diese Bilder auch im erfolgreichen Lauf.
+
+Prüfumfang: vollständige Unit-/Vertrags-/Integrationstests, Inhalte/Katalog,
+komplette B1- und A2b-Browserdateien auf Chromium/WebKit Desktop/Mobil sowie
+vollständige vorhandene Browser-/Paketprüfungen in GitHub Actions. Tatsächliche
+Ergebnisse und der überprüfte Integrationshead werden im PR-Bericht festgehalten;
+laufende oder fehlgeschlagene Prüfungen werden nicht als bestanden gewertet.
+
+Landingpage-Gestaltung, illustrierte/redaktionelle Regeln, Koordinatenformat der
+Regeln, ein sechsstündiges Demonstrationsrätsel und neue Generatorfunktionen
+sind nicht Bestandteil dieser Integration. Die unabhängige Integrationsreview
+mit Schwerpunkt Erhalt von A2b bleibt erforderlich; es erfolgt kein PR-Merge.

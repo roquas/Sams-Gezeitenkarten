@@ -1,0 +1,84 @@
+{
+  "applicationHead": "c2bbf8d0a617643cab546b7e1b9d22e7f8bd90f8",
+  "method": "Wrap Element.prototype.animate in test context only; capture each returned animation.finished before triggering twelve alternating native ArrowRight/Enter activations; allow the final animation to expire naturally. No application changes.",
+  "cycles": [
+    {
+      "profile": "desktop",
+      "cycle": 0,
+      "animations": 17,
+      "abortError": 16,
+      "fulfilled": 1,
+      "pending": 0,
+      "lastOutcome": "fulfilled",
+      "lastElapsedMs": 5629,
+      "unhandled": [],
+      "liveAnimations": 0,
+      "remainingLayers": 0
+    },
+    {
+      "profile": "desktop",
+      "cycle": 1,
+      "animations": 17,
+      "abortError": 16,
+      "fulfilled": 1,
+      "pending": 0,
+      "lastOutcome": "fulfilled",
+      "lastElapsedMs": 5543,
+      "unhandled": [],
+      "liveAnimations": 0,
+      "remainingLayers": 0
+    },
+    {
+      "profile": "desktop",
+      "cycle": 2,
+      "animations": 17,
+      "abortError": 16,
+      "fulfilled": 1,
+      "pending": 0,
+      "lastOutcome": "fulfilled",
+      "lastElapsedMs": 5404,
+      "unhandled": [],
+      "liveAnimations": 0,
+      "remainingLayers": 0
+    },
+    {
+      "profile": "mobile",
+      "cycle": 0,
+      "animations": 17,
+      "abortError": 16,
+      "fulfilled": 1,
+      "pending": 0,
+      "lastOutcome": "fulfilled",
+      "lastElapsedMs": 5578,
+      "unhandled": [],
+      "liveAnimations": 0,
+      "remainingLayers": 0
+    },
+    {
+      "profile": "mobile",
+      "cycle": 1,
+      "animations": 17,
+      "abortError": 16,
+      "fulfilled": 1,
+      "pending": 0,
+      "lastOutcome": "fulfilled",
+      "lastElapsedMs": 5531,
+      "unhandled": [],
+      "liveAnimations": 0,
+      "remainingLayers": 0
+    },
+    {
+      "profile": "mobile",
+      "cycle": 2,
+      "animations": 17,
+      "abortError": 16,
+      "fulfilled": 1,
+      "pending": 0,
+      "lastOutcome": "fulfilled",
+      "lastElapsedMs": 5409,
+      "unhandled": [],
+      "liveAnimations": 0,
+      "remainingLayers": 0
+    }
+  ]
+}

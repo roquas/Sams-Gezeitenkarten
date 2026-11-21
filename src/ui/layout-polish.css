@@ -143,3 +143,13 @@
  .map-actions .route-actions{grid-column:1/-1;display:flex;justify-content:center;gap:12px;margin:0;width:100%}
  .map-actions .route-actions .rail-button{flex:0 0 48px}
 }
+
+/* Momentary X action retains the normal octagonal brass bezel. */
+.places-emblem{position:relative;z-index:2;display:block;width:40px;height:40px;pointer-events:none}
+.places-emblem svg{display:block;width:100%;height:100%}
+.map-actions #showPlaces{display:grid;place-items:center;width:64px;height:64px;flex:0 0 64px;padding:5px}
+@container chart (max-width:560px){
+ .map-actions{grid-template-columns:repeat(5,minmax(44px,1fr))}
+ .map-actions #showPlaces{width:48px;height:48px;min-width:44px;flex-basis:48px}
+ .places-emblem{width:32px;height:32px}
+}

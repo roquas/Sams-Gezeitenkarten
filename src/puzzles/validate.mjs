@@ -13,6 +13,10 @@ export function validateDefinition(document,options={}){
  const ids=logic.map.objects.map(o=>o.id),clueIds=logic.clues.map(c=>c.id);
  if(Object.keys(presentation.objectNames).some(id=>!ids.includes(id)))errors.push('presentation.objectNames: unknown object');
  if(!clueIds.every(id=>Object.hasOwn(presentation.clueTexts,id))||Object.keys(presentation.clueTexts).some(id=>!clueIds.includes(id)))errors.push('presentation.clueTexts: missing or unknown clue reference');
+ for(const [clueId,refs] of Object.entries(presentation.cluePlaceRefs??{})){
+  if(!clueIds.includes(clueId))errors.push('presentation.cluePlaceRefs: unknown clue');
+  if(refs.some(id=>!ids.includes(id)))errors.push('presentation.cluePlaceRefs: unknown object');
+ }
  if(options.assetLibrary){
   try{errors.push(...validatePlacements(presentation.assetPlacements,options.assetLibrary,logic.map,presentation.background,options));}
   catch(error){throw new DefinitionError('semantics',error.errors??[error.message]);}
@@ -31,7 +35,7 @@ export function compilePuzzle(document,options={}){
  const background=options.assetLibrary?.backgrounds.find(b=>b.id===presentation.background);
  if(!background)throw new PuzzleError(['presentation.background: explicit asset catalog with matching background required']);
  return {...logic,id:document.id,schemaVersion:document.schemaVersion,rulesVersion:document.rulesVersion,dataVersion:document.dataVersion,
-  objectNames:presentation.objectNames,clues:logic.clues.map(c=>({...c,text:presentation.clueTexts[c.id]})),
+  objectNames:presentation.objectNames,cluePlaceRefs:presentation.cluePlaceRefs??{},clues:logic.clues.map(c=>({...c,text:presentation.clueTexts[c.id]})),
   title:presentation.title,intro:presentation.intro,hints:presentation.hints,
   background:{asset:background.image},assetPlacements:presentation.assetPlacements,assetLibrary:options.assetLibrary,resourceBaseUrl:options.resourceBaseUrl,
   solution:analysis.solutions[0],resultTexts:document.resultTexts??{},analysis};

@@ -1,0 +1,626 @@
+{
+  "run": 44806070842,
+  "job": 136530292746,
+  "head": "27c69f594d93cbe60a740b1bb5169a4d8ab712a9",
+  "attempts": [
+    {
+      "elapsed": 5797,
+      "timelineStarted": 2027,
+      "timelineRemoved": 7830,
+      "tracks": [
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5797,
+            "timeline": 7830,
+            "start": 2027,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5797,
+            "timeline": 7830,
+            "start": 2027,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5797,
+            "timeline": 7830,
+            "start": 2027,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5797,
+            "timeline": 7830,
+            "start": 2027,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5797,
+            "timeline": 7830,
+            "start": 2027,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5797,
+            "timeline": 7830,
+            "start": 2027,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5797,
+            "timeline": 7830,
+            "start": 2027,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 2027,
+            "start": 2027,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5797,
+            "timeline": 7830,
+            "start": 2027,
+            "current": 4900,
+            "state": "finished"
+          }
+        }
+      ],
+      "nominalDuration": 4900,
+      "observedDeliveryLag": 897,
+      "cleanupAfterLastTrack": 0
+    },
+    {
+      "elapsed": 5757,
+      "timelineStarted": 1717,
+      "timelineRemoved": 7477,
+      "tracks": [
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5757,
+            "timeline": 7477,
+            "start": 1717,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5757,
+            "timeline": 7477,
+            "start": 1717,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5757,
+            "timeline": 7477,
+            "start": 1717,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5757,
+            "timeline": 7477,
+            "start": 1717,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5757,
+            "timeline": 7477,
+            "start": 1717,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5757,
+            "timeline": 7477,
+            "start": 1717,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5757,
+            "timeline": 7477,
+            "start": 1717,
+            "current": 4900,
+            "state": "finished"
+          }
+        },
+        {
+          "duration": 4900,
+          "created": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "ready": {
+            "wall": 1,
+            "timeline": 1717,
+            "start": 1717,
+            "current": 0,
+            "state": "running"
+          },
+          "finished": {
+            "wall": 5757,
+            "timeline": 7477,
+            "start": 1717,
+            "current": 4900,
+            "state": "finished"
+          }
+        }
+      ],
+      "nominalDuration": 4900,
+      "observedDeliveryLag": 857,
+      "cleanupAfterLastTrack": 0
+    }
+  ],
+  "localRepetitions": [
+    {
+      "family": "webkit",
+      "stats": {
+        "startTime": "2026-11-21T21:14:02.922Z",
+        "duration": 71245.375,
+        "expected": 12,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "naturalRuns": [
+        {
+          "project": "webkit-desktop",
+          "status": "passed",
+          "reason": "complete",
+          "elapsed": 5043,
+          "cleanupAfterLastTrack": 0,
+          "trackCount": 8,
+          "durations": [
+            4900
+          ],
+          "finishedCurrentTimes": [
+            4900
+          ],
+          "overlays": 0,
+          "svgAnimations": 0
+        },
+        {
+          "project": "webkit-desktop",
+          "status": "passed",
+          "reason": "complete",
+          "elapsed": 4938,
+          "cleanupAfterLastTrack": 0,
+          "trackCount": 8,
+          "durations": [
+            4900
+          ],
+          "finishedCurrentTimes": [
+            4900
+          ],
+          "overlays": 0,
+          "svgAnimations": 0
+        },
+        {
+          "project": "webkit-desktop",
+          "status": "passed",
+          "reason": "complete",
+          "elapsed": 4949,
+          "cleanupAfterLastTrack": 1,
+          "trackCount": 8,
+          "durations": [
+            4900
+          ],
+          "finishedCurrentTimes": [
+            4900
+          ],
+          "overlays": 0,
+          "svgAnimations": 0
+        },
+        {
+          "project": "webkit-mobile",
+          "status": "passed",
+          "reason": "complete",
+          "elapsed": 4912,
+          "cleanupAfterLastTrack": 1,
+          "trackCount": 8,
+          "durations": [
+            4900
+          ],
+          "finishedCurrentTimes": [
+            4900
+          ],
+          "overlays": 0,
+          "svgAnimations": 0
+        },
+        {
+          "project": "webkit-mobile",
+          "status": "passed",
+          "reason": "complete",
+          "elapsed": 4904,
+          "cleanupAfterLastTrack": 0,
+          "trackCount": 8,
+          "durations": [
+            4900
+          ],
+          "finishedCurrentTimes": [
+            4900
+          ],
+          "overlays": 0,
+          "svgAnimations": 0
+        },
+        {
+          "project": "webkit-mobile",
+          "status": "passed",
+          "reason": "complete",
+          "elapsed": 4911,
+          "cleanupAfterLastTrack": 1,
+          "trackCount": 8,
+          "durations": [
+            4900
+          ],
+          "finishedCurrentTimes": [
+            4900
+          ],
+          "overlays": 0,
+          "svgAnimations": 0
+        }
+      ]
+    },
+    {
+      "family": "chromium",
+      "stats": {
+        "startTime": "2026-11-21T21:16:30.866Z",
+        "duration": 16477.679,
+        "expected": 4,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "naturalRuns": [
+        {
+          "project": "chromium",
+          "status": "passed",
+          "reason": "complete",
+          "elapsed": 4911.599999904633,
+          "cleanupAfterLastTrack": 0.10000038146972656,
+          "trackCount": 8,
+          "durations": [
+            4900
+          ],
+          "finishedCurrentTimes": [
+            4900
+          ],
+          "overlays": 0,
+          "svgAnimations": 0
+        },
+        {
+          "project": "mobile-chromium",
+          "status": "passed",
+          "reason": "complete",
+          "elapsed": 4916.5,
+          "cleanupAfterLastTrack": 0.20000028610229492,
+          "trackCount": 8,
+          "durations": [
+            4900
+          ],
+          "finishedCurrentTimes": [
+            4900
+          ],
+          "overlays": 0,
+          "svgAnimations": 0
+        }
+      ]
+    }
+  ],
+  "controlledWebkitChecks": [
+    {
+      "scenario": "delayed-main-thread",
+      "reason": "complete",
+      "elapsed": 6095,
+      "lastTrackFinished": 6095,
+      "cleanupAfterLastTrack": 0,
+      "overlays": 0,
+      "labels": 0,
+      "svgAnimations": 0,
+      "trackCount": 8,
+      "durations": [
+        4900
+      ],
+      "finishedCurrentTimes": [
+        4900
+      ]
+    },
+    {
+      "scenario": "orphaned-overlay",
+      "reason": "cleanup-timeout",
+      "elapsed": 5924,
+      "lastTrackFinished": 4923,
+      "cleanupAfterLastTrack": null,
+      "overlays": 1,
+      "labels": 4,
+      "svgAnimations": 8,
+      "trackCount": 8,
+      "durations": [
+        4900
+      ],
+      "finishedCurrentTimes": [
+        4900
+      ]
+    }
+  ],
+  "mainIntegration": {
+    "main": "756e53e",
+    "conflictingFiles": [
+      "tests/browser/place-references.spec.mjs"
+    ],
+    "applicationChanged": false,
+    "webkit": {
+      "startTime": "2026-11-21T21:26:36.914Z",
+      "duration": 40066.719,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "chromium": {
+      "startTime": "2026-11-21T21:28:23.638Z",
+      "duration": 34685.061,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  }
+}
