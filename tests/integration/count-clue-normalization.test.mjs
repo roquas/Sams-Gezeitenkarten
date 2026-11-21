@@ -24,6 +24,7 @@ import {createPuzzleLoader} from '../../src/puzzles/loader.mjs';
 import {sha256} from '../../scripts/lib/content-hash.mjs';
 import {main as normalizationReport,referenceOriginContext} from '../../scripts/report-count-clue-normalization.mjs';
 import {candidateOriginContract,pinOriginContract,rawClueOrigin,originContractSha256,verifyCandidateOrigins} from '../../scripts/lib/candidate-origin-contract.mjs';
+import {assertBranchPreservesPaths} from '../helpers/branch-preservation.mjs';
 
 // Fixed reference cases, no generator run. Each workspace/independent oracle
 // uses at most 100,000 nodes; the one existing diagnosis has its 250,000 cap.
@@ -289,23 +290,30 @@ test('historical artifacts and this PR preserve the fixed baseline; merged progr
   'scripts/lib/clue-text.mjs','scripts/lib/clue-presentation.mjs','scripts/lib/s03-quality.mjs'];
  const tree=execFileSync('git',['ls-tree','-r',base,'--',...paths],{cwd:ROOT,encoding:'utf8'}).trim().split('\n');
  assert.ok(tree.length>100);
- // Actions tests a synthetic merge with today's main. Unrelated main changes
- // (e.g. PR #114's public DTO) are not modifications made by this PR. Inspect
- // the actual PR head for the preservation claim, while still checking every
- // historical artifact in the working checkout against the fixed baseline.
+ // Both the PR head and Actions' synthetic checkout can include main merges.
+ // Audit PR-only commits; independently reconstruct every trusted main merge
+ // to reject protected resolution edits. Do not exempt merge commits wholesale.
  const event=process.env.GITHUB_EVENT_NAME==='pull_request'?
   JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH,'utf8')):null;
  const head=event?.pull_request.head.sha??'HEAD';
+ const main=event?.pull_request.base.sha??'origin/main';
+ assertBranchPreservesPaths({repository:ROOT,base,head,main,paths});
  const blobs=revision=>new Map(execFileSync('git',['ls-tree','-r',revision,'--',...paths],{cwd:ROOT,encoding:'utf8'})
   .trim().split('\n').map(line=>{const [,hash,ref]=/^\d+ blob ([a-f0-9]+)\t(.+)$/.exec(line);return [ref,hash];}));
- const preserved=blobs(head),checkedOut=blobs('HEAD');
- assert.equal(preserved.size,tree.length,'Protected PR file inventory changed');
+ const checkedOut=blobs('HEAD'),historical=new Map(tree.flatMap(line=>{
+  const [,hash,ref]=/^\d+ blob ([a-f0-9]+)\t(.+)$/.exec(line);return ref.startsWith('docs/')?[[ref,hash]]:[];
+ }));
+ assert.deepEqual(new Map([...checkedOut].filter(([ref])=>ref.startsWith('docs/'))),historical,
+  'Historical file inventory or bytes changed from the fixed baseline');
  for(const line of tree){
   const [,hash,ref]=/^\d+ blob ([a-f0-9]+)\t(.+)$/.exec(line);
-  assert.equal(preserved.get(ref),hash,'PR modified protected file: '+ref);
+  if(!ref.startsWith('docs/'))continue;
   const bytes=fs.readFileSync(path.join(ROOT,ref));
-  assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'),
-   ref.startsWith('docs/')?hash:checkedOut.get(ref),ref);
+  assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'),hash,ref);
+ }
+ for(const [ref,hash] of checkedOut)if(!ref.startsWith('docs/')){
+  const bytes=fs.readFileSync(path.join(ROOT,ref));
+  assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'),hash,ref);
  }
  assert.equal(sha256(fs.readFileSync(path.join(ROOT,'docs/verification/S03-v2/run/candidates.jsonl'))),source.registry.candidatesSha256);
 });
