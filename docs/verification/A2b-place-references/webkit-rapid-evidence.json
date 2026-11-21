@@ -1,0 +1,3963 @@
+{
+  "pr": 117,
+  "priorHead": "627d0c76564eb6245e34b206c209b509cacb4bfd",
+  "applicationControllerBlob": "b59a4b14f90fe758771df0f2eab08eae174a1a07",
+  "originalRun": 44781493920,
+  "originalJob": 136445046947,
+  "originalResults": [
+    {
+      "title": "normal fade reaches a visible hold, completes, and restores the ordinary chart",
+      "project": "webkit-desktop",
+      "status": "passed",
+      "duration": 12196,
+      "retry": 0,
+      "error": null
+    },
+    {
+      "title": "place animation renders fade-in, the full hold, and fade-out at its own timeline positions",
+      "project": "webkit-desktop",
+      "status": "passed",
+      "duration": 9053,
+      "retry": 0,
+      "error": null
+    },
+    {
+      "title": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+      "project": "webkit-desktop",
+      "status": "failed",
+      "duration": 29832,
+      "retry": 0,
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#map .reference-label')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  3500ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('#map .reference-label') with timeout 3500ms\u001b[22m\n\u001b[2m  - waiting for locator('#map .reference-label')\u001b[22m\n\u001b[2m    8 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n"
+    },
+    {
+      "title": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+      "project": "webkit-desktop",
+      "status": "failed",
+      "duration": 29204,
+      "retry": 1,
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#map .reference-label')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  3500ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('#map .reference-label') with timeout 3500ms\u001b[22m\n\u001b[2m  - waiting for locator('#map .reference-label')\u001b[22m\n\u001b[2m    8 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n"
+    }
+  ],
+  "originalTraceTiming": [
+    {
+      "attempt": 0,
+      "lastClickEnd": 391223.745,
+      "removalAssertionStart": 394677.175,
+      "removalAssertionEnd": 398181.729,
+      "elapsedSinceClickAtFailure": 6957.984
+    },
+    {
+      "attempt": 1,
+      "lastClickEnd": 421933.6,
+      "removalAssertionStart": 425389.218,
+      "removalAssertionEnd": 428892.325,
+      "elapsedSinceClickAtFailure": 6958.725
+    }
+  ],
+  "diagnostics": [
+    {
+      "type": "linux",
+      "run": 44794080490,
+      "head": "1d43f4f6261e90083690d02eef5a0dd42d04383b",
+      "probeSource": "import {test,expect} from '../integration/webkit-startup.mjs';\nimport {readFileSync} from 'node:fs';\nconst read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));\nconst demo=read('puzzles/model-demo.json');\nconst cell=(page,id)=>page.locator(`#map .cell[data-id=\"${id}\"]`);\nconst labels=page=>page.locator('#map .reference-label');\nconst names=page=>labels(page).locator('text');\nconst saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));\nfunction fixture(){\n const dto=structuredClone(demo),p=dto.puzzle;\n p.presentation.objectNames={o1:'Roberts Boot',o2:'Zwilling',o4:'Kiste'};\n // The first clue explicitly names two places in its editorial wording.\n p.presentation.clueTexts.I='Von Roberts Boot fuhren wir ostwärts; Zwilling lag fern.';\n p.presentation.cluePlaceRefs={I:['o1','o2']};\n // Existing structured placeId, independent of editorial metadata.\n p.logic.clues.splice(1,0,{id:'Ort',type:'distanceToPlace',hour:0,placeId:'o4',distance:4});\n p.presentation.clueTexts.Ort='Bei der Abfahrt waren wir vier Hexfelder von Kiste entfernt.';\n return dto;\n}\nasync function open(page,dto=fixture()){\n await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));\n await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25,{timeout:15000});\n await expect(page.locator('#puzzleLoadError')).toBeHidden();\n}\ntest('observe rapid native replacements and the final animation without timeline control',async({page},info)=>{\n test.setTimeout(60_000);\n await page.addInitScript(()=>{\n  const entries=window.rapidEntries=[],events=window.rapidEvents=[],unhandled=window.rapidUnhandled=[];\n  window.addEventListener('unhandledrejection',e=>unhandled.push(String(e.reason)));\n  const native=Element.prototype.animate;\n  Element.prototype.animate=function(...args){\n   const a=native.apply(this,args);if(!this.matches('.place-references'))return a;\n   const node=this,id=entries.length,created=performance.now();\n   const entry={id,created,samples:[]};entries.push(entry);\n   const sample=event=>{\n    const style=getComputedStyle(node),rect=node.getBoundingClientRect();\n    const state={id,event,wall:performance.now(),timeline:document.timeline.currentTime,currentTime:a.currentTime,startTime:a.startTime,playState:a.playState,pending:a.pending,opacity:style.opacity,connected:node.isConnected,display:style.display,visibility:style.visibility,rect:{x:rect.x,y:rect.y,width:rect.width,height:rect.height},groupCount:document.querySelectorAll('#map .place-references').length,labelCount:document.querySelectorAll('#map .reference-label').length,mapAnimations:document.querySelector('#map')?.getAnimations({subtree:true}).length,documentVisibility:document.visibilityState};\n    entry.samples.push(state);return state;\n   };\n   const timer=setInterval(()=>{sample('interval');if(!node.isConnected)clearInterval(timer);},100);\n   sample('create');\n   a.ready.then(()=>sample('ready'),()=>sample('ready-rejected'));\n   a.finished.then(()=>{entry.outcome='finished';sample('finished');},e=>{entry.outcome=e.name;sample('rejected');});\n   window.rapidSnapshot=event=>{events.push(sample(event));};\n   return a;\n  };\n });\n try{\n  await open(page);await page.locator('#showPlaces').click();await page.waitForTimeout(2200);\n  for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}\n  await page.evaluate(()=>window.rapidSnapshot('last-click-returned'));\n  await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);\n  await page.waitForTimeout(3400);await expect(labels(page)).toHaveCount(3);\n  await page.evaluate(()=>window.rapidSnapshot('old-removal-deadline-start'));\n  try{await expect(labels(page)).toHaveCount(0,{timeout:3500});}\n  catch(e){await page.evaluate(()=>window.rapidSnapshot('old-removal-deadline-failed'));console.log('original deadline failed',e.message);}\n  // Diagnostic observation only: determine whether the native animation actually\n  // finishes after the failed old deadline. Never pause, seek, finish, or cancel.\n  await expect(labels(page)).toHaveCount(0,{timeout:10000});\n  await page.evaluate(()=>window.rapidSnapshot('natural-cleanup-observed'));\n  expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);\n }finally{\n  await info.attach('rapid-native-probe',{body:JSON.stringify(await page.evaluate(()=>({entries:window.rapidEntries,events:window.rapidEvents,unhandled:window.rapidUnhandled})),null,2),contentType:'application/json'});\n }\n});\n",
+      "profiles": {
+        "desktop": {
+          "events": [
+            {
+              "id": 7,
+              "event": "last-click-returned",
+              "wall": 18688,
+              "timeline": 18688,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "opacity": "0",
+              "connected": true,
+              "display": "inline",
+              "visibility": "visible",
+              "rect": {
+                "x": 100.87652587890625,
+                "y": -172.61016845703125,
+                "width": 507.37701416015625,
+                "height": 355.6241455078125
+              },
+              "groupCount": 1,
+              "labelCount": 3,
+              "mapAnimations": 1,
+              "documentVisibility": "visible"
+            },
+            {
+              "id": 7,
+              "event": "old-removal-deadline-start",
+              "wall": 22591,
+              "timeline": 22591,
+              "currentTime": 3935,
+              "startTime": 18656,
+              "playState": "running",
+              "pending": false,
+              "opacity": "0.999907",
+              "connected": true,
+              "display": "inline",
+              "visibility": "visible",
+              "rect": {
+                "x": 100.87652587890625,
+                "y": -172.61016845703125,
+                "width": 507.37701416015625,
+                "height": 355.6241455078125
+              },
+              "groupCount": 1,
+              "labelCount": 3,
+              "mapAnimations": 1,
+              "documentVisibility": "visible"
+            },
+            {
+              "id": 7,
+              "event": "natural-cleanup-observed",
+              "wall": 25420,
+              "timeline": 25420,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "opacity": "",
+              "connected": false,
+              "display": "",
+              "visibility": "",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "groupCount": 0,
+              "labelCount": 0,
+              "mapAnimations": 0,
+              "documentVisibility": "visible"
+            }
+          ],
+          "unhandled": [],
+          "animations": [
+            {
+              "id": 0,
+              "created": 365,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 0,
+                  "event": "create",
+                  "wall": 367,
+                  "timeline": 365,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": 542.3898315429688,
+                    "width": 410.3125305175781,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "ready",
+                  "wall": 582,
+                  "timeline": 582,
+                  "currentTime": 217,
+                  "startTime": 365,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.57294",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": 542.3898315429688,
+                    "width": 410.3125305175781,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "rejected",
+                  "wall": 3801,
+                  "timeline": 3785,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 1,
+              "created": 3801,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 1,
+                  "event": "create",
+                  "wall": 3801,
+                  "timeline": 3785,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "ready",
+                  "wall": 5025,
+                  "timeline": 5024,
+                  "currentTime": 1191,
+                  "startTime": 3833,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "1",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "rejected",
+                  "wall": 6199,
+                  "timeline": 6183,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "created": 6198,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 2,
+                  "event": "create",
+                  "wall": 6199,
+                  "timeline": 6183,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 470.785400390625,
+                    "y": -544.0032958984375,
+                    "width": 137.4681396484375,
+                    "height": 50.803466796875
+                  },
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "ready",
+                  "wall": 7487,
+                  "timeline": 7487,
+                  "currentTime": 1250,
+                  "startTime": 6237,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "1",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 470.785400390625,
+                    "y": -544.0032958984375,
+                    "width": 137.4681396484375,
+                    "height": 50.803466796875
+                  },
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "rejected",
+                  "wall": 8079,
+                  "timeline": 8065,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "created": 8078,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 3,
+                  "event": "create",
+                  "wall": 8079,
+                  "timeline": 8065,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "ready",
+                  "wall": 8595,
+                  "timeline": 8594,
+                  "currentTime": 427,
+                  "startTime": 8167,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "1",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "rejected",
+                  "wall": 9928,
+                  "timeline": 9927,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "mapAnimations": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "created": 11173,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 4,
+                  "event": "create",
+                  "wall": 11173,
+                  "timeline": 11173,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "ready",
+                  "wall": 11211,
+                  "timeline": 11210,
+                  "currentTime": 37,
+                  "startTime": 11173,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.016825",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "rejected",
+                  "wall": 13004,
+                  "timeline": 12985,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "mapAnimations": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "created": 14671,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 5,
+                  "event": "create",
+                  "wall": 14671,
+                  "timeline": 14671,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "ready",
+                  "wall": 14713,
+                  "timeline": 14713,
+                  "currentTime": 42,
+                  "startTime": 14671,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.021787",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "rejected",
+                  "wall": 16539,
+                  "timeline": 16524,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "created": 16538,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 6,
+                  "event": "create",
+                  "wall": 16539,
+                  "timeline": 16524,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -645.6101684570312,
+                    "width": 410.3125305175781,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "ready",
+                  "wall": 16871,
+                  "timeline": 16870,
+                  "currentTime": 247,
+                  "startTime": 16623,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.695674",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -645.6101684570312,
+                    "width": 410.3125305175781,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "rejected",
+                  "wall": 18658,
+                  "timeline": 18656,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "created": 18657,
+              "outcome": "finished",
+              "events": [
+                {
+                  "id": 7,
+                  "event": "create",
+                  "wall": 18658,
+                  "timeline": 18656,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "last-click-returned",
+                  "wall": 18688,
+                  "timeline": 18688,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "ready",
+                  "wall": 19014,
+                  "timeline": 19013,
+                  "currentTime": 357,
+                  "startTime": 18656,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.977141",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "old-removal-deadline-start",
+                  "wall": 22591,
+                  "timeline": 22591,
+                  "currentTime": 3935,
+                  "startTime": 18656,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.999907",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "finished",
+                  "wall": 24639,
+                  "timeline": 24638,
+                  "currentTime": 5400,
+                  "startTime": 18656,
+                  "playState": "finished",
+                  "pending": false,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 100.87652587890625,
+                    "y": -172.61016845703125,
+                    "width": 507.37701416015625,
+                    "height": 355.6241455078125
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "natural-cleanup-observed",
+                  "wall": 25420,
+                  "timeline": 25420,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "mapAnimations": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            }
+          ]
+        },
+        "mobile": {
+          "events": [
+            {
+              "id": 7,
+              "event": "last-click-returned",
+              "wall": 5390,
+              "timeline": 5386,
+              "currentTime": 166,
+              "startTime": 5220,
+              "playState": "running",
+              "pending": false,
+              "opacity": "0.00019",
+              "connected": true,
+              "display": "inline",
+              "visibility": "visible",
+              "rect": {
+                "x": 44.9720458984375,
+                "y": 48.11738586425781,
+                "width": 219.52725219726562,
+                "height": 153.86819458007812
+              },
+              "groupCount": 1,
+              "labelCount": 3,
+              "mapAnimations": 1,
+              "documentVisibility": "visible"
+            },
+            {
+              "id": 7,
+              "event": "old-removal-deadline-start",
+              "wall": 8956,
+              "timeline": 8940,
+              "currentTime": 3720,
+              "startTime": 5220,
+              "playState": "running",
+              "pending": false,
+              "opacity": "0.975144",
+              "connected": true,
+              "display": "inline",
+              "visibility": "visible",
+              "rect": {
+                "x": 44.9720458984375,
+                "y": 48.11738586425781,
+                "width": 219.52725219726562,
+                "height": 153.86819458007812
+              },
+              "groupCount": 1,
+              "labelCount": 3,
+              "mapAnimations": 1,
+              "documentVisibility": "visible"
+            },
+            {
+              "id": 7,
+              "event": "natural-cleanup-observed",
+              "wall": 10966,
+              "timeline": 10966,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "opacity": "",
+              "connected": false,
+              "display": "",
+              "visibility": "",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "groupCount": 0,
+              "labelCount": 0,
+              "mapAnimations": 0,
+              "documentVisibility": "visible"
+            }
+          ],
+          "unhandled": [],
+          "animations": [
+            {
+              "id": 0,
+              "created": 331,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 0,
+                  "event": "create",
+                  "wall": 332,
+                  "timeline": 331,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 473.11737060546875,
+                    "width": 177.53025817871094,
+                    "height": 153.86822509765625
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "ready",
+                  "wall": 333,
+                  "timeline": 332,
+                  "currentTime": 1,
+                  "startTime": 331,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.000012",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 473.11737060546875,
+                    "width": 177.53025817871094,
+                    "height": 153.86822509765625
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "rejected",
+                  "wall": 1281,
+                  "timeline": 1273,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 1,
+              "created": 1281,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 1,
+                  "event": "create",
+                  "wall": 1281,
+                  "timeline": 1273,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "ready",
+                  "wall": 1611,
+                  "timeline": 1611,
+                  "currentTime": 322,
+                  "startTime": 1289,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.922484",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "rejected",
+                  "wall": 3540,
+                  "timeline": 3532,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "created": 3540,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 2,
+                  "event": "create",
+                  "wall": 3540,
+                  "timeline": 3532,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 205.0208282470703,
+                    "y": -393.9202880859375,
+                    "width": 59.47846984863281,
+                    "height": 21.981201171875
+                  },
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "ready",
+                  "wall": 3636,
+                  "timeline": 3635,
+                  "currentTime": 88,
+                  "startTime": 3547,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.099342",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 205.0208282470703,
+                    "y": -393.9202880859375,
+                    "width": 59.47846984863281,
+                    "height": 21.981201171875
+                  },
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "rejected",
+                  "wall": 3669,
+                  "timeline": 3652,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "created": 3668,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 3,
+                  "event": "create",
+                  "wall": 3669,
+                  "timeline": 3652,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "ready",
+                  "wall": 3926,
+                  "timeline": 3925,
+                  "currentTime": 256,
+                  "startTime": 3669,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.729837",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "rejected",
+                  "wall": 4064,
+                  "timeline": 4050,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "mapAnimations": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "created": 4314,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 4,
+                  "event": "create",
+                  "wall": 4314,
+                  "timeline": 4314,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "ready",
+                  "wall": 4363,
+                  "timeline": 4363,
+                  "currentTime": 49,
+                  "startTime": 4314,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.029854",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "rejected",
+                  "wall": 4551,
+                  "timeline": 4540,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "mapAnimations": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "created": 4637,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 5,
+                  "event": "create",
+                  "wall": 4638,
+                  "timeline": 4623,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "ready",
+                  "wall": 4853,
+                  "timeline": 4852,
+                  "currentTime": 214,
+                  "startTime": 4638,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.560157",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "rejected",
+                  "wall": 5120,
+                  "timeline": 5111,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "created": 5120,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 6,
+                  "event": "create",
+                  "wall": 5120,
+                  "timeline": 5111,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": -447.88262939453125,
+                    "width": 177.53025817871094,
+                    "height": 153.86822509765625
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "ready",
+                  "wall": 5190,
+                  "timeline": 5189,
+                  "currentTime": 45,
+                  "startTime": 5144,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.025083",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": -447.88262939453125,
+                    "width": 177.53025817871094,
+                    "height": 153.86822509765625
+                  },
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "rejected",
+                  "wall": 5217,
+                  "timeline": 5197,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "created": 5216,
+              "outcome": "finished",
+              "events": [
+                {
+                  "id": 7,
+                  "event": "create",
+                  "wall": 5217,
+                  "timeline": 5197,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "ready",
+                  "wall": 5225,
+                  "timeline": 5224,
+                  "currentTime": 4,
+                  "startTime": 5220,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.00019",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "last-click-returned",
+                  "wall": 5390,
+                  "timeline": 5386,
+                  "currentTime": 166,
+                  "startTime": 5220,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.00019",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "old-removal-deadline-start",
+                  "wall": 8956,
+                  "timeline": 8940,
+                  "currentTime": 3720,
+                  "startTime": 5220,
+                  "playState": "running",
+                  "pending": false,
+                  "opacity": "0.975144",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "finished",
+                  "wall": 10686,
+                  "timeline": 10685,
+                  "currentTime": 5400,
+                  "startTime": 5220,
+                  "playState": "finished",
+                  "pending": false,
+                  "opacity": "0",
+                  "connected": true,
+                  "display": "inline",
+                  "visibility": "visible",
+                  "rect": {
+                    "x": 44.9720458984375,
+                    "y": 48.11738586425781,
+                    "width": 219.52725219726562,
+                    "height": 153.86819458007812
+                  },
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "mapAnimations": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "natural-cleanup-observed",
+                  "wall": 10966,
+                  "timeline": 10966,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "opacity": "",
+                  "connected": false,
+                  "display": "",
+                  "visibility": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "mapAnimations": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "minimal",
+      "run": 44794835582,
+      "head": "6fbd87af91565cb409343b5f62dba025c88f8d0a",
+      "probeSource": "import {test,expect} from '../integration/webkit-startup.mjs';\nimport {readFileSync} from 'node:fs';\nconst read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));\nconst demo=read('puzzles/model-demo.json');\nconst cell=(page,id)=>page.locator(`#map .cell[data-id=\"${id}\"]`);\nconst labels=page=>page.locator('#map .reference-label');\nconst names=page=>labels(page).locator('text');\nconst saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));\nfunction fixture(){\n const dto=structuredClone(demo),p=dto.puzzle;\n p.presentation.objectNames={o1:'Roberts Boot',o2:'Zwilling',o4:'Kiste'};\n // The first clue explicitly names two places in its editorial wording.\n p.presentation.clueTexts.I='Von Roberts Boot fuhren wir ostwärts; Zwilling lag fern.';\n p.presentation.cluePlaceRefs={I:['o1','o2']};\n // Existing structured placeId, independent of editorial metadata.\n p.logic.clues.splice(1,0,{id:'Ort',type:'distanceToPlace',hour:0,placeId:'o4',distance:4});\n p.presentation.clueTexts.Ort='Bei der Abfahrt waren wir vier Hexfelder von Kiste entfernt.';\n return dto;\n}\nasync function open(page,dto=fixture()){\n await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));\n await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25,{timeout:15000});\n await expect(page.locator('#puzzleLoadError')).toBeHidden();\n}\ntest('observe rapid replacements without style or layout sampling',async({page},info)=>{\n test.setTimeout(60_000);\n await page.addInitScript(()=>{\n  const entries=window.rapidEntries=[],events=window.rapidEvents=[],unhandled=window.rapidUnhandled=[];\n  window.addEventListener('unhandledrejection',e=>unhandled.push(String(e.reason)));\n  const native=Element.prototype.animate;\n  Element.prototype.animate=function(...args){\n   const a=native.apply(this,args);if(!this.matches('.place-references'))return a;\n   const node=this,id=entries.length,created=performance.now();\n   const entry={id,created,samples:[]};entries.push(entry);\n   const sample=event=>{\n    const state={id,event,wall:performance.now(),timeline:document.timeline.currentTime,currentTime:a.currentTime,startTime:a.startTime,playState:a.playState,pending:a.pending,connected:node.isConnected,groupCount:document.querySelectorAll('#map .place-references').length,labelCount:document.querySelectorAll('#map .reference-label').length,documentVisibility:document.visibilityState};\n    entry.samples.push(state);return state;\n   };\n   const timer=setInterval(()=>{sample('interval');if(!node.isConnected)clearInterval(timer);},100);\n   sample('create');\n   a.ready.then(()=>sample('ready'),()=>sample('ready-rejected'));\n   a.finished.then(()=>{entry.outcome='finished';sample('finished');},e=>{entry.outcome=e.name;sample('rejected');});\n   window.rapidSnapshot=event=>{events.push(sample(event));};\n   return a;\n  };\n });\n try{\n  await open(page);await page.locator('#showPlaces').click();await page.waitForTimeout(2200);\n  for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}\n  await page.evaluate(()=>window.rapidSnapshot('last-click-returned'));\n  await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);\n  await page.waitForTimeout(3400);await expect(labels(page)).toHaveCount(3);\n  await page.evaluate(()=>window.rapidSnapshot('old-removal-deadline-start'));\n  try{await expect(labels(page)).toHaveCount(0,{timeout:3500});}\n  catch(e){await page.evaluate(()=>window.rapidSnapshot('old-removal-deadline-failed'));console.log('original deadline failed',e.message);}\n  // Diagnostic observation only: determine whether the native animation actually\n  // finishes after the failed old deadline. Never pause, seek, finish, or cancel.\n  await expect(labels(page)).toHaveCount(0,{timeout:10000});\n  await page.evaluate(()=>window.rapidSnapshot('natural-cleanup-observed'));\n  expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);\n }finally{\n  await info.attach('rapid-native-probe',{body:JSON.stringify(await page.evaluate(()=>({entries:window.rapidEntries,events:window.rapidEvents,unhandled:window.rapidUnhandled})),null,2),contentType:'application/json'});\n }\n});\n",
+      "profiles": {
+        "desktop": {
+          "events": [
+            {
+              "id": 7,
+              "event": "last-click-returned",
+              "wall": 32678,
+              "timeline": 32678,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groupCount": 1,
+              "labelCount": 3,
+              "documentVisibility": "visible"
+            },
+            {
+              "id": 7,
+              "event": "old-removal-deadline-start",
+              "wall": 36682,
+              "timeline": 36682,
+              "currentTime": 4004,
+              "startTime": 32678,
+              "playState": "running",
+              "pending": false,
+              "connected": true,
+              "groupCount": 1,
+              "labelCount": 3,
+              "documentVisibility": "visible"
+            },
+            {
+              "id": 7,
+              "event": "natural-cleanup-observed",
+              "wall": 39668,
+              "timeline": 39668,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groupCount": 0,
+              "labelCount": 0,
+              "documentVisibility": "visible"
+            }
+          ],
+          "unhandled": [],
+          "animations": [
+            {
+              "id": 0,
+              "created": 1869,
+              "outcome": "finished",
+              "events": [
+                {
+                  "id": 0,
+                  "event": "create",
+                  "wall": 1869,
+                  "timeline": 1869,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "ready",
+                  "wall": 4721,
+                  "timeline": 4721,
+                  "currentTime": 2852,
+                  "startTime": 1869,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "finished",
+                  "wall": 9786,
+                  "timeline": 9786,
+                  "currentTime": 5400,
+                  "startTime": 1869,
+                  "playState": "finished",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 1,
+              "created": 10723,
+              "outcome": "finished",
+              "events": [
+                {
+                  "id": 1,
+                  "event": "create",
+                  "wall": 10723,
+                  "timeline": 10707,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "ready",
+                  "wall": 12125,
+                  "timeline": 12125,
+                  "currentTime": 1402,
+                  "startTime": 10723,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "finished",
+                  "wall": 16439,
+                  "timeline": 16439,
+                  "currentTime": 5400,
+                  "startTime": 10723,
+                  "playState": "finished",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "created": 17341,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 2,
+                  "event": "create",
+                  "wall": 17341,
+                  "timeline": 17328,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "ready",
+                  "wall": 17803,
+                  "timeline": 17803,
+                  "currentTime": 362,
+                  "startTime": 17441,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "rejected",
+                  "wall": 19740,
+                  "timeline": 19738,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "created": 19740,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 3,
+                  "event": "create",
+                  "wall": 19740,
+                  "timeline": 19738,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "ready",
+                  "wall": 20038,
+                  "timeline": 20038,
+                  "currentTime": 300,
+                  "startTime": 19738,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "rejected",
+                  "wall": 22016,
+                  "timeline": 22003,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "created": 23726,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 4,
+                  "event": "create",
+                  "wall": 23726,
+                  "timeline": 23726,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "ready",
+                  "wall": 23778,
+                  "timeline": 23777,
+                  "currentTime": 51,
+                  "startTime": 23726,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "rejected",
+                  "wall": 25740,
+                  "timeline": 25728,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "created": 27384,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 5,
+                  "event": "create",
+                  "wall": 27384,
+                  "timeline": 27370,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "ready",
+                  "wall": 28792,
+                  "timeline": 28792,
+                  "currentTime": 1405,
+                  "startTime": 27387,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "rejected",
+                  "wall": 29748,
+                  "timeline": 29745,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "created": 29748,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 6,
+                  "event": "create",
+                  "wall": 29748,
+                  "timeline": 29745,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "ready",
+                  "wall": 29801,
+                  "timeline": 29801,
+                  "currentTime": 56,
+                  "startTime": 29745,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "rejected",
+                  "wall": 32658,
+                  "timeline": 32644,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "created": 32658,
+              "outcome": "finished",
+              "events": [
+                {
+                  "id": 7,
+                  "event": "create",
+                  "wall": 32658,
+                  "timeline": 32644,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "last-click-returned",
+                  "wall": 32678,
+                  "timeline": 32678,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "ready",
+                  "wall": 33163,
+                  "timeline": 33163,
+                  "currentTime": 485,
+                  "startTime": 32678,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "old-removal-deadline-start",
+                  "wall": 36682,
+                  "timeline": 36682,
+                  "currentTime": 4004,
+                  "startTime": 32678,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "finished",
+                  "wall": 38770,
+                  "timeline": 38770,
+                  "currentTime": 5400,
+                  "startTime": 32678,
+                  "playState": "finished",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "natural-cleanup-observed",
+                  "wall": 39668,
+                  "timeline": 39668,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            }
+          ]
+        },
+        "mobile": {
+          "events": [
+            {
+              "id": 7,
+              "event": "last-click-returned",
+              "wall": 7526,
+              "timeline": 7526,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groupCount": 1,
+              "labelCount": 3,
+              "documentVisibility": "visible"
+            },
+            {
+              "id": 7,
+              "event": "old-removal-deadline-start",
+              "wall": 11159,
+              "timeline": 11159,
+              "currentTime": 3652,
+              "startTime": 7507,
+              "playState": "running",
+              "pending": false,
+              "connected": true,
+              "groupCount": 1,
+              "labelCount": 3,
+              "documentVisibility": "visible"
+            },
+            {
+              "id": 7,
+              "event": "natural-cleanup-observed",
+              "wall": 13432,
+              "timeline": 13432,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groupCount": 0,
+              "labelCount": 0,
+              "documentVisibility": "visible"
+            }
+          ],
+          "unhandled": [],
+          "animations": [
+            {
+              "id": 0,
+              "created": 737,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 0,
+                  "event": "create",
+                  "wall": 737,
+                  "timeline": 737,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "ready",
+                  "wall": 1278,
+                  "timeline": 1278,
+                  "currentTime": 541,
+                  "startTime": 737,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "rejected",
+                  "wall": 2975,
+                  "timeline": 2504,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 1,
+              "created": 2975,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 1,
+                  "event": "create",
+                  "wall": 2975,
+                  "timeline": 2504,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "ready",
+                  "wall": 3484,
+                  "timeline": 3484,
+                  "currentTime": 980,
+                  "startTime": 2504,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "rejected",
+                  "wall": 5242,
+                  "timeline": 5232,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "created": 5242,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 2,
+                  "event": "create",
+                  "wall": 5242,
+                  "timeline": 5232,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "ready",
+                  "wall": 5650,
+                  "timeline": 5650,
+                  "currentTime": 403,
+                  "startTime": 5247,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "rejected",
+                  "wall": 5878,
+                  "timeline": 5874,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "created": 5878,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 3,
+                  "event": "create",
+                  "wall": 5878,
+                  "timeline": 5874,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "ready",
+                  "wall": 6068,
+                  "timeline": 6068,
+                  "currentTime": 154,
+                  "startTime": 5914,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "rejected",
+                  "wall": 6182,
+                  "timeline": 6167,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "created": 6429,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 4,
+                  "event": "create",
+                  "wall": 6429,
+                  "timeline": 6429,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "ready",
+                  "wall": 6492,
+                  "timeline": 6492,
+                  "currentTime": 63,
+                  "startTime": 6429,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "rejected",
+                  "wall": 6678,
+                  "timeline": 6670,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "created": 6932,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 5,
+                  "event": "create",
+                  "wall": 6932,
+                  "timeline": 6932,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "ready",
+                  "wall": 6975,
+                  "timeline": 6975,
+                  "currentTime": 43,
+                  "startTime": 6932,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "rejected",
+                  "wall": 7160,
+                  "timeline": 7147,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "created": 7160,
+              "outcome": "AbortError",
+              "events": [
+                {
+                  "id": 6,
+                  "event": "create",
+                  "wall": 7160,
+                  "timeline": 7147,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "ready",
+                  "wall": 7232,
+                  "timeline": 7232,
+                  "currentTime": 48,
+                  "startTime": 7184,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "rejected",
+                  "wall": 7509,
+                  "timeline": 7507,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "created": 7509,
+              "outcome": "finished",
+              "events": [
+                {
+                  "id": 7,
+                  "event": "create",
+                  "wall": 7509,
+                  "timeline": 7507,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "last-click-returned",
+                  "wall": 7526,
+                  "timeline": 7526,
+                  "currentTime": 0,
+                  "startTime": null,
+                  "playState": "running",
+                  "pending": true,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "ready",
+                  "wall": 7556,
+                  "timeline": 7556,
+                  "currentTime": 49,
+                  "startTime": 7507,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "old-removal-deadline-start",
+                  "wall": 11159,
+                  "timeline": 11159,
+                  "currentTime": 3652,
+                  "startTime": 7507,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "finished",
+                  "wall": 12937,
+                  "timeline": 12937,
+                  "currentTime": 5400,
+                  "startTime": 7507,
+                  "playState": "finished",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "natural-cleanup-observed",
+                  "wall": 13432,
+                  "timeline": 13432,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "passive-events",
+      "run": 44795542466,
+      "head": "a61e6b813e6555aa9fb66faba4316ea08b2ae830",
+      "firstAttempt": "cancelled during Ubuntu dependency download; no browser test executed",
+      "infrastructureRetries": 1,
+      "probeSource": "import {test,expect} from '../integration/webkit-startup.mjs';\nimport {readFileSync} from 'node:fs';\nconst read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));\nconst demo=read('puzzles/model-demo.json');\nconst cell=(page,id)=>page.locator(`#map .cell[data-id=\"${id}\"]`);\nconst labels=page=>page.locator('#map .reference-label');\nconst names=page=>labels(page).locator('text');\nconst saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));\nfunction fixture(){\n const dto=structuredClone(demo),p=dto.puzzle;\n p.presentation.objectNames={o1:'Roberts Boot',o2:'Zwilling',o4:'Kiste'};\n // The first clue explicitly names two places in its editorial wording.\n p.presentation.clueTexts.I='Von Roberts Boot fuhren wir ostwärts; Zwilling lag fern.';\n p.presentation.cluePlaceRefs={I:['o1','o2']};\n // Existing structured placeId, independent of editorial metadata.\n p.logic.clues.splice(1,0,{id:'Ort',type:'distanceToPlace',hour:0,placeId:'o4',distance:4});\n p.presentation.clueTexts.Ort='Bei der Abfahrt waren wir vier Hexfelder von Kiste entfernt.';\n return dto;\n}\nasync function open(page,dto=fixture()){\n await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));\n await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25,{timeout:15000});\n await expect(page.locator('#puzzleLoadError')).toBeHidden();\n}\ntest('observe replacement promises with the frozen action and assertion sequence',async({page},info)=>{\n test.setTimeout(60_000);\n await page.addInitScript(()=>{\n  const entries=window.rapidEntries=[],events=window.rapidEvents=[],unhandled=window.rapidUnhandled=[];\n  window.addEventListener('unhandledrejection',e=>unhandled.push(String(e.reason)));\n  const native=Element.prototype.animate;\n  Element.prototype.animate=function(...args){\n   const a=native.apply(this,args);if(!this.matches('.place-references'))return a;\n   const node=this,id=entries.length,created=performance.now();\n   const entry={id,created,samples:[]};entries.push(entry);\n   const sample=event=>{\n    const state={id,event,outcomeBeforeReadingState:entry.outcome??null,wall:performance.now(),timeline:document.timeline.currentTime,currentTime:a.currentTime,startTime:a.startTime,playState:a.playState,pending:a.pending,connected:node.isConnected,groupCount:document.querySelectorAll('#map .place-references').length,labelCount:document.querySelectorAll('#map .reference-label').length,documentVisibility:document.visibilityState};\n    entry.samples.push(state);return state;\n   };\n   entry.samples.push({event:'created',wall:created});\n   a.ready.then(()=>sample('ready'),()=>sample('ready-rejected'));\n   a.finished.then(()=>{entry.outcome='finished';sample('finished');},e=>{entry.outcome=e.name;sample('rejected');});\n   window.rapidSnapshot=event=>{events.push(sample(event));};\n   return a;\n  };\n });\n try{\n  await open(page);await page.locator('#showPlaces').click();await page.waitForTimeout(2200);\n  for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}\n  await expect(page.locator('.place-references')).toHaveCount(1);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste']);\n  await page.waitForTimeout(3400);await expect(labels(page)).toHaveCount(3);\n  try{await expect(labels(page)).toHaveCount(0,{timeout:3500});}\n  catch(e){await page.evaluate(()=>window.rapidSnapshot('old-removal-deadline-failed'));console.log('original deadline failed',e.message);}\n  // Diagnostic observation only: determine whether the native animation actually\n  // finishes after the failed old deadline. Never pause, seek, finish, or cancel.\n  await expect(labels(page)).toHaveCount(0,{timeout:10000});\n  await page.evaluate(()=>window.rapidSnapshot('natural-cleanup-observed'));\n  expect(await page.locator('#map').evaluate(n=>n.getAnimations({subtree:true}).length)).toBe(0);\n }finally{\n  await info.attach('rapid-native-probe',{body:JSON.stringify(await page.evaluate(()=>({entries:window.rapidEntries,events:window.rapidEvents,unhandled:window.rapidUnhandled})),null,2),contentType:'application/json'});\n }\n});\n",
+      "profiles": {
+        "desktop": {
+          "entries": [
+            {
+              "id": 0,
+              "created": 2145,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 2145
+                },
+                {
+                  "id": 0,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 6030,
+                  "timeline": 6029,
+                  "currentTime": 3884,
+                  "startTime": 2145,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "finished",
+                  "outcomeBeforeReadingState": "finished",
+                  "wall": 12795,
+                  "timeline": 12795,
+                  "currentTime": 5400,
+                  "startTime": 2145,
+                  "playState": "finished",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "finished"
+            },
+            {
+              "id": 1,
+              "created": 13796,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 13796
+                },
+                {
+                  "id": 1,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 15759,
+                  "timeline": 15759,
+                  "currentTime": 1963,
+                  "startTime": 13796,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "finished",
+                  "outcomeBeforeReadingState": "finished",
+                  "wall": 21164,
+                  "timeline": 21164,
+                  "currentTime": 5400,
+                  "startTime": 13796,
+                  "playState": "finished",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "finished"
+            },
+            {
+              "id": 2,
+              "created": 22187,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 22187
+                },
+                {
+                  "id": 2,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 22847,
+                  "timeline": 22847,
+                  "currentTime": 659,
+                  "startTime": 22188,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 24634,
+                  "timeline": 24632,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 3,
+              "created": 24634,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 24634
+                },
+                {
+                  "id": 3,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 24691,
+                  "timeline": 24691,
+                  "currentTime": 59,
+                  "startTime": 24632,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 27045,
+                  "timeline": 27034,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 4,
+              "created": 30357,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 30357
+                },
+                {
+                  "id": 4,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 30417,
+                  "timeline": 30417,
+                  "currentTime": 59,
+                  "startTime": 30358,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 32893,
+                  "timeline": 32893,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 5,
+              "created": 35084,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 35084
+                },
+                {
+                  "id": 5,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 36809,
+                  "timeline": 36809,
+                  "currentTime": 1721,
+                  "startTime": 35088,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 37963,
+                  "timeline": 37960,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 6,
+              "created": 37963,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 37963
+                },
+                {
+                  "id": 6,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 38023,
+                  "timeline": 38023,
+                  "currentTime": 63,
+                  "startTime": 37960,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 40419,
+                  "timeline": 40407,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 7,
+              "created": 40419,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 40419
+                },
+                {
+                  "id": 7,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 42887,
+                  "timeline": 42887,
+                  "currentTime": 1742,
+                  "startTime": 41145,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "finished",
+                  "outcomeBeforeReadingState": "finished",
+                  "wall": 46828,
+                  "timeline": 46828,
+                  "currentTime": 5400,
+                  "startTime": 41145,
+                  "playState": "finished",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "old-removal-deadline-failed",
+                  "outcomeBeforeReadingState": "finished",
+                  "wall": 47809,
+                  "timeline": 47809,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "natural-cleanup-observed",
+                  "outcomeBeforeReadingState": "finished",
+                  "wall": 47844,
+                  "timeline": 47844,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "finished"
+            }
+          ],
+          "events": [
+            {
+              "id": 7,
+              "event": "old-removal-deadline-failed",
+              "outcomeBeforeReadingState": "finished",
+              "wall": 47809,
+              "timeline": 47809,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groupCount": 0,
+              "labelCount": 0,
+              "documentVisibility": "visible"
+            },
+            {
+              "id": 7,
+              "event": "natural-cleanup-observed",
+              "outcomeBeforeReadingState": "finished",
+              "wall": 47844,
+              "timeline": 47844,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groupCount": 0,
+              "labelCount": 0,
+              "documentVisibility": "visible"
+            }
+          ],
+          "unhandled": []
+        },
+        "mobile": {
+          "entries": [
+            {
+              "id": 0,
+              "created": 897,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 897
+                },
+                {
+                  "id": 0,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 1741,
+                  "timeline": 1739,
+                  "currentTime": 842,
+                  "startTime": 897,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 0,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 3250,
+                  "timeline": 3238,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 1,
+              "created": 3250,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 3250
+                },
+                {
+                  "id": 1,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 4577,
+                  "timeline": 4577,
+                  "currentTime": 1326,
+                  "startTime": 3251,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 1,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 6108,
+                  "timeline": 6098,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 2,
+              "created": 6108,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 6108
+                },
+                {
+                  "id": 2,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 6638,
+                  "timeline": 6637,
+                  "currentTime": 523,
+                  "startTime": 6114,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 1,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 2,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 6912,
+                  "timeline": 6910,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 3,
+              "created": 6912,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 6912
+                },
+                {
+                  "id": 3,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 6960,
+                  "timeline": 6960,
+                  "currentTime": 50,
+                  "startTime": 6910,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 3,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 7282,
+                  "timeline": 7282,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 4,
+              "created": 7561,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 7561
+                },
+                {
+                  "id": 4,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 7643,
+                  "timeline": 7642,
+                  "currentTime": 81,
+                  "startTime": 7561,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 4,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 7872,
+                  "timeline": 7857,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 5,
+              "created": 7980,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 7980
+                },
+                {
+                  "id": 5,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 7981,
+                  "timeline": 7981,
+                  "currentTime": 1,
+                  "startTime": 7980,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 5,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 8607,
+                  "timeline": 8596,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 6,
+              "created": 8607,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 8607
+                },
+                {
+                  "id": 6,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 8698,
+                  "timeline": 8698,
+                  "currentTime": 58,
+                  "startTime": 8640,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 2,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 6,
+                  "event": "rejected",
+                  "outcomeBeforeReadingState": "AbortError",
+                  "wall": 8729,
+                  "timeline": 8727,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "AbortError"
+            },
+            {
+              "id": 7,
+              "created": 8729,
+              "samples": [
+                {
+                  "event": "created",
+                  "wall": 8729
+                },
+                {
+                  "id": 7,
+                  "event": "ready",
+                  "outcomeBeforeReadingState": null,
+                  "wall": 8740,
+                  "timeline": 8740,
+                  "currentTime": 13,
+                  "startTime": 8727,
+                  "playState": "running",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "finished",
+                  "outcomeBeforeReadingState": "finished",
+                  "wall": 14161,
+                  "timeline": 14161,
+                  "currentTime": 5400,
+                  "startTime": 8727,
+                  "playState": "finished",
+                  "pending": false,
+                  "connected": true,
+                  "groupCount": 1,
+                  "labelCount": 3,
+                  "documentVisibility": "visible"
+                },
+                {
+                  "id": 7,
+                  "event": "natural-cleanup-observed",
+                  "outcomeBeforeReadingState": "finished",
+                  "wall": 14655,
+                  "timeline": 14655,
+                  "currentTime": null,
+                  "startTime": null,
+                  "playState": "idle",
+                  "pending": false,
+                  "connected": false,
+                  "groupCount": 0,
+                  "labelCount": 0,
+                  "documentVisibility": "visible"
+                }
+              ],
+              "outcome": "finished"
+            }
+          ],
+          "events": [
+            {
+              "id": 7,
+              "event": "natural-cleanup-observed",
+              "outcomeBeforeReadingState": "finished",
+              "wall": 14655,
+              "timeline": 14655,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groupCount": 0,
+              "labelCount": 0,
+              "documentVisibility": "visible"
+            }
+          ],
+          "unhandled": []
+        }
+      }
+    }
+  ],
+  "preliminaryLinuxFix": {
+    "run": 44796487047,
+    "head": "fc31b93807dcfd4cf980f1fcacc2d4a3546cfbed",
+    "results": [
+      {
+        "title": "normal fade reaches a visible hold, completes, and restores the ordinary chart",
+        "project": "webkit-desktop",
+        "status": "passed",
+        "duration": 17358,
+        "retry": 0,
+        "error": null
+      },
+      {
+        "title": "place animation renders fade-in, the full hold, and fade-out at its own timeline positions",
+        "project": "webkit-desktop",
+        "status": "passed",
+        "duration": 6617,
+        "retry": 0,
+        "error": null
+      },
+      {
+        "title": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+        "project": "webkit-desktop",
+        "status": "passed",
+        "duration": 24825,
+        "retry": 0,
+        "error": null
+      },
+      {
+        "title": "normal fade reaches a visible hold, completes, and restores the ordinary chart",
+        "project": "webkit-mobile",
+        "status": "passed",
+        "duration": 8065,
+        "retry": 0,
+        "error": null
+      },
+      {
+        "title": "place animation renders fade-in, the full hold, and fade-out at its own timeline positions",
+        "project": "webkit-mobile",
+        "status": "passed",
+        "duration": 2358,
+        "retry": 0,
+        "error": null
+      },
+      {
+        "title": "rapid manual and clue triggers replace one animation and restart its complete lifetime",
+        "project": "webkit-mobile",
+        "status": "passed",
+        "duration": 13067,
+        "retry": 0,
+        "error": null
+      }
+    ],
+    "desktop": {
+      "entries": [
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 4875,
+          "events": [
+            {
+              "event": "created",
+              "wall": 2200,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "rejected",
+              "wall": 4875,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 1,
+              "labels": 1
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 6757,
+          "events": [
+            {
+              "event": "created",
+              "wall": 4875,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 1
+            },
+            {
+              "event": "rejected",
+              "wall": 6757,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 1,
+              "labels": 3
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 8499,
+          "events": [
+            {
+              "event": "created",
+              "wall": 6757,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "rejected",
+              "wall": 8499,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 0,
+              "labels": 0
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 11068,
+          "events": [
+            {
+              "event": "created",
+              "wall": 9685,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "rejected",
+              "wall": 11068,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 0,
+              "labels": 0
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 13675,
+          "events": [
+            {
+              "event": "created",
+              "wall": 12279,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "rejected",
+              "wall": 13675,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 1,
+              "labels": 2
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 15250,
+          "events": [
+            {
+              "event": "created",
+              "wall": 13675,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 2
+            },
+            {
+              "event": "rejected",
+              "wall": 15250,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 1,
+              "labels": 3
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "finished",
+          "finishedAt": 21196,
+          "removedAt": 21196,
+          "events": [
+            {
+              "event": "created",
+              "wall": 15250,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "finished",
+              "wall": 21196,
+              "currentTime": 5400,
+              "startTime": 15248,
+              "playState": "finished",
+              "pending": false,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        }
+      ],
+      "unhandled": [],
+      "nativeEndToRemovalMs": 259
+    },
+    "mobile": {
+      "entries": [
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 4188,
+          "events": [
+            {
+              "event": "created",
+              "wall": 1240,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "rejected",
+              "wall": 4188,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 1,
+              "labels": 1
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 4609,
+          "events": [
+            {
+              "event": "created",
+              "wall": 4188,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 1
+            },
+            {
+              "event": "rejected",
+              "wall": 4609,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 1,
+              "labels": 3
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 4808,
+          "events": [
+            {
+              "event": "created",
+              "wall": 4609,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "rejected",
+              "wall": 4808,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 0,
+              "labels": 0
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 5249,
+          "events": [
+            {
+              "event": "created",
+              "wall": 4872,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "rejected",
+              "wall": 5249,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 0,
+              "labels": 0
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 5691,
+          "events": [
+            {
+              "event": "created",
+              "wall": 5312,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "rejected",
+              "wall": 5691,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 1,
+              "labels": 2
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "AbortError",
+          "finishedAt": null,
+          "removedAt": 5951,
+          "events": [
+            {
+              "event": "created",
+              "wall": 5691,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 2
+            },
+            {
+              "event": "rejected",
+              "wall": 5951,
+              "currentTime": null,
+              "startTime": null,
+              "playState": "idle",
+              "pending": false,
+              "connected": false,
+              "groups": 1,
+              "labels": 3
+            }
+          ]
+        },
+        {
+          "duration": 5400,
+          "outcome": "finished",
+          "finishedAt": 11437,
+          "removedAt": 11438,
+          "events": [
+            {
+              "event": "created",
+              "wall": 5950,
+              "currentTime": 0,
+              "startTime": null,
+              "playState": "running",
+              "pending": true,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            },
+            {
+              "event": "finished",
+              "wall": 11437,
+              "currentTime": 5400,
+              "startTime": 5987,
+              "playState": "finished",
+              "pending": false,
+              "connected": true,
+              "groups": 1,
+              "labels": 3
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        },
+        {
+          "connected": false,
+          "playState": "idle",
+          "pending": false
+        }
+      ],
+      "unhandled": [],
+      "nativeEndToRemovalMs": 1
+    }
+  },
+  "artifacts": [
+    {
+      "file": "report.zip",
+      "sha256": "2ca0e23505af8669c1389625849f7eafdc5728b2bf7f181b654c1010c814156a"
+    },
+    {
+      "file": "timings.zip",
+      "sha256": "c2b19e0d187db4bf63a0d46bbd6fc5a52a3a8252ac024c8caf5cc65f56e20ed1"
+    },
+    {
+      "file": "linux-probe.zip",
+      "sha256": "16cd0d2567cbfd7048ece483ff599967ddc0bfa98c3dba0e0ef13c363f37e1cd"
+    },
+    {
+      "file": "minimal.zip",
+      "sha256": "ac79d08a6152f0684ce8b146156829389465afbf9b8c2aa0111df05eff1a14f7"
+    },
+    {
+      "file": "fixed-linux.zip",
+      "sha256": "5355dc7ac3fe8bfaa4bfb15b1a0bba67261981de952a0834453b884193f05529"
+    },
+    {
+      "file": "passive.zip",
+      "sha256": "070058bdd6198dce14b28a583a43a7b35c835f9bb697b16ab109351bcd061ae7"
+    }
+  ]
+}

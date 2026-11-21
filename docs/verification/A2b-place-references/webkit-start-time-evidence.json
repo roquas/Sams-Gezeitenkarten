@@ -1,0 +1,6661 @@
+{
+  "base": "d7632321e7a626e37a29fb10ff3fa7b428cef2c5",
+  "baselineRun": 44718310398,
+  "failedRun": 44749575218,
+  "diagnosticRun": 44778787823,
+  "diagnosticHead": "d2a19e853616c1c94b14119df383850c80418360",
+  "baseline": [
+    {
+      "title": "normal fade completes, removes all place names, and restores the ordinary chart",
+      "project": "webkit-desktop",
+      "status": "passed",
+      "duration": 14476,
+      "retry": 0,
+      "error": null,
+      "stdout": []
+    }
+  ],
+  "failure": [
+    {
+      "title": "normal fade completes, removes all place names, and restores the ordinary chart",
+      "project": "webkit-desktop",
+      "status": "failed",
+      "duration": 9356,
+      "retry": 0,
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m",
+      "stdout": []
+    },
+    {
+      "title": "normal fade completes, removes all place names, and restores the ordinary chart",
+      "project": "webkit-desktop",
+      "status": "failed",
+      "duration": 8824,
+      "retry": 1,
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m",
+      "stdout": []
+    }
+  ],
+  "linuxOriginal": [
+    {
+      "title": "normal fade completes, removes all place names, and restores the ordinary chart",
+      "project": "webkit-desktop",
+      "status": "failed",
+      "duration": 15029,
+      "retry": 0,
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m",
+      "stdout": []
+    },
+    {
+      "title": "normal fade completes, removes all place names, and restores the ordinary chart",
+      "project": "webkit-mobile",
+      "status": "passed",
+      "duration": 9055,
+      "retry": 0,
+      "error": null,
+      "stdout": []
+    }
+  ],
+  "linuxProbe": [
+    {
+      "title": "observe native place animation without changing its timeline",
+      "project": "webkit-desktop",
+      "status": "passed",
+      "duration": 14282,
+      "retry": 0,
+      "error": null,
+      "stdout": [
+        {
+          "text": "after650 {\n  opacity: \u001b[32m'0'\u001b[39m,\n  animations: [\n    {\n      currentTime: \u001b[33m0\u001b[39m,\n      startTime: \u001b[1mnull\u001b[22m,\n      pending: \u001b[33mtrue\u001b[39m,\n      playState: \u001b[32m'running'\u001b[39m\n    }\n  ]\n}\n"
+        }
+      ]
+    },
+    {
+      "title": "observe native place animation without changing its timeline",
+      "project": "webkit-mobile",
+      "status": "passed",
+      "duration": 10676,
+      "retry": 0,
+      "error": null,
+      "stdout": [
+        {
+          "text": "after650 {\n  opacity: \u001b[32m'1'\u001b[39m,\n  animations: [\n    {\n      currentTime: \u001b[33m961\u001b[39m,\n      startTime: \u001b[33m1413\u001b[39m,\n      pending: \u001b[33mfalse\u001b[39m,\n      playState: \u001b[32m'running'\u001b[39m\n    }\n  ]\n}\n"
+        }
+      ]
+    }
+  ],
+  "nativeSamples": {
+    "desktop": [
+      {
+        "id": 0,
+        "event": "create",
+        "wall": 440,
+        "timeline": 439,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "ready",
+        "wall": 442,
+        "timeline": 441,
+        "currentTime": 2,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000047",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 1894,
+        "timeline": 1894,
+        "currentTime": 1455,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000047",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2099,
+        "timeline": 2099,
+        "currentTime": 1660,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000047",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2199,
+        "timeline": 2199,
+        "currentTime": 1760,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000047",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2299,
+        "timeline": 2299,
+        "currentTime": 1860,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000047",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2399,
+        "timeline": 2399,
+        "currentTime": 1960,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000047",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2499,
+        "timeline": 2499,
+        "currentTime": 2060,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000047",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3241,
+        "timeline": 3241,
+        "currentTime": 2802,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3344,
+        "timeline": 3344,
+        "currentTime": 2905,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3448,
+        "timeline": 3448,
+        "currentTime": 3009,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3552,
+        "timeline": 3552,
+        "currentTime": 3113,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3656,
+        "timeline": 3656,
+        "currentTime": 3217,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": 542.3898315429688,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3845,
+        "timeline": 3843,
+        "currentTime": 3404,
+        "startTime": 439,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.999992",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 410.3125305175781,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "create",
+        "wall": 3862,
+        "timeline": 3846,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "cancelled",
+        "wall": 3862,
+        "timeline": 3846,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4617,
+        "timeline": 4617,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4617,
+        "timeline": 4617,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4717,
+        "timeline": 4717,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4720,
+        "timeline": 4717,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4817,
+        "timeline": 4817,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4824,
+        "timeline": 4817,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4917,
+        "timeline": 4917,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4928,
+        "timeline": 4917,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5017,
+        "timeline": 5017,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5032,
+        "timeline": 5017,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5117,
+        "timeline": 5117,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5136,
+        "timeline": 5136,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "ready",
+        "wall": 5168,
+        "timeline": 5167,
+        "currentTime": 1275,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5978,
+        "timeline": 5978,
+        "currentTime": 2086,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5978,
+        "timeline": 5978,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6080,
+        "timeline": 6080,
+        "currentTime": 2188,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6080,
+        "timeline": 6080,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6184,
+        "timeline": 6185,
+        "currentTime": 2293,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6185,
+        "timeline": 6185,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6288,
+        "timeline": 6288,
+        "currentTime": 2396,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6288,
+        "timeline": 6288,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6392,
+        "timeline": 6392,
+        "currentTime": 2500,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6392,
+        "timeline": 6392,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6496,
+        "timeline": 6496,
+        "currentTime": 2604,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6496,
+        "timeline": 6496,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6600,
+        "timeline": 6591,
+        "currentTime": 2699,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6600,
+        "timeline": 6591,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6704,
+        "timeline": 6703,
+        "currentTime": 2811,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6704,
+        "timeline": 6703,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6808,
+        "timeline": 6800,
+        "currentTime": 2908,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6808,
+        "timeline": 6800,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6912,
+        "timeline": 6912,
+        "currentTime": 3020,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6912,
+        "timeline": 6912,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7016,
+        "timeline": 7009,
+        "currentTime": 3117,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7016,
+        "timeline": 7009,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7120,
+        "timeline": 7105,
+        "currentTime": 3213,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7120,
+        "timeline": 7105,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7224,
+        "timeline": 7218,
+        "currentTime": 3326,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7224,
+        "timeline": 7218,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7815,
+        "timeline": 7815,
+        "currentTime": 3923,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.999977",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7815,
+        "timeline": 7815,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7916,
+        "timeline": 7916,
+        "currentTime": 4024,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.999977",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7916,
+        "timeline": 7916,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8020,
+        "timeline": 8020,
+        "currentTime": 4128,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.999977",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8020,
+        "timeline": 8020,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8124,
+        "timeline": 8124,
+        "currentTime": 4232,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.999977",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8124,
+        "timeline": 8124,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8666,
+        "timeline": 8666,
+        "currentTime": 4774,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.622516",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8666,
+        "timeline": 8666,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8769,
+        "timeline": 8769,
+        "currentTime": 4877,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.622516",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8769,
+        "timeline": 8769,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8872,
+        "timeline": 8872,
+        "currentTime": 4980,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.622516",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8872,
+        "timeline": 8872,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8976,
+        "timeline": 8976,
+        "currentTime": 5084,
+        "startTime": 3892,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.622516",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8976,
+        "timeline": 8976,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9511,
+        "timeline": 9511,
+        "currentTime": 5619,
+        "startTime": 3892,
+        "playState": "finished",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.043374",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9511,
+        "timeline": 9511,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9612,
+        "timeline": 9612,
+        "currentTime": 5720,
+        "startTime": 3892,
+        "playState": "finished",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.043374",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9612,
+        "timeline": 9612,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9716,
+        "timeline": 9716,
+        "currentTime": 5824,
+        "startTime": 3892,
+        "playState": "finished",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.043374",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9716,
+        "timeline": 9716,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9820,
+        "timeline": 9820,
+        "currentTime": 5928,
+        "startTime": 3892,
+        "playState": "finished",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.043374",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9820,
+        "timeline": 9820,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "finished",
+        "wall": 9845,
+        "timeline": 9844,
+        "currentTime": 5400,
+        "startTime": 3892,
+        "playState": "finished",
+        "pending": false,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 100.87652587890625,
+          "y": -172.61016845703125,
+          "width": 507.37701416015625,
+          "height": 355.6241455078125
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 10655,
+        "timeline": 10655,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 10655,
+        "timeline": 10655,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 10756,
+        "timeline": 10756,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 10756,
+        "timeline": 10756,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 10860,
+        "timeline": 10860,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 10860,
+        "timeline": 10860,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 10964,
+        "timeline": 10964,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 10964,
+        "timeline": 10964,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 11068,
+        "timeline": 11068,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 11068,
+        "timeline": 11068,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 11172,
+        "timeline": 11172,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 11172,
+        "timeline": 11172,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 11276,
+        "timeline": 11276,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 11276,
+        "timeline": 11276,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 11380,
+        "timeline": 11380,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 11380,
+        "timeline": 11380,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 11484,
+        "timeline": 11484,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 11484,
+        "timeline": 11484,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 11588,
+        "timeline": 11588,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 11588,
+        "timeline": 11588,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 11692,
+        "timeline": 11692,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 11692,
+        "timeline": 11692,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "documentVisibility": "visible"
+      }
+    ],
+    "mobile": [
+      {
+        "id": 0,
+        "event": "create",
+        "wall": 355,
+        "timeline": 354,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 473.11737060546875,
+          "width": 177.53025817871094,
+          "height": 153.86822509765625
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "ready",
+        "wall": 356,
+        "timeline": 356,
+        "currentTime": 2,
+        "startTime": 354,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000047",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 473.11737060546875,
+          "width": 177.53025817871094,
+          "height": 153.86822509765625
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 699,
+        "timeline": 699,
+        "currentTime": 345,
+        "startTime": 354,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000047",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 473.11737060546875,
+          "width": 177.53025817871094,
+          "height": 153.86822509765625
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 1153,
+        "timeline": 862,
+        "currentTime": 508,
+        "startTime": 354,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 473.11737060546875,
+          "width": 177.53025817871094,
+          "height": 153.86822509765625
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 1254,
+        "timeline": 1254,
+        "currentTime": 900,
+        "startTime": 354,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 473.11737060546875,
+          "width": 177.53025817871094,
+          "height": 153.86822509765625
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 1354,
+        "timeline": 1354,
+        "currentTime": 1000,
+        "startTime": 354,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 473.11737060546875,
+          "width": 177.53025817871094,
+          "height": 153.86822509765625
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "create",
+        "wall": 1409,
+        "timeline": 1400,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "cancelled",
+        "wall": 1409,
+        "timeline": 1400,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 1688,
+        "timeline": 1688,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 1688,
+        "timeline": 1688,
+        "currentTime": 0,
+        "startTime": null,
+        "playState": "running",
+        "pending": true,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "ready",
+        "wall": 1739,
+        "timeline": 1738,
+        "currentTime": 325,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.928491",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 1827,
+        "timeline": 1827,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 1827,
+        "timeline": 1827,
+        "currentTime": 414,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.928491",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 1935,
+        "timeline": 1935,
+        "currentTime": 522,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 1935,
+        "timeline": 1935,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 2035,
+        "timeline": 2030,
+        "currentTime": 617,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2036,
+        "timeline": 2030,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 2135,
+        "timeline": 2127,
+        "currentTime": 714,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2140,
+        "timeline": 2127,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 2235,
+        "timeline": 2224,
+        "currentTime": 811,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2244,
+        "timeline": 2240,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 2336,
+        "timeline": 2336,
+        "currentTime": 923,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2348,
+        "timeline": 2336,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 2560,
+        "timeline": 2560,
+        "currentTime": 1147,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2560,
+        "timeline": 2560,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 2660,
+        "timeline": 2660,
+        "currentTime": 1247,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2660,
+        "timeline": 2660,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 2764,
+        "timeline": 2757,
+        "currentTime": 1344,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2764,
+        "timeline": 2757,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 2868,
+        "timeline": 2854,
+        "currentTime": 1441,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2868,
+        "timeline": 2854,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 2972,
+        "timeline": 2967,
+        "currentTime": 1554,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 2972,
+        "timeline": 2967,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 3076,
+        "timeline": 3063,
+        "currentTime": 1650,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3076,
+        "timeline": 3063,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 3180,
+        "timeline": 3176,
+        "currentTime": 1763,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3180,
+        "timeline": 3176,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 3284,
+        "timeline": 3273,
+        "currentTime": 1860,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3284,
+        "timeline": 3273,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 3388,
+        "timeline": 3385,
+        "currentTime": 1972,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3388,
+        "timeline": 3385,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 3492,
+        "timeline": 3482,
+        "currentTime": 2069,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3492,
+        "timeline": 3482,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 3596,
+        "timeline": 3595,
+        "currentTime": 2182,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3596,
+        "timeline": 3595,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 3700,
+        "timeline": 3691,
+        "currentTime": 2278,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3700,
+        "timeline": 3691,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 3804,
+        "timeline": 3804,
+        "currentTime": 2391,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3804,
+        "timeline": 3804,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 3908,
+        "timeline": 3901,
+        "currentTime": 2488,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 3908,
+        "timeline": 3901,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4012,
+        "timeline": 3997,
+        "currentTime": 2584,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4012,
+        "timeline": 3997,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4116,
+        "timeline": 4110,
+        "currentTime": 2697,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4116,
+        "timeline": 4110,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4220,
+        "timeline": 4206,
+        "currentTime": 2793,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4220,
+        "timeline": 4206,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4324,
+        "timeline": 4319,
+        "currentTime": 2906,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4324,
+        "timeline": 4319,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4428,
+        "timeline": 4415,
+        "currentTime": 3002,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4428,
+        "timeline": 4415,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4532,
+        "timeline": 4528,
+        "currentTime": 3115,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4532,
+        "timeline": 4528,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4636,
+        "timeline": 4625,
+        "currentTime": 3212,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4636,
+        "timeline": 4625,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4740,
+        "timeline": 4737,
+        "currentTime": 3324,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "1",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4740,
+        "timeline": 4737,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 4897,
+        "timeline": 4897,
+        "currentTime": 3484,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.999988",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 4897,
+        "timeline": 4897,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5003,
+        "timeline": 5003,
+        "currentTime": 3590,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.994873",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5003,
+        "timeline": 5003,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5106,
+        "timeline": 5106,
+        "currentTime": 3693,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.978424",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5106,
+        "timeline": 5106,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5211,
+        "timeline": 5211,
+        "currentTime": 3798,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.950676",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5211,
+        "timeline": 5211,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5313,
+        "timeline": 5313,
+        "currentTime": 3900,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.911042",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5313,
+        "timeline": 5313,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5418,
+        "timeline": 5418,
+        "currentTime": 4005,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.860581",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5418,
+        "timeline": 5418,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5521,
+        "timeline": 5521,
+        "currentTime": 4108,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.797771",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5521,
+        "timeline": 5521,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5624,
+        "timeline": 5624,
+        "currentTime": 4211,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.724624",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5624,
+        "timeline": 5624,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5728,
+        "timeline": 5728,
+        "currentTime": 4315,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.643896",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5728,
+        "timeline": 5728,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5834,
+        "timeline": 5834,
+        "currentTime": 4421,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.557594",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5834,
+        "timeline": 5834,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 5936,
+        "timeline": 5936,
+        "currentTime": 4523,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.465552",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 5936,
+        "timeline": 5936,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6041,
+        "timeline": 6041,
+        "currentTime": 4628,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.380802",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6041,
+        "timeline": 6041,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6145,
+        "timeline": 6145,
+        "currentTime": 4732,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.298913",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6145,
+        "timeline": 6145,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6249,
+        "timeline": 6249,
+        "currentTime": 4836,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.224395",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6249,
+        "timeline": 6249,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6352,
+        "timeline": 6352,
+        "currentTime": 4939,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.158145",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6352,
+        "timeline": 6352,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6456,
+        "timeline": 6456,
+        "currentTime": 5043,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.10309",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6456,
+        "timeline": 6456,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6560,
+        "timeline": 6560,
+        "currentTime": 5147,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.060243",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6560,
+        "timeline": 6560,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6664,
+        "timeline": 6664,
+        "currentTime": 5251,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.029605",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6664,
+        "timeline": 6664,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6769,
+        "timeline": 6770,
+        "currentTime": 5357,
+        "startTime": 1413,
+        "playState": "running",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.009686",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6770,
+        "timeline": 6770,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6873,
+        "timeline": 6873,
+        "currentTime": 5460,
+        "startTime": 1413,
+        "playState": "finished",
+        "pending": false,
+        "connected": true,
+        "opacity": "0.000725",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6873,
+        "timeline": 6873,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "finished",
+        "wall": 6878,
+        "timeline": 6878,
+        "currentTime": 5400,
+        "startTime": 1413,
+        "playState": "finished",
+        "pending": false,
+        "connected": true,
+        "opacity": "0",
+        "display": "inline",
+        "visibility": "visible",
+        "rect": {
+          "x": 44.9720458984375,
+          "y": 48.11738586425781,
+          "width": 219.52725219726562,
+          "height": 153.86819458007812
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 6976,
+        "timeline": 6976,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 6976,
+        "timeline": 6976,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7080,
+        "timeline": 7080,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7080,
+        "timeline": 7080,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7184,
+        "timeline": 7184,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7184,
+        "timeline": 7184,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7288,
+        "timeline": 7288,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7288,
+        "timeline": 7288,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7392,
+        "timeline": 7392,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7392,
+        "timeline": 7392,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7496,
+        "timeline": 7496,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7496,
+        "timeline": 7496,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7600,
+        "timeline": 7600,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7600,
+        "timeline": 7600,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7704,
+        "timeline": 7704,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7704,
+        "timeline": 7704,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7808,
+        "timeline": 7808,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7808,
+        "timeline": 7808,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 7912,
+        "timeline": 7912,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 7912,
+        "timeline": 7912,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8016,
+        "timeline": 8016,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8016,
+        "timeline": 8016,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8120,
+        "timeline": 8120,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8120,
+        "timeline": 8120,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8224,
+        "timeline": 8224,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8224,
+        "timeline": 8224,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8328,
+        "timeline": 8328,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8328,
+        "timeline": 8328,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8432,
+        "timeline": 8432,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8432,
+        "timeline": 8432,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8536,
+        "timeline": 8536,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8536,
+        "timeline": 8536,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8640,
+        "timeline": 8640,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8640,
+        "timeline": 8640,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8744,
+        "timeline": 8744,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8744,
+        "timeline": 8744,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8848,
+        "timeline": 8848,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8848,
+        "timeline": 8848,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 8952,
+        "timeline": 8952,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 8952,
+        "timeline": 8952,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9056,
+        "timeline": 9056,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9056,
+        "timeline": 9056,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9160,
+        "timeline": 9160,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9160,
+        "timeline": 9160,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9264,
+        "timeline": 9264,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9264,
+        "timeline": 9264,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9368,
+        "timeline": 9368,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9368,
+        "timeline": 9368,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9472,
+        "timeline": 9472,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9472,
+        "timeline": 9472,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 1,
+        "event": "interval",
+        "wall": 9577,
+        "timeline": 9577,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      },
+      {
+        "id": 0,
+        "event": "interval",
+        "wall": 9577,
+        "timeline": 9577,
+        "currentTime": null,
+        "startTime": null,
+        "playState": "idle",
+        "pending": false,
+        "connected": false,
+        "opacity": "",
+        "display": "",
+        "visibility": "",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 664
+        },
+        "documentVisibility": "visible"
+      }
+    ]
+  },
+  "probeSource": "import {test,expect} from '../integration/webkit-startup.mjs';\nimport {readFileSync} from 'node:fs';\nconst read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));\nconst demo=read('puzzles/model-demo.json');\nconst cell=(page,id)=>page.locator(`#map .cell[data-id=\"${id}\"]`);\nconst labels=page=>page.locator('#map .reference-label');\nconst names=page=>labels(page).locator('text');\nconst saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));\nfunction fixture(){\n const dto=structuredClone(demo),p=dto.puzzle;\n p.presentation.objectNames={o1:'Roberts Boot',o2:'Zwilling',o4:'Kiste'};\n // The first clue explicitly names two places in its editorial wording.\n p.presentation.clueTexts.I='Von Roberts Boot fuhren wir ostwärts; Zwilling lag fern.';\n p.presentation.cluePlaceRefs={I:['o1','o2']};\n // Existing structured placeId, independent of editorial metadata.\n p.logic.clues.splice(1,0,{id:'Ort',type:'distanceToPlace',hour:0,placeId:'o4',distance:4});\n p.presentation.clueTexts.Ort='Bei der Abfahrt waren wir vier Hexfelder von Kiste entfernt.';\n return dto;\n}\nasync function open(page,dto=fixture()){\n await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));\n await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25,{timeout:15000});\n await expect(page.locator('#puzzleLoadError')).toBeHidden();\n}\ntest('observe native place animation without changing its timeline',async({page},info)=>{\n await page.addInitScript(()=>{\n  window.placeProbe=[];\n  const animate=Element.prototype.animate;\n  Element.prototype.animate=function(...args){\n   const a=animate.apply(this,args);if(!this.matches('.place-references'))return a;\n   const node=this,id=window.placeProbe.filter(s=>s.event==='create').length;\n   const sample=event=>{\n    const rect=node.getBoundingClientRect();\n    const style=getComputedStyle(node);\n    window.placeProbe.push({id,event,wall:performance.now(),timeline:document.timeline.currentTime,currentTime:a.currentTime,startTime:a.startTime,playState:a.playState,pending:a.pending,connected:node.isConnected,opacity:style.opacity,display:style.display,visibility:style.visibility,rect:{x:rect.x,y:rect.y,width:rect.width,height:rect.height},viewport:{width:innerWidth,height:innerHeight},documentVisibility:document.visibilityState});\n   };\n   sample('create');a.ready.then(()=>sample('ready'),()=>sample('ready-rejected'));\n   a.finished.then(()=>sample('finished'),()=>sample('cancelled'));\n   let count=0;const timer=setInterval(()=>{sample('interval');if(++count>=80)clearInterval(timer);},100);\n   return a;\n  };\n });\n await open(page);await page.locator('#showPlaces').click();\n await page.waitForTimeout(650);\n console.log('after650',await page.locator('.place-references').evaluate(n=>({opacity:getComputedStyle(n).opacity,animations:n.getAnimations().map(a=>({currentTime:a.currentTime,startTime:a.startTime,pending:a.pending,playState:a.playState}))})));\n await page.waitForTimeout(7000);\n await info.attach('animation-probe',{body:JSON.stringify(await page.evaluate(()=>window.placeProbe),null,2),contentType:'application/json'});\n await expect(labels(page)).toHaveCount(0);\n});\n",
+  "artifacts": [
+    {
+      "file": "failed-timings.zip",
+      "sha256": "801602979f8495c617f0e19e825b1d5f4d1f67de326ad587d54b42c89a1bb362"
+    },
+    {
+      "file": "failed-report.zip",
+      "sha256": "52706725135f849641f5ae993cad1f666d72134f860b326cc2bab463cecb8cea"
+    },
+    {
+      "file": "baseline-timings.zip",
+      "sha256": "636040c7add4b1d21dda9b0b7b55c7e61eb629e0ac827832deafb49ca8e5ae89"
+    },
+    {
+      "file": "linux-probe.zip",
+      "sha256": "c21c124f0c2d99d813c497ed287925f93deeab8ea19f538c3aff7ac92612e25f"
+    }
+  ]
+}
