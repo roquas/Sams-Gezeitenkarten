@@ -1,0 +1,24 @@
+{
+  "programCommit": "ed67180e800aedc8ea12709e2a824fb9198a726b",
+  "experimentId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae",
+  "originContractSha256": "7d49c1d227120578b2b7e097ef7cbacb14f75ec24e58ddc51532d12790574440",
+  "inventorySha256": "d20755e414b87c78a8145275c79cfacf2922a8782b3b97290b0c857c7011dafc",
+  "source": "Trusted generator stdout independently confirmed by separate replay at the recorded program commit; not learned from candidate/origin files.",
+  "replay": {
+    "status": "byte-identical",
+    "comparedFiles": 68,
+    "comparedBytes": 3463206,
+    "includesCompressedDiagnosisBytes": true,
+    "excluded": [
+      "observations.json"
+    ]
+  },
+  "verification": {
+    "verifiedCandidates": 96,
+    "verifiedDiagnoses": 48,
+    "verifiedStates": 1261,
+    "compatibleSelected": 15,
+    "inventoryFiles": 67,
+    "originContractSha256": "7d49c1d227120578b2b7e097ef7cbacb14f75ec24e58ddc51532d12790574440"
+  }
+}
