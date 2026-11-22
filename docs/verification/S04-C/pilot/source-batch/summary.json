@@ -1,0 +1,393 @@
+{
+  "batchFormatVersion": 3,
+  "status": "target-reached",
+  "targetCount": 6,
+  "maxAttempts": 12,
+  "attemptedCount": 6,
+  "acceptedCount": 6,
+  "rejectedCount": 0,
+  "rejectionCounts": {},
+  "attempted": {
+    "geography": {
+      "statuses": {
+        "generated": 6
+      },
+      "distinctMaps": 6,
+      "duplicateMaps": 0,
+      "emptyMaps": 0,
+      "mapAttempts": 6,
+      "placementAttempts": 24,
+      "rejectionCounts": {},
+      "profileWork": {
+        "preferredPlacements": 24,
+        "footprintChecks": 4560
+      },
+      "histograms": {
+        "objectCount": {
+          "2": 1,
+          "3": 2,
+          "5": 2,
+          "6": 1
+        },
+        "passableObjects": {
+          "0": 1,
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 2
+        },
+        "blockedObjects": {
+          "0": 1,
+          "1": 1,
+          "2": 3,
+          "3": 1
+        },
+        "occupiedCells": {
+          "2": 1,
+          "6": 3,
+          "7": 1,
+          "8": 1
+        },
+        "waterCells": {
+          "17": 1,
+          "18": 1,
+          "19": 3,
+          "23": 1
+        },
+        "landFraction": {
+          "0.08": 1,
+          "0.24": 3,
+          "0.32": 1,
+          "0.28": 1
+        },
+        "waterFraction": {
+          "0.92": 1,
+          "0.76": 3,
+          "0.68": 1,
+          "0.72": 1
+        },
+        "passableComponentCount": {
+          "1": 4,
+          "2": 2
+        },
+        "blockedComponentCount": {
+          "0": 1,
+          "1": 1,
+          "2": 3,
+          "3": 1
+        },
+        "coastEdges": {
+          "9": 1,
+          "22": 1,
+          "23": 1,
+          "25": 1,
+          "27": 1,
+          "29": 1
+        },
+        "passableComponentSizes": {
+          "1": 2,
+          "16": 1,
+          "20": 1,
+          "21": 1,
+          "22": 1,
+          "23": 1,
+          "25": 1
+        },
+        "blockedComponentSizes": {
+          "1": 3,
+          "2": 4,
+          "3": 2,
+          "4": 1
+        },
+        "objectSizes": {
+          "1": 17,
+          "2": 4,
+          "3": 2,
+          "4": 1
+        },
+        "shapesByPassability": {
+          "true:0,0": 14,
+          "false:0,0;1,0;2,0;3,0": 1,
+          "false:0,0": 3,
+          "false:0,0;0,1": 2,
+          "false:0,0;1,0": 1,
+          "false:0,0;0,1;1,0": 1,
+          "false:0,1;1,0;1,1": 1,
+          "false:0,1;1,0": 1
+        },
+        "boundaryCells": {
+          "0": 7,
+          "1": 11,
+          "2": 6
+        },
+        "boundaryEdges": {
+          "0": 7,
+          "1": 3,
+          "2": 3,
+          "3": 6,
+          "4": 4,
+          "6": 1
+        },
+        "isolatedCells": {
+          "0": 4,
+          "1": 2
+        },
+        "deadEnds": {
+          "0": 4,
+          "1": 2
+        },
+        "articulationCells": {
+          "0": 3,
+          "1": 1,
+          "3": 1,
+          "5": 1
+        },
+        "startCells": {
+          "0": 1,
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 2
+        }
+      },
+      "routes": {}
+    },
+    "assignment": {
+      "statuses": {
+        "complete": 6
+      },
+      "nonemptyStatuses": {
+        "complete": 6
+      },
+      "objects": 24,
+      "assigned": 24,
+      "unassigned": 0,
+      "rejectionCounts": {},
+      "assetTypes": {
+        "buoy": 4,
+        "atoll": 2,
+        "island": 7,
+        "wreck": 4,
+        "settlement": 3,
+        "barrels": 2,
+        "bottle": 1,
+        "rowboat": 1
+      },
+      "assetUsage": {
+        "sea-life.accent.h1.buoy.v1": 4,
+        "land-coast.atoll.h1.broken-passages.v1": 2,
+        "land-coast.island.h4.long-sand.v1": 1,
+        "land-coast.island.h1.palm-beach.v1": 1,
+        "navigation.wreck.h1.offcenter-sloop.v1": 4,
+        "land-coast.settlement.h1.restaurant-island.v1": 2,
+        "sea-life.accent.h1.barrels.v1": 2,
+        "land-coast.settlement.h2.hut-settlement-03.v1": 1,
+        "land-coast.island.h2.lookout-bay-01.v1": 1,
+        "land-coast.island.h3.south-harbor.v1": 1,
+        "land-coast.island.h2.mist-forest-03.v1": 1,
+        "land-coast.island.h3.massive-volcano.v1": 1,
+        "sea-life.accent.h1.bottle.v1": 1,
+        "sea-life.accent.h1.rowboat.v1": 1,
+        "land-coast.island.h2.lookout-bay-02.v1": 1
+      },
+      "unassignedShapes": {},
+      "unassignedSizesByPassability": {},
+      "candidateChecks": 1032,
+      "anchorChecks": 1505
+    },
+    "errors": {}
+  },
+  "accepted": {
+    "geography": {
+      "statuses": {
+        "generated": 6
+      },
+      "distinctMaps": 6,
+      "duplicateMaps": 0,
+      "emptyMaps": 0,
+      "mapAttempts": 6,
+      "placementAttempts": 24,
+      "rejectionCounts": {},
+      "profileWork": {
+        "preferredPlacements": 24,
+        "footprintChecks": 4560
+      },
+      "histograms": {
+        "objectCount": {
+          "2": 1,
+          "3": 2,
+          "5": 2,
+          "6": 1
+        },
+        "passableObjects": {
+          "0": 1,
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 2
+        },
+        "blockedObjects": {
+          "0": 1,
+          "1": 1,
+          "2": 3,
+          "3": 1
+        },
+        "occupiedCells": {
+          "2": 1,
+          "6": 3,
+          "7": 1,
+          "8": 1
+        },
+        "waterCells": {
+          "17": 1,
+          "18": 1,
+          "19": 3,
+          "23": 1
+        },
+        "landFraction": {
+          "0.08": 1,
+          "0.24": 3,
+          "0.32": 1,
+          "0.28": 1
+        },
+        "waterFraction": {
+          "0.92": 1,
+          "0.76": 3,
+          "0.68": 1,
+          "0.72": 1
+        },
+        "passableComponentCount": {
+          "1": 4,
+          "2": 2
+        },
+        "blockedComponentCount": {
+          "0": 1,
+          "1": 1,
+          "2": 3,
+          "3": 1
+        },
+        "coastEdges": {
+          "9": 1,
+          "22": 1,
+          "23": 1,
+          "25": 1,
+          "27": 1,
+          "29": 1
+        },
+        "passableComponentSizes": {
+          "1": 2,
+          "16": 1,
+          "20": 1,
+          "21": 1,
+          "22": 1,
+          "23": 1,
+          "25": 1
+        },
+        "blockedComponentSizes": {
+          "1": 3,
+          "2": 4,
+          "3": 2,
+          "4": 1
+        },
+        "objectSizes": {
+          "1": 17,
+          "2": 4,
+          "3": 2,
+          "4": 1
+        },
+        "shapesByPassability": {
+          "true:0,0": 14,
+          "false:0,0;1,0;2,0;3,0": 1,
+          "false:0,0": 3,
+          "false:0,0;0,1": 2,
+          "false:0,0;1,0": 1,
+          "false:0,0;0,1;1,0": 1,
+          "false:0,1;1,0;1,1": 1,
+          "false:0,1;1,0": 1
+        },
+        "boundaryCells": {
+          "0": 7,
+          "1": 11,
+          "2": 6
+        },
+        "boundaryEdges": {
+          "0": 7,
+          "1": 3,
+          "2": 3,
+          "3": 6,
+          "4": 4,
+          "6": 1
+        },
+        "isolatedCells": {
+          "0": 4,
+          "1": 2
+        },
+        "deadEnds": {
+          "0": 4,
+          "1": 2
+        },
+        "articulationCells": {
+          "0": 3,
+          "1": 1,
+          "3": 1,
+          "5": 1
+        },
+        "startCells": {
+          "0": 1,
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 2
+        }
+      },
+      "routes": {}
+    },
+    "assignment": {
+      "statuses": {
+        "complete": 6
+      },
+      "nonemptyStatuses": {
+        "complete": 6
+      },
+      "objects": 24,
+      "assigned": 24,
+      "unassigned": 0,
+      "rejectionCounts": {},
+      "assetTypes": {
+        "buoy": 4,
+        "atoll": 2,
+        "island": 7,
+        "wreck": 4,
+        "settlement": 3,
+        "barrels": 2,
+        "bottle": 1,
+        "rowboat": 1
+      },
+      "assetUsage": {
+        "sea-life.accent.h1.buoy.v1": 4,
+        "land-coast.atoll.h1.broken-passages.v1": 2,
+        "land-coast.island.h4.long-sand.v1": 1,
+        "land-coast.island.h1.palm-beach.v1": 1,
+        "navigation.wreck.h1.offcenter-sloop.v1": 4,
+        "land-coast.settlement.h1.restaurant-island.v1": 2,
+        "sea-life.accent.h1.barrels.v1": 2,
+        "land-coast.settlement.h2.hut-settlement-03.v1": 1,
+        "land-coast.island.h2.lookout-bay-01.v1": 1,
+        "land-coast.island.h3.south-harbor.v1": 1,
+        "land-coast.island.h2.mist-forest-03.v1": 1,
+        "land-coast.island.h3.massive-volcano.v1": 1,
+        "sea-life.accent.h1.bottle.v1": 1,
+        "sea-life.accent.h1.rowboat.v1": 1,
+        "land-coast.island.h2.lookout-bay-02.v1": 1
+      },
+      "unassignedShapes": {},
+      "unassignedSizesByPassability": {},
+      "candidateChecks": 1032,
+      "anchorChecks": 1505
+    },
+    "errors": {},
+    "repetitionHistogram": {
+      "0": 6
+    }
+  }
+}

@@ -1,0 +1,760 @@
+{
+  "batch": {
+    "batchFormatVersion": 3,
+    "status": "target-reached",
+    "targetCount": 6,
+    "maxAttempts": 12,
+    "attemptedCount": 6,
+    "acceptedCount": 6,
+    "rejectedCount": 0,
+    "rejectionCounts": {},
+    "attempted": {
+      "geography": {
+        "statuses": {
+          "generated": 6
+        },
+        "distinctMaps": 6,
+        "duplicateMaps": 0,
+        "emptyMaps": 0,
+        "mapAttempts": 6,
+        "placementAttempts": 24,
+        "rejectionCounts": {},
+        "profileWork": {
+          "preferredPlacements": 24,
+          "footprintChecks": 4560
+        },
+        "histograms": {
+          "objectCount": {
+            "2": 1,
+            "3": 2,
+            "5": 2,
+            "6": 1
+          },
+          "passableObjects": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 2
+          },
+          "blockedObjects": {
+            "0": 1,
+            "1": 1,
+            "2": 3,
+            "3": 1
+          },
+          "occupiedCells": {
+            "2": 1,
+            "6": 3,
+            "7": 1,
+            "8": 1
+          },
+          "waterCells": {
+            "17": 1,
+            "18": 1,
+            "19": 3,
+            "23": 1
+          },
+          "landFraction": {
+            "0.08": 1,
+            "0.24": 3,
+            "0.32": 1,
+            "0.28": 1
+          },
+          "waterFraction": {
+            "0.92": 1,
+            "0.76": 3,
+            "0.68": 1,
+            "0.72": 1
+          },
+          "passableComponentCount": {
+            "1": 4,
+            "2": 2
+          },
+          "blockedComponentCount": {
+            "0": 1,
+            "1": 1,
+            "2": 3,
+            "3": 1
+          },
+          "coastEdges": {
+            "9": 1,
+            "22": 1,
+            "23": 1,
+            "25": 1,
+            "27": 1,
+            "29": 1
+          },
+          "passableComponentSizes": {
+            "1": 2,
+            "16": 1,
+            "20": 1,
+            "21": 1,
+            "22": 1,
+            "23": 1,
+            "25": 1
+          },
+          "blockedComponentSizes": {
+            "1": 3,
+            "2": 4,
+            "3": 2,
+            "4": 1
+          },
+          "objectSizes": {
+            "1": 17,
+            "2": 4,
+            "3": 2,
+            "4": 1
+          },
+          "shapesByPassability": {
+            "true:0,0": 14,
+            "false:0,0;1,0;2,0;3,0": 1,
+            "false:0,0": 3,
+            "false:0,0;0,1": 2,
+            "false:0,0;1,0": 1,
+            "false:0,0;0,1;1,0": 1,
+            "false:0,1;1,0;1,1": 1,
+            "false:0,1;1,0": 1
+          },
+          "boundaryCells": {
+            "0": 7,
+            "1": 11,
+            "2": 6
+          },
+          "boundaryEdges": {
+            "0": 7,
+            "1": 3,
+            "2": 3,
+            "3": 6,
+            "4": 4,
+            "6": 1
+          },
+          "isolatedCells": {
+            "0": 4,
+            "1": 2
+          },
+          "deadEnds": {
+            "0": 4,
+            "1": 2
+          },
+          "articulationCells": {
+            "0": 3,
+            "1": 1,
+            "3": 1,
+            "5": 1
+          },
+          "startCells": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "routes": {}
+      },
+      "assignment": {
+        "statuses": {
+          "complete": 6
+        },
+        "nonemptyStatuses": {
+          "complete": 6
+        },
+        "objects": 24,
+        "assigned": 24,
+        "unassigned": 0,
+        "rejectionCounts": {},
+        "assetTypes": {
+          "buoy": 4,
+          "atoll": 2,
+          "island": 7,
+          "wreck": 4,
+          "settlement": 3,
+          "barrels": 2,
+          "bottle": 1,
+          "rowboat": 1
+        },
+        "assetUsage": {
+          "sea-life.accent.h1.buoy.v1": 4,
+          "land-coast.atoll.h1.broken-passages.v1": 2,
+          "land-coast.island.h4.long-sand.v1": 1,
+          "land-coast.island.h1.palm-beach.v1": 1,
+          "navigation.wreck.h1.offcenter-sloop.v1": 4,
+          "land-coast.settlement.h1.restaurant-island.v1": 2,
+          "sea-life.accent.h1.barrels.v1": 2,
+          "land-coast.settlement.h2.hut-settlement-03.v1": 1,
+          "land-coast.island.h2.lookout-bay-01.v1": 1,
+          "land-coast.island.h3.south-harbor.v1": 1,
+          "land-coast.island.h2.mist-forest-03.v1": 1,
+          "land-coast.island.h3.massive-volcano.v1": 1,
+          "sea-life.accent.h1.bottle.v1": 1,
+          "sea-life.accent.h1.rowboat.v1": 1,
+          "land-coast.island.h2.lookout-bay-02.v1": 1
+        },
+        "unassignedShapes": {},
+        "unassignedSizesByPassability": {},
+        "candidateChecks": 1032,
+        "anchorChecks": 1505
+      },
+      "errors": {}
+    },
+    "accepted": {
+      "geography": {
+        "statuses": {
+          "generated": 6
+        },
+        "distinctMaps": 6,
+        "duplicateMaps": 0,
+        "emptyMaps": 0,
+        "mapAttempts": 6,
+        "placementAttempts": 24,
+        "rejectionCounts": {},
+        "profileWork": {
+          "preferredPlacements": 24,
+          "footprintChecks": 4560
+        },
+        "histograms": {
+          "objectCount": {
+            "2": 1,
+            "3": 2,
+            "5": 2,
+            "6": 1
+          },
+          "passableObjects": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 2
+          },
+          "blockedObjects": {
+            "0": 1,
+            "1": 1,
+            "2": 3,
+            "3": 1
+          },
+          "occupiedCells": {
+            "2": 1,
+            "6": 3,
+            "7": 1,
+            "8": 1
+          },
+          "waterCells": {
+            "17": 1,
+            "18": 1,
+            "19": 3,
+            "23": 1
+          },
+          "landFraction": {
+            "0.08": 1,
+            "0.24": 3,
+            "0.32": 1,
+            "0.28": 1
+          },
+          "waterFraction": {
+            "0.92": 1,
+            "0.76": 3,
+            "0.68": 1,
+            "0.72": 1
+          },
+          "passableComponentCount": {
+            "1": 4,
+            "2": 2
+          },
+          "blockedComponentCount": {
+            "0": 1,
+            "1": 1,
+            "2": 3,
+            "3": 1
+          },
+          "coastEdges": {
+            "9": 1,
+            "22": 1,
+            "23": 1,
+            "25": 1,
+            "27": 1,
+            "29": 1
+          },
+          "passableComponentSizes": {
+            "1": 2,
+            "16": 1,
+            "20": 1,
+            "21": 1,
+            "22": 1,
+            "23": 1,
+            "25": 1
+          },
+          "blockedComponentSizes": {
+            "1": 3,
+            "2": 4,
+            "3": 2,
+            "4": 1
+          },
+          "objectSizes": {
+            "1": 17,
+            "2": 4,
+            "3": 2,
+            "4": 1
+          },
+          "shapesByPassability": {
+            "true:0,0": 14,
+            "false:0,0;1,0;2,0;3,0": 1,
+            "false:0,0": 3,
+            "false:0,0;0,1": 2,
+            "false:0,0;1,0": 1,
+            "false:0,0;0,1;1,0": 1,
+            "false:0,1;1,0;1,1": 1,
+            "false:0,1;1,0": 1
+          },
+          "boundaryCells": {
+            "0": 7,
+            "1": 11,
+            "2": 6
+          },
+          "boundaryEdges": {
+            "0": 7,
+            "1": 3,
+            "2": 3,
+            "3": 6,
+            "4": 4,
+            "6": 1
+          },
+          "isolatedCells": {
+            "0": 4,
+            "1": 2
+          },
+          "deadEnds": {
+            "0": 4,
+            "1": 2
+          },
+          "articulationCells": {
+            "0": 3,
+            "1": 1,
+            "3": 1,
+            "5": 1
+          },
+          "startCells": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "routes": {}
+      },
+      "assignment": {
+        "statuses": {
+          "complete": 6
+        },
+        "nonemptyStatuses": {
+          "complete": 6
+        },
+        "objects": 24,
+        "assigned": 24,
+        "unassigned": 0,
+        "rejectionCounts": {},
+        "assetTypes": {
+          "buoy": 4,
+          "atoll": 2,
+          "island": 7,
+          "wreck": 4,
+          "settlement": 3,
+          "barrels": 2,
+          "bottle": 1,
+          "rowboat": 1
+        },
+        "assetUsage": {
+          "sea-life.accent.h1.buoy.v1": 4,
+          "land-coast.atoll.h1.broken-passages.v1": 2,
+          "land-coast.island.h4.long-sand.v1": 1,
+          "land-coast.island.h1.palm-beach.v1": 1,
+          "navigation.wreck.h1.offcenter-sloop.v1": 4,
+          "land-coast.settlement.h1.restaurant-island.v1": 2,
+          "sea-life.accent.h1.barrels.v1": 2,
+          "land-coast.settlement.h2.hut-settlement-03.v1": 1,
+          "land-coast.island.h2.lookout-bay-01.v1": 1,
+          "land-coast.island.h3.south-harbor.v1": 1,
+          "land-coast.island.h2.mist-forest-03.v1": 1,
+          "land-coast.island.h3.massive-volcano.v1": 1,
+          "sea-life.accent.h1.bottle.v1": 1,
+          "sea-life.accent.h1.rowboat.v1": 1,
+          "land-coast.island.h2.lookout-bay-02.v1": 1
+        },
+        "unassignedShapes": {},
+        "unassignedSizesByPassability": {},
+        "candidateChecks": 1032,
+        "anchorChecks": 1505
+      },
+      "errors": {},
+      "repetitionHistogram": {
+        "0": 6
+      }
+    }
+  },
+  "b1": {
+    "experimentFormatVersion": 1,
+    "experimentId": "gk-b1-run-sha256:16b7502394ae708153f5b3a2e4b340c6e57b753f8fa9d355960764c4da8e76cc",
+    "status": "completed",
+    "mapCount": 6,
+    "startCount": 14,
+    "mapStatuses": {
+      "route-found": 5,
+      "no-start": 1
+    },
+    "startStatuses": {
+      "route-found": 14
+    },
+    "routeCountLowerBound": 18978,
+    "countExact": true,
+    "incompleteMaps": 0,
+    "incompleteStarts": 0,
+    "search": {
+      "maxNodesPerStart": 100000,
+      "nodesVisited": 29206,
+      "totalNodeBudget": 1400000
+    }
+  },
+  "attempts": [
+    {
+      "mapIndex": 0,
+      "b1MapTrialId": "gk-b1-map-sha256:543fd376e06972fd3c506572d602a51229815be333ceac3d361a3691d03be5a7",
+      "start": "C4",
+      "enumeration": {
+        "completed": true,
+        "nodesVisited": 3434,
+        "routeCount": 2183
+      },
+      "baselineOracle": {
+        "completed": true,
+        "maxNodes": 100000,
+        "routeCount": 2183
+      },
+      "baseline": {
+        "fixedHours": [],
+        "domainSizes": [
+          1,
+          6,
+          15,
+          23,
+          24,
+          24,
+          24
+        ]
+      },
+      "target": {
+        "status": "selected",
+        "source": {
+          "mapFingerprint": "gk-map-v2-sha256:a24ae38046eaf8e403f580a32728c83085bc9d622ab9e5810b85f64456ca21e1",
+          "start": "C4",
+          "steps": 6,
+          "order": "engine-row-major-1",
+          "routeIndex": 1365
+        },
+        "route": [
+          "C4",
+          "D4",
+          "D3",
+          "C2",
+          "C1",
+          "B1",
+          "A1"
+        ],
+        "instanceFingerprint": "gk-instance-v2-sha256:3ba227d497c69383d0d42156690d7ac18503c81a48c7df4ae9bc242e6c45f52d",
+        "search": {
+          "maxNodes": 100000,
+          "nodesVisited": 2218,
+          "routesVisited": 1366,
+          "completed": false
+        }
+      },
+      "seed": 404,
+      "pool": {
+        "completed": true,
+        "parametersExamined": 1885,
+        "size": 450,
+        "byType": {
+          "direction": 6,
+          "position": 1,
+          "distanceToPlace": 14,
+          "distanceBetweenHours": 28,
+          "turn": 5,
+          "countDistanceToPlace": 396
+        }
+      }
+    },
+    {
+      "mapIndex": 1,
+      "b1MapTrialId": "gk-b1-map-sha256:eed35b198cdfdf304fa219b44d549d3bf2a54125b272ee2bd7da3fadd6649db6",
+      "start": "C5",
+      "enumeration": {
+        "completed": true,
+        "nodesVisited": 199,
+        "routeCount": 64
+      },
+      "baselineOracle": {
+        "completed": true,
+        "maxNodes": 100000,
+        "routeCount": 64
+      },
+      "baseline": {
+        "fixedHours": [],
+        "domainSizes": [
+          1,
+          4,
+          7,
+          9,
+          11,
+          14,
+          15
+        ]
+      },
+      "target": {
+        "status": "selected",
+        "source": {
+          "mapFingerprint": "gk-map-v2-sha256:c4c234405a0777e52a587390d1588ba77c2bce361d441159f4efdc9fb895b9e4",
+          "start": "C5",
+          "steps": 6,
+          "order": "engine-row-major-1",
+          "routeIndex": 40
+        },
+        "route": [
+          "C5",
+          "B5",
+          "B4",
+          "C4",
+          "D4",
+          "E5",
+          "D5"
+        ],
+        "instanceFingerprint": "gk-instance-v2-sha256:cce9f24c12e68b843de6734c9605993305e72703766caad1cd9d140643179775",
+        "search": {
+          "maxNodes": 100000,
+          "nodesVisited": 135,
+          "routesVisited": 41,
+          "completed": false
+        }
+      },
+      "seed": 405,
+      "pool": {
+        "completed": true,
+        "parametersExamined": 2687,
+        "size": 655,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 594,
+          "distanceToPlace": 21,
+          "direction": 6,
+          "turn": 5,
+          "position": 1
+        }
+      }
+    },
+    {
+      "mapIndex": 2,
+      "b1MapTrialId": "gk-b1-map-sha256:9f9472c8a89707db924dcf25f60acffbc90b8f1fca29e53933ab2d2ff844d5d1",
+      "start": "A2",
+      "enumeration": {
+        "completed": true,
+        "nodesVisited": 1021,
+        "routeCount": 656
+      },
+      "baselineOracle": {
+        "completed": true,
+        "maxNodes": 100000,
+        "routeCount": 656
+      },
+      "baseline": {
+        "fixedHours": [],
+        "domainSizes": [
+          1,
+          5,
+          6,
+          10,
+          15,
+          18,
+          20
+        ]
+      },
+      "target": {
+        "status": "selected",
+        "source": {
+          "mapFingerprint": "gk-map-v2-sha256:39624c115815c1e96c17d288e5de0d84ebd50b51c7472028fef2f7ff9b751e74",
+          "start": "A2",
+          "steps": 6,
+          "order": "engine-row-major-1",
+          "routeIndex": 67
+        },
+        "route": [
+          "A2",
+          "B1",
+          "C1",
+          "B2",
+          "C3",
+          "C4",
+          "B4"
+        ],
+        "instanceFingerprint": "gk-instance-v2-sha256:f3c0e2e22610b9d98086bde942c239826ed51c796c4124a025e95a98e7f1aff1",
+        "search": {
+          "maxNodes": 100000,
+          "nodesVisited": 112,
+          "routesVisited": 68,
+          "completed": false
+        }
+      },
+      "seed": 406,
+      "pool": {
+        "completed": true,
+        "parametersExamined": 4235,
+        "size": 1066,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 990,
+          "position": 2,
+          "distanceToPlace": 35,
+          "turn": 5,
+          "direction": 6
+        }
+      }
+    },
+    {
+      "mapIndex": 3,
+      "b1MapTrialId": "gk-b1-map-sha256:7f2b79da7ce7fae7c5dc8d6174d47c6725cd6a0bca2db01727f2f377f033b71b",
+      "start": "B3",
+      "enumeration": {
+        "completed": true,
+        "nodesVisited": 2526,
+        "routeCount": 1640
+      },
+      "baselineOracle": {
+        "completed": true,
+        "maxNodes": 100000,
+        "routeCount": 1640
+      },
+      "baseline": {
+        "fixedHours": [],
+        "domainSizes": [
+          1,
+          6,
+          12,
+          17,
+          21,
+          21,
+          22
+        ]
+      },
+      "target": {
+        "status": "selected",
+        "source": {
+          "mapFingerprint": "gk-map-v2-sha256:197c20858eb868e274289bc8d56606866608d3efa2ba291b886556fa23d2100b",
+          "start": "B3",
+          "steps": 6,
+          "order": "engine-row-major-1",
+          "routeIndex": 113
+        },
+        "route": [
+          "B3",
+          "A2",
+          "B2",
+          "C3",
+          "C4",
+          "D5",
+          "E5"
+        ],
+        "instanceFingerprint": "gk-instance-v2-sha256:54c26f63f7e14cf0781d996447a211a771c7806b8b7435ae26f3c9c04f1c618c",
+        "search": {
+          "maxNodes": 100000,
+          "nodesVisited": 160,
+          "routesVisited": 114,
+          "completed": false
+        }
+      },
+      "seed": 407,
+      "pool": {
+        "completed": true,
+        "parametersExamined": 4235,
+        "size": 1066,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 990,
+          "position": 2,
+          "direction": 6,
+          "distanceToPlace": 35,
+          "turn": 5
+        }
+      }
+    },
+    {
+      "mapIndex": 4,
+      "b1MapTrialId": "gk-b1-map-sha256:1dbb77ff662cb7d63de02f0f1bae32d854ca05dd01e6085d3895078a273c6bd8",
+      "reason": "NO_ELIGIBLE_START"
+    },
+    {
+      "mapIndex": 5,
+      "b1MapTrialId": "gk-b1-map-sha256:b08237cd5ce654a3a97721af99a0b31841840144b01dc0e5ccc368e81a9c6fbe",
+      "start": "A4",
+      "enumeration": {
+        "completed": true,
+        "nodesVisited": 2576,
+        "routeCount": 1742
+      },
+      "baselineOracle": {
+        "completed": true,
+        "maxNodes": 100000,
+        "routeCount": 1742
+      },
+      "baseline": {
+        "fixedHours": [],
+        "domainSizes": [
+          1,
+          5,
+          9,
+          15,
+          18,
+          20,
+          21
+        ]
+      },
+      "target": {
+        "status": "selected",
+        "source": {
+          "mapFingerprint": "gk-map-v2-sha256:342753e2c3f12a834ac39230768c6b008405e47e0fcc881665d45f6caf192206",
+          "start": "A4",
+          "steps": 6,
+          "order": "engine-row-major-1",
+          "routeIndex": 1674
+        },
+        "route": [
+          "A4",
+          "B5",
+          "C5",
+          "C4",
+          "C3",
+          "B3",
+          "A3"
+        ],
+        "instanceFingerprint": "gk-instance-v2-sha256:415d9ccccd677714b0c2dc7b70cdc51b2f1aa30da0e64e955c369c87ecbebb2f",
+        "search": {
+          "maxNodes": 100000,
+          "nodesVisited": 2482,
+          "routesVisited": 1675,
+          "completed": false
+        }
+      },
+      "seed": 409,
+      "pool": {
+        "completed": true,
+        "parametersExamined": 5016,
+        "size": 1271,
+        "byType": {
+          "distanceBetweenHours": 28,
+          "countDistanceToPlace": 1188,
+          "direction": 6,
+          "turn": 5,
+          "distanceToPlace": 42,
+          "position": 2
+        }
+      }
+    }
+  ]
+}
