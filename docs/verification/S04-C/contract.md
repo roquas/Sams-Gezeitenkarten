@@ -39,6 +39,14 @@ Die Issue-Festlegung erlaubt manuelle Redaktion; sie verlangt keine Textpipeline
   zwei Neustarts je Ziel war ebenfalls restartbegrenzt. Frühere Suchvergleiche
   auf vier alten Zielen testen andere Strategien und teils zehnfache Ressourcen;
   daraus folgt kein kalibrierter Qualitätsvorteil für neue normalisierte Kandidaten.
+- S03-v1 hatte 20/20 vollständige Enumerationsergebnisse (max. 2.895 Knoten)
+  und 20/20 vollständige Pools (max. 5.811 Parameter). Pro Ziel wurden höchstens
+  652/2.000 Solverchecks, 870.300/5 Mio. Matches und 2.643.931/20 Mio.
+  Filterauswertungen verbraucht. Diese drei Grenzen waren dort nicht bindend.
+  S02: 48 vollständige Startenumerationen, 48 restartbedingt unvollständige Suchen,
+  96 Kandidaten; 79.308 Enumerationsknoten, 255.436 Parameter, 4.119 Solverchecks,
+  3.135.891 Matches, 6.854.737 Filter. Kein Ausbeutenbeleg für pauschal größere
+  Enumerations-, Parameter- oder Solverbudgets.
 - 100.000 Parameter reichen für die bisherigen S03-Pools; keine Evidenz für einen
   Parameterengpass. Die Grenzen werden nicht pauschal erhöht. Vollständigkeit
   wird für jedes neue Ziel separat gespeichert. Mehr Ressourcen allein zählen nicht.
@@ -56,7 +64,7 @@ Quellenqualität und Kennungsunsicherheit (u.a. ten-05) gelten unverändert.
 | --- | --- | --- | --- | --- |
 | P1 markierbarer Teilfortschritt | historical-C, ten-06, s03-08; Wunsch nach Ausschlüssen | `qualitySignals.entryStates` nicht leer (Ein-/Zweihinweis-Feldfortschritte) | greifbarer Einstieg | Keine lokale Einzel-/Paarfixierung in positivem S03-08; Eintrag ist weder Entdeckbarkeit noch Etappe |
 | P2 begrenzter lokaler Rest | T02/T07: frustrierende Alternativenlast; s03-01 angenehmer Abschluss | unverändertes `lateRejection`: höchstens 2 offene Stunden, je 3 Felder, höchstens 2 lokale Kopplungen | überschaubare Fortsetzungsprüfung | S03-05 positiv trotz 509/301 markierungskompatibler Wege; keine Vollauflösungspflicht, keine Restwegschwelle |
-| P3 kombinierte Nutzung | ten-06 Aha; s03-08 Wiederverwendung; historical-A Einhinweisdominanz negativ | `mixedCombinationHours.length > 0` ODER `reusedFieldSteps > 0`; bestehender Frühfilter max. 3 einzelhinweisfixe Stunden bleibt | Gelegenheiten zur Hinweiskombination | Zertifikatteilnahme beweist keine notwendige menschliche Idee; S03-07 und ten-04 positive geometrische Gegenfälle |
+| P3 kombinierte Nutzung | ten-06 Aha; s03-08 Wiederverwendung; historical-A Einhinweisdominanz negativ | `mixedCombinationHours.length > 0` ODER `reusedFieldSteps > 0`; bestehender Frühfilter max. 3 einzelhinweisfixe Stunden bleibt | Gelegenheiten zur Hinweiskombination | Wiederverwendung kann vom selben Hinweis stammen; Zertifikatteilnahme beweist keine notwendige menschliche Idee; S03-07 und ten-04 positive geometrische Gegenfälle |
 | P4 Vielfalt im Pool | V2 nahezu identisch mit V1; Serienfeedback will auch einfache geometrische Fälle | eine Karte insgesamt, max. 2 je bestehender Verlaufssignatur; feste Hashreihenfolge statt Score | Wiederholungen begrenzen, Gegenfälle erhalten | Signaturen sind technische Spuren; verschiedene Signaturen garantieren keine andere Spielerfahrung |
 
 P1–P3 gemeinsam definieren nur den bevorzugten experimentellen Teilpool. Kein
