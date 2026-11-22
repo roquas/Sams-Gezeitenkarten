@@ -1,0 +1,519 @@
+{
+  "head": "6e1b108fcb372b8c72d863ec0ebb29ce127c02ec",
+  "productHashes": {
+    "src/beta/landing.mjs": "62403e7250be3756fcea55e94ae21ed3ca3a6847ae26cc14df9abbd34dd0f77b",
+    "src/beta/clock.mjs": "a6a964f78d9d40b9b8f6530646dc30e7d076a16fa2bbf57f7064ca101f46b4b4",
+    "src/beta/session.mjs": "d54d87ec730c1cbdc3f32649afae2b0b8e27dd2aee7ca054b129607272018691",
+    "src/beta/storage.mjs": "bc538e69c3442504acf507a614f4e23f7434cc22a339be7629d436e5aee6fef7"
+  },
+  "feedback": {
+    "fixturePuzzleIds": [
+      "model-demo"
+    ],
+    "calls": 2,
+    "before": {
+      "open": true,
+      "connected": true,
+      "version": "Bestand: regular · Datenversion 1 · var-model-demo",
+      "commentVisible": true
+    },
+    "after": {
+      "oldConnected": false,
+      "open": false,
+      "version": "Bestand: regular · Datenversion 1 · var-model-demo",
+      "commentVisible": false,
+      "records": [
+        {
+          "recordId": "[\"regular\",\"model-demo\",2,1,\"gezeitenkarten-2\",\"map-model-demo\",\"inst-model-demo\",\"var-model-demo\",null]",
+          "identity": {
+            "catalog": "regular",
+            "puzzleId": "model-demo",
+            "schemaVersion": 2,
+            "dataVersion": 1,
+            "rulesVersion": "gezeitenkarten-2",
+            "mapStructureId": "map-model-demo",
+            "instanceId": "inst-model-demo",
+            "variantId": "var-model-demo",
+            "sourcePublicationId": null
+          },
+          "title": "Die Probefahrt",
+          "createdAt": "2026-11-22T11:44:33.923Z",
+          "updatedAt": "2026-11-22T11:44:34.219Z",
+          "revision": 5,
+          "solvedAt": null,
+          "phases": [
+            {
+              "phaseId": "48f1af90-e9cb-48ce-ac87-e04f809fcced",
+              "startedAt": "2026-11-22T11:44:33.923Z",
+              "endedAt": null,
+              "status": "open",
+              "activeMs": 250,
+              "paused": false,
+              "hints": 0,
+              "noteChecks": 0,
+              "routeChecks": 0,
+              "penaltyPoints": 0,
+              "timeTracking": "available",
+              "feedbackAtEnd": null
+            }
+          ],
+          "feedback": {
+            "difficulty": null,
+            "fairness": null,
+            "comment": "",
+            "status": null,
+            "updatedAt": null
+          }
+        }
+      ]
+    },
+    "oldFillFailed": true,
+    "error": "locator.fill: Timeout 1000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#feedbackRecords details').first().locator('[name=comment]')\u001b[22m\n\u001b[2m    - locator resolved to <textarea rows=\"3\" name=\"comment\"></textarea>\u001b[22m\n\u001b[2m    - fill(\"Version eins\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n"
+  },
+  "timers": [
+    {
+      "profile": "desktop",
+      "mode": "original",
+      "waiting": {
+        "now": 1847,
+        "events": [
+          {
+            "event": "persist",
+            "now": 206,
+            "activeMs": 0
+          },
+          {
+            "event": "request",
+            "now": 207
+          },
+          {
+            "event": "native-grant-held",
+            "now": 239
+          }
+        ],
+        "records": [
+          {
+            "recordId": "[\"regular\",\"model-demo\",2,1,\"gezeitenkarten-2\",\"map-model-demo\",\"inst-model-demo\",\"var-model-demo\",null]",
+            "identity": {
+              "catalog": "regular",
+              "puzzleId": "model-demo",
+              "schemaVersion": 2,
+              "dataVersion": 1,
+              "rulesVersion": "gezeitenkarten-2",
+              "mapStructureId": "map-model-demo",
+              "instanceId": "inst-model-demo",
+              "variantId": "var-model-demo",
+              "sourcePublicationId": null
+            },
+            "title": "Die Probefahrt",
+            "createdAt": "2026-11-22T11:44:36.623Z",
+            "updatedAt": "2026-11-22T11:44:36.623Z",
+            "revision": 1,
+            "solvedAt": null,
+            "phases": [
+              {
+                "phaseId": "84c1eb3d-ae8d-4466-aecb-edb7377ce49d",
+                "startedAt": "2026-11-22T11:44:36.623Z",
+                "endedAt": null,
+                "status": "open",
+                "activeMs": 0,
+                "paused": false,
+                "hints": 0,
+                "noteChecks": 0,
+                "routeChecks": 0,
+                "penaltyPoints": 0,
+                "timeTracking": "available",
+                "feedbackAtEnd": null
+              }
+            ],
+            "feedback": {
+              "difficulty": null,
+              "fairness": null,
+              "comment": "",
+              "status": null,
+              "updatedAt": null
+            }
+          }
+        ]
+      },
+      "start": 1852,
+      "storedAfter6000": 3357,
+      "originalMinimum4000Passed": false,
+      "afterPause": {
+        "now": 8056,
+        "events": [
+          {
+            "event": "persist",
+            "now": 206,
+            "activeMs": 0
+          },
+          {
+            "event": "request",
+            "now": 207
+          },
+          {
+            "event": "native-grant-held",
+            "now": 239
+          },
+          {
+            "event": "grant-delivered",
+            "now": 1849
+          },
+          {
+            "event": "product-owner-set",
+            "now": 1849
+          },
+          {
+            "event": "persist",
+            "now": 5206,
+            "activeMs": 3357
+          },
+          {
+            "event": "persist",
+            "now": 8054,
+            "activeMs": 3357
+          },
+          {
+            "event": "persist",
+            "now": 8054,
+            "activeMs": 6205
+          }
+        ],
+        "activeMs": 6205
+      }
+    },
+    {
+      "profile": "desktop",
+      "mode": "paused",
+      "waiting": {
+        "now": 4,
+        "events": [
+          {
+            "event": "persist",
+            "now": 4,
+            "activeMs": 0
+          },
+          {
+            "event": "request",
+            "now": 4
+          },
+          {
+            "event": "native-grant-held",
+            "now": 4
+          }
+        ],
+        "records": [
+          {
+            "recordId": "[\"regular\",\"model-demo\",2,1,\"gezeitenkarten-2\",\"map-model-demo\",\"inst-model-demo\",\"var-model-demo\",null]",
+            "identity": {
+              "catalog": "regular",
+              "puzzleId": "model-demo",
+              "schemaVersion": 2,
+              "dataVersion": 1,
+              "rulesVersion": "gezeitenkarten-2",
+              "mapStructureId": "map-model-demo",
+              "instanceId": "inst-model-demo",
+              "variantId": "var-model-demo",
+              "sourcePublicationId": null
+            },
+            "title": "Die Probefahrt",
+            "createdAt": "2026-11-20T12:00:01.000Z",
+            "updatedAt": "2026-11-20T12:00:01.000Z",
+            "revision": 1,
+            "solvedAt": null,
+            "phases": [
+              {
+                "phaseId": "0d68b2db-bda8-4f9a-a14b-c8cf976e0dcb",
+                "startedAt": "2026-11-20T12:00:01.000Z",
+                "endedAt": null,
+                "status": "open",
+                "activeMs": 0,
+                "paused": false,
+                "hints": 0,
+                "noteChecks": 0,
+                "routeChecks": 0,
+                "penaltyPoints": 0,
+                "timeTracking": "available",
+                "feedbackAtEnd": null
+              }
+            ],
+            "feedback": {
+              "difficulty": null,
+              "fairness": null,
+              "comment": "",
+              "status": null,
+              "updatedAt": null
+            }
+          }
+        ]
+      },
+      "start": 4,
+      "storedAfter6000": 5000,
+      "originalMinimum4000Passed": true,
+      "afterPause": {
+        "now": 6004,
+        "events": [
+          {
+            "event": "persist",
+            "now": 4,
+            "activeMs": 0
+          },
+          {
+            "event": "request",
+            "now": 4
+          },
+          {
+            "event": "native-grant-held",
+            "now": 4
+          },
+          {
+            "event": "grant-delivered",
+            "now": 4
+          },
+          {
+            "event": "product-owner-set",
+            "now": 4
+          },
+          {
+            "event": "persist",
+            "now": 5004,
+            "activeMs": 5000
+          },
+          {
+            "event": "persist",
+            "now": 6004,
+            "activeMs": 5000
+          },
+          {
+            "event": "persist",
+            "now": 6004,
+            "activeMs": 6000
+          }
+        ],
+        "activeMs": 6000
+      }
+    },
+    {
+      "profile": "mobile",
+      "mode": "original",
+      "waiting": {
+        "now": 1734,
+        "events": [
+          {
+            "event": "persist",
+            "now": 104,
+            "activeMs": 0
+          },
+          {
+            "event": "request",
+            "now": 105
+          },
+          {
+            "event": "native-grant-held",
+            "now": 144
+          }
+        ],
+        "records": [
+          {
+            "recordId": "[\"regular\",\"model-demo\",2,1,\"gezeitenkarten-2\",\"map-model-demo\",\"inst-model-demo\",\"var-model-demo\",null]",
+            "identity": {
+              "catalog": "regular",
+              "puzzleId": "model-demo",
+              "schemaVersion": 2,
+              "dataVersion": 1,
+              "rulesVersion": "gezeitenkarten-2",
+              "mapStructureId": "map-model-demo",
+              "instanceId": "inst-model-demo",
+              "variantId": "var-model-demo",
+              "sourcePublicationId": null
+            },
+            "title": "Die Probefahrt",
+            "createdAt": "2026-11-22T11:44:40.951Z",
+            "updatedAt": "2026-11-22T11:44:40.951Z",
+            "revision": 1,
+            "solvedAt": null,
+            "phases": [
+              {
+                "phaseId": "3f7c1bd4-37f5-4164-911d-363504b29bf7",
+                "startedAt": "2026-11-22T11:44:40.951Z",
+                "endedAt": null,
+                "status": "open",
+                "activeMs": 0,
+                "paused": false,
+                "hints": 0,
+                "noteChecks": 0,
+                "routeChecks": 0,
+                "penaltyPoints": 0,
+                "timeTracking": "available",
+                "feedbackAtEnd": null
+              }
+            ],
+            "feedback": {
+              "difficulty": null,
+              "fairness": null,
+              "comment": "",
+              "status": null,
+              "updatedAt": null
+            }
+          }
+        ]
+      },
+      "start": 1738,
+      "storedAfter6000": 3369,
+      "originalMinimum4000Passed": false,
+      "afterPause": {
+        "now": 7780,
+        "events": [
+          {
+            "event": "persist",
+            "now": 104,
+            "activeMs": 0
+          },
+          {
+            "event": "request",
+            "now": 105
+          },
+          {
+            "event": "native-grant-held",
+            "now": 144
+          },
+          {
+            "event": "grant-delivered",
+            "now": 1735
+          },
+          {
+            "event": "product-owner-set",
+            "now": 1736
+          },
+          {
+            "event": "persist",
+            "now": 5104,
+            "activeMs": 3369
+          },
+          {
+            "event": "persist",
+            "now": 7779,
+            "activeMs": 3369
+          },
+          {
+            "event": "persist",
+            "now": 7779,
+            "activeMs": 6044
+          }
+        ],
+        "activeMs": 6044
+      }
+    },
+    {
+      "profile": "mobile",
+      "mode": "paused",
+      "waiting": {
+        "now": 1,
+        "events": [
+          {
+            "event": "persist",
+            "now": 1,
+            "activeMs": 0
+          },
+          {
+            "event": "request",
+            "now": 1
+          },
+          {
+            "event": "native-grant-held",
+            "now": 1
+          }
+        ],
+        "records": [
+          {
+            "recordId": "[\"regular\",\"model-demo\",2,1,\"gezeitenkarten-2\",\"map-model-demo\",\"inst-model-demo\",\"var-model-demo\",null]",
+            "identity": {
+              "catalog": "regular",
+              "puzzleId": "model-demo",
+              "schemaVersion": 2,
+              "dataVersion": 1,
+              "rulesVersion": "gezeitenkarten-2",
+              "mapStructureId": "map-model-demo",
+              "instanceId": "inst-model-demo",
+              "variantId": "var-model-demo",
+              "sourcePublicationId": null
+            },
+            "title": "Die Probefahrt",
+            "createdAt": "2026-11-20T12:00:01.000Z",
+            "updatedAt": "2026-11-20T12:00:01.000Z",
+            "revision": 1,
+            "solvedAt": null,
+            "phases": [
+              {
+                "phaseId": "014f9fe9-f745-4ea5-8ece-23893b32db2c",
+                "startedAt": "2026-11-20T12:00:01.000Z",
+                "endedAt": null,
+                "status": "open",
+                "activeMs": 0,
+                "paused": false,
+                "hints": 0,
+                "noteChecks": 0,
+                "routeChecks": 0,
+                "penaltyPoints": 0,
+                "timeTracking": "available",
+                "feedbackAtEnd": null
+              }
+            ],
+            "feedback": {
+              "difficulty": null,
+              "fairness": null,
+              "comment": "",
+              "status": null,
+              "updatedAt": null
+            }
+          }
+        ]
+      },
+      "start": 1,
+      "storedAfter6000": 5000,
+      "originalMinimum4000Passed": true,
+      "afterPause": {
+        "now": 6001,
+        "events": [
+          {
+            "event": "persist",
+            "now": 1,
+            "activeMs": 0
+          },
+          {
+            "event": "request",
+            "now": 1
+          },
+          {
+            "event": "native-grant-held",
+            "now": 1
+          },
+          {
+            "event": "grant-delivered",
+            "now": 1
+          },
+          {
+            "event": "product-owner-set",
+            "now": 1
+          },
+          {
+            "event": "persist",
+            "now": 5001,
+            "activeMs": 5000
+          },
+          {
+            "event": "persist",
+            "now": 6001,
+            "activeMs": 5000
+          },
+          {
+            "event": "persist",
+            "now": 6001,
+            "activeMs": 6000
+          }
+        ],
+        "activeMs": 6000
+      }
+    }
+  ]
+}
