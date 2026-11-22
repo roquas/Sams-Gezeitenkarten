@@ -1,0 +1,83 @@
+{
+  "protocol": "s04-c-production-1",
+  "baseCommit": "63092cacd251229ec6adc2552e1a821c3a5b4545",
+  "seed": 405,
+  "timeoutMs": 900000,
+  "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+  "backgroundId": "sea-blue-01",
+  "batch": {
+    "targetCount": 24,
+    "maxAttempts": 48,
+    "seedStart": 405000,
+    "assignmentSeedStart": 405000,
+    "config": {
+      "maxMapAttempts": 1,
+      "analysis": {
+        "steps": [],
+        "maxNodes": 10000
+      },
+      "filters": {
+        "routeSteps": [],
+        "minLargestComponent": 0
+      },
+      "objectCount": {
+        "min": 2,
+        "max": 7
+      },
+      "objectSizes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "passableProbability": 0.5
+    }
+  },
+  "maxNodes": 100000,
+  "maxClueParameters": 100000,
+  "cluePolicy": "s03-no-multihour-zero-1",
+  "normalization": "count-distance-extremes-1",
+  "arms": [
+    {
+      "id": "C",
+      "maxRestarts": 4
+    }
+  ],
+  "search": {
+    "maxSolverChecks": 2000,
+    "maxMatchEvaluations": 5000000,
+    "maxRouteFilterEvaluations": 20000000
+  },
+  "maxDiagnoses": 48,
+  "maxDiagnosisStates": 3120,
+  "maxStatesPerDiagnosis": 65,
+  "quality": {
+    "minRoutes": 16,
+    "maxBaselineFixed": 2,
+    "minClues": 3,
+    "maxClues": 7,
+    "maxSingleFixed": 3,
+    "maxOpenHours": 2,
+    "maxOpenDomain": 3,
+    "maxCouplings": 2
+  },
+  "selection": {
+    "preferred": 12,
+    "controls": 4,
+    "maxPerSignature": 2,
+    "salt": "s04-c-production-cohorts-1"
+  },
+  "nodeVersion": "v22.23.3",
+  "strategy": "random-incremental-1",
+  "steps": 6,
+  "targetNamespace": "s04-c-production-target-1/",
+  "neutralSalt": "s04-c-production-neutral-1",
+  "implementationLimits": {
+    "diagnosisNodes": 250000,
+    "diagnosisOracleNodes": 250000,
+    "verifierNodes": 1000000,
+    "verifierEffectNodes": 1000000
+  },
+  "maxDiagnosesPerMap": 2,
+  "workerHeapMiB": 768
+}
