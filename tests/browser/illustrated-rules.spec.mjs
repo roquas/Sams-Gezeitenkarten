@@ -1,4 +1,4 @@
-import {test,expect} from '@playwright/test';
+import {test,expect} from '../integration/webkit-startup.mjs';
 import fs from 'node:fs';
 const manifest=JSON.parse(fs.readFileSync(new URL('../../puzzles/manifest.json',import.meta.url)));
 const article=page=>page.locator('#landingRules article');
