@@ -1,0 +1,164 @@
+{
+  "node": "v22.23.3",
+  "totalMs": 79612.46783400001,
+  "commonMs": 54651.81775,
+  "cpuUsage": {
+    "user": 12656006,
+    "system": 1387005
+  },
+  "peakRssKiB": 182448,
+  "costs": [
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M000/gk-variant-v2-sha256:b1d8a4a4d8e30e50d95d11a028321d414988741e1f386ec8e88ec6e4df790e77",
+      "diagnosisMs": 178.12658399999782,
+      "states": 8
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M001/gk-variant-v2-sha256:a0515bb1be52d4130a91b1f0161dca34921f8af949107427cbd8c613b64c9ced",
+      "diagnosisMs": 70.66591699999844,
+      "states": 8
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M002/gk-variant-v2-sha256:7d27bf0f99b31045c6d380823cabd70a6a34a5f1d0395d9b5cbb0f59f57f5ae8",
+      "diagnosisMs": 192.63562500000262,
+      "states": 27
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M003/gk-variant-v2-sha256:b5ca66471865cb1ce1b45d1f4dbc484a2d91c4b51707eec48296c6bedd4e1cd1",
+      "diagnosisMs": 157.138374999995,
+      "states": 16
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M005/gk-variant-v2-sha256:13308b3551bd384014ffc9006686d3732ce50c102d7b7a16184041bb61d5f77b",
+      "diagnosisMs": 1250.2382920000018,
+      "states": 27
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M000/gk-variant-v2-sha256:3e21dd1b5c9eb07c781d5e4d7a7a845c413d9e3bbae6bb4b74dcd58e2ea230b8",
+      "diagnosisMs": 187.05587500000547,
+      "states": 8
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M001/gk-variant-v2-sha256:89b309e49a1e25b0583a2f9f6572fffc1eac92b9ae018f69b8e8b0f5b971d2d4",
+      "diagnosisMs": 54.532208000004175,
+      "states": 8
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M002/gk-variant-v2-sha256:f676683b51953ebb9446ad72c3110fb8ac28973e4e725f483298e645a81ca5c3",
+      "diagnosisMs": 441.7864169999957,
+      "states": 16
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M003/gk-variant-v2-sha256:7d88846d804ea535f20f6746081bcf51c20df1d25e7052d8bacd2e54a00d33cd",
+      "diagnosisMs": 311.8521669999973,
+      "states": 8
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M005/gk-variant-v2-sha256:e9731da1ae7181343afd8a54164f10ce56bae64b484bc8b64502a1fac25472a8",
+      "diagnosisMs": 243.3648749999993,
+      "states": 27
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M000/gk-variant-v2-sha256:ba3949b99b00c8a7708635f8aa3043262f490f169f441cda324cf0a4146290a4",
+      "diagnosisMs": 509.1435840000049,
+      "states": 27
+    },
+    {
+      "arm": "A",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M001/gk-variant-v2-sha256:e376cf7c4b2ff2cf44d6d4eb3667569a15dfc961a626283eaf5c9a3a53cd6055",
+      "diagnosisMs": 135.02087500000198,
+      "states": 8
+    },
+    {
+      "arm": "A",
+      "totalMs": 9717.396874999999
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M000/gk-variant-v2-sha256:b1d8a4a4d8e30e50d95d11a028321d414988741e1f386ec8e88ec6e4df790e77",
+      "diagnosisMs": 137.2230830000044,
+      "states": 8
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M001/gk-variant-v2-sha256:a0515bb1be52d4130a91b1f0161dca34921f8af949107427cbd8c613b64c9ced",
+      "diagnosisMs": 179.67625000000407,
+      "states": 8
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M002/gk-variant-v2-sha256:7d27bf0f99b31045c6d380823cabd70a6a34a5f1d0395d9b5cbb0f59f57f5ae8",
+      "diagnosisMs": 322.51299999999173,
+      "states": 27
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M003/gk-variant-v2-sha256:b5ca66471865cb1ce1b45d1f4dbc484a2d91c4b51707eec48296c6bedd4e1cd1",
+      "diagnosisMs": 582.7947500000009,
+      "states": 16
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M005/gk-variant-v2-sha256:13308b3551bd384014ffc9006686d3732ce50c102d7b7a16184041bb61d5f77b",
+      "diagnosisMs": 1431.7550829999964,
+      "states": 27
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M000/gk-variant-v2-sha256:3e21dd1b5c9eb07c781d5e4d7a7a845c413d9e3bbae6bb4b74dcd58e2ea230b8",
+      "diagnosisMs": 426.5007089999999,
+      "states": 8
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M001/gk-variant-v2-sha256:89b309e49a1e25b0583a2f9f6572fffc1eac92b9ae018f69b8e8b0f5b971d2d4",
+      "diagnosisMs": 99.35279200000514,
+      "states": 8
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M002/gk-variant-v2-sha256:f676683b51953ebb9446ad72c3110fb8ac28973e4e725f483298e645a81ca5c3",
+      "diagnosisMs": 329.6498329999886,
+      "states": 16
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M003/gk-variant-v2-sha256:7d88846d804ea535f20f6746081bcf51c20df1d25e7052d8bacd2e54a00d33cd",
+      "diagnosisMs": 144.385666999995,
+      "states": 8
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M005/gk-variant-v2-sha256:e9731da1ae7181343afd8a54164f10ce56bae64b484bc8b64502a1fac25472a8",
+      "diagnosisMs": 412.5769169999985,
+      "states": 27
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M000/gk-variant-v2-sha256:ba3949b99b00c8a7708635f8aa3043262f490f169f441cda324cf0a4146290a4",
+      "diagnosisMs": 832.4414580000011,
+      "states": 27
+    },
+    {
+      "arm": "B",
+      "candidateId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/B/M001/gk-variant-v2-sha256:e376cf7c4b2ff2cf44d6d4eb3667569a15dfc961a626283eaf5c9a3a53cd6055",
+      "diagnosisMs": 59.26174999999057,
+      "states": 8
+    },
+    {
+      "arm": "B",
+      "totalMs": 15221.527791
+    }
+  ]
+}

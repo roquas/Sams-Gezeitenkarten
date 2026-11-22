@@ -1,0 +1,143 @@
+{
+  "protocol": "s04-c-pilot-1",
+  "config": {
+    "protocol": "s04-c-pilot-1",
+    "baseCommit": "928dd1a5e5d043c962612b07be998686a025ba7b",
+    "seed": 404,
+    "timeoutMs": 120000,
+    "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+    "backgroundId": "sea-blue-01",
+    "batch": {
+      "targetCount": 6,
+      "maxAttempts": 12,
+      "seedStart": 404000,
+      "assignmentSeedStart": 404000,
+      "config": {
+        "maxMapAttempts": 1,
+        "analysis": {
+          "steps": [],
+          "maxNodes": 10000
+        },
+        "filters": {
+          "routeSteps": [],
+          "minLargestComponent": 0
+        }
+      }
+    },
+    "maxNodes": 100000,
+    "maxClueParameters": 100000,
+    "cluePolicy": "s03-no-multihour-zero-1",
+    "normalization": "count-distance-extremes-1",
+    "arms": [
+      {
+        "id": "A",
+        "maxRestarts": 4
+      },
+      {
+        "id": "B",
+        "maxRestarts": 8
+      }
+    ],
+    "search": {
+      "maxSolverChecks": 2000,
+      "maxMatchEvaluations": 5000000,
+      "maxRouteFilterEvaluations": 20000000
+    },
+    "maxDiagnoses": 12,
+    "maxDiagnosisStates": 780,
+    "maxStatesPerDiagnosis": 65,
+    "quality": {
+      "minRoutes": 16,
+      "maxBaselineFixed": 2,
+      "minClues": 3,
+      "maxClues": 7,
+      "maxSingleFixed": 3,
+      "maxOpenHours": 2,
+      "maxOpenDomain": 3,
+      "maxCouplings": 2
+    },
+    "selection": {
+      "preferred": 3,
+      "controls": 1,
+      "maxPerSignature": 2,
+      "salt": "s04-c-cohorts-1"
+    }
+  },
+  "program": {
+    "commit": "6eb06b489ee7a543b29fcf1855a3e7d4576d569a",
+    "nodeVersion": "v22.23.3"
+  },
+  "inputFiles": [
+    {
+      "path": "scripts/config/s04-c-v1.json",
+      "sha256": "d0894bd629772b39444b361b7e729bc7a54afa9d47cad04a28c501f80f239b30"
+    },
+    {
+      "path": "docs/verification/S04-C/contract.md",
+      "sha256": "5fa1ccf097d94cc0980e1058d2f6caf9f98f1808d42e6ec447629a1e1afaabdd"
+    }
+  ],
+  "historicalFiles": [
+    {
+      "path": "docs/verification/B2-S02/run/candidates.jsonl",
+      "sha256": "84d5b224121047521e6e1b9d7c100270807beaed8482f8d3d72dc4457a3e06e1"
+    },
+    {
+      "path": "docs/verification/B2-S02/source-batch/accepted.jsonl",
+      "sha256": "a8221fdce76b3aba843c4cf6f4cdea4216ea442140fc64178a24ac63766fc598"
+    },
+    {
+      "path": "docs/verification/B2-S02/source-batch/candidates.jsonl",
+      "sha256": "a8221fdce76b3aba843c4cf6f4cdea4216ea442140fc64178a24ac63766fc598"
+    },
+    {
+      "path": "docs/verification/B2-example/exhausted/candidates.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/verification/B2-example/run/candidates.jsonl",
+      "sha256": "d9e62cd6fae2cf03548800d5074f88db1d32a8f9fdc969cd5c807191c84c7137"
+    },
+    {
+      "path": "docs/verification/B2-example/source-batch/accepted.jsonl",
+      "sha256": "7a4e45041e2a9634c9615e7617315c8512fc59bb07216e87d42c2f4e2635d728"
+    },
+    {
+      "path": "docs/verification/B2-example/source-batch/candidates.jsonl",
+      "sha256": "d81c172a624a89093702e7e92ed568e1a678a15c97a953c0b58e691f19a9d4ad"
+    },
+    {
+      "path": "docs/verification/B2-search-comparison/candidates.jsonl",
+      "sha256": "1984e96159b1aea61a1cc758903748ae7b40223a36463e181a47b2707511afbf"
+    },
+    {
+      "path": "docs/verification/S03-v2/run/candidates.jsonl",
+      "sha256": "46b90026ef3a345527e22f33d46af4bc9546cc8bff4b0c1f1ba1a39d0a9f8f90"
+    },
+    {
+      "path": "docs/verification/S03-v2/run/finalists.jsonl",
+      "sha256": "a7c599ce604f921ec0f0e409859dda4075287255c6a9e7b1b3ff59d4a8fadde4"
+    },
+    {
+      "path": "docs/verification/S03-v2/run/raw.jsonl",
+      "sha256": "7e5b3feb763947fe1fe43080ad86f9e6e4e0d4063bad8ce647f83be8a696a494"
+    },
+    {
+      "path": "docs/verification/S03-v2/run/source-candidates.jsonl",
+      "sha256": "062b68472057687a596faa81b954258a714950d216de1c2c1af4703406fc05a1"
+    },
+    {
+      "path": "docs/verification/S03/run/candidates.jsonl",
+      "sha256": "110a2ec3a3814b0a3b7cb55f8fa7915395ceefadec99bfc5287d7710e43f50c6"
+    },
+    {
+      "path": "docs/verification/S03/run/finalists.jsonl",
+      "sha256": "e3d54592177ef0320a7ba845d75447ff27f0ea5641a3a72a882d40f769c31fba"
+    },
+    {
+      "path": "docs/verification/S03/run/raw.jsonl",
+      "sha256": "8d88f434631f3b4942af5d670eae6f00b7e773157ab17131ea164892c346d7c3"
+    }
+  ],
+  "experimentId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d"
+}

@@ -1,0 +1,930 @@
+{
+  "format": "candidate-origins-1",
+  "policy": "count-distance-extremes-1",
+  "entries": [
+    {
+      "variant": "gk-variant-v2-sha256:3e21dd1b5c9eb07c781d5e4d7a7a845c413d9e3bbae6bb4b74dcd58e2ea230b8",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 1,
+          "distance": 4,
+          "fromHour": 5,
+          "id": "H419",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "direction": "E",
+          "hour": 1,
+          "id": "H1",
+          "type": "direction"
+        },
+        {
+          "distance": 3,
+          "hours": [
+            0,
+            4
+          ],
+          "id": "H41",
+          "type": "distanceBetweenHours"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:8991b08c55d334d9fe11dc61612e1f50b7881ceec9c2f68ff968db52e952f307",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M000"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:72091e795ad98bcfaddd6865248e828a8ed46228571184eedb388374fc9452ea",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 5,
+          "id": "H417",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 3,
+          "id": "H292",
+          "placeId": "geo-01",
+          "toHour": 4,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 3,
+          "fromHour": 2,
+          "id": "H256",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "direction": "E",
+          "hour": 1,
+          "id": "H1",
+          "type": "direction"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:fb4fd0040210d8189c7af023bbd80088cd61dc91afce14624123f2922f8326fb",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M000"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:b1d8a4a4d8e30e50d95d11a028321d414988741e1f386ec8e88ec6e4df790e77",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 3,
+          "id": "H292",
+          "placeId": "geo-01",
+          "toHour": 4,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 6,
+          "fromHour": 5,
+          "id": "H430",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "direction": "E",
+          "hour": 1,
+          "id": "H1",
+          "type": "direction"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:acc016026d9e21062c5b334a0fee4a255dd31d6a1bd1f2e351ec781bf5034098",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M000"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:ba3949b99b00c8a7708635f8aa3043262f490f169f441cda324cf0a4146290a4",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 1,
+          "distance": 2,
+          "fromHour": 2,
+          "id": "H255",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 1,
+          "id": "H113",
+          "placeId": "geo-02",
+          "toHour": 3,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 4,
+          "fromHour": 3,
+          "id": "H320",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 5,
+          "fromHour": 3,
+          "id": "H339",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 1,
+          "fromHour": 1,
+          "id": "H146",
+          "placeId": "geo-01",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:854c68410c2d3fcda6fc3be6c38e2519d3a5d895768fd554dc5f4a2f73f70336",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M000"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:89b309e49a1e25b0583a2f9f6572fffc1eac92b9ae018f69b8e8b0f5b971d2d4",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 2,
+          "distance": 4,
+          "fromHour": 5,
+          "id": "H615",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "direction": "SE",
+          "hour": 5,
+          "id": "H28",
+          "type": "direction"
+        },
+        {
+          "distance": 2,
+          "hours": [
+            0,
+            4
+          ],
+          "id": "H40",
+          "type": "distanceBetweenHours"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:1d347014584357c1ec6882a1a52291a66bf7f21f557dd7283fd8df5b20a73275",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M001"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:a0515bb1be52d4130a91b1f0161dca34921f8af949107427cbd8c613b64c9ced",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 3,
+          "fromHour": 3,
+          "id": "H488",
+          "placeId": "geo-03",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 5,
+          "fromHour": 4,
+          "id": "H535",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 2,
+          "fromHour": 4,
+          "id": "H541",
+          "placeId": "geo-03",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:ef77509566c48e6cee3d310f83e6ce0d08c8537325570726ca97c10c578493e5",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M001"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:ca150a86e621f14b90ef694978b69ae46287fab9badadcc23b64890694cca4b8",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 4,
+          "fromHour": 2,
+          "id": "H291",
+          "placeId": "geo-02",
+          "toHour": 3,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 2,
+          "fromHour": 2,
+          "id": "H361",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "direction": "SE",
+          "hour": 5,
+          "id": "H28",
+          "type": "direction"
+        },
+        {
+          "distance": 2,
+          "hours": [
+            3,
+            5
+          ],
+          "id": "H133",
+          "type": "distanceBetweenHours"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:9eb9e17bea84be1c5c239c89f8383ead6b939fac5669869b1d0ff2a0993c0655",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M001"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:e376cf7c4b2ff2cf44d6d4eb3667569a15dfc961a626283eaf5c9a3a53cd6055",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 1,
+          "id": "H163",
+          "placeId": "geo-03",
+          "toHour": 3,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 1,
+          "fromHour": 6,
+          "id": "H648",
+          "placeId": "geo-03",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 3,
+          "fromHour": 3,
+          "id": "H452",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:3c9c2e134bbbdd5478e09a13f3d6fee06eb755b5e73f4d6dc11b11cc1fbd8091",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M001"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:022b5fe65e8bb15421f7aa1b9b8790bdce0d27f04819c89548d085e15f973f81",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 1,
+          "distance": 1,
+          "fromHour": 2,
+          "id": "H546",
+          "placeId": "geo-03",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 3,
+          "distance": 1,
+          "fromHour": 1,
+          "id": "H348",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "distance": 1,
+          "hours": [
+            4,
+            6
+          ],
+          "id": "H164",
+          "type": "distanceBetweenHours"
+        },
+        {
+          "distance": 2,
+          "hour": 5,
+          "id": "H189",
+          "placeId": "geo-05",
+          "type": "distanceToPlace"
+        },
+        {
+          "distance": 2,
+          "hours": [
+            3,
+            5
+          ],
+          "id": "H146",
+          "type": "distanceBetweenHours"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:5bd58487a2134930a76abf608d02284c601b86f940b1fcf17d6d12f46235bb7c",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M002"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:7d27bf0f99b31045c6d380823cabd70a6a34a5f1d0395d9b5cbb0f59f57f5ae8",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 6,
+          "id": "H1033",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 3,
+          "fromHour": 5,
+          "id": "H980",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 4,
+          "fromHour": 6,
+          "id": "H1044",
+          "placeId": "geo-03",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 1,
+          "fromHour": 2,
+          "id": "H501",
+          "placeId": "geo-03",
+          "toHour": 4,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 3,
+          "distance": 2,
+          "fromHour": 3,
+          "id": "H745",
+          "placeId": "geo-05",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:b45e2cd76523f4fbc39c1c4e66109ca5fa8021fab1ddb161db11da1128b6bf96",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M002"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:9a2de5226ae45ec35f017ccbe950398633dabe14319e6f5422636def0bfcf9c2",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 1,
+          "distance": 1,
+          "fromHour": 1,
+          "id": "H147",
+          "placeId": "geo-01",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 2,
+          "id": "H548",
+          "placeId": "geo-03",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 3,
+          "distance": 2,
+          "fromHour": 2,
+          "id": "H592",
+          "placeId": "geo-03",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:4868231d0584438042dace618ab3d895becb26266d51adc91fc4d86a97671204",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M002"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:f676683b51953ebb9446ad72c3110fb8ac28973e4e725f483298e645a81ca5c3",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 3,
+          "fromHour": 1,
+          "id": "H149",
+          "placeId": "geo-01",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 4,
+          "fromHour": 5,
+          "id": "H990",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 3,
+          "distance": 2,
+          "fromHour": 3,
+          "id": "H790",
+          "placeId": "geo-05",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "direction": "W",
+          "hour": 6,
+          "id": "H36",
+          "type": "direction"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:e6045bbc9b8bdceba6204dc36d49d1f38fb7f5020f9ec2fac4938398262ac5a8",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M002"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:373887811fbf526c0a46a73400e36f053af7452a8462c784e27bd4c768094264",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 0,
+          "fromHour": 1,
+          "id": "H356",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 2,
+          "id": "H529",
+          "placeId": "geo-01",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 3,
+          "fromHour": 5,
+          "id": "H971",
+          "placeId": "geo-05",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 2,
+          "id": "H404",
+          "placeId": "geo-02",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 2,
+          "id": "H593",
+          "placeId": "geo-03",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:58e1872a749a4d951eca9e877a0e1112920020b445355bb3112a05e6d65d9205",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M003"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:770ab5a8dc201001e7586c142bc9a4e7bc67d58645e1b795aaf052a0e1f14edf",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "cell": "E5",
+          "hour": 6,
+          "id": "H44",
+          "type": "position"
+        },
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 2,
+          "id": "H574",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "distance": 3,
+          "hour": 2,
+          "id": "H87",
+          "placeId": "geo-02",
+          "type": "distanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:a22ee7e9ffb1c8060c3777be9a260384ab11586e3f4e8d5ed63d54e728cac88c",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M003"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:7d88846d804ea535f20f6746081bcf51c20df1d25e7052d8bacd2e54a00d33cd",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 3,
+          "fromHour": 1,
+          "id": "H192",
+          "placeId": "geo-04",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 1,
+          "fromHour": 4,
+          "id": "H852",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 4,
+          "distance": 3,
+          "fromHour": 3,
+          "id": "H755",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:588f0ff60b0f90564835f208d9fdc5e9ba468674962183a8ff8b529eb995e05d",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M003"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:b5ca66471865cb1ce1b45d1f4dbc484a2d91c4b51707eec48296c6bedd4e1cd1",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "cell": "E5",
+          "hour": 6,
+          "id": "H44",
+          "type": "position"
+        },
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 1,
+          "id": "H163",
+          "placeId": "geo-02",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 4,
+          "id": "H889",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "distance": 1,
+          "hours": [
+            0,
+            2
+          ],
+          "id": "H24",
+          "type": "distanceBetweenHours"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:963436dcb6203e4afb028934b8cdf11275b476f2c9592856ae34c8af76de3786",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M003"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:13308b3551bd384014ffc9006686d3732ce50c102d7b7a16184041bb61d5f77b",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 3,
+          "fromHour": 2,
+          "id": "H564",
+          "placeId": "geo-06",
+          "toHour": 3,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 1,
+          "fromHour": 3,
+          "id": "H913",
+          "placeId": "geo-03",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 2,
+          "fromHour": 4,
+          "id": "H1103",
+          "placeId": "geo-06",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 4,
+          "fromHour": 1,
+          "id": "H240",
+          "placeId": "geo-06",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "degrees": -60,
+          "hour": 5,
+          "id": "H27",
+          "type": "turn"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:0d321341fc23c0f249c8e8017f05cf76a2b0ec05d0facd86cdf076362b926ec3",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M005"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:421a55edc2d15569cc23a330ebd17467f237afe43c5c240c958ce2e195fbc84d",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 0,
+          "fromHour": 1,
+          "id": "H354",
+          "placeId": "geo-01",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 6,
+          "id": "H1238",
+          "placeId": "geo-03",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 3,
+          "fromHour": 4,
+          "id": "H969",
+          "placeId": "geo-03",
+          "toHour": 4,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 1,
+          "fromHour": 2,
+          "id": "H679",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 3,
+          "fromHour": 1,
+          "id": "H339",
+          "placeId": "geo-05",
+          "toHour": 4,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 3,
+          "fromHour": 1,
+          "id": "H420",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "direction": "W",
+          "hour": 6,
+          "id": "H38",
+          "type": "direction"
+        },
+        {
+          "distance": 2,
+          "hour": 3,
+          "id": "H140",
+          "placeId": "geo-02",
+          "type": "distanceToPlace"
+        },
+        {
+          "distance": 3,
+          "hour": 1,
+          "id": "H82",
+          "placeId": "geo-05",
+          "type": "distanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:74a52f3172de679579af5bce2eae7c137def4b652147b8a6e4b01560d99f572e",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M005"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:e9731da1ae7181343afd8a54164f10ce56bae64b484bc8b64502a1fac25472a8",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 1,
+          "id": "H237",
+          "placeId": "geo-06",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 1,
+          "fromHour": 1,
+          "id": "H212",
+          "placeId": "geo-04",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 4,
+          "fromHour": 5,
+          "id": "H1177",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 3,
+          "fromHour": 2,
+          "id": "H636",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "degrees": -60,
+          "hour": 3,
+          "id": "H12",
+          "type": "turn"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:0e6126578915a68e3b13bc44ca431294e4762122cd055d9fca0bbd829c1f1b24",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M005"
+    },
+    {
+      "variant": "gk-variant-v2-sha256:f95cf86b566023930f5e92d0fb4001b38955c197a2f6839d02f12a530935dc88",
+      "status": "unchanged",
+      "rawClues": [
+        {
+          "count": 1,
+          "distance": 2,
+          "fromHour": 2,
+          "id": "H482",
+          "placeId": "geo-03",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 4,
+          "fromHour": 1,
+          "id": "H163",
+          "placeId": "geo-06",
+          "toHour": 1,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 2,
+          "fromHour": 2,
+          "id": "H635",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "distance": 4,
+          "hour": 6,
+          "id": "H228",
+          "placeId": "geo-02",
+          "type": "distanceToPlace"
+        }
+      ],
+      "rawOriginFingerprint": "gk-raw-clues-v1-sha256:54b33df114a1feeebe3434658df3577478146b18c6017f69dd87326de6c7eb5d",
+      "source": {
+        "kind": "captured-raw-set"
+      },
+      "attemptId": "gk-s04-c-run-sha256:49aa057a5183908d6673762952eb1e74f8a4debfa706ff2da6fea73d1ba29c5d/A/M005"
+    }
+  ]
+}

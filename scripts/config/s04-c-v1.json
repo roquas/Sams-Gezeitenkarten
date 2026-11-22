@@ -1,0 +1,30 @@
+{
+  "protocol": "s04-c-pilot-1",
+  "baseCommit": "928dd1a5e5d043c962612b07be998686a025ba7b",
+  "seed": 404,
+  "timeoutMs": 120000,
+  "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+  "backgroundId": "sea-blue-01",
+  "batch": {
+    "targetCount": 6,
+    "maxAttempts": 12,
+    "seedStart": 404000,
+    "assignmentSeedStart": 404000,
+    "config": {
+      "maxMapAttempts": 1,
+      "analysis": {"steps": [], "maxNodes": 10000},
+      "filters": {"routeSteps": [], "minLargestComponent": 0}
+    }
+  },
+  "maxNodes": 100000,
+  "maxClueParameters": 100000,
+  "cluePolicy": "s03-no-multihour-zero-1",
+  "normalization": "count-distance-extremes-1",
+  "arms": [{"id": "A", "maxRestarts": 4}, {"id": "B", "maxRestarts": 8}],
+  "search": {"maxSolverChecks": 2000, "maxMatchEvaluations": 5000000, "maxRouteFilterEvaluations": 20000000},
+  "maxDiagnoses": 12,
+  "maxDiagnosisStates": 780,
+  "maxStatesPerDiagnosis": 65,
+  "quality": {"minRoutes": 16, "maxBaselineFixed": 2, "minClues": 3, "maxClues": 7, "maxSingleFixed": 3, "maxOpenHours": 2, "maxOpenDomain": 3, "maxCouplings": 2},
+  "selection": {"preferred": 3, "controls": 1, "maxPerSignature": 2, "salt": "s04-c-cohorts-1"}
+}
