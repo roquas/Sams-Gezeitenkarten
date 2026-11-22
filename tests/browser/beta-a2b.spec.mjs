@@ -7,6 +7,9 @@ const demo=JSON.parse(readFileSync(new URL('../../puzzles/model-demo.json',impor
 const cell=(page,id)=>page.locator(`#map .cell[data-id="${id}"]`);
 const names=page=>page.locator('#map .place-label text');
 async function fixture(page){
+ const manifest=JSON.parse(readFileSync(new URL('../../puzzles/manifest.json',import.meta.url)));
+ manifest.defaultId='model-demo';manifest.puzzles=manifest.puzzles.filter(p=>p.id==='model-demo');
+ await page.route('**/puzzles/manifest.json',r=>r.fulfill({json:manifest}));
  const dto=structuredClone(demo);
  dto.puzzle.presentation.objectNames={o1:'Roberts Boot',o2:'Zwilling'};
  dto.puzzle.presentation.clueTexts.I='Von Roberts Boot aus lag Zwilling in Sicht.';

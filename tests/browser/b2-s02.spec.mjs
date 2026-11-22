@@ -15,20 +15,20 @@ test.beforeAll(()=>{
 
 test('S02 is explicit, all 96 stable names are selectable, and the regular game ignores stock alone',async({page})=>{
  const requests=[];page.on('request',r=>requests.push(new URL(r.url()).pathname));
- await page.goto('/?play=1&stock=S02');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
+ await page.goto('/?puzzle=model-demo&stock=S02');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
  expect(requests.some(p=>p.includes('/.dev/')||p.includes('/docs/'))).toBe(false);
  await page.goto(url());await expect(page.locator('h1')).toHaveText(first.testName);
  await expect(page.locator('#b2Selection label')).toHaveText('B2-Entwicklungsauswahl · Testbestand S02');
- await expect(page.locator('#puzzleSelect option')).toHaveCount(97);
+ await expect(page.locator('#puzzleSelect option')).toHaveCount(98);
  expect(await page.locator('#puzzleSelect option').evaluateAll(options=>options.map(o=>o.value)))
-  .toEqual(['model-demo',...s02.registry.entries.map(e=>e.testName)]);
+  .toEqual(['model-demo','drei-peilungen',...s02.registry.entries.map(e=>e.testName)]);
  await page.locator('#puzzleSelect').selectOption(s02.registry.entries.at(-1).testName);
  await expect(page.locator('h1')).toHaveText(s02.registry.entries.at(-1).testName);
  await page.reload();await expect(page.locator('h1')).toHaveText(s02.registry.entries.at(-1).testName);
  expect(new URL(page.url()).searchParams.get('stock')).toBe('S02');
  await page.goto('/?dev=b2');await expect(page.locator('h1')).toHaveText(s01.registry.entries[0].testName);
  await expect(page.locator('#b2Selection label')).toHaveText('B2-Entwicklungsauswahl · Testbestand S01');
- await expect(page.locator('#puzzleSelect option')).toHaveCount(96);
+ await expect(page.locator('#puzzleSelect option')).toHaveCount(97);
 });
 
 test('S01 and S02 state, variant state and selected puzzle remain separate',async({page})=>{

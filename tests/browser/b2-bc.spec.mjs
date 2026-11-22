@@ -13,12 +13,12 @@ test.beforeAll(()=>{
 test('all eight BC variants render original clues without a solution, and existing stocks remain separate',async({page})=>{
  test.setTimeout(90_000);
  const privateRequests=[];page.on('request',r=>{if(/\/(docs|scripts)\//.test(new URL(r.url()).pathname))privateRequests.push(r.url());});
- await page.goto('/?play=1&stock=BC');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
+ await page.goto('/?puzzle=model-demo&stock=BC');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
  await expect(page.locator('#b2Selection')).toHaveCount(0);
  await page.goto(url());await expect(page.locator('h1')).toHaveText(entries[0].testName);
  await expect(page.locator('#b2Selection label')).toHaveText('B2-Entwicklungsauswahl · Testbestand BC');
  expect(await page.locator('#puzzleSelect option').evaluateAll(options=>options.map(o=>o.value)))
-  .toEqual(['model-demo',...entries.map(e=>e.testName)]);
+  .toEqual(['model-demo','drei-peilungen',...entries.map(e=>e.testName)]);
  for(const entry of entries){
   await page.locator('#puzzleSelect').selectOption(entry.testName);
   await expect(page.locator('h1')).toHaveText(entry.testName);
@@ -38,7 +38,7 @@ test('all eight BC variants render original clues without a solution, and existi
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  }
  await page.reload();await expect(page.locator('h1')).toHaveText(entries.at(-1).testName);
- for(const [query,count] of [['?dev=b2',96],['?dev=b2&stock=S02',97]]){
+ for(const [query,count] of [['?dev=b2',97],['?dev=b2&stock=S02',98]]){
   await page.goto('/'+query);await expect(page.locator('#puzzleSelect option')).toHaveCount(count);
  }
  await page.goto(url());await expect(page.locator('h1')).toHaveText(entries.at(-1).testName);

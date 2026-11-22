@@ -1,3 +1,4 @@
+import {historicalCatalogFiles} from '../helpers/historical-catalog.mjs';
 // Revalidates recorded evidence and actual exported bytes; never searches clues.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -78,8 +79,11 @@ test('actual v2 export matches recorded released-formatter bytes and retains exa
  const source=readPlaytestSource('S03-V2'),expected=JSON.parse(read(RUN_V2+'/public-export.json'));
  const directory=playtestStock('S03-V2').output+'/';
  assert.equal(sha256(read('scripts/lib/clue-text.mjs')),expected.formatter.sha256);
- for(const f of expected.files)assert.equal(sha256(read(directory+f.name)),f.sha256);
- assert.deepEqual([...buildPlaytest(source)].map(([name,bytes])=>({name,sha256:sha256(bytes)})),expected.files);
+ const live=buildPlaytest(source);
+ for(const [name,bytes] of live)assert.equal(read(directory+name),bytes,'actual current export: '+name);
+ const historical=historicalCatalogFiles(live,JSON.parse(read(RUN_V2+'/manifest.json')).program.commit);
+ for(const f of expected.files)assert.equal(sha256(historical.get(f.name)),f.sha256);
+ assert.deepEqual([...historical].map(([name,bytes])=>({name,sha256:sha256(bytes)})),expected.files);
  const loader=createPuzzleLoader({manifestUrl:'http://local/'+directory+'manifest.json',fetcher:async url=>{
   const ref=new URL(url).pathname.slice(1),bytes=read(ref);
   return {ok:true,json:async()=>JSON.parse(bytes)};

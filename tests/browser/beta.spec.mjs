@@ -5,7 +5,9 @@ const expect=baseExpect.configure({timeout:10000});
 import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 const pageErrors=new WeakMap();
-test.beforeEach(({page})=>{const errors=[];pageErrors.set(page,errors);page.on('pageerror',error=>errors.push(error.message));});
+test.beforeEach(async({page})=>{
+ const manifest=read('puzzles/manifest.json');manifest.defaultId='model-demo';manifest.puzzles=manifest.puzzles.filter(p=>p.id==='model-demo');
+ await page.route('**/puzzles/manifest.json',r=>r.fulfill({json:manifest}));const errors=[];pageErrors.set(page,errors);page.on('pageerror',error=>errors.push(error.message));});
 test.afterEach(({page})=>{expect(pageErrors.get(page)).toEqual([]);});
 const read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));
 const cell=(page,id)=>page.locator(`#map .cell[data-id="${id}"]`);
@@ -18,6 +20,7 @@ async function solve(page,route=['B5','C5','D5']){await page.locator('#routeTool
 async function feedbackDetails(page){const details=page.locator('#feedbackRecords details').first();await details.locator('summary').click();return details;}
 async function twoPuzzles(page){
  const manifest=read('puzzles/manifest.json'),dto=read('puzzles/model-demo.json');
+ manifest.defaultId='model-demo';manifest.puzzles=manifest.puzzles.filter(p=>p.id==='model-demo');
  manifest.puzzles.push({id:'second',title:'Zweite Probefahrt',path:'second.json',kind:'test'});
  dto.puzzle.id='second';dto.puzzle.presentation.title='Zweite Probefahrt';dto.identity.instanceId='inst-second';dto.identity.variantId='var-second';
  dto.puzzle.logic.start='B5';dto.puzzle.logic.map.objects.push({id:'extra-land',cells:['E1'],passable:false});
@@ -162,10 +165,10 @@ test('subdirectory deployment resolves links, rules, catalog, game modules and e
  // Serve the actual files beneath a prefix without rewriting any application URLs.
  await page.route('**/nested/beta/**',async route=>{
   const relative=new URL(route.request().url()).pathname.replace('/nested/beta/','')||'index.html';
-  const extension=relative.split('.').at(-1),contentType={mjs:'text/javascript',css:'text/css',json:'application/json',html:'text/html',svg:'image/svg+xml',webp:'image/webp',png:'image/png'}[extension];
+  const extension=relative.split('.').at(-1),contentType={mjs:'text/javascript',css:'text/css',json:'application/json',html:'text/html',svg:'image/svg+xml',jpg:'image/jpeg',webp:'image/webp',png:'image/png'}[extension];
   await route.fulfill({path:fileURLToPath(new URL('../../'+relative,import.meta.url)),contentType});
  });
- await page.goto('/nested/beta/');await expect(page.locator('.beta-card')).toHaveCount(1);await page.getByRole('link',{name:'Beginnen',exact:true}).click();expect(new URL(page.url()).pathname).toBe('/nested/beta/');await expect(cell(page,'A5')).toBeVisible();await page.locator('#backToSelection').click();await expect(page.locator('#landingRules article')).toBeVisible();expect((await download(page)).puzzles).toHaveLength(1);
+ await page.goto('/nested/beta/');await expect(page.locator('.beta-card')).toHaveCount(2);await page.locator('.beta-card').filter({hasText:'Die Probefahrt'}).getByRole('link',{name:'Beginnen',exact:true}).click();expect(new URL(page.url()).pathname).toBe('/nested/beta/');await expect(cell(page,'A5')).toBeVisible();await page.locator('#backToSelection').click();await expect(page.locator('#landingRules article')).toBeVisible();expect((await download(page)).puzzles).toHaveLength(1);
 });
 test('unknown direct links fail visibly without silently selecting another puzzle',async({page})=>{
  await page.goto('/?puzzle=missing');await expect(page.locator('#puzzleLoadError')).toContainText('Unbekanntes Rätsel');await expect(page.locator('#map .cell')).toHaveCount(0);

@@ -1,0 +1,64 @@
+{
+  "url": "?puzzle=drei-peilungen",
+  "browser": "156.0.8078.4",
+  "viewport": {
+    "width": 1440,
+    "height": 1200
+  },
+  "deviceScaleFactor": 2,
+  "state": {
+    "route": [
+      "A1",
+      "B1",
+      "C1"
+    ],
+    "layer": 2,
+    "tool": "maybe",
+    "showRouteNumbers": true,
+    "marks": {
+      "2:A2": "maybe",
+      "2:B2": "yes",
+      "2:C2": "no",
+      "1:A2": "no",
+      "4:A2": "yes",
+      "5:B2": "maybe",
+      "3:C2": "yes"
+    }
+  },
+  "titleState": {
+    "route": [
+      "A1"
+    ],
+    "marks": {},
+    "layer": 2
+  },
+  "toolViewport": {
+    "width": 390,
+    "height": 1000
+  },
+  "dimensions": {
+    "hours": {
+      "width": 960,
+      "height": 494
+    },
+    "marks": {
+      "width": 880,
+      "height": 352
+    },
+    "tools": {
+      "width": 780,
+      "height": 522
+    },
+    "route": {
+      "width": 960,
+      "height": 464
+    }
+  },
+  "sha256": {
+    "title-map": "7b540614d879308c536d02be759d9607261df2e3c4b55c0348091983ee1e852a",
+    "hours": "645cb9b4efb8c390bcafb127aa990ea0d6b5711372314020d2b7728171a280da",
+    "marks": "e15a57432425fa08bfadf7f8ee00c2e33decf29013967b189be3ba9a861b651c",
+    "tools": "27af77b79ce7234d088777e0ec23021a30b000a8215910c0187a788ef00c5a92",
+    "route": "1b47b273f7148aa45cf0d415e4f207ad81567993bde60c953c3481abf6347559"
+  }
+}

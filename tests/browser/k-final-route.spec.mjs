@@ -5,7 +5,7 @@ import {execFileSync} from 'node:child_process';
 const {scenes}=JSON.parse(readFileSync(new URL('../fixtures/ui/k-final-scenes.json',import.meta.url)));
 const cell=(page,id)=>page.locator(`#map .cell[data-id="${id}"]`);
 const saved=(page,scene)=>page.evaluate(id=>JSON.parse(localStorage.getItem(`gezeitenkarten-${id}-schema2-data1`)),scene.puzzle);
-const url=scene=>scene.puzzle==='model-demo'?'/?play=1':'/?dev=b2&puzzle='+scene.puzzle;
+const url=scene=>scene.puzzle==='model-demo'?'/?puzzle=model-demo':'/?dev=b2&puzzle='+scene.puzzle;
 async function open(page,scene,{hour=1,numbers=true,radar=true,dense=false,route=scene.route}={}){
  await page.addInitScript(({scene,hour,numbers,radar,dense,route})=>{
   if(sessionStorage.getItem('k-final-seeded'))return;

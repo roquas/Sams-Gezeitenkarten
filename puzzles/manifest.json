@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "defaultId": "model-demo",
+  "defaultId": "drei-peilungen",
   "assetCatalog": "../assets/catalog/library.json",
   "resourceBase": "../",
   "puzzles": [
@@ -8,6 +8,12 @@
       "id": "model-demo",
       "title": "Die Probefahrt",
       "path": "model-demo.json",
+      "kind": "demo"
+    },
+    {
+      "id": "drei-peilungen",
+      "title": "Die drei Peilungen",
+      "path": "drei-peilungen.json",
       "kind": "demo"
     }
   ]

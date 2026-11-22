@@ -14,7 +14,7 @@ test('positive stock loads public clues, keeps the route hidden and notes undoab
  await expect(page.locator('#map .cell')).toHaveCount(25);
  await expect(page.locator('#map .route-stroke')).toHaveCount(0);
  await expect(page.locator('#allClues .clue')).toHaveCount(5);
- await expect(page.locator('#puzzleSelect option')).toHaveCount(2);
+ await expect(page.locator('#puzzleSelect option')).toHaveCount(3);
  const dto=await (await page.request.get('/.dev/b2-positive/'+POSITIVE_ID+'.json')).json();
  expect(dto.puzzle.logic).toEqual(definition.logic);
  expect(dto.puzzle.solution).toBeUndefined();expect(dto.puzzle.presentation.hints).toEqual([]);

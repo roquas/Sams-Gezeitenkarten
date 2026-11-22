@@ -1,3 +1,4 @@
+import {historicalCatalogFiles,assertCatalogExtension} from '../helpers/historical-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -51,7 +52,7 @@ test('eight public puzzles load unchanged and independent verifier confirms all 
   const bytes=ref.startsWith('.dev/b2-bc/')?files.get(ref.slice('.dev/b2-bc/'.length)):fs.readFileSync(path.join(ROOT,ref),'utf8');
   return {ok:!!bytes,json:async()=>JSON.parse(bytes)};
  }});
- assert.equal((await loader.manifest()).puzzles.length,9);
+ assert.equal((await loader.manifest()).puzzles.length,10);
  assert.equal((await loader.manifest()).defaultId,source.registry.entries[0].testName);
  for(const entry of source.registry.entries){
   const row=source.rows.find(r=>r.candidateId===entry.candidateId);
@@ -120,7 +121,7 @@ test('export is byte-identical, repairs 700 directories, and protected inventori
  // H1 export digests: compared against 6445021; only count clue texts differ.
  for(const [stock,expected] of Object.entries({S01:'30e95411d280fff58650cffefdcaaacb5371ae28eacfb9d8d2ab7e8b7768c2d6',
   S02:'8ac59ef110ecb1cea56d076a2bf81a535a9b83658e40ca55b306219f5715d532'})){
-  const exported=[...buildPlaytest(readPlaytestSource(stock))].sort(([a],[b])=>a.localeCompare(b))
+  const exported=[...historicalCatalogFiles(buildPlaytest(readPlaytestSource(stock)),base)].sort(([a],[b])=>a.localeCompare(b))
    .map(([name,bytes])=>({name,sha256:sha256(bytes)}));
   assert.equal(sha256(canonicalJson(exported)),expected,stock+' public export changed');
  }
@@ -137,6 +138,7 @@ test('export is byte-identical, repairs 700 directories, and protected inventori
    assert.equal(presentation.required.includes('cluePlaceRefs'),false);
    delete presentation.properties.cluePlaceRefs;
    assert.deepEqual(schema,old,ref+' changed beyond optional presentation references');
-  }else assert.equal(sha256(current),sha256(original),ref);
+  }else if(ref==='puzzles/manifest.json')assertCatalogExtension(JSON.parse(current),JSON.parse(original));
+  else assert.equal(sha256(current),sha256(original),ref);
  }
 });

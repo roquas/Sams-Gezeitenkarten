@@ -10,11 +10,11 @@ test.beforeAll(()=>execFileSync('node',['scripts/export-b2-playtest.mjs','--stoc
 
 test('S03 v2 uses the existing selection, isolated marks, public DTO and solution control',async({page})=>{
  const requests=[];page.on('request',r=>requests.push(new URL(r.url()).pathname));
- await page.goto('/?play=1&stock=S03-V2');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
+ await page.goto('/?puzzle=model-demo&stock=S03-V2');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
  expect(requests.some(p=>p.includes('/.dev/'))).toBe(false);
  await page.goto('/?dev=b2&stock=S03-V2&puzzle='+first.testName);
  await expect(page.locator('h1')).toHaveText(first.testName);
- await expect(page.locator('#puzzleSelect option')).toHaveCount(source.rows.length+1);
+ await expect(page.locator('#puzzleSelect option')).toHaveCount(source.rows.length+2);
  const cell=id=>page.locator(`#map .cell[data-id="${id}"]`);
  await cell('A1').focus();await page.keyboard.press('Enter');
  const state=()=>page.evaluate(id=>JSON.parse(localStorage.getItem(`gezeitenkarten-${id}-schema2-data1`)),first.testName);

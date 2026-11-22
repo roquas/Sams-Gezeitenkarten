@@ -1,6 +1,8 @@
 # Sams Gezeitenkarten
 
 Die Startseite bietet Rätselauswahl, freiwilliges Betatest-Feedback und lokalen JSON-Export.
+Standardrätsel ist „Die drei Peilungen“ mit sechs Etappen; `model-demo` bleibt die unveränderte technische Dreistundenreferenz.
+[Regelabbildungen, Herkunft und visuelle Abnahme](docs/verification/B1-rules/README.md).
 Direkteinstieg: `?puzzle=model-demo`; vorhandene Spielansicht: `?play=1`.
 Datenformat, Zeitmessung und Versionsbindung: [Betatest-Dokumentation](docs/BETA-FEEDBACK.md).
 Die gezielte Chromium-/WebKit-Matrix für Desktop und Mobil läuft mit `npm run test:beta`.

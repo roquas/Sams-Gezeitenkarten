@@ -16,7 +16,7 @@ test('B2 exports all 95 unfiltered candidates through the existing public loader
   return {ok:!!bytes,json:async()=>JSON.parse(bytes)};
  }});
  const manifest=await loader.manifest();
- assert.equal(manifest.puzzles.length,96);
+ assert.equal(manifest.puzzles.length,97);
  assert.ok(manifest.puzzles.some(e=>e.id==='model-demo'));
  await loader.load('model-demo');
  const types=new Set();

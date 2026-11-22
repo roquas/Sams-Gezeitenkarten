@@ -1,0 +1,18 @@
+{
+  "file": "dist/Sams-Gezeitenkarten.zip",
+  "files": 130,
+  "bytes": 24652056,
+  "sha256": "265ba4ecbd32c0358c64865b5f6f1b8d074b7c1cee0ae423078a6b842a0020ad",
+  "ruleImages": [
+    "assets/rules/hours.png",
+    "assets/rules/marks.png",
+    "assets/rules/route.png",
+    "assets/rules/title-map.jpg",
+    "assets/rules/tools.png"
+  ],
+  "publicPuzzles": [
+    "puzzles/drei-peilungen.json",
+    "puzzles/manifest.json",
+    "puzzles/model-demo.json"
+  ]
+}
