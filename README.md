@@ -1,5 +1,10 @@
 # Sams Gezeitenkarten
 
+Die Startseite bietet Rätselauswahl, freiwilliges Betatest-Feedback und lokalen JSON-Export.
+Direkteinstieg: `?puzzle=model-demo`; vorhandene Spielansicht: `?play=1`.
+Datenformat, Zeitmessung und Versionsbindung: [Betatest-Dokumentation](docs/BETA-FEEDBACK.md).
+Die gezielte Chromium-/WebKit-Matrix für Desktop und Mobil läuft mit `npm run test:beta`.
+
 **B2 V2 mit echtem Zählschluss spielen:** `npm run dev:b2:positive-v2`.
 [Lösungsfreie Anleitung und Beobachtungsprotokoll](docs/B2-POSITIVE-V2-PLAYTEST.md).
 Ein menschlicher Spieltest war erfolgreich; „mittelschwer“ ist damit nicht bestätigt.

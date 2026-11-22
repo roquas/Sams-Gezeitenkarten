@@ -25,7 +25,7 @@ async function noCheck(page){
  await expect(page.locator('#helpStatus .success')).toHaveCount(0);
 }
 test.beforeEach(async({page})=>{
- await page.goto('/');await ready(page);
+ await page.goto('/?play=1');await ready(page);
 });
 
 test('empty repeated note checks are free and persist no game changes',async({page})=>{

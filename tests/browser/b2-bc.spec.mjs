@@ -13,7 +13,7 @@ test.beforeAll(()=>{
 test('all eight BC variants render original clues without a solution, and existing stocks remain separate',async({page})=>{
  test.setTimeout(90_000);
  const privateRequests=[];page.on('request',r=>{if(/\/(docs|scripts)\//.test(new URL(r.url()).pathname))privateRequests.push(r.url());});
- await page.goto('/?stock=BC');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
+ await page.goto('/?play=1&stock=BC');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
  await expect(page.locator('#b2Selection')).toHaveCount(0);
  await page.goto(url());await expect(page.locator('h1')).toHaveText(entries[0].testName);
  await expect(page.locator('#b2Selection label')).toHaveText('B2-Entwicklungsauswahl · Testbestand BC');

@@ -8,6 +8,10 @@ ROOT = Path(os.environ['DEPLOY_ROOT']).resolve()
 PREFIX = '/gk/pr38/'
 
 
+class Server(ThreadingHTTPServer):
+    request_queue_size = 128
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
@@ -31,4 +35,4 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    ThreadingHTTPServer(('127.0.0.1', int(os.environ.get('DEPLOY_PORT', '4174'))), Handler).serve_forever()
+    Server(('127.0.0.1', int(os.environ.get('DEPLOY_PORT', '4174'))), Handler).serve_forever()

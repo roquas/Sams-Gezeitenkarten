@@ -20,7 +20,7 @@ function fixture(){
 }
 async function open(page,dto=fixture()){
  await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));
- await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25,{timeout:15000});
+ await page.goto('/?play=1');await expect(page.locator('#map .cell')).toHaveCount(25,{timeout:15000});
  await expect(page.locator('#puzzleLoadError')).toBeHidden();
 }
 test('initial clue shows exactly its explicit places on first start and saved-game reload',async({page})=>{
