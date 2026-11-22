@@ -1,0 +1,2890 @@
+{
+  "analyzedHead": "a69af2885ffbd00cc67db56d415460525c08124a",
+  "runId": 45047947650,
+  "jobId": 137286545964,
+  "artifactId": 14764289847,
+  "artifactSha256": "0909a9ddded72e931b36e2f44b3ba798cab9dfa85be5227b64225db381e35eb0",
+  "timelines": [
+    {
+      "test": "illustrated-rules-selectio-58db4-ching-scopes-the-hour-count-webkit-desktop",
+      "traceSha256": "5a3617d15d7a482238b81be86a590ed4deedcfce992af99fadf9be2c8fecc988",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "params": {},
+          "startMs": 5.954,
+          "endMs": 22.063,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "params": {},
+          "startMs": 26.196,
+          "endMs": 341.521,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/",
+          "params": {
+            "url": "/"
+          },
+          "startMs": 342.614,
+          "endMs": 1744.919,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('.beta-card')",
+          "params": {
+            "locator": "locator('.beta-card')",
+            "expected": "2"
+          },
+          "startMs": 1746.277,
+          "endMs": 1884.66,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('.beta-card').first()",
+          "params": {
+            "locator": "locator('.beta-card').first()",
+            "expected": "Die drei Peilungen"
+          },
+          "startMs": 1885.146,
+          "endMs": 1899.033,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "sechs folgende Etappen"
+          },
+          "startMs": 1899.46,
+          "endMs": 1915.798,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#landingRules > p')",
+          "params": {
+            "locator": "locator('#landingRules > p')"
+          },
+          "startMs": 1916.3,
+          "endMs": 1925.841,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#landingRules article').locator('.rules-image-note')",
+          "params": {
+            "locator": "locator('#landingRules article').locator('.rules-image-note')"
+          },
+          "startMs": 1926.504,
+          "endMs": 1937.976,
+          "error": null
+        },
+        {
+          "title": "Expect \"not toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "Geografische Orte können"
+          },
+          "startMs": 1938.641,
+          "endMs": 1955.014,
+          "error": null
+        },
+        {
+          "title": "Expect \"not toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "„S“ kennzeichnet"
+          },
+          "startMs": 1955.627,
+          "endMs": 1973.041,
+          "error": null
+        },
+        {
+          "title": "Expect \"not toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "hier in der Hilfe weiter unten"
+          },
+          "startMs": 1973.659,
+          "endMs": 1985.731,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "Orte können sich über mehrere Hexfelder erstrecken und befahrbar oder gesperrt sein."
+          },
+          "startMs": 1986.283,
+          "endMs": 2000.399,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "Notizprüfung (unter Hilfe, „Notizen prüfen“)"
+          },
+          "startMs": 2000.968,
+          "endMs": 2012.792,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "Denkanstoß (unter Hilfe, „Passenden Tipp“)"
+          },
+          "startMs": 2013.291,
+          "endMs": 2024.015,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "5 Strafpunkte pro Prüfung"
+          },
+          "startMs": 2024.661,
+          "endMs": 2036.682,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "10 Strafpunkte pro Abruf"
+          },
+          "startMs": 2037.921,
+          "endMs": 2052.063,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') })",
+          "params": {
+            "locator": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') })",
+            "expected": "Stunde 5 als möglich"
+          },
+          "startMs": 2053.337,
+          "endMs": 3406.013,
+          "error": null
+        },
+        {
+          "title": "Get HTML",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')"
+          },
+          "startMs": 3406.692,
+          "endMs": 3419.704,
+          "error": null
+        },
+        {
+          "title": "Query count",
+          "target": "locator('#landingRules article').locator('img')",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img')"
+          },
+          "startMs": 3420.556,
+          "endMs": 3434.012,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('img').first()",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').first()",
+            "state": "attached"
+          },
+          "startMs": 3434.931,
+          "endMs": 4135.457,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#landingRules article').locator('img').first()",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').first()",
+            "expected": "alt"
+          },
+          "startMs": 4136.928,
+          "endMs": 6501.776,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('img').first()",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').first()",
+            "state": "attached"
+          },
+          "startMs": 6502.744,
+          "endMs": 6541.958,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 6542.366,
+          "endMs": 6542.412,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('img').nth(1)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(1)",
+            "state": "attached"
+          },
+          "startMs": 6542.948,
+          "endMs": 8358.486,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#landingRules article').locator('img').nth(1)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(1)",
+            "expected": "alt"
+          },
+          "startMs": 8359.016,
+          "endMs": 8377.502,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('img').nth(1)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(1)",
+            "state": "attached"
+          },
+          "startMs": 8378.191,
+          "endMs": 8403.324,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 8404.109,
+          "endMs": 8404.183,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('img').nth(2)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(2)",
+            "state": "attached"
+          },
+          "startMs": 8404.895,
+          "endMs": 12407.305,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#landingRules article').locator('img').nth(2)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(2)",
+            "expected": "alt"
+          },
+          "startMs": 12407.961,
+          "endMs": 12420.297,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('img').nth(2)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(2)",
+            "state": "attached"
+          },
+          "startMs": 12420.979,
+          "endMs": 12437.683,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 12438.171,
+          "endMs": 12438.204,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('img').nth(3)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(3)",
+            "state": "attached"
+          },
+          "startMs": 12438.819,
+          "endMs": 13849.321,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#landingRules article').locator('img').nth(3)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(3)",
+            "expected": "alt"
+          },
+          "startMs": 13850.197,
+          "endMs": 15154.146,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('img').nth(3)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(3)",
+            "state": "attached"
+          },
+          "startMs": 15154.982,
+          "endMs": 15189.802,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 15190.444,
+          "endMs": 15190.54,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "getByRole('link', { name: 'Rätsel auswählen', exact: true })",
+          "params": {
+            "locator": "getByRole('link', { name: 'Rätsel auswählen', exact: true })"
+          },
+          "startMs": 15191.651,
+          "endMs": 16663.89,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "#selectionTitle"
+          },
+          "startMs": 16664.483,
+          "endMs": 16664.522,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeInViewport\"",
+          "target": "locator('#selectionTitle')",
+          "params": {
+            "locator": "locator('#selectionTitle')"
+          },
+          "startMs": 16664.956,
+          "endMs": 18185.676,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "getByRole('link', { name: 'Spielregeln lesen', exact: true })",
+          "params": {
+            "locator": "getByRole('link', { name: 'Spielregeln lesen', exact: true })"
+          },
+          "startMs": 18186.485,
+          "endMs": 19146.949,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "#landingRulesTitle"
+          },
+          "startMs": 19148.578,
+          "endMs": 19148.623,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeInViewport\"",
+          "target": "locator('#landingRulesTitle')",
+          "params": {
+            "locator": "locator('#landingRulesTitle')"
+          },
+          "startMs": 19149.101,
+          "endMs": 21149.684,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('.beta-card').filter({ hasText: 'Die drei Peilungen' }).getByRole('link', { name: 'Beginnen', exact: true })",
+          "params": {
+            "locator": "locator('.beta-card').filter({ hasText: 'Die drei Peilungen' }).getByRole('link', { name: 'Beginnen', exact: true })"
+          },
+          "startMs": 21151.473,
+          "endMs": 21942.788,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#hours [data-hour]:visible')",
+          "params": {
+            "locator": "locator('#hours [data-hour]:visible')",
+            "expected": "6"
+          },
+          "startMs": 21949.835,
+          "endMs": 24241.022,
+          "error": null
+        },
+        {
+          "title": "Get HTML",
+          "target": "locator('#gameRules article')",
+          "params": {
+            "locator": "locator('#gameRules article')"
+          },
+          "startMs": 24242.208,
+          "endMs": 24517.864,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": {
+              "characters": 13681,
+              "sha256": "83915061b883bd4c2524d1be57ed33c39e048271e746fde4465c0563154fcfe5",
+              "omittedLiteral": "long expected markup; full trace is hash-bound above"
+            }
+          },
+          "startMs": 24519.136,
+          "endMs": 24519.277,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 24520.321,
+          "endMs": 24549.632,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "params": {
+            "key": "Enter"
+          },
+          "startMs": 24550.364,
+          "endMs": 24626.239,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#backToSelection')",
+          "params": {
+            "locator": "locator('#backToSelection')"
+          },
+          "startMs": 24627.131,
+          "endMs": 28201.394,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('.beta-card').filter({ hasText: 'Die drei Peilungen' }).getByRole('link', { name: 'Fortsetzen', exact: true })",
+          "params": {
+            "locator": "locator('.beta-card').filter({ hasText: 'Die drei Peilungen' }).getByRole('link', { name: 'Fortsetzen', exact: true })"
+          },
+          "startMs": 28202.798,
+          "endMs": 32100.566,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')",
+            "expected": "?"
+          },
+          "startMs": 32102.023,
+          "endMs": 32629.218,
+          "error": null
+        },
+        {
+          "title": "Is visible",
+          "target": "locator('#logbookTab')",
+          "params": {
+            "locator": "locator('#logbookTab')"
+          },
+          "startMs": 32630.027,
+          "endMs": 32796.608,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#puzzleSelect')",
+          "params": {
+            "locator": "locator('#puzzleSelect')",
+            "state": "attached"
+          },
+          "startMs": 32797.442,
+          "endMs": 33015.523,
+          "error": {
+            "name": "",
+            "message": "Error: locator.evaluate: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#puzzleSelect')\u001b[22m\n",
+            "stack": "Error: locator.evaluate: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#puzzleSelect')\u001b[22m\n\n    at /home/runner/work/Sams-Gezeitenkarten/Sams-Gezeitenkarten/tests/browser/illustrated-rules.spec.mjs:51:38"
+          }
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "params": {},
+          "startMs": 33012.422,
+          "endMs": 33016.809,
+          "error": null
+        }
+      ],
+      "failureScreenshots": [
+        {
+          "name": "test-failed-1.png",
+          "sha256": "15238a04dd1dbc2605a30d6dee159303c7fe68c29db144642ac3188e99f5970e"
+        }
+      ]
+    },
+    {
+      "test": "illustrated-rules-selectio-58db4-ching-scopes-the-hour-count-webkit-desktop-retry1",
+      "traceSha256": "5ce6aa51a95c826437df9a24b2860eba4b1f550e49483272ce8119e1de4ece30",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "params": {},
+          "startMs": 423.072,
+          "endMs": 449.019,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "params": {},
+          "startMs": 456.716,
+          "endMs": 640.151,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/",
+          "params": {
+            "url": "/"
+          },
+          "startMs": 641.571,
+          "endMs": 2027.106,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('.beta-card')",
+          "params": {
+            "locator": "locator('.beta-card')",
+            "expected": "2"
+          },
+          "startMs": 2037.282,
+          "endMs": 2160.932,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('.beta-card').first()",
+          "params": {
+            "locator": "locator('.beta-card').first()",
+            "expected": "Die drei Peilungen"
+          },
+          "startMs": 2162.15,
+          "endMs": 2179.375,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "sechs folgende Etappen"
+          },
+          "startMs": 2180.591,
+          "endMs": 2196.375,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#landingRules > p')",
+          "params": {
+            "locator": "locator('#landingRules > p')"
+          },
+          "startMs": 2196.897,
+          "endMs": 2212.206,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#landingRules article').locator('.rules-image-note')",
+          "params": {
+            "locator": "locator('#landingRules article').locator('.rules-image-note')"
+          },
+          "startMs": 2213.226,
+          "endMs": 2227.214,
+          "error": null
+        },
+        {
+          "title": "Expect \"not toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "Geografische Orte können"
+          },
+          "startMs": 2227.887,
+          "endMs": 2244.439,
+          "error": null
+        },
+        {
+          "title": "Expect \"not toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "„S“ kennzeichnet"
+          },
+          "startMs": 2245.2,
+          "endMs": 2259.607,
+          "error": null
+        },
+        {
+          "title": "Expect \"not toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "hier in der Hilfe weiter unten"
+          },
+          "startMs": 2260.305,
+          "endMs": 2280.166,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "Orte können sich über mehrere Hexfelder erstrecken und befahrbar oder gesperrt sein."
+          },
+          "startMs": 2280.837,
+          "endMs": 3642.76,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "Notizprüfung (unter Hilfe, „Notizen prüfen“)"
+          },
+          "startMs": 3643.645,
+          "endMs": 3669.609,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "Denkanstoß (unter Hilfe, „Passenden Tipp“)"
+          },
+          "startMs": 3670.271,
+          "endMs": 3689.416,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "5 Strafpunkte pro Prüfung"
+          },
+          "startMs": 3689.963,
+          "endMs": 3706.988,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')",
+            "expected": "10 Strafpunkte pro Abruf"
+          },
+          "startMs": 3708.284,
+          "endMs": 3730.497,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') })",
+          "params": {
+            "locator": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') })",
+            "expected": "Stunde 5 als möglich"
+          },
+          "startMs": 3732.068,
+          "endMs": 3756.569,
+          "error": null
+        },
+        {
+          "title": "Get HTML",
+          "target": "locator('#landingRules article')",
+          "params": {
+            "locator": "locator('#landingRules article')"
+          },
+          "startMs": 3757.617,
+          "endMs": 3774.531,
+          "error": null
+        },
+        {
+          "title": "Query count",
+          "target": "locator('#landingRules article').locator('img')",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img')"
+          },
+          "startMs": 3775.607,
+          "endMs": 3791.596,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('img').first()",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').first()",
+            "state": "attached"
+          },
+          "startMs": 3793.601,
+          "endMs": 4410.363,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#landingRules article').locator('img').first()",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').first()",
+            "expected": "alt"
+          },
+          "startMs": 4411.168,
+          "endMs": 6758.753,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('img').first()",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').first()",
+            "state": "attached"
+          },
+          "startMs": 6760.573,
+          "endMs": 6795.875,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 6796.526,
+          "endMs": 6796.774,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('img').nth(1)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(1)",
+            "state": "attached"
+          },
+          "startMs": 6797.522,
+          "endMs": 8501.162,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#landingRules article').locator('img').nth(1)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(1)",
+            "expected": "alt"
+          },
+          "startMs": 8501.833,
+          "endMs": 8523.324,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('img').nth(1)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(1)",
+            "state": "attached"
+          },
+          "startMs": 8524.87,
+          "endMs": 9209.0,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 9209.594,
+          "endMs": 9209.64,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('img').nth(2)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(2)",
+            "state": "attached"
+          },
+          "startMs": 9210.521,
+          "endMs": 12475.913,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#landingRules article').locator('img').nth(2)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(2)",
+            "expected": "alt"
+          },
+          "startMs": 12476.496,
+          "endMs": 12492.47,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('img').nth(2)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(2)",
+            "state": "attached"
+          },
+          "startMs": 12493.597,
+          "endMs": 12510.478,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 12510.991,
+          "endMs": 12511.039,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('img').nth(3)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(3)",
+            "state": "attached"
+          },
+          "startMs": 12511.829,
+          "endMs": 13995.72,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#landingRules article').locator('img').nth(3)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(3)",
+            "expected": "alt"
+          },
+          "startMs": 13996.578,
+          "endMs": 15305.163,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('img').nth(3)",
+          "params": {
+            "locator": "locator('#landingRules article').locator('img').nth(3)",
+            "state": "attached"
+          },
+          "startMs": 15306.235,
+          "endMs": 15342.269,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 15342.811,
+          "endMs": 15342.856,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "getByRole('link', { name: 'Rätsel auswählen', exact: true })",
+          "params": {
+            "locator": "getByRole('link', { name: 'Rätsel auswählen', exact: true })"
+          },
+          "startMs": 15344.624,
+          "endMs": 16844.665,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "#selectionTitle"
+          },
+          "startMs": 16845.397,
+          "endMs": 16845.458,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeInViewport\"",
+          "target": "locator('#selectionTitle')",
+          "params": {
+            "locator": "locator('#selectionTitle')"
+          },
+          "startMs": 16845.961,
+          "endMs": 18321.642,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "getByRole('link', { name: 'Spielregeln lesen', exact: true })",
+          "params": {
+            "locator": "getByRole('link', { name: 'Spielregeln lesen', exact: true })"
+          },
+          "startMs": 18322.409,
+          "endMs": 19263.566,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "#landingRulesTitle"
+          },
+          "startMs": 19264.232,
+          "endMs": 19264.319,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeInViewport\"",
+          "target": "locator('#landingRulesTitle')",
+          "params": {
+            "locator": "locator('#landingRulesTitle')"
+          },
+          "startMs": 19264.965,
+          "endMs": 21249.855,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('.beta-card').filter({ hasText: 'Die drei Peilungen' }).getByRole('link', { name: 'Beginnen', exact: true })",
+          "params": {
+            "locator": "locator('.beta-card').filter({ hasText: 'Die drei Peilungen' }).getByRole('link', { name: 'Beginnen', exact: true })"
+          },
+          "startMs": 21251.342,
+          "endMs": 22033.292,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#hours [data-hour]:visible')",
+          "params": {
+            "locator": "locator('#hours [data-hour]:visible')",
+            "expected": "6"
+          },
+          "startMs": 22034.327,
+          "endMs": 23683.048,
+          "error": null
+        },
+        {
+          "title": "Get HTML",
+          "target": "locator('#gameRules article')",
+          "params": {
+            "locator": "locator('#gameRules article')"
+          },
+          "startMs": 23683.91,
+          "endMs": 23957.632,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": {
+              "characters": 13681,
+              "sha256": "83915061b883bd4c2524d1be57ed33c39e048271e746fde4465c0563154fcfe5",
+              "omittedLiteral": "long expected markup; full trace is hash-bound above"
+            }
+          },
+          "startMs": 23958.512,
+          "endMs": 23958.624,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 23959.561,
+          "endMs": 24003.597,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "params": {
+            "key": "Enter"
+          },
+          "startMs": 24004.355,
+          "endMs": 24080.084,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#backToSelection')",
+          "params": {
+            "locator": "locator('#backToSelection')"
+          },
+          "startMs": 24080.904,
+          "endMs": 27520.52,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('.beta-card').filter({ hasText: 'Die drei Peilungen' }).getByRole('link', { name: 'Fortsetzen', exact: true })",
+          "params": {
+            "locator": "locator('.beta-card').filter({ hasText: 'Die drei Peilungen' }).getByRole('link', { name: 'Fortsetzen', exact: true })"
+          },
+          "startMs": 27521.656,
+          "endMs": 29482.399,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')",
+            "expected": "?"
+          },
+          "startMs": 29484.188,
+          "endMs": 30050.793,
+          "error": null
+        },
+        {
+          "title": "Is visible",
+          "target": "locator('#logbookTab')",
+          "params": {
+            "locator": "locator('#logbookTab')"
+          },
+          "startMs": 30051.521,
+          "endMs": 32868.855,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#puzzleSelect')",
+          "params": {
+            "locator": "locator('#puzzleSelect')",
+            "state": "attached"
+          },
+          "startMs": 32869.527,
+          "endMs": 35886.879,
+          "error": null
+        },
+        {
+          "title": "Select option",
+          "target": "locator('#puzzleSelect')",
+          "params": {
+            "locator": "locator('#puzzleSelect')",
+            "options": "[Object]"
+          },
+          "startMs": 35887.95,
+          "endMs": 35914.41,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#gameRules')",
+          "params": {
+            "locator": "locator('#gameRules')",
+            "expected": "3 folgende Etappen"
+          },
+          "startMs": 35915.116,
+          "endMs": 35990.211,
+          "error": null
+        },
+        {
+          "title": "Select option",
+          "target": "locator('#puzzleSelect')",
+          "params": {
+            "locator": "locator('#puzzleSelect')",
+            "options": "[Object]"
+          },
+          "startMs": 35990.822,
+          "endMs": 36048.546,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('#gameRules')",
+          "params": {
+            "locator": "locator('#gameRules')",
+            "expected": "sechs folgende Etappen"
+          },
+          "startMs": 36049.179,
+          "endMs": 36151.971,
+          "error": null
+        },
+        {
+          "title": "Get HTML",
+          "target": "locator('#gameRules article')",
+          "params": {
+            "locator": "locator('#gameRules article')"
+          },
+          "startMs": 36152.537,
+          "endMs": 36162.116,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": {
+              "characters": 13681,
+              "sha256": "83915061b883bd4c2524d1be57ed33c39e048271e746fde4465c0563154fcfe5",
+              "omittedLiteral": "long expected markup; full trace is hash-bound above"
+            }
+          },
+          "startMs": 36165.949,
+          "endMs": 36166.254,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#gameRules .coord-inline .coord-inline')",
+          "params": {
+            "locator": "locator('#gameRules .coord-inline .coord-inline')"
+          },
+          "startMs": 36166.858,
+          "endMs": 36177.549,
+          "error": null
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "params": {
+            "expected": "[]"
+          },
+          "startMs": 36178.269,
+          "endMs": 36179.205,
+          "error": null
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "params": {},
+          "startMs": 36550.2,
+          "endMs": 36554.495,
+          "error": null
+        }
+      ],
+      "failureScreenshots": [
+        {
+          "name": "test-failed-1.png",
+          "sha256": "390648e167ff8592f8021488ac3b5377576dbabb856d9a6289d17bd13ca29470"
+        }
+      ]
+    },
+    {
+      "test": "place-references-land-rece-37166-ed-except-for-radar-origins-webkit-desktop",
+      "traceSha256": "733619ba794d7ee7c8ab74bf90c78d0c0dea270c230bd0520251393017ad5778",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "params": {},
+          "startMs": 6.538,
+          "endMs": 19.963,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "params": {},
+          "startMs": 26.0,
+          "endMs": 291.681,
+          "error": null
+        },
+        {
+          "title": "Route requests",
+          "target": null,
+          "params": {},
+          "startMs": 294.299,
+          "endMs": 300.74,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=model-demo",
+          "params": {
+            "url": "/?puzzle=model-demo"
+          },
+          "startMs": 301.459,
+          "endMs": 952.02,
+          "error": null
+        },
+        {
+          "title": "Fulfill request",
+          "target": null,
+          "params": {},
+          "startMs": 916.904,
+          "endMs": 954.954,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          },
+          "startMs": 952.96,
+          "endMs": 1352.016,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeHidden\"",
+          "target": "locator('#puzzleLoadError')",
+          "params": {
+            "locator": "locator('#puzzleLoadError')"
+          },
+          "startMs": 1352.862,
+          "endMs": 2871.018,
+          "error": null
+        },
+        {
+          "title": "Hover",
+          "target": "locator('#map .cell[data-id=\"A1\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"A1\"]')"
+          },
+          "startMs": 2872.354,
+          "endMs": 7794.089,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#map .cell[data-id=\"A1\"]').locator('polygon')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"A1\"]').locator('polygon')",
+            "state": "attached"
+          },
+          "startMs": 7795.412,
+          "endMs": 7891.943,
+          "error": null
+        },
+        {
+          "title": "Hover",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 7892.714,
+          "endMs": 11974.166,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#map .cell[data-id=\"B2\"]').locator('polygon')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]').locator('polygon')",
+            "state": "attached"
+          },
+          "startMs": 11975.511,
+          "endMs": 12015.105,
+          "error": null
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "params": {
+            "expected": "Object"
+          },
+          "startMs": 12015.89,
+          "endMs": 12016.019,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "3px"
+          },
+          "startMs": 12016.484,
+          "endMs": 12016.527,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 12019.634,
+          "endMs": 14693.654,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 14694.335,
+          "endMs": 15863.448,
+          "error": null
+        },
+        {
+          "title": "Press \"Space\"",
+          "target": null,
+          "params": {
+            "key": "Space"
+          },
+          "startMs": 15864.154,
+          "endMs": 15879.072,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "params": {},
+          "startMs": 15879.602,
+          "endMs": 15896.277,
+          "error": null
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "params": {
+            "expected": "Object"
+          },
+          "startMs": 15896.872,
+          "endMs": 15896.959,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#routeTool')",
+          "params": {
+            "locator": "locator('#routeTool')"
+          },
+          "startMs": 15897.641,
+          "endMs": 19901.309,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 19901.994,
+          "endMs": 22790.304,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "params": {},
+          "startMs": 22790.84,
+          "endMs": 22804.814,
+          "error": null
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "params": {
+            "expected": "[A5]"
+          },
+          "startMs": 22805.373,
+          "endMs": 22805.481,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#toggleDistances')",
+          "params": {
+            "locator": "locator('#toggleDistances')"
+          },
+          "startMs": 22806.084,
+          "endMs": 26079.11,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 26079.89,
+          "endMs": 32312.988,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('.distance-overlay')",
+          "params": {
+            "locator": "locator('.distance-overlay')",
+            "expected": "data-distance-origin"
+          },
+          "startMs": 32315.812,
+          "endMs": 36197.205,
+          "error": null
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "params": {},
+          "startMs": 36314.172,
+          "endMs": 36319.731,
+          "error": null
+        }
+      ],
+      "failureScreenshots": [
+        {
+          "name": "test-failed-1.png",
+          "sha256": "a6b9ff1cdfadd80013fdcc8dacfffa5046d14cd540ad22f63eb37f211aef1edc"
+        }
+      ]
+    },
+    {
+      "test": "place-references-land-rece-37166-ed-except-for-radar-origins-webkit-desktop-retry1",
+      "traceSha256": "5ba3f8ab4c45470d1593dbde070e6cf1e85702ad35c3908a5893916fe4691dcb",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "params": {},
+          "startMs": 420.113,
+          "endMs": 425.43,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "params": {},
+          "startMs": 438.709,
+          "endMs": 627.865,
+          "error": null
+        },
+        {
+          "title": "Route requests",
+          "target": null,
+          "params": {},
+          "startMs": 630.57,
+          "endMs": 639.4,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=model-demo",
+          "params": {
+            "url": "/?puzzle=model-demo"
+          },
+          "startMs": 640.801,
+          "endMs": 1056.403,
+          "error": null
+        },
+        {
+          "title": "Fulfill request",
+          "target": null,
+          "params": {},
+          "startMs": 1009.648,
+          "endMs": 1020.604,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          },
+          "startMs": 1064.82,
+          "endMs": 2705.022,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeHidden\"",
+          "target": "locator('#puzzleLoadError')",
+          "params": {
+            "locator": "locator('#puzzleLoadError')"
+          },
+          "startMs": 2706.132,
+          "endMs": 2731.232,
+          "error": null
+        },
+        {
+          "title": "Hover",
+          "target": "locator('#map .cell[data-id=\"A1\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"A1\"]')"
+          },
+          "startMs": 2733.232,
+          "endMs": 7470.351,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#map .cell[data-id=\"A1\"]').locator('polygon')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"A1\"]').locator('polygon')",
+            "state": "attached"
+          },
+          "startMs": 7471.625,
+          "endMs": 7564.823,
+          "error": null
+        },
+        {
+          "title": "Hover",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 7565.742,
+          "endMs": 12889.347,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#map .cell[data-id=\"B2\"]').locator('polygon')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]').locator('polygon')",
+            "state": "attached"
+          },
+          "startMs": 12892.147,
+          "endMs": 12921.461,
+          "error": null
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "params": {
+            "expected": "Object"
+          },
+          "startMs": 12921.998,
+          "endMs": 12922.608,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "3px"
+          },
+          "startMs": 12922.961,
+          "endMs": 12923.066,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 12924.273,
+          "endMs": 13788.756,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 13789.55,
+          "endMs": 13806.695,
+          "error": null
+        },
+        {
+          "title": "Press \"Space\"",
+          "target": null,
+          "params": {
+            "key": "Space"
+          },
+          "startMs": 13807.384,
+          "endMs": 13821.545,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "params": {},
+          "startMs": 13822.273,
+          "endMs": 13834.458,
+          "error": null
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "params": {
+            "expected": "Object"
+          },
+          "startMs": 13835.101,
+          "endMs": 13835.171,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#routeTool')",
+          "params": {
+            "locator": "locator('#routeTool')"
+          },
+          "startMs": 13835.676,
+          "endMs": 15906.202,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 15907.13,
+          "endMs": 19223.04,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "params": {},
+          "startMs": 19223.845,
+          "endMs": 19264.092,
+          "error": null
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "params": {
+            "expected": "[A5]"
+          },
+          "startMs": 19264.921,
+          "endMs": 19265.152,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#toggleDistances')",
+          "params": {
+            "locator": "locator('#toggleDistances')"
+          },
+          "startMs": 19265.976,
+          "endMs": 22148.519,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"B2\"]')"
+          },
+          "startMs": 22149.493,
+          "endMs": 25576.226,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('.distance-overlay')",
+          "params": {
+            "locator": "locator('.distance-overlay')",
+            "expected": "data-distance-origin"
+          },
+          "startMs": 25577.089,
+          "endMs": 25593.432,
+          "error": null
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "params": {},
+          "startMs": 29674.744,
+          "endMs": 29677.903,
+          "error": null
+        }
+      ],
+      "failureScreenshots": []
+    },
+    {
+      "test": "place-references-redraws-p-b9724--in-all-three-visual-phases-webkit-desktop",
+      "traceSha256": "40198db8e9055022b4f9bc8d19d8c8b5b8e78edd81d71445fab02ac409f1987d",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "params": {},
+          "startMs": 6.378,
+          "endMs": 15.851,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "params": {},
+          "startMs": 24.855,
+          "endMs": 305.62,
+          "error": null
+        },
+        {
+          "title": "Route requests",
+          "target": null,
+          "params": {},
+          "startMs": 307.003,
+          "endMs": 309.707,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=model-demo",
+          "params": {
+            "url": "/?puzzle=model-demo"
+          },
+          "startMs": 310.228,
+          "endMs": 733.507,
+          "error": null
+        },
+        {
+          "title": "Fulfill request",
+          "target": null,
+          "params": {},
+          "startMs": 686.611,
+          "endMs": 693.763,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          },
+          "startMs": 734.265,
+          "endMs": 1005.036,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeHidden\"",
+          "target": "locator('#puzzleLoadError')",
+          "params": {
+            "locator": "locator('#puzzleLoadError')"
+          },
+          "startMs": 1005.565,
+          "endMs": 2455.885,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#showPlaces')",
+          "params": {
+            "locator": "locator('#showPlaces')"
+          },
+          "startMs": 2456.796,
+          "endMs": 5891.666,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 5892.41,
+          "endMs": 5977.124,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"A1\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"A1\"]')"
+          },
+          "startMs": 5977.957,
+          "endMs": 6000.852,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "params": {
+            "key": "Enter"
+          },
+          "startMs": 6001.324,
+          "endMs": 6076.996,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "params": {},
+          "startMs": 6077.579,
+          "endMs": 6142.638,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 6143.242,
+          "endMs": 6163.629,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 6164.179,
+          "endMs": 6164.235,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 6164.704,
+          "endMs": 6185.626,
+          "error": null
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "params": {
+            "expected": "[5563, , , , , , , ]"
+          },
+          "startMs": 6186.136,
+          "endMs": 6187.031,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('[data-label-object=\"o1\"]')",
+          "params": {
+            "locator": "locator('[data-label-object=\"o1\"]')",
+            "state": "attached"
+          },
+          "startMs": 6188.105,
+          "endMs": 6210.899,
+          "error": null
+        },
+        {
+          "title": "{\"measured\":530.8362426757812,\"available\":531,\"fontSize\":14.378001672394992,\"computedFont\":\"14.378001px\",\"scale\":1.4942190803382664}",
+          "target": null,
+          "params": {
+            "expected": "531.5"
+          },
+          "startMs": 6212.859,
+          "endMs": 6213.003,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('[data-label-object=\"o1\"]').locator('text')",
+          "params": {
+            "locator": "locator('[data-label-object=\"o1\"]').locator('text')",
+            "state": "attached"
+          },
+          "startMs": 6217.15,
+          "endMs": 6244.853,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "params": {
+            "expected": "18"
+          },
+          "startMs": 6245.468,
+          "endMs": 6245.693,
+          "error": null
+        },
+        {
+          "title": "Get attribute \"d\"",
+          "target": "locator('[data-label-object=\"o1\"]').locator('.label-paper>path').first()",
+          "params": {
+            "locator": "locator('[data-label-object=\"o1\"]').locator('.label-paper>path').first()"
+          },
+          "startMs": 6246.554,
+          "endMs": 6263.395,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContain\"",
+          "target": null,
+          "params": {
+            "expected": " Q "
+          },
+          "startMs": 6264.327,
+          "endMs": 6264.469,
+          "error": null
+        },
+        {
+          "title": "Reload",
+          "target": null,
+          "params": {},
+          "startMs": 6265.026,
+          "endMs": 6501.295,
+          "error": null
+        },
+        {
+          "title": "Fulfill request",
+          "target": null,
+          "params": {},
+          "startMs": 6457.488,
+          "endMs": 6473.233,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          },
+          "startMs": 6502.134,
+          "endMs": 7449.541,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#showPlaces')",
+          "params": {
+            "locator": "locator('#showPlaces')"
+          },
+          "startMs": 7450.343,
+          "endMs": 9529.007,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "params": {},
+          "startMs": 9529.737,
+          "endMs": 9549.212,
+          "error": null
+        },
+        {
+          "title": "Mouse move",
+          "target": null,
+          "params": {
+            "x": "0",
+            "y": "0"
+          },
+          "startMs": 9549.967,
+          "endMs": 11160.566,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 11161.346,
+          "endMs": 11248.938,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": "locator('.mapbox')",
+          "params": {
+            "locator": "locator('.mapbox')",
+            "state": "attached"
+          },
+          "startMs": 11249.636,
+          "endMs": 17144.006,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 17146.998,
+          "endMs": 18404.001,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": "locator('.mapbox')",
+          "params": {
+            "locator": "locator('.mapbox')",
+            "state": "attached"
+          },
+          "startMs": 18404.948,
+          "endMs": 22253.905,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 22256.111,
+          "endMs": 23495.28,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .place-label')",
+          "params": {
+            "locator": "locator('#map .place-label')"
+          },
+          "startMs": 23496.271,
+          "endMs": 23521.185,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": "locator('.mapbox')",
+          "params": {
+            "locator": "locator('.mapbox')",
+            "state": "attached"
+          },
+          "startMs": 23521.942,
+          "endMs": 27384.136,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": "locator('#mapActions')",
+          "params": {
+            "locator": "locator('#mapActions')",
+            "state": "attached"
+          },
+          "startMs": 27386.489,
+          "endMs": 31628.743,
+          "error": null
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "params": {},
+          "startMs": 35614.521,
+          "endMs": 35629.466,
+          "error": null
+        }
+      ],
+      "failureScreenshots": [
+        {
+          "name": "test-failed-1.png",
+          "sha256": "1d65f0a38b4d350410c57379b2986199ac6c7a728bc9be8bdb25bbd5abfc5fc5"
+        }
+      ]
+    },
+    {
+      "test": "place-references-redraws-p-b9724--in-all-three-visual-phases-webkit-desktop-retry1",
+      "traceSha256": "ad174f319e97eb1701fd7611eada2ad4665378a5fdf47e7f15bfea5908b7f795",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "params": {},
+          "startMs": 422.265,
+          "endMs": 433.379,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "params": {},
+          "startMs": 447.414,
+          "endMs": 645.589,
+          "error": null
+        },
+        {
+          "title": "Route requests",
+          "target": null,
+          "params": {},
+          "startMs": 647.437,
+          "endMs": 653.322,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=model-demo",
+          "params": {
+            "url": "/?puzzle=model-demo"
+          },
+          "startMs": 654.785,
+          "endMs": 1043.647,
+          "error": null
+        },
+        {
+          "title": "Fulfill request",
+          "target": null,
+          "params": {},
+          "startMs": 1014.393,
+          "endMs": 1049.992,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          },
+          "startMs": 1048.785,
+          "endMs": 1327.173,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeHidden\"",
+          "target": "locator('#puzzleLoadError')",
+          "params": {
+            "locator": "locator('#puzzleLoadError')"
+          },
+          "startMs": 1334.595,
+          "endMs": 2777.838,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#showPlaces')",
+          "params": {
+            "locator": "locator('#showPlaces')"
+          },
+          "startMs": 2781.128,
+          "endMs": 6183.221,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 6184.492,
+          "endMs": 6277.949,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"A1\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"A1\"]')"
+          },
+          "startMs": 6279.688,
+          "endMs": 6317.362,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "params": {
+            "key": "Enter"
+          },
+          "startMs": 6318.347,
+          "endMs": 6397.707,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "params": {},
+          "startMs": 6398.539,
+          "endMs": 6463.204,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 6464.433,
+          "endMs": 6504.142,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "true"
+          },
+          "startMs": 6504.71,
+          "endMs": 6504.932,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 6505.85,
+          "endMs": 6551.02,
+          "error": null
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "params": {
+            "expected": "[5497, , , , , , , ]"
+          },
+          "startMs": 6551.582,
+          "endMs": 6552.532,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('[data-label-object=\"o1\"]')",
+          "params": {
+            "locator": "locator('[data-label-object=\"o1\"]')",
+            "state": "attached"
+          },
+          "startMs": 6556.47,
+          "endMs": 6595.397,
+          "error": null
+        },
+        {
+          "title": "{\"measured\":530.8362426757812,\"available\":531,\"fontSize\":14.378001672394992,\"computedFont\":\"14.378001px\",\"scale\":1.4942190803382664}",
+          "target": null,
+          "params": {
+            "expected": "531.5"
+          },
+          "startMs": 6597.823,
+          "endMs": 6598.158,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('[data-label-object=\"o1\"]').locator('text')",
+          "params": {
+            "locator": "locator('[data-label-object=\"o1\"]').locator('text')",
+            "state": "attached"
+          },
+          "startMs": 6599.435,
+          "endMs": 6649.449,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "params": {
+            "expected": "18"
+          },
+          "startMs": 6650.009,
+          "endMs": 6650.182,
+          "error": null
+        },
+        {
+          "title": "Get attribute \"d\"",
+          "target": "locator('[data-label-object=\"o1\"]').locator('.label-paper>path').first()",
+          "params": {
+            "locator": "locator('[data-label-object=\"o1\"]').locator('.label-paper>path').first()"
+          },
+          "startMs": 6651.11,
+          "endMs": 6672.497,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContain\"",
+          "target": null,
+          "params": {
+            "expected": " Q "
+          },
+          "startMs": 6673.131,
+          "endMs": 6673.424,
+          "error": null
+        },
+        {
+          "title": "Reload",
+          "target": null,
+          "params": {},
+          "startMs": 6673.998,
+          "endMs": 6969.865,
+          "error": null
+        },
+        {
+          "title": "Fulfill request",
+          "target": null,
+          "params": {},
+          "startMs": 6938.444,
+          "endMs": 6974.621,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          },
+          "startMs": 6970.879,
+          "endMs": 7169.631,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#showPlaces')",
+          "params": {
+            "locator": "locator('#showPlaces')"
+          },
+          "startMs": 7170.607,
+          "endMs": 11019.655,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "params": {},
+          "startMs": 11020.18,
+          "endMs": 11057.471,
+          "error": null
+        },
+        {
+          "title": "Mouse move",
+          "target": null,
+          "params": {
+            "x": "0",
+            "y": "0"
+          },
+          "startMs": 11058.121,
+          "endMs": 12746.643,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 12748.234,
+          "endMs": 12842.101,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": "locator('.mapbox')",
+          "params": {
+            "locator": "locator('.mapbox')",
+            "state": "attached"
+          },
+          "startMs": 12843.43,
+          "endMs": 17988.531,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 17992.016,
+          "endMs": 18027.602,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": "locator('.mapbox')",
+          "params": {
+            "locator": "locator('.mapbox')",
+            "state": "attached"
+          },
+          "startMs": 18031.017,
+          "endMs": 21142.623,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.place-references')",
+          "params": {
+            "locator": "locator('.place-references')",
+            "state": "attached"
+          },
+          "startMs": 21144.521,
+          "endMs": 21171.194,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .place-label')",
+          "params": {
+            "locator": "locator('#map .place-label')"
+          },
+          "startMs": 21171.838,
+          "endMs": 21183.575,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": "locator('.mapbox')",
+          "params": {
+            "locator": "locator('.mapbox')",
+            "state": "attached"
+          },
+          "startMs": 21184.176,
+          "endMs": 26322.11,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": "locator('#mapActions')",
+          "params": {
+            "locator": "locator('#mapActions')",
+            "state": "attached"
+          },
+          "startMs": 26324.296,
+          "endMs": 30526.305,
+          "error": null
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "params": {},
+          "startMs": 34909.881,
+          "endMs": 34914.822,
+          "error": null
+        }
+      ],
+      "failureScreenshots": [
+        {
+          "name": "test-failed-1.png",
+          "sha256": "1d65f0a38b4d350410c57379b2986199ac6c7a728bc9be8bdb25bbd5abfc5fc5"
+        }
+      ]
+    },
+    {
+      "test": "place-references-reduced-m-b909c-trigger-on-ordinary-renders-webkit-desktop",
+      "traceSha256": "64c235e73d79315b7a01ee1b33e2f7f5f74f75aae13ceeb06a11c074fcc84ba3",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "params": {},
+          "startMs": 14.897,
+          "endMs": 34.709,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "params": {},
+          "startMs": 40.684,
+          "endMs": 356.145,
+          "error": null
+        },
+        {
+          "title": "Emulate media",
+          "target": null,
+          "params": {
+            "reducedMotion": "reduce"
+          },
+          "startMs": 357.481,
+          "endMs": 375.165,
+          "error": null
+        },
+        {
+          "title": "Route requests",
+          "target": null,
+          "params": {},
+          "startMs": 376.131,
+          "endMs": 377.692,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=model-demo",
+          "params": {
+            "url": "/?puzzle=model-demo"
+          },
+          "startMs": 378.316,
+          "endMs": 1004.299,
+          "error": null
+        },
+        {
+          "title": "Fulfill request",
+          "target": null,
+          "params": {},
+          "startMs": 973.913,
+          "endMs": 1009.456,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          },
+          "startMs": 1005.391,
+          "endMs": 1380.034,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeHidden\"",
+          "target": "locator('#puzzleLoadError')",
+          "params": {
+            "locator": "locator('#puzzleLoadError')"
+          },
+          "startMs": 1380.718,
+          "endMs": 2738.135,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.label-paper').first()",
+          "params": {
+            "locator": "locator('.label-paper').first()",
+            "state": "attached"
+          },
+          "startMs": 2738.987,
+          "endMs": 2812.607,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "1"
+          },
+          "startMs": 2813.15,
+          "endMs": 2813.189,
+          "error": null
+        },
+        {
+          "title": "Wait for timeout",
+          "target": null,
+          "params": {
+            "timeout": "1800"
+          },
+          "startMs": 2813.639,
+          "endMs": 4631.75,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"A1\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"A1\"]')"
+          },
+          "startMs": 4632.638,
+          "endMs": 4654.45,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "params": {
+            "key": "Enter"
+          },
+          "startMs": 4655.029,
+          "endMs": 4726.682,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .place-label')",
+          "params": {
+            "locator": "locator('#map .place-label')"
+          },
+          "startMs": 4727.296,
+          "endMs": 4748.982,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#showPlaces')",
+          "params": {
+            "locator": "locator('#showPlaces')"
+          },
+          "startMs": 4750.221,
+          "endMs": 8434.381,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveText\"",
+          "target": "locator('#map .place-label').locator('text')",
+          "params": {
+            "locator": "locator('#map .place-label').locator('text')",
+            "expected": "[Roberts Boot, Zwilling, Kiste, Start]"
+          },
+          "startMs": 8435.221,
+          "endMs": 8466.268,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .place-label')",
+          "params": {
+            "locator": "locator('#map .place-label')"
+          },
+          "startMs": 8466.818,
+          "endMs": 12611.117,
+          "error": {
+            "name": "",
+            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#map .place-label')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\nTimeout:  4000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('#map .place-label') with timeout 4000ms\u001b[22m\n\u001b[2m  - waiting for locator('#map .place-label')\u001b[22m\n\u001b[2m    7 × locator resolved to 4 elements\u001b[22m\n\u001b[2m      - unexpected value \"4\"\u001b[22m\n",
+            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#map .place-label')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\nTimeout:  4000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('#map .place-label') with timeout 4000ms\u001b[22m\n\u001b[2m  - waiting for locator('#map .place-label')\u001b[22m\n\u001b[2m    7 × locator resolved to 4 elements\u001b[22m\n\u001b[2m      - unexpected value \"4\"\u001b[22m\n\n    at /home/runner/work/Sams-Gezeitenkarten/Sams-Gezeitenkarten/tests/browser/place-references.spec.mjs:208:29"
+          }
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "params": {},
+          "startMs": 16744.859,
+          "endMs": 16747.955,
+          "error": null
+        }
+      ],
+      "failureScreenshots": [
+        {
+          "name": "test-failed-1.png",
+          "sha256": "5f301aa90f23bfe1ec1e5975e02b97fbea662d0072f92c9c528800f6615ae17e"
+        }
+      ]
+    },
+    {
+      "test": "place-references-reduced-m-b909c-trigger-on-ordinary-renders-webkit-desktop-retry1",
+      "traceSha256": "f6f83d069983b6af40245560e98e90846af7a4803e7bb988a23bd8628204dc3e",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "params": {},
+          "startMs": 423.476,
+          "endMs": 427.387,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "params": {},
+          "startMs": 443.792,
+          "endMs": 628.208,
+          "error": null
+        },
+        {
+          "title": "Emulate media",
+          "target": null,
+          "params": {
+            "reducedMotion": "reduce"
+          },
+          "startMs": 629.3,
+          "endMs": 639.026,
+          "error": null
+        },
+        {
+          "title": "Route requests",
+          "target": null,
+          "params": {},
+          "startMs": 640.275,
+          "endMs": 641.827,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=model-demo",
+          "params": {
+            "url": "/?puzzle=model-demo"
+          },
+          "startMs": 642.674,
+          "endMs": 1084.723,
+          "error": null
+        },
+        {
+          "title": "Fulfill request",
+          "target": null,
+          "params": {},
+          "startMs": 1035.551,
+          "endMs": 1045.284,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          },
+          "startMs": 1098.007,
+          "endMs": 2614.663,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBeHidden\"",
+          "target": "locator('#puzzleLoadError')",
+          "params": {
+            "locator": "locator('#puzzleLoadError')"
+          },
+          "startMs": 2615.849,
+          "endMs": 2742.046,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('.label-paper').first()",
+          "params": {
+            "locator": "locator('.label-paper').first()",
+            "state": "attached"
+          },
+          "startMs": 2743.846,
+          "endMs": 2850.127,
+          "error": null
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "params": {
+            "expected": "1"
+          },
+          "startMs": 2850.8,
+          "endMs": 2850.997,
+          "error": null
+        },
+        {
+          "title": "Wait for timeout",
+          "target": null,
+          "params": {
+            "timeout": "1800"
+          },
+          "startMs": 2851.57,
+          "endMs": 4674.684,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"A1\"]')",
+          "params": {
+            "locator": "locator('#map .cell[data-id=\"A1\"]')"
+          },
+          "startMs": 4676.416,
+          "endMs": 4702.464,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "params": {
+            "key": "Enter"
+          },
+          "startMs": 4703.229,
+          "endMs": 4791.643,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .place-label')",
+          "params": {
+            "locator": "locator('#map .place-label')"
+          },
+          "startMs": 4792.565,
+          "endMs": 4816.987,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#showPlaces')",
+          "params": {
+            "locator": "locator('#showPlaces')"
+          },
+          "startMs": 4819.668,
+          "endMs": 8220.916,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveText\"",
+          "target": "locator('#map .place-label').locator('text')",
+          "params": {
+            "locator": "locator('#map .place-label').locator('text')",
+            "expected": "[Roberts Boot, Zwilling, Kiste, Start]"
+          },
+          "startMs": 8221.981,
+          "endMs": 8242.112,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .place-label')",
+          "params": {
+            "locator": "locator('#map .place-label')"
+          },
+          "startMs": 8243.58,
+          "endMs": 12382.955,
+          "error": {
+            "name": "",
+            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#map .place-label')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\nTimeout:  4000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('#map .place-label') with timeout 4000ms\u001b[22m\n\u001b[2m  - waiting for locator('#map .place-label')\u001b[22m\n\u001b[2m    7 × locator resolved to 4 elements\u001b[22m\n\u001b[2m      - unexpected value \"4\"\u001b[22m\n",
+            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#map .place-label')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\nTimeout:  4000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('#map .place-label') with timeout 4000ms\u001b[22m\n\u001b[2m  - waiting for locator('#map .place-label')\u001b[22m\n\u001b[2m    7 × locator resolved to 4 elements\u001b[22m\n\u001b[2m      - unexpected value \"4\"\u001b[22m\n\n    at /home/runner/work/Sams-Gezeitenkarten/Sams-Gezeitenkarten/tests/browser/place-references.spec.mjs:208:29"
+          }
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "params": {},
+          "startMs": 16649.639,
+          "endMs": 16654.762,
+          "error": null
+        }
+      ],
+      "failureScreenshots": [
+        {
+          "name": "test-failed-1.png",
+          "sha256": "5f301aa90f23bfe1ec1e5975e02b97fbea662d0072f92c9c528800f6615ae17e"
+        }
+      ]
+    }
+  ]
+}
