@@ -1,0 +1,24 @@
+  1) [chromium] › tests/browser/catalog-proof.spec.mjs:8:1 › offline catalog proof: complete overview, independent relative overlays, navigation and damaged files
+
+    Test timeout of 240000ms exceeded.
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator: locator('[data-detail="14"]').locator('svg')
+    Expected: 1
+    Error: Test timeout of 240000ms exceeded.
+
+    Call log:
+      - Expect "toHaveCount" locator('[data-detail="14"]').locator('svg') with timeout 5000ms
+      - waiting for locator('[data-detail="14"]').locator('svg')
+      - Test timeout of 240000ms exceeded.
+
+
+      20 |    const article=page.locator('[data-detail="'+i+'"]');await expect(article).toBeVisible();
+      21 |    await expect(article.locator('code')).toHaveText(report.assets[i].assetId);
+    > 22 |    await expect(article.locator('svg')).toHaveCount(1);
+         |                                         ^
+      23 |    await expect(article.locator('[data-gallery-layer="hexes"] polygon')).toHaveCount(report.assets[i].occupiedHexCount);
+      24 |    await expect(article.locator('[data-gallery-layer="footprints"] polygon')).toHaveCount(report.assets[i].occupiedHexCount);
+      25 |    await expect(article.locator('[data-gallery-layer="objects"] image')).toHaveAttribute('data-occupied-cells',JSON.stringify(report.assets[i].occupiedCells));
+        at /private/tmp/sams-gezeitenkarten-rules/tests/browser/catalog-proof.spec.mjs:22:41

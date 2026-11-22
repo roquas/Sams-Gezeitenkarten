@@ -19,13 +19,24 @@ spec.loader.exec_module(packager)
 class PackagingTests(unittest.TestCase):
     def test_private_b2_stock_is_not_packaged(self):
         self.assertFalse(any(ref.startswith(('.dev/', 'docs/', 'scripts/')) for ref in self.files))
-        self.assertEqual(json.loads((ROOT / 'puzzles/manifest.json').read_text())['defaultId'], 'model-demo')
+        self.assertEqual(json.loads((ROOT / 'puzzles/manifest.json').read_text())['defaultId'], 'drei-peilungen')
         for ref in self.files:
             if ref.endswith('.json'):
                 text = (ROOT / ref).read_text()
                 for private_field in ('effectKey', 'individualExactness', 'gk-b2-run-sha256', 'gk-b2-target-sha256',
                                       'B2-S01-', 'B2-S02-', 'B2-BC-', 'B2-POSITIVE-', 'gk-b2-search-run-sha256', 'presentationAssignment', 'crossTable'):
                     self.assertNotIn(private_field, text, ref)
+
+    def test_regular_standard_and_rule_images_are_in_the_validated_runtime(self):
+        manifest = json.loads((ROOT / 'puzzles/manifest.json').read_text())
+        self.assertEqual([p['id'] for p in manifest['puzzles']], ['model-demo', 'drei-peilungen'])
+        standard = json.loads((ROOT / 'puzzles/drei-peilungen.json').read_text())
+        self.assertEqual(standard['puzzle']['logic']['steps'], 6)
+        self.assertNotIn('solution', standard['puzzle'])
+        for ref in ['puzzles/drei-peilungen.json', 'src/ui/rules.mjs',
+                    'assets/rules/title-map.jpg', 'assets/rules/hours.png',
+                    'assets/rules/marks.png', 'assets/rules/tools.png', 'assets/rules/route.png']:
+            self.assertIn(ref, self.files)
 
     @classmethod
     def setUpClass(cls):
@@ -41,6 +52,10 @@ class PackagingTests(unittest.TestCase):
             shutil.copyfile(ROOT / ref, target)
         # Keep just the guaranteed demo package. Other installed assets are optional.
         dto = self.read('puzzles/model-demo.json')
+        manifest = self.read('puzzles/manifest.json')
+        manifest['defaultId'] = 'model-demo'
+        manifest['puzzles'] = [p for p in manifest['puzzles'] if p['id'] == 'model-demo']
+        self.write('puzzles/manifest.json', manifest)
         used = {p['assetId'] for p in dto['puzzle']['presentation']['assetPlacements']}
         c = self.read('assets/catalog/library.json')
         c['assets'] = [a for a in c['assets'] if a['id'] in used]

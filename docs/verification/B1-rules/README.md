@@ -122,8 +122,54 @@ jeweiligen Erklärungen. Die Spielansicht behält ihre schmale Regelspalte: [Des
 
 ## Prüfungen
 
-Zwischenstand: neue gezielte Chromium-Regressionsmatrix **16/16 bestanden**, Inhaltstests **20/20**, beide regulären Rätsel eindeutig, HTTP-Selbsttest und Archivprüfung bestanden. Breite Chromium-/WebKit- und vollständige Vertragsprüfungen laufen; deren Ergebnis wird ergänzt. Bisherige breite Läufe enthalten Timeouts beim Aufbau bestehender Katalog-Fixtures sowie einen inzwischen korrigierten Test mit veralteter Ein-Rätsel-Annahme. Es wird kein grüner Gesamtlauf behauptet.
-Keine Assertions, Budgets oder Geräteskips wurden gelockert.
+[Maschinenlesbare Ergebnisse](test-results.json), [Ausgaben der abgeschlossenen Läufe](test-summary.txt)
+und [verbleibender lokaler Offline-Viewer-Timeout](catalog-proof-timeout.txt).
+
+| Prüfung | Tatsächliches Ergebnis |
+| --- | --- |
+| Vollständige Node-Unit-/Vertrags-/Integrationssuite | **457/457 bestanden**, keine Skips; auch CI auf dem Anwendungscommit erfolgreich |
+| Finale Engine-/Integrationstests nach UI-Scopekorrektur | **163/163 bestanden** |
+| Inhalte / reguläre Rätsel | **20/20**, beide Rätsel eindeutig |
+| Paket-Vertragstests nach isolierter Fixturekorrektur | **20/20 bestanden** |
+| Normale ZIP-Veröffentlichungsvalidierung | **130 Dateien**, 24.652.056 Bytes; [Inventar und SHA-256](package-validation.json) |
+| Echtes ZIP unter `/gk/pr38/`, vier Geräteprofile | **48/48 bestanden** |
+| Finale relevante Chromium-Matrix | **123 bestanden, 1 Download-Timeout**; isolierter unveränderter Nachlauf **1/1 bestanden**. Alle 124 Fälle mindestens einmal bestanden; kein fehlerfreier Gesamtlauf behauptet. |
+| Finale relevante WebKit-Matrix | **160 bestanden, 2 bestehende Geräteskips**, kein Fehler |
+| Offline-Katalog-/Kontaktbogen-Nachlauf | **8 bestanden, 1 vorhandener Geräteskip, 1 Timeout** im unveränderten Offline-Katalogviewer |
+| Historische Reproduktionen mit Node v24.19.0 | Lokal zunächst **6/9**, nach präziser Katalogabgrenzung **4/5** im Nachlauf; verbleibender lokaler B2-Suchtimeout. **Beide zuständigen CI-Jobs erfolgreich**, damit alle neun Prüfungen auf Linux bestanden. |
+
+Der erste breite Chromium-Lauf hatte 467 bestandene, 37 fehlgeschlagene,
+drei übersprungene und drei nach einem Setup-Abbruch nicht ausgeführte Fälle.
+Die erste WebKit-Teilmatrix hatte 156 bestandene, zwei fehlgeschlagene und zwei
+übersprungene Fälle. Diese Läufe werden nicht nachträglich für grün erklärt.
+Die breite Matrix fand insbesondere die zu weit gefasste Koordinatenanbindung,
+die Rätselkennungen wie `B2` im Titel veränderte. Sie ist auf Regeln und explizite
+Legendenprosa begrenzt; ein neuer Test erhält Überschriften, Auswahltext und
+Optionswerte ausdrücklich. Die betroffenen B2-/S03-Bestände bestehen im finalen
+Chromium-Nachlauf. Die verbliebenen Notiz-/Zeit-/A2b-Prüfungen bestehen in der
+finalen WebKit-Matrix ohne neue Fristen, Skips oder Retries.
+
+Der lokale Offline-Katalogtest erreicht auch isoliert sein unverändertes
+240-s-Gesamtbudget beim SVG des 15. Assetdetails (`data-detail="14"`). Die acht
+Kontaktbogenfälle bestehen. Offline-Viewer, Katalogprüfung, Testbudget und
+Generator wurden für diesen UI-Auftrag nicht verändert. Der lokale historische
+B2-Suchvergleich erreicht seine bestehende 170-s-Unterprozessgrenze; derselbe
+gepinnt ausgeführte Test besteht in der Linux-CI.
+
+[CI-Lauf 45005776024](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/45005776024)
+prüft Anwendungscommit `3e8dcab`: Unit-Suite, Katalogarchiv und beide historischen
+Reproduktionsjobs sind erfolgreich. Sein Deployment-Job fand eine weitere alte
+Testannahme: `test_package.py` verkleinerte die Assets auf `model-demo`, behielt
+aber den erweiterten Katalog. Die Fixture beschränkt nun Rätsel **und** Assets
+explizit auf die technische Referenz. Ein separater Test prüft weiterhin den
+vollständigen regulären Bestand, das Sechsstundenrätsel und alle Regelressourcen.
+Alle 20 Paket-Vertragstests bestehen lokal mit unveränderten negativen Gates.
+Der finale CI-Lauf nach dieser reinen Test-/Dokumentationskorrektur wird im PR
+verlinkt. Ein grüner Gesamtstatus wird erst nach dessen Abschluss behauptet.
+
+Frühe lokale Anläufe ohne Pillow und mit nicht kanonischem macOS-Temporärpfad
+scheiterten an der Testumgebung. Die vollständige Node-Suite bestand danach mit
+denselben Assertions. Keine Assertions, Budgets oder Geräteskips wurden gelockert.
 
 Reproduktion der neuen gezielten Prüfungen:
 
