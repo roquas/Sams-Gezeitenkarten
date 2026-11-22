@@ -1,0 +1,148 @@
+{
+  "artifactId": 14748667254,
+  "artifactSha256": "c9495a126097ed414bf2ab7925afff1dba78625ebdcca5df78703f7e7344f21f",
+  "run": 45006843715,
+  "head": "6e1b108fcb372b8c72d863ec0ebb29ce127c02ec",
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4173/puzzles/manifest.json",
+      "status": 200,
+      "startMs": 33648.386,
+      "durationMs": 5.723999999999999,
+      "endMs": 33654.11,
+      "dataVersion": null,
+      "puzzles": [
+        "model-demo"
+      ],
+      "resource": "resources/99f960c39639cf903e428a940212a57239a469ae.json"
+    },
+    {
+      "url": "http://127.0.0.1:4173/puzzles/model-demo.json",
+      "status": 200,
+      "startMs": 33683.318,
+      "durationMs": 7.3870000000000005,
+      "endMs": 33690.705,
+      "dataVersion": 1,
+      "puzzles": [],
+      "resource": "resources/c7589338c2b62b42b59e7deb70a9865351d2cc29.json"
+    },
+    {
+      "url": "http://127.0.0.1:4173/puzzles/manifest.json",
+      "status": 200,
+      "startMs": 34558.444,
+      "durationMs": 17.524,
+      "endMs": 34575.968,
+      "dataVersion": null,
+      "puzzles": [
+        "model-demo"
+      ],
+      "resource": "resources/99f960c39639cf903e428a940212a57239a469ae.json"
+    },
+    {
+      "url": "http://127.0.0.1:4173/puzzles/model-demo.json",
+      "status": 200,
+      "startMs": 34655.998,
+      "durationMs": 42.304,
+      "endMs": 34698.301999999996,
+      "dataVersion": 1,
+      "puzzles": [],
+      "resource": "resources/c7589338c2b62b42b59e7deb70a9865351d2cc29.json"
+    }
+  ],
+  "actions": [
+    {
+      "type": "before",
+      "callId": "xkfr@1280",
+      "startTime": 34387.556,
+      "method": "click",
+      "params": {
+        "selector": "#feedbackRecords details >> nth=0 >> summary",
+        "strict": true
+      }
+    },
+    {
+      "type": "after",
+      "callId": "xkfr@1280",
+      "endTime": 34712.459
+    },
+    {
+      "type": "before",
+      "callId": "xkfr@1284",
+      "startTime": 34749.963,
+      "method": "fill",
+      "params": {
+        "selector": "#feedbackRecords details >> nth=0 >> [name=comment]",
+        "strict": true,
+        "value": "Version eins"
+      }
+    }
+  ],
+  "clickLogs": [
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34399.512,
+      "message": "waiting for locator('#feedbackRecords details').first().locator('summary')"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34568.022,
+      "message": "  locator resolved to <summary>Die Probefahrt</summary>"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34572.933,
+      "message": "attempting click action"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34572.985,
+      "message": "  waiting for element to be visible, enabled and stable"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34655.758,
+      "message": "  element is visible, enabled and stable"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34655.773,
+      "message": "  scrolling into view if needed"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34661.649,
+      "message": "  done scrolling"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34689.673,
+      "message": "  performing click action"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34706.342,
+      "message": "  click action done"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34706.362,
+      "message": "  waiting for scheduled navigations to finish"
+    },
+    {
+      "type": "log",
+      "callId": "xkfr@1280",
+      "time": 34712.381,
+      "message": "  navigations have finished"
+    }
+  ]
+}

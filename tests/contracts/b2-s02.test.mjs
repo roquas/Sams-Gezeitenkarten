@@ -1,3 +1,4 @@
+import {historicalCatalogFiles} from '../helpers/historical-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -55,7 +56,7 @@ test('all 96 unfiltered S02 candidates load through the real public loader witho
   const bytes=ref.startsWith('.dev/b2-s02/')?files.get(ref.slice('.dev/b2-s02/'.length)):fs.readFileSync(path.join(ROOT,ref),'utf8');
   return {ok:!!bytes,json:async()=>JSON.parse(bytes)};
  }});
- assert.equal((await loader.manifest()).puzzles.length,97);
+ assert.equal((await loader.manifest()).puzzles.length,98);
  const byVariant=new Map(source.rows.map(row=>[row.fingerprints.variant,row]));
  for(const binding of source.registry.entries){
   const row=byVariant.get(binding.fingerprints.variant),puzzle=await loader.load(binding.testName);
@@ -126,7 +127,7 @@ test('S02 report has exact independent marginals, cross table and a trace for ev
 test('S01 defaults and stored bytes stay pinned; the public export uses H1 count texts',()=>{
  assert.equal(REGISTRY,'scripts/config/b2-playtest-s01.json');assert.equal(OUTPUT,'.dev/b2');
  assert.deepEqual(readPlaytestSource(),readPlaytestSource('S01'));
- const s01=readPlaytestSource(),actual=buildPlaytest(),expected=read('tests/fixtures/generation/b2-s01-export.json');
+ const s01=readPlaytestSource(),actual=historicalCatalogFiles(buildPlaytest(),base),expected=read('tests/fixtures/generation/b2-s01-export.json');
  assert.equal(actual.size,expected.fileCount);
  assert.equal(sha256(canonicalJson([...actual].sort(([a],[b])=>a<b?-1:a>b?1:0)
   .map(([name,bytes])=>({name,sha256:sha256(bytes)})))),expected.h1Sha256);

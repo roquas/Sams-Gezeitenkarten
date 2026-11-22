@@ -10,3 +10,22 @@ export function coordinateTextMarkup(text){
  text=text.replace(/([αβγδε])\s*\/\s*([CMVBO])\b/g,(_,col,row)=>GREEK[GREEK_SYMBOLS.indexOf(col)]+'/'+ROWCOLORS.find(c=>c.short===row).name);
  return text.replace(/\b(Alpha|Beta|Gamma|Delta|Epsilon)\s*\/\s*(Cyan|Magenta|Violett|Blau|Orange)\b|\b([A-E][1-5])\b/g,(_,col,row,id)=>coordinateMarkup(id||LETTERS[GREEK.indexOf(col)]+(ROWCOLORS.findIndex(c=>c.name===row)+1)));
 }
+
+// Only text nodes are transformed: attributes and existing badges remain intact.
+// Safe for repeated preparation and for text containing literal HTML characters.
+export function prepareCoordinates(root){
+ const doc=root.ownerDocument;
+ const walker=doc.createTreeWalker(root,4); // NodeFilter.SHOW_TEXT
+ const nodes=[];
+ while(walker.nextNode()){
+  const node=walker.currentNode;
+  if(!node.parentElement.closest('.coord-inline,script,style,textarea,code,svg'))nodes.push(node);
+ }
+ for(const node of nodes){
+  const escaped=node.data.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const html=coordinateTextMarkup(escaped);
+  if(html===escaped)continue;
+  const template=doc.createElement('template');template.innerHTML=html;
+  node.replaceWith(template.content);
+ }
+}

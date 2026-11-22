@@ -1,0 +1,116 @@
+{
+  "applicationCommit": "3e8dcab24d843ebbaea39ff7e45b1bdea5551b00",
+  "date": "2026-11-22",
+  "node": "v22.23.3",
+  "reproductionNode": "v24.19.0",
+  "unitContractsIntegration": {
+    "tests": 457,
+    "passed": 457,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 1851124.636125
+  },
+  "finalEngineIntegration": {
+    "tests": 163,
+    "passed": 163,
+    "failed": 0
+  },
+  "content": {
+    "tests": 20,
+    "passed": 20,
+    "failed": 0
+  },
+  "publicPuzzles": {
+    "tests": 2,
+    "unique": 2
+  },
+  "packageContractsAfterFixtureCorrection": {
+    "tests": 20,
+    "passed": 20,
+    "failed": 0,
+    "testFileSha256": "2838a1b1cce445a32ec316f04ff26586832b810e117efc1f6648ce4913904532"
+  },
+  "realZipDeployment": {
+    "tests": 48,
+    "passed": 48,
+    "failed": 0,
+    "profiles": [
+      "Desktop Chrome",
+      "Pixel 7",
+      "iPhone 13 WebKit",
+      "iPad WebKit"
+    ]
+  },
+  "firstBroadChromium": {
+    "tests": 510,
+    "passed": 467,
+    "failed": 37,
+    "skipped": 3,
+    "didNotRun": 3,
+    "green": false
+  },
+  "firstRelevantWebKit": {
+    "tests": 160,
+    "passed": 156,
+    "failed": 2,
+    "skipped": 2,
+    "green": false
+  },
+  "finalRelevantChromium": {
+    "tests": 124,
+    "passed": 123,
+    "failed": 1,
+    "isolatedRepeat": {
+      "tests": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "allCasesPassedAtLeastOnce": true,
+    "singleCleanRunClaimed": false,
+    "initialFailure": "download event timeout in unchanged B1 export path"
+  },
+  "finalRelevantWebKit": {
+    "tests": 162,
+    "passed": 160,
+    "failed": 0,
+    "skipped": 2,
+    "newSkips": 0
+  },
+  "offlineCatalogAndContactSheetRepeat": {
+    "tests": 10,
+    "passed": 8,
+    "failed": 1,
+    "skipped": 1,
+    "failure": "catalog-proof.spec.mjs: 240000 ms total timeout, waiting for asset detail 14 SVG; no test budget or offline viewer change"
+  },
+  "historicalReproductions": {
+    "firstLocal": {
+      "tests": 9,
+      "passed": 6,
+      "failed": 3
+    },
+    "localRepeat": {
+      "tests": 5,
+      "passed": 4,
+      "failed": 1
+    },
+    "remainingLocalFailure": "unchanged pinned B2 search comparison reaches existing 170000 ms child-process limit",
+    "ciRun": 45005776024,
+    "ciHead": "3e8dcab24d843ebbaea39ff7e45b1bdea5551b00",
+    "ciJobs": {
+      "b2-s02-reproduction": "success",
+      "s03-reproduction": "success"
+    },
+    "allNineCoveredBySuccessfulCI": true
+  },
+  "ciRun492": {
+    "run": 45005776024,
+    "unit": "success",
+    "catalog-releases": "success",
+    "deployment": "failure in old single-demo test fixture; corrected and locally validated 20/20",
+    "overallGreenClaimed": false
+  },
+  "assertionsLoosened": false,
+  "newRetries": false,
+  "engineOrGeneratorChanged": false
+}

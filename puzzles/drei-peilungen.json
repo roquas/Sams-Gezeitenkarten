@@ -1,0 +1,156 @@
+{
+  "identity": {
+    "instanceId": "inst-7b79eafa8e5f0dc0850f7840e97b630987db76f2cb2be73344ce90b71c6af859",
+    "mapStructureId": "map-445f47052eea2592272c6b5b789493b4c1c1612d98ac530fce6e99288a05262c",
+    "variantId": "var-6f23ce0cd715f0b1e7833d35a55f1c28e25319db48abcc95a391123de68e109e"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "drei-peilungen",
+    "logic": {
+      "clues": [
+        {
+          "direction": "E",
+          "hour": 2,
+          "id": "H1",
+          "type": "direction"
+        },
+        {
+          "direction": "SE",
+          "hour": 5,
+          "id": "H2",
+          "type": "direction"
+        },
+        {
+          "distance": 0,
+          "hour": 5,
+          "id": "H3",
+          "placeId": "beacon",
+          "type": "distanceToPlace"
+        },
+        {
+          "distance": 3,
+          "hours": [
+            1,
+            4
+          ],
+          "id": "H4",
+          "type": "distanceBetweenHours"
+        },
+        {
+          "distance": 3,
+          "hour": 6,
+          "id": "H5",
+          "placeId": "southern-buoy",
+          "type": "distanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 1,
+          "fromHour": 2,
+          "id": "H6",
+          "placeId": "count-buoy",
+          "toHour": 4,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "A1"
+            ],
+            "id": "departure",
+            "passable": true
+          },
+          {
+            "cells": [
+              "D2"
+            ],
+            "id": "beacon",
+            "passable": true
+          },
+          {
+            "cells": [
+              "E5"
+            ],
+            "id": "southern-buoy",
+            "passable": true
+          },
+          {
+            "cells": [
+              "C2"
+            ],
+            "id": "count-buoy",
+            "passable": true
+          }
+        ]
+      },
+      "start": "A1",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "A1",
+          "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+          "id": "start-wreck",
+          "objectId": "departure"
+        },
+        {
+          "anchor": "D2",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "id": "buoy",
+          "objectId": "beacon"
+        },
+        {
+          "anchor": "E5",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "id": "southern-buoy",
+          "objectId": "southern-buoy"
+        },
+        {
+          "anchor": "C2",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "id": "count-buoy",
+          "objectId": "count-buoy"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "Von Stunde 1 zu Stunde 2 fuhr das Schiff nach Osten.",
+        "H2": "Von Stunde 4 zu Stunde 5 fuhr das Schiff nach Südosten.",
+        "H3": "In Stunde 5 war das Schiff genau bei der Nordboje auf D2.",
+        "H4": "Die Positionen in Stunde 1 und Stunde 4 haben genau 3 Hex Abstand.",
+        "H5": "In Stunde 6 hatte das Schiff genau 3 Hex Abstand zur Südboje auf E5.",
+        "H6": "In genau 2 der Stunden 2, 3 und 4 hatte das Schiff genau 1 Hex Abstand zur Zählboje auf C2."
+      },
+      "hints": [
+        "Beginne bei der fest angegebenen Position in Stunde 5. Die Fahrtrichtung dorthin verrät auch die Position eine Stunde davor.",
+        "Der Abstand zwischen Stunde 1 und Stunde 4 ist genauso groß wie die drei dazwischenliegenden Schritte. Welche Umwege scheiden dadurch aus?",
+        "Prüfe die noch möglichen Positionen der Stunden 2, 3 und 4 gemeinsam am Zählhinweis. Genau zwei dieser drei Positionen müssen Abstand 1 zur Zählboje haben.",
+        "Für die letzte Etappe bleiben nur unbesuchte Nachbarn der Position in Stunde 5. Vergleiche ihren Hexabstand mit dem Hinweis zur Südboje."
+      ],
+      "intro": [
+        "Sam und Robin waren sechs Stunden unterwegs. Das Startwrack liegt auf Alpha / Cyan; sechs Etappen später endet die gesuchte Fahrt. Robins Logbuch enthält sechs Beobachtungen. Er hält das für eine ordentliche Buchführung.",
+        "Alle Hexfelder dieser Karte sind befahrbar. Nordboje: Delta / Magenta. Südboje: Epsilon / Orange. Zählboje: Gamma / Magenta. Abstände sind geometrische Hexabstände, unabhängig vom gefahrenen Weg."
+      ],
+      "objectNames": {
+        "beacon": "Nordboje",
+        "count-buoy": "Zählboje",
+        "departure": "Startwrack",
+        "southern-buoy": "Südboje"
+      },
+      "title": "Die drei Peilungen"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}

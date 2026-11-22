@@ -5,7 +5,9 @@ const expect=baseExpect.configure({timeout:10000});
 import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 const pageErrors=new WeakMap();
-test.beforeEach(({page})=>{const errors=[];pageErrors.set(page,errors);page.on('pageerror',error=>errors.push(error.message));});
+test.beforeEach(async({page})=>{
+ const manifest=read('puzzles/manifest.json');manifest.defaultId='model-demo';manifest.puzzles=manifest.puzzles.filter(p=>p.id==='model-demo');
+ await page.route('**/puzzles/manifest.json',r=>r.fulfill({json:manifest}));const errors=[];pageErrors.set(page,errors);page.on('pageerror',error=>errors.push(error.message));});
 test.afterEach(({page})=>{expect(pageErrors.get(page)).toEqual([]);});
 const read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));
 const cell=(page,id)=>page.locator(`#map .cell[data-id="${id}"]`);
@@ -15,9 +17,19 @@ const time=async page=>(await records(page))[0].phases.reduce((n,p)=>n+p.activeM
 const saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem(Object.keys(localStorage).find(k=>k.startsWith('gezeitenkarten-model-demo-schema')))));
 async function download(page){const wait=page.waitForEvent('download');await page.getByRole('button',{name:'Betatest-Feedback exportieren'}).click();const file=await wait;return JSON.parse(readFileSync(await file.path(),'utf8'));}
 async function solve(page,route=['B5','C5','D5']){await page.locator('#routeTool').click();for(const id of route){await cell(page,id).focus();await page.keyboard.press('Enter');}await page.locator('#verify').click();}
-async function feedbackDetails(page){const details=page.locator('#feedbackRecords details').first();await details.locator('summary').click();return details;}
+async function feedbackDetails(page,dataVersion=1){
+ // Existing records render before the async catalog load. Its final render
+ // replaces every details element; wait for the demo card's loaded action first.
+ await expect(page.locator('.beta-card').filter({has:page.getByRole('heading',{name:'Die Probefahrt',exact:true})}).locator('a.btn')).toBeVisible();
+ const details=page.locator('#feedbackRecords details').filter({has:page.locator('summary').filter({hasText:/^Die Probefahrt$/})})
+  .filter({hasText:`Bestand: regular · Datenversion ${dataVersion} ·`});
+ await expect(details).toHaveCount(1);
+ await details.locator('summary').click();
+ await expect(details).toHaveAttribute('open','');await expect(details.locator('[name=comment]')).toBeVisible();return details;
+}
 async function twoPuzzles(page){
  const manifest=read('puzzles/manifest.json'),dto=read('puzzles/model-demo.json');
+ manifest.defaultId='model-demo';manifest.puzzles=manifest.puzzles.filter(p=>p.id==='model-demo');
  manifest.puzzles.push({id:'second',title:'Zweite Probefahrt',path:'second.json',kind:'test'});
  dto.puzzle.id='second';dto.puzzle.presentation.title='Zweite Probefahrt';dto.identity.instanceId='inst-second';dto.identity.variantId='var-second';
  dto.puzzle.logic.start='B5';dto.puzzle.logic.map.objects.push({id:'extra-land',cells:['E1'],passable:false});
@@ -99,7 +111,11 @@ test('solved beta counters stay frozen while ordinary game help and new phase co
  await page.locator('#backToSelection').click();r=(await download(page)).puzzles[0];expect(r.phases).toHaveLength(2);expect(r.phases[0]).toEqual({...before.phases[0],feedbackAtEnd:after.feedback});expect(r.phases[1].phaseId).not.toBe(before.phases[0].phaseId);expect(r.phases[1]).toMatchObject({status:'open',hints:1,noteChecks:1,routeChecks:0,penaltyPoints:15});expect(r.solvedAt).toBe(before.solvedAt);
 });
 test('timer persists reload and manual pause, excludes solved reopening, and never double counts tabs',async({page,context})=>{
- await page.clock.install();await game(page);await expect(page.locator('#betaTime')).toContainText('läuft');await page.clock.runFor(6000);const initial=await time(page);expect(initial).toBeGreaterThanOrEqual(4000);
+ // Freeze virtual startup time while native Web Locks are being granted.
+ // Otherwise the first 5-s persistence tick can contain less than 4 s of ownership.
+ await page.clock.install({time:new Date('2026-11-20T12:00:00Z')});await page.clock.pauseAt(new Date('2026-11-20T12:00:01Z'));
+ await game(page);await expect(page.locator('#betaTime [role="status"]')).toHaveText('Aktive Zeit läuft · Näherungswert');
+ await page.clock.runFor(6000);const initial=await time(page);expect(initial).toBeGreaterThanOrEqual(4000);
  await page.locator('#betaTime button').click();await expect(page.locator('#betaTime')).toContainText('Zeit pausiert');await page.clock.runFor(10000);const paused=await time(page);await page.clock.runFor(10000);expect(await time(page)).toBe(paused);
  await page.reload();await expect(page.locator('#betaTime')).toContainText('Zeit pausiert');await page.locator('#betaTime button').click();
  await expect(page.locator('#betaTime [role="status"]')).toHaveText('Aktive Zeit läuft · Näherungswert');
@@ -149,7 +165,10 @@ test('revision and catalog removal keep distinct records in export',async({page}
  await game(page);await page.locator('#backToSelection').click();const details=await feedbackDetails(page);await details.locator('[name=comment]').fill('Version eins');
  const dto=read('puzzles/model-demo.json');dto.puzzle.dataVersion=2;dto.identity.sourcePublicationId='pub-revision-two';await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));await page.reload();await page.getByRole('link',{name:'Beginnen',exact:true}).click();await expect(cell(page,'A5')).toBeVisible();await page.locator('#backToSelection').click();
  let data=await download(page);expect(data.puzzles).toHaveLength(2);expect(data.puzzles.map(p=>p.identity.dataVersion).sort()).toEqual([1,2]);
+ const revised=await feedbackDetails(page,2);await revised.locator('[name=comment]').fill('Version zwei');
  await page.route('**/puzzles/manifest.json',r=>r.fulfill({json:{schemaVersion:2,defaultId:null,puzzles:[]}}));await page.reload();await expect(page.locator('.beta-card')).toHaveCount(0);data=await download(page);expect(data.puzzles).toHaveLength(2);expect(data.puzzles.some(p=>p.feedback.comment==='Version eins')).toBe(true);
+ expect(data.puzzles.find(p=>p.identity.dataVersion===1).feedback.comment).toBe('Version eins');
+ expect(data.puzzles.find(p=>p.identity.dataVersion===2)).toMatchObject({identity:{sourcePublicationId:'pub-revision-two'},feedback:{comment:'Version zwei'}});
 });
 for(const failure of ['quota','disabled'])test('storage '+failure+' shows a truthful warning and still exports in-page feedback',async({page})=>{
  await page.addInitScript(failure=>{
@@ -162,10 +181,10 @@ test('subdirectory deployment resolves links, rules, catalog, game modules and e
  // Serve the actual files beneath a prefix without rewriting any application URLs.
  await page.route('**/nested/beta/**',async route=>{
   const relative=new URL(route.request().url()).pathname.replace('/nested/beta/','')||'index.html';
-  const extension=relative.split('.').at(-1),contentType={mjs:'text/javascript',css:'text/css',json:'application/json',html:'text/html',svg:'image/svg+xml',webp:'image/webp',png:'image/png'}[extension];
+  const extension=relative.split('.').at(-1),contentType={mjs:'text/javascript',css:'text/css',json:'application/json',html:'text/html',svg:'image/svg+xml',jpg:'image/jpeg',webp:'image/webp',png:'image/png'}[extension];
   await route.fulfill({path:fileURLToPath(new URL('../../'+relative,import.meta.url)),contentType});
  });
- await page.goto('/nested/beta/');await expect(page.locator('.beta-card')).toHaveCount(1);await page.getByRole('link',{name:'Beginnen',exact:true}).click();expect(new URL(page.url()).pathname).toBe('/nested/beta/');await expect(cell(page,'A5')).toBeVisible();await page.locator('#backToSelection').click();await expect(page.locator('#landingRules article')).toBeVisible();expect((await download(page)).puzzles).toHaveLength(1);
+ await page.goto('/nested/beta/');await expect(page.locator('.beta-card')).toHaveCount(2);await page.locator('.beta-card').filter({hasText:'Die Probefahrt'}).getByRole('link',{name:'Beginnen',exact:true}).click();expect(new URL(page.url()).pathname).toBe('/nested/beta/');await expect(cell(page,'A5')).toBeVisible();await page.locator('#backToSelection').click();await expect(page.locator('#landingRules article')).toBeVisible();expect((await download(page)).puzzles).toHaveLength(1);
 });
 test('unknown direct links fail visibly without silently selecting another puzzle',async({page})=>{
  await page.goto('/?puzzle=missing');await expect(page.locator('#puzzleLoadError')).toContainText('Unbekanntes Rätsel');await expect(page.locator('#map .cell')).toHaveCount(0);
@@ -187,4 +206,46 @@ test('multiple tabs share one timer and an old solved view cannot count a new ph
  await solve(page);await page.getByRole('button',{name:'Überspringen / Schließen'}).click();await other.goto('/?puzzle=model-demo&phase=new');await expect(other.locator('#betaTime')).toContainText('läuft');
  // Playwright's clock controls the entire context, including both tabs.
  const beforePhase=(await records(other))[0];await page.clock.runFor(5000);const afterPhase=(await records(other))[0];expect(afterPhase.phases[0].activeMs).toBe(beforePhase.phases[0].activeMs);expect(afterPhase.phases[1].activeMs-beforePhase.phases[1].activeMs).toBe(5000);await other.close();
+});
+
+// Reproduce the two asynchronous boundaries without changing product sources.
+test('feedback waits for the final catalog render before editing the intended version',async({page},info)=>{
+ let release;const gate=new Promise(resolve=>release=resolve);let calls=0;
+ await page.route('**/puzzles/model-demo.json',async route=>{if(++calls===2)await gate;await route.fallback();});
+ await game(page);await page.locator('#backToSelection').click();
+ const initial=page.locator('#feedbackRecords details');await expect(initial).toHaveCount(1);
+ await expect(page.locator('#puzzleCards .beta-card a.btn')).toHaveCount(0);
+ const editing=(async()=>{const details=await feedbackDetails(page);await details.locator('[name=comment]').fill('Nach Katalogabschluss');})();
+ try{
+  await expect(initial).not.toHaveAttribute('open','');
+  release();await editing;
+  await expect(page.locator('#feedbackRecords details')).toHaveAttribute('open','');
+  const data=await download(page);expect(data.puzzles).toHaveLength(1);
+  expect(data.puzzles[0]).toMatchObject({identity:{puzzleId:'model-demo',dataVersion:1},feedback:{comment:'Nach Katalogabschluss'}});
+  await info.attach('catalog-feedback-state',{body:JSON.stringify({calls,version:data.puzzles[0].identity.dataVersion,comment:data.puzzles[0].feedback.comment}),contentType:'application/json'});
+ }finally{release();await editing;}
+});
+
+test('initial delayed lock grant accounts a partial first tick and flushes all owned time',async({page},info)=>{
+ await page.addInitScript(()=>{
+  const manager=Object.getPrototypeOf(navigator.locks),request=manager.request;
+  manager.request=function(name,options,callback){return request.call(this,name,options,async lock=>{
+   if(lock&&name.startsWith('gk-beta-time:')&&!window.initialGrantHeld){
+    window.initialGrantHeld=true;await new Promise(resolve=>window.deliverInitialBetaGrant=resolve);
+   }
+   return callback(lock);
+  });};
+ });
+ await page.clock.install({time:new Date('2026-11-20T12:00:00Z')});await page.clock.pauseAt(new Date('2026-11-20T12:00:01Z'));
+ await game(page);await expect.poll(()=>page.evaluate(()=>typeof window.deliverInitialBetaGrant)).toBe('function');
+ await expect(page.locator('#betaTime [role="status"]')).toHaveText('Zeitmessung in einem anderen Tab');
+ await page.clock.runFor(1500);expect(await time(page)).toBe(0);
+ await page.evaluate(()=>window.deliverInitialBetaGrant());
+ await expect(page.locator('#betaTime [role="status"]')).toHaveText('Aktive Zeit läuft · Näherungswert');
+ await page.clock.runFor(6000);const firstTick=await time(page);expect(firstTick).toBe(3500);
+ await page.locator('#betaTime button').click();await expect(page.locator('#betaTime [role="status"]')).toHaveText('Zeit pausiert');
+ const flushed=await time(page);expect(flushed).toBe(6000);
+ await page.clock.runFor(10000);expect(await time(page)).toBe(flushed);
+ await page.locator('#backToSelection').click();expect((await download(page)).puzzles[0].phases[0].activeMs).toBe(6000);
+ await info.attach('initial-lock-accounting',{body:JSON.stringify({unownedMs:1500,firstTick,flushed}),contentType:'application/json'});
 });

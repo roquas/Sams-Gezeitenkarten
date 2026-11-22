@@ -1,0 +1,82 @@
+Full units
+  ...
+1..457
+# tests 457
+# suites 0
+# pass 457
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1851124.636125
+
+Final engine/integration
+  ...
+1..163
+# tests 163
+# suites 0
+# pass 163
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 39427.49525
+
+Content
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 22077.41375
+
+Package contracts
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 316.026s
+
+OK
+
+Actual ZIP deployment
+
+  48 passed (4.6m)
+
+Final relevant Chromium
+
+  1 failed
+    [chromium] › tests/browser/beta.spec.mjs:62:1 › unsolved feedback and deliberate abandonment are independent of ordinary navigation
+  123 passed (10.7m)
+
+Isolated download repeat
+  ✓  1 [chromium] › tests/browser/beta.spec.mjs:62:1 › unsolved feedback and deliberate abandonment are independent of ordinary navigation (6.2s)
+
+  1 passed (9.2s)
+
+Final relevant WebKit
+
+  2 skipped
+  160 passed (16.0m)
+
+Offline catalog repeat
+  Slow test file: [chromium] › tests/browser/catalog-proof.spec.mjs (5.8m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  1 failed
+    [chromium] › tests/browser/catalog-proof.spec.mjs:8:1 › offline catalog proof: complete overview, independent relative overlays, navigation and damaged files
+  1 skipped
+  8 passed (7.4m)
+
+Historical local repeat
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 4
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 413583.486083

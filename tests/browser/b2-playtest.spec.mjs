@@ -10,8 +10,8 @@ const state=(page,name)=>page.evaluate(id=>JSON.parse(localStorage.getItem(`geze
 test.beforeAll(()=>execFileSync('node',['scripts/export-b2-playtest.mjs']));
 test('developer catalog is opt-in; regular entry never requests private or experimental content',async({page})=>{
  const requests=[];page.on('request',r=>requests.push(new URL(r.url()).pathname));
- await page.goto('/?play=1');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
- await expect(page.locator('#puzzleSelect option')).toHaveCount(1);
+ await page.goto('/?puzzle=model-demo');await expect(page.locator('h1')).toHaveText('Die Probefahrt');
+ await expect(page.locator('#puzzleSelect option')).toHaveCount(2);
  await expect(page.locator('#b2Selection')).toHaveCount(0);
  expect(requests.some(p=>p.includes('/.dev/')||p.includes('/docs/'))).toBe(false);
 });
@@ -20,8 +20,8 @@ test('all named variants are selectable; state, undo, radar, clues and penalties
  test.setTimeout(60_000);
  await page.goto('/?dev=b2');await expect(page.locator('h1')).toHaveText(first.testName);
  await expect(page.locator('#b2Selection')).toBeVisible();
- await expect(page.locator('#puzzleSelect option')).toHaveCount(96);
- expect(await page.locator('#puzzleSelect option').evaluateAll(options=>options.map(o=>o.value))).toEqual(['model-demo',...registry.entries.map(e=>e.testName)]);
+ await expect(page.locator('#puzzleSelect option')).toHaveCount(97);
+ expect(await page.locator('#puzzleSelect option').evaluateAll(options=>options.map(o=>o.value))).toEqual(['model-demo','drei-peilungen',...registry.entries.map(e=>e.testName)]);
  await cell(page,'A1').focus();await page.keyboard.press('Enter');
  const original=rows.find(r=>r.fingerprints.variant===first.fingerprints.variant);
  await page.locator('[data-tool="route"]').first().click();

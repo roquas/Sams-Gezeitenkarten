@@ -1,3 +1,3 @@
 import {registerInkStatusTests} from '../integration/ui-ink-status.mjs';
 import {registerResumeTests} from '../integration/page-resume.mjs';
-registerInkStatusTests('./?play=1');registerResumeTests('./?play=1');
+registerInkStatusTests('./?puzzle=model-demo');registerResumeTests('./?puzzle=model-demo');

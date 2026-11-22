@@ -153,3 +153,9 @@
  .map-actions #showPlaces{width:48px;height:48px;min-width:44px;flex-basis:48px}
  .places-emblem{width:32px;height:32px}
 }
+
+.rules-figure{margin:22px 0 26px;padding:10px;border:1px solid #c6b18b;border-radius:5px;background:#efe1c5;max-width:100%}
+.rules-figure img{display:block;width:100%;height:auto;border-radius:2px}
+.rules-figure figcaption{font:14px/1.55 Georgia,serif;color:#51432f;margin:10px 2px 2px}
+.rules-image-note{font-size:14px;color:#615440;border-left:2px solid #b59460;padding-left:12px}
+@media(max-width:600px){.rules-figure{padding:5px}.rules-figure figcaption{font-size:13px;margin:8px 3px 3px}}

@@ -1,0 +1,118 @@
+{
+  "basis": "928dd1a5e5d043c962612b07be998686a025ba7b",
+  "source": {
+    "path": "docs/verification/B2-positive-v2/private/definition.json",
+    "sha256": "aec3eeaf8821945ba70d83deb88f3fce8cb18e4238e58e4839edf62f9b42f1ec",
+    "id": "B2-POSITIVE-V2-01",
+    "kind": "existing hand-authored reference; no generation run"
+  },
+  "public": {
+    "path": "puzzles/drei-peilungen.json",
+    "sha256": "25c7cdf65ccb74b98bb9f3c6ed38c0c0d0239ebb88fe6e37b6ea1c34eafd39da",
+    "id": "drei-peilungen",
+    "dataVersion": 1,
+    "identity": {
+      "instanceId": "inst-7b79eafa8e5f0dc0850f7840e97b630987db76f2cb2be73344ce90b71c6af859",
+      "mapStructureId": "map-445f47052eea2592272c6b5b789493b4c1c1612d98ac530fce6e99288a05262c",
+      "variantId": "var-6f23ce0cd715f0b1e7833d35a55f1c28e25319db48abcc95a391123de68e109e"
+    }
+  },
+  "fingerprints": {
+    "mapStructure": "gk-map-v2-sha256:445f47052eea2592272c6b5b789493b4c1c1612d98ac530fce6e99288a05262c",
+    "instance": "gk-instance-v2-sha256:7b79eafa8e5f0dc0850f7840e97b630987db76f2cb2be73344ce90b71c6af859",
+    "variant": "gk-variant-v2-sha256:6f23ce0cd715f0b1e7833d35a55f1c28e25319db48abcc95a391123de68e109e"
+  },
+  "steps": 6,
+  "clues": 6,
+  "proof": {
+    "status": "unique",
+    "count": 1,
+    "countExact": true,
+    "irredundant": true,
+    "omissions": [
+      {
+        "clueId": "H1",
+        "count": 3,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H2",
+        "count": 5,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H3",
+        "count": 4,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H4",
+        "count": 2,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H5",
+        "count": 4,
+        "countExact": true,
+        "necessary": true
+      },
+      {
+        "clueId": "H6",
+        "count": 3,
+        "countExact": true,
+        "necessary": true
+      }
+    ]
+  },
+  "localEvidence": {
+    "subsetCount": 64,
+    "allHoursAndTransitionsFixed": true,
+    "technicalContract": {
+      "A": true,
+      "B": true,
+      "C": true,
+      "D": true,
+      "E": true,
+      "F": true
+    }
+  },
+  "editorialChanges": [
+    "new public puzzle ID",
+    "six-hour introduction",
+    "four contextual hints"
+  ],
+  "logicChanged": false,
+  "publication": "Public projection and existing asset approvals validated. No archived sourcePublicationId is claimed.",
+  "humanAssessment": "Successful qualitative playtest documented on main; difficulty remains unrated.",
+  "assets": [
+    {
+      "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+      "anchor": "A1",
+      "objectId": "departure"
+    },
+    {
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "anchor": "D2",
+      "objectId": "beacon"
+    },
+    {
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "anchor": "E5",
+      "objectId": "southern-buoy"
+    },
+    {
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "anchor": "C2",
+      "objectId": "count-buoy"
+    }
+  ],
+  "checks": [
+    "buildPositiveV2Playtest: exact unique target and irredundancy",
+    "compilePuzzle: public DTO unique and target-matching",
+    "positiveV2Evidence: all 64 local-premise states, effective count condition and following deduction"
+  ]
+}

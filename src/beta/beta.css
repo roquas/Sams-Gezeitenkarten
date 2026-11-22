@@ -22,3 +22,31 @@ body.beta-landing{padding-bottom:0;background:var(--sand)}
 a:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #b37b36;outline-offset:3px}
 
 .beta-landing .btn,.beta-session button{min-height:44px;align-content:center}
+
+/* A quiet continuation of the game's masthead, paper and brass materials. */
+body.beta-landing{background-color:#e9ddc5;background-image:linear-gradient(#e3d4b140,#e8ddc650),var(--paper-texture)}
+#landing{max-width:1060px;margin:28px auto 48px;gap:26px}
+#landing>.beta-intro{position:relative;isolation:isolate;padding:0;overflow:visible;border-color:#bba179;background:#f5ecd9;box-shadow:0 7px 18px #4f37251c}
+.beta-intro::before{content:"";position:absolute;z-index:-1;inset:44px 0 0 34%;border-radius:0 0 15px 0;background:url('../../assets/rules/title-map.jpg') right center/cover no-repeat;opacity:.65;mask-image:linear-gradient(90deg,transparent,#000 70%);pointer-events:none}
+.beta-masthead{display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--navy);color:#f8efdc;padding:15px 30px;border-radius:14px 14px 0 0}
+.beta-masthead small{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#ddc39c}
+.beta-masthead>span{font-size:12px}
+.beta-intro-copy{padding:30px;max-width:710px;background:linear-gradient(90deg,#f5ecd9 60%,#f5ecd900)}
+#landing .beta-intro h1{font-size:clamp(30px,5vw,46px);color:#47331f}
+.beta-intro-copy p{max-width:60ch}
+.beta-intro-copy>p:not(.story){font-size:14px;line-height:1.65}
+.beta-intro-nav{display:flex;align-items:center;flex-wrap:wrap;gap:12px 22px;margin:20px 0 4px}
+.beta-intro-nav a:not(.btn){color:var(--navy);text-underline-offset:3px}
+.beta-intro .brass-rail{left:0;right:0;bottom:-8px}
+#landing>section:not(.beta-intro){border-color:#bba179;background-color:#fffaf0;background-image:var(--paper-texture);background-size:100% 100%;box-shadow:0 7px 18px #4f37251c}
+#landingRules .rules-introduction{max-width:72ch}
+#landingRules .rules-introduction h3{font-size:27px;margin:12px 0 18px}
+#landing :is(h2,h3){color:#173e43}
+.beta-card{background:#f8f1e3b8;border-color:#cbb58f}
+@media(max-width:600px){
+ #landing{margin:12px auto 28px;gap:20px}
+ .beta-masthead{padding:14px 18px;align-items:flex-start;flex-direction:column;gap:4px}
+ .beta-intro-copy{padding:24px 18px;background:none}
+ .beta-intro::before{display:none}
+ #landingRules .rules-introduction h3{font-size:23px}
+}

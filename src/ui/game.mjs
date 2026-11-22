@@ -1,3 +1,4 @@
+import {prepareRules} from './rules.mjs';
 import {downloadFeedback} from '../beta/export.mjs';
 import {createCellRegistry} from './cell-registry.mjs';
 import {puzzleContext,puzzleUrl} from '../beta/context.mjs';
@@ -180,7 +181,6 @@ const bordbook=createBordbook({clues,onSelect:id=>{placeReferencesFor($("map")).
  snapshot();state.doneClues=state.doneClues.includes(id)?state.doneClues.filter(v=>v!==id):[...state.doneClues,id];save();
 }});
 $("showChart").addEventListener("change",()=>renderMap());
-document.querySelectorAll(".logbook-section p").forEach(p=>p.innerHTML=coordinateTextMarkup(p.innerHTML));
 const frameSelect=$("frameStyle");
 frameSelect.value=frameStyle==='quiet'?'quiet':'final';
 function changeFrame(){
@@ -222,7 +222,7 @@ function presentation(){
  const story=$('puzzleStory');story.replaceChildren();
  for(const paragraph of puzzle.intro){const p=document.createElement('p');p.className='story';p.innerHTML=safeMarkup(paragraph);story.append(p);}
  select.value=puzzle.id;
- document.querySelectorAll('[data-rule-hours]').forEach(el=>el.textContent=puzzle.steps===6&&el.dataset.ruleHours!=='number'?(el.dataset.ruleHours==='capital'?'Sechs':'sechs'):String(puzzle.steps));
+ prepareRules($('gameSurface'),puzzle);
 }
 let request=0;
 select.addEventListener('change',async()=>{

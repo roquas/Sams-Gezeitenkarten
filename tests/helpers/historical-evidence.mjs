@@ -1,3 +1,6 @@
+import {historicalCatalogFiles} from './historical-catalog.mjs';
+import {buildPositiveV2Playtest} from '../../scripts/lib/b2-positive-v2.mjs';
+import {buildPositivePlaytest} from '../../scripts/lib/b2-positive.mjs';
 // Historical evidence binds the program used at construction. A later optional
 // clue-production policy or presentation metadata may change source hashes
 // without changing definitions, proofs, traces or public bytes. Verify BOTH hashes.
@@ -20,5 +23,8 @@ export function assertHistoricalEvidence(storedBytes,currentBytes){
   assert.equal(now.sha256,sha256(fs.readFileSync(path.join(ROOT,ref))));
   now.sha256=old.sha256;
  }
+ const live=current.format==='b2-positive-v2-evidence-1'?buildPositiveV2Playtest():buildPositivePlaytest();
+ assert.deepEqual(current.publicFiles,[...live].map(([name,bytes])=>({name,sha256:sha256(bytes)})));
+ current.publicFiles=[...historicalCatalogFiles(live,stored.baseCommit)].map(([name,bytes])=>({name,sha256:sha256(bytes)}));
  assert.equal(JSON.stringify(current,null,2)+'\n',storedBytes);
 }

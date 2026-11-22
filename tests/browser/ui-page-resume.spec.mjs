@@ -1,2 +1,2 @@
 import {registerResumeTests} from '../integration/page-resume.mjs';
-registerResumeTests('/?play=1');
+registerResumeTests('/?puzzle=model-demo');

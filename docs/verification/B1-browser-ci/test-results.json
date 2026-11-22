@@ -1,0 +1,1302 @@
+{
+  "basis": "6e1b108fcb372b8c72d863ec0ebb29ce127c02ec",
+  "ciRun": 45006843715,
+  "originalFindings": [
+    {
+      "job": 137160222652,
+      "profile": "chromium",
+      "test": "revision and catalog removal keep distinct records in export",
+      "result": "flaky: initial 60000-ms locator.fill timeout, existing CI retry passed",
+      "field": "#feedbackRecords details:first [name=comment]",
+      "value": "Version eins",
+      "fixturePuzzleIds": [
+        "model-demo"
+      ],
+      "revision2RequestedBeforeFailure": false
+    },
+    {
+      "job": 137160222031,
+      "profile": "webkit-desktop",
+      "test": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+      "expectedMinimumMs": 4000,
+      "receivedMs": 3968,
+      "result": "flaky: existing CI retry passed"
+    },
+    {
+      "job": 137160222152,
+      "profile": "webkit-mobile",
+      "test": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+      "expectedMinimumMs": 4000,
+      "receivedMs": 3851,
+      "result": "flaky: existing CI retry passed"
+    }
+  ],
+  "localRuns": {
+    "originalUnmodifiedTests": {
+      "stats": {
+        "startTime": "2026-11-22T11:46:16.888Z",
+        "duration": 44348.121999999996,
+        "expected": 18,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "profiles": {
+        "chromium": 6,
+        "webkit-desktop": 6,
+        "webkit-mobile": 6
+      },
+      "tests": [
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2037,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1371,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1837,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1391,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1834,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1534,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3864,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2243,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3434,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2405,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3424,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2200,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2347,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1659,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2324,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1572,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2455,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1632,
+              "retry": 0
+            }
+          ]
+        }
+      ]
+    },
+    "correctedTestsFiveTimes": {
+      "stats": {
+        "startTime": "2026-11-22T11:47:40.479Z",
+        "duration": 118739.676,
+        "expected": 80,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "profiles": {
+        "chromium": 20,
+        "mobile-chromium": 20,
+        "webkit-desktop": 20,
+        "webkit-mobile": 20
+      },
+      "tests": [
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3197,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2217,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1091,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 920,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2795,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2451,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 919,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1019,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2717,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2332,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 970,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1102,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2891,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2400,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 980,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 972,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2945,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2000,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1016,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1034,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2909,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2418,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1146,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 893,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2906,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2157,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1203,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1140,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3192,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2305,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1109,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1068,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2990,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2601,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1290,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1237,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3199,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2222,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1164,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "mobile-chromium",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1106,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 6988,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 4843,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2169,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2192,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 6468,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 4714,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2108,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2569,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 6729,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 4709,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2224,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2295,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 6725,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 4692,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2429,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2260,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 7164,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 5342,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3507,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-desktop",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2560,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 5055,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3148,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1736,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1529,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 5733,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3487,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1986,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1750,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 5039,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3287,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1704,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1861,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 4921,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 3502,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1777,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1812,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "timer persists reload and manual pause, excludes solved reopening, and never double counts tabs",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 5195,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "revision and catalog removal keep distinct records in export",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 2772,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "feedback waits for the final catalog render before editing the intended version",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1104,
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "title": "initial delayed lock grant accounts a partial first tick and flushes all owned time",
+          "project": "webkit-mobile",
+          "status": "expected",
+          "results": [
+            {
+              "status": "passed",
+              "duration": 1158,
+              "retry": 0
+            }
+          ]
+        }
+      ]
+    },
+    "B1A2bChromium": {
+      "stats": {
+        "startTime": "2026-11-22T11:49:55.230Z",
+        "duration": 188143.404,
+        "expected": 94,
+        "skipped": 2,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "profiles": {
+        "chromium": {
+          "expected": 47,
+          "skipped": 1
+        },
+        "mobile-chromium": {
+          "expected": 47,
+          "skipped": 1
+        }
+      },
+      "allRetryIndicesZero": true
+    },
+    "B1A2bWebKit": {
+      "stats": {
+        "startTime": "2026-11-22T11:50:01.350Z",
+        "duration": 361612.178,
+        "expected": 94,
+        "skipped": 2,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "profiles": {
+        "webkit-desktop": {
+          "expected": 47,
+          "skipped": 1
+        },
+        "webkit-mobile": {
+          "expected": 47,
+          "skipped": 1
+        }
+      },
+      "allRetryIndicesZero": true
+    }
+  },
+  "limitsChanged": false,
+  "newRetries": false,
+  "newSkips": false,
+  "productChanges": false,
+  "integrations": {
+    "tests": 36,
+    "passed": 36,
+    "failed": 0,
+    "command": "node --test tests/integration/{beta-storage,beta-context,place-references,route-ink,bordbook,game-state,distance-overlay}.test.mjs"
+  },
+  "productUnchanged": true,
+  "originalTestSourceSha256": "f9566b1ccbcc0cf05aad3cfadb6ce4d908d5bcd8c9846e6d0c66afa180e6c1d7",
+  "correctedTestSourceSha256": "f355a125c6cfa9e58fc9970891696651fe4eea73cc8a5541ea6bc820dbbeeecb"
+}
