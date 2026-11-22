@@ -57,24 +57,40 @@ test('selection and game use identical six-hour rules, real figures and symbol c
 test('unselected direct game entry uses the six-hour default',async({page})=>{
  await page.goto('/?play=1');await expect(page.locator('h1')).toHaveText('Die drei Peilungen');await expect(page.locator('#hours [data-hour]:visible')).toHaveCount(6);await expect(page.locator('#verify')).toBeDisabled();
 });
-for(const width of [320,390,1440])test(`landing and illustrated sections remain readable at ${width}px`,async({page},info)=>{
- await page.setViewportSize({width,height:width===1440?1000:844});await page.goto('/');await expect(page.locator('.beta-card')).toHaveCount(manifest.puzzles.length);
- const folder=info.project.name==='chromium'?'docs/verification/B1-rules':info.outputPath('visual');fs.mkdirSync(folder,{recursive:true});
- await page.screenshot({type:'jpeg',quality:90,scale:'css',path:`${folder}/after-${width}.jpg`});
- await info.attach(`landing-${width}`,{path:`${folder}/after-${width}.jpg`,contentType:'image/jpeg'});
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
- for(const name of ['hours','marks','tools','route']){
+// Each visual proof gets its own case: the original CI trace spent almost
+// 30 s on five landing screenshots before it even navigated to the game.
+for(const width of [320,390,1440])test.describe(`illustrated viewport ${width}px`,()=>{
+ test.use({viewport:{width,height:width===1440?1000:844}});
+ const output=info=>{
+  const folder=info.project.name==='chromium'?'docs/verification/B1-rules':info.outputPath('visual');
+  fs.mkdirSync(folder,{recursive:true});return folder;
+ };
+ const landing=async page=>{await page.goto('/');await expect(page.locator('.beta-card')).toHaveCount(manifest.puzzles.length);};
+ test(`landing remains readable at ${width}px`,async({page},info)=>{
+  await landing(page);const folder=output(info);
+  await page.screenshot({type:'jpeg',quality:90,scale:'css',path:`${folder}/after-${width}.jpg`});
+  await info.attach(`landing-${width}`,{path:`${folder}/after-${width}.jpg`,contentType:'image/jpeg'});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ });
+ for(const name of ['hours','marks','tools','route'])test(`landing ${name} figure remains readable at ${width}px`,async({page},info)=>{
+  await landing(page);const folder=output(info);
   const figure=article(page).locator('figure').filter({has:page.locator(`img[src$="/${name}.png"]`)});
   await figure.scrollIntoViewIfNeeded();await figure.locator('img').evaluate(e=>e.decode());
   const dims=await figure.evaluate(e=>{const img=e.querySelector('img'),r=e.getBoundingClientRect();return {width:r.width,right:r.right,image:img.getBoundingClientRect().width,natural:img.naturalWidth,scale:img.naturalHeight/img.naturalWidth,display:img.height/img.width};});
   expect(dims.right).toBeLessThanOrEqual(width);expect(dims.image).toBeGreaterThan(width<500?240:300);expect(Math.abs(dims.scale-dims.display)).toBeLessThan(.02);
   await page.screenshot({type:'jpeg',quality:90,scale:'css',path:`${folder}/rules-${name}-${width}.jpg`});
- }
- await page.goto('/?puzzle=drei-peilungen');await expect(page.locator('#map .cell')).toHaveCount(25);
- if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
- await page.locator('#gameRules').evaluate(e=>e.open=true);
- await page.locator('#gameRules figure').filter({has:page.locator('img[src$="/tools.png"]')}).scrollIntoViewIfNeeded();
- await page.screenshot({type:'jpeg',quality:90,scale:'css',path:`${folder}/game-rules-tools-${width}.jpg`});
+ });
+ test(`game tools figure remains readable at ${width}px`,async({page},info)=>{
+  const folder=output(info);
+  await page.goto('/?puzzle=drei-peilungen');await expect(page.locator('#map .cell')).toHaveCount(25);
+  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
+  await page.locator('#gameRules').evaluate(e=>e.open=true);
+  const figure=page.locator('#gameRules figure').filter({has:page.locator('img[src$="/tools.png"]')});
+  await figure.scrollIntoViewIfNeeded();
+  await expect(figure).toBeInViewport();
+  await figure.locator('img').evaluate(e=>e.decode());
+  await page.screenshot({type:'jpeg',quality:90,scale:'css',path:`${folder}/game-rules-tools-${width}.jpg`});
+ });
 });
 
 test('published six-hour puzzle accepts its unique route and exports its exact identity',async({page})=>{

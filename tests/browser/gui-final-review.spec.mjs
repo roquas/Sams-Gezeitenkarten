@@ -23,8 +23,15 @@ for(const [tool,id,value] of [['yes','A1','yes'],['no','A2','no'],['erase','D2',
  expect((await state(page)).marks['1:'+id]).toBe(value);await retained(page);
 });
 test('erasing all hours retains the independent overlay',async({page})=>{
- await startRadar(page);await page.locator('[data-tool="yes"]').click();await cell(page,'A1').click();
- await page.locator('[data-hour="2"]').click();await page.locator('[data-tool="yes"]').click();await cell(page,'A1').click();
+ await startRadar(page);await page.locator('[data-tool="yes"]').click();
+ // CI traces show seconds spent on each pointer stability check at DPR 2.
+ // Set up both notes through native keyboard input; keep the eraser's real click.
+ await cell(page,'A1').focus();await page.keyboard.press('Enter');
+ expect((await state(page)).marks['1:A1']).toBe('yes');
+ await page.locator('[data-hour="2"]').focus();await page.keyboard.press('Enter');
+ await expect(page.locator('[data-tool="yes"]')).toHaveAttribute('aria-pressed','true');
+ await cell(page,'A1').focus();await page.keyboard.press('Enter');
+ expect((await state(page)).marks).toMatchObject({'1:A1':'yes','2:A1':'yes'});
  await page.locator('[data-tool="clearAll"]').click();await cell(page,'A1').click();expect(Object.keys((await state(page)).marks).filter(k=>k.endsWith(':A1'))).toEqual([]);await retained(page);
 });
 test('route, undo and reload retain the independent overlay',async({page})=>{
@@ -65,7 +72,9 @@ test('rules incorporate all editorial corrections without inventing a global dis
  if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
  const rules=page.locator('#gameRules');await rules.locator('summary').click();
  await expect(rules.locator('h3')).toBeVisible();
- for(const text of ['aufeinanderfolgende Blätter','Wattenmeer','wo','wann','Land ist nicht befahrbar','Befahrbare Orte','nicht in jedem Rätsel','beispielsweise','In allen Stunden radieren','unterhalb der Karte','Stunden nacheinander','Schritte nummerieren','Notizprüfung (hier in der Hilfe weiter unten','Denkanstoß (hier in der Hilfe weiter unten'])await expect(rules).toContainText(text);
+ for(const text of ['aufeinanderfolgende Blätter','Wattenmeer','wo','wann','Land ist nicht befahrbar','Orte können sich über mehrere Hexfelder erstrecken und befahrbar oder gesperrt sein.','Nicht jedes Rätsel enthält Land oder Küstenhinweise.','beispielsweise','In allen Stunden radieren','unterhalb der Karte','Stunden nacheinander','Schritte nummerieren','Notizprüfung (unter Hilfe','Denkanstoß (unter Hilfe'])await expect(rules).toContainText(text);
+ await expect(rules).not.toContainText('Befahrbare Orte tragen kein permanentes Namensschild');
+ await expect(rules).not.toContainText('hier in der Hilfe weiter unten');
  await expect(rules).not.toContainText('eine Berührung an der Ecke');await expect(rules).not.toContainText('Das Riff bei Alpha/Violett');
  await expect(page.locator('#mapActions button')).toHaveCount(8);
 });
