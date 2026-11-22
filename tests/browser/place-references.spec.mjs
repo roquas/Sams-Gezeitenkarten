@@ -53,13 +53,13 @@ test('manual action shows each named instance once, including passable hexes, ex
  await open(page,dto);
  await page.locator('#showPlaces').focus();await page.keyboard.press('Enter');
  await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
- await expect(page.locator('[data-label-object="o1"]')).toHaveAttribute('data-label-cells','A5 B5');
+ await expect(page.locator('[data-label-object="o1"]')).toHaveAttribute('data-label-cells','B5');
  await expect(page.locator('[data-label-object="o2"]')).toHaveAttribute('data-label-cells','B2 C2');
  await expect(page.locator('[data-label-object="o4"]')).toHaveAttribute('data-label-cells','D3');
  await expect(page.locator('[data-placement-id="flavor"]')).toHaveCount(1);
  await expect(page.locator('[data-label-object="o3"]')).toHaveCount(0);
  const positions=await labels(page).evaluateAll(ns=>ns.map(n=>({id:n.dataset.labelObject,x:n.transform.baseVal.getItem(0).matrix.e,y:n.transform.baseVal.getItem(0).matrix.f})));
- expect(positions).toEqual([{id:'o1',x:101,y:328},{id:'o2',x:224,y:124},{id:'o4',x:306,y:192},{id:undefined,x:60,y:328}]);
+ expect(positions.map(p=>({...p,x:Math.round(p.x*100)/100}))).toEqual([{id:'o1',x:178.74,y:328},{id:'o2',x:224,y:124},{id:'o4',x:306,y:192},{id:undefined,x:60,y:328}]);
  await page.waitForTimeout(500);
  const path=info.outputPath('place-references-'+(isMobile?'mobile':'desktop')+'.png');
  await page.locator('.mapbox').screenshot({path,scale:'css'});
@@ -176,10 +176,11 @@ test('rapid manual and clue triggers replace one animation and restart its compl
   await expect(page.locator('.place-references')).toHaveCount(0);
   const report=await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()}));
   expect(report.entries).toHaveLength(7);
-  expect(report.entries.map(e=>e.tracks.length)).toEqual([8,2,8,8,8,4,8]);
+  // Returning to clue I includes Start beside the multihex place's name.
+  expect(report.entries.map(e=>e.tracks.length)).toEqual([8,2,8,8,8,6,8]);
   const tracks=report.entries.flatMap(e=>e.tracks);
-  expect(tracks.map(t=>t.duration)).toEqual(Array(46).fill(4900));
-  expect(tracks.map(t=>t.createdCurrent)).toEqual(Array(46).fill(0));
+  expect(tracks.map(t=>t.duration)).toEqual(Array(48).fill(4900));
+  expect(tracks.map(t=>t.createdCurrent)).toEqual(Array(48).fill(0));
   expect(report.entries.flatMap(e=>e.samples).every(s=>s.groups<=1&&s.labels<=4)).toBe(true);
   expect(tracks.every(t=>['AbortError','finished'].includes(t.outcome))).toBe(true);
   expect(tracks.filter(t=>t.outcome==='AbortError').length).toBeGreaterThan(0);
@@ -341,4 +342,61 @@ test('redraws preserve animation identity and long names fit organic paper in al
  }
  const path=info.outputPath(`polish-${isMobile?'mobile':'desktop'}-actions.png`);
  await page.locator('#mapActions').screenshot({path,scale:'css'});await info.attach('actions',{path,contentType:'image/png'});
+});
+
+for(const multihex of [false,true])test(`named ${multihex?'multihex':'single-hex'} start has one Start plaque across initial, manual, clue and puzzle changes`,async({page},info)=>{
+ const dto=fixture(),p=dto.puzzle;
+ p.logic.map.objects.find(o=>o.id==='o1').cells=multihex?['A5','B5']:['A5'];
+ p.presentation.objectNames.o1='Startwrack';
+ p.presentation.intro=['Das Startwrack liegt bei A5.'];
+ p.presentation.clueTexts.I='Vom Startwrack fuhren wir ostwärts; Zwilling lag fern.';
+ p.presentation.cluePlaceRefs.II=['o1'];
+ const expected=multihex?['Startwrack','Zwilling','Start']:['Zwilling','Start'];
+ async function checkStart(){
+  await expect(page.locator('.start-label')).toHaveCount(1);
+  await expect(page.locator('.start-label text')).toHaveText('Start');
+  await expect(page.locator('[data-label-cell="A5"]')).toHaveCount(1);
+  await expect(page.locator('[data-label-object="o1"]')).toHaveCount(multihex?1:0);
+  if(multihex)await expect(page.locator('[data-label-object="o1"]')).toHaveAttribute('data-label-cells','B5');
+  if(multihex){
+   const overlap=await page.locator('.place-references').evaluate(layer=>{
+    const box=n=>{const t=n.transform.baseVal.getItem(0).matrix;return {x:t.e,y:t.f,w:+n.dataset.labelWidth,h:28};};
+    const a=box(layer.querySelector('.start-label')),b=box(layer.querySelector('[data-label-object="o1"]'));
+    return Math.abs(a.x-b.x)<(a.w+b.w)/2+5.9&&Math.abs(a.y-b.y)<(a.h+b.h)/2+5.9;
+   });
+   expect(overlap).toBe(false);
+  }
+ }
+ await open(page,dto);await expect(names(page)).toHaveText(expected);await checkStart();
+ await expect(page.locator('#puzzleStory')).toContainText('Startwrack');
+ await expect(page.locator('#clueViewport')).toContainText('Startwrack');
+ await page.reload();await expect(names(page)).toHaveText(expected);await checkStart();
+ await page.locator('#showPlaces').click();
+ await expect(names(page)).toHaveText(multihex?['Startwrack','Zwilling','Kiste','Start']:['Zwilling','Kiste','Start']);await checkStart();
+ await expect(page.locator('[data-label-object="o2"]')).toHaveAttribute('data-label-cells','B2 C2');
+ await expect(page.locator('[data-label-object="o4"]')).toHaveAttribute('data-label-cells','D3');
+ await page.locator('.place-references').evaluate(n=>n.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=650;}));
+ await info.attach('named-start-'+(multihex?'multihex':'single-hex'),{body:await page.locator('.mapbox').screenshot({animations:'allow',scale:'css'}),contentType:'image/png'});
+ await page.locator('#nextClue').click();await expect(names(page)).toHaveText(['Kiste']);
+ await page.locator('#nextClue').click();await expect(names(page)).toHaveText(multihex?['Startwrack','Start']:['Start']);await checkStart();
+ await page.locator('#nextClue').click();await expect(labels(page)).toHaveCount(0);
+ // Switch to the public puzzle and back; old references must not survive.
+ if(await page.locator('#logbookTab').isVisible())await page.locator('#logbookTab').click();
+ await page.locator('#puzzleSelect').evaluate(n=>n.closest('details').open=true);
+ await page.locator('#puzzleSelect').selectOption('drei-peilungen');
+ await expect(page.locator('h1')).toHaveText('Die drei Peilungen');
+ await page.locator('#puzzleSelect').selectOption('model-demo');
+ await expect(names(page)).toHaveText(expected);await checkStart();
+});
+test('a multihex place surrounding the start keeps its name anchored outside the start hex',async({page})=>{
+ const dto=fixture();dto.puzzle.logic.start='B3';
+ dto.puzzle.logic.clues.find(c=>c.id==='Ort').distance=2;
+ dto.puzzle.presentation.clueTexts.Ort='Bei der Abfahrt waren wir zwei Hexfelder von Kiste entfernt.';
+ dto.puzzle.logic.map.objects.find(o=>o.id==='o1').cells=['A3','B3','C3'];
+ await open(page,dto);await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Start']);
+ const geometry=await page.locator('[data-label-object="o1"]').evaluate(n=>({
+  cells:n.dataset.labelCells,x:n.transform.baseVal.getItem(0).matrix.e,y:n.transform.baseVal.getItem(0).matrix.f
+ }));
+ expect(geometry).toEqual({cells:'A3 C3',x:60,y:158});
+ await expect(page.locator('[data-label-cell="B3"] text')).toHaveText('Start');
 });

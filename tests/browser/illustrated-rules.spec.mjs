@@ -24,6 +24,17 @@ test('selection and game use identical six-hour rules, real figures and symbol c
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/');await expect(page.locator('.beta-card')).toHaveCount(2);await expect(page.locator('.beta-card').first()).toContainText('Die drei Peilungen');
  await expect(article(page)).toContainText('sechs folgende Etappen');
+ await expect(page.locator('#landingRules > p')).toHaveCount(0);
+ await expect(article(page).locator('.rules-image-note')).toHaveCount(0);
+ await expect(article(page)).not.toContainText('Geografische Orte können');
+ await expect(article(page)).not.toContainText('„S“ kennzeichnet');
+ await expect(article(page)).not.toContainText('hier in der Hilfe weiter unten');
+ await expect(article(page)).toContainText('Orte können sich über mehrere Hexfelder erstrecken und befahrbar oder gesperrt sein.');
+ await expect(article(page)).toContainText('Notizprüfung (unter Hilfe, „Notizen prüfen“)');
+ await expect(article(page)).toContainText('Denkanstoß (unter Hilfe, „Passenden Tipp“)');
+ await expect(article(page)).toContainText('5 Strafpunkte pro Prüfung');
+ await expect(article(page)).toContainText('10 Strafpunkte pro Abruf');
+ await expect(article(page).locator('figure').filter({has:page.locator('img[src$="/hours.png"]')})).toContainText('Stunde 5 als möglich');
  const shared=await article(page).innerHTML();
  for(const image of await article(page).locator('img').all()){
   await image.scrollIntoViewIfNeeded();await expect(image).toHaveAttribute('alt',/.{30}/);

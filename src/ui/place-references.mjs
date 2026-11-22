@@ -1,5 +1,5 @@
 import {CHART_BOUNDS} from './chart-geometry.mjs';
-import {placeLabelLayout,drawParchmentLabel} from './place-labels.mjs';
+import {hexCenter,hexVertices,containsPoint,labelFootprint,polygonsOverlap,placeLabelLayout,drawParchmentLabel} from './place-labels.mjs';
 
 export const namedPlaceIds=puzzle=>puzzle.map.objects.filter(o=>Object.hasOwn(puzzle.objectNames,o.id)&&puzzle.objectNames[o.id].trim()).map(o=>o.id);
 export function cluePlaceIds(puzzle,id){
@@ -25,15 +25,37 @@ export function placeReferencesFor(svg){
   ids=namedPlaceIds(puzzle).filter(id=>wanted.has(id));
   includeStart=start;
   if(!ids.length&&!start)return;
+  const startLayout=placeLabelLayout([puzzle.start],'Start',byId,CHART_BOUNDS);
   layer=el('g',{class:'place-references','pointer-events':'none','aria-hidden':'true'});
   for(const id of ids){
    const object=puzzle.map.objects.find(o=>o.id===id),name=puzzle.objectNames[id];
-   const layout=placeLabelLayout(object.cells,name,byId,CHART_BOUNDS);
+   // Reserve the start hex for its single, unambiguous plaque. A multihex
+   // place keeps its name on the remaining footprint; puzzle data stay intact.
+   const cells=object.cells.filter(cell=>cell!==puzzle.start);
+   if(cells.length!==object.cells.length)includeStart=true;
+   let layout=placeLabelLayout(cells,name,byId,CHART_BOUNDS);
+   // A footprint surrounding the start can still have its centroid there.
+   // Anchor that name on a remaining hex instead, retaining the full reference.
+   if(layout&&includeStart&&object.cells.includes(puzzle.start)&&
+    containsPoint(hexVertices(...hexCenter(byId[puzzle.start])),[layout.x,layout.y])){
+    layout={...placeLabelLayout([cells[0]],name,byId,CHART_BOUNDS),cells};
+   }
+   if(layout&&object.cells.includes(puzzle.start)&&startLayout&&
+    polygonsOverlap(labelFootprint(layout,3),labelFootprint(startLayout,3))){
+    // Keep the plaques themselves apart, including wide names on adjacent hexes.
+    const dx=(layout.width+startLayout.width)/2+6,dy=(layout.height+startLayout.height)/2+6;
+    const side=Math.sign(layout.x-startLayout.x)||1;
+    const candidates=[{...layout,x:startLayout.x+side*dx},
+     {...layout,y:startLayout.y-dy},{...layout,y:startLayout.y+dy},
+     {...layout,x:startLayout.x-side*dx}];
+    const b=CHART_BOUNDS;
+    layout=candidates.find(p=>labelFootprint(p,p.margin).every(([x,y])=>
+     x>=b.x&&x<=b.x+b.width&&y>=b.y&&y<=b.y+b.height))??layout;
+   }
    if(layout)layer.append(drawParchmentLabel(el,layout,name,{objectId:id}));
   }
-  if(start){
-   const layout=placeLabelLayout([puzzle.start],'Start',byId,CHART_BOUNDS);
-   if(layout)layer.append(drawParchmentLabel(el,layout,'Start',{start:true}));
+  if(includeStart){
+   if(startLayout)layer.append(drawParchmentLabel(el,startLayout,'Start',{start:true}));
   }
   svg.append(layer);
   // Constrain unusually long editorial names using actual browser font metrics.
