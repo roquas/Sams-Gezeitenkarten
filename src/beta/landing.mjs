@@ -76,7 +76,6 @@ export async function showLanding(){
   if(reference){
    prepareRules(document.querySelector('#gameSurface'),reference);
    prepareRules(rules,reference);
-   const note=document.createElement('p');note.className='muted';note.textContent='Die Stundenangaben beziehen sich auf „'+reference.title+'“. Bei anderen Rätseln gilt die dort angegebene Anzahl an Etappen.';$('landingRules').prepend(note);
   }
   renderFeedback();
  }catch(error){$('catalogStatus').textContent=error.message;$('catalogStatus').role='alert';}

@@ -1,0 +1,1619 @@
+{
+  "head": "cdbd30e31555d49e5da4f23e659a086fc404bdff",
+  "runId": 45031811492,
+  "artifactId": 14758863572,
+  "artifactSha256": "1f2c48d80e992e80606cf5a228fdca79f2c3fdb8613d01304d69f7b6a27aa940",
+  "traces": [
+    {
+      "artifactTracePath": "webkit-test-results/gui-final-review-erasing-a-9898e-ins-the-independent-overlay-webkit-desktop/trace.zip",
+      "traceSha256": "29cd37be446c078e30f941a0912eaf2ae6d2c8771d3ca6a959c1d86481210274",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "startMs": 10.547,
+          "endMs": 21.38,
+          "durationMs": 10.833,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "startMs": 26.064,
+          "endMs": 345.441,
+          "durationMs": 319.377,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=model-demo",
+          "startMs": 346.76,
+          "endMs": 892.401,
+          "durationMs": 545.641,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#toggleDistances')",
+          "startMs": 2454.116,
+          "endMs": 5359.328,
+          "durationMs": 2905.212,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map [data-id=\"C1\"]')",
+          "startMs": 5360.189,
+          "endMs": 8492.178,
+          "durationMs": 3131.989,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('[data-tool=\"yes\"]')",
+          "startMs": 8492.843,
+          "endMs": 10953.831,
+          "durationMs": 2460.988,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map [data-id=\"A1\"]')",
+          "startMs": 10954.952,
+          "endMs": 15418.09,
+          "durationMs": 4463.138,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('[data-hour=\"2\"]')",
+          "startMs": 15420.196,
+          "endMs": 18293.712,
+          "durationMs": 2873.516,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('[data-tool=\"yes\"]')",
+          "startMs": 18294.6,
+          "endMs": 21747.569,
+          "durationMs": 3452.969,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map [data-id=\"A1\"]')",
+          "startMs": 21748.512,
+          "endMs": 24166.09,
+          "durationMs": 2417.578,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('[data-tool=\"clearAll\"]')",
+          "startMs": 24166.688,
+          "endMs": 28021.954,
+          "durationMs": 3855.266,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map [data-id=\"A1\"]')",
+          "startMs": 28028.562,
+          "endMs": 32933.56,
+          "durationMs": 4904.998,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "startMs": 32934.121,
+          "endMs": 32941.747,
+          "durationMs": 7.626,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "startMs": 34058.202,
+          "endMs": 34061.5,
+          "durationMs": 3.298,
+          "completed": true,
+          "error": null
+        }
+      ],
+      "assertions": [
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "startMs": 893.662,
+          "endMs": 2452.868,
+          "durationMs": 1559.206,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          }
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "startMs": 32942.258,
+          "endMs": 32942.327,
+          "durationMs": 0.069,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "[]"
+          }
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('.distance-overlay')",
+          "startMs": 32942.798,
+          "endMs": 32950.147,
+          "durationMs": 7.349,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('.distance-overlay')",
+            "expected": "data-distance-origin"
+          }
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('.distance-value')",
+          "startMs": 32950.458,
+          "endMs": 32954.391,
+          "durationMs": 3.933,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('.distance-value')",
+            "expected": "25"
+          }
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#toggleDistances')",
+          "startMs": 32954.75,
+          "endMs": 32959.937,
+          "durationMs": 5.187,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('#toggleDistances')",
+            "expected": "data-distance-state"
+          }
+        }
+      ],
+      "nativeActionLogs": [
+        {
+          "type": "log",
+          "callId": "tbqc@7611",
+          "time": 894398.677,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7611",
+          "time": 896449.065,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7613",
+          "time": 897295.693,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7613",
+          "time": 899366.573,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7615",
+          "time": 900431.049,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7615",
+          "time": 902813.87,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7617",
+          "time": 903870.686,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7617",
+          "time": 906255.651,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7619",
+          "time": 907366.346,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7619",
+          "time": 909173.515,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7621",
+          "time": 910233.333,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7621",
+          "time": 912621.094,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7623",
+          "time": 913689.001,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7623",
+          "time": 916028.48,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7625",
+          "time": 917067.038,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7625",
+          "time": 918870.976,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7627",
+          "time": 919981.79,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "tbqc@7627",
+          "time": 923849.41,
+          "message": "  element is visible, enabled and stable"
+        }
+      ],
+      "storedStateResult": null
+    },
+    {
+      "artifactTracePath": "webkit-test-results/gui-final-review-erasing-a-9898e-ins-the-independent-overlay-webkit-desktop-retry1/trace.zip",
+      "traceSha256": "24654dd648d9b5bcf5ebd0efe25954956c222d180d942c9a6ba7eb8dd4766059",
+      "actions": [
+        {
+          "title": "Launch browser",
+          "target": null,
+          "startMs": 29.879,
+          "endMs": 114.917,
+          "durationMs": 85.038,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Create context",
+          "target": null,
+          "startMs": 118.354,
+          "endMs": 129.366,
+          "durationMs": 11.012,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "startMs": 144.725,
+          "endMs": 349.756,
+          "durationMs": 205.031,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=model-demo",
+          "startMs": 352.415,
+          "endMs": 725.886,
+          "durationMs": 373.471,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#toggleDistances')",
+          "startMs": 2126.692,
+          "endMs": 4971.469,
+          "durationMs": 2844.777,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map [data-id=\"C1\"]')",
+          "startMs": 4978.535,
+          "endMs": 8051.134,
+          "durationMs": 3072.599,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('[data-tool=\"yes\"]')",
+          "startMs": 8052.213,
+          "endMs": 10473.938,
+          "durationMs": 2421.725,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map [data-id=\"A1\"]')",
+          "startMs": 10474.889,
+          "endMs": 14905.937,
+          "durationMs": 4431.048,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('[data-hour=\"2\"]')",
+          "startMs": 14906.708,
+          "endMs": 17798.273,
+          "durationMs": 2891.565,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('[data-tool=\"yes\"]')",
+          "startMs": 17802.225,
+          "endMs": 21153.299,
+          "durationMs": 3351.074,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map [data-id=\"A1\"]')",
+          "startMs": 21154.194,
+          "endMs": 24549.465,
+          "durationMs": 3395.271,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('[data-tool=\"clearAll\"]')",
+          "startMs": 24550.816,
+          "endMs": 26398.626,
+          "durationMs": 1847.81,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#map [data-id=\"A1\"]')",
+          "startMs": 26399.499,
+          "endMs": 29826.433,
+          "durationMs": 3426.934,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "startMs": 29827.137,
+          "endMs": 34778.129,
+          "durationMs": 4950.992,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "startMs": 36094.137,
+          "endMs": 36099.06,
+          "durationMs": 4.923,
+          "completed": true,
+          "error": null
+        }
+      ],
+      "assertions": [
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "startMs": 737.715,
+          "endMs": 2124.396,
+          "durationMs": 1386.681,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          }
+        },
+        {
+          "title": "Expect \"toEqual\"",
+          "target": null,
+          "startMs": 34778.894,
+          "endMs": 34779.699,
+          "durationMs": 0.805,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "[]"
+          }
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('.distance-overlay')",
+          "startMs": 34780.652,
+          "endMs": 35946.799,
+          "durationMs": 1166.147,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('.distance-overlay')",
+            "expected": "data-distance-origin"
+          }
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('.distance-value')",
+          "startMs": 35947.48,
+          "endMs": 35954.277,
+          "durationMs": 6.797,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('.distance-value')",
+            "expected": "25"
+          }
+        },
+        {
+          "title": "Expect \"toHaveAttribute\"",
+          "target": "locator('#toggleDistances')",
+          "startMs": 35954.661,
+          "endMs": 35958.874,
+          "durationMs": 4.213,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('#toggleDistances')",
+            "expected": "data-distance-state"
+          }
+        }
+      ],
+      "nativeActionLogs": [
+        {
+          "type": "log",
+          "callId": "bhth@50",
+          "time": 931355.063,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@50",
+          "time": 933357.26,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@52",
+          "time": 934207.022,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@52",
+          "time": 936244.677,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@54",
+          "time": 937276.281,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@54",
+          "time": 939630.883,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@56",
+          "time": 940676.344,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@56",
+          "time": 943044.958,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@58",
+          "time": 944146.643,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@58",
+          "time": 945949.479,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@60",
+          "time": 947036.055,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@60",
+          "time": 949352.872,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@62",
+          "time": 950385.054,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@62",
+          "time": 952730.434,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@64",
+          "time": 953779.611,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@64",
+          "time": 955567.14,
+          "message": "  element is visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@66",
+          "time": 956604.642,
+          "message": "  waiting for element to be visible, enabled and stable"
+        },
+        {
+          "type": "log",
+          "callId": "bhth@66",
+          "time": 958983.809,
+          "message": "  element is visible, enabled and stable"
+        }
+      ],
+      "storedStateResult": {
+        "value": {
+          "o": [
+            {
+              "k": "layer",
+              "v": {
+                "n": 2
+              }
+            },
+            {
+              "k": "tool",
+              "v": {
+                "s": "clearAll"
+              }
+            },
+            {
+              "k": "hideRouteMarks",
+              "v": {
+                "b": false
+              }
+            },
+            {
+              "k": "showRouteNumbers",
+              "v": {
+                "b": false
+              }
+            },
+            {
+              "k": "distanceMode",
+              "v": {
+                "b": true
+              }
+            },
+            {
+              "k": "distanceSelecting",
+              "v": {
+                "b": false
+              }
+            },
+            {
+              "k": "distanceOrigin",
+              "v": {
+                "s": "C1"
+              }
+            },
+            {
+              "k": "marks",
+              "v": {
+                "o": [],
+                "id": 2
+              }
+            },
+            {
+              "k": "route",
+              "v": {
+                "a": [
+                  {
+                    "s": "A5"
+                  }
+                ],
+                "id": 3
+              }
+            },
+            {
+              "k": "penalty",
+              "v": {
+                "n": 0
+              }
+            },
+            {
+              "k": "hintCount",
+              "v": {
+                "n": 0
+              }
+            },
+            {
+              "k": "hintPenalty",
+              "v": {
+                "n": 0
+              }
+            },
+            {
+              "k": "hiddenHours",
+              "v": {
+                "a": [],
+                "id": 4
+              }
+            },
+            {
+              "k": "doneClues",
+              "v": {
+                "a": [],
+                "id": 5
+              }
+            },
+            {
+              "k": "help",
+              "v": {
+                "s": "<div class=\"notice\">Markierungen auf Alpha / Cyan in allen Stunden gelöscht (2).</div>"
+              }
+            },
+            {
+              "k": "result",
+              "v": {
+                "s": ""
+              }
+            }
+          ],
+          "id": 1
+        }
+      }
+    },
+    {
+      "artifactTracePath": "webkit-test-results/illustrated-rules-landing--fd543-s-remain-readable-at-1440px-webkit-desktop/trace.zip",
+      "traceSha256": "3209622646777231b8ad21342c12ff2567c5f7c122399884c4e406302ab55046",
+      "actions": [
+        {
+          "title": "Create context",
+          "target": null,
+          "startMs": 11.343,
+          "endMs": 21.815,
+          "durationMs": 10.472,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "startMs": 26.727,
+          "endMs": 231.082,
+          "durationMs": 204.355,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Set viewport size",
+          "target": null,
+          "startMs": 232.026,
+          "endMs": 241.935,
+          "durationMs": 9.909,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/",
+          "startMs": 242.717,
+          "endMs": 2033.321,
+          "durationMs": 1790.604,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 2169.085,
+          "endMs": 5366.122,
+          "durationMs": 3197.037,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "startMs": 5369.414,
+          "endMs": 5388.14,
+          "durationMs": 18.726,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') })",
+          "startMs": 5392.677,
+          "endMs": 6319.073,
+          "durationMs": 926.396,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') }).locator('img')",
+          "startMs": 6320.053,
+          "endMs": 9349.141,
+          "durationMs": 3029.088,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') })",
+          "startMs": 9349.982,
+          "endMs": 9375.718,
+          "durationMs": 25.736,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 9377.554,
+          "endMs": 13862.043,
+          "durationMs": 4484.489,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/marks.png\"]') })",
+          "startMs": 13867.97,
+          "endMs": 14775.83,
+          "durationMs": 907.86,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/marks.png\"]') }).locator('img')",
+          "startMs": 14777.798,
+          "endMs": 15102.047,
+          "durationMs": 324.249,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/marks.png\"]') })",
+          "startMs": 15102.814,
+          "endMs": 15121.555,
+          "durationMs": 18.741,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 15123.049,
+          "endMs": 17061.34,
+          "durationMs": 1938.291,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/tools.png\"]') })",
+          "startMs": 17062.853,
+          "endMs": 18979.762,
+          "durationMs": 1916.909,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/tools.png\"]') }).locator('img')",
+          "startMs": 18980.687,
+          "endMs": 19008.202,
+          "durationMs": 27.515,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/tools.png\"]') })",
+          "startMs": 19009.011,
+          "endMs": 19320.354,
+          "durationMs": 311.343,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 19322.747,
+          "endMs": 23627.075,
+          "durationMs": 4304.328,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/route.png\"]') })",
+          "startMs": 23628.477,
+          "endMs": 24571.592,
+          "durationMs": 943.115,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/route.png\"]') }).locator('img')",
+          "startMs": 24572.483,
+          "endMs": 26029.608,
+          "durationMs": 1457.125,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/route.png\"]') })",
+          "startMs": 26030.401,
+          "endMs": 26054.186,
+          "durationMs": 23.785,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 26055.754,
+          "endMs": 29628.359,
+          "durationMs": 3572.605,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=drei-peilungen",
+          "startMs": 29629.774,
+          "endMs": 29937.465,
+          "durationMs": 307.691,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Is visible",
+          "target": "locator('#logbookTab')",
+          "startMs": 30571.432,
+          "endMs": 33685.2,
+          "durationMs": 3113.768,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#gameRules')",
+          "startMs": 33685.77,
+          "endMs": 33783.735,
+          "durationMs": 97.965,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#gameRules figure').filter({ has: locator('img[src$=\"/tools.png\"]') })",
+          "startMs": 33784.663,
+          "endMs": null,
+          "durationMs": null,
+          "completed": false,
+          "error": null
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "startMs": 34915.853,
+          "endMs": 34921.801,
+          "durationMs": 5.948,
+          "completed": true,
+          "error": null
+        }
+      ],
+      "assertions": [
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('.beta-card')",
+          "startMs": 2034.672,
+          "endMs": 2168.479,
+          "durationMs": 133.807,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('.beta-card')",
+            "expected": "2"
+          }
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "startMs": 5391.64,
+          "endMs": 5391.739,
+          "durationMs": 0.099,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "true"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThanOrEqual\"",
+          "target": null,
+          "startMs": 9376.21,
+          "endMs": 9376.284,
+          "durationMs": 0.074,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "1440"
+          }
+        },
+        {
+          "title": "Expect \"toBeGreaterThan\"",
+          "target": null,
+          "startMs": 9376.656,
+          "endMs": 9376.691,
+          "durationMs": 0.035,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "300"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "startMs": 9377.024,
+          "endMs": 9377.145,
+          "durationMs": 0.121,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "0.02"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThanOrEqual\"",
+          "target": null,
+          "startMs": 15121.981,
+          "endMs": 15122.026,
+          "durationMs": 0.045,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "1440"
+          }
+        },
+        {
+          "title": "Expect \"toBeGreaterThan\"",
+          "target": null,
+          "startMs": 15122.319,
+          "endMs": 15122.349,
+          "durationMs": 0.03,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "300"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "startMs": 15122.658,
+          "endMs": 15122.689,
+          "durationMs": 0.031,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "0.02"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThanOrEqual\"",
+          "target": null,
+          "startMs": 19321.037,
+          "endMs": 19321.142,
+          "durationMs": 0.105,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "1440"
+          }
+        },
+        {
+          "title": "Expect \"toBeGreaterThan\"",
+          "target": null,
+          "startMs": 19321.633,
+          "endMs": 19321.721,
+          "durationMs": 0.088,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "300"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "startMs": 19322.151,
+          "endMs": 19322.225,
+          "durationMs": 0.074,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "0.02"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThanOrEqual\"",
+          "target": null,
+          "startMs": 26054.594,
+          "endMs": 26054.653,
+          "durationMs": 0.059,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "1440"
+          }
+        },
+        {
+          "title": "Expect \"toBeGreaterThan\"",
+          "target": null,
+          "startMs": 26054.984,
+          "endMs": 26055.014,
+          "durationMs": 0.03,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "300"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "startMs": 26055.333,
+          "endMs": 26055.357,
+          "durationMs": 0.024,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "0.02"
+          }
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "startMs": 29938.097,
+          "endMs": 30570.988,
+          "durationMs": 632.891,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          }
+        }
+      ],
+      "nativeActionLogs": [],
+      "storedStateResult": null
+    },
+    {
+      "artifactTracePath": "webkit-test-results/illustrated-rules-landing--fd543-s-remain-readable-at-1440px-webkit-desktop-retry1/trace.zip",
+      "traceSha256": "7ff90d1cd6576a27d51bffb9e84eb5c133e39ba94002c25ce44b38d5c9dc58bd",
+      "actions": [
+        {
+          "title": "Launch browser",
+          "target": null,
+          "startMs": 21.201,
+          "endMs": 107.265,
+          "durationMs": 86.064,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Create context",
+          "target": null,
+          "startMs": 111.123,
+          "endMs": 121.028,
+          "durationMs": 9.905,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "startMs": 133.56,
+          "endMs": 351.08,
+          "durationMs": 217.52,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Set viewport size",
+          "target": null,
+          "startMs": 353.755,
+          "endMs": 367.37,
+          "durationMs": 13.615,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/",
+          "startMs": 368.97,
+          "endMs": 636.654,
+          "durationMs": 267.684,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 2331.493,
+          "endMs": 5525.919,
+          "durationMs": 3194.426,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": null,
+          "startMs": 5530.74,
+          "endMs": 5547.436,
+          "durationMs": 16.696,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') })",
+          "startMs": 5551.743,
+          "endMs": 6499.167,
+          "durationMs": 947.424,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') }).locator('img')",
+          "startMs": 6501.015,
+          "endMs": 9505.817,
+          "durationMs": 3004.802,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/hours.png\"]') })",
+          "startMs": 9510.086,
+          "endMs": 9549.074,
+          "durationMs": 38.988,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 9552.029,
+          "endMs": 13981.665,
+          "durationMs": 4429.636,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/marks.png\"]') })",
+          "startMs": 13983.119,
+          "endMs": 14893.546,
+          "durationMs": 910.427,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/marks.png\"]') }).locator('img')",
+          "startMs": 14895.384,
+          "endMs": 15225.626,
+          "durationMs": 330.242,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/marks.png\"]') })",
+          "startMs": 15227.009,
+          "endMs": 15253.207,
+          "durationMs": 26.198,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 15255.076,
+          "endMs": 17219.349,
+          "durationMs": 1964.273,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/tools.png\"]') })",
+          "startMs": 17223.866,
+          "endMs": 19110.339,
+          "durationMs": 1886.473,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/tools.png\"]') }).locator('img')",
+          "startMs": 19114.195,
+          "endMs": 19145.473,
+          "durationMs": 31.278,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/tools.png\"]') })",
+          "startMs": 19146.992,
+          "endMs": 19473.078,
+          "durationMs": 326.086,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 19483.384,
+          "endMs": 23817.813,
+          "durationMs": 4334.429,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Scroll into view",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/route.png\"]') })",
+          "startMs": 23819.687,
+          "endMs": 24792.159,
+          "durationMs": 972.472,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/route.png\"]') }).locator('img')",
+          "startMs": 24794.063,
+          "endMs": 25423.114,
+          "durationMs": 629.051,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#landingRules article').locator('figure').filter({ has: locator('img[src$=\"/route.png\"]') })",
+          "startMs": 25423.895,
+          "endMs": 25443.279,
+          "durationMs": 19.384,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Screenshot",
+          "target": null,
+          "startMs": 25445.362,
+          "endMs": 28997.961,
+          "durationMs": 3552.599,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=drei-peilungen",
+          "startMs": 29001.475,
+          "endMs": 29389.734,
+          "durationMs": 388.259,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Is visible",
+          "target": "locator('#logbookTab')",
+          "startMs": 31214.202,
+          "endMs": 36369.556,
+          "durationMs": 5155.354,
+          "completed": true,
+          "error": null
+        },
+        {
+          "title": "Evaluate",
+          "target": "locator('#gameRules')",
+          "startMs": 36370.316,
+          "endMs": 37446.923,
+          "durationMs": 1076.607,
+          "completed": true,
+          "error": {
+            "name": "",
+            "message": "Error: locator.evaluate: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#gameRules')\u001b[22m\n",
+            "stack": "Error: locator.evaluate: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#gameRules')\u001b[22m\n\n    at /home/runner/work/Sams-Gezeitenkarten/Sams-Gezeitenkarten/tests/browser/illustrated-rules.spec.mjs:75:35"
+          }
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "startMs": 37437.267,
+          "endMs": 37447.739,
+          "durationMs": 10.472,
+          "completed": true,
+          "error": null
+        }
+      ],
+      "assertions": [
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('.beta-card')",
+          "startMs": 644.445,
+          "endMs": 2330.193,
+          "durationMs": 1685.748,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('.beta-card')",
+            "expected": "2"
+          }
+        },
+        {
+          "title": "Expect \"toBe\"",
+          "target": null,
+          "startMs": 5548.217,
+          "endMs": 5548.396,
+          "durationMs": 0.179,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "true"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThanOrEqual\"",
+          "target": null,
+          "startMs": 9549.597,
+          "endMs": 9550.08,
+          "durationMs": 0.483,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "1440"
+          }
+        },
+        {
+          "title": "Expect \"toBeGreaterThan\"",
+          "target": null,
+          "startMs": 9550.678,
+          "endMs": 9550.85,
+          "durationMs": 0.172,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "300"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "startMs": 9551.335,
+          "endMs": 9551.493,
+          "durationMs": 0.158,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "0.02"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThanOrEqual\"",
+          "target": null,
+          "startMs": 15253.595,
+          "endMs": 15253.64,
+          "durationMs": 0.045,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "1440"
+          }
+        },
+        {
+          "title": "Expect \"toBeGreaterThan\"",
+          "target": null,
+          "startMs": 15253.918,
+          "endMs": 15253.949,
+          "durationMs": 0.031,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "300"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "startMs": 15254.49,
+          "endMs": 15254.572,
+          "durationMs": 0.082,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "0.02"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThanOrEqual\"",
+          "target": null,
+          "startMs": 19473.775,
+          "endMs": 19473.852,
+          "durationMs": 0.077,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "1440"
+          }
+        },
+        {
+          "title": "Expect \"toBeGreaterThan\"",
+          "target": null,
+          "startMs": 19476.73,
+          "endMs": 19476.784,
+          "durationMs": 0.054,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "300"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "startMs": 19478.79,
+          "endMs": 19478.837,
+          "durationMs": 0.047,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "0.02"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThanOrEqual\"",
+          "target": null,
+          "startMs": 25443.915,
+          "endMs": 25443.983,
+          "durationMs": 0.068,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "1440"
+          }
+        },
+        {
+          "title": "Expect \"toBeGreaterThan\"",
+          "target": null,
+          "startMs": 25444.423,
+          "endMs": 25444.462,
+          "durationMs": 0.039,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "300"
+          }
+        },
+        {
+          "title": "Expect \"toBeLessThan\"",
+          "target": null,
+          "startMs": 25444.854,
+          "endMs": 25444.889,
+          "durationMs": 0.035,
+          "completed": true,
+          "error": null,
+          "params": {
+            "expected": "0.02"
+          }
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "startMs": 29390.825,
+          "endMs": 31213.371,
+          "durationMs": 1822.546,
+          "completed": true,
+          "error": null,
+          "params": {
+            "locator": "locator('#map .cell')",
+            "expected": "25"
+          }
+        }
+      ],
+      "nativeActionLogs": [],
+      "storedStateResult": null
+    }
+  ]
+}

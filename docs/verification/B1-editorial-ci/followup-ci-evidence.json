@@ -1,0 +1,409 @@
+{
+  "head": "ea731a5b3e0547b6f1549d765b2dfe2a036bb790",
+  "run": 45039500994,
+  "artifactId": 14762190385,
+  "artifactSha256": "ba249f3d2c1c4336b7113e20b9a8071a9520a5b22d080ce8254c6426928b0986",
+  "traces": [
+    {
+      "path": "webkit-test-results/illustrated-rules-publishe-9d472--exports-its-exact-identity-webkit-desktop/trace.zip",
+      "sha256": "b09d5ee885a515ed3d0639b6a50a07274c4921730ae43a2c38c573e64e76f2c2",
+      "actions": [
+        {
+          "title": "Launch browser",
+          "target": null,
+          "startMs": 20.786,
+          "endMs": 672.315,
+          "error": null
+        },
+        {
+          "title": "Create context",
+          "target": null,
+          "startMs": 676.014,
+          "endMs": 690.375,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "startMs": 705.33,
+          "endMs": 3373.455,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=drei-peilungen",
+          "startMs": 3375.278,
+          "endMs": 3660.997,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "startMs": 3668.92,
+          "endMs": 9413.838,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#routeTool')",
+          "startMs": 9415.144,
+          "endMs": 16661.747,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"A2\"]')",
+          "startMs": 16664.067,
+          "endMs": 16740.211,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 16741.223,
+          "endMs": 19129.569,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "startMs": 19131.147,
+          "endMs": 19172.102,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 19172.961,
+          "endMs": 19231.694,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"C2\"]')",
+          "startMs": 19232.566,
+          "endMs": 19260.002,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 19260.876,
+          "endMs": 19323.876,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"D1\"]')",
+          "startMs": 19325.028,
+          "endMs": 19348.431,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 19349.175,
+          "endMs": 19389.516,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"D2\"]')",
+          "startMs": 19390.576,
+          "endMs": 19443.164,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 19443.923,
+          "endMs": 19504.948,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"E2\"]')",
+          "startMs": 19506.294,
+          "endMs": 19536.932,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 19537.579,
+          "endMs": 19599.782,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('.route-stroke')",
+          "startMs": 19601.01,
+          "endMs": 19633.16,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#verify')",
+          "startMs": 19633.953,
+          "endMs": 26456.211,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "getByRole('dialog')",
+          "startMs": 26457.504,
+          "endMs": 26480.201,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "getByRole('button', { name: 'Überspringen / Schließen' })",
+          "startMs": 26481.655,
+          "endMs": 30601.364,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#backToSelection')",
+          "startMs": 30602.191,
+          "endMs": 34950.737,
+          "error": {
+            "name": "",
+            "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#backToSelection')\u001b[22m\n\u001b[2m    - locator resolved to <a id=\"backToSelection\" class=\"beta-selection-link\" href=\"http://127.0.0.1:4173/?view=selection\">Zur Rätselauswahl</a>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n",
+            "stack": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#backToSelection')\u001b[22m\n\u001b[2m    - locator resolved to <a id=\"backToSelection\" class=\"beta-selection-link\" href=\"http://127.0.0.1:4173/?view=selection\">Zur Rätselauswahl</a>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\n    at /home/runner/work/Sams-Gezeitenkarten/Sams-Gezeitenkarten/tests/browser/illustrated-rules.spec.mjs:103:114"
+          }
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "startMs": 34944.563,
+          "endMs": 34951.674,
+          "error": null
+        }
+      ]
+    },
+    {
+      "path": "webkit-test-results/illustrated-rules-publishe-9d472--exports-its-exact-identity-webkit-desktop-retry1/trace.zip",
+      "sha256": "b8cfdccd804b456b273e3d440ea7497c1cd80f2bfc751c796c80e04a623989b3",
+      "actions": [
+        {
+          "title": "Launch browser",
+          "target": null,
+          "startMs": 30.058,
+          "endMs": 114.708,
+          "error": null
+        },
+        {
+          "title": "Create context",
+          "target": null,
+          "startMs": 118.393,
+          "endMs": 134.481,
+          "error": null
+        },
+        {
+          "title": "Create page",
+          "target": null,
+          "startMs": 150.392,
+          "endMs": 727.371,
+          "error": null
+        },
+        {
+          "title": "Navigate",
+          "target": "/?puzzle=drei-peilungen",
+          "startMs": 729.925,
+          "endMs": 1158.142,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('#map .cell')",
+          "startMs": 1166.243,
+          "endMs": 1672.769,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#routeTool')",
+          "startMs": 1673.915,
+          "endMs": 6243.375,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"A2\"]')",
+          "startMs": 6248.876,
+          "endMs": 6284.68,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 6285.569,
+          "endMs": 6338.674,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"B2\"]')",
+          "startMs": 6342.632,
+          "endMs": 6373.737,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 6375.939,
+          "endMs": 6426.9,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"C2\"]')",
+          "startMs": 6428.067,
+          "endMs": 6449.417,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 6450.107,
+          "endMs": 6504.534,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"D1\"]')",
+          "startMs": 6505.542,
+          "endMs": 6546.341,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 6546.914,
+          "endMs": 6582.181,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"D2\"]')",
+          "startMs": 6583.782,
+          "endMs": 6613.379,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 6614.122,
+          "endMs": 6662.93,
+          "error": null
+        },
+        {
+          "title": "Focus",
+          "target": "locator('#map .cell[data-id=\"E2\"]')",
+          "startMs": 6664.031,
+          "endMs": 6703.561,
+          "error": null
+        },
+        {
+          "title": "Press \"Enter\"",
+          "target": null,
+          "startMs": 6704.155,
+          "endMs": 6751.807,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveCount\"",
+          "target": "locator('.route-stroke')",
+          "startMs": 6752.787,
+          "endMs": 6775.556,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#verify')",
+          "startMs": 6776.266,
+          "endMs": 10147.511,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "getByRole('dialog')",
+          "startMs": 10148.721,
+          "endMs": 11272.124,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "getByRole('button', { name: 'Überspringen / Schließen' })",
+          "startMs": 11273.15,
+          "endMs": 15039.668,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#backToSelection')",
+          "startMs": 15040.49,
+          "endMs": 15839.773,
+          "error": null
+        },
+        {
+          "title": "Expect \"toContainText\"",
+          "target": "locator('.beta-card').first()",
+          "startMs": 15841.109,
+          "endMs": 17993.191,
+          "error": null
+        },
+        {
+          "title": "Wait for event \"download\"",
+          "target": null,
+          "startMs": 17994.696,
+          "endMs": 20325.469,
+          "error": null
+        },
+        {
+          "title": "Click",
+          "target": "locator('#exportFeedback')",
+          "startMs": 17996.305,
+          "endMs": 20329.661,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveLength\"",
+          "target": null,
+          "startMs": 20331.396,
+          "endMs": 20331.615,
+          "error": null
+        },
+        {
+          "title": "Expect \"toMatchObject\"",
+          "target": null,
+          "startMs": 20332.052,
+          "endMs": 20333.1,
+          "error": null
+        },
+        {
+          "title": "Expect \"toHaveLength\"",
+          "target": null,
+          "startMs": 20333.492,
+          "endMs": 20333.533,
+          "error": null
+        },
+        {
+          "title": "Expect \"toMatchObject\"",
+          "target": null,
+          "startMs": 20333.929,
+          "endMs": 20334.025,
+          "error": null
+        },
+        {
+          "title": "Close context",
+          "target": null,
+          "startMs": 24584.271,
+          "endMs": 24593.521,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

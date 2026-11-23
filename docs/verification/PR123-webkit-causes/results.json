@@ -1,0 +1,6627 @@
+{
+  "analyzedHead": "a69af2885ffbd00cc67db56d415460525c08124a",
+  "baselineUnchangedTests": [
+    {
+      "project": "webkit-desktop",
+      "test": "reduced motion is immediate but still expires and does not retrigger on ordinary renders",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        8242
+      ]
+    },
+    {
+      "project": "webkit-desktop",
+      "test": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        3741
+      ]
+    },
+    {
+      "project": "webkit-desktop",
+      "test": "land receives the same mouse hover contour but remains blocked except for radar origins",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        3339
+      ]
+    },
+    {
+      "project": "webkit-desktop",
+      "test": "redraws preserve animation identity and long names fit organic paper in all three visual phases",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        4333
+      ]
+    }
+  ],
+  "independentAcceptanceTests": [
+    {
+      "project": "b1-chromium",
+      "test": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        2284
+      ]
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "test": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        1812
+      ]
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "test": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        3688
+      ]
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "test": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        1865
+      ]
+    },
+    {
+      "project": "b1-chromium",
+      "test": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        1367
+      ]
+    },
+    {
+      "project": "b1-chromium",
+      "test": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        1520
+      ]
+    },
+    {
+      "project": "b1-chromium",
+      "test": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        535
+      ]
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "test": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        1324
+      ]
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "test": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        1471
+      ]
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "test": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        751
+      ]
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "test": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        2617
+      ]
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "test": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        2695
+      ]
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "test": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        960
+      ]
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "test": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        1912
+      ]
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "test": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        1573
+      ]
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "test": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "retryIndices": [
+        0
+      ],
+      "durationMs": [
+        603
+      ]
+    }
+  ],
+  "diagnosticScenarios": [
+    {
+      "batch": "probes",
+      "mode": "background",
+      "sourceSha256": "02e50b90ca8272f34db7ec1fcbcd96e70530894c30124c45e1004bd73cd2c41a",
+      "servedSourceSha256": "fcccd2f6cc9db5d1018441e15d2fae70dcca6b73ad0336e0b4b31598892e7436",
+      "instrumentationStripsExactly": true,
+      "intentionalCleanupFault": false,
+      "originalFourSecondAssertion": true,
+      "assertionWallMs": 2796,
+      "originalAssertionError": null,
+      "backgroundAttempt": {
+        "visibility": "visible",
+        "hidden": false
+      },
+      "browserVersion": null,
+      "beforeRedraw": null,
+      "afterRedraw": null,
+      "afterShow": {
+        "wall": 3279,
+        "timeline": 3275,
+        "visibility": "visible",
+        "manualOrigin": 3276,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "107": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3275": 8
+            },
+            "currentTimes": {
+              "0": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterAssertion": {
+        "wall": 6299,
+        "timeline": 6291,
+        "visibility": "visible",
+        "manualOrigin": 3276,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "107": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3275": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "final": {
+        "wall": 9311,
+        "timeline": 9315,
+        "visibility": "visible",
+        "manualOrigin": 3276,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "107": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3275": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "events": [
+        {
+          "type": "audit-installed",
+          "wall": 0,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": false
+        },
+        {
+          "type": "media-change",
+          "wall": 12,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 130,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "samePuzzle": false
+        },
+        {
+          "type": "clear-call",
+          "wall": 130,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 136,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 136,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 138,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 107,
+          "number": 1
+        },
+        {
+          "type": "inserted",
+          "wall": 139,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 139,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1
+        },
+        {
+          "type": "ready",
+          "wall": 139,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2
+        },
+        {
+          "type": "ready",
+          "wall": 139,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3
+        },
+        {
+          "type": "ready",
+          "wall": 139,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4
+        },
+        {
+          "type": "ready",
+          "wall": 139,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5
+        },
+        {
+          "type": "ready",
+          "wall": 139,
+          "timeline": 107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6
+        },
+        {
+          "type": "mount-call",
+          "wall": 1985,
+          "timeline": 1974,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 1999,
+          "timeline": 1974,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 1999,
+          "timeline": 1974,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "finished",
+          "wall": 3104,
+          "timeline": 3107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3104,
+          "timeline": 3107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3104,
+          "timeline": 3107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3104,
+          "timeline": 3107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3104,
+          "timeline": 3107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3104,
+          "timeline": 3107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 3104,
+          "timeline": 3107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "currentLayer": 1,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 3104,
+          "timeline": 3107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 3104,
+          "timeline": 3107,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 3275,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2",
+            "o4"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 3275,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 3275,
+          "number": 2
+        },
+        {
+          "type": "inserted",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7
+        },
+        {
+          "type": "ready",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8
+        },
+        {
+          "type": "ready",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9
+        },
+        {
+          "type": "ready",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10
+        },
+        {
+          "type": "ready",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11
+        },
+        {
+          "type": "ready",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12
+        },
+        {
+          "type": "ready",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13
+        },
+        {
+          "type": "ready",
+          "wall": 3276,
+          "timeline": 3275,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14
+        },
+        {
+          "type": "finished",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "currentLayer": 2,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 6287,
+          "timeline": 6291,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false
+        }
+      ],
+      "pageErrors": [],
+      "failure": null
+    },
+    {
+      "batch": "probes",
+      "mode": "redraw",
+      "sourceSha256": "02e50b90ca8272f34db7ec1fcbcd96e70530894c30124c45e1004bd73cd2c41a",
+      "servedSourceSha256": "fcccd2f6cc9db5d1018441e15d2fae70dcca6b73ad0336e0b4b31598892e7436",
+      "instrumentationStripsExactly": true,
+      "intentionalCleanupFault": false,
+      "originalFourSecondAssertion": true,
+      "assertionWallMs": 3301,
+      "originalAssertionError": null,
+      "backgroundAttempt": null,
+      "browserVersion": null,
+      "beforeRedraw": {
+        "wall": 3329,
+        "timeline": 3319,
+        "visibility": "visible",
+        "manualOrigin": 3320,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "135": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3319": 8
+            },
+            "currentTimes": {
+              "0": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterRedraw": {
+        "wall": 3371,
+        "timeline": 3366,
+        "visibility": "visible",
+        "manualOrigin": 3320,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "135": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3319": 8
+            },
+            "currentTimes": {
+              "47": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterShow": {
+        "wall": 3324,
+        "timeline": 3319,
+        "visibility": "visible",
+        "manualOrigin": 3320,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "135": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3319": 8
+            },
+            "currentTimes": {
+              "0": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterAssertion": {
+        "wall": 6676,
+        "timeline": 6680,
+        "visibility": "visible",
+        "manualOrigin": 3320,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "135": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3319": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "final": {
+        "wall": 9688,
+        "timeline": 9692,
+        "visibility": "visible",
+        "manualOrigin": 3320,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "135": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3319": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "events": [
+        {
+          "type": "audit-installed",
+          "wall": 0,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": false
+        },
+        {
+          "type": "media-change",
+          "wall": 14,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 148,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "samePuzzle": false
+        },
+        {
+          "type": "clear-call",
+          "wall": 148,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 155,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 155,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 157,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 135,
+          "number": 1
+        },
+        {
+          "type": "inserted",
+          "wall": 157,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6
+        },
+        {
+          "type": "mount-call",
+          "wall": 2005,
+          "timeline": 2001,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 2017,
+          "timeline": 2001,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 2017,
+          "timeline": 2001,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "currentLayer": 1,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 3149,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 3319,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2",
+            "o4"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 3319,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 3319,
+          "number": 2
+        },
+        {
+          "type": "inserted",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7
+        },
+        {
+          "type": "ready",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8
+        },
+        {
+          "type": "ready",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9
+        },
+        {
+          "type": "ready",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10
+        },
+        {
+          "type": "ready",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11
+        },
+        {
+          "type": "ready",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12
+        },
+        {
+          "type": "ready",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13
+        },
+        {
+          "type": "ready",
+          "wall": 3320,
+          "timeline": 3319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14
+        },
+        {
+          "type": "mount-call",
+          "wall": 3362,
+          "timeline": 3366,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 3364,
+          "timeline": 3366,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 3364,
+          "timeline": 3366,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 3367,
+          "timeline": 3366,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 3369,
+          "timeline": 3366,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 3370,
+          "timeline": 3366,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 3370,
+          "timeline": 3366,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 3370,
+          "timeline": 3366,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 3370,
+          "timeline": 3366,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "currentLayer": 2,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false
+        }
+      ],
+      "pageErrors": [],
+      "failure": null
+    },
+    {
+      "batch": "probes",
+      "mode": "retrigger",
+      "sourceSha256": "02e50b90ca8272f34db7ec1fcbcd96e70530894c30124c45e1004bd73cd2c41a",
+      "servedSourceSha256": "fcccd2f6cc9db5d1018441e15d2fae70dcca6b73ad0336e0b4b31598892e7436",
+      "instrumentationStripsExactly": true,
+      "intentionalCleanupFault": false,
+      "originalFourSecondAssertion": true,
+      "assertionWallMs": 3302,
+      "originalAssertionError": null,
+      "backgroundAttempt": null,
+      "browserVersion": null,
+      "beforeRedraw": null,
+      "afterRedraw": null,
+      "afterShow": {
+        "wall": 3316,
+        "timeline": 3311,
+        "visibility": "visible",
+        "manualOrigin": 3313,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "137": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3311": 8
+            },
+            "currentTimes": {
+              "0": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterAssertion": {
+        "wall": 8177,
+        "timeline": 8180,
+        "visibility": "visible",
+        "manualOrigin": 3313,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "137": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "None": 8
+            },
+            "currentTimes": {
+              "None": 8
+            },
+            "playStates": {
+              "idle": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "rejected": 8
+            },
+            "rejectionErrors": {
+              "AbortError": 8
+            }
+          },
+          {
+            "layer": 3,
+            "trackIds": [
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "4862": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "final": {
+        "wall": 11188,
+        "timeline": 11191,
+        "visibility": "visible",
+        "manualOrigin": 3313,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "137": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "None": 8
+            },
+            "currentTimes": {
+              "None": 8
+            },
+            "playStates": {
+              "idle": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "rejected": 8
+            },
+            "rejectionErrors": {
+              "AbortError": 8
+            }
+          },
+          {
+            "layer": 3,
+            "trackIds": [
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "4862": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "events": [
+        {
+          "type": "audit-installed",
+          "wall": 0,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": false
+        },
+        {
+          "type": "media-change",
+          "wall": 13,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 134,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "samePuzzle": false
+        },
+        {
+          "type": "clear-call",
+          "wall": 134,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 141,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 141,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 143,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 137,
+          "number": 1
+        },
+        {
+          "type": "inserted",
+          "wall": 143,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 143,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1
+        },
+        {
+          "type": "ready",
+          "wall": 143,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2
+        },
+        {
+          "type": "ready",
+          "wall": 143,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3
+        },
+        {
+          "type": "ready",
+          "wall": 143,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4
+        },
+        {
+          "type": "ready",
+          "wall": 143,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5
+        },
+        {
+          "type": "ready",
+          "wall": 143,
+          "timeline": 137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6
+        },
+        {
+          "type": "mount-call",
+          "wall": 1998,
+          "timeline": 1993,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 2012,
+          "timeline": 1993,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 2012,
+          "timeline": 1993,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "finished",
+          "wall": 3140,
+          "timeline": 3143,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3140,
+          "timeline": 3143,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3140,
+          "timeline": 3143,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3140,
+          "timeline": 3143,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3140,
+          "timeline": 3143,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3140,
+          "timeline": 3143,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 3140,
+          "timeline": 3143,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "currentLayer": 1,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 3140,
+          "timeline": 3143,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 3141,
+          "timeline": 3143,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 3312,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2",
+            "o4"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 3312,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 3311,
+          "number": 2
+        },
+        {
+          "type": "inserted",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7
+        },
+        {
+          "type": "ready",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8
+        },
+        {
+          "type": "ready",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9
+        },
+        {
+          "type": "ready",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10
+        },
+        {
+          "type": "ready",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11
+        },
+        {
+          "type": "ready",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12
+        },
+        {
+          "type": "ready",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13
+        },
+        {
+          "type": "ready",
+          "wall": 3313,
+          "timeline": 3311,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14
+        },
+        {
+          "type": "show-call",
+          "wall": 4862,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "requested": [
+            "o1",
+            "o2",
+            "o4"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 4862,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "configured",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 4862,
+          "number": 3
+        },
+        {
+          "type": "removed",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false
+        },
+        {
+          "type": "inserted",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 15
+        },
+        {
+          "type": "ready",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 16
+        },
+        {
+          "type": "ready",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 17
+        },
+        {
+          "type": "ready",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 18
+        },
+        {
+          "type": "ready",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 19
+        },
+        {
+          "type": "ready",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 20
+        },
+        {
+          "type": "ready",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 21
+        },
+        {
+          "type": "ready",
+          "wall": 4865,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 22
+        },
+        {
+          "type": "rejected",
+          "wall": 4866,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false,
+          "track": 7,
+          "error": "AbortError"
+        },
+        {
+          "type": "rejected",
+          "wall": 4866,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false,
+          "track": 8,
+          "error": "AbortError"
+        },
+        {
+          "type": "rejected",
+          "wall": 4866,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false,
+          "track": 9,
+          "error": "AbortError"
+        },
+        {
+          "type": "rejected",
+          "wall": 4866,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false,
+          "track": 10,
+          "error": "AbortError"
+        },
+        {
+          "type": "rejected",
+          "wall": 4866,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false,
+          "track": 11,
+          "error": "AbortError"
+        },
+        {
+          "type": "rejected",
+          "wall": 4866,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false,
+          "track": 12,
+          "error": "AbortError"
+        },
+        {
+          "type": "rejected",
+          "wall": 4866,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false,
+          "track": 13,
+          "error": "AbortError"
+        },
+        {
+          "type": "rejected",
+          "wall": 4866,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false,
+          "track": 14,
+          "error": "AbortError"
+        },
+        {
+          "type": "all-settled",
+          "wall": 4866,
+          "timeline": 4862,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false,
+          "currentLayer": 3,
+          "done": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "type": "finished",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 15,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 16,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 17,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 18,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 19,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 20,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 21,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "track": 22,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true,
+          "currentLayer": 3,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 7874,
+          "timeline": 7876,
+          "visibility": "visible",
+          "layer": 3,
+          "connected": false
+        }
+      ],
+      "pageErrors": [],
+      "failure": null
+    },
+    {
+      "batch": "probes",
+      "mode": "sampled",
+      "sourceSha256": "02e50b90ca8272f34db7ec1fcbcd96e70530894c30124c45e1004bd73cd2c41a",
+      "servedSourceSha256": "fcccd2f6cc9db5d1018441e15d2fae70dcca6b73ad0336e0b4b31598892e7436",
+      "instrumentationStripsExactly": true,
+      "intentionalCleanupFault": false,
+      "originalFourSecondAssertion": true,
+      "assertionWallMs": 3305,
+      "originalAssertionError": null,
+      "backgroundAttempt": null,
+      "browserVersion": null,
+      "beforeRedraw": null,
+      "afterRedraw": null,
+      "afterShow": {
+        "wall": 3308,
+        "timeline": 3303,
+        "visibility": "visible",
+        "manualOrigin": 3304,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "145": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3303": 8
+            },
+            "currentTimes": {
+              "0": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterAssertion": {
+        "wall": 6617,
+        "timeline": 6609,
+        "visibility": "visible",
+        "manualOrigin": 3304,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "145": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3303": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "final": {
+        "wall": 9625,
+        "timeline": 9629,
+        "visibility": "visible",
+        "manualOrigin": 3304,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "145": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3303": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "events": [
+        {
+          "type": "audit-installed",
+          "wall": 0,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": false
+        },
+        {
+          "type": "media-change",
+          "wall": 16,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 141,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "samePuzzle": false
+        },
+        {
+          "type": "clear-call",
+          "wall": 141,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 147,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 147,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 150,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 145,
+          "number": 1
+        },
+        {
+          "type": "inserted",
+          "wall": 150,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 150,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1
+        },
+        {
+          "type": "ready",
+          "wall": 150,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2
+        },
+        {
+          "type": "ready",
+          "wall": 150,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3
+        },
+        {
+          "type": "ready",
+          "wall": 150,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4
+        },
+        {
+          "type": "ready",
+          "wall": 150,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5
+        },
+        {
+          "type": "ready",
+          "wall": 150,
+          "timeline": 145,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6
+        },
+        {
+          "type": "mount-call",
+          "wall": 2007,
+          "timeline": 2001,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 2021,
+          "timeline": 2001,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 2021,
+          "timeline": 2001,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "currentLayer": 1,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 3148,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 3149,
+          "timeline": 3152,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 3303,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2",
+            "o4"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 3303,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 3303,
+          "number": 2
+        },
+        {
+          "type": "inserted",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7
+        },
+        {
+          "type": "ready",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8
+        },
+        {
+          "type": "ready",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9
+        },
+        {
+          "type": "ready",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10
+        },
+        {
+          "type": "ready",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11
+        },
+        {
+          "type": "ready",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12
+        },
+        {
+          "type": "ready",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13
+        },
+        {
+          "type": "ready",
+          "wall": 3304,
+          "timeline": 3303,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "currentLayer": 2,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 6315,
+          "timeline": 6319,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false
+        }
+      ],
+      "pageErrors": [],
+      "failure": null
+    },
+    {
+      "batch": "control-probes",
+      "mode": "moderate",
+      "sourceSha256": "02e50b90ca8272f34db7ec1fcbcd96e70530894c30124c45e1004bd73cd2c41a",
+      "servedSourceSha256": "fcccd2f6cc9db5d1018441e15d2fae70dcca6b73ad0336e0b4b31598892e7436",
+      "instrumentationStripsExactly": true,
+      "intentionalCleanupFault": false,
+      "originalFourSecondAssertion": true,
+      "assertionWallMs": 3383,
+      "originalAssertionError": null,
+      "backgroundAttempt": null,
+      "browserVersion": null,
+      "beforeRedraw": null,
+      "afterRedraw": null,
+      "afterShow": {
+        "wall": 3311,
+        "timeline": 3306,
+        "visibility": "visible",
+        "manualOrigin": 3306,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "132": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3306": 8
+            },
+            "currentTimes": {
+              "0": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterAssertion": {
+        "wall": 6699,
+        "timeline": 6704,
+        "visibility": "visible",
+        "manualOrigin": 3306,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "132": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3306": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "final": {
+        "wall": 9707,
+        "timeline": 9712,
+        "visibility": "visible",
+        "manualOrigin": 3306,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "132": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3306": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "events": [
+        {
+          "type": "audit-installed",
+          "wall": 0,
+          "timeline": 5,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": false
+        },
+        {
+          "type": "media-change",
+          "wall": 15,
+          "timeline": 5,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 146,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "samePuzzle": false
+        },
+        {
+          "type": "clear-call",
+          "wall": 146,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 152,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 152,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 154,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 132,
+          "number": 1
+        },
+        {
+          "type": "inserted",
+          "wall": 155,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 155,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1
+        },
+        {
+          "type": "ready",
+          "wall": 155,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2
+        },
+        {
+          "type": "ready",
+          "wall": 155,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3
+        },
+        {
+          "type": "ready",
+          "wall": 155,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4
+        },
+        {
+          "type": "ready",
+          "wall": 155,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5
+        },
+        {
+          "type": "ready",
+          "wall": 155,
+          "timeline": 132,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6
+        },
+        {
+          "type": "mount-call",
+          "wall": 2022,
+          "timeline": 2021,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 2036,
+          "timeline": 2021,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 2036,
+          "timeline": 2021,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "finished",
+          "wall": 3133,
+          "timeline": 3137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3133,
+          "timeline": 3137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3133,
+          "timeline": 3137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3133,
+          "timeline": 3137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3133,
+          "timeline": 3137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3133,
+          "timeline": 3137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 3133,
+          "timeline": 3137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "currentLayer": 1,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 3133,
+          "timeline": 3137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 3134,
+          "timeline": 3137,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 3305,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2",
+            "o4"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 3305,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 3306,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 3306,
+          "number": 2
+        },
+        {
+          "type": "moderate-start",
+          "wall": 3306,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 3307,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 3307,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7
+        },
+        {
+          "type": "ready",
+          "wall": 3307,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8
+        },
+        {
+          "type": "ready",
+          "wall": 3307,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9
+        },
+        {
+          "type": "ready",
+          "wall": 3307,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10
+        },
+        {
+          "type": "ready",
+          "wall": 3307,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11
+        },
+        {
+          "type": "ready",
+          "wall": 3307,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12
+        },
+        {
+          "type": "ready",
+          "wall": 3307,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13
+        },
+        {
+          "type": "ready",
+          "wall": 3307,
+          "timeline": 3306,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14
+        },
+        {
+          "type": "finished",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "currentLayer": 2,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 6316,
+          "timeline": 6320,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false
+        },
+        {
+          "type": "moderate-end",
+          "wall": 9307,
+          "timeline": 9312,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false
+        }
+      ],
+      "pageErrors": [],
+      "failure": null
+    },
+    {
+      "batch": "final-probes",
+      "mode": "busy",
+      "sourceSha256": "02e50b90ca8272f34db7ec1fcbcd96e70530894c30124c45e1004bd73cd2c41a",
+      "servedSourceSha256": "fcccd2f6cc9db5d1018441e15d2fae70dcca6b73ad0336e0b4b31598892e7436",
+      "instrumentationStripsExactly": true,
+      "intentionalCleanupFault": false,
+      "originalFourSecondAssertion": false,
+      "assertionWallMs": 4002,
+      "originalAssertionError": "expect(locator).toHaveCount(expected) failed\n\nLocator:  locator('#map .place-label')\nExpected: 0\nReceived: 4\nTimeout:  4000ms\n\nCall log:\n  - Expect \"toHaveCount\" locator('#map .place-label') with timeout 4000ms\n  - waiting for locator('#map .place-label')\n    9 × locator resolved to 4 elements\n      - unexpected value \"4\"\n",
+      "backgroundAttempt": null,
+      "browserVersion": "27.2",
+      "beforeRedraw": null,
+      "afterRedraw": null,
+      "afterShow": {
+        "wall": 3307,
+        "timeline": 3304,
+        "visibility": "visible",
+        "manualOrigin": 3303,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "121": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3304": 8
+            },
+            "currentTimes": {
+              "0": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterAssertion": {
+        "wall": 8005,
+        "timeline": 5802,
+        "visibility": "visible",
+        "manualOrigin": 3303,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "121": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3304": 8
+            },
+            "currentTimes": {
+              "2498": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "final": {
+        "wall": 11013,
+        "timeline": 11019,
+        "visibility": "visible",
+        "manualOrigin": 3303,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "121": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3304": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "events": [
+        {
+          "type": "audit-installed",
+          "wall": 0,
+          "timeline": 6,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": false
+        },
+        {
+          "type": "media-change",
+          "wall": 13,
+          "timeline": 6,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 145,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "samePuzzle": false
+        },
+        {
+          "type": "clear-call",
+          "wall": 145,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 154,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 154,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 156,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 121,
+          "number": 1
+        },
+        {
+          "type": "inserted",
+          "wall": 157,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5
+        },
+        {
+          "type": "ready",
+          "wall": 157,
+          "timeline": 121,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6
+        },
+        {
+          "type": "mount-call",
+          "wall": 2138,
+          "timeline": 2135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 2152,
+          "timeline": 2135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 2152,
+          "timeline": 2135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "finished",
+          "wall": 3130,
+          "timeline": 3135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3130,
+          "timeline": 3135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3130,
+          "timeline": 3135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3130,
+          "timeline": 3135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3130,
+          "timeline": 3135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3130,
+          "timeline": 3135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 3130,
+          "timeline": 3135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "currentLayer": 1,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 3130,
+          "timeline": 3135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 3131,
+          "timeline": 3135,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 3302,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2",
+            "o4"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 3302,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 3304,
+          "number": 2
+        },
+        {
+          "type": "inserted",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7
+        },
+        {
+          "type": "ready",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8
+        },
+        {
+          "type": "ready",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9
+        },
+        {
+          "type": "ready",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10
+        },
+        {
+          "type": "ready",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11
+        },
+        {
+          "type": "ready",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12
+        },
+        {
+          "type": "ready",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13
+        },
+        {
+          "type": "ready",
+          "wall": 3303,
+          "timeline": 3304,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14
+        },
+        {
+          "type": "busy-begin",
+          "wall": 5804,
+          "timeline": 5802,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "state": {
+            "wall": 5804,
+            "timeline": 5802,
+            "visibility": "visible",
+            "manualOrigin": 3303,
+            "media": true,
+            "labels": 4,
+            "currentLayers": [
+              2
+            ],
+            "tracksByLayer": [
+              {
+                "layer": 1,
+                "trackIds": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6
+                ],
+                "durations": {
+                  "3000": 6
+                },
+                "startTimes": {
+                  "121": 6
+                },
+                "currentTimes": {
+                  "3000": 6
+                },
+                "playStates": {
+                  "finished": 6
+                },
+                "pendingCount": 0,
+                "connectedCount": 0,
+                "promises": {
+                  "fulfilled": 6
+                },
+                "rejectionErrors": {}
+              },
+              {
+                "layer": 2,
+                "trackIds": [
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14
+                ],
+                "durations": {
+                  "3000": 8
+                },
+                "startTimes": {
+                  "3304": 8
+                },
+                "currentTimes": {
+                  "2498": 8
+                },
+                "playStates": {
+                  "running": 8
+                },
+                "pendingCount": 0,
+                "connectedCount": 8,
+                "promises": {
+                  "pending": 8
+                },
+                "rejectionErrors": {}
+              }
+            ]
+          }
+        },
+        {
+          "type": "busy-end",
+          "wall": 8005,
+          "timeline": 5802,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "state": {
+            "wall": 8004,
+            "timeline": 5802,
+            "visibility": "visible",
+            "manualOrigin": 3303,
+            "media": true,
+            "labels": 4,
+            "currentLayers": [
+              2
+            ],
+            "tracksByLayer": [
+              {
+                "layer": 1,
+                "trackIds": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6
+                ],
+                "durations": {
+                  "3000": 6
+                },
+                "startTimes": {
+                  "121": 6
+                },
+                "currentTimes": {
+                  "3000": 6
+                },
+                "playStates": {
+                  "finished": 6
+                },
+                "pendingCount": 0,
+                "connectedCount": 0,
+                "promises": {
+                  "fulfilled": 6
+                },
+                "rejectionErrors": {}
+              },
+              {
+                "layer": 2,
+                "trackIds": [
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14
+                ],
+                "durations": {
+                  "3000": 8
+                },
+                "startTimes": {
+                  "3304": 8
+                },
+                "currentTimes": {
+                  "2498": 8
+                },
+                "playStates": {
+                  "running": 8
+                },
+                "pendingCount": 0,
+                "connectedCount": 8,
+                "promises": {
+                  "pending": 8
+                },
+                "rejectionErrors": {}
+              }
+            ]
+          }
+        },
+        {
+          "type": "finished",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "currentLayer": 2,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 8006,
+          "timeline": 8012,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false
+        }
+      ],
+      "pageErrors": [],
+      "failure": null
+    },
+    {
+      "batch": "final-probes",
+      "mode": "fault",
+      "sourceSha256": "02e50b90ca8272f34db7ec1fcbcd96e70530894c30124c45e1004bd73cd2c41a",
+      "servedSourceSha256": "75211ab88c5e43ba109d068aa396700d6c3cf8a41d4b375bf4a9bdc46de8b58c",
+      "instrumentationStripsExactly": false,
+      "intentionalCleanupFault": true,
+      "originalFourSecondAssertion": false,
+      "assertionWallMs": 4001,
+      "originalAssertionError": "expect(locator).toHaveCount(expected) failed\n\nLocator:  locator('#map .place-label')\nExpected: 0\nReceived: 4\nTimeout:  4000ms\n\nCall log:\n  - Expect \"toHaveCount\" locator('#map .place-label') with timeout 4000ms\n  - waiting for locator('#map .place-label')\n    12 × locator resolved to 4 elements\n       - unexpected value \"4\"\n",
+      "backgroundAttempt": null,
+      "browserVersion": "27.2",
+      "beforeRedraw": null,
+      "afterRedraw": null,
+      "afterShow": {
+        "wall": 3286,
+        "timeline": 3282,
+        "visibility": "visible",
+        "manualOrigin": 3282,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "117": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3282": 8
+            },
+            "currentTimes": {
+              "0": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterAssertion": {
+        "wall": 7292,
+        "timeline": 7296,
+        "visibility": "visible",
+        "manualOrigin": 3282,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "117": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3282": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "final": {
+        "wall": 10300,
+        "timeline": 10304,
+        "visibility": "visible",
+        "manualOrigin": 3282,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "117": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3282": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "events": [
+        {
+          "type": "audit-installed",
+          "wall": 0,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": false
+        },
+        {
+          "type": "media-change",
+          "wall": 12,
+          "timeline": 4,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 143,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "samePuzzle": false
+        },
+        {
+          "type": "clear-call",
+          "wall": 143,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 149,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 149,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 151,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 117,
+          "number": 1
+        },
+        {
+          "type": "inserted",
+          "wall": 152,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 152,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1
+        },
+        {
+          "type": "ready",
+          "wall": 152,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2
+        },
+        {
+          "type": "ready",
+          "wall": 152,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3
+        },
+        {
+          "type": "ready",
+          "wall": 152,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4
+        },
+        {
+          "type": "ready",
+          "wall": 152,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5
+        },
+        {
+          "type": "ready",
+          "wall": 152,
+          "timeline": 117,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6
+        },
+        {
+          "type": "mount-call",
+          "wall": 2006,
+          "timeline": 1997,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 2019,
+          "timeline": 1997,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 2019,
+          "timeline": 1997,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "finished",
+          "wall": 3126,
+          "timeline": 3130,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3126,
+          "timeline": 3130,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3126,
+          "timeline": 3130,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3126,
+          "timeline": 3130,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3126,
+          "timeline": 3130,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3126,
+          "timeline": 3130,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 3126,
+          "timeline": 3130,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "currentLayer": 1,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 3126,
+          "timeline": 3130,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 3127,
+          "timeline": 3130,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 3281,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2",
+            "o4"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 3281,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 3282,
+          "number": 2
+        },
+        {
+          "type": "inserted",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7
+        },
+        {
+          "type": "ready",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8
+        },
+        {
+          "type": "ready",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9
+        },
+        {
+          "type": "ready",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10
+        },
+        {
+          "type": "ready",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11
+        },
+        {
+          "type": "ready",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12
+        },
+        {
+          "type": "ready",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13
+        },
+        {
+          "type": "ready",
+          "wall": 3282,
+          "timeline": 3282,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14
+        },
+        {
+          "type": "finished",
+          "wall": 6293,
+          "timeline": 6297,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6293,
+          "timeline": 6297,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6293,
+          "timeline": 6297,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6293,
+          "timeline": 6297,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6293,
+          "timeline": 6297,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6293,
+          "timeline": 6297,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6293,
+          "timeline": 6297,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6293,
+          "timeline": 6297,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 6293,
+          "timeline": 6297,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "currentLayer": 2,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ],
+      "pageErrors": [],
+      "failure": null
+    },
+    {
+      "batch": "final-probes",
+      "mode": "passive",
+      "sourceSha256": "02e50b90ca8272f34db7ec1fcbcd96e70530894c30124c45e1004bd73cd2c41a",
+      "servedSourceSha256": "fcccd2f6cc9db5d1018441e15d2fae70dcca6b73ad0336e0b4b31598892e7436",
+      "instrumentationStripsExactly": true,
+      "intentionalCleanupFault": false,
+      "originalFourSecondAssertion": true,
+      "assertionWallMs": 3300,
+      "originalAssertionError": null,
+      "backgroundAttempt": null,
+      "browserVersion": "27.2",
+      "beforeRedraw": null,
+      "afterRedraw": null,
+      "afterShow": {
+        "wall": 3532,
+        "timeline": 3559,
+        "visibility": "visible",
+        "manualOrigin": 3501,
+        "media": true,
+        "labels": 4,
+        "currentLayers": [
+          2
+        ],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "344": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3515": 8
+            },
+            "currentTimes": {
+              "44": 8
+            },
+            "playStates": {
+              "running": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 8,
+            "promises": {
+              "pending": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "afterAssertion": {
+        "wall": 6838,
+        "timeline": 6865,
+        "visibility": "visible",
+        "manualOrigin": 3501,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "344": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3515": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "final": {
+        "wall": 9847,
+        "timeline": 9874,
+        "visibility": "visible",
+        "manualOrigin": 3501,
+        "media": true,
+        "labels": 0,
+        "currentLayers": [],
+        "tracksByLayer": [
+          {
+            "layer": 1,
+            "trackIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "durations": {
+              "3000": 6
+            },
+            "startTimes": {
+              "344": 6
+            },
+            "currentTimes": {
+              "3000": 6
+            },
+            "playStates": {
+              "finished": 6
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 6
+            },
+            "rejectionErrors": {}
+          },
+          {
+            "layer": 2,
+            "trackIds": [
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "durations": {
+              "3000": 8
+            },
+            "startTimes": {
+              "3515": 8
+            },
+            "currentTimes": {
+              "3000": 8
+            },
+            "playStates": {
+              "finished": 8
+            },
+            "pendingCount": 0,
+            "connectedCount": 0,
+            "promises": {
+              "fulfilled": 8
+            },
+            "rejectionErrors": {}
+          }
+        ]
+      },
+      "events": [
+        {
+          "type": "audit-installed",
+          "wall": 1,
+          "timeline": 28,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": false
+        },
+        {
+          "type": "media-change",
+          "wall": 218,
+          "timeline": 245,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "reduced": true
+        },
+        {
+          "type": "mount-call",
+          "wall": 317,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "samePuzzle": false
+        },
+        {
+          "type": "clear-call",
+          "wall": 317,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 328,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 328,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 332,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 344,
+          "number": 1
+        },
+        {
+          "type": "inserted",
+          "wall": 335,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 335,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1
+        },
+        {
+          "type": "ready",
+          "wall": 335,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2
+        },
+        {
+          "type": "ready",
+          "wall": 335,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3
+        },
+        {
+          "type": "ready",
+          "wall": 335,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4
+        },
+        {
+          "type": "ready",
+          "wall": 335,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5
+        },
+        {
+          "type": "ready",
+          "wall": 335,
+          "timeline": 344,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6
+        },
+        {
+          "type": "mount-call",
+          "wall": 2222,
+          "timeline": 2230,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "samePuzzle": true
+        },
+        {
+          "type": "removed",
+          "wall": 2232,
+          "timeline": 2230,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "inserted",
+          "wall": 2232,
+          "timeline": 2230,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "finished",
+          "wall": 3320,
+          "timeline": 3346,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 1,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3320,
+          "timeline": 3346,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 2,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3320,
+          "timeline": 3346,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 3,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3320,
+          "timeline": 3346,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 4,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3320,
+          "timeline": 3346,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 5,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 3320,
+          "timeline": 3346,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "track": 6,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 3320,
+          "timeline": 3346,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true,
+          "currentLayer": 1,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 3320,
+          "timeline": 3346,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 3320,
+          "timeline": 3346,
+          "visibility": "visible",
+          "layer": 1,
+          "connected": false
+        },
+        {
+          "type": "show-call",
+          "wall": 3499,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false,
+          "requested": [
+            "o1",
+            "o2",
+            "o4"
+          ],
+          "start": true
+        },
+        {
+          "type": "clear-call",
+          "wall": 3499,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": null,
+          "connected": false
+        },
+        {
+          "type": "configured",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "duration": 3000,
+          "reduced": true,
+          "startTime": 3515,
+          "number": 2
+        },
+        {
+          "type": "inserted",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "ready",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7
+        },
+        {
+          "type": "ready",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8
+        },
+        {
+          "type": "ready",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9
+        },
+        {
+          "type": "ready",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10
+        },
+        {
+          "type": "ready",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11
+        },
+        {
+          "type": "ready",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12
+        },
+        {
+          "type": "ready",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13
+        },
+        {
+          "type": "ready",
+          "wall": 3501,
+          "timeline": 3515,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14
+        },
+        {
+          "type": "finished",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 7,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 8,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 9,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 10,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 11,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 12,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 13,
+          "promise": 1
+        },
+        {
+          "type": "finished",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "track": 14,
+          "promise": 1
+        },
+        {
+          "type": "all-settled",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true,
+          "currentLayer": 2,
+          "done": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "type": "clear-call",
+          "wall": 6503,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": true
+        },
+        {
+          "type": "removed",
+          "wall": 6504,
+          "timeline": 6530,
+          "visibility": "visible",
+          "layer": 2,
+          "connected": false
+        }
+      ],
+      "pageErrors": [],
+      "failure": null
+    }
+  ],
+  "counterexampleRepetitions": [
+    {
+      "file": ".dev/pr123-cause/probes/busy.json",
+      "mode": "busy",
+      "originalFourSecondAssertion": false,
+      "finalLabels": 0
+    },
+    {
+      "file": ".dev/pr123-cause/control-probes/busy.json",
+      "mode": "busy",
+      "originalFourSecondAssertion": false,
+      "finalLabels": 0
+    },
+    {
+      "file": ".dev/pr123-cause/control-probes/fault.json",
+      "mode": "fault",
+      "originalFourSecondAssertion": false,
+      "finalLabels": 4
+    },
+    {
+      "file": ".dev/pr123-cause/final-probes/busy.json",
+      "mode": "busy",
+      "originalFourSecondAssertion": false,
+      "finalLabels": 0
+    },
+    {
+      "file": ".dev/pr123-cause/final-probes/fault.json",
+      "mode": "fault",
+      "originalFourSecondAssertion": false,
+      "finalLabels": 4
+    }
+  ],
+  "noProductOrCanonicalTestChanges": true
+}

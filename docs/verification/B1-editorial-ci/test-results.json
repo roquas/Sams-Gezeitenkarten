@@ -1,0 +1,2336 @@
+{
+  "originalHead": "cdbd30e31555d49e5da4f23e659a086fc404bdff",
+  "originalRun": 45031811492,
+  "originalProductTreeListingSha256": "899c0a63b899c320a81344270bbf8e7c55133c821b6aa9286244359f56fef76b",
+  "productFilesUnchanged": true,
+  "retries": 0,
+  "newSkips": 0,
+  "timeoutChanges": false,
+  "deviceScaleFactorChanges": false,
+  "baselineCases": [
+    {
+      "project": "b1-webkit-desktop",
+      "title": "erasing all hours retains the independent overlay",
+      "status": "expected",
+      "durationMs": 5327,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "erasing all hours retains the independent overlay",
+      "status": "expected",
+      "durationMs": 3659,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "erasing all hours retains the independent overlay",
+      "status": "expected",
+      "durationMs": 3579,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing and illustrated sections remain readable at 1440px",
+      "status": "expected",
+      "durationMs": 4002,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing and illustrated sections remain readable at 1440px",
+      "status": "expected",
+      "durationMs": 4389,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing and illustrated sections remain readable at 1440px",
+      "status": "expected",
+      "durationMs": 4167,
+      "retry": 0
+    }
+  ],
+  "correctedCases": [
+    {
+      "project": "b1-chromium",
+      "title": "erasing all hours retains the independent overlay",
+      "status": "expected",
+      "durationMs": 1264,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "rules incorporate all editorial corrections without inventing a global display switch",
+      "status": "expected",
+      "durationMs": 753,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "erasing all hours retains the independent overlay",
+      "status": "expected",
+      "durationMs": 1220,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "rules incorporate all editorial corrections without inventing a global display switch",
+      "status": "expected",
+      "durationMs": 1489,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "erasing all hours retains the independent overlay",
+      "status": "expected",
+      "durationMs": 4601,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "rules incorporate all editorial corrections without inventing a global display switch",
+      "status": "expected",
+      "durationMs": 2197,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "erasing all hours retains the independent overlay",
+      "status": "expected",
+      "durationMs": 2148,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "rules incorporate all editorial corrections without inventing a global display switch",
+      "status": "expected",
+      "durationMs": 1178,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+      "status": "expected",
+      "durationMs": 2175,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+      "status": "expected",
+      "durationMs": 2311,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+      "status": "expected",
+      "durationMs": 4325,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+      "status": "expected",
+      "durationMs": 3079,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing remains readable at 320px",
+      "status": "expected",
+      "durationMs": 281,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing hours figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 346,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing marks figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 342,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing tools figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 330,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing route figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 319,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "game tools figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 794,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing remains readable at 320px",
+      "status": "expected",
+      "durationMs": 326,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing hours figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 430,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing marks figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 427,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing tools figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 398,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing route figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 436,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "game tools figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 784,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing remains readable at 320px",
+      "status": "expected",
+      "durationMs": 741,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing hours figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 660,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing marks figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 739,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing tools figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 784,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing route figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 1129,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "game tools figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 1161,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing remains readable at 320px",
+      "status": "expected",
+      "durationMs": 846,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing hours figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 1053,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing marks figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 756,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing tools figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 725,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing route figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 742,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "game tools figure remains readable at 320px",
+      "status": "expected",
+      "durationMs": 1146,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing remains readable at 390px",
+      "status": "expected",
+      "durationMs": 442,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing hours figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 403,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing marks figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 382,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing tools figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 368,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing route figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 330,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "game tools figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 833,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing remains readable at 390px",
+      "status": "expected",
+      "durationMs": 436,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing hours figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 423,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing marks figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 495,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing tools figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 579,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing route figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 508,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "game tools figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 1042,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing remains readable at 390px",
+      "status": "expected",
+      "durationMs": 615,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing hours figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 714,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing marks figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 654,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing tools figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 609,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing route figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 676,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "game tools figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 1116,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing remains readable at 390px",
+      "status": "expected",
+      "durationMs": 796,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing hours figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 955,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing marks figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 679,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing tools figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 595,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing route figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 613,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "game tools figure remains readable at 390px",
+      "status": "expected",
+      "durationMs": 900,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 417,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing hours figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 453,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing marks figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 434,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing tools figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 444,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "landing route figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 479,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "game tools figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 813,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1391,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing hours figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1258,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing marks figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1757,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing tools figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1349,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "landing route figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1508,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "game tools figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 2298,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1047,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing hours figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1846,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing marks figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1640,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing tools figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1641,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "landing route figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1358,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "game tools figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 3061,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 677,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing hours figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 790,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing marks figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 817,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing tools figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 820,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "landing route figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1076,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "game tools figure remains readable at 1440px",
+      "status": "expected",
+      "durationMs": 1852,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "durationMs": 1520,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "durationMs": 1638,
+      "retry": 0
+    },
+    {
+      "project": "b1-chromium",
+      "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "durationMs": 692,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "durationMs": 2444,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "durationMs": 1949,
+      "retry": 0
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "durationMs": 1247,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "durationMs": 3994,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "durationMs": 4708,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "durationMs": 1549,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "durationMs": 2077,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "durationMs": 2131,
+      "retry": 0
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "durationMs": 1190,
+      "retry": 0
+    }
+  ],
+  "rendererStartupCorrection": {
+    "onlyAdditionalTestCodeChange": "Use existing empty WebKit renderer worker fixture",
+    "productFilesUnchanged": true,
+    "fullAffectedFilesAndStartCases": [
+      {
+        "project": "b1-chromium",
+        "title": "distance-two notes retain the independent overlay",
+        "status": "expected",
+        "durationMs": 1370,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "overwriting notes with yes retains the independent overlay",
+        "status": "expected",
+        "durationMs": 809,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "overwriting notes with no retains the independent overlay",
+        "status": "expected",
+        "durationMs": 851,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "overwriting notes with erase retains the independent overlay",
+        "status": "expected",
+        "durationMs": 1088,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "erasing all hours retains the independent overlay",
+        "status": "expected",
+        "durationMs": 814,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "route, undo and reload retain the independent overlay",
+        "status": "expected",
+        "durationMs": 1037,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "keyboard origin changes preserve editing semantics",
+        "status": "expected",
+        "durationMs": 823,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "cancelled selection, off and reset preserve editing semantics",
+        "status": "expected",
+        "durationMs": 853,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "rules incorporate all editorial corrections without inventing a global display switch",
+        "status": "expected",
+        "durationMs": 658,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "distance-two notes retain the independent overlay",
+        "status": "expected",
+        "durationMs": 1273,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "overwriting notes with yes retains the independent overlay",
+        "status": "expected",
+        "durationMs": 1020,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "overwriting notes with no retains the independent overlay",
+        "status": "expected",
+        "durationMs": 998,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "overwriting notes with erase retains the independent overlay",
+        "status": "expected",
+        "durationMs": 1074,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "erasing all hours retains the independent overlay",
+        "status": "expected",
+        "durationMs": 1090,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "route, undo and reload retain the independent overlay",
+        "status": "expected",
+        "durationMs": 1452,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "keyboard origin changes preserve editing semantics",
+        "status": "expected",
+        "durationMs": 1215,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "cancelled selection, off and reset preserve editing semantics",
+        "status": "expected",
+        "durationMs": 1188,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "rules incorporate all editorial corrections without inventing a global display switch",
+        "status": "expected",
+        "durationMs": 677,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "distance-two notes retain the independent overlay",
+        "status": "expected",
+        "durationMs": 3665,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "overwriting notes with yes retains the independent overlay",
+        "status": "expected",
+        "durationMs": 3247,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "overwriting notes with no retains the independent overlay",
+        "status": "expected",
+        "durationMs": 2609,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "overwriting notes with erase retains the independent overlay",
+        "status": "expected",
+        "durationMs": 2356,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "erasing all hours retains the independent overlay",
+        "status": "expected",
+        "durationMs": 2256,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "route, undo and reload retain the independent overlay",
+        "status": "expected",
+        "durationMs": 2368,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "keyboard origin changes preserve editing semantics",
+        "status": "expected",
+        "durationMs": 2555,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "cancelled selection, off and reset preserve editing semantics",
+        "status": "expected",
+        "durationMs": 3031,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "rules incorporate all editorial corrections without inventing a global display switch",
+        "status": "expected",
+        "durationMs": 1362,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "distance-two notes retain the independent overlay",
+        "status": "expected",
+        "durationMs": 1387,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "overwriting notes with yes retains the independent overlay",
+        "status": "expected",
+        "durationMs": 947,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "overwriting notes with no retains the independent overlay",
+        "status": "expected",
+        "durationMs": 926,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "overwriting notes with erase retains the independent overlay",
+        "status": "expected",
+        "durationMs": 893,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "erasing all hours retains the independent overlay",
+        "status": "expected",
+        "durationMs": 1053,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "route, undo and reload retain the independent overlay",
+        "status": "expected",
+        "durationMs": 1404,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "keyboard origin changes preserve editing semantics",
+        "status": "expected",
+        "durationMs": 1050,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "cancelled selection, off and reset preserve editing semantics",
+        "status": "expected",
+        "durationMs": 1131,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "rules incorporate all editorial corrections without inventing a global display switch",
+        "status": "expected",
+        "durationMs": 760,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 320px",
+        "status": "expected",
+        "durationMs": 453,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 320px",
+        "status": "expected",
+        "durationMs": 825,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 320px",
+        "status": "expected",
+        "durationMs": 1095,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 320px",
+        "status": "expected",
+        "durationMs": 677,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 360px",
+        "status": "expected",
+        "durationMs": 441,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 360px",
+        "status": "expected",
+        "durationMs": 896,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 360px",
+        "status": "expected",
+        "durationMs": 1329,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 360px",
+        "status": "expected",
+        "durationMs": 757,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 390px",
+        "status": "expected",
+        "durationMs": 463,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 390px",
+        "status": "expected",
+        "durationMs": 874,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 390px",
+        "status": "expected",
+        "durationMs": 1099,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 390px",
+        "status": "expected",
+        "durationMs": 744,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 430px",
+        "status": "expected",
+        "durationMs": 467,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 430px",
+        "status": "expected",
+        "durationMs": 1010,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 430px",
+        "status": "expected",
+        "durationMs": 1067,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 430px",
+        "status": "expected",
+        "durationMs": 822,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 540px",
+        "status": "expected",
+        "durationMs": 480,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 540px",
+        "status": "expected",
+        "durationMs": 1107,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 540px",
+        "status": "expected",
+        "durationMs": 1238,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 540px",
+        "status": "expected",
+        "durationMs": 779,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 580px",
+        "status": "expected",
+        "durationMs": 486,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 580px",
+        "status": "expected",
+        "durationMs": 1206,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 580px",
+        "status": "expected",
+        "durationMs": 1164,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 580px",
+        "status": "expected",
+        "durationMs": 944,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 600px",
+        "status": "expected",
+        "durationMs": 469,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 600px",
+        "status": "expected",
+        "durationMs": 1150,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 600px",
+        "status": "expected",
+        "durationMs": 1139,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 600px",
+        "status": "expected",
+        "durationMs": 750,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 620px",
+        "status": "expected",
+        "durationMs": 473,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 620px",
+        "status": "expected",
+        "durationMs": 1276,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 620px",
+        "status": "expected",
+        "durationMs": 1049,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 620px",
+        "status": "expected",
+        "durationMs": 802,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 768px",
+        "status": "expected",
+        "durationMs": 527,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 768px",
+        "status": "expected",
+        "durationMs": 1459,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 768px",
+        "status": "expected",
+        "durationMs": 1221,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 768px",
+        "status": "expected",
+        "durationMs": 774,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 820px",
+        "status": "expected",
+        "durationMs": 578,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 820px",
+        "status": "expected",
+        "durationMs": 1628,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 820px",
+        "status": "expected",
+        "durationMs": 1327,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 820px",
+        "status": "expected",
+        "durationMs": 936,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 900px",
+        "status": "expected",
+        "durationMs": 572,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 900px",
+        "status": "expected",
+        "durationMs": 1304,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 900px",
+        "status": "expected",
+        "durationMs": 1096,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 900px",
+        "status": "expected",
+        "durationMs": 852,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 1024px",
+        "status": "expected",
+        "durationMs": 538,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 1024px",
+        "status": "expected",
+        "durationMs": 1433,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 1024px",
+        "status": "expected",
+        "durationMs": 1040,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 1024px",
+        "status": "expected",
+        "durationMs": 708,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 1280px",
+        "status": "expected",
+        "durationMs": 639,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 1280px",
+        "status": "expected",
+        "durationMs": 1808,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 1280px",
+        "status": "expected",
+        "durationMs": 1149,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 1280px",
+        "status": "expected",
+        "durationMs": 815,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 1440px",
+        "status": "expected",
+        "durationMs": 615,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "lower rail centers correctly with transparent buttons at 1440px",
+        "status": "expected",
+        "durationMs": 2090,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "lower rail centers correctly with transparent buttons at 1440px",
+        "status": "expected",
+        "durationMs": 1190,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "lower rail centers correctly with transparent buttons at 1440px",
+        "status": "expected",
+        "durationMs": 898,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "actual rail screenshot at 1440px",
+        "status": "expected",
+        "durationMs": 690,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "actual rail screenshot at 1440px",
+        "status": "expected",
+        "durationMs": 2009,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "actual rail screenshot at 1440px",
+        "status": "expected",
+        "durationMs": 1461,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "actual rail screenshot at 1440px",
+        "status": "expected",
+        "durationMs": 913,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "actual rail screenshot at 1024px",
+        "status": "expected",
+        "durationMs": 636,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "actual rail screenshot at 1024px",
+        "status": "expected",
+        "durationMs": 1341,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "actual rail screenshot at 1024px",
+        "status": "expected",
+        "durationMs": 1052,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "actual rail screenshot at 1024px",
+        "status": "expected",
+        "durationMs": 950,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "actual rail screenshot at 900px",
+        "status": "expected",
+        "durationMs": 571,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "actual rail screenshot at 900px",
+        "status": "expected",
+        "durationMs": 1186,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "actual rail screenshot at 900px",
+        "status": "expected",
+        "durationMs": 970,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "actual rail screenshot at 900px",
+        "status": "expected",
+        "durationMs": 1073,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "actual rail screenshot at 768px",
+        "status": "expected",
+        "durationMs": 607,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "actual rail screenshot at 768px",
+        "status": "expected",
+        "durationMs": 1227,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "actual rail screenshot at 768px",
+        "status": "expected",
+        "durationMs": 1365,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "actual rail screenshot at 768px",
+        "status": "expected",
+        "durationMs": 1339,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "actual rail screenshot at 540px",
+        "status": "expected",
+        "durationMs": 552,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "actual rail screenshot at 540px",
+        "status": "expected",
+        "durationMs": 984,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "actual rail screenshot at 540px",
+        "status": "expected",
+        "durationMs": 1108,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "actual rail screenshot at 540px",
+        "status": "expected",
+        "durationMs": 1146,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "actual rail screenshot at 390px",
+        "status": "expected",
+        "durationMs": 523,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "actual rail screenshot at 390px",
+        "status": "expected",
+        "durationMs": 836,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "actual rail screenshot at 390px",
+        "status": "expected",
+        "durationMs": 976,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "actual rail screenshot at 390px",
+        "status": "expected",
+        "durationMs": 1208,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "actual rail screenshot at 320px",
+        "status": "expected",
+        "durationMs": 494,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "actual rail screenshot at 320px",
+        "status": "expected",
+        "durationMs": 752,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "actual rail screenshot at 320px",
+        "status": "expected",
+        "durationMs": 969,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "actual rail screenshot at 320px",
+        "status": "expected",
+        "durationMs": 1274,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "actual desktop GUI screenshot",
+        "status": "expected",
+        "durationMs": 712,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "actual desktop GUI screenshot",
+        "status": "expected",
+        "durationMs": 2046,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "actual desktop GUI screenshot",
+        "status": "expected",
+        "durationMs": 1527,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "actual desktop GUI screenshot",
+        "status": "expected",
+        "durationMs": 2436,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "actual mobile overlay and rules screenshots",
+        "status": "expected",
+        "durationMs": 765,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "actual mobile overlay and rules screenshots",
+        "status": "expected",
+        "durationMs": 859,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "actual mobile overlay and rules screenshots",
+        "status": "expected",
+        "durationMs": 1987,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "actual mobile overlay and rules screenshots",
+        "status": "expected",
+        "durationMs": 1875,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "shared coordinate preparation is safe, idempotent, complete and preserves markup and attributes",
+        "status": "expected",
+        "durationMs": 332,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+        "status": "expected",
+        "durationMs": 1603,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "unselected direct game entry uses the six-hour default",
+        "status": "expected",
+        "durationMs": 596,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "published six-hour puzzle accepts its unique route and exports its exact identity",
+        "status": "expected",
+        "durationMs": 943,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "shared coordinate preparation is safe, idempotent, complete and preserves markup and attributes",
+        "status": "expected",
+        "durationMs": 335,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+        "status": "expected",
+        "durationMs": 1498,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "unselected direct game entry uses the six-hour default",
+        "status": "expected",
+        "durationMs": 738,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "published six-hour puzzle accepts its unique route and exports its exact identity",
+        "status": "expected",
+        "durationMs": 1037,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "shared coordinate preparation is safe, idempotent, complete and preserves markup and attributes",
+        "status": "expected",
+        "durationMs": 650,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+        "status": "expected",
+        "durationMs": 4021,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "unselected direct game entry uses the six-hour default",
+        "status": "expected",
+        "durationMs": 1310,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "published six-hour puzzle accepts its unique route and exports its exact identity",
+        "status": "expected",
+        "durationMs": 3477,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "shared coordinate preparation is safe, idempotent, complete and preserves markup and attributes",
+        "status": "expected",
+        "durationMs": 836,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "selection and game use identical six-hour rules, real figures and symbol coordinates; switching scopes the hour count",
+        "status": "expected",
+        "durationMs": 3253,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "unselected direct game entry uses the six-hour default",
+        "status": "expected",
+        "durationMs": 1304,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "published six-hour puzzle accepts its unique route and exports its exact identity",
+        "status": "expected",
+        "durationMs": 1615,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing remains readable at 320px",
+        "status": "expected",
+        "durationMs": 254,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing hours figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 276,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing marks figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 283,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing tools figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 287,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing route figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 284,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "game tools figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 594,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing remains readable at 320px",
+        "status": "expected",
+        "durationMs": 327,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing hours figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 363,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing marks figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 378,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing tools figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 388,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing route figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 380,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "game tools figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 691,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing remains readable at 320px",
+        "status": "expected",
+        "durationMs": 647,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing hours figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 816,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing marks figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 767,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing tools figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 766,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing route figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 914,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "game tools figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 1232,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing remains readable at 320px",
+        "status": "expected",
+        "durationMs": 857,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing hours figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 651,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing marks figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 702,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing tools figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 631,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing route figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 716,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "game tools figure remains readable at 320px",
+        "status": "expected",
+        "durationMs": 1100,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing remains readable at 390px",
+        "status": "expected",
+        "durationMs": 232,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing hours figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 283,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing marks figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 302,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing tools figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 304,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing route figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 288,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "game tools figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 570,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing remains readable at 390px",
+        "status": "expected",
+        "durationMs": 384,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing hours figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 359,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing marks figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 403,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing tools figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 412,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing route figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 408,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "game tools figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 779,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing remains readable at 390px",
+        "status": "expected",
+        "durationMs": 720,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing hours figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 696,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing marks figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 844,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing tools figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 1301,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing route figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 753,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "game tools figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 1175,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing remains readable at 390px",
+        "status": "expected",
+        "durationMs": 664,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing hours figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 724,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing marks figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 607,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing tools figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 665,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing route figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 756,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "game tools figure remains readable at 390px",
+        "status": "expected",
+        "durationMs": 1219,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 392,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing hours figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 428,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing marks figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 412,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing tools figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 417,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "landing route figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 437,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "game tools figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 683,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1183,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing hours figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 941,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing marks figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1032,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing tools figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1070,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "landing route figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1218,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "game tools figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 2099,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1202,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing hours figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1477,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing marks figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1533,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing tools figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1461,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "landing route figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1408,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "game tools figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 2030,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 942,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing hours figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1040,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing marks figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1230,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing tools figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1195,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "landing route figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1166,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "game tools figure remains readable at 1440px",
+        "status": "expected",
+        "durationMs": 1902,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+        "status": "expected",
+        "durationMs": 1210,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+        "status": "expected",
+        "durationMs": 1216,
+        "retry": 0
+      },
+      {
+        "project": "b1-chromium",
+        "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+        "status": "expected",
+        "durationMs": 523,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+        "status": "expected",
+        "durationMs": 1352,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+        "status": "expected",
+        "durationMs": 1372,
+        "retry": 0
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+        "status": "expected",
+        "durationMs": 804,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+        "status": "expected",
+        "durationMs": 4046,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+        "status": "expected",
+        "durationMs": 3726,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+        "status": "expected",
+        "durationMs": 908,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+        "status": "expected",
+        "durationMs": 2231,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+        "status": "expected",
+        "durationMs": 1723,
+        "retry": 0
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+        "status": "expected",
+        "durationMs": 707,
+        "retry": 0
+      }
+    ],
+    "passed": 228,
+    "failed": 0,
+    "skipped": 0,
+    "retries": 0,
+    "timeoutChanges": false,
+    "deviceScaleFactorChanges": false
+  }
+}

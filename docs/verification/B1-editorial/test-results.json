@@ -1,0 +1,282 @@
+{
+  "baseCommit": "63092cacd251229ec6adc2552e1a821c3a5b4545",
+  "date": "2026-11-22",
+  "node": "v22.23.3",
+  "targetedNode": {
+    "passed": 46,
+    "failed": 0
+  },
+  "publicPuzzles": {
+    "unique": 2
+  },
+  "browserMatrix": {
+    "profiles": [
+      "b1-chromium",
+      "b1-mobile-chromium",
+      "b1-webkit-desktop",
+      "b1-webkit-mobile"
+    ],
+    "counts": {
+      "expected": 166,
+      "unexpected": 10,
+      "skipped": 4
+    },
+    "singleCleanRun": false,
+    "failedCases": [
+      {
+        "project": "b1-chromium",
+        "title": "hour selection changes only direction pigment and number emphasis; radar and base are stable",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Test timeout of 30000ms exceeded."
+      },
+      {
+        "project": "b1-chromium",
+        "title": "visual K-final six-last-no-numbers",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Test timeout of 30000ms exceeded."
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "visual K-final six-first",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Test timeout of 30000ms exceeded."
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "route editing, blocked cells, keyboard focus, undo and restoration remain intact",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Test timeout of 30000ms exceeded."
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "visual K-final six-middle-paper",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Test timeout of 30000ms exceeded."
+      },
+      {
+        "project": "b1-chromium",
+        "title": "manual action shows each named instance once, including passable hexes, excludes unnamed and flavor art",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 1\n\n@@ -1,9 +1,9 @@\n  Array [\n    Object {\n      \"id\": \"o1\",\n-     \"x\": 178.74,\n+     \"x\": 178.74000549316406,\n      \"y\": 328,\n    },\n    Object {\n      \"id\": \"o2\",\n      \"x\": 224,"
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "manual action shows each named instance once, including passable hexes, excludes unnamed and flavor art",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 1\n\n@@ -1,9 +1,9 @@\n  Array [\n    Object {\n      \"id\": \"o1\",\n-     \"x\": 178.74,\n+     \"x\": 178.74000549316406,\n      \"y\": 328,\n    },\n    Object {\n      \"id\": \"o2\",\n      \"x\": 224,"
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "manual action shows each named instance once, including passable hexes, excludes unnamed and flavor art",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 1\n\n@@ -1,9 +1,9 @@\n  Array [\n    Object {\n      \"id\": \"o1\",\n-     \"x\": 178.74,\n+     \"x\": 178.74000549316406,\n      \"y\": 328,\n    },\n    Object {\n      \"id\": \"o2\",\n      \"x\": 224,"
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "manual action shows each named instance once, including passable hexes, excludes unnamed and flavor art",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 1\n\n@@ -1,9 +1,9 @@\n  Array [\n    Object {\n      \"id\": \"o1\",\n-     \"x\": 178.74,\n+     \"x\": 178.74000549316406,\n      \"y\": 328,\n    },\n    Object {\n      \"id\": \"o2\",\n      \"x\": 224,"
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "compact controls and centered radar in all states at 320px",
+        "status": "unexpected",
+        "retry": 0,
+        "error": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+      }
+    ]
+  },
+  "browserFollowup": {
+    "workers": 1,
+    "counts": {
+      "expected": 10
+    },
+    "cases": [
+      {
+        "project": "b1-chromium",
+        "title": "hour selection changes only direction pigment and number emphasis; radar and base are stable",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      },
+      {
+        "project": "b1-chromium",
+        "title": "visual K-final six-last-no-numbers",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "visual K-final six-first",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "route editing, blocked cells, keyboard focus, undo and restoration remain intact",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "visual K-final six-middle-paper",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      },
+      {
+        "project": "b1-chromium",
+        "title": "manual action shows each named instance once, including passable hexes, excludes unnamed and flavor art",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "manual action shows each named instance once, including passable hexes, excludes unnamed and flavor art",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      },
+      {
+        "project": "b1-webkit-desktop",
+        "title": "manual action shows each named instance once, including passable hexes, excludes unnamed and flavor art",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      },
+      {
+        "project": "b1-webkit-mobile",
+        "title": "manual action shows each named instance once, including passable hexes, excludes unnamed and flavor art",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      },
+      {
+        "project": "b1-mobile-chromium",
+        "title": "compact controls and centered radar in all states at 320px",
+        "status": "expected",
+        "retry": 0,
+        "error": ""
+      }
+    ]
+  },
+  "browserUnion": {
+    "distinctPassed": 176,
+    "existingSkips": 4
+  },
+  "lifecycleIsolated": {
+    "passed": 4,
+    "retries": 0
+  },
+  "unitBaselineComparison": {
+    "base": {
+      "passed": 374,
+      "failed": 94
+    },
+    "changed": {
+      "passed": 374,
+      "failed": 94
+    },
+    "sameFailingTestNames": true,
+    "sortedFailureNamesSha256": "c7058d2b42f1378bdf2faf879224f1803ed870452054789cd28fe7f49a8a3f40"
+  },
+  "newStartCases": [
+    {
+      "project": "b1-chromium",
+      "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-chromium",
+      "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-chromium",
+      "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-mobile-chromium",
+      "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-webkit-desktop",
+      "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "named single-hex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "named multihex start has one Start plaque across initial, manual, clue and puzzle changes",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    },
+    {
+      "project": "b1-webkit-mobile",
+      "title": "a multihex place surrounding the start keeps its name anchored outside the start hex",
+      "status": "expected",
+      "retry": 0,
+      "error": ""
+    }
+  ]
+}
