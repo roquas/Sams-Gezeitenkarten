@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "places": {
+    "world.tesoro": {
+      "name": "Tesoro",
+      "source": "docs/TESORO-WORLD-REFERENCE.md",
+      "assetIds": [
+        "land-coast.settlement.h4.tesoro.v4"
+      ]
+    }
+  }
+}

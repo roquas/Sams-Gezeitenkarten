@@ -139,3 +139,6 @@ Der separate [F01-Vertrag](FLAVOR-PIPELINE-F01.md) bindet Originalhinweise und
 Präsentation für spätere Offline-Generierung, Einzelhinweisprüfung und Reparatur.
 Er erweitert weder dieses Rätselschema noch die Laufzeitlogik. Freie Texte
 bleiben ohne vollständigen semantischen Nachweis `UNCERTAIN`.
+
+Die [F02-A-Kartenbibliothek](FLAVOR-CARD-LIBRARY-F02-A.md) speichert vollständige
+bebilderte Karten und reproduzierbar zugeordnete Namen separat vom Rätsel.

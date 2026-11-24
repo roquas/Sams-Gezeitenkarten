@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "key": "gk-illustrated-card-v1-sha256:e9181dc6e6d798c6b8dc690a663e8908ce94308997d7df506a8853dbcbf5cd44",
+  "map": {
+    "geometry": "even-row-offset-pointy-v1",
+    "grid": {
+      "columns": 5,
+      "rows": 5
+    },
+    "objects": [
+      {
+        "id": "geo-01",
+        "cells": [
+          "B1"
+        ],
+        "passable": true
+      },
+      {
+        "id": "geo-02",
+        "cells": [
+          "B4"
+        ],
+        "passable": true
+      },
+      {
+        "id": "geo-03",
+        "cells": [
+          "D1",
+          "D2",
+          "E1",
+          "E2"
+        ],
+        "passable": false
+      }
+    ]
+  },
+  "mapFingerprint": "gk-map-v2-sha256:de81b1b901905361b352c2fadce4778a2e490b626eec1370966d37af47d6019f",
+  "background": "sea-blue-01",
+  "assetPlacements": [
+    {
+      "id": "art-001",
+      "assetId": "sea-life.accent.h1.buoy.v1",
+      "anchor": "B1",
+      "objectId": "geo-01"
+    },
+    {
+      "id": "art-002",
+      "assetId": "sea-life.accent.h1.driftwood.v1",
+      "anchor": "B4",
+      "objectId": "geo-02"
+    },
+    {
+      "id": "art-003",
+      "assetId": "land-coast.settlement.h4.tesoro.v4",
+      "anchor": "D1",
+      "objectId": "geo-03"
+    }
+  ],
+  "resources": {
+    "background": {
+      "id": "sea-blue-01",
+      "imageSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+    },
+    "assets": [
+      {
+        "assetId": "land-coast.settlement.h4.tesoro.v4",
+        "imageSha256": "5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61",
+        "revisionSha256": "eedc3802781d932fe96c2261adccd9b98f0564ebccde038873b85e9f944fa5c8"
+      },
+      {
+        "assetId": "sea-life.accent.h1.buoy.v1",
+        "imageSha256": "dc75de096edb1061a06c1c7224a7a8388ff85724d67d3abd9bdb9c50b5d925e5",
+        "revisionSha256": "e1785e9209c0e362f118cb4a6fec0626150722182e62daf89594260444c7e42c"
+      },
+      {
+        "assetId": "sea-life.accent.h1.driftwood.v1",
+        "imageSha256": "a224cc0693fe02f357085e86406d757696ff12a1b97181275145142fa74c02f9",
+        "revisionSha256": "e1785e9209c0e362f118cb4a6fec0626150722182e62daf89594260444c7e42c"
+      }
+    ]
+  },
+  "naming": {
+    "supplyVersion": "card-names-de-1",
+    "selectionVersion": "card-name-rank-1",
+    "supplySha256": "d2938ce096ee3c1a794fd34161c6614e133894f8cbae72964bd88f16a9e1b134",
+    "selectionSupply": {
+      "schemaVersion": 1,
+      "version": "card-names-de-1",
+      "selectionVersion": "card-name-rank-1",
+      "status": "new-game-proposals-not-podcast-canon",
+      "pools": {
+        "buoy": {
+          "motif": "buoy",
+          "names": [
+            "Klingelort",
+            "Bojenwacht",
+            "Schaukelort",
+            "Blinkpunkt",
+            "Bojenruh",
+            "Wippwacht",
+            "Bimmelort",
+            "Bojenpost",
+            "Grünpunkt",
+            "Gelbpunkt",
+            "Ankerpunkt",
+            "Bojentanz",
+            "Schwingort",
+            "Wackelwache",
+            "Bojenblink",
+            "Klangpunkt",
+            "Wipplicht",
+            "Bojenrast",
+            "Salzpunkt",
+            "Bimmelwacht"
+          ]
+        },
+        "driftwood": {
+          "motif": "driftwood",
+          "names": [
+            "Treibknick",
+            "Tangpause",
+            "Holzdrift",
+            "Astwache",
+            "Tanginsel",
+            "Treibast",
+            "Tangknäuel",
+            "Treibholzort",
+            "Astpause",
+            "Tangtreff",
+            "Holzrast",
+            "Tangwache",
+            "Holzknick",
+            "Salzast",
+            "Tangpolster",
+            "Astsalat",
+            "Treibpause",
+            "Tangzipfel",
+            "Tangruh",
+            "Astflotte"
+          ]
+        }
+      },
+      "assetBindings": {
+        "land-coast.settlement.h4.tesoro.v4": {
+          "mode": "unique",
+          "worldPlaceId": "world.tesoro",
+          "source": "docs/TESORO-WORLD-REFERENCE.md"
+        },
+        "sea-life.accent.h1.buoy.v1": {
+          "mode": "pool",
+          "poolId": "buoy",
+          "source": "docs/ASSET-INVENTORY-65.md"
+        },
+        "sea-life.accent.h1.driftwood.v1": {
+          "mode": "pool",
+          "poolId": "driftwood",
+          "source": "docs/ASSET-INVENTORY-65.md"
+        }
+      },
+      "uniquePlaces": {
+        "world.tesoro": {
+          "name": "Tesoro",
+          "source": "docs/TESORO-WORLD-REFERENCE.md"
+        }
+      }
+    },
+    "objectNames": {
+      "geo-03": "Tesoro",
+      "geo-01": "Gelbpunkt",
+      "geo-02": "Tangruh"
+    },
+    "bindings": {
+      "geo-01": {
+        "mode": "pool",
+        "poolId": "buoy",
+        "source": "docs/ASSET-INVENTORY-65.md"
+      },
+      "geo-02": {
+        "mode": "pool",
+        "poolId": "driftwood",
+        "source": "docs/ASSET-INVENTORY-65.md"
+      },
+      "geo-03": {
+        "mode": "unique",
+        "worldPlaceId": "world.tesoro",
+        "source": "docs/TESORO-WORLD-REFERENCE.md"
+      }
+    }
+  },
+  "origin": {
+    "source": {
+      "kind": "puzzle-candidate",
+      "id": "community:s04-c-v1/C-02",
+      "sha256": "bfd134b7e23237cd04e5f18acc76acbbb929f66e90ab16afc254111b8d0a25f5"
+    },
+    "release": {
+      "adapterVersion": "released-asset-catalog-1",
+      "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+      "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+      "sourceCommit": "511dfcf743a6e8c4f0c36b3354dcf36d1afe865e",
+      "archiveCommit": "1899b8b178efa8f8538ba6beb42b1f7707a7bf51",
+      "backgroundId": "sea-blue-01",
+      "catalogSha256": "ed76bb4402f2eb8111d1d086daac6d336f4236546cf350af85e39855d59e0037"
+    }
+  },
+  "integritySha256": "b49add802c01a7d80ea1370ed93e92986667595a95815bc7b6b4e65f4351d359"
+}
