@@ -62,7 +62,7 @@
 .book-place-action span{border-bottom:1px dotted #9f7d4380}
 .book-place-action svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .book-place-action:hover{background:none;color:#44331e}
-.turning-leaf{padding:20px 0 12px 26px;box-shadow:none;border-radius:0;transform-style:flat;backface-visibility:visible}
+.turning-leaf{align-items:flex-start;padding:inherit;padding-left:26px;box-shadow:none;border-radius:0;transform-style:flat;backface-visibility:visible}
 .bordbook+h3{margin-top:28px}
 @media(max-width:600px){
  .bordbook{--left-leaf:12%;padding:0;background:none;min-height:0}
@@ -73,7 +73,7 @@
  .book-place-action{top:80px}
  .bordbook #cluePosition{font-size:11px;letter-spacing:.08em}
  .bordbook .clue-viewport{padding:58px 0 8px;min-height:156px;overflow:visible}
- .turning-leaf{padding:16px 0 8px 23px}
+ .turning-leaf{padding-left:23px}
  .book-annotations{font-size:11px}
 }
 @media(min-width:881px) and (max-width:1050px){

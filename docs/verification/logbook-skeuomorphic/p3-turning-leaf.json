@@ -1,0 +1,951 @@
+{
+  "reviewHead": "43fbbdb8d099024e54b06020bb74c860d4e5afe5",
+  "measurement": "DOM getBoundingClientRect relative to the book, native click capture phase and MutationObserver immediately after actual turning leaf creation",
+  "normalMotion": true,
+  "animationPausedOrReplaced": false,
+  "durationMs": 160,
+  "verticalToleranceCssPx": 0.5,
+  "before": [
+    {
+      "project": "chromium",
+      "case": "normal-motion turn preserves the short outgoing text position",
+      "status": "failed",
+      "beforeY": 144,
+      "leafY": 204.703125,
+      "deltaY": 60.703125,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "20px",
+        "leafAlignment": "center"
+      },
+      "geometry": {
+        "before": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 209.40625,
+          "y": 204.703125,
+          "width": 277.015625,
+          "height": 30.59375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "20px",
+          "leafAlignment": "center"
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "case": "normal-motion turn preserves the long, checked outgoing text position",
+      "status": "failed",
+      "beforeY": 144,
+      "leafY": 158.8125,
+      "deltaY": 14.8125,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "20px",
+        "leafAlignment": "center"
+      },
+      "geometry": {
+        "before": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 122.375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 209.40625,
+          "y": 158.8125,
+          "width": 606.234375,
+          "height": 122.375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "20px",
+          "leafAlignment": "center"
+        }
+      }
+    },
+    {
+      "project": "mobile-chromium",
+      "case": "normal-motion turn preserves the short outgoing text position",
+      "status": "failed",
+      "beforeY": 142,
+      "leafY": 174.5625,
+      "deltaY": 32.5625,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "16px",
+        "leafAlignment": "center"
+      },
+      "geometry": {
+        "before": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 112.390625,
+          "y": 174.5625,
+          "width": 202.265625,
+          "height": 54.375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "16px",
+          "leafAlignment": "center"
+        }
+      }
+    },
+    {
+      "project": "mobile-chromium",
+      "case": "normal-motion turn preserves the long, checked outgoing text position",
+      "status": "failed",
+      "beforeY": 142,
+      "leafY": 79.40625,
+      "deltaY": -62.59375,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "16px",
+        "leafAlignment": "center"
+      },
+      "geometry": {
+        "before": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 244.6875
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 112.390625,
+          "y": 79.40625,
+          "width": 202.265625,
+          "height": 244.6875
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "16px",
+          "leafAlignment": "center"
+        }
+      }
+    },
+    {
+      "project": "webkit-desktop",
+      "case": "normal-motion turn preserves the short outgoing text position",
+      "status": "failed",
+      "beforeY": 144,
+      "leafY": 204.703125,
+      "deltaY": 60.703125,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "20px",
+        "leafAlignment": "center"
+      },
+      "geometry": {
+        "before": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 209.40625,
+          "y": 204.703125,
+          "width": 277.015625,
+          "height": 30.59375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "20px",
+          "leafAlignment": "center"
+        }
+      }
+    },
+    {
+      "project": "webkit-desktop",
+      "case": "normal-motion turn preserves the long, checked outgoing text position",
+      "status": "failed",
+      "beforeY": 144,
+      "leafY": 158.8125,
+      "deltaY": 14.8125,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "20px",
+        "leafAlignment": "center"
+      },
+      "geometry": {
+        "before": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 122.375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 209.40625,
+          "y": 158.8125,
+          "width": 606.234375,
+          "height": 122.375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "20px",
+          "leafAlignment": "center"
+        }
+      }
+    },
+    {
+      "project": "webkit-mobile",
+      "case": "normal-motion turn preserves the short outgoing text position",
+      "status": "failed",
+      "beforeY": 142,
+      "leafY": 174.5625,
+      "deltaY": 32.5625,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "16px",
+        "leafAlignment": "center"
+      },
+      "geometry": {
+        "before": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 112.390625,
+          "y": 174.5625,
+          "width": 202.265625,
+          "height": 54.375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "16px",
+          "leafAlignment": "center"
+        }
+      }
+    },
+    {
+      "project": "webkit-mobile",
+      "case": "normal-motion turn preserves the long, checked outgoing text position",
+      "status": "failed",
+      "beforeY": 142,
+      "leafY": 79.40625,
+      "deltaY": -62.59375,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "16px",
+        "leafAlignment": "center"
+      },
+      "geometry": {
+        "before": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 244.6875
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 112.390625,
+          "y": 79.40625,
+          "width": 202.265625,
+          "height": 244.6875
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "16px",
+          "leafAlignment": "center"
+        }
+      }
+    }
+  ],
+  "after": [
+    {
+      "project": "chromium",
+      "case": "normal-motion turn preserves the short outgoing text position",
+      "status": "passed",
+      "beforeY": 144,
+      "leafY": 144,
+      "deltaY": 0,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "58px",
+        "leafAlignment": "flex-start"
+      },
+      "geometry": {
+        "before": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 277.015625,
+          "height": 30.59375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "58px",
+          "leafAlignment": "flex-start"
+        }
+      }
+    },
+    {
+      "project": "chromium",
+      "case": "normal-motion turn preserves the long, checked outgoing text position",
+      "status": "passed",
+      "beforeY": 144,
+      "leafY": 144,
+      "deltaY": 0,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "58px",
+        "leafAlignment": "flex-start"
+      },
+      "geometry": {
+        "before": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 122.375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 122.375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "58px",
+          "leafAlignment": "flex-start"
+        }
+      }
+    },
+    {
+      "project": "mobile-chromium",
+      "case": "normal-motion turn preserves the short outgoing text position",
+      "status": "passed",
+      "beforeY": 142,
+      "leafY": 142,
+      "deltaY": 0,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "58px",
+        "leafAlignment": "flex-start"
+      },
+      "geometry": {
+        "before": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 112.390625,
+          "y": 142,
+          "width": 202.265625,
+          "height": 54.375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "58px",
+          "leafAlignment": "flex-start"
+        }
+      }
+    },
+    {
+      "project": "mobile-chromium",
+      "case": "normal-motion turn preserves the long, checked outgoing text position",
+      "status": "passed",
+      "beforeY": 142,
+      "leafY": 142,
+      "deltaY": 0,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "58px",
+        "leafAlignment": "flex-start"
+      },
+      "geometry": {
+        "before": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 244.6875
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 112.390625,
+          "y": 142,
+          "width": 202.265625,
+          "height": 244.6875
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "58px",
+          "leafAlignment": "flex-start"
+        }
+      }
+    },
+    {
+      "project": "webkit-desktop",
+      "case": "normal-motion turn preserves the short outgoing text position",
+      "status": "passed",
+      "beforeY": 144,
+      "leafY": 144,
+      "deltaY": 0,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "58px",
+        "leafAlignment": "flex-start"
+      },
+      "geometry": {
+        "before": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 277.015625,
+          "height": 30.59375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "58px",
+          "leafAlignment": "flex-start"
+        }
+      }
+    },
+    {
+      "project": "webkit-desktop",
+      "case": "normal-motion turn preserves the long, checked outgoing text position",
+      "status": "passed",
+      "beforeY": 144,
+      "leafY": 144,
+      "deltaY": 0,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "58px",
+        "leafAlignment": "flex-start"
+      },
+      "geometry": {
+        "before": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 122.375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 122.375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 209.40625,
+          "y": 144,
+          "width": 606.234375,
+          "height": 30.59375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "58px",
+          "leafAlignment": "flex-start"
+        }
+      }
+    },
+    {
+      "project": "webkit-mobile",
+      "case": "normal-motion turn preserves the short outgoing text position",
+      "status": "passed",
+      "beforeY": 142,
+      "leafY": 142,
+      "deltaY": 0,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "58px",
+        "leafAlignment": "flex-start"
+      },
+      "geometry": {
+        "before": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In Stunde 1 fuhren wir nach Osten.",
+          "x": 112.390625,
+          "y": 142,
+          "width": 202.265625,
+          "height": 54.375
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "58px",
+          "leafAlignment": "flex-start"
+        }
+      }
+    },
+    {
+      "project": "webkit-mobile",
+      "case": "normal-motion turn preserves the long, checked outgoing text position",
+      "status": "passed",
+      "beforeY": 142,
+      "leafY": 142,
+      "deltaY": 0,
+      "layout": {
+        "visiblePadding": "58px",
+        "leafPadding": "58px",
+        "leafAlignment": "flex-start"
+      },
+      "geometry": {
+        "before": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 244.6875
+        },
+        "reducedMotion": false,
+        "leaf": {
+          "text": "In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.",
+          "x": 112.390625,
+          "y": 142,
+          "width": 202.265625,
+          "height": 244.6875
+        },
+        "next": {
+          "text": "In Stunde 2 fuhren wir weiter nach Osten.",
+          "x": 109.390625,
+          "y": 142,
+          "width": 205.265625,
+          "height": 54.375
+        },
+        "leafNumber": "I",
+        "hidden": "true",
+        "animation": {
+          "duration": 160,
+          "playState": "running",
+          "keyframes": [
+            {
+              "transform": "translateX(0px)",
+              "opacity": "1"
+            },
+            {
+              "transform": "translateX(-5px)",
+              "opacity": "0"
+            }
+          ]
+        },
+        "layout": {
+          "visiblePadding": "58px",
+          "leafPadding": "58px",
+          "leafAlignment": "flex-start"
+        }
+      }
+    }
+  ],
+  "beforeResult": {
+    "failed": 8,
+    "passed": 0
+  },
+  "afterResult": {
+    "failed": 0,
+    "passed": 8,
+    "skipped": 0,
+    "retries": 0
+  },
+  "followup": "Full CI, final head and relevant interaction results are recorded in PR #127."
+}
