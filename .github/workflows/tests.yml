@@ -33,6 +33,7 @@ jobs:
         run: python3 -m pip install --user Pillow numpy
       - name: Verify no-cache development HTTP semantics
         run: python3 scripts/dev-server.py --self-test
+      - run: npm ci --no-audit --no-fund
       - run: npm run test:unit
       - run: npm run test:content
       - run: npm run test:puzzles
@@ -53,8 +54,21 @@ jobs:
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     env:
-      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
+      # Default to full; only the case-sensitive selection step may reduce it.
+      RUN_REGRESSIONS: 'true'
     steps:
+      - name: Validate detector outputs and select regressions
+        env:
+          DETECTOR_RESULT: ${{ needs.changes.result }}
+          DETECTOR_PROFILE: ${{ needs.changes.outputs.profile }}
+          DETECTOR_REGRESSIONS: ${{ needs.changes.outputs.regressions }}
+        # Actions string comparisons ignore case. Shell case must check raw outputs.
+        run: |
+          case "$DETECTOR_RESULT:$DETECTOR_PROFILE:$DETECTOR_REGRESSIONS" in
+            success:documentation:false|success:offline-flavor:false) run_regressions=false ;;
+            *) run_regressions=true ;;
+          esac
+          printf 'RUN_REGRESSIONS=%s\n' "$run_regressions" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         if: env.RUN_REGRESSIONS == 'true'
         with: {fetch-depth: 0}
@@ -77,9 +91,22 @@ jobs:
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     env:
-      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
+      # Default to full; only the case-sensitive selection step may reduce it.
+      RUN_REGRESSIONS: 'true'
     timeout-minutes: 12
     steps:
+      - name: Validate detector outputs and select regressions
+        env:
+          DETECTOR_RESULT: ${{ needs.changes.result }}
+          DETECTOR_PROFILE: ${{ needs.changes.outputs.profile }}
+          DETECTOR_REGRESSIONS: ${{ needs.changes.outputs.regressions }}
+        # Actions string comparisons ignore case. Shell case must check raw outputs.
+        run: |
+          case "$DETECTOR_RESULT:$DETECTOR_PROFILE:$DETECTOR_REGRESSIONS" in
+            success:documentation:false|success:offline-flavor:false) run_regressions=false ;;
+            *) run_regressions=true ;;
+          esac
+          printf 'RUN_REGRESSIONS=%s\n' "$run_regressions" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         if: env.RUN_REGRESSIONS == 'true'
         with: {fetch-depth: 0}
@@ -105,8 +132,21 @@ jobs:
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     env:
-      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
+      # Default to full; only the case-sensitive selection step may reduce it.
+      RUN_REGRESSIONS: 'true'
     steps:
+      - name: Validate detector outputs and select regressions
+        env:
+          DETECTOR_RESULT: ${{ needs.changes.result }}
+          DETECTOR_PROFILE: ${{ needs.changes.outputs.profile }}
+          DETECTOR_REGRESSIONS: ${{ needs.changes.outputs.regressions }}
+        # Actions string comparisons ignore case. Shell case must check raw outputs.
+        run: |
+          case "$DETECTOR_RESULT:$DETECTOR_PROFILE:$DETECTOR_REGRESSIONS" in
+            success:documentation:false|success:offline-flavor:false) run_regressions=false ;;
+            *) run_regressions=true ;;
+          esac
+          printf 'RUN_REGRESSIONS=%s\n' "$run_regressions" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         if: env.RUN_REGRESSIONS == 'true'
       - uses: actions/setup-node@v4
@@ -137,8 +177,21 @@ jobs:
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     env:
-      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
+      # Default to full; only the case-sensitive selection step may reduce it.
+      RUN_REGRESSIONS: 'true'
     steps:
+      - name: Validate detector outputs and select regressions
+        env:
+          DETECTOR_RESULT: ${{ needs.changes.result }}
+          DETECTOR_PROFILE: ${{ needs.changes.outputs.profile }}
+          DETECTOR_REGRESSIONS: ${{ needs.changes.outputs.regressions }}
+        # Actions string comparisons ignore case. Shell case must check raw outputs.
+        run: |
+          case "$DETECTOR_RESULT:$DETECTOR_PROFILE:$DETECTOR_REGRESSIONS" in
+            success:documentation:false|success:offline-flavor:false) run_regressions=false ;;
+            *) run_regressions=true ;;
+          esac
+          printf 'RUN_REGRESSIONS=%s\n' "$run_regressions" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         if: env.RUN_REGRESSIONS == 'true'
         with: {fetch-depth: 0}
@@ -193,9 +246,22 @@ jobs:
         shard: [1, 2, 3, 4, 5, 6]
     runs-on: ubuntu-latest
     env:
-      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
+      # Default to full; only the case-sensitive selection step may reduce it.
+      RUN_REGRESSIONS: 'true'
       PLAYWRIGHT_JSON_OUTPUT_NAME: webkit-results.json
     steps:
+      - name: Validate detector outputs and select regressions
+        env:
+          DETECTOR_RESULT: ${{ needs.changes.result }}
+          DETECTOR_PROFILE: ${{ needs.changes.outputs.profile }}
+          DETECTOR_REGRESSIONS: ${{ needs.changes.outputs.regressions }}
+        # Actions string comparisons ignore case. Shell case must check raw outputs.
+        run: |
+          case "$DETECTOR_RESULT:$DETECTOR_PROFILE:$DETECTOR_REGRESSIONS" in
+            success:documentation:false|success:offline-flavor:false) run_regressions=false ;;
+            *) run_regressions=true ;;
+          esac
+          printf 'RUN_REGRESSIONS=%s\n' "$run_regressions" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         if: env.RUN_REGRESSIONS == 'true'
         with: {fetch-depth: 0}
@@ -245,8 +311,21 @@ jobs:
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     env:
-      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
+      # Default to full; only the case-sensitive selection step may reduce it.
+      RUN_REGRESSIONS: 'true'
     steps:
+      - name: Validate detector outputs and select regressions
+        env:
+          DETECTOR_RESULT: ${{ needs.changes.result }}
+          DETECTOR_PROFILE: ${{ needs.changes.outputs.profile }}
+          DETECTOR_REGRESSIONS: ${{ needs.changes.outputs.regressions }}
+        # Actions string comparisons ignore case. Shell case must check raw outputs.
+        run: |
+          case "$DETECTOR_RESULT:$DETECTOR_PROFILE:$DETECTOR_REGRESSIONS" in
+            success:documentation:false|success:offline-flavor:false) run_regressions=false ;;
+            *) run_regressions=true ;;
+          esac
+          printf 'RUN_REGRESSIONS=%s\n' "$run_regressions" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}

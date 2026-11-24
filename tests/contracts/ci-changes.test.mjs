@@ -4,6 +4,7 @@ import {execFileSync} from 'node:child_process';
 import {mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
+import {Lexer, Parser, Evaluator, data} from '@actions/expressions';
 import {classifyChanges, parseDiff, detectChanges, summary, OFFLINE_FLAVOR} from '../../scripts/ci-changes.mjs';
 
 const record = (path, status = 'M') => ({path, status,
@@ -67,9 +68,14 @@ function repository(t) {
   const base = commit();
   const push = (before, after, overrides = {}) => detectChanges({cwd, eventName: 'push', commit: after,
     event: {ref: 'refs/heads/main', before, after, ...overrides}});
-  const pr = (baseSha, headSha) => detectChanges({cwd, eventName: 'pull_request',
+  const merge = (baseSha, headSha) => {
+    git('checkout', '--detach', baseSha);
+    git('merge', '--no-ff', '-m', 'synthetic PR merge', headSha);
+    return git('rev-parse', 'HEAD');
+  };
+  const pr = (baseSha, headSha, commit = git('rev-parse', 'HEAD')) => detectChanges({cwd, eventName: 'pull_request', commit,
     event: {pull_request: {base: {sha: baseSha}, head: {sha: headSha}}}});
-  return {cwd, git, write, commit, base, push, pr};
+  return {cwd, git, write, commit, base, push, pr, merge};
 }
 
 test('push spans every commit, not only HEAD^; a runtime edit in an earlier commit forces full', t => {
@@ -83,11 +89,14 @@ test('push spans every commit, not only HEAD^; a runtime edit in an earlier comm
 test('PR diff uses merge base; runtime changes on the merged base also force full', t => {
   const r = repository(t); r.git('checkout', '-b', 'pr');
   r.write('scripts/lib/flavor-contract.mjs', 'offline fixture'); const head = r.commit();
+  r.merge(r.base, head);
   assert.equal(r.pr(r.base, head).profile, 'offline-flavor');
   r.git('checkout', 'main'); r.write('docs/PRODUCT.md', 'base docs'); const docsBase = r.commit();
+  r.merge(docsBase, head);
   const result = r.pr(docsBase, head);
   assert.equal(result.profile, 'offline-flavor'); assert.equal(result.base, r.base);
-  r.write('src/ui/game.mjs', 'new runtime on main'); const runtimeBase = r.commit();
+  r.git('checkout', 'main'); r.write('src/ui/game.mjs', 'new runtime on main'); const runtimeBase = r.commit();
+  r.merge(runtimeBase, head);
   assert.equal(r.pr(runtimeBase, head).profile, 'full');
 });
 
@@ -150,8 +159,10 @@ test('workflow safety contract: stable checks, explicit opt-out, full on failed 
     const block = blocks.get(id);
     assert.match(block, /^    needs: changes$/m);
     assert.match(block, /^    if: \$\{\{ !cancelled\(\) \}\}$/m);
-    assert.ok(block.includes("RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}"));
+    assert.match(block, /RUN_REGRESSIONS: 'true'/);
     const steps = block.split(/^      - /m).slice(1);
+    const selector = steps.shift();
+    assert.match(selector, /^name: Validate detector outputs and select regressions/);
     const summary = steps.pop();
     assert.match(summary, /if: env.RUN_REGRESSIONS == 'false'/);
     assert.match(summary, /NOT executed or passed/);
@@ -164,5 +175,125 @@ test('workflow safety contract: stable checks, explicit opt-out, full on failed 
         assert.doesNotMatch(step, /if:/);
       }
     }
+  }
+});
+
+test('R2: only an exact PR merge checkout with ordered event parents can reduce CI', t => {
+  const r = repository(t); r.git('checkout', '-b', 'pr');
+  r.write('README.md', 'docs'); const head = r.commit();
+  const merge = r.merge(r.base, head);
+  assert.notEqual(merge, head);
+  assert.equal(r.pr(r.base, head, merge).profile, 'documentation');
+  for (const commit of [undefined, '', 'invalid', '0'.repeat(40), 'f'.repeat(40), merge + '\n', head]) {
+    // Explicit missing commit cannot use the convenience helper's default.
+    assert.equal(detectChanges({cwd: r.cwd, eventName: 'pull_request', commit,
+      event: {pull_request: {base: {sha: r.base}, head: {sha: head}}}}).profile, 'full');
+  }
+  r.git('checkout', '--detach', head);
+  assert.equal(r.pr(r.base, head, merge).profile, 'full'); // SHA correct, checkout wrong
+  assert.equal(r.pr(r.base, head, head).profile, 'full'); // PR head is not the merge
+  r.git('checkout', '--detach', merge);
+  assert.equal(r.pr(head, head, merge).profile, 'full'); // first parent wrong
+  assert.equal(r.pr(r.base, r.base, merge).profile, 'full'); // second parent wrong
+  const tree = r.git('rev-parse', merge + '^{tree}');
+  const swapped = r.git('commit-tree', tree, '-p', head, '-p', r.base, '-m', 'reversed parents');
+  r.git('checkout', '--detach', swapped);
+  assert.equal(r.pr(r.base, head, swapped).profile, 'full');
+  r.git('checkout', '-b', 'runtime-pr', head);
+  r.write('src/ui/game.mjs', 'runtime PR'); const runtimeHead = r.commit();
+  const runtimeMerge = r.merge(r.base, runtimeHead);
+  assert.equal(r.pr(r.base, runtimeHead, runtimeMerge).profile, 'full');
+});
+
+test('R2 reproduction: stale event base cannot hide runtime changes in tested merge', t => {
+  const r = repository(t); r.git('checkout', '-b', 'pr');
+  r.write('README.md', 'only docs on PR'); const head = r.commit();
+  const staleMerge = r.merge(r.base, head);
+  r.git('checkout', 'main'); r.write('src/ui/game.mjs', 'new base runtime'); const advanced = r.commit();
+  const actualMerge = r.merge(advanced, head);
+  const staleEvent = r.pr(r.base, head, actualMerge);
+  assert.equal(staleEvent.profile, 'full');
+  assert.match(staleEvent.reason, /merge parents/);
+  assert.equal(r.pr(advanced, head, staleMerge).profile, 'full'); // expected SHA stale
+  assert.equal(r.pr(advanced, head, actualMerge).profile, 'full'); // consistent, runtime base
+  r.git('checkout', '--detach', staleMerge);
+  assert.equal(r.pr(r.base, head, staleMerge).profile, 'documentation'); // original consistent run
+});
+
+const expressionData = value => value == null ? new data.Null() :
+  typeof value === 'string' ? new data.StringData(value) :
+  typeof value === 'boolean' ? new data.BooleanData(value) :
+  new data.Dictionary(...Object.entries(value).map(([key, v]) => ({key, value: expressionData(v)})));
+function evaluateActions(expression, context, status = {}) {
+  const functions = new Map(['success', 'failure', 'cancelled', 'always'].map(name =>
+    [name, {name, minArgs: 0, maxArgs: 0, call: () => new data.BooleanData(status[name] ?? (name === 'success' || name === 'always'))}]));
+  const source = expression.replace(/^\$\{\{\s*|\s*\}\}$/g, '');
+  const ast = new Parser(new Lexer(source).lex().tokens, Object.keys(context), [...functions.values()]).parse();
+  return new Evaluator(ast, expressionData(context), functions).evaluate();
+}
+
+for (const [name, result, profile, regressions, expected] of [
+  ['valid documentation', 'success', 'documentation', 'false', false],
+  ['valid offline Flavor', 'success', 'offline-flavor', 'false', false],
+  ['valid full', 'success', 'full', 'true', true],
+  ['contradictory full/false', 'success', 'full', 'false', true],
+  ['missing profile', 'success', undefined, 'false', true],
+  ['unknown profile', 'success', 'unknown', 'false', true],
+  ['uppercase FALSE', 'success', 'documentation', 'FALSE', true],
+  ['mixed FaLsE', 'success', 'documentation', 'FaLsE', true],
+  ['uppercase profile', 'success', 'DOCUMENTATION', 'false', true],
+  ['whitespace', 'success', 'documentation', 'false ', true],
+  ['failed detector', 'failure', 'documentation', 'false', true],
+  ['skipped detector', 'skipped', 'documentation', 'false', true],
+  ['missing detector result', undefined, 'documentation', 'false', true],
+  ['missing outputs', 'success', undefined, undefined, true],
+  ['missing regression output', 'success', 'documentation', undefined, true],
+  ['unexpected regression output', 'success', 'documentation', 'unknown', true],
+]) test(`R1 actual workflow selection and Actions expressions: ${name}`, t => {
+  const workflow = readFileSync('.github/workflows/tests.yml', 'utf8');
+  const blocks = [...workflow.slice(workflow.indexOf('jobs:\n')).matchAll(/^  ([a-z][a-z0-9-]*):\n([\s\S]*?)(?=^  [a-z][a-z0-9-]*:\n|$(?![\s\S]))/gm)];
+  const folder = mkdtempSync(path.join(tmpdir(), 'ci-selection-'));
+  t.after(() => rmSync(folder, {recursive: true, force: true}));
+  let checked = 0;
+  for (const [, id, block] of blocks) {
+    const steps = block.split(/^      - /m).slice(1);
+    if (!steps[0]?.startsWith('name: Validate detector outputs and select regressions')) continue;
+    checked++;
+    const context = {needs: {changes: {result, outputs: {profile, regressions}}}};
+    assert.equal(evaluateActions('${{ env.value == \'false\' }}', {env: {value: 'FaLsE'}}).value, true,
+      'The official evaluator must reproduce case-insensitive Actions comparison');
+    const selector = steps.shift();
+    const envFile = path.join(folder, id);
+    const env = {...process.env, GITHUB_ENV: envFile};
+    for (const match of selector.matchAll(/^          (DETECTOR_[A-Z]+): (\$\{\{.*\}\})$/gm)) {
+      env[match[1]] = evaluateActions(match[2], context).coerceString();
+    }
+    const script = selector.split('        run: |\n')[1].split('\n').map(line => line.slice(10)).join('\n');
+    execFileSync('bash', ['-e', '-c', script], {env}); // Execute the real YAML selection, without checkout.
+    assert.equal(readFileSync(envFile, 'utf8'), `RUN_REGRESSIONS=${expected}\n`, id);
+    context.env = {RUN_REGRESSIONS: /^RUN_REGRESSIONS=(true|false)\n$/.exec(readFileSync(envFile, 'utf8'))[1]};
+    assert.equal(evaluateActions(/^    if: (.+)$/m.exec(block)[1], context, {cancelled: true}).value, false);
+    for (const step of steps) {
+      const expression = /^\s*if: (.+)$/m.exec(step)?.[1];
+      if (!expression) { assert.equal(id, 'deployment'); continue; } // Packaging always runs.
+      const omitted = step.startsWith('name: Record deliberately omitted');
+      const failing = expression.includes('failure()');
+      assert.equal(evaluateActions(expression, context).value, failing ? false : omitted ? !expected : expected, `${id}: ${expression}`);
+      if (failing) assert.equal(evaluateActions(expression, context, {failure: true, success: false}).value, expected);
+    }
+  }
+  assert.equal(checked, 6, 'All six conditional jobs, including the static WebKit matrix, exercised');
+});
+
+test('R2 CLI: GITHUB_SHA is the expected synthetic merge, and is mandatory', t => {
+  const r = repository(t); r.git('checkout', '-b', 'pr'); r.write('README.md', 'docs'); const head = r.commit();
+  const merge = r.merge(r.base, head), eventFile = path.join(r.cwd, '.git', 'event.json');
+  writeFileSync(eventFile, JSON.stringify({pull_request: {base: {sha: r.base}, head: {sha: head}}}));
+  for (const [sha, expected] of [[merge, 'documentation'], [undefined, 'full'], ['invalid', 'full'], [head, 'full']]) {
+    const env = {...process.env, GITHUB_EVENT_NAME: 'pull_request', GITHUB_EVENT_PATH: eventFile};
+    delete env.GITHUB_OUTPUT; delete env.GITHUB_STEP_SUMMARY; delete env.GITHUB_SHA;
+    if (sha !== undefined) env.GITHUB_SHA = sha;
+    const actual = JSON.parse(execFileSync(process.execPath, [path.resolve('scripts/ci-changes.mjs')], {cwd: r.cwd, env, encoding: 'utf8'}));
+    assert.equal(actual.profile, expected);
   }
 });

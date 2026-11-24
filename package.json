@@ -38,6 +38,7 @@
     "test:beta": "playwright test --config=playwright.b1.config.mjs"
   },
   "devDependencies": {
+    "@actions/expressions": "0.3.62",
     "@playwright/test": "1.64.0"
   }
 }

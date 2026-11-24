@@ -1,8 +1,8 @@
 # Änderungsabhängige CI
 
 Implementierung: `.github/workflows/tests.yml`, `scripts/ci-changes.mjs`.
-Tests: `node --test tests/contracts/ci-changes.test.mjs`, automatisch auch in
-`npm run test:unit`. Ausgangspunkt ist main nach F01 / PR #124
+Tests: nach `npm ci` mit `node --test tests/contracts/ci-changes.test.mjs`,
+automatisch auch in `npm run test:unit`. Ausgangspunkt ist main nach F01 / PR #124
 (`7d2e60f2d152f99a429a35f242c6389a9e046092`).
 
 ## Profile und Abhängigkeiten
@@ -65,7 +65,13 @@ Paketierung, Abhängigkeiten, Lockdateien und sämtliche CI-Dateien führen zu `
 `changes` checkt mit vollständiger Historie aus und verwendet ausschließlich
 lokales Git, ohne neue Actions oder Dateilisten-API:
 
-- **PR:** gemeinsamer Vorfahr von Event-`base.sha` und `head.sha` bis PR-Head,
+- **PR-Checkout:** `GITHUB_SHA` muss ein gültiger Commit-Hash sein und exakt
+  Checkout-HEAD entsprechen. Der ausgecheckte synthetische Merge muss genau
+  zwei Eltern haben: zuerst Event-`base.sha`, dann Event-`head.sha`. Fehlende,
+  veraltete oder widersprüchliche Angaben führen vor der Diff-Auswahl zu `full`.
+  `head.sha` allein ist kein gültiger Merge-Checkout. Grundlage ist der
+  [GitHub-Vertrag für pull_request](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request).
+- **PR-Diff:** gemeinsamer Vorfahr von Event-`base.sha` und `head.sha` bis PR-Head,
   entsprechend einem Drei-Punkt-Vergleich. Bei mehreren gemeinsamen Vorfahren
   wird vollständig geprüft. Da die Testjobs auf dem GitHub-Merge-Stand laufen,
   werden zusätzlich Änderungen vom gemeinsamen Vorfahren bis zur Event-Basis
@@ -85,8 +91,16 @@ oder 300-Dateien-Grenze; bei Überschreiten des lokalen 32-MiB-Pufferlimits folg
 `full`. Diff-Fehler werden als Unsicherheit berichtet, nicht als „keine Änderung“.
 
 Scheitert der gesamte `changes`-Job, starten abhängige Jobs durch `!cancelled()`
-trotzdem; nur ein erfolgreicher Detektor mit exakt `regressions=false` kann
-Regressionen unterdrücken. Fehlende oder unerwartete Outputs bedeuten vollständig.
+trotzdem. Jeder bedingte Job startet mit `RUN_REGRESSIONS=true`. Ein kurzer
+Auswahlschritt prüft den Detektorstatus und die rohen Outputs mit einem
+**groß-/kleinschreibungssensitiven Shell-`case`**. Nur `success` zusammen mit
+`documentation`/`false` oder `offline-flavor`/`false` setzt den Wert auf `false`.
+Fehlende, unbekannte, widersprüchliche oder anders geschriebene Outputs lassen
+vollständig testen. Die folgenden Actions-Ausdrücke erhalten ausschließlich
+kanonisches `true`/`false`; ihre Stringvergleiche ignorieren
+[laut GitHub-Dokumentation](https://docs.github.com/en/actions/reference/workflows-and-actions/expressions#operators)
+Groß-/Kleinschreibung. `$GITHUB_ENV` aktualisiert dafür auch den `env`-Kontext
+der Folgeschritte ([Runner-Implementierung](https://github.com/actions/runner/blob/main/src/Runner.Worker/FileCommandManager.cs)).
 Der fehlgeschlagene Detektor bleibt dabei als Workflow-Fehler sichtbar.
 Abgebrochene Workflows werden nicht künstlich weiter ausgeführt.
 
@@ -95,7 +109,7 @@ Abgebrochene Workflows werden nicht künstlich weiter ausgeführt.
 Keine `paths`-/`paths-ignore`-Filter und kein Überspringen ganzer Testjobs.
 Jeder bisherige Check einschließlich der **sechs statischen WebKit-Shards**
 wird weiterhin angelegt. Nur seine teuren Schritte sind bedingt; bei einer
-Einsparung läuft lediglich ein ausdrücklicher Zusammenfassungsschritt. Das
+Einsparung laufen nur Auswahl- und Zusammenfassungsschritt. Das
 benötigt weiterhin kurze Runner-Belegungen, erhält aber die Check-Verträge.
 Ein abschließender Gate-Job ist deshalb nicht erforderlich. Die Summary nennt
 Profil, Grund, Vergleich und vollständige Dateiliste und markiert ausgelassene
@@ -142,18 +156,50 @@ Der echte PR-#124-Diff von `a18a0af855b70199139edfc503732e8a761f1769` bis
 Der Optimierungs-PR selbst muss wegen Workflow, Detektor und Tests **full**
 ausführen, auch bereits in seinem ersten Lauf.
 
-Zusätzlich lokal geprüft: actionlint 1.7.7 sowie der offizielle
-`@actions/workflow-parser`; die Ausdrücke aus dem tatsächlichen YAML wurden
-mit `@actions/expressions` für documentation, offline-flavor, Produkt,
-Infrastruktur, manuell, Diff-Fehler, fehlgeschlagenen/übersprungenen Detektor
-und fehlenden/unbekannten Output ausgewertet. Nur die ersten beiden Fälle
-unterdrücken Regressionen. Abbruchbedingungen und Fehlerartefakte wurden
-mitgeprüft. Statusfunktionen wurden für diese Auswertung explizit vorgegeben;
-dies ersetzt keinen echten GitHub-Runnerlauf. Alle bisherigen Schritte,
-Commands, Actionversionen, Runtime-Pins und Artefaktoptionen wurden nach
-Entfernung ausschließlich der neuen Bedingungen strukturell mit main verglichen:
-identisch. Parser und Hilfspakete sind ausschließlich lokale Prüfwerkzeuge
-unter `/tmp`, keine neuen Repository-/CI-Abhängigkeiten.
+Zusätzlich geprüft: actionlint 1.7.7 und der offizielle
+`@actions/workflow-parser`. Die R1-Vertragstests führen den tatsächlichen
+Shell-Auswahlschritt aus dem YAML mit rohen Detektor-Outputs aus. Danach
+werten sie die tatsächlichen Schrittbedingungen aller sechs bedingten Jobs
+mit dem offiziellen `@actions/expressions` aus, einschließlich Fehlerartefakten,
+Auslassungs-Summary und Abbruchbedingung. Die Bibliothek ist als reine
+Testabhängigkeit auf 0.3.62 gepinnt; `unit` installiert dafür mit `npm ci`.
+Die übrigen Parserwerkzeuge bleiben lokal. Keine neue Action oder neuer CI-Job.
+Die Ausdruckstests ersetzen keinen echten GitHub-Runnerlauf.
+
+### Review-Korrekturen R1 und R2
+
+Eigene Reproduktion auf `dfe296fe85ace0cafd75fb9d8ce122d7ce7bb55d`:
+Die ursprüngliche Browser-Ausdrucksauswertung mit `@actions/expressions`
+übersprang Regressionen in allen fünf folgenden ungültigen Fällen. Das Profil
+wurde ignoriert, und selbst ein zusätzlicher Vergleich mit `'false'` wäre wegen
+der Actions-Stringsemantik nicht groß-/kleinschreibungssensitiv gewesen.
+
+| Rohe Outputs bei erfolgreichem Detektor | Vorher | Nach Korrektur |
+| --- | --- | --- |
+| `full`, `false` | Regressionen ausgelassen | vollständig |
+| fehlendes Profil, `false` | Regressionen ausgelassen | vollständig |
+| unbekanntes Profil, `false` | Regressionen ausgelassen | vollständig |
+| `documentation`, `FALSE` | Regressionen ausgelassen | vollständig |
+| `documentation`, `FaLsE` | Regressionen ausgelassen | vollständig |
+| `documentation`, `false` | reduziert | weiterhin reduziert |
+| `offline-flavor`, `false` | reduziert | weiterhin reduziert |
+
+R2 wurde in einem echten temporären Repository reproduziert: Der PR änderte
+nur README, main enthielt inzwischen eine Laufzeitänderung, und Checkout-HEAD
+war der synthetische Merge der **neueren** Basis mit dem PR. Das Event enthielt
+noch die **alte** Basis. Der ursprüngliche Detektor meldete `documentation`,
+auch bei fehlendem/ungültigem Commit oder übergebenem PR-Head. Jetzt erzwingt
+jede dieser Inkonsistenzen `full`. Passende Merge-Eltern bei fortgeschrittener
+Basis bleiben zulässig: redaktionelle Basisänderungen erlauben weiterhin ein
+reduziertes Profil, Laufzeitänderungen auf der Basis-Seite erzwingen `full`.
+
+Regressionstests verwenden echte Git-Merges, abweichenden Checkout-HEAD,
+vertauschte/unpassende Eltern, fehlende/ungültige Merge-SHAs sowie die CLI mit
+`GITHUB_SHA`. Gültige Dokumentations-/Offline-PRs bleiben reduziert; ein gültiger
+Laufzeit-PR bleibt vollständig. Die Änderungen beschränken sich auf diese
+Verträge und ihre Tests; Jobnamen, Matrix, Testbefehle und Release-Artefakte
+bleiben erhalten. Für den Fix-Commit ist wegen der Infrastrukturänderungen
+wieder der vollständige CI-Lauf erforderlich.
 
 Referenz: [vollständiger F01-Lauf 45352584129](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/45352584129).
 Seine Browser-Testschritte (Chromium, sechs WebKit-Shards, Deployment) summieren

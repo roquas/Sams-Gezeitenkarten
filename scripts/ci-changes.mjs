@@ -48,7 +48,7 @@ export function parseDiff(raw) {
   return changes;
 }
 
-const sha = value => typeof value === 'string' && /^[a-f0-9]{40}$/.test(value) && !/^0+$/.test(value);
+const sha = value => typeof value === 'string' && value.length === 40 && /^[a-f0-9]{40}$/.test(value) && !/^0+$/.test(value);
 export function detectChanges({eventName, event, commit, cwd = process.cwd()}) {
   if (eventName === 'workflow_dispatch') return full('Manual run always executes full CI');
   try {
@@ -58,6 +58,16 @@ export function detectChanges({eventName, event, commit, cwd = process.cwd()}) {
       base = event.pull_request?.base?.sha;
       head = event.pull_request?.head?.sha;
       if (!sha(base) || !sha(head)) throw Error('Missing PR base/head');
+      // pull_request tests checkout refs/pull/<number>/merge, not the PR head.
+      // Bind the selected diff to that exact tested merge and its ordered parents.
+      if (!sha(commit)) throw Error('Missing or invalid PR merge SHA');
+      if (git('rev-parse', '--verify', 'HEAD^{commit}').toString().trim() !== commit) {
+        throw Error('Checkout HEAD differs from expected PR merge SHA');
+      }
+      const parents = git('show', '-s', '--format=%P', commit).toString().trim().split(' ');
+      if (parents.length !== 2 || parents[0] !== base || parents[1] !== head) {
+        throw Error('PR merge parents differ from event base/head');
+      }
       // Match GitHub's PR three-dot diff; exclude unrelated base-branch commits.
       // Multiple merge bases are ambiguous and deliberately fall back to full.
       const bases = git('merge-base', '--all', base, head).toString().trim().split('\n');
