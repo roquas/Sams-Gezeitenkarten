@@ -215,3 +215,89 @@ Automatische Nachweise: `tests/contracts/community-beta.test.mjs` prüft alle
 Zielrouten, Byteinventar, zwölf Erstspielbindungen und ausstehende Flavor-Freigabe.
 Beta-Tests prüfen Altbestände, Speichern, Wiederholungen, Export und Ergänzungen.
 Tatsächlich ausgeführte Prüfungen und Grenzen stehen in der PR-Beschreibung.
+
+## WebKit-CI-Klärung nach der unabhängigen Review
+
+Untersuchter Ausgangs-Head: `09b1fdb35199f5ea2b49cadc28632176e435bd39`;
+PR-Basis: `a18a0af855b70199139edfc503732e8a761f1769`.
+Der [CI-Lauf 45358379325](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/45358379325)
+testete den synthetischen Merge `abfa36bef783bb80e0d1e25775612bfa17ea097f`.
+Dessen Dateibaum stimmt mit dem Ausgangs-Head überein. Ausgewertet wurden die
+Joblogs und die vollständigen Traces einschließlich der Anhänge aus
+`webkit-chart-report-3` (Artefakt 14903568931) und `webkit-chart-report-2`
+(Artefakt 14905395381), jeweils Erstlauf und Retry.
+
+### Animation: Beobachtung über die Prozessgrenze
+
+Der fehlgeschlagene Poll behauptet keine verkürzte 4,9-Sekunden-Animation.
+Beide CI-Anhänge enthalten die gesuchte Beobachtung: letzte Gruppe verbunden,
+vier Plaketten und alle acht Tracks bei mindestens 3400 ms. Im Erstlauf wurde
+die Bedingung beispielsweise bei 3456 ms aufgezeichnet. Der letzte externe
+`page.evaluate`-Poll lieferte bereits `true`, seine Antwort traf aber erst nach
+dem 5000-ms-Deadline des umgebenden `expect.poll` ein. Der Test wurde daraufhin
+vor der abschließenden Beobachtung von Promise-Ende und Entfernung abgebrochen.
+Die Trace-Anhänge zeigen weiterhin 48 Tracks mit jeweils 4900 ms Dauer.
+
+Die drei Lebensdauerbedingungen werden nun mit `page.waitForFunction` direkt
+im WebProcess alle 100 ms beobachtet. Jeder Aufruf behält sein 5000-ms-Limit.
+Es entfallen wiederholte DevTools-Roundtrips zwischen Node und WebKit.
+Trackanzahl, exakte Dauer, gemeinsamer Ablauf, Abbruch alter Tracks, native
+Fertigstellung und die bestehende 3500-ms-Grenze für die Entfernung bleiben
+unverändert geprüft. Die Animationen laufen auf ihren nativen Timelines;
+der Test pausiert oder beendet sie nicht künstlich.
+
+Die früheren lokalen Zusatzfehler mit nur 46 statt 48 Tracks sind gesondert
+aufgeklärt: Port 4173 bediente eine andere lokale Spielversion, die der
+Standardkonfiguration zufolge wiederverwendet werden durfte. Ein Abruf von
+`src/ui/place-references.mjs` bestätigt die abweichenden Bytes. Diese Läufe sind
+kein gültiger Head-/Basisvergleich. Die CI-Fixture enthält tatsächlich einen
+mehrteiligen Startort; die erwarteten 48 Tracks sind richtig und unverändert.
+
+### Scrollen: Fenster geladen, Anwendung noch nicht initialisiert
+
+Im Erstlauf kehrt `page.goto` nach 458 ms zurück; die anschließende Suche nach
+B2 endet nach etwa 5064 ms ohne Element. Der spätere Fehlersnapshot enthält
+die korrekte Karte. Im erfolgreichen Retry benötigt die gleiche Zellprüfung
+bereits etwa 4019 ms. Der Fehler tritt vor dem Scrollinput auf.
+
+`src/ui/app.mjs` wartet auf `mountGame`, das wiederum den Katalog und das
+Rätsel asynchron lädt. Das Fensterereignis `load` allein bestätigt diesen
+Abschluss nicht. Der gemeinsame Scroll-Helper wartet deshalb nach der
+Navigation auf das bereits vorhandene Promise des tatsächlich eingebundenen
+App-Moduls. Anschließend beginnen die bisherigen Sichtbarkeits-, Hit-Test-,
+Scroll- und Zustandsassertions mit unveränderten Grenzen. Das gilt auch für
+die Prüfung des entpackten Hostingpakets; Modulpfade kommen vom Script-Element
+der geladenen Seite und funktionieren im Unterverzeichnis.
+
+Eine zusätzliche Browserregression hält die Manifestantwort gezielt zurück:
+`document.readyState` ist bereits `complete`, die Navigation darf aber noch
+keine fertige Anwendung melden. Nach Freigabe muss die Karte 25 Zellen haben.
+Die Negativkontrolle mit bloßem `page.goto` schlägt an genau dieser Zusage fehl;
+es werden keine längeren Schlaf- oder Sichtbarkeitsfristen eingeführt.
+
+### Einordnung und Umfang
+
+Unter identischen lokalen Bedingungen bestehen sowohl der unveränderte Head
+als auch seine Basis jeweils vier Prüfungen: die beiden betroffenen Tests
+zweimal, Desktop-WebKit mit DPR 2, ein Worker, Trace an, keine Retries und ein
+eigener Server auf Port 4193 ohne Wiederverwendung. Das ist ein macOS-Vergleich;
+die Linux-CI-Last und deren exakte Zeitverteilung werden damit nicht nachgebildet.
+Die betroffenen Produkt-, Rätsel- und Testdateien sind zwischen Basis und
+Ausgangs-Head unverändert. Die CI-Traces laden keinen Community-Katalog.
+Die Befunde betreffen bestehende Testsynchronisation unter CI-Last; eine
+Produktregression durch den Community-Katalog ist nicht nachgewiesen.
+
+Die Korrektur ändert keine Produktinitialisierung, Animation, Rätseldaten,
+Speicher- oder Exportformate. Im Formular lautet die Frage jetzt
+„Wie bist Du bei diesem Rätsel bisher überwiegend vorgegangen?“ und die
+Antwort „Schrittweise Möglichkeiten ausschließen“; ihr Wert bleibt `stepwise`.
+Die freiwillige Erfahrungsselbstauskunft bleibt unverändert.
+
+Die korrigierten WebKit-Prüfungen einschließlich der Startregression bestehen
+dreimal (neun Prüfungen). Zwölf Feedbackprüfungen in Chromium und WebKit auf
+Desktop und Mobil bestätigen die Texte, Freiwilligkeit, Speicherung und den
+Export auch ohne Lösung und nach Aufgabe. Die 22 gezielten Vertrags-/Integrationstests und
+`check:community` bestehen weiterhin. `check:community:release` bleibt wegen
+ausstehender Flavor-Abnahme absichtlich gesperrt. Der neue vollständige CI-Lauf
+bleibt für die Bestätigung unter Linux maßgeblich; ein bestandener Retry allein
+wird weiterhin nicht als bestandener erster Lauf behandelt.

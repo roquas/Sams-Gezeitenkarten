@@ -19,7 +19,11 @@ test('community pool offers all fifteen freely and retains optional ratings and 
  await page.locator('#puzzleExperience').selectOption('occasional');
  expect((await page.locator('#puzzleExperience').boundingBox()).height).toBeGreaterThanOrEqual(44);
  const details=page.locator('#feedbackRecords details').filter({has:page.locator('summary').filter({hasText:/^C-10$/})});
- await details.locator('summary').click();await details.locator('[name=fun]').selectOption('4');
+ await details.locator('summary').click();
+ const style=details.getByRole('combobox',{name:'Wie bist Du bei diesem Rätsel bisher überwiegend vorgegangen?',exact:true});
+ await expect(style).toHaveValue('');
+ await expect(style.getByRole('option',{name:'Schrittweise Möglichkeiten ausschließen',exact:true})).toHaveAttribute('value','stepwise');
+ await details.locator('[name=fun]').selectOption('4');
  await details.locator('[name=solvingStyle]').selectOption('route-comparison');
  await page.reload();await expect(page.locator('#feedbackRecords details')).toHaveCount(15);
  await expect(page.locator('#puzzleExperience')).toHaveValue('occasional');
@@ -114,8 +118,10 @@ test('success persists across reset, feedback can be edited, replay archives ear
 });
 test('unsolved feedback and deliberate abandonment are independent of ordinary navigation',async({page})=>{
  await page.goto('/');let details=await feedbackDetails(page);await details.locator('[name=comment]').fill('Noch nicht gespielt');let r=(await download(page)).puzzles[0];expect(r.phases).toEqual([]);
+ await details.getByRole('combobox',{name:'Wie bist Du bei diesem Rätsel bisher überwiegend vorgegangen?',exact:true}).selectOption('stepwise');
+ expect((await download(page)).puzzles[0].feedback.solvingStyle).toBe('stepwise');
  await page.getByRole('link',{name:'Beginnen',exact:true}).click();await expect(cell(page,'A5')).toBeVisible();await cell(page,'A1').click();await page.locator('#backToSelection').click();r=(await download(page)).puzzles[0];expect(r.phases[0].status).toBe('open');
- details=await feedbackDetails(page);await details.locator('[name=status]').selectOption('abandoned');await expect(page.locator('.beta-card')).toContainText('bewusst aufgegeben');await page.reload();r=(await download(page)).puzzles[0];expect(r.phases[0].status).toBe('abandoned');expect(r.solvedAt).toBeNull();await page.getByRole('link',{name:'Fortsetzen',exact:true}).click();await expect(cell(page,'A1')).toContainText('?');r=(await records(page))[0];expect(r.phases).toHaveLength(2);expect(r.phases[1].status).toBe('open');
+ details=await feedbackDetails(page);await details.locator('[name=status]').selectOption('abandoned');await expect(page.locator('.beta-card')).toContainText('bewusst aufgegeben');await page.reload();r=(await download(page)).puzzles[0];expect(r.phases[0].status).toBe('abandoned');expect(r.feedback.solvingStyle).toBe('stepwise');expect(r.phases[0].feedbackAtEnd.solvingStyle).toBe('stepwise');expect(r.solvedAt).toBeNull();await page.getByRole('link',{name:'Fortsetzen',exact:true}).click();await expect(cell(page,'A1')).toContainText('?');r=(await records(page))[0];expect(r.phases).toHaveLength(2);expect(r.phases[1].status).toBe('open');
 });
 for(const reload of [false,true])test(`abandonment feedback correction resumes one preserved phase history (reload=${reload})`,async({page,context})=>{
  await page.addInitScript(()=>Object.defineProperty(document,'hidden',{configurable:true,get:()=>false}));

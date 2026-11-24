@@ -11,7 +11,7 @@ export function feedbackForm({record,onChange}){
  select('difficulty','Wie schwierig war das Rätsel?',[['easy','Einfach'],['medium','Mittel'],['hard','Schwer']]);
  select('fairness','Waren die Hinweise verständlich und fair?',[['yes','Ja'],['partly','Teilweise'],['no','Nein']]);
  select('fun','Wie viel Spaß hat Dir das Rätsel gemacht?',[['1','1 · Gar keinen'],['2','2 · Wenig'],['3','3 · Mittel'],['4','4 · Viel'],['5','5 · Sehr viel']]);
- select('solvingStyle','Wie bist Du überwiegend zur Lösung gekommen?',[['stepwise','Schrittweise ausschließen und markieren'],['route-comparison','Routenkandidaten vergleichen'],['mixed','Eine Mischung'],['other','Anders / schwer einzuordnen']]);
+ select('solvingStyle','Wie bist Du bei diesem Rätsel bisher überwiegend vorgegangen?',[['stepwise','Schrittweise Möglichkeiten ausschließen'],['route-comparison','Routenkandidaten vergleichen'],['mixed','Eine Mischung'],['other','Anders / schwer einzuordnen']]);
  select('status','Deine Rückmeldung zum Bearbeitungsstand',[['solved','Gelöst'],['abandoned','Aufgegeben'],['open','Noch offen']]);
  const label=document.createElement('label');label.textContent='Kommentar (freiwillig)';const comment=document.createElement('textarea');comment.name='comment';comment.rows=3;comment.value=record.feedback.comment;label.append(comment);form.append(label);
  comment.addEventListener('input',()=>onChange({comment:comment.value}));
