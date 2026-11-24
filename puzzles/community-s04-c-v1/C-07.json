@@ -1,0 +1,107 @@
+{
+  "identity": {
+    "instanceId": "inst-c825b557619ed3e2f536593c61e93ee57afa8f280dd5dca44dc79a02fab0e757",
+    "mapStructureId": "map-97392df7f2d323e340209c759d8160d774f554a43f3fc1edced11bb7beea382b",
+    "variantId": "var-2dabfbbbbabfb2255ed780c195c2b874490c8bf247430390e7e871e5443776e3"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "C-07",
+    "logic": {
+      "clues": [
+        {
+          "count": 1,
+          "distance": 5,
+          "fromHour": 1,
+          "id": "H1",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 2,
+          "fromHour": 2,
+          "id": "H2",
+          "placeId": "geo-02",
+          "toHour": 4,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "degrees": 120,
+          "hour": 4,
+          "id": "H3",
+          "type": "turn"
+        },
+        {
+          "direction": "NE",
+          "hour": 6,
+          "id": "H4",
+          "type": "direction"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "A5"
+            ],
+            "id": "geo-01",
+            "passable": true
+          },
+          {
+            "cells": [
+              "B4"
+            ],
+            "id": "geo-02",
+            "passable": true
+          }
+        ]
+      },
+      "start": "A5",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "A5",
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "id": "art-01",
+          "objectId": "geo-01"
+        },
+        {
+          "anchor": "B4",
+          "assetId": "sea-life.accent.h1.crate.v1",
+          "id": "art-02",
+          "objectId": "geo-02"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "Von Stunde 1 bis Stunde 6 war das Schiff genau einmal genau 5 Hexfelder von dem Ort geo-01 (A5) entfernt.",
+        "H2": "Von Stunde 2 bis Stunde 4 war das Schiff genau zweimal genau 2 Hexfelder von dem Ort geo-02 (B4) entfernt.",
+        "H3": "Kurswechsel in Stunde 4 gegenüber der unmittelbar vorherigen Fahrtrichtung: 120° rechts.",
+        "H4": "Fahrtrichtung von Stunde 5 zu Stunde 6: Nordost."
+      },
+      "hints": [],
+      "intro": [
+        "Redaktionelle Vorschau – Podcasttexte und Bedeutungsprüfung stehen noch aus.",
+        "Hexabstand zu einem Ort: kleinster geometrischer Abstand zu einer seiner Zellen; Land verlängert ihn nicht."
+      ],
+      "objectNames": {
+        "geo-01": "Ort geo-01",
+        "geo-02": "Ort geo-02"
+      },
+      "title": "C-07"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}

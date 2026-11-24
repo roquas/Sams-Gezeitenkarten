@@ -16,9 +16,11 @@ export function createIdentifiedLoader({fetcher=globalThis.fetch,...options}){
 export function puzzleContext(search=window.location.search){
  const params=new URLSearchParams(search),development=params.get('dev')==='b2',stock=params.get('stock')??'S01';
  if(development&&!['S01','S02','S03','S03-V2','BC','POSITIVE','POSITIVE-V2'].includes(stock))throw Error('Unbekannter B2-Bestand: '+stock);
- const relative=development?(stock==='S01'?'../../.dev/b2/manifest.json':'../../.dev/b2-'+stock.toLowerCase()+'/manifest.json'):'../../puzzles/manifest.json';
- const manifestUrl=new URL(relative,import.meta.url),scope=development?'b2:'+stock:'regular';
- return {params,development,stock,scope,manifestUrl,loader:createIdentifiedLoader({manifestUrl})};
+ const community=params.get('catalog')==='s04-c-community-v1';
+ if(community&&development)throw Error('Community-Katalog und Entwicklungsbestand nicht kombinieren.');
+ const relative=community?'../../puzzles/community-s04-c-v1/manifest.json':development?(stock==='S01'?'../../.dev/b2/manifest.json':'../../.dev/b2-'+stock.toLowerCase()+'/manifest.json'):'../../puzzles/manifest.json';
+ const manifestUrl=new URL(relative,import.meta.url),scope=community?'community:S04-C-v1':development?'b2:'+stock:'regular';
+ return {params,development,community,stock,scope,manifestUrl,loader:createIdentifiedLoader({manifestUrl})};
 }
 export function puzzleUrl(id,{replay=false,resume=false}={}){
  const url=new URL(window.location.href);url.hash='';

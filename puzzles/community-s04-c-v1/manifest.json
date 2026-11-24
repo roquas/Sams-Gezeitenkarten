@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 2,
+  "defaultId": "C-06",
+  "assetCatalog": "../../assets/catalog/library.json",
+  "resourceBase": "../../",
+  "puzzles": [
+    {
+      "id": "C-06",
+      "title": "C-06",
+      "path": "C-06.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-11",
+      "title": "C-11",
+      "path": "C-11.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-07",
+      "title": "C-07",
+      "path": "C-07.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-02",
+      "title": "C-02",
+      "path": "C-02.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-08",
+      "title": "C-08",
+      "path": "C-08.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-14",
+      "title": "C-14",
+      "path": "C-14.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-03",
+      "title": "C-03",
+      "path": "C-03.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-05",
+      "title": "C-05",
+      "path": "C-05.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-09",
+      "title": "C-09",
+      "path": "C-09.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-12",
+      "title": "C-12",
+      "path": "C-12.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-01",
+      "title": "C-01",
+      "path": "C-01.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-04",
+      "title": "C-04",
+      "path": "C-04.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-13",
+      "title": "C-13",
+      "path": "C-13.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-15",
+      "title": "C-15",
+      "path": "C-15.json",
+      "kind": "test"
+    },
+    {
+      "id": "C-10",
+      "title": "C-10",
+      "path": "C-10.json",
+      "kind": "test"
+    }
+  ]
+}

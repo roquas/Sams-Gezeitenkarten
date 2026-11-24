@@ -7,6 +7,12 @@ Direkteinstieg: `?puzzle=model-demo`; vorhandene Spielansicht: `?play=1`.
 Datenformat, Zeitmessung und Versionsbindung: [Betatest-Dokumentation](docs/BETA-FEEDBACK.md).
 Die gezielte Chromium-/WebKit-Matrix für Desktop und Mobil läuft mit `npm run test:beta`.
 
+**S04-C-Community-Pool vorbereiten:** [Plan, Auswahl und Flavor-Übergabe](docs/S04-C-COMMUNITY-BETA.md).
+15 vorhandene Fälle sind in Git versioniert; kein privates S04-C-Archiv nötig.
+`npm run check:community`, dann `npm run dev:community` und
+`http://localhost:8000/?catalog=s04-c-community-v1` für die redaktionelle Vorschau.
+Podcasttexte und Bedeutungsprüfung stehen noch aus; noch kein externer Teststart.
+
 **B2 V2 mit echtem Zählschluss spielen:** `npm run dev:b2:positive-v2`.
 [Lösungsfreie Anleitung und Beobachtungsprotokoll](docs/B2-POSITIVE-V2-PLAYTEST.md).
 Ein menschlicher Spieltest war erfolgreich; „mittelschwer“ ist damit nicht bestätigt.

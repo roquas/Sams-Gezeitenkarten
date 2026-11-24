@@ -169,3 +169,23 @@ verraten bei falscher Route keine Lösungsinformation. Die bestehende
 Keine neuen Illustrationen oder Animationen; die späteren grafischen Wünsche aus
 Issue #35 bleiben offen. Die statische Fassung funktioniert auch bei reduzierter
 Bewegung.
+
+
+## Freiwillige Ergänzung für den Community-Test (24.11.2026)
+
+Additive Erweiterung von Schema 1 bei unverändertem Speichernamensraum und
+unveränderten Top-Level-Feldern: `feedback` und `feedbackAtEnd` exportieren
+zusätzlich `fun` (Ganzzahl 1–5 oder `null`) und `solvingStyle` (`stepwise`,
+`route-comparison`, `mixed`, `other` oder `null`). Fehlende Altwerte werden als
+`null` exportiert, niemals aus Schwierigkeit oder Zeit abgeleitet. Beim erneuten
+Spielen werden die Werte mit dem bisherigen Feedback archiviert und geleert.
+
+`generalFeedback.experience` ist `beginner`, `occasional`, `experienced` oder
+`null`, wird einmal pro Browserkennung erfragt, bleibt änderbar und teilt
+`revision`/`updatedAt` mit dem allgemeinen Kommentar. Kommentaränderungen erhalten
+die Erfahrung und umgekehrt. Importierende Auswerter müssen die neuen optionalen
+Felder zulassen; Exporte älterer Fassungen bleiben gültige Quellen ohne diese Werte.
+
+Der explizite Katalog `?catalog=s04-c-community-v1` bindet Rückmeldungen an
+`community:S04-C-v1`. Er ist unabhängig vom regulären Katalog und historischen
+Entwicklungsbeständen. [Auswahl, Flavor-Übergabe und Auswertungsplan](S04-C-COMMUNITY-BETA.md).

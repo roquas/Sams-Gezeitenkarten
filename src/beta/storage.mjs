@@ -9,7 +9,7 @@ export function puzzleIdentity(puzzle,scope){
 const identityFields=['catalog','puzzleId','schemaVersion','dataVersion','rulesVersion','mapStructureId','instanceId','variantId','sourcePublicationId'];
 export const recordId=identity=>JSON.stringify(identityFields.map(key=>identity[key]??null));
 const fields=(value,keys)=>Object.fromEntries(keys.map(key=>[key,value[key]??null]));
-const feedbackFields=['difficulty','fairness','comment','status','updatedAt'];
+const feedbackFields=['difficulty','fairness','comment','status','updatedAt','fun','solvingStyle'];
 const phaseFields=['phaseId','startedAt','endedAt','status','activeMs','paused','hints','noteChecks','routeChecks','penaltyPoints','timeTracking'];
 function exportedRecord(record){
  return {...fields(record,['recordId','title','createdAt','updatedAt','revision','solvedAt']),identity:fields(record.identity,identityFields),
@@ -48,7 +48,7 @@ export function createBetaStore({storage,report=()=>{},now=()=>new Date().toISOS
  function get(identity){return read(PREFIX+'record:'+recordId(identity));}
  function update(identity,change,{title=''}={}){
   const id=recordId(identity),stamp=now();
-  let record=get(identity)??{recordId:id,identity,title,createdAt:stamp,updatedAt:stamp,revision:0,solvedAt:null,phases:[],feedback:{difficulty:null,fairness:null,comment:'',status:null,updatedAt:null}};
+  let record=get(identity)??{recordId:id,identity,title,createdAt:stamp,updatedAt:stamp,revision:0,solvedAt:null,phases:[],feedback:{difficulty:null,fairness:null,comment:'',status:null,updatedAt:null,fun:null,solvingStyle:null}};
   change(record);record.updatedAt=stamp;record.revision++;write(PREFIX+'record:'+id,record);return record;
  }
  function start(identity,title,{replay=false,resume=false,paused=false,counters={}}={}){
@@ -56,23 +56,24 @@ export function createBetaStore({storage,report=()=>{},now=()=>new Date().toISOS
    const phase=r.phases.at(-1),initialCounters=phase?{}:counters;
    const resuming=resume&&phase?.status==='abandoned';
    if((replay||resuming)&&phase){phase.endedAt??=now();phase.feedbackAtEnd??=structuredClone(r.feedback);}
-   if(replay&&phase)r.feedback={difficulty:null,fairness:null,comment:'',status:null,updatedAt:null};
+   if(replay&&phase)r.feedback={difficulty:null,fairness:null,comment:'',status:null,updatedAt:null,fun:null,solvingStyle:null};
    if(resuming&&r.feedback.status==='abandoned'){r.feedback.status='open';r.feedback.updatedAt=now();}
    if(!phase||replay||resuming)r.phases.push({phaseId:newId(),startedAt:now(),endedAt:null,status:'open',activeMs:0,paused,hints:initialCounters.hints??0,noteChecks:initialCounters.noteChecks??0,routeChecks:0,penaltyPoints:initialCounters.penaltyPoints??0,timeTracking:'available',feedbackAtEnd:null});
   },{title});
  }
  function phaseUpdate(identity,change){return update(identity,r=>{const phase=r.phases.at(-1);if(phase)change(phase,r);});}
  function feedback(identity,values,title){return update(identity,r=>{
-  for(const key of ['difficulty','fairness','comment','status'])if(Object.hasOwn(values,key))r.feedback[key]=values[key];
+  for(const key of ['difficulty','fairness','comment','status','fun','solvingStyle'])if(Object.hasOwn(values,key))r.feedback[key]=values[key];
   r.feedback.updatedAt=now();
   if(values.status==='abandoned'){
    const phase=r.phases.at(-1);if(phase?.status==='open'){phase.status='abandoned';phase.endedAt=now();phase.feedbackAtEnd=structuredClone(r.feedback);}
   }
  },{title});}
  return {get,update,start,phaseUpdate,feedback,records,general,
+  setExperience(experience){const value=general();value.experience=experience;value.updatedAt=now();value.revision++;return write(generalKey,value);},
   setGeneral(comment){const value=general();value.comment=comment;value.updatedAt=now();value.revision++;return write(generalKey,value);},
   exportData(application){return {feedbackSchemaVersion:FEEDBACK_SCHEMA_VERSION,exportedAt:now(),testerId:tester.testerId,application,
-   puzzles:records().sort((a,b)=>a.recordId<b.recordId?-1:a.recordId>b.recordId?1:0).map(exportedRecord),generalFeedback:fields(general(),['comment','updatedAt','revision'])};},
+   puzzles:records().sort((a,b)=>a.recordId<b.recordId?-1:a.recordId>b.recordId?1:0).map(exportedRecord),generalFeedback:fields(general(),['comment','updatedAt','revision','experience'])};},
   // Let concurrent tabs observe the latest stored value. Failed local writes stay exportable.
   hasUnsaved:()=>memory.size>0
  };

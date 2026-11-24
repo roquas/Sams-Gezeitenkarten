@@ -1,0 +1,97 @@
+{
+  "identity": {
+    "instanceId": "inst-215a5d662d11dabd52aa092c5e270bd2cd644462e59107c048a3e26ff5c90043",
+    "mapStructureId": "map-11d5cacc74e77ce2f8de46afe00678447d3e4210d97cd72abfe4754301deb23e",
+    "variantId": "var-99d32997b8a8f6334eff448abcc10de769e6dc962507052ca0906e32bb0e2fe0"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "C-14",
+    "logic": {
+      "clues": [
+        {
+          "count": 1,
+          "distance": 5,
+          "fromHour": 5,
+          "id": "H1",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "degrees": -120,
+          "hour": 5,
+          "id": "H2",
+          "type": "turn"
+        },
+        {
+          "degrees": -60,
+          "hour": 3,
+          "id": "H3",
+          "type": "turn"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "E2"
+            ],
+            "id": "geo-01",
+            "passable": true
+          },
+          {
+            "cells": [
+              "D5"
+            ],
+            "id": "geo-02",
+            "passable": true
+          }
+        ]
+      },
+      "start": "D5",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "E2",
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "id": "art-01",
+          "objectId": "geo-01"
+        },
+        {
+          "anchor": "D5",
+          "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+          "id": "art-02",
+          "objectId": "geo-02"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "Von Stunde 5 bis Stunde 6 war das Schiff genau einmal genau 5 Hexfelder von dem Ort geo-02 (D5) entfernt.",
+        "H2": "Kurswechsel in Stunde 5 gegenüber der unmittelbar vorherigen Fahrtrichtung: 120° links.",
+        "H3": "Kurswechsel in Stunde 3 gegenüber der unmittelbar vorherigen Fahrtrichtung: 60° links."
+      },
+      "hints": [],
+      "intro": [
+        "Redaktionelle Vorschau – Podcasttexte und Bedeutungsprüfung stehen noch aus.",
+        "Hexabstand zu einem Ort: kleinster geometrischer Abstand zu einer seiner Zellen; Land verlängert ihn nicht."
+      ],
+      "objectNames": {
+        "geo-01": "Ort geo-01",
+        "geo-02": "Ort geo-02"
+      },
+      "title": "C-14"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}

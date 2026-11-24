@@ -1,0 +1,121 @@
+{
+  "identity": {
+    "instanceId": "inst-fceff0d5ca55e054b07dc14160ef6a1c5918b2b38e838dfd4ad514019d6113e0",
+    "mapStructureId": "map-fd13b58981b8973e3a55cc4fee6d261b329e95e97f19daf7aff91ebb994cab4c",
+    "variantId": "var-8507620de68af19cd9dc8bc43c38e4bfed1f9a06584d8a9f350385ff0a56f94f"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "C-01",
+    "logic": {
+      "clues": [
+        {
+          "count": 1,
+          "distance": 5,
+          "fromHour": 5,
+          "id": "H1",
+          "placeId": "geo-03",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 3,
+          "distance": 2,
+          "fromHour": 3,
+          "id": "H2",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "degrees": -120,
+          "hour": 6,
+          "id": "H3",
+          "type": "turn"
+        },
+        {
+          "degrees": 60,
+          "hour": 4,
+          "id": "H4",
+          "type": "turn"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "D3"
+            ],
+            "id": "geo-01",
+            "passable": false
+          },
+          {
+            "cells": [
+              "B3"
+            ],
+            "id": "geo-02",
+            "passable": true
+          },
+          {
+            "cells": [
+              "B5"
+            ],
+            "id": "geo-03",
+            "passable": true
+          }
+        ]
+      },
+      "start": "B3",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "D3",
+          "assetId": "land-coast.settlement.h1.restaurant-island.v1",
+          "id": "art-01",
+          "objectId": "geo-01"
+        },
+        {
+          "anchor": "B3",
+          "assetId": "sea-life.accent.h1.crate.v1",
+          "id": "art-02",
+          "objectId": "geo-02"
+        },
+        {
+          "anchor": "B5",
+          "assetId": "land-coast.atoll.h1.broken-passages.v1",
+          "id": "art-03",
+          "objectId": "geo-03"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "In Stunde 5 war das Schiff genau 5 Hexfelder von dem Ort geo-03 (B5) entfernt.",
+        "H2": "Von Stunde 3 bis Stunde 6 war das Schiff genau dreimal genau 2 Hexfelder von dem Ort geo-01 (D3) entfernt.",
+        "H3": "Kurswechsel in Stunde 6 gegenüber der unmittelbar vorherigen Fahrtrichtung: 120° links.",
+        "H4": "Kurswechsel in Stunde 4 gegenüber der unmittelbar vorherigen Fahrtrichtung: 60° rechts."
+      },
+      "hints": [],
+      "intro": [
+        "Redaktionelle Vorschau – Podcasttexte und Bedeutungsprüfung stehen noch aus.",
+        "Hexabstand zu einem Ort: kleinster geometrischer Abstand zu einer seiner Zellen; Land verlängert ihn nicht."
+      ],
+      "objectNames": {
+        "geo-01": "Ort geo-01",
+        "geo-02": "Ort geo-02",
+        "geo-03": "Ort geo-03"
+      },
+      "title": "C-01"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}

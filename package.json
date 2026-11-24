@@ -35,7 +35,11 @@
     "dev:b2:s03-v2": "npm run export:b2 -- --stock S03-V2 && python3 scripts/dev-server.py",
     "test:s03:v2:evidence": "node --test tests/reproduction/s03-v2-evidence.test.mjs",
     "test:s03:v2:reproduction": "node --test tests/reproduction/s03-v2.test.mjs",
-    "test:beta": "playwright test --config=playwright.b1.config.mjs"
+    "test:beta": "playwright test --config=playwright.b1.config.mjs",
+    "dev:community": "python3 scripts/dev-server.py",
+    "export:community": "node scripts/community-beta.mjs --write",
+    "check:community": "node scripts/community-beta.mjs",
+    "check:community:release": "node scripts/community-beta.mjs --release-check"
   },
   "devDependencies": {
     "@playwright/test": "1.64.0"

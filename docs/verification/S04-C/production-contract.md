@@ -1,5 +1,10 @@
 # S04-C Phase C – Produktionsvertrag v1
 
+> Folgeentscheidung 24.11.2026: Der damalige private Übergabeweg ist für die
+> ausgewählten 15 Community-Fälle durch die [Git-versionierte Ablage und den
+> Betatestplan](../../S04-C-COMMUNITY-BETA.md) abgelöst. Der folgende Text
+> dokumentiert unverändert den historischen Produktionsauftrag.
+
 Vor der ersten Generation fixiert, 22.11.2026. Konfiguration:
 `scripts/config/s04-c-production-v1.json`. Keine Ergebnisse bei Festlegung.
 Dieser Vertrag autorisiert genau einen neuen Produktionslauf; der getrennte

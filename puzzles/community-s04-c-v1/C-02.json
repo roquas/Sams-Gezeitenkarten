@@ -1,0 +1,158 @@
+{
+  "identity": {
+    "instanceId": "inst-ffa99f1936cd93835bda552bc37ac95b651379831d7cc1b3d8f00626aed9bb39",
+    "mapStructureId": "map-de81b1b901905361b352c2fadce4778a2e490b626eec1370966d37af47d6019f",
+    "variantId": "var-59d896ba35679c86cf33767ee829a094e53045c9a844d44a7a9b1e9b3fc581e6"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "C-02",
+    "logic": {
+      "clues": [
+        {
+          "count": 0,
+          "distance": 0,
+          "fromHour": 3,
+          "id": "H1",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 5,
+          "fromHour": 6,
+          "id": "H2",
+          "placeId": "geo-03",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 1,
+          "fromHour": 1,
+          "id": "H3",
+          "placeId": "geo-01",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 2,
+          "id": "H4",
+          "placeId": "geo-03",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 2,
+          "fromHour": 1,
+          "id": "H5",
+          "placeId": "geo-02",
+          "toHour": 3,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "distance": 1,
+          "hour": 5,
+          "id": "H6",
+          "placeId": "geo-02",
+          "type": "distanceToPlace"
+        },
+        {
+          "distance": 2,
+          "hours": [
+            1,
+            3
+          ],
+          "id": "H7",
+          "type": "distanceBetweenHours"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "B1"
+            ],
+            "id": "geo-01",
+            "passable": true
+          },
+          {
+            "cells": [
+              "B4"
+            ],
+            "id": "geo-02",
+            "passable": true
+          },
+          {
+            "cells": [
+              "D1",
+              "D2",
+              "E1",
+              "E2"
+            ],
+            "id": "geo-03",
+            "passable": false
+          }
+        ]
+      },
+      "start": "B1",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "B1",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "id": "art-01",
+          "objectId": "geo-01"
+        },
+        {
+          "anchor": "B4",
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "id": "art-02",
+          "objectId": "geo-02"
+        },
+        {
+          "anchor": "D1",
+          "assetId": "land-coast.settlement.h4.tesoro.v4",
+          "id": "art-03",
+          "objectId": "geo-03"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "Von Stunde 3 bis Stunde 6 war das Schiff nie auf dem Ort geo-02 (B4).",
+        "H2": "In Stunde 6 war das Schiff nicht genau 5 Hexfelder von dem Ort geo-03 (D1, D2, E1, E2) entfernt.",
+        "H3": "Von Stunde 1 bis Stunde 5 war das Schiff genau einmal neben dem Ort geo-01 (B1).",
+        "H4": "In Stunde 2 war das Schiff genau 3 Hexfelder von dem Ort geo-03 (D1, D2, E1, E2) entfernt.",
+        "H5": "Von Stunde 1 bis Stunde 3 war das Schiff genau zweimal genau 2 Hexfelder von dem Ort geo-02 (B4) entfernt.",
+        "H6": "Hexabstand in Stunde 5 zu Ort geo-02 (B4): genau 1.",
+        "H7": "Hexabstand zwischen den Positionen in Stunde 1 und Stunde 3: genau 2."
+      },
+      "hints": [],
+      "intro": [
+        "Redaktionelle Vorschau – Podcasttexte und Bedeutungsprüfung stehen noch aus.",
+        "Hexabstand zu einem Ort: kleinster geometrischer Abstand zu einer seiner Zellen; Land verlängert ihn nicht."
+      ],
+      "objectNames": {
+        "geo-01": "Ort geo-01",
+        "geo-02": "Ort geo-02",
+        "geo-03": "Ort geo-03"
+      },
+      "title": "C-02"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}

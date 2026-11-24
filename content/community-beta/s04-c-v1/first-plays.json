@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "sourceFilename": "gezeitenkarten-betatest-2026-11-23-3.json",
+  "sourceSha256": "c2a42b3d32ce47cf29082ee762b8f56a30bd73282121c08c1d1777db808d0651",
+  "exportedAt": "2026-11-23T18:27:15.482Z",
+  "distinctTesters": 1,
+  "note": "Twelve first-play observations from one experienced tester. C-05/C-14 use archived feedback from the first phase; repeats are not additional observations. Pseudonymous browser/phase IDs and personal timestamps omitted. New fun/style/experience ratings were not measured. Comments are retrospective accounts, not verified solution traces.",
+  "observations": [
+    {
+      "id": "C-02",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-02",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-de81b1b901905361b352c2fadce4778a2e490b626eec1370966d37af47d6019f",
+        "instanceId": "inst-ffa99f1936cd93835bda552bc37ac95b651379831d7cc1b3d8f00626aed9bb39",
+        "variantId": "var-59d896ba35679c86cf33767ee829a094e53045c9a844d44a7a9b1e9b3fc581e6",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 320446,
+        "hints": 0,
+        "noteChecks": 3,
+        "routeChecks": 2,
+        "penaltyPoints": 15
+      },
+      "feedback": {
+        "difficulty": "easy",
+        "fairness": "yes",
+        "comment": "Hübsch und Teilerfolge.\n\nH1, H2, H4, H6 lassen sich alle direkt eintragen.\n\nWegen H3 ist der Ring um das Startfeld für S>2 gesperrt, deshalb nur noch S2 fix, und auch S3 wegen H5.  Durch H6 dann S1 fix und Route bis S3 einzeichnbar.\n\nWegen den eingetragenen Sperrungen und der Geometrie (jetzt aber positiv weil sichtbar und nicht nur im Kopf) ist auch S4 fix, wegen H6 dann auch S5 und S6 hat nur noch einen Weg offen.",
+        "status": "solved",
+        "updatedAt": "2026-11-23T09:38:20.474Z"
+      }
+    },
+    {
+      "id": "C-03",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-03",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-0b72f0a2f6a1525f0a664c2dac6d895dcba63ef8e089ef6af57e62bd9e05177f",
+        "instanceId": "inst-ef038bd5a2c6975aa2c41dc00112207d042441d6707f272a295ffd0f50cbc1ee",
+        "variantId": "var-d1ee74aef47dcb237f5f72ee0345a36bc997083390a2429445d3f725e0ecda5f",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 300355,
+        "hints": 0,
+        "noteChecks": 1,
+        "routeChecks": 1,
+        "penaltyPoints": 5
+      },
+      "feedback": {
+        "difficulty": "medium",
+        "fairness": "yes",
+        "comment": "Gute Teillösungen möglich:  H4 macht S1 fix, H1/2 machen großen Ausschluss für S3, mit H6 ist auch S2 fix und wegen H3 nur ein Weg für S3/4. H5 lässt sich auch früh markieren und damit ist dann S5/S6 schnell gefunden.\n\n\"Mittel\" statt \"Leicht\" nur, weil es kein Einsteigerrätsel ist, wenn auch relativ überschaubare Logik.\n\nH6 ist leider blöd formuliert:  Hier ist Abstand S0 und S1, wobei wir S0 nicht verwenden wollten.  Besser Abstand von Startfeld (nebenbemerkung:  Erwähnung von S0 in H4 ist in Ordnung, das ist ja für Fahrtrichtung sinnvoll so im Standard zu formulieren und wäre mit Flavortext eh raus)\n",
+        "status": "solved",
+        "updatedAt": "2026-11-23T09:29:55.932Z"
+      }
+    },
+    {
+      "id": "C-04",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-04",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-0136ca736382b037a62770e67fb2e515b458b0f6105c35bc7dec01cd7e5d19e0",
+        "instanceId": "inst-805e2eaf9e0926d5b1592177987eb47ef17d372e309d8e3799d5e6f1a067e6f6",
+        "variantId": "var-24889c8160dc13c1441bb8f81164c0ca5c41a21a47cf05454b4ebe9b2442514f",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 1511484,
+        "hints": 0,
+        "noteChecks": 1,
+        "routeChecks": 4,
+        "penaltyPoints": 5
+      },
+      "feedback": {
+        "difficulty": "hard",
+        "fairness": "yes",
+        "comment": "Anfang sehr vielversprechend, H1, H2, H3 direkt eintragbar, dadurch S1/S2 fix und Route einzeichnbar.\n\nFast aufgegeben, weil ich für spätere Stunden keinerlei positive Hinweise hatte und beim ersten Einzeichnen dachte, alle Hinweise beachtet zu haben und sogar Dich gebeten hatte, den Solver zu überprüfen...\n\nDann aber doch hinbekommen und eigentlich sogar spannendes Logikrätsel mit immerhin nur 2/3 der Route :)",
+        "status": "solved",
+        "updatedAt": "2026-11-23T18:27:07.544Z"
+      }
+    },
+    {
+      "id": "C-05",
+      "sourceFeedback": "phases[0].feedbackAtEnd",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-05",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-0515bd4045e2b20b75bd327bb988ccb6218858cf0dbb88674cf64263ec1a9c49",
+        "instanceId": "inst-ec94a741ddd11cbb634a1c8d5ee5a1f5005073794c4ecc08543f0a5cdb5a6a7d",
+        "variantId": "var-a5937b0821594cee2f645ba660c68a563f6f84c68d7e76645e364b44be0f3aa8",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 149667,
+        "hints": 0,
+        "noteChecks": 0,
+        "routeChecks": 1,
+        "penaltyPoints": 0
+      },
+      "feedback": {
+        "difficulty": "easy",
+        "fairness": "yes",
+        "comment": "H1/H2 machen S5 fix, H3 dann S5, da nur ein valides Feld dann das bereits fixe S6 erreichen kann.  H5 gibt nur 2 Ausgangsmöglichkeiten für S1/2 und von den beiden kann nur einer eine Route bilden, die H4 befriedigt.\n\nTrotzdem kein \"schönes\" Rätsel, da die eigentliche Route komplett steht und fällt und man keine Teilroute zeichnen kann",
+        "status": "solved",
+        "updatedAt": "2026-11-22T20:57:05.662Z"
+      }
+    },
+    {
+      "id": "C-06",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-06",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-22f59cd7393e4f34830e3039fcac2677fe1dac4de54ab8217dd3221da1abbb07",
+        "instanceId": "inst-1111b58ac97e5598858a1c033bd65f37cf7e3b408bdcbdd3c0026151d2fbe135",
+        "variantId": "var-09a5d3fdd65cb416aff0d4ad22154dd6ae3930d4ad49a3b76ff55cc8a108fbe0",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 229742,
+        "hints": 0,
+        "noteChecks": 1,
+        "routeChecks": 1,
+        "penaltyPoints": 5
+      },
+      "feedback": {
+        "difficulty": "medium",
+        "fairness": "yes",
+        "comment": "Alles prima.  H1 schliesst relativ viel aus, wenn man damit anfängt hat man viel Klickarbeit, aber dafür auch klare Eingrenzungen, wo die Route sein wird.\n\nH4 legt faktisch S1/S2 fest, H5 dann S3\n\nH6 macht überschaubare Menge von S6-Möglichkeiten markierbar.\n\nH2 gibt dann vor, welche 2 Optionen es für S5 gibt, H3 schliesst von den S4, die das ermöglichen eine aus, dann ist nur noch eine zu H6 passende S6 übrig.\n\nSehr gut, da viel zu markieren, Route schnell teilweise einzeichnbar, unterschiedliche Hinweistypen und fast mein bisheriges \"genau so\"-Rätsel",
+        "status": "solved",
+        "updatedAt": "2026-11-23T08:13:27.950Z"
+      }
+    },
+    {
+      "id": "C-07",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-07",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-97392df7f2d323e340209c759d8160d774f554a43f3fc1edced11bb7beea382b",
+        "instanceId": "inst-c825b557619ed3e2f536593c61e93ee57afa8f280dd5dca44dc79a02fab0e757",
+        "variantId": "var-2dabfbbbbabfb2255ed780c195c2b874490c8bf247430390e7e871e5443776e3",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 138201,
+        "hints": 0,
+        "noteChecks": 0,
+        "routeChecks": 1,
+        "penaltyPoints": 0
+      },
+      "feedback": {
+        "difficulty": "medium",
+        "fairness": "yes",
+        "comment": "Fast Negativbeispiel.  Keinerlei Markierungen möglich, keine Teilrouten möglich.  Die Aspekte der Route muss man fast durchgehend gleichzeitig im Kopf haben, und am besten hätte man unterschiedliche Radare gleichzeitig angezeigt.  Mobil schwierig wo man immer nur einen Hinwies gleichzeitig sieht.\n\nFür mich inzwischen machbar, und als \"spannende Knobelaufgabe\" durchaus mal drin aber kein gutes Beispiel.",
+        "status": "solved",
+        "updatedAt": "2026-11-23T08:17:18.553Z"
+      }
+    },
+    {
+      "id": "C-08",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-08",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-1ced80abbe8fa3bed383a030eb0c30e90255114d5984bce6ca350016c92d0a0c",
+        "instanceId": "inst-c4fa54b33dd1c5bd71c3b885a256ffaa757fab943718d88593680e90515ee20f",
+        "variantId": "var-ce143fac9432b6500970e71d9b64f38c3b495f5094be054fe67cc547297351ed",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 1232277,
+        "hints": 0,
+        "noteChecks": 4,
+        "routeChecks": 2,
+        "penaltyPoints": 20
+      },
+      "feedback": {
+        "difficulty": "hard",
+        "fairness": "yes",
+        "comment": "Sehr anspruchsvoll, viel Kopfdenken, viele \"echte\" CD mit relativ wenig Markierungmöglichkeiten.  Hat mich aber trotzdem gereizt und war im Endeffekt sogar mit Teilrouten als Gedankenstütze gut grafisch lösbar.  Nachteilig nur, dass die 3 \"Kopfhinweise\", die man nachher quasi gleichzeitig lösen muss (H2/3/4) alle unterschiedliche Orte nutzen und auch bis auf einen eher größere Abstände, das lässt sich dann schwer mit dem Radar visualisieren",
+        "status": "solved",
+        "updatedAt": "2026-11-23T11:24:44.622Z"
+      }
+    },
+    {
+      "id": "C-09",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-09",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-c184cf4120ce98c9b4fad4c526c43fff49dcdd3175edfc26f1153084f50af252",
+        "instanceId": "inst-42742842f156a6bf59da8fd23bbf0a418a44f0c61f69866385783f05c47920cd",
+        "variantId": "var-02dd37bbeb3e4ac1d215d87f0e42f66650e44760af192281b4f41087266bcb20",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 421793,
+        "hints": 0,
+        "noteChecks": 4,
+        "routeChecks": 1,
+        "penaltyPoints": 20
+      },
+      "feedback": {
+        "difficulty": "hard",
+        "fairness": "yes",
+        "comment": "Auch wenn man spät die Route malen konnte interessantes Rätsel.\n\nH1, H2, H4, H6 direkt markierter (H2/4 sogar als Schnittmenge)\n\nH3 ist mit H4 zusammen \"kürzbar\" auf \"In Stunde 5\", da S6 in dem in H3 spezifizierten Abstand wegen H4 gar nicht sein kann.\n\nWenn man dann die \"welche Felder erreiche ich überhaupt von gültigen S-1/+1 Feldern\" Prüfung macht wird's klarer, und S5/S6 fix sowie S4 auf 2 Felder eingegrenzt.\n\nH5 ist mit S1/5/6 (obwohl S1 noch gar nicht feststeht) erfüllt, heisst aber auch dass keine weitere Stunde direkt am Startfeld angrenzen kann.  Wegen H2 (bzw. wegen der Markierungen) ist dann nur noch ein Weg möglich eins der S4-Felder zu erreichen und die Route steht.",
+        "status": "solved",
+        "updatedAt": "2026-11-23T17:29:12.203Z"
+      }
+    },
+    {
+      "id": "C-11",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-11",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-db8dec752e54f7173e94e1ff1bad814d7af075a9505ebdb113ce59d6883fb5e2",
+        "instanceId": "inst-02ebd990d1a32105f24068b17b5ff9f655fee67ecb44c0f91e002bc8f062e549",
+        "variantId": "var-2676716b8e4edcd425f77b3dddd07c00d294ace341ab3a5cbc7de4c0e536b24d",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 173396,
+        "hints": 0,
+        "noteChecks": 3,
+        "routeChecks": 1,
+        "penaltyPoints": 15
+      },
+      "feedback": {
+        "difficulty": "medium",
+        "fairness": "yes",
+        "comment": "Bestes auf der Karte aber auch nur tlw..  Trotzdem Spaß gemacht:\n\nH1, H2 direkt eintragbar.\n\nH3 macht dann S6 fix wegen der Geometrie (man kann nur eins der drei Felder in S6 erreichen ohne H1 in S4/S5 zu verletzen).\n\nDanach beginnt aber wieder die Kopfroutensuche mit eingeblendetem Radar für H4, da es mit den Markierungen nur noch 2 korrekte Routen gibt, die S6 erreichen, aber eine davon verletzt das CD von H4.",
+        "status": "solved",
+        "updatedAt": "2026-11-23T09:43:33.252Z"
+      }
+    },
+    {
+      "id": "C-12",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-12",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-5a5dd5ee776201cd79813bb550bb6ea3ecaa336dc22d9d72606bf6b2204e6d82",
+        "instanceId": "inst-19fbb550be9a84ea87c18fc220e2620ce694a5f9e9d41f80009a8433d3846c3b",
+        "variantId": "var-3d06d5bbd78d6064162b35d899781f5a38cf4459f20f05499e3613d5e6b257e8",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 322905,
+        "hints": 0,
+        "noteChecks": 2,
+        "routeChecks": 2,
+        "penaltyPoints": 10
+      },
+      "feedback": {
+        "difficulty": "hard",
+        "fairness": "yes",
+        "comment": "Eigentlich interessante Überlegungen, aber wieder zu schwammige Route.  Man muss sehr viel Geometrie im Kopf in die Hinweise mitreinrechnen um das Nadelöhr bei Gamma-Violett zu identifizieren, was aus H2 einen starken Hinweis macht.  Dann aber Routen, die entweder mit S3 oder S4 dort sind (S5 geht wegen den Eingrenzungen von S6 nicht) und zu versuchen etwas zu finden, dass den anderen (nicht leicht eintragbaren) Hinweisen entspricht ist eher fortgeschritten",
+        "status": "solved",
+        "updatedAt": "2026-11-22T21:08:55.360Z"
+      }
+    },
+    {
+      "id": "C-13",
+      "sourceFeedback": "feedback",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-13",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-643cd9357e326d6e6f4d5b2045f551fdb40eecac3850b907123ae4062404e41c",
+        "instanceId": "inst-9420fc57e05f90dde60bb087bf5a89ff2757d514b914726a6c1bb83aacf65771",
+        "variantId": "var-a512eb09f0dceb5cbf822d8129124c6f87e831b617397f6af806dc0f2fc75103",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 219740,
+        "hints": 0,
+        "noteChecks": 0,
+        "routeChecks": 1,
+        "penaltyPoints": 0
+      },
+      "feedback": {
+        "difficulty": "hard",
+        "fairness": "yes",
+        "comment": "Ähnliches Feedback wie zu dem anderen Rätsel auf der Karte:  Hier kann man zwar etwas mehr markieren durch H3/H4, aber es betrifft nur Stunden 4 und 5.  H1/H2 geben sehr schwer gedanklich fassbare Einschränkungen zu S4-6, bzw. S3-5.  Die ersten 3-4h hat man dann sozusagen frei im Kopf und überlegt nur wie man eine Route findet, die alles unterstützt.\n\nIn meinem Fall hatte ich eine Route war dann aber sehr verunsichert, weil ich sie quasi \"geraten\" hatte und nur sicher, weil ich wusste, dass alle Rätsel deterministisch sind und es keine 2 Routen geben kann die alle Hinweise erfüllen.",
+        "status": "solved",
+        "updatedAt": "2026-11-23T08:24:23.414Z"
+      }
+    },
+    {
+      "id": "C-14",
+      "sourceFeedback": "phases[0].feedbackAtEnd",
+      "sourceIdentity": {
+        "catalog": "b2:S04-C-LOCAL",
+        "puzzleId": "C-14",
+        "schemaVersion": 2,
+        "dataVersion": 1,
+        "rulesVersion": "gezeitenkarten-2",
+        "mapStructureId": "map-11d5cacc74e77ce2f8de46afe00678447d3e4210d97cd72abfe4754301deb23e",
+        "instanceId": "inst-215a5d662d11dabd52aa092c5e270bd2cd644462e59107c048a3e26ff5c90043",
+        "variantId": "var-99d32997b8a8f6334eff448abcc10de769e6dc962507052ca0906e32bb0e2fe0",
+        "sourcePublicationId": null
+      },
+      "firstPhase": {
+        "status": "solved",
+        "activeMs": 143867,
+        "hints": 0,
+        "noteChecks": 1,
+        "routeChecks": 1,
+        "penaltyPoints": 5
+      },
+      "feedback": {
+        "difficulty": "medium",
+        "fairness": "yes",
+        "comment": "H1 legt ein Feld fest das in S5/S6 erreicht werden muss.  Wegen H2 kann es nur in S6 sein, da man sonst kein S6 erreichen könnte.  Mit H3 zusammen ist dann nur eine Route gültig.\n\nFast negativ Kandidat, da man wieder keinerlei Route vorberechnen kann und faktisch die ganze Route im Kopf mit den Richtungswechseln durch probieren einpassen muss.",
+        "status": "solved",
+        "updatedAt": "2026-11-22T21:01:14.763Z"
+      }
+    }
+  ]
+}

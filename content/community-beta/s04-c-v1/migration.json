@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "a18a0af855b70199139edfc503732e8a761f1769",
+  "sourceExperimentId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae",
+  "sourceProgramCommit": "ed67180e800aedc8ea12709e2a824fb9198a726b",
+  "sourceArchiveSha256": "4401e064afde23421964ce53256039be1b01e104dbd4e1a33f7c0d2a2a009414",
+  "sourceInventorySha256": "d20755e414b87c78a8145275c79cfacf2922a8782b3b97290b0c857c7011dafc",
+  "verifiedInventoryFiles": 67,
+  "sourceHandoffPath": "handoff/private-cases.json",
+  "casesSha256": "4b574935f63e3f4884abece2f5259f4513d308b5900c1f734bda2dce843de2cc",
+  "selectedCasesMatchedToRaw": 15,
+  "generationPerformed": false,
+  "note": "One-time import of the existing selected handoff, byte-identical. All files needed for this community pool are now in Git; the historical full production archive is not a build or review dependency."
+}

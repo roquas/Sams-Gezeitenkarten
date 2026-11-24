@@ -1,0 +1,159 @@
+{
+  "identity": {
+    "instanceId": "inst-02ebd990d1a32105f24068b17b5ff9f655fee67ecb44c0f91e002bc8f062e549",
+    "mapStructureId": "map-db8dec752e54f7173e94e1ff1bad814d7af075a9505ebdb113ce59d6883fb5e2",
+    "variantId": "var-2676716b8e4edcd425f77b3dddd07c00d294ace341ab3a5cbc7de4c0e536b24d"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "C-11",
+    "logic": {
+      "clues": [
+        {
+          "count": 0,
+          "distance": 1,
+          "fromHour": 1,
+          "id": "H1",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 4,
+          "fromHour": 2,
+          "id": "H2",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 1,
+          "fromHour": 5,
+          "id": "H3",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 3,
+          "id": "H4",
+          "placeId": "geo-04",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "E2",
+              "E3"
+            ],
+            "id": "geo-01",
+            "passable": false
+          },
+          {
+            "cells": [
+              "E5"
+            ],
+            "id": "geo-02",
+            "passable": true
+          },
+          {
+            "cells": [
+              "C4",
+              "C5"
+            ],
+            "id": "geo-03",
+            "passable": false
+          },
+          {
+            "cells": [
+              "A3"
+            ],
+            "id": "geo-04",
+            "passable": true
+          },
+          {
+            "cells": [
+              "B2",
+              "C1",
+              "D1"
+            ],
+            "id": "geo-05",
+            "passable": false
+          }
+        ]
+      },
+      "start": "A3",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "E3",
+          "assetId": "land-coast.settlement.h2.hut-settlement-02.v1",
+          "id": "art-01",
+          "objectId": "geo-01"
+        },
+        {
+          "anchor": "E5",
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "id": "art-02",
+          "objectId": "geo-02"
+        },
+        {
+          "anchor": "C5",
+          "assetId": "land-coast.island.h2.mist-forest-02.v1",
+          "id": "art-03",
+          "objectId": "geo-03"
+        },
+        {
+          "anchor": "A3",
+          "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+          "id": "art-04",
+          "objectId": "geo-04"
+        },
+        {
+          "anchor": "B2",
+          "assetId": "land-coast.island.h3.smuggler-cove.v1",
+          "id": "art-05",
+          "objectId": "geo-05"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "Von Stunde 1 bis Stunde 5 war das Schiff nie neben dem Ort geo-02 (E5).",
+        "H2": "Von Stunde 2 bis Stunde 5 war das Schiff nie genau 4 Hexfelder von dem Ort geo-02 (E5) entfernt.",
+        "H3": "Von Stunde 5 bis Stunde 6 war das Schiff genau einmal neben dem Ort geo-02 (E5).",
+        "H4": "Von Stunde 3 bis Stunde 6 war das Schiff genau einmal genau 3 Hexfelder von dem Ort geo-04 (A3) entfernt."
+      },
+      "hints": [],
+      "intro": [
+        "Redaktionelle Vorschau – Podcasttexte und Bedeutungsprüfung stehen noch aus.",
+        "Hexabstand zu einem Ort: kleinster geometrischer Abstand zu einer seiner Zellen; Land verlängert ihn nicht."
+      ],
+      "objectNames": {
+        "geo-01": "Ort geo-01",
+        "geo-02": "Ort geo-02",
+        "geo-03": "Ort geo-03",
+        "geo-04": "Ort geo-04",
+        "geo-05": "Ort geo-05"
+      },
+      "title": "C-11"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}
