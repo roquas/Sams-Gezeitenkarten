@@ -21,6 +21,7 @@ export function main(args=process.argv.slice(2)){
  if(command==='pilot'||command==='export'){
   const spec=command==='pilot'?{caseIds:PILOT_IDS}:read(flags.spec);
   assert.ok(Object.keys(spec).every(k=>['caseIds','intents','editorial'].includes(k)),'Unknown production spec field');
+  assert.ok(Array.isArray(spec.caseIds)&&spec.caseIds.length,'Explicit caseIds required');
   if(spec.intents)assert.equal(spec.intents.length,spec.caseIds.length,'Intent coverage');
   const inputs=loadCommunityProduction({ids:spec.caseIds,intents:spec.intents});
   const pkg=createProductionPackage({...inputs,world:loadWorldPackage(flags.world),editorial:spec.editorial});

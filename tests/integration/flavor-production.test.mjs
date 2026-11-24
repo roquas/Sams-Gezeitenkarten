@@ -57,6 +57,7 @@ test('whole-batch validation rejects last-position failure, manifest substitutio
 
 test('new story variants and revisions preserve predecessors, names, checks and explicit selection history',t=>{
  const {f,dir,store}=setup(t),first=imported(store,f),reference=revisionReference(first.records[0]);
+ const before=new Map([...readTree(path.join(dir,'store/imports/technical-run-1'))].map(([p,b])=>[p,sha256(b)]));
  const event=store.selectRevision({reference,actor:'Technical test operator',reason:'TECHNICAL TEST selection'});
  assert.deepEqual(store.selected(reference.caseId),event);
  const next=revised(f,first.records);store.saveOrder({...next,origin:f.origin});
@@ -74,7 +75,6 @@ test('new story variants and revisions preserve predecessors, names, checks and 
  assert.deepEqual(store.selected(reference.caseId),selected);
  assert.throws(()=>store.validateIntent(next.order),/stale or conflicting predecessor/);
  assert.throws(()=>store.saveOrder({...revised(f,first.records,{stale:true}),origin:f.origin}),/stale or conflicting predecessor/);
- const before=new Map([...readTree(path.join(dir,'store/imports/technical-run-1'))].map(([p,b])=>[p,sha256(b)]));
  assert.deepEqual(new Map([...readTree(path.join(dir,'store/imports/technical-run-1'))].map(([p,b])=>[p,sha256(b)])),before);
 });
 
