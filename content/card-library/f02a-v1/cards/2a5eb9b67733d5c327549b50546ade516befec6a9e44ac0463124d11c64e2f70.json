@@ -1,0 +1,341 @@
+{
+  "schemaVersion": 1,
+  "key": "gk-illustrated-card-v1-sha256:2a5eb9b67733d5c327549b50546ade516befec6a9e44ac0463124d11c64e2f70",
+  "map": {
+    "geometry": "even-row-offset-pointy-v1",
+    "grid": {
+      "columns": 5,
+      "rows": 5
+    },
+    "objects": [
+      {
+        "id": "geo-01",
+        "cells": [
+          "E2",
+          "E3"
+        ],
+        "passable": false
+      },
+      {
+        "id": "geo-02",
+        "cells": [
+          "E5"
+        ],
+        "passable": true
+      },
+      {
+        "id": "geo-03",
+        "cells": [
+          "C4",
+          "C5"
+        ],
+        "passable": false
+      },
+      {
+        "id": "geo-04",
+        "cells": [
+          "A3"
+        ],
+        "passable": true
+      },
+      {
+        "id": "geo-05",
+        "cells": [
+          "B2",
+          "C1",
+          "D1"
+        ],
+        "passable": false
+      }
+    ]
+  },
+  "mapFingerprint": "gk-map-v2-sha256:db8dec752e54f7173e94e1ff1bad814d7af075a9505ebdb113ce59d6883fb5e2",
+  "background": "sea-blue-01",
+  "assetPlacements": [
+    {
+      "id": "art-001",
+      "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+      "anchor": "A3",
+      "objectId": "geo-04"
+    },
+    {
+      "id": "art-002",
+      "assetId": "land-coast.island.h3.smuggler-cove.v1",
+      "anchor": "B2",
+      "objectId": "geo-05"
+    },
+    {
+      "id": "art-003",
+      "assetId": "land-coast.island.h2.mist-forest-02.v1",
+      "anchor": "C5",
+      "objectId": "geo-03"
+    },
+    {
+      "id": "art-004",
+      "assetId": "land-coast.settlement.h2.hut-settlement-02.v1",
+      "anchor": "E3",
+      "objectId": "geo-01"
+    },
+    {
+      "id": "art-005",
+      "assetId": "sea-life.accent.h1.rowboat.v1",
+      "anchor": "E5",
+      "objectId": "geo-02"
+    }
+  ],
+  "resources": {
+    "background": {
+      "id": "sea-blue-01",
+      "imageSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+    },
+    "assets": [
+      {
+        "assetId": "land-coast.island.h2.mist-forest-02.v1",
+        "imageSha256": "69c73a2eeac9960c6ae1f0102ac3dac41679f572837e89a1b0b62798496eaf91",
+        "revisionSha256": "09c44cc39178619ec32e9eb16cdd4dc54b060db403b600c953f3160a7804656d"
+      },
+      {
+        "assetId": "land-coast.island.h3.smuggler-cove.v1",
+        "imageSha256": "ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075",
+        "revisionSha256": "3fd6796b02679ec60d271ad96e3e2d3402c27f78e718c1c9d21d59f25298f319"
+      },
+      {
+        "assetId": "land-coast.settlement.h2.hut-settlement-02.v1",
+        "imageSha256": "c7a9911a877ae26445aaf4999252098598463296d3e0f7a776fb6eb5950cd44f",
+        "revisionSha256": "09c44cc39178619ec32e9eb16cdd4dc54b060db403b600c953f3160a7804656d"
+      },
+      {
+        "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+        "imageSha256": "716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f",
+        "revisionSha256": "e1785e9209c0e362f118cb4a6fec0626150722182e62daf89594260444c7e42c"
+      },
+      {
+        "assetId": "sea-life.accent.h1.rowboat.v1",
+        "imageSha256": "aa0b04087dc4cdca9edaf9c92771c371d0988a464bc644cf3141912cbb8e976f",
+        "revisionSha256": "e1785e9209c0e362f118cb4a6fec0626150722182e62daf89594260444c7e42c"
+      }
+    ]
+  },
+  "naming": {
+    "supplyVersion": "card-names-de-1",
+    "selectionVersion": "card-name-rank-1",
+    "supplySha256": "d2938ce096ee3c1a794fd34161c6614e133894f8cbae72964bd88f16a9e1b134",
+    "selectionSupply": {
+      "schemaVersion": 1,
+      "version": "card-names-de-1",
+      "selectionVersion": "card-name-rank-1",
+      "status": "new-game-proposals-not-podcast-canon",
+      "pools": {
+        "beacon": {
+          "motif": "beacon",
+          "names": [
+            "Blinkwacht",
+            "Lichtwacht",
+            "Nachtlicht",
+            "Fernblick",
+            "Nebellicht",
+            "Westfeuer",
+            "Ostfeuer",
+            "Salzlicht",
+            "Flackerhut",
+            "Lampenort",
+            "Wachlicht",
+            "Funkelort",
+            "Lichtpost",
+            "Glimmwacht",
+            "Küstenlicht",
+            "Blinzelort",
+            "Feuerblick",
+            "Turmwache",
+            "Seefunke",
+            "Windlicht"
+          ]
+        },
+        "huts": {
+          "motif": "huts",
+          "names": [
+            "Hüttenruh",
+            "Dachzipfel",
+            "Bretterort",
+            "Hüttenhafen",
+            "Strohwinkel",
+            "Dachknick",
+            "Hüttenwacht",
+            "Bretterdorf",
+            "Schiefdach",
+            "Dachsalat",
+            "Pfostenort",
+            "Hüttenblick",
+            "Dachnest",
+            "Strohsaum",
+            "Plankendorf",
+            "Hüttensteg",
+            "Dachwinkel",
+            "Pfostenruh",
+            "Bretterruh",
+            "Dachwache"
+          ]
+        },
+        "mist-forest": {
+          "motif": "mist-forest",
+          "names": [
+            "Nebelwald",
+            "Dunsthain",
+            "Moosdickicht",
+            "Nebelhain",
+            "Farnwinkel",
+            "Dunstwald",
+            "Schattenhain",
+            "Nebelruh",
+            "Farnwacht",
+            "Mooswinkel",
+            "Waldsaum",
+            "Dunstzipfel",
+            "Nebelbusch",
+            "Farnhain",
+            "Waldwisper",
+            "Mooswache",
+            "Blätterdunst",
+            "Tropfhain",
+            "Waldschleier",
+            "Dunstkrone"
+          ]
+        },
+        "rowboat": {
+          "motif": "rowboat",
+          "names": [
+            "Riemenruh",
+            "Paddelpause",
+            "Ruderrast",
+            "Kleinkahn",
+            "Plankenboot",
+            "Wackelkahn",
+            "Riemenort",
+            "Schiefboot",
+            "Paddelpost",
+            "Nussschale",
+            "Ruderwache",
+            "Kahnpark",
+            "Treibkahn",
+            "Riemenpause",
+            "Sitzpause",
+            "Kleinflotte",
+            "Ruderinsel",
+            "Leerkahn",
+            "Holzschaukel",
+            "Paddelruh"
+          ]
+        },
+        "smuggler": {
+          "motif": "smuggler",
+          "names": [
+            "Gaunerbucht",
+            "Schleichort",
+            "Versteckort",
+            "Schattenkai",
+            "Schlupfbucht",
+            "Flüsterkai",
+            "Tarnbucht",
+            "Winkelbucht",
+            "Nachtbucht",
+            "Duckbucht",
+            "Stillwinkel",
+            "Tuschelkai",
+            "Diebesrast",
+            "Gaunerwinkel",
+            "Tarnwinkel",
+            "Hinterbucht",
+            "Schlupfloch",
+            "Schleichkai",
+            "Schattenort",
+            "Geheimsteg"
+          ]
+        }
+      },
+      "assetBindings": {
+        "land-coast.island.h2.mist-forest-02.v1": {
+          "mode": "pool",
+          "poolId": "mist-forest",
+          "source": "docs/A0-COMPLETION.md"
+        },
+        "land-coast.island.h3.smuggler-cove.v1": {
+          "mode": "pool",
+          "poolId": "smuggler",
+          "source": "docs/ASSET-INVENTORY-65.md"
+        },
+        "land-coast.settlement.h2.hut-settlement-02.v1": {
+          "mode": "pool",
+          "poolId": "huts",
+          "source": "docs/A0-COMPLETION.md"
+        },
+        "navigation.lighthouse.h1.offcenter-beacon.v1": {
+          "mode": "pool",
+          "poolId": "beacon",
+          "source": "docs/ASSET-INVENTORY-65.md"
+        },
+        "sea-life.accent.h1.rowboat.v1": {
+          "mode": "pool",
+          "poolId": "rowboat",
+          "source": "docs/ASSET-INVENTORY-65.md"
+        }
+      },
+      "uniquePlaces": {
+        "world.tesoro": {
+          "name": "Tesoro",
+          "source": "docs/TESORO-WORLD-REFERENCE.md"
+        }
+      }
+    },
+    "objectNames": {
+      "geo-01": "Plankendorf",
+      "geo-02": "Wackelkahn",
+      "geo-03": "Schattenhain",
+      "geo-04": "Nebellicht",
+      "geo-05": "Hinterbucht"
+    },
+    "bindings": {
+      "geo-01": {
+        "mode": "pool",
+        "poolId": "huts",
+        "source": "docs/A0-COMPLETION.md"
+      },
+      "geo-02": {
+        "mode": "pool",
+        "poolId": "rowboat",
+        "source": "docs/ASSET-INVENTORY-65.md"
+      },
+      "geo-03": {
+        "mode": "pool",
+        "poolId": "mist-forest",
+        "source": "docs/A0-COMPLETION.md"
+      },
+      "geo-04": {
+        "mode": "pool",
+        "poolId": "beacon",
+        "source": "docs/ASSET-INVENTORY-65.md"
+      },
+      "geo-05": {
+        "mode": "pool",
+        "poolId": "smuggler",
+        "source": "docs/ASSET-INVENTORY-65.md"
+      }
+    }
+  },
+  "origin": {
+    "source": {
+      "kind": "puzzle-candidate",
+      "id": "community:s04-c-v1/C-11",
+      "sha256": "e7d2b82092127bd7491640ef69d0c29dc3ce8d149107798b719ca82e23c1b08d"
+    },
+    "release": {
+      "adapterVersion": "released-asset-catalog-1",
+      "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+      "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+      "sourceCommit": "511dfcf743a6e8c4f0c36b3354dcf36d1afe865e",
+      "archiveCommit": "1899b8b178efa8f8538ba6beb42b1f7707a7bf51",
+      "backgroundId": "sea-blue-01",
+      "catalogSha256": "ed76bb4402f2eb8111d1d086daac6d336f4236546cf350af85e39855d59e0037"
+    }
+  },
+  "integritySha256": "20ae7903b83e8f774a3cee18e6abdc549df6056db489d040c00b6bb7818fa1ee"
+}

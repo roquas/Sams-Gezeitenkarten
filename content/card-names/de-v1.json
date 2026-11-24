@@ -1,0 +1,756 @@
+{
+  "schemaVersion": 1,
+  "version": "card-names-de-1",
+  "selectionVersion": "card-name-rank-1",
+  "status": "new-game-proposals-not-podcast-canon",
+  "pools": {
+    "rock": {
+      "motif": "rock",
+      "names": [
+        "Salznadel",
+        "Grauzahn",
+        "Sturmzack",
+        "Kieselort",
+        "Felswacht",
+        "Basaltzahn",
+        "Möwenfels",
+        "Schiefzahn",
+        "Kratzfels",
+        "Steinkamm",
+        "Windzinke",
+        "Felsknopf",
+        "Bröselfels",
+        "Graurücken",
+        "Zackenhut",
+        "Klapperfels",
+        "Felszipfel",
+        "Steinzipf",
+        "Salzbrocken",
+        "Krummfels"
+      ]
+    },
+    "beacon": {
+      "motif": "beacon",
+      "names": [
+        "Blinkwacht",
+        "Lichtwacht",
+        "Nachtlicht",
+        "Fernblick",
+        "Nebellicht",
+        "Westfeuer",
+        "Ostfeuer",
+        "Salzlicht",
+        "Flackerhut",
+        "Lampenort",
+        "Wachlicht",
+        "Funkelort",
+        "Lichtpost",
+        "Glimmwacht",
+        "Küstenlicht",
+        "Blinzelort",
+        "Feuerblick",
+        "Turmwache",
+        "Seefunke",
+        "Windlicht"
+      ]
+    },
+    "passages": {
+      "motif": "passages",
+      "names": [
+        "Riffspalt",
+        "Dünentor",
+        "Wellengang",
+        "Salzpforte",
+        "Schaumtor",
+        "Riffgasse",
+        "Riffbogen",
+        "Flutlücke",
+        "Hohlriff",
+        "Gezeitentor",
+        "Blaupass",
+        "Krummpass",
+        "Engwasser",
+        "Riffschlitz",
+        "Zickzackriff",
+        "Perlentor",
+        "Wellenloch",
+        "Schaumspalt",
+        "Durchschlupf",
+        "Tauchtor"
+      ]
+    },
+    "lagoon": {
+      "motif": "lagoon",
+      "names": [
+        "Blauauge",
+        "Stillring",
+        "Perlensee",
+        "Rundwasser",
+        "Türkisring",
+        "Schaumkranz",
+        "Salzspiegel",
+        "Muschelring",
+        "Ruhwasser",
+        "Kieselring",
+        "Rundbucht",
+        "Stillauge",
+        "Lagunenruh",
+        "Ringwasser",
+        "Blauerring",
+        "Korallenruh",
+        "Kreiswasser",
+        "Wellenring",
+        "Seifenring",
+        "Kringelort"
+      ]
+    },
+    "wreck": {
+      "motif": "wreck",
+      "names": [
+        "Plankenruh",
+        "Kielknick",
+        "Leckkahn",
+        "Schiefkiel",
+        "Wrackwache",
+        "Rostanker",
+        "Stillkiel",
+        "Salzplanke",
+        "Splitterort",
+        "Blubberkiel",
+        "Dünnbrett",
+        "Kielpause",
+        "Krummkahn",
+        "Wasserbett",
+        "Endplanke",
+        "Kahnknacks",
+        "Plankenbad",
+        "Leckstelle",
+        "Kielgrund",
+        "Holzgrund"
+      ]
+    },
+    "palm": {
+      "motif": "palm",
+      "names": [
+        "Palmeneck",
+        "Kokosruh",
+        "Grünstrand",
+        "Schattenort",
+        "Palmenrast",
+        "Nussbucht",
+        "Wedelort",
+        "Krummpalme",
+        "Palmensaum",
+        "Sandpalme",
+        "Kokosknick",
+        "Palmenruh",
+        "Schiefwedel",
+        "Grünbucht",
+        "Nussstrand",
+        "Blätterort",
+        "Palmensteg",
+        "Kokoswinkel",
+        "Wedelbucht",
+        "Sonnennuss"
+      ]
+    },
+    "volcano": {
+      "motif": "volcano",
+      "names": [
+        "Glutkegel",
+        "Aschenhut",
+        "Funkenberg",
+        "Rauchzahn",
+        "Glutwache",
+        "Rußkuppe",
+        "Kohlenberg",
+        "Brodelberg",
+        "Glimmerberg",
+        "Schmauchort",
+        "Warmstein",
+        "Glutnase",
+        "Rußzipfel",
+        "Aschenort",
+        "Feuerkamm",
+        "Rauchkrone",
+        "Glutkrater",
+        "Kesselberg",
+        "Hitzkopf",
+        "Zunderberg"
+      ]
+    },
+    "sand-reefs": {
+      "motif": "sand-reefs",
+      "names": [
+        "Sandbogen",
+        "Kieselkette",
+        "Dünensaum",
+        "Riffkette",
+        "Muschelweg",
+        "Sandkranz",
+        "Salzinseln",
+        "Perlenbogen",
+        "Riffzipfel",
+        "Krummbogen",
+        "Sandhaken",
+        "Schaumkette",
+        "Kieselbogen",
+        "Dünenbogen",
+        "Splitterriff",
+        "Krümelkette",
+        "Sandzipfel",
+        "Hakenriff",
+        "Perlensaum",
+        "Inselkranz"
+      ]
+    },
+    "harbor": {
+      "motif": "harbor",
+      "names": [
+        "Ankerhafen",
+        "Hafenruh",
+        "Tauhafen",
+        "Pollerort",
+        "Kaimauer",
+        "Segelrast",
+        "Hafenknick",
+        "Salzkai",
+        "Netzbucht",
+        "Liegeplatz",
+        "Tauwinkel",
+        "Knotenort",
+        "Kaikante",
+        "Hafenwache",
+        "Kielhafen",
+        "Hafenlicht",
+        "Plankenkai",
+        "Sackhafen",
+        "Landesteg",
+        "Heimathafen"
+      ]
+    },
+    "smuggler": {
+      "motif": "smuggler",
+      "names": [
+        "Gaunerbucht",
+        "Schleichort",
+        "Versteckort",
+        "Schattenkai",
+        "Schlupfbucht",
+        "Flüsterkai",
+        "Tarnbucht",
+        "Winkelbucht",
+        "Nachtbucht",
+        "Duckbucht",
+        "Stillwinkel",
+        "Tuschelkai",
+        "Diebesrast",
+        "Gaunerwinkel",
+        "Tarnwinkel",
+        "Hinterbucht",
+        "Schlupfloch",
+        "Schleichkai",
+        "Schattenort",
+        "Geheimsteg"
+      ]
+    },
+    "beach": {
+      "motif": "beach",
+      "names": [
+        "Sandzunge",
+        "Weitstrand",
+        "Dünenruh",
+        "Muschelsaum",
+        "Sandstreif",
+        "Sonnensaum",
+        "Barfußort",
+        "Sandrücken",
+        "Dünenrand",
+        "Strandzipf",
+        "Salzstrand",
+        "Sonnenbank",
+        "Spülsaum",
+        "Dünenblick",
+        "Sandpause",
+        "Strandrast",
+        "Sandkissen",
+        "Windstrand",
+        "Krabbelbank",
+        "Muschelruh"
+      ]
+    },
+    "temple": {
+      "motif": "temple",
+      "names": [
+        "Tempelruh",
+        "Moosaltar",
+        "Rankenhof",
+        "Steinstufen",
+        "Tempelwache",
+        "Grünaltar",
+        "Moostempel",
+        "Stufenort",
+        "Rankenruh",
+        "Dschungelhof",
+        "Altarblick",
+        "Steinportal",
+        "Tempelblick",
+        "Säulenruh",
+        "Mooshof",
+        "Rankenpforte",
+        "Stufenwacht",
+        "Echotempel",
+        "Säulenort",
+        "Tempelsaum"
+      ]
+    },
+    "barrels": {
+      "motif": "barrels",
+      "names": [
+        "Fasspause",
+        "Fasshaufen",
+        "Fasshafen",
+        "Fasssalat",
+        "Fasswache",
+        "Salzfässer",
+        "Daubenruh",
+        "Daubenort",
+        "Reifentanz",
+        "Fassballett",
+        "Fassrunde",
+        "Fassknick",
+        "Daubenkreis",
+        "Fassposten",
+        "Korkparade",
+        "Fassrast",
+        "Daubentreff",
+        "Fassflotte",
+        "Fassdrift",
+        "Fassknäuel"
+      ]
+    },
+    "buoy": {
+      "motif": "buoy",
+      "names": [
+        "Klingelort",
+        "Bojenwacht",
+        "Schaukelort",
+        "Blinkpunkt",
+        "Bojenruh",
+        "Wippwacht",
+        "Bimmelort",
+        "Bojenpost",
+        "Grünpunkt",
+        "Gelbpunkt",
+        "Ankerpunkt",
+        "Bojentanz",
+        "Schwingort",
+        "Wackelwache",
+        "Bojenblink",
+        "Klangpunkt",
+        "Wipplicht",
+        "Bojenrast",
+        "Salzpunkt",
+        "Bimmelwacht"
+      ]
+    },
+    "rowboat": {
+      "motif": "rowboat",
+      "names": [
+        "Riemenruh",
+        "Paddelpause",
+        "Ruderrast",
+        "Kleinkahn",
+        "Plankenboot",
+        "Wackelkahn",
+        "Riemenort",
+        "Schiefboot",
+        "Paddelpost",
+        "Nussschale",
+        "Ruderwache",
+        "Kahnpark",
+        "Treibkahn",
+        "Riemenpause",
+        "Sitzpause",
+        "Kleinflotte",
+        "Ruderinsel",
+        "Leerkahn",
+        "Holzschaukel",
+        "Paddelruh"
+      ]
+    },
+    "crate": {
+      "motif": "crate",
+      "names": [
+        "Kistenruh",
+        "Kistenpost",
+        "Deckelkai",
+        "Kistentreff",
+        "Kistenwacht",
+        "Bretterbox",
+        "Kistenrast",
+        "Nagelkiste",
+        "Deckelort",
+        "Plankenbox",
+        "Kistenknick",
+        "Kisteninsel",
+        "Nagelruh",
+        "Kistenfloss",
+        "Holzpaket",
+        "Deckelwache",
+        "Kistendrift",
+        "Kistenpause",
+        "Frachtpause",
+        "Kistenfund"
+      ]
+    },
+    "bottle": {
+      "motif": "bottle",
+      "names": [
+        "Korkpost",
+        "Flaschenruh",
+        "Glaspost",
+        "Korkwache",
+        "Flaschenort",
+        "Briefpause",
+        "Korkpunkt",
+        "Glasfund",
+        "Zettelpost",
+        "Flaschenrast",
+        "Korkbrief",
+        "Glaswache",
+        "Zettelort",
+        "Postpause",
+        "Korkinsel",
+        "Briefdrift",
+        "Flaschenfund",
+        "Korkrast",
+        "Glaspause",
+        "Flaschensteg"
+      ]
+    },
+    "driftwood": {
+      "motif": "driftwood",
+      "names": [
+        "Treibknick",
+        "Tangpause",
+        "Holzdrift",
+        "Astwache",
+        "Tanginsel",
+        "Treibast",
+        "Tangknäuel",
+        "Treibholzort",
+        "Astpause",
+        "Tangtreff",
+        "Holzrast",
+        "Tangwache",
+        "Holzknick",
+        "Salzast",
+        "Tangpolster",
+        "Astsalat",
+        "Treibpause",
+        "Tangzipfel",
+        "Tangruh",
+        "Astflotte"
+      ]
+    },
+    "restaurant": {
+      "motif": "restaurant",
+      "names": [
+        "Suppeninsel",
+        "Löffelort",
+        "Kesselrast",
+        "Pfannenkai",
+        "Knödelort",
+        "Gabelbucht",
+        "Küchenruh",
+        "Schmausort",
+        "Tellerinsel",
+        "Bratbucht",
+        "Mahlpause",
+        "Suppenwacht",
+        "Topfinsel",
+        "Löffelhafen",
+        "Kesselbucht",
+        "Bissenort",
+        "Kellenkai",
+        "Schüsselort",
+        "Kücheninsel",
+        "Sattbucht"
+      ]
+    },
+    "mist-forest": {
+      "motif": "mist-forest",
+      "names": [
+        "Nebelwald",
+        "Dunsthain",
+        "Moosdickicht",
+        "Nebelhain",
+        "Farnwinkel",
+        "Dunstwald",
+        "Schattenhain",
+        "Nebelruh",
+        "Farnwacht",
+        "Mooswinkel",
+        "Waldsaum",
+        "Dunstzipfel",
+        "Nebelbusch",
+        "Farnhain",
+        "Waldwisper",
+        "Mooswache",
+        "Blätterdunst",
+        "Tropfhain",
+        "Waldschleier",
+        "Dunstkrone"
+      ]
+    },
+    "prison": {
+      "motif": "prison",
+      "names": [
+        "Riegelort",
+        "Gitterwacht",
+        "Schlossort",
+        "Kettenwacht",
+        "Schlüsselkai",
+        "Sperrinsel",
+        "Gitterruh",
+        "Riegelbucht",
+        "Zellenblick",
+        "Kettenrast",
+        "Gitterhafen",
+        "Schlosswacht",
+        "Riegelruh",
+        "Torwache",
+        "Rasselinsel",
+        "Ketteninsel",
+        "Zaunkante",
+        "Gitterblick",
+        "Sperrbucht",
+        "Riegelhafen"
+      ]
+    },
+    "huts": {
+      "motif": "huts",
+      "names": [
+        "Hüttenruh",
+        "Dachzipfel",
+        "Bretterort",
+        "Hüttenhafen",
+        "Strohwinkel",
+        "Dachknick",
+        "Hüttenwacht",
+        "Bretterdorf",
+        "Schiefdach",
+        "Dachsalat",
+        "Pfostenort",
+        "Hüttenblick",
+        "Dachnest",
+        "Strohsaum",
+        "Plankendorf",
+        "Hüttensteg",
+        "Dachwinkel",
+        "Pfostenruh",
+        "Bretterruh",
+        "Dachwache"
+      ]
+    },
+    "lookout": {
+      "motif": "lookout",
+      "names": [
+        "Weitblick",
+        "Buchtwache",
+        "Fernbucht",
+        "Ausguckort",
+        "Horizontort",
+        "Wellenblick",
+        "Seeblick",
+        "Windwache",
+        "Aussichtsort",
+        "Küstenblick",
+        "Buchtblick",
+        "Ferngucker",
+        "Ausguckbucht",
+        "Fernwinkel",
+        "Weitbucht",
+        "Blickwinkel",
+        "Späherbucht",
+        "Fernwache",
+        "Schaubucht",
+        "Gucklochort"
+      ]
+    }
+  },
+  "assetBindings": {
+    "land-coast.island.h1.basalt-spire-water.v1": {
+      "mode": "pool",
+      "poolId": "rock",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "navigation.lighthouse.h1.offcenter-beacon.v1": {
+      "mode": "pool",
+      "poolId": "beacon",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "navigation.lighthouse.h1.cyan-magenta-island.v1": {
+      "mode": "pool",
+      "poolId": "beacon",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.atoll.h1.broken-passages.v1": {
+      "mode": "pool",
+      "poolId": "passages",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.atoll.h1.closed-lagoon.v1": {
+      "mode": "pool",
+      "poolId": "lagoon",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "navigation.wreck.h1.offcenter-sloop.v1": {
+      "mode": "pool",
+      "poolId": "wreck",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.island.h2.tropical-bays.v1": {
+      "mode": "pool",
+      "poolId": "palm",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.island.h1.palm-beach.v1": {
+      "mode": "pool",
+      "poolId": "palm",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.island.h3.massive-volcano.v1": {
+      "mode": "pool",
+      "poolId": "volcano",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.archipelago.h3.sand-reefs.v2": {
+      "mode": "pool",
+      "poolId": "sand-reefs",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.island.h3.south-harbor.v1": {
+      "mode": "pool",
+      "poolId": "harbor",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.island.h3.smuggler-cove.v1": {
+      "mode": "pool",
+      "poolId": "smuggler",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.island.h4.long-sand.v1": {
+      "mode": "pool",
+      "poolId": "beach",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.island.h4.jungle-temple.v1": {
+      "mode": "pool",
+      "poolId": "temple",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.settlement.h4.tesoro.v4": {
+      "mode": "unique",
+      "worldPlaceId": "world.tesoro",
+      "source": "docs/TESORO-WORLD-REFERENCE.md"
+    },
+    "land-coast.settlement.h1.restaurant-island.v1": {
+      "mode": "pool",
+      "poolId": "restaurant",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "sea-life.accent.h1.barrels.v1": {
+      "mode": "pool",
+      "poolId": "barrels",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "sea-life.accent.h1.buoy.v1": {
+      "mode": "pool",
+      "poolId": "buoy",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "sea-life.accent.h1.rowboat.v1": {
+      "mode": "pool",
+      "poolId": "rowboat",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "sea-life.accent.h1.crate.v1": {
+      "mode": "pool",
+      "poolId": "crate",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "sea-life.accent.h1.bottle.v1": {
+      "mode": "pool",
+      "poolId": "bottle",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "sea-life.accent.h1.driftwood.v1": {
+      "mode": "pool",
+      "poolId": "driftwood",
+      "source": "docs/ASSET-INVENTORY-65.md"
+    },
+    "land-coast.island.h2.mist-forest-01.v1": {
+      "mode": "pool",
+      "poolId": "mist-forest",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.island.h2.mist-forest-02.v1": {
+      "mode": "pool",
+      "poolId": "mist-forest",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.island.h2.mist-forest-03.v1": {
+      "mode": "pool",
+      "poolId": "mist-forest",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.settlement.h2.prison-island-01.v1": {
+      "mode": "pool",
+      "poolId": "prison",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.settlement.h2.prison-island-03.v1": {
+      "mode": "pool",
+      "poolId": "prison",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.settlement.h2.hut-settlement-01.v1": {
+      "mode": "pool",
+      "poolId": "huts",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.settlement.h2.hut-settlement-02.v1": {
+      "mode": "pool",
+      "poolId": "huts",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.settlement.h2.hut-settlement-03.v1": {
+      "mode": "pool",
+      "poolId": "huts",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.island.h2.lookout-bay-01.v1": {
+      "mode": "pool",
+      "poolId": "lookout",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.island.h2.lookout-bay-02.v1": {
+      "mode": "pool",
+      "poolId": "lookout",
+      "source": "docs/A0-COMPLETION.md"
+    },
+    "land-coast.island.h2.lookout-bay-03.v1": {
+      "mode": "pool",
+      "poolId": "lookout",
+      "source": "docs/A0-COMPLETION.md"
+    }
+  },
+  "uniquePlaces": {
+    "world.tesoro": {
+      "name": "Tesoro",
+      "source": "docs/TESORO-WORLD-REFERENCE.md"
+    }
+  }
+}

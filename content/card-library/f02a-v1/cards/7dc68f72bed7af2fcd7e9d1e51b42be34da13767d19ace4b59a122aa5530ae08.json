@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "key": "gk-illustrated-card-v1-sha256:7dc68f72bed7af2fcd7e9d1e51b42be34da13767d19ace4b59a122aa5530ae08",
+  "map": {
+    "geometry": "even-row-offset-pointy-v1",
+    "grid": {
+      "columns": 5,
+      "rows": 5
+    },
+    "objects": [
+      {
+        "id": "geo-01",
+        "cells": [
+          "D1"
+        ],
+        "passable": true
+      },
+      {
+        "id": "geo-02",
+        "cells": [
+          "D3"
+        ],
+        "passable": true
+      },
+      {
+        "id": "geo-03",
+        "cells": [
+          "B1",
+          "B2"
+        ],
+        "passable": false
+      }
+    ]
+  },
+  "mapFingerprint": "gk-map-v2-sha256:22f59cd7393e4f34830e3039fcac2677fe1dac4de54ab8217dd3221da1abbb07",
+  "background": "sea-blue-01",
+  "assetPlacements": [
+    {
+      "id": "art-001",
+      "assetId": "land-coast.settlement.h2.prison-island-03.v1",
+      "anchor": "B1",
+      "objectId": "geo-03"
+    },
+    {
+      "id": "art-002",
+      "assetId": "sea-life.accent.h1.driftwood.v1",
+      "anchor": "D1",
+      "objectId": "geo-01"
+    },
+    {
+      "id": "art-003",
+      "assetId": "sea-life.accent.h1.bottle.v1",
+      "anchor": "D3",
+      "objectId": "geo-02"
+    }
+  ],
+  "resources": {
+    "background": {
+      "id": "sea-blue-01",
+      "imageSha256": "e33cf0d09477e93588cfc209bb0ab9b224d7624139d707fede23a390b14f2582"
+    },
+    "assets": [
+      {
+        "assetId": "land-coast.settlement.h2.prison-island-03.v1",
+        "imageSha256": "a558685ddaec7c7bfcef040e26a4c76e4cc98d13b0452ccac4f34eac91c1c299",
+        "revisionSha256": "262f9027d04296cb889c44e83aaff31a0c4685d431a1c569416e215207d6f0d1"
+      },
+      {
+        "assetId": "sea-life.accent.h1.bottle.v1",
+        "imageSha256": "df44a66dac7b54a02c146f6a2fc93367b39a3c4f5389169a348d03ac3858d0f8",
+        "revisionSha256": "e1785e9209c0e362f118cb4a6fec0626150722182e62daf89594260444c7e42c"
+      },
+      {
+        "assetId": "sea-life.accent.h1.driftwood.v1",
+        "imageSha256": "a224cc0693fe02f357085e86406d757696ff12a1b97181275145142fa74c02f9",
+        "revisionSha256": "e1785e9209c0e362f118cb4a6fec0626150722182e62daf89594260444c7e42c"
+      }
+    ]
+  },
+  "naming": {
+    "supplyVersion": "card-names-de-1",
+    "selectionVersion": "card-name-rank-1",
+    "supplySha256": "d2938ce096ee3c1a794fd34161c6614e133894f8cbae72964bd88f16a9e1b134",
+    "selectionSupply": {
+      "schemaVersion": 1,
+      "version": "card-names-de-1",
+      "selectionVersion": "card-name-rank-1",
+      "status": "new-game-proposals-not-podcast-canon",
+      "pools": {
+        "bottle": {
+          "motif": "bottle",
+          "names": [
+            "Korkpost",
+            "Flaschenruh",
+            "Glaspost",
+            "Korkwache",
+            "Flaschenort",
+            "Briefpause",
+            "Korkpunkt",
+            "Glasfund",
+            "Zettelpost",
+            "Flaschenrast",
+            "Korkbrief",
+            "Glaswache",
+            "Zettelort",
+            "Postpause",
+            "Korkinsel",
+            "Briefdrift",
+            "Flaschenfund",
+            "Korkrast",
+            "Glaspause",
+            "Flaschensteg"
+          ]
+        },
+        "driftwood": {
+          "motif": "driftwood",
+          "names": [
+            "Treibknick",
+            "Tangpause",
+            "Holzdrift",
+            "Astwache",
+            "Tanginsel",
+            "Treibast",
+            "Tangknäuel",
+            "Treibholzort",
+            "Astpause",
+            "Tangtreff",
+            "Holzrast",
+            "Tangwache",
+            "Holzknick",
+            "Salzast",
+            "Tangpolster",
+            "Astsalat",
+            "Treibpause",
+            "Tangzipfel",
+            "Tangruh",
+            "Astflotte"
+          ]
+        },
+        "prison": {
+          "motif": "prison",
+          "names": [
+            "Riegelort",
+            "Gitterwacht",
+            "Schlossort",
+            "Kettenwacht",
+            "Schlüsselkai",
+            "Sperrinsel",
+            "Gitterruh",
+            "Riegelbucht",
+            "Zellenblick",
+            "Kettenrast",
+            "Gitterhafen",
+            "Schlosswacht",
+            "Riegelruh",
+            "Torwache",
+            "Rasselinsel",
+            "Ketteninsel",
+            "Zaunkante",
+            "Gitterblick",
+            "Sperrbucht",
+            "Riegelhafen"
+          ]
+        }
+      },
+      "assetBindings": {
+        "land-coast.settlement.h2.prison-island-03.v1": {
+          "mode": "pool",
+          "poolId": "prison",
+          "source": "docs/A0-COMPLETION.md"
+        },
+        "sea-life.accent.h1.bottle.v1": {
+          "mode": "pool",
+          "poolId": "bottle",
+          "source": "docs/ASSET-INVENTORY-65.md"
+        },
+        "sea-life.accent.h1.driftwood.v1": {
+          "mode": "pool",
+          "poolId": "driftwood",
+          "source": "docs/ASSET-INVENTORY-65.md"
+        }
+      },
+      "uniquePlaces": {
+        "world.tesoro": {
+          "name": "Tesoro",
+          "source": "docs/TESORO-WORLD-REFERENCE.md"
+        }
+      }
+    },
+    "objectNames": {
+      "geo-01": "Tangruh",
+      "geo-02": "Flaschenruh",
+      "geo-03": "Zaunkante"
+    },
+    "bindings": {
+      "geo-01": {
+        "mode": "pool",
+        "poolId": "driftwood",
+        "source": "docs/ASSET-INVENTORY-65.md"
+      },
+      "geo-02": {
+        "mode": "pool",
+        "poolId": "bottle",
+        "source": "docs/ASSET-INVENTORY-65.md"
+      },
+      "geo-03": {
+        "mode": "pool",
+        "poolId": "prison",
+        "source": "docs/A0-COMPLETION.md"
+      }
+    }
+  },
+  "origin": {
+    "source": {
+      "kind": "puzzle-candidate",
+      "id": "community:s04-c-v1/C-06",
+      "sha256": "d6110ff864346f1bafaeee5d7d0e5a7ba465dbf9def7f6b377389a21b7bcc04d"
+    },
+    "release": {
+      "adapterVersion": "released-asset-catalog-1",
+      "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+      "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+      "sourceCommit": "511dfcf743a6e8c4f0c36b3354dcf36d1afe865e",
+      "archiveCommit": "1899b8b178efa8f8538ba6beb42b1f7707a7bf51",
+      "backgroundId": "sea-blue-01",
+      "catalogSha256": "ed76bb4402f2eb8111d1d086daac6d336f4236546cf350af85e39855d59e0037"
+    }
+  },
+  "integritySha256": "fc6fd2b06ec8214a2165783b53b56c437be691133683f516f84ba70ae2c8d442"
+}
