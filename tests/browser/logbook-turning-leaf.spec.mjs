@@ -22,7 +22,23 @@ for(const long of [false,true])test(`normal-motion turn preserves the ${long?'lo
   const viewport=document.getElementById('clueViewport');
   const read=el=>{
    const r=el.getBoundingClientRect(),book=el.closest('.bordbook').getBoundingClientRect();
-   return {text:el.textContent,x:r.x-book.x,y:r.y-book.y,width:r.width,height:r.height};
+   const container=el.parentElement,bounds=container.getBoundingClientRect(),containerStyle=getComputedStyle(container);
+   const availableWidth=bounds.right-r.x-parseFloat(containerStyle.paddingRight)-parseFloat(containerStyle.borderRightWidth);
+   const style=getComputedStyle(el),lines=[],range=document.createRange();
+   const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+   for(let node;node=walker.nextNode();){
+    for(let i=0;i<node.length;i++){
+     range.setStart(node,i);range.setEnd(node,i+1);
+     const glyph=range.getBoundingClientRect();
+     if(!glyph.width||!glyph.height)continue;
+     const y=glyph.y-r.y;
+     if(!lines.length||Math.abs(lines.at(-1).y-y)>.5)lines.push({text:'',y,height:glyph.height});
+     lines.at(-1).text+=node.data[i];
+    }
+   }
+   const font=Object.fromEntries(['fontFamily','fontSize','fontWeight','fontStyle','lineHeight','letterSpacing','wordSpacing'].map(key=>[key,style[key]]));
+   const wrapping=Object.fromEntries(['whiteSpace','wordBreak','overflowWrap'].map(key=>[key,style[key]]));
+   return {text:el.textContent,x:r.x-book.x,y:r.y-book.y,width:r.width,availableWidth,height:r.height,font,wrapping,lines};
   };
   window.logbookTurn={};
   // Capture the actual old DOM immediately before the native click handler replaces it.
@@ -34,12 +50,12 @@ for(const long of [false,true])test(`normal-motion turn preserves the ${long?'lo
    const leaf=records.flatMap(r=>[...r.addedNodes]).find(n=>n.nodeType===1&&n.classList.contains('turning-leaf'));
    if(!leaf)return;
    const animation=leaf.getAnimations()[0];
+   window.logbookTurn.animation={duration:animation.effect.getTiming().duration,playState:animation.playState,keyframes:animation.effect.getKeyframes().map(({transform,opacity})=>({transform,opacity}))};
    window.logbookTurn.leaf=read(leaf.querySelector('p'));
    window.logbookTurn.next=read(document.querySelector('#clueTrack p'));
    window.logbookTurn.leafNumber=leaf.querySelector('.leaf-number').textContent;
    window.logbookTurn.hidden=leaf.getAttribute('aria-hidden');
-   window.logbookTurn.animation={duration:animation.effect.getTiming().duration,playState:animation.playState,keyframes:animation.effect.getKeyframes().map(({transform,opacity})=>({transform,opacity}))};
-   window.logbookTurn.layout={visiblePadding:getComputedStyle(viewport).paddingTop,leafPadding:getComputedStyle(leaf).paddingTop,leafAlignment:getComputedStyle(leaf).alignItems};
+   window.logbookTurn.layout={visiblePadding:getComputedStyle(viewport).paddingTop,leafPadding:getComputedStyle(leaf).paddingTop,leafAlignment:getComputedStyle(leaf).alignItems,visibleColumnGap:getComputedStyle(document.querySelector('#clueTrack .clue')).columnGap,leafColumnGap:getComputedStyle(leaf).columnGap};
    // Observe completion without pausing, replacing or accelerating the 160-ms animation.
    window.logbookTurnFinished=animation.finished;
    observer.disconnect();
@@ -58,7 +74,13 @@ for(const long of [false,true])test(`normal-motion turn preserves the ${long?'lo
  expect(geometry.leafNumber).toBe('I');
  expect(geometry.hidden).toBe('true');
  expect(Math.abs(geometry.leaf.y-geometry.before.y),'outgoing text must keep its vertical position').toBeLessThan(.5);
+ expect(geometry.leaf.font,'outgoing text must keep its font metrics').toEqual(geometry.before.font);
+ // A short flex paragraph can shrink to its intrinsic width; its right-hand
+ // container boundary, rather than that intrinsic box, determines wrapping.
+ expect(Math.abs(geometry.leaf.availableWidth-geometry.before.availableWidth),'outgoing text must keep its available width').toBeLessThan(.5);
+ if(long)expect(Math.abs(geometry.leaf.width-geometry.before.width),'long outgoing text must keep its actual width').toBeLessThan(.5);
  expect(Math.abs(geometry.leaf.height-geometry.before.height),'outgoing text must keep its line wrapping').toBeLessThan(.5);
+ expect(geometry.leaf.lines.map(line=>line.text),'outgoing text must keep every actual line break').toEqual(geometry.before.lines.map(line=>line.text));
  expect(geometry.before.y).toBe(mobile?142:144);
  expect(geometry.next.y).toBe(geometry.before.y);
  await page.evaluate(()=>window.logbookTurnFinished);

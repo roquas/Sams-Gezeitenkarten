@@ -73,7 +73,7 @@
  .book-place-action{top:80px}
  .bordbook #cluePosition{font-size:11px;letter-spacing:.08em}
  .bordbook .clue-viewport{padding:58px 0 8px;min-height:156px;overflow:visible}
- .turning-leaf{padding-left:23px}
+ .turning-leaf{padding-left:23px;gap:7px}
  .book-annotations{font-size:11px}
 }
 @media(min-width:881px) and (max-width:1050px){
