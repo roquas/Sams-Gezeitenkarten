@@ -1,5 +1,9 @@
 # CI-Laufzeiten
 
+Die aktuellen änderungsabhängigen Profile und die heutige Sechs-Shard-Matrix
+sind in [CI-CHANGE-PROFILES.md](CI-CHANGE-PROFILES.md) dokumentiert.
+Die folgenden Messungen sind historische Vergleiche.
+
 Ausgangspunkt: `8a03555`, Referenzlauf [39072099435](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/39072099435).
 
 ## Befund und Änderung

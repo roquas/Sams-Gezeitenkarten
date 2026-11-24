@@ -7,6 +7,20 @@ on:
 permissions:
   contents: read
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      profile: ${{ steps.detect.outputs.profile }}
+      regressions: ${{ steps.detect.outputs.regressions }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Classify complete Git diff (uncertainty means full CI)
+        id: detect
+        run: node scripts/ci-changes.mjs
+
   unit:
     runs-on: ubuntu-latest
     steps:
@@ -34,57 +48,114 @@ jobs:
           CATALOG_PREVIOUS: ${{ github.event.pull_request.base.sha || github.event.before || 'HEAD^' }}
         run: node scripts/catalog-release.mjs check-archive --previous "$CATALOG_PREVIOUS"
   b2-s02-reproduction:
+    needs: changes
+    # If detection itself fails, still run every regression (unless cancelled).
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
+    env:
+      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
     steps:
       - uses: actions/checkout@v4
+        if: env.RUN_REGRESSIONS == 'true'
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
+        if: env.RUN_REGRESSIONS == 'true'
         # Exact S02 manifests and derived seeds bind this recorded runtime.
         with: {node-version: '24.19.0'}
       - run: npm run test:b2:s02:reproduction
+        if: env.RUN_REGRESSIONS == 'true'
       - run: node --test tests/reproduction/b2-search-comparison.test.mjs
+        if: env.RUN_REGRESSIONS == 'true'
+      - name: Record deliberately omitted regression tests
+        if: env.RUN_REGRESSIONS == 'false'
+        run: |
+          printf '%s\n' "### $GITHUB_JOB regression tests" 'Not required by the reviewed change profile. Deliberately skipped; tests were NOT executed or passed. See the changes job summary.' >> "$GITHUB_STEP_SUMMARY"
+
   s03-reproduction:
+    needs: changes
+    # If detection itself fails, still run every regression (unless cancelled).
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
+    env:
+      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+        if: env.RUN_REGRESSIONS == 'true'
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
+        if: env.RUN_REGRESSIONS == 'true'
         with: {node-version: '24.19.0'}
       - run: npm run test:s03:evidence
+        if: env.RUN_REGRESSIONS == 'true'
       - run: npm run test:s03:reproduction
+        if: env.RUN_REGRESSIONS == 'true'
       - run: npm run test:s03:v2:evidence
+        if: env.RUN_REGRESSIONS == 'true'
       - run: npm run test:s03:v2:reproduction
+        if: env.RUN_REGRESSIONS == 'true'
+      - name: Record deliberately omitted regression tests
+        if: env.RUN_REGRESSIONS == 'false'
+        run: |
+          printf '%s\n' "### $GITHUB_JOB regression tests" 'Not required by the reviewed change profile. Deliberately skipped; tests were NOT executed or passed. See the changes job summary.' >> "$GITHUB_STEP_SUMMARY"
+
   assets:
+    needs: changes
+    # If detection itself fails, still run every regression (unless cancelled).
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
+    env:
+      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
     steps:
       - uses: actions/checkout@v4
+        if: env.RUN_REGRESSIONS == 'true'
       - uses: actions/setup-node@v4
+        if: env.RUN_REGRESSIONS == 'true'
         with: {node-version: '22'}
       - name: Install asset validation dependencies
+        if: env.RUN_REGRESSIONS == 'true'
         run: python3 -m pip install --user Pillow numpy
       - name: Verify alpha artifact normalizer safety
+        if: env.RUN_REGRESSIONS == 'true'
         run: |
           python3 scripts/normalize-chart-alpha.py --self-test
       - name: Validate sea and both parchment frames
+        if: env.RUN_REGRESSIONS == 'true'
         run: |
           python3 scripts/check-chart-assets.py
       - name: Validate asset catalog, approval hashes and local image footprints
+        if: env.RUN_REGRESSIONS == 'true'
         run: npm run test:assets
+      - name: Record deliberately omitted regression tests
+        if: env.RUN_REGRESSIONS == 'false'
+        run: |
+          printf '%s\n' "### $GITHUB_JOB regression tests" 'Not required by the reviewed change profile. Deliberately skipped; tests were NOT executed or passed. See the changes job summary.' >> "$GITHUB_STEP_SUMMARY"
+
   browser:
+    needs: changes
+    # If detection itself fails, still run every regression (unless cancelled).
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
+    env:
+      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
     steps:
       - uses: actions/checkout@v4
+        if: env.RUN_REGRESSIONS == 'true'
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
+        if: env.RUN_REGRESSIONS == 'true'
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
+        if: env.RUN_REGRESSIONS == 'true'
       - run: npx playwright install --with-deps chromium
+        if: env.RUN_REGRESSIONS == 'true'
       - name: Install offline review image tools and candidate validation dependencies
+        if: env.RUN_REGRESSIONS == 'true'
         run: python3 -m pip install --user Pillow numpy
       - run: npm run test:browser
+        if: env.RUN_REGRESSIONS == 'true'
       - name: Retain UI review screenshots and lifecycle observations
-        if: always()
+        if: ${{ always() && env.RUN_REGRESSIONS == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: ui-safari-review-chromium
@@ -96,7 +167,7 @@ jobs:
             test-results/**/cold-chart-timeline.json
           if-no-files-found: ignore
           retention-days: 3
-      - if: failure()
+      - if: ${{ failure() && env.RUN_REGRESSIONS == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
@@ -105,8 +176,15 @@ jobs:
             test-results/
           if-no-files-found: ignore
           retention-days: 3
+      - name: Record deliberately omitted regression tests
+        if: env.RUN_REGRESSIONS == 'false'
+        run: |
+          printf '%s\n' "### $GITHUB_JOB regression tests" 'Not required by the reviewed change profile. Deliberately skipped; tests were NOT executed or passed. See the changes job summary.' >> "$GITHUB_STEP_SUMMARY"
 
   webkit:
+    needs: changes
+    # If detection itself fails, still run every regression (unless cancelled).
+    if: ${{ !cancelled() }}
     # One software-rendering worker per runner avoids the DPR-2 contention
     # observed with two workers. Shards still execute the complete test matrix.
     strategy:
@@ -115,19 +193,26 @@ jobs:
         shard: [1, 2, 3, 4, 5, 6]
     runs-on: ubuntu-latest
     env:
+      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
       PLAYWRIGHT_JSON_OUTPUT_NAME: webkit-results.json
     steps:
       - uses: actions/checkout@v4
+        if: env.RUN_REGRESSIONS == 'true'
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
+        if: env.RUN_REGRESSIONS == 'true'
         with: {node-version: '22'}
       - run: npm ci --no-audit --no-fund
+        if: env.RUN_REGRESSIONS == 'true'
       - run: npx playwright install --with-deps webkit
+        if: env.RUN_REGRESSIONS == 'true'
       - name: Install offline review image tools and candidate validation dependencies
+        if: env.RUN_REGRESSIONS == 'true'
         run: python3 -m pip install --user Pillow numpy
       - run: npx playwright test --config playwright.webkit.config.mjs --shard=${{ matrix.shard }}/6
+        if: env.RUN_REGRESSIONS == 'true'
       - name: Retain WebKit timings
-        if: always()
+        if: ${{ always() && env.RUN_REGRESSIONS == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: webkit-timings-${{ matrix.shard }}
@@ -140,7 +225,7 @@ jobs:
             webkit-test-results/**/cold-chart-timeline.json
           if-no-files-found: error
           retention-days: 3
-      - if: failure()
+      - if: ${{ failure() && env.RUN_REGRESSIONS == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: webkit-chart-report-${{ matrix.shard }}
@@ -149,9 +234,18 @@ jobs:
             webkit-test-results/
           if-no-files-found: ignore
           retention-days: 3
+      - name: Record deliberately omitted regression tests
+        if: env.RUN_REGRESSIONS == 'false'
+        run: |
+          printf '%s\n' "### $GITHUB_JOB regression tests" 'Not required by the reviewed change profile. Deliberately skipped; tests were NOT executed or passed. See the changes job summary.' >> "$GITHUB_STEP_SUMMARY"
 
   deployment:
+    needs: changes
+    # If detection itself fails, still run every regression (unless cancelled).
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
+    env:
+      RUN_REGRESSIONS: ${{ needs.changes.result != 'success' || needs.changes.outputs.regressions != 'false' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -163,15 +257,19 @@ jobs:
       - run: python3 tests/test_b2_positive_v2_package.py
       - run: sh scripts/package.sh
       - name: Extract actual release ZIP outside the checkout
+        if: env.RUN_REGRESSIONS == 'true'
         run: |
           site=$(mktemp -d)
           python3 -m zipfile -e dist/Sams-Gezeitenkarten.zip "$site"
           echo "DEPLOY_ROOT=$site" >> "$GITHUB_ENV"
       - run: npm ci --no-audit --no-fund
+        if: env.RUN_REGRESSIONS == 'true'
       - run: npx playwright install --with-deps chromium webkit
+        if: env.RUN_REGRESSIONS == 'true'
       - run: npx playwright test --config playwright.deployment.config.mjs
+        if: env.RUN_REGRESSIONS == 'true'
       - name: Retain deployment UI review and lifecycle observations
-        if: always()
+        if: ${{ always() && env.RUN_REGRESSIONS == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: ui-safari-review-deployment
@@ -189,7 +287,7 @@ jobs:
           path: dist/Sams-Gezeitenkarten.zip
           if-no-files-found: error
           retention-days: 3
-      - if: failure()
+      - if: ${{ failure() && env.RUN_REGRESSIONS == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: deployment-failure
@@ -198,3 +296,7 @@ jobs:
             deployment-test-results/
           if-no-files-found: ignore
           retention-days: 3
+      - name: Record deliberately omitted regression tests
+        if: env.RUN_REGRESSIONS == 'false'
+        run: |
+          printf '%s\n' "### $GITHUB_JOB regression tests" 'Not required by the reviewed change profile. Deliberately skipped; tests were NOT executed or passed. See the changes job summary.' >> "$GITHUB_STEP_SUMMARY"
