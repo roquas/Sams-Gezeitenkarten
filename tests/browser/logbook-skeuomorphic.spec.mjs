@@ -81,10 +81,10 @@ test('place action repeats only the current references, reveals the map, and pre
  await page.locator('#prevClue').click();await expect(page.locator('#showCluePlace')).toBeVisible();
 });
 
-test('top navigation, writing and cartographic action stay on the paper at 320â€“1440px, including long text',async({page},info)=>{
+for(const width of [320,390,620,768,900,1440])test(`at ${width}px: top navigation, writing and cartographic action stay on the paper, including long text`,async({page},info)=>{
+ await page.setViewportSize({width,height:1000});
  await open(page,{places:true,long:true});
- for(const width of [320,390,620,768,900,1440]){
-  await page.setViewportSize({width,height:1000});await book(page).scrollIntoViewIfNeeded();
+  await book(page).scrollIntoViewIfNeeded();
   const [b,nav,text,action,annotations,viewport,margin]=await Promise.all([
    book(page).boundingBox(),page.locator('.bordbook .clue-nav').boundingBox(),page.locator('#clueTrack p').boundingBox(),
    page.locator('#showCluePlace').boundingBox(),page.locator('.book-annotations').boundingBox(),
@@ -121,14 +121,13 @@ test('top navigation, writing and cartographic action stay on the paper at 320â€
    await capture(page,info,`${width===390?'mobile':'desktop'}-long-with-place-done`);
    await clue(page).focus();await page.keyboard.press('Space');await expect(clue(page)).toHaveAttribute('aria-checked','false');
   }
- }
 });
 
-test('same text starts at exactly the same height with and without a margin note',async({page})=>{
+for(const width of [320,390,620,768,900,1440])test(`at ${width}px: same text starts at exactly the same height with and without a margin note`,async({page})=>{
+ await page.setViewportSize({width,height:1000});
  await open(page,{places:true,paired:true});
  const offset=()=>page.locator('#clueTrack p').evaluate(el=>el.getBoundingClientRect().y-el.closest('.bordbook').getBoundingClientRect().y);
- for(const width of [320,390,620,768,900,1440]){
-  await page.setViewportSize({width,height:1000});await book(page).scrollIntoViewIfNeeded();
+  await book(page).scrollIntoViewIfNeeded();
   await expect(page.locator('#showCluePlace')).toBeVisible();
   const y=await offset();expect(y).toBe(width<=600?142:144);
   await clue(page).click();await expect(clue(page)).toHaveAttribute('aria-checked','true');expect(await offset()).toBe(y);
@@ -137,7 +136,6 @@ test('same text starts at exactly the same height with and without a margin note
   await clue(page).click();await expect(clue(page)).toHaveAttribute('aria-checked','true');expect(await offset()).toBe(y);
   await clue(page).focus();await page.keyboard.press('Space');
   await page.locator('#prevClue').click();await expect(page.locator('#showCluePlace')).toBeVisible();expect(await offset()).toBe(y);
- }
 });
 
 test('keyboard navigation and place action remain separate from checking',async({page})=>{
