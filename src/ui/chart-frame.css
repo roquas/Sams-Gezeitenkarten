@@ -68,8 +68,6 @@ button:focus-visible,[tabindex]:focus-visible,a:focus-visible,summary:focus-visi
 .bordbook .clue-slide{padding:0;opacity:1;width:100%;min-width:0;cursor:auto}
 .bordbook .clue-slide .clue{padding:0;min-height:0;border:0;border-radius:0;background:transparent!important;box-shadow:none;display:flex;gap:10px;font:16px/1.7 Georgia,serif;color:#3f3527}
 .bordbook .clue-slide .clue:hover{background:#e8d6b433!important}
-.bordbook .clue-slide .clue.done{opacity:1;color:#796b56}
-.bordbook .clue-slide .clue.done .num{background:#dde4d4;color:#355a4b}
 .bordbook .num{width:26px;height:26px;margin-top:2px;border-radius:50%;background:#e9d7b3;font:700 13px Georgia,serif;flex:none}
 .bordbook .clue-nav{padding:0 9px 4px;gap:10px;font-size:11px;color:#6a573a}
 .bordbook .clue-nav button{min-width:44px;min-height:44px;border-radius:3px;border:0;background:transparent;font:32px Georgia,serif;color:#76502c}

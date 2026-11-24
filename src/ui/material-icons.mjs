@@ -23,6 +23,4 @@ export function mountUpperMaterials(){
 export function mountLowerMaterials(){
  const actions=document.getElementById('mapActions');
  actions.insertAdjacentHTML('afterbegin','<span class="brass-rail rail-top" aria-hidden="true"></span><span class="brass-rail rail-bottom" aria-hidden="true"></span>');
- document.getElementById('prevClue').innerHTML=rasterIcon('previous');
- document.getElementById('nextClue').innerHTML=rasterIcon('next');
 }

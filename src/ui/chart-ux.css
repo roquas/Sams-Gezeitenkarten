@@ -30,7 +30,6 @@
  .mobile-view-nav button[aria-pressed="true"]{background:linear-gradient(145deg,#37646a,#163e43);color:#ffeac0;box-shadow:inset 0 0 0 1px #d7b36e}
  .clue-panel .all-clues .clue{font:17px/1.65 Georgia,serif;background:#fff4dbcc;border:1px solid #c9af7f;box-shadow:0 2px 4px #5c402b12;padding:14px 12px;margin:12px 0}
  .clue-panel .all-clues .clue p{min-width:0;overflow-wrap:break-word}
- .clue-panel .all-clues .clue.done{background:#dce7d6;color:#485845;opacity:1}
  .clue-panel .logbook-section:first-child details>summary{pointer-events:none}
  .clue-panel .logbook-section:first-child details>summary::before{display:none}
  .clue-panel .logbook-section:first-child details>summary{padding-left:4px}

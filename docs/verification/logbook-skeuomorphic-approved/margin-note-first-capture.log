@@ -1,0 +1,46 @@
+
+Running 6 tests using 1 worker
+
+(node:77589) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:40:35 › desktop: fixed ink margin, unchanged writing without place references (9.1s)
+  ✓  2 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:40:35 › desktop: fixed ink margin, unchanged writing with place references (9.6s)
+  ✓  3 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:40:35 › mobile: fixed ink margin, unchanged writing without place references (4.4s)
+  ✓  4 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:40:35 › mobile: fixed ink margin, unchanged writing with place references (5.3s)
+  ✓  5 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:82:1 › top navigation, writing and cartographic action stay on the paper at 320–1440px, including long text (12.6s)
+  ✘  6 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:122:1 › same text starts at exactly the same height with and without a margin note (7.4s)
+
+
+  1) [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:122:1 › same text starts at exactly the same height with and without a margin note 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 142
+    Received: 177.75
+
+      126 |  for(const width of [320,390,620,768,900,1440]){
+      127 |   await page.setViewportSize({width,height:1000});await book(page).scrollIntoViewIfNeeded();
+    > 128 |   await expect(page.locator('#showCluePlace')).toBeVisible();
+          |                                    ^
+      129 |   const y=await offset();expect(y).toBe(width<=600?142:144);
+      130 |   await clue(page).click();await expect(clue(page)).toHaveAttribute('aria-checked','true');expect(await offset()).toBe(y);
+      131 |   await clue(page).focus();await page.keyboard.press('Space');expect(await offset()).toBe(y);
+        at /Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/tests/browser/logbook-skeuomorphic.spec.mjs:128:36
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    .dev/logbook-margin-note-visual/logbook-skeuomorphic-same--905c7-h-and-without-a-margin-note-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: .dev/logbook-margin-note-visual/logbook-skeuomorphic-same--905c7-h-and-without-a-margin-note-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    .dev/logbook-margin-note-visual/logbook-skeuomorphic-same--905c7-h-and-without-a-margin-note-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace .dev/logbook-margin-note-visual/logbook-skeuomorphic-same--905c7-h-and-without-a-margin-note-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:122:1 › same text starts at exactly the same height with and without a margin note 
+  5 passed (1.2m)

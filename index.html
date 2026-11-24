@@ -41,13 +41,17 @@
 <section class="clue-carousel bordbook" aria-label="Hinweise aus dem Logbuch">
  <div class="book-spread">
   <div class="book-heading" aria-hidden="true"><span class="book-vignette"></span></div>
-  <div class="book-page"><div class="book-page-heading"><strong>Aus Robins Logbuch</strong><span id="cluePosition" aria-live="polite">I / VII</span></div>
+  <div class="book-page">
+  <nav class="clue-nav" aria-label="Im Logbuch blättern"><button type="button" id="prevClue" title="Vorheriger Hinweis" aria-label="Vorheriger Hinweis"><span aria-hidden="true">‹</span></button><span id="cluePosition" aria-live="polite">I / VII</span><button type="button" id="nextClue" title="Nächster Hinweis" aria-label="Nächster Hinweis"><span aria-hidden="true">›</span></button></nav>
+  <button type="button" id="showCluePlace" class="book-place-action" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 1v5m0 12v5M1 12h5m12 0h5M15.5 6.5l-2 7-5 4 2-7zM10.5 10.5l3 3"/></svg><span>Ort zeigen</span></button>
   <div class="clue-viewport" id="clueViewport" tabindex="0" aria-label="Hinweise. Seitlich wischen oder Pfeiltasten verwenden.">
    <div class="clue-track" id="clueTrack"></div>
   </div>
+  <div class="book-annotations">
+   <span id="clueDone">Hinweis antippen zum Abhaken</span>
+  </div>
   </div>
  </div>
- <div class="clue-nav"><button type="button" id="prevClue" title="Vorheriger Hinweis" aria-label="Vorheriger Hinweis">‹</button><span id="clueDone">Hinweis antippen zum Abhaken</span><button type="button" id="nextClue" title="Nächster Hinweis" aria-label="Nächster Hinweis">›</button></div>
 </section>
 <h3>Deine rekonstruierte Route</h3>
 <div class="route" id="routeView"></div>

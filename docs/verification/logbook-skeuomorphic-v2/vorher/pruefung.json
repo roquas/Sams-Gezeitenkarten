@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-24",
+  "scope": "Skeuomorphes Logbuch: Randmarkierung, Blättern am oberen Rand, Ort zeigen",
+  "screenshots": {
+    "browser": "Chromium",
+    "desktopViewport": {"width": 1440, "height": 1080},
+    "mobileViewport": {"width": 390, "height": 844},
+    "scale": "CSS pixels",
+    "matrix": [
+      "desktop-without-place-open.png",
+      "desktop-without-place-done.png",
+      "desktop-with-place-open.png",
+      "desktop-with-place-done.png",
+      "mobile-without-place-open.png",
+      "mobile-without-place-done.png",
+      "mobile-with-place-open.png",
+      "mobile-with-place-done.png"
+    ],
+    "overview": "abnahme.png",
+    "gallery": "abnahme.html",
+    "visuallyReviewed": true,
+    "fixture": "model-demo presentation override: explicit named references to Roberts Boot and Zwilling; puzzle logic unchanged"
+  },
+  "acceptance": {
+    "samePaperTextureAndTypography": true,
+    "originalBookProportionsPreserved": true,
+    "inkNavigationAtTop": true,
+    "fixedMarginInBothStates": true,
+    "verticallyCenteredHandDrawnCheck": true,
+    "identicalNumberAndTextGeometryAndStyle": true,
+    "noStrikeThroughOrOpacityReduction": true,
+    "placeActionOnlyForCurrentNamedReferences": true,
+    "placeActionPreservesGameAndUndo": true,
+    "minimumHitTargetCssPixels": 44,
+    "widthsWithLongTextChecked": [320, 390, 620, 768, 900, 1440],
+    "keyboardSwipePersistenceAndUndoChecked": true
+  },
+  "tests": {
+    "logbookChromium": {
+      "command": "npx playwright test tests/browser/logbook-skeuomorphic.spec.mjs --workers=1 --output=.dev/logbook-checks",
+      "passed": 14,
+      "failed": 0
+    },
+    "logbookAndLongTextWebKit": {
+      "command": "npx playwright test --config=playwright.webkit.config.mjs tests/browser/logbook-skeuomorphic.spec.mjs tests/browser/long-clue.spec.mjs --output=.dev/logbook-webkit-checks",
+      "firstRunPassed": 15,
+      "firstRunFailed": 1,
+      "correction": "Use the HTML mapbox wrapper for scrolling rather than the SVG; WebKit aligned the SVG differently.",
+      "targetedRepeat": "npx playwright test --config=playwright.webkit.config.mjs tests/browser/logbook-skeuomorphic.spec.mjs --grep='place action' --output=.dev/logbook-webkit-scroll-check",
+      "targetedRepeatPassed": 2,
+      "targetedRepeatFailed": 0
+    },
+    "relatedIntegration": {
+      "command": "node --test tests/integration/bordbook.test.mjs tests/integration/game-state.test.mjs tests/integration/place-references.test.mjs tests/integration/chart-ux.test.mjs tests/integration/distance-overlay.test.mjs",
+      "passed": 18,
+      "failed": 0
+    },
+    "broaderBrowserRegression": {
+      "files": ["logbook-skeuomorphic", "long-clue", "materials", "layout-polish", "chart-ux", "place-references"],
+      "firstRunPassed": 92,
+      "firstRunFailed": 8,
+      "skipped": 2,
+      "corrections": "Update old raster-arrow expectations and explicit named-place fixture; repeat startup/layout failures individually.",
+      "targetedRepeatCommand": "npx playwright test --last-failed --workers=1 --output=test-results",
+      "targetedRepeatPassed": 8,
+      "targetedRepeatFailed": 0
+    },
+    "wholeProjectUnitSuite": {
+      "command": "npm run test:unit",
+      "passed": 295,
+      "failed": 94,
+      "status": "not green",
+      "observedFailures": [
+        "ModuleNotFoundError: No module named 'PIL' in image/archive fixture setup",
+        "ENOENT for generated/archive test fixture batch directories"
+      ],
+      "note": "No changes to image tooling or archived fixture data were made for the logbook task."
+    }
+  }
+}

@@ -22,7 +22,7 @@ svg{display:block;width:100%;height:auto;touch-action:none;user-select:none}.cel
 .pill{font-size:12px;background:#f1eadb;padding:5px 9px;border-radius:30px}
 .step.current{background:#b37b36;color:white;box-shadow:0 0 0 2px #fff2d4 inset}.route{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin:8px 0 12px}.step{padding:4px 7px;background:#e6e9e5;border-radius:6px;font-weight:700;font-size:12px}
 details{border-top:1px solid #e4ddce;padding:11px 0}summary{cursor:pointer;font-weight:700}details p{margin:7px 0 0}
-.clue{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #e7e1d4}.num{flex:none;width:29px;height:29px;border-radius:8px;background:#f0e4cd;display:grid;place-items:center;font:700 15px Georgia,serif;color:#775a33}.clue p{margin:0}.clue{cursor:pointer;border-radius:8px;transition:opacity .15s,background .15s}.clue:hover{background:#f5f0e6}.clue.done{opacity:.38}.clue.done p{text-decoration:line-through;text-decoration-thickness:1px}.clue:focus-visible{outline:3px solid #ad7427}.clue .num{user-select:none}
+.clue{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #e7e1d4}.num{flex:none;width:29px;height:29px;border-radius:8px;background:#f0e4cd;display:grid;place-items:center;font:700 15px Georgia,serif;color:#775a33}.clue p{margin:0}.clue{cursor:pointer;border-radius:8px;transition:background .15s}.clue:hover{background:#f5f0e6}.clue:focus-visible{outline:3px solid #ad7427}.clue .num{user-select:none}
 .notice{padding:12px 14px;background:#eef2ec;border-left:3px solid #537d77;border-radius:7px;font-size:13px;margin:12px 0}
 .notice.error{background:#f8e9e6;border-color:#af6657}.notice.success{background:#e6f1e7;border-color:#5a966d}
 .topline{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -49,7 +49,6 @@ footer{max-width:1340px;margin:8px auto 28px;padding:0 16px;color:#68787a;font-s
  #clues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:start}
  .clue{background:#f8f4e9;border:1px solid #e0d8c7;padding:10px;border-radius:10px;display:flex;gap:7px;min-height:100%;font-size:13px;line-height:1.42}
  .clue .num{width:23px;height:23px;font-size:12px}
- .clue.done{opacity:.48;background:#eeeae1}
  .clue-panel details{order:0}
  .toolstrip{margin-top:6px}
  .hourbar{margin:8px 0}
@@ -86,8 +85,7 @@ body{background:#e4d8bf}
  #clues{display:flex;flex-direction:column;gap:10px}
  .clue{min-height:0;background:#fff9e9!important;border:1px solid #d8be8e;box-shadow:1px 3px 0 #a7864e18;border-radius:3px 11px 7px 4px;padding:12px;font:14px/1.5 Georgia,serif}
  .clue:nth-child(2n){transform:rotate(.35deg)}
- .clue.done{opacity:.46;order:2}
- .clue:not(.done){order:1}
+
  .logbook-tab{display:flex;position:absolute;left:-45px;top:25%;width:45px;min-height:128px;align-items:center;justify-content:center;gap:6px;flex-direction:column;padding:12px 7px;background:#f0ddb0;color:#6b4825;border:1px solid #a88b59;border-right:0;border-radius:12px 0 0 12px;box-shadow:-4px 3px 8px #29231b22;font-weight:750;touch-action:pan-y}
  .logbook-tab span{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.07em;font-size:13px}
  .logbook-tab svg{width:20px;height:20px;transform:rotate(180deg);transition:transform .2s}
@@ -109,7 +107,7 @@ main{display:block;max-width:900px}
 .clue-slide{flex:0 0 84%;min-width:0;padding:0 1px;opacity:.52;cursor:pointer}
 .clue-slide.center{opacity:1}
 .clue-slide .clue{height:100%;min-height:100px;background:#fff9e9!important;border:1px solid #d8be8e;border-radius:5px 12px 7px 4px;padding:13px 15px;font:15px/1.45 Georgia,serif;box-shadow:1px 3px 0 #a7864e18;display:flex;gap:12px}
-.clue-slide .clue.done{opacity:.42}
+
 .clue-nav{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 0;color:#8a7555;font-size:11px}
 .clue-nav button{border:1px solid #c6ad7f;background:#fff8e8;border-radius:9px;min-width:43px;min-height:35px;color:#75532c;font-size:26px;line-height:1}
 .logbook-tab,.logbook-backdrop{display:block}
@@ -140,7 +138,7 @@ main{display:grid;max-width:1340px;grid-template-columns:minmax(0,1.65fr) minmax
 .logbook-section .story{font-size:14px;line-height:1.5}
 .all-clues{display:grid;gap:8px}
 .all-clues .clue{background:#fff9e9;border:1px solid #d9c49d;border-radius:9px;padding:10px;display:flex;gap:9px;font:13px/1.45 Georgia,serif}
-.all-clues .clue.done{opacity:.42}
+
 .all-clues .num{width:24px;height:24px;font-size:12px}
 .setting-row{display:flex;gap:9px;align-items:center;font-size:13px;padding:6px 0}
 .setting-row input{width:18px;height:18px;accent-color:#34565a}
@@ -195,3 +193,11 @@ main{display:grid;max-width:1340px;grid-template-columns:minmax(0,1.65fr) minmax
 #b2Selection{margin:12px 0;padding:12px;border:1px solid #ad8e5d;border-radius:4px}
 #b2Selection label{display:block;margin-bottom:6px;font-weight:bold}
 #b2Selection select{display:block;width:100%;max-width:100%;min-height:44px}
+
+/* A fixed ink margin carries completion; the writing stays untouched. */
+.clue-margin{position:relative;align-self:stretch;flex:0 0 16px;min-height:29px;border-right:1px solid #9f7d4360;color:#694b29}
+.clue-margin svg{position:absolute;width:16px;height:20px;left:-2px;top:50%;transform:translateY(-50%) rotate(-7deg);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;visibility:hidden}
+.clue.done .clue-margin svg{visibility:visible}
+/* The overview shares the book's ink margin without moving its writing. */
+.all-clues .clue{display:grid;grid-template-columns:16px 24px minmax(0,1fr);align-items:start;align-content:start;min-height:44px}
+.all-clues .clue-margin{min-height:0;margin-block:-6px;border-right-color:#8f6935}

@@ -1,0 +1,64 @@
+
+Running 20 tests using 1 worker
+
+(node:69270) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [webkit-desktop] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › desktop: fixed ink margin, unchanged writing without place references (15.6s)
+  ✓   2 [webkit-desktop] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › desktop: fixed ink margin, unchanged writing with place references (9.6s)
+  ✓   3 [webkit-desktop] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › mobile: fixed ink margin, unchanged writing without place references (6.4s)
+  ✓   4 [webkit-desktop] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › mobile: fixed ink margin, unchanged writing with place references (6.8s)
+  ✓   5 [webkit-desktop] › tests/browser/logbook-skeuomorphic.spec.mjs:62:1 › place action repeats only the current references, reveals the map, and preserves game state and undo (5.9s)
+  ✓   6 [webkit-desktop] › tests/browser/logbook-skeuomorphic.spec.mjs:81:1 › top navigation, writing and cartographic action stay on the paper at 320–1440px, including long text (11.7s)
+  ✓   7 [webkit-desktop] › tests/browser/logbook-skeuomorphic.spec.mjs:120:1 › keyboard navigation and place action remain separate from checking (5.6s)
+  -   8 [webkit-desktop] › tests/browser/logbook-skeuomorphic.spec.mjs:135:1 › native touch taps and a swipe navigate, check, and show places independently
+  ✓   9 [webkit-desktop] › tests/browser/logbook-skeuomorphic.spec.mjs:149:1 › completion remains readable and stationary in the complete clue list (3.3s)
+  ✓  10 [webkit-desktop] › tests/browser/long-clue.spec.mjs:4:1 › long clue text stays readable below the page controls at narrow widths (4.7s)
+(node:91760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › desktop: fixed ink margin, unchanged writing without place references (5.3s)
+  ✓  12 [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › desktop: fixed ink margin, unchanged writing with place references (10.7s)
+  ✓  13 [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › mobile: fixed ink margin, unchanged writing without place references (5.8s)
+  ✘  14 [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › mobile: fixed ink margin, unchanged writing with place references (35.3s)
+(node:19888) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:62:1 › place action repeats only the current references, reveals the map, and preserves game state and undo (4.7s)
+  ✓  16 [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:81:1 › top navigation, writing and cartographic action stay on the paper at 320–1440px, including long text (8.4s)
+  ✓  17 [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:120:1 › keyboard navigation and place action remain separate from checking (3.8s)
+  ✓  18 [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:135:1 › native touch taps and a swipe navigate, check, and show places independently (2.8s)
+  ✓  19 [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:149:1 › completion remains readable and stationary in the complete clue list (5.0s)
+  ✓  20 [webkit-mobile] › tests/browser/long-clue.spec.mjs:4:1 › long clue text stays readable below the page controls at narrow widths (4.5s)
+
+
+  1) [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › mobile: fixed ink margin, unchanged writing with place references 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://127.0.0.1:4173/", waiting until "load"
+
+
+      14 |  if(long)p.clueTexts.I='In der ersten Stunde hielten wir Kurs nach Osten. Sam hatte den Kompass sicher verstaut, während Robin die Beobachtung sorgfältig ins Logbuch schrieb. Auch die Kiste mit den Seekarten blieb an Bord; wir fuhren genau eine Etappe weiter.';
+      15 |  await page.route('**/puzzles/model-demo.json',r=>r.fulfill({json:dto}));
+    > 16 |  await page.goto('/');await expect(page.locator('#map .cell')).toHaveCount(25,{timeout:15000});
+         |             ^
+      17 |  await page.emulateMedia({reducedMotion:'reduce'});
+      18 | }
+      19 | async function writing(page){
+        at open (/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/tests/browser/logbook-skeuomorphic.spec.mjs:16:13)
+        at /Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/tests/browser/logbook-skeuomorphic.spec.mjs:40:46
+
+    Error Context: .dev/logbook-followup-webkit/logbook-skeuomorphic-mobil-f6259-iting-with-place-references-webkit-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .dev/logbook-followup-webkit/logbook-skeuomorphic-mobil-f6259-iting-with-place-references-webkit-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace .dev/logbook-followup-webkit/logbook-skeuomorphic-mobil-f6259-iting-with-place-references-webkit-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [webkit-mobile] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › mobile: fixed ink margin, unchanged writing with place references 
+  1 skipped
+  18 passed (2.8m)

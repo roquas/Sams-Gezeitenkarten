@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Logbuch · freigegebene Buchfassung und Hinweisübersicht</title>
+<style>
+ *{box-sizing:border-box}body{max-width:1120px;margin:0 auto;padding:32px;color:#302b25;background:#fff;font:15px/1.5 system-ui,sans-serif}
+ h1{font:600 28px/1.3 Georgia,serif;margin:0 0 10px}h2{font-size:17px;margin:26px 0 10px}p{margin:8px 0 18px;max-width:90ch}
+ .pair{display:grid;grid-template-columns:minmax(0,2.55fr) minmax(0,1fr);gap:24px;align-items:start}figure{margin:0}img{display:block;width:100%;height:auto}figcaption{font-size:12px;color:#62594d;margin-top:5px}a{color:inherit}footer{margin-top:28px;border-top:1px solid #ccc;padding-top:12px;font-size:13px}
+ @media(max-width:650px){body{padding:18px}.pair{grid-template-columns:1fr}figure:last-child{max-width:370px}}
+</style>
+<h1>Logbuch · freigegebene Buchfassung und Hinweisübersicht</h1>
+<p>24. November 2026 · Echte Chromium-Screenshots auf Basis des aktuellen main, Desktop 1440 × 1080 und Mobil 390 × 844 CSS-Pixel. Acht Buchzustände, zwei Langtextansichten und vier Ansichten der Hinweisübersicht. Die verlinkten Originale wurden visuell geprüft.</p>
+<p><a href="../logbook-skeuomorphic-approved/abnahme.html">Unveränderte freigegebene Buchfassung</a> · <a href="../logbook-skeuomorphic-v2/abnahme.html">Vorherige Nachkorrektur</a> · <a href="vorher/abnahme.png">Erste Screenshot-Abnahme</a> · <a href="pruefung.json">Regressionen und main-Vergleich</a>. Die bisherigen Nachweise bleiben erhalten.</p>
+<p>Die freigegebene Buchgestaltung bleibt erhalten. Die Hinweisübersicht behält ihre Überschrift „Aus Robins Logbuch“ und verwendet denselben schmalen Tintenstrich mit handgezeichnetem, vertikal mittigem Häkchen. Nummer und Text bleiben beim Abhaken voll lesbar und an derselben Stelle. Änderungen in Buch und Übersicht erscheinen sofort in beiden Ansichten. Die Übersicht erhält weder Ortsaktionen noch Blätternavigation.</p>
+
+<h2>Offen · ohne Ortsreferenz</h2>
+<div class="pair">
+ <figure><a href="desktop-without-place-open.png"><img src="desktop-without-place-open.png" alt="Desktop: offener Hinweis ohne Ortsreferenz"></a><figcaption>Desktop · Die schmale Randmarkierung hält ihren Platz frei.</figcaption></figure>
+ <figure><a href="mobile-without-place-open.png"><img src="mobile-without-place-open.png" alt="Mobil: offener Hinweis ohne Ortsreferenz"></a><figcaption>Mobil · Blättern am oberen Papierrand.</figcaption></figure>
+</div>
+<h2>Abgehakt · ohne Ortsreferenz</h2>
+<div class="pair">
+ <figure><a href="desktop-without-place-done.png"><img src="desktop-without-place-done.png" alt="Desktop: abgehakter Hinweis ohne Ortsreferenz"></a><figcaption>Desktop · Nur das handgezeichnete Randhäkchen kommt hinzu.</figcaption></figure>
+ <figure><a href="mobile-without-place-done.png"><img src="mobile-without-place-done.png" alt="Mobil: abgehakter Hinweis ohne Ortsreferenz"></a><figcaption>Mobil · Nummer und Text bleiben vollständig lesbar.</figcaption></figure>
+</div>
+<h2>Offen · mit Ortsreferenz</h2>
+<div class="pair">
+ <figure><a href="desktop-with-place-open.png"><img src="desktop-with-place-open.png" alt="Desktop: offener Hinweis mit Ortsreferenz"></a><figcaption>Desktop · „Ort zeigen“ als Tintennotiz im oberen Seitenrand.</figcaption></figure>
+ <figure><a href="mobile-with-place-open.png"><img src="mobile-with-place-open.png" alt="Mobil: offener Hinweis mit Ortsreferenz"></a><figcaption>Mobil · Ortsaktion und Hinweis bleiben auf dem Papier.</figcaption></figure>
+</div>
+<h2>Abgehakt · mit Ortsreferenz</h2>
+<div class="pair">
+ <figure><a href="desktop-with-place-done.png"><img src="desktop-with-place-done.png" alt="Desktop: abgehakter Hinweis mit Ortsreferenz"></a><figcaption>Desktop · Ortsaktion bleibt auch nach dem Abhaken erreichbar.</figcaption></figure>
+ <figure><a href="mobile-with-place-done.png"><img src="mobile-with-place-done.png" alt="Mobil: abgehakter Hinweis mit Ortsreferenz"></a><figcaption>Mobil · Gleiches Layout in beiden Bearbeitungszuständen.</figcaption></figure>
+</div>
+<h2>Mehrzeiliger Hinweis · dynamischer Tintenstrich</h2>
+<div class="pair">
+ <figure><a href="desktop-long-with-place-done.png"><img src="desktop-long-with-place-done.png" alt="Desktop: langer abgehakter Hinweis mit dynamischem Statusstrich"></a><figcaption>Desktop · Tintenstrich über alle Textzeilen, Häkchen in der Mitte.</figcaption></figure>
+ <figure><a href="mobile-long-with-place-done.png"><img src="mobile-long-with-place-done.png" alt="Mobil: langer abgehakter Hinweis mit Ortsaktion oberhalb des Textes"></a><figcaption>Mobil · Der Strich wächst mit dem Text; Ortsaktion und Text überlagern sich nicht.</figcaption></figure>
+</div>
+<h2>Hinweisübersicht · offen und mit langem Hinweis</h2>
+<div class="pair" style="grid-template-columns:1fr 1fr">
+ <figure style="max-width:400px"><a href="desktop-overview-open.png"><img src="desktop-overview-open.png" alt="Desktop-Hinweisübersicht mit offenen und längerem Hinweis"></a><figcaption>Desktop · Überschrift erhalten; alle Hinweise offen.</figcaption></figure>
+ <figure style="max-width:400px"><a href="mobile-overview-open.png"><img src="mobile-overview-open.png" alt="Mobile Hinweisübersicht mit offenen und längerem Hinweis"></a><figcaption>Mobil · Langtext bleibt vollständig erreichbar und lesbar.</figcaption></figure>
+</div>
+<h2>Hinweisübersicht · abgehakt und weiterhin voll lesbar</h2>
+<div class="pair" style="grid-template-columns:1fr 1fr">
+ <figure style="max-width:400px"><a href="desktop-overview-done.png"><img src="desktop-overview-done.png" alt="Desktop-Hinweisübersicht mit abgehakten Hinweisen und mittigen Randhäkchen"></a><figcaption>Desktop · Nur die Randhäkchen ändern sich; keine Durchstreichung oder reduzierte Deckkraft.</figcaption></figure>
+ <figure style="max-width:400px"><a href="mobile-overview-done.png"><img src="mobile-overview-done.png" alt="Mobile Hinweisübersicht mit abgehaktem langen Hinweis"></a><figcaption>Mobil · Einzeilige und lange Hinweise verwenden dieselbe Statussemantik.</figcaption></figure>
+</div>
+<footer>
+ <strong>Explizite Prüfung:</strong> Der Textbeginn liegt bei 144 CSS-Pixeln ab oberem Buchrand auf Desktop und bei 142 auf Mobil. Derselbe Text wurde mit und ohne Ortsreferenz sowie offen und abgehakt verglichen: exakt gleiche vertikale Position. Größe, Schrift, Farbe und Deckkraft ändern sich beim Abhaken ebenfalls nicht. Der Tintenstrich und das mittige Häkchen behalten ihre bisherige Gestaltung.
+ <p>Layout bei 320, 390, 620, 768, 900 und 1440 Pixeln geprüft, einschließlich langem Hinweistext: mindestens 44 Pixel große Trefferflächen, keine Kollision zwischen Ortsnotiz, Pfeilen und Seitenzahl, keine Überlagerung des Textes, kein seitlicher Überlauf. Die Ortsnotiz liegt absolut positioniert außerhalb des Textflusses. Die vollständige relevante Bedienmatrix wurde in Chromium und WebKit geprüft; aktuelle Einzelresultate und der Vergleich mit unverändertem main stehen im verlinkten Prüfbericht. Neue Tests erhalten keine zusätzlichen Skips oder Retries.</p>
+ <p>Die Ortsreferenz-Bilder verwenden eine isolierte Präsentations-Testvorlage mit zwei explizit benannten Orten. Rätsellogik und reguläre Rätseldaten werden dafür nicht geändert. Bildaufnahme: <code>npx playwright test tests/browser/logbook-skeuomorphic.spec.mjs tests/browser/logbook-overview.spec.mjs --project=chromium</code>. Die CI behält die Logbuchbilder in ihren regulären UI-Artefakten.</p>
+</footer>
+</html>

@@ -43,29 +43,38 @@
 .bordbook::before,.bordbook::after{content:"";position:absolute;top:0;bottom:0;background-image:url('../../assets/ui/open-bordbook.webp');background-size:200% 100%;background-repeat:no-repeat;pointer-events:none}
 .bordbook::before{left:calc(2 * var(--left-leaf) - 100%);width:calc(100% - var(--left-leaf));background-position:left center}
 .bordbook::after{left:var(--left-leaf);right:0;background-position:right center}
-.book-spread{position:relative;z-index:1;display:grid;grid-template-columns:var(--left-leaf) minmax(0,1fr);min-height:430px;background:none;border-radius:0}
+.book-spread{position:relative;z-index:1;display:grid;grid-template-columns:var(--left-leaf) minmax(0,1fr);grid-template-rows:minmax(min-content,1fr) minmax(66px,.18fr);min-height:430px;background:none;border-radius:0}
 .book-heading{position:relative;align-self:stretch;overflow:hidden;padding:42px 4px 112px;border:0;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;gap:0}
 .book-vignette{display:block;position:absolute;right:10%;top:18%;bottom:22%;width:360px;height:auto;margin:0;pointer-events:none;background:url('../../assets/ui/logbook-chart.svg') right center/360px 300px no-repeat;opacity:.38;filter:none}
-.book-page{min-width:0;padding:42px 42px 112px 18px;display:flex;flex-direction:column}
-.book-page-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;color:#694b29;font:600 23px/1.4 Georgia,serif}
-.book-page-heading strong{min-width:0;flex:1}
-.book-page-heading #cluePosition{flex:none;white-space:nowrap;font:13px/1.8 Georgia,serif;letter-spacing:.1em}
-.bordbook .clue-viewport{padding:20px 0 12px;min-height:210px;flex:1;overflow:visible}
-.bordbook .clue-nav{z-index:2;left:calc(var(--left-leaf) + 18px);right:42px;bottom:68px}
-.bordbook .clue-nav #clueDone{max-width:calc(100% - 104px)}
-.turning-leaf{padding:20px 0 12px;box-shadow:none;border-radius:0;transform-style:flat;backface-visibility:visible}
+.book-page{position:relative;align-self:stretch;min-width:0;padding:34px 42px 0 18px;display:flex;flex-direction:column}
+.bordbook #cluePosition{white-space:nowrap;font:13px/1.8 Georgia,serif;letter-spacing:.1em}
+.bordbook .clue-viewport{padding:58px 0 12px;min-height:180px;flex:1;align-items:flex-start;overflow:visible}
+.bordbook .clue-slide .clue{display:grid;grid-template-columns:16px 23px minmax(0,1fr);align-items:start;align-content:start;min-height:44px;height:auto}
+/* Let the ink extend just beyond the first and last text lines. */
+.bordbook .clue-margin{min-height:0;margin-block:-6px;border-right-color:#8f6935}
+.bordbook .clue-nav{position:static;padding:0 0 8px;margin-inline:clamp(14px,3vw,28px);gap:8px;color:#785a35}
+.bordbook .clue-nav button{width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border:0;border-radius:0;background:none;box-shadow:none;color:#785a35;font:32px/1 Georgia,serif;display:grid;place-items:center}
+.bordbook .clue-nav button:hover{background:none;color:#44331e}
+.bordbook .clue-nav button:focus-visible,.book-place-action:focus-visible{outline:2px solid #8f6935;outline-offset:2px}
+.book-annotations{color:#5f4226;font:italic 12px/1.5 Georgia,serif}
+.book-place-action{position:absolute;z-index:2;top:82px;right:var(--book-outer-margin);display:inline-flex;align-items:center;gap:7px;min-height:44px;max-width:calc(100% - var(--book-outer-margin) - 12px);padding:0 3px;border:0;border-radius:0;background:none;box-shadow:none;color:#694b29;font:italic 14px/1.5 Georgia,serif}
+.book-place-action[hidden]{display:none}
+.book-place-action span{border-bottom:1px dotted #9f7d4380}
+.book-place-action svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.book-place-action:hover{background:none;color:#44331e}
+.turning-leaf{align-items:flex-start;padding:inherit;padding-left:26px;box-shadow:none;border-radius:0;transform-style:flat;backface-visibility:visible}
 .bordbook+h3{margin-top:28px}
 @media(max-width:600px){
  .bordbook{--left-leaf:12%;padding:0;background:none;min-height:0}
- .book-spread{display:grid;grid-template-columns:var(--left-leaf) minmax(0,1fr);min-height:390px}
+ .book-spread{display:grid;grid-template-columns:var(--left-leaf) minmax(0,1fr);grid-template-rows:minmax(min-content,1fr) minmax(62px,.18fr);min-height:390px}
  .book-heading{padding:30px 3px 112px;justify-content:center}
  .book-vignette{display:block;width:300px;height:auto;background-size:300px 260px}
- .book-page{padding:30px 22px 112px 12px}
- .book-page-heading{font-size:17px;gap:8px}
- .book-page-heading #cluePosition{font-size:11px;letter-spacing:.08em}
- .bordbook .clue-viewport{padding:16px 0 8px;min-height:210px;overflow:visible}
- .bordbook .clue-nav{left:calc(var(--left-leaf) + 12px);right:22px;bottom:64px}
- .turning-leaf{padding:16px 0 8px}
+ .book-page{padding:32px 22px 0 12px}
+ .book-place-action{top:80px}
+ .bordbook #cluePosition{font-size:11px;letter-spacing:.08em}
+ .bordbook .clue-viewport{padding:58px 0 8px;min-height:156px;overflow:visible}
+ .turning-leaf{padding-left:23px;gap:7px}
+ .book-annotations{font-size:11px}
 }
 @media(min-width:881px) and (max-width:1050px){
  .chart-toolbar{grid-template-columns:minmax(0,1fr);gap:8px;padding:14px 20px}
@@ -82,21 +91,17 @@
  .map-actions #routeTool{margin-left:auto}
  .map-actions #verify{margin-left:0}
 }
-.book-page{padding-right:16%}
-.bordbook .clue-nav{right:16%}
+.book-page{--book-outer-margin:16%;padding-right:var(--book-outer-margin)}
 @media(max-width:600px){
  .map-actions .rail-button,.map-actions #verify{width:48px;justify-self:center}
  .map-actions #toggleRouteNumbers{width:100%}
  .route-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px}
  .route-actions .rail-button{flex:0 0 48px}
- .book-page{padding-right:17%}
- .bordbook .clue-nav{right:13%}
+ .book-page{--book-outer-margin:17%}
 }
 @media(max-width:600px){.map-actions .route-actions #verify{flex:0 0 48px}}
 /* Keep folio text away from the curled corner; limit the compact numbers bezel. */
-.book-page-heading{padding-right:12px}
 @media(max-width:600px){.map-actions #toggleRouteNumbers{width:72px;max-width:100%;justify-self:center}}
-@media(max-width:350px){.book-page-heading{font-size:16px}}
 
 /* #32: transparent instrument emblems; stop the divider beside each icon. */
 .hours-group::before,.marking-tools::before{border:0;height:1px;background:linear-gradient(to right,#92734480 calc(50% - 19px),transparent calc(50% - 19px),transparent calc(50% + 19px),#92734480 calc(50% + 19px))}

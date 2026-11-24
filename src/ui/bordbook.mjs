@@ -1,6 +1,6 @@
 export function nextClue(index,delta,count){return ((index+delta)%count+count)%count;}
 export function swipeDirection(dx,dy){return Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.25?(dx<0?1:-1):0;}
-export function createBordbook({clues,getState,toggleClue,markup=t=>t,onSelect=()=>{}}){
+export function createBordbook({clues,getState,toggleClue,markup=t=>t,onSelect=()=>{},hasPlace=()=>false,onShowPlace=()=>{}}){
  const $=id=>document.getElementById(id);
  let current=0,touch=null,suppressClickUntil=0,animation,leaf;
  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -11,12 +11,12 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t,onSelect=(
   const state=getState();
   const clue=([id,text],format)=>{
    const done=state.doneClues.includes(id);
-   return `<div class="clue ${done?'done':''}" data-clue="${id}" role="checkbox" tabindex="0" aria-checked="${done}" title="Hinweis abhaken"><span class="num">${id}</span><p>${format(text)}</p></div>`;
+   return `<div class="clue ${done?'done':''}" data-clue="${id}" role="checkbox" tabindex="0" aria-checked="${done}" title="${done?'Häkchen entfernen':'Hinweis abhaken'}"><span class="clue-margin" aria-hidden="true"><svg viewBox="0 0 18 20"><path d="M2 10 Q4 11 6 16 Q10 7 16 3"/></svg></span><span class="num">${id}</span><p>${format(text)}</p></div>`;
   };
   $('allClues').innerHTML=clues.map(c=>clue(c,markup)).join('');
   $('clueTrack').innerHTML=`<div class="clue-slide center">${clue(clues[current],markup)}</div>`;
   $('cluePosition').textContent=`${clues[current][0]} / ${clues.at(-1)[0]}`;
-  $('clueDone').textContent=state.doneClues.includes(clues[current][0])?'✓ Abgehakt':'Hinweis antippen zum Abhaken';
+  $('showCluePlace').hidden=!hasPlace(clues[current][0]);
   if(focusInBook)$('clueTrack').querySelector('[data-clue]').focus({preventScroll:true});
   if(focusInList)$('allClues').querySelector(`[data-clue="${focusedClue}"]`)?.focus({preventScroll:true});
  }
@@ -36,6 +36,7 @@ export function createBordbook({clues,getState,toggleClue,markup=t=>t,onSelect=(
  }
  $('prevClue').addEventListener('click',()=>shift(-1));
  $('nextClue').addEventListener('click',()=>shift(1));
+ $('showCluePlace').addEventListener('click',()=>{if(hasPlace(clues[current][0]))onShowPlace(clues[current][0]);});
  $('clueViewport').addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();shift(e.key==='ArrowRight'?1:-1);}
  });
