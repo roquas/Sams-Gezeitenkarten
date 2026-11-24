@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-24",
+  "phase": "Lokale visuelle Konzeption und Abnahme; keine PR-Aktion vor ausdrücklicher Freigabe",
+  "changes": [
+    "Zusätzliche Überschrift vollständig aus der aufgeschlagenen Seite entfernt",
+    "Ort zeigen als absolut positionierte Tintennotiz rechts oben im bestehenden Seitenrand; keine eigene Zeile",
+    "Hinweistext oben verankert, bei sichtbarer oder fehlender Ortsnotiz sowie beim Abhaken exakt gleiche vertikale Position"
+  ],
+  "layout": "Papiertexturen, Typografie, Navigation, Statusstrich, Häkchen und Abhak-Hilfe unverändert gestaltet. Hinweisbeginn höher: Desktop 144, Mobil 142 CSS-Pixel ab Buchoberkante. Die Ortsnotiz beeinflusst den normalen Textfluss nicht.",
+  "semantics": "Keine weiteren Änderungen an Rätsellogik, Spielständen, Abhaken, Ortsreferenzen oder Animationsdauer gegenüber der zuvor lokal umgesetzten Fassung.",
+  "visualAcceptance": {
+    "browser": "Chromium",
+    "desktopViewport": {
+      "width": 1440,
+      "height": 1080
+    },
+    "mobileViewport": {
+      "width": 390,
+      "height": 844
+    },
+    "matrix": [
+      "desktop-without-place-open.png",
+      "desktop-without-place-done.png",
+      "desktop-with-place-open.png",
+      "desktop-with-place-done.png",
+      "mobile-without-place-open.png",
+      "mobile-without-place-done.png",
+      "mobile-with-place-open.png",
+      "mobile-with-place-done.png"
+    ],
+    "longText": [
+      "desktop-long-with-place-done.png",
+      "mobile-long-with-place-done.png"
+    ],
+    "allTenImagesVisuallyReviewed": true,
+    "numberAndTextUnchangedBetweenCompletionStates": true,
+    "textSizedInkLineAndCenteredCheck": true,
+    "placeActionAboveTextAndRightAligned": true,
+    "navigationClearOfIllustratedEdges": true,
+    "footerClearOfIllustratedBottomEdge": true,
+    "geometryWidthsChecked": [
+      320,
+      390,
+      620,
+      768,
+      900,
+      1440
+    ],
+    "minimumTargetCssPixels": 44,
+    "finalCaptureCommand": "npx playwright test tests/browser/logbook-skeuomorphic.spec.mjs --project=chromium --grep='fixed ink margin|top navigation|same text starts' --workers=1 --output=.dev/logbook-margin-note-final",
+    "finalCapturePassed": 6,
+    "finalCaptureFailed": 0,
+    "finalCaptureLog": "visual-capture.log",
+    "fixture": "Isolierte Präsentations-Testvorlage mit explizit benannten Orten; keine Änderungen an regulären Rätseldaten.",
+    "sameTextYWithAndWithoutPlaceReference": true,
+    "textStartCssPixelsFromBookTop": {
+      "desktop": 144,
+      "mobile": 142
+    },
+    "placeNoteOutsideNormalFlow": true,
+    "bookPageHeadingRemoved": true,
+    "unchangedNavigationAndCompletionInkDesign": true,
+    "layoutIteration": "Erste Aufnahme zeigte nach Entfernung der Überschrift eine unerwünschte vertikale Zentrierung der ganzen Seitenfläche. Die Seitenfläche ist nun gestreckt und der Textbeginn explizit oben verankert; finale Messprüfung und Aufnahmen bestanden."
+  },
+  "preservedPreviousEvidence": {
+    "previousCompleteGallery": "../logbook-skeuomorphic-v2/abnahme.html",
+    "previousCompleteReport": "../logbook-skeuomorphic-v2/pruefung.json",
+    "firstOverview": "vorher/abnahme.png",
+    "firstReport": "vorher/pruefung.json"
+  },
+  "regressionStatus": {
+    "fullApprovalRun": "Erst nach visueller Freigabe und ausdrücklichem PR-Auftrag. In dieser Korrekturrunde ausschließlich gezielte Layout- und Screenshotprüfungen.",
+    "previousRunsPreserved": "../logbook-skeuomorphic-v2/pruefung.json"
+  },
+  "publication": {
+    "prCreated": false,
+    "prUpdated": false,
+    "merged": false,
+    "remoteFilesChanged": false
+  }
+}

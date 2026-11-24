@@ -72,7 +72,7 @@ test('actual browser screenshots of the complete material composition',async({pa
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>scrollTo(0,0));
  await testInfo.attach('material-complete-mobile',{body:await page.screenshot({fullPage:true,type:'jpeg',quality:94,scale:'css'}),contentType:'image/jpeg'});
 });
-for(const width of [320,390,620,768])test(`clue pages stay legible above page controls at ${width}px`,async({page})=>{
+for(const width of [320,390,620,768])test(`clue pages stay legible below page controls at ${width}px`,async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});
   await page.setViewportSize({width,height:900});
   await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),{message:'overflow at '+width}).toBe(true);
@@ -88,7 +88,7 @@ for(const width of [320,390,620,768])test(`clue pages stay legible above page co
    expect(position).toBe(['I / III','II / III','III / III'][i]);
    for(const box of [text,nav,viewport])expect(box.visible).toBe(true);
    expect(text.x+text.width,`right edge of clue ${i} at ${width}`).toBeLessThanOrEqual(viewport.x+viewport.width+.5);
-   expect(text.y+text.height,`page controls overlap clue ${i} at ${width}`).toBeLessThanOrEqual(nav.y+.5);
+   expect(nav.y+nav.height,`page controls overlap clue ${i} at ${width}`).toBeLessThanOrEqual(text.y+.5);
    expect(fontSize).toBeGreaterThanOrEqual(16);
    await page.locator('#nextClue').click();
   }
@@ -98,8 +98,8 @@ for(const width of [320,390,620,768])test(`clue pages stay legible above page co
 test('refined icons keep hour geometry, shared writing tools and equal toggle eyes',async({page})=>{
  await expect(page.locator('.marking-tools [data-tool]')).toHaveCount(5);
  await expect(page.locator('#routeBack .icon-routeBack')).toHaveCount(1);
- await expect(page.locator('#prevClue .icon-previous')).toHaveCount(1);
- await expect(page.locator('#nextClue .icon-next')).toHaveCount(1);
+ await expect(page.locator('#prevClue')).toHaveText('‹');
+ await expect(page.locator('#nextClue')).toHaveText('›');
  for(const width of [320,390,768,1440]){
   await page.setViewportSize({width,height:1000});
   const eyes=await page.locator('#toggleHourMarks .icon-eye,#toggleRouteNumbers .icon-eye').evaluateAll(ns=>ns.map(n=>n.getBoundingClientRect().width));

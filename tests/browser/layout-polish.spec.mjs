@@ -28,7 +28,7 @@ test('cropped full-size left page preserves heading, text space and clue navigat
   await page.setViewportSize({width,height:1000});
   await expect(page.locator('.book-vignette')).toBeVisible();
   expect(await page.locator('.book-heading').textContent()).toBe('');
-  await expect(page.locator('.book-page-heading strong')).toHaveText('Aus Robins Logbuch');
+  await expect(page.locator('.book-page-heading')).toHaveCount(0);
   const b=await page.locator('.bordbook').boundingBox(),left=await page.locator('.book-heading').boundingBox(),right=await page.locator('.book-page').boundingBox();
   expect(left.width/b.width).toBeGreaterThan(.1);expect(left.width/b.width).toBeLessThan(.2);expect(right.width/b.width).toBeGreaterThan(.8);
   const images=await page.locator('.bordbook').evaluate(el=>['::before','::after'].map(p=>({background:getComputedStyle(el,p).backgroundImage,position:getComputedStyle(el,p).backgroundPosition})));

@@ -1,0 +1,12 @@
+
+Running 5 tests using 1 worker
+
+(node:83074) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › desktop: fixed ink margin, unchanged writing without place references (3.8s)
+  ✓  2 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › desktop: fixed ink margin, unchanged writing with place references (3.5s)
+  ✓  3 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › mobile: fixed ink margin, unchanged writing without place references (3.0s)
+  ✓  4 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:39:35 › mobile: fixed ink margin, unchanged writing with place references (2.6s)
+  ✓  5 [chromium] › tests/browser/logbook-skeuomorphic.spec.mjs:81:1 › top navigation, writing and cartographic action stay on the paper at 320–1440px, including long text (4.0s)
+
+  5 passed (50.3s)

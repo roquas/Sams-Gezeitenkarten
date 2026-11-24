@@ -1,0 +1,279 @@
+{
+  "date": "2026-11-24",
+  "phase": "Freigegebene Buchfassung und synchrone Hinweisübersicht; PR gegen aktuellen main; nicht mergen",
+  "baseMain": "7d2e60f2d152f99a429a35f242c6389a9e046092",
+  "comparisonBaseline": "a18a0af855b70199139edfc503732e8a761f1769",
+  "mainAdvance": {
+    "commit": "7d2e60f2d152f99a429a35f242c6389a9e046092",
+    "scope": "F01 offline flavor contracts and documentation; no overlapping runtime UI files",
+    "newTests": {
+      "tests": 53,
+      "pass": 53,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failures": []
+    }
+  },
+  "baselineCI": "https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/45135482651",
+  "approvedBookCssUnchanged": true,
+  "approvedBookCssSha256": "bde5a5d8273b20d1bcd22f8d642f753a051ee0828ae138881304c2398f0fe351",
+  "implementation": [
+    "Buch ohne zusätzliche Überschrift; Ortsaktion als absolute Tintennotiz; Textbeginn bei 144/142 CSS-Pixeln",
+    "Buch und Übersicht teilen dieselbe Checkbox-Darstellung und denselben Bearbeitungszustand",
+    "Überschrift Aus Robins Logbuch im Seitenmenü erhalten",
+    "Keine Durchstreichung, keine reduzierte Deckkraft, keine statusabhängige Textverschiebung",
+    "In der Übersicht keine Ortsaktion und keine Blätternavigation"
+  ],
+  "unchanged": [
+    "Rätsellogik",
+    "Spielstandformat und Speichersemantik",
+    "Ortsreferenzsemantik des aktuellen main",
+    "Animationsdauer 160/4900/3000 ms",
+    "Freigegebene Gestaltung des aufgeschlagenen Buches"
+  ],
+  "browserMatrixFiles": [
+    "logbook-overview",
+    "logbook-skeuomorphic",
+    "long-clue",
+    "layout-polish",
+    "materials",
+    "chart-ux",
+    "place-references",
+    "model",
+    "pointer-gesture",
+    "note-check",
+    "beta-a2b",
+    "ui-ink-status",
+    "ui-page-resume",
+    "ui-chart-scroll"
+  ],
+  "results": {
+    "chromiumRelevantMatrix": {
+      "startTime": "2026-11-24T08:39:14.899Z",
+      "duration": 556575.6159999999,
+      "expected": 312,
+      "skipped": 2,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "webkitRelevantMatrixFirstRun": {
+      "startTime": "2026-11-24T08:39:20.978Z",
+      "duration": 1636911.885,
+      "expected": 311,
+      "skipped": 2,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "finalNewLogbookTestsChromium": {
+      "startTime": "2026-11-24T08:51:11.485Z",
+      "duration": 126136.81499999999,
+      "expected": 30,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "finalNewLogbookTestsWebKit": {
+      "startTime": "2026-11-24T08:53:10.349Z",
+      "duration": 245282.36800000002,
+      "expected": 30,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "engineAndIntegration": {
+      "tests": 161,
+      "pass": 161,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failures": []
+    },
+    "content": {
+      "tests": 21,
+      "pass": 21,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failures": []
+    },
+    "puzzles": {
+      "validated": 2,
+      "unique": 2
+    },
+    "freshDeploymentZip": {
+      "startTime": "2026-11-24T08:56:48.910Z",
+      "duration": 55176.333000000006,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "baselineWholeUnitDefaultMacTemp": {
+      "tests": 472,
+      "pass": 411,
+      "fail": 61,
+      "cancelled": 0,
+      "skipped": 0,
+      "failures": [
+        "actual CLI needs only Git and committed release data despite absent working catalog/resources and poisoned image preparation",
+        "candidate is reproducible and inventories all referenced assets, backgrounds, frames and contracts",
+        "V1 keeps all 674 current-catalog fixture anchors in fresh processes from the actually changed runtime checkout",
+        "actual CLI writes every record, canonical manifest and summary; repeated batches and replay are byte identical",
+        "CLI accepts the maximum uint32 seed for a one-attempt batch",
+        "CLI refuses malformed arguments/configs and unapproved releases before creating output",
+        "replay refuses commit, algorithm, format, profile, provenance and stored-result drift without output",
+        "replay rejects dirty actual program files and a different actual program commit",
+        "complete candidates remain replayable after interruption; truncated target records fail",
+        "write failure leaves earlier candidates and no successful summary",
+        "unexpected assignment failure in the actual CLI retains geography and aborts the batch",
+        "batch and replay read pinned Git resources with Git-only PATH and no working resource files",
+        "selection is explicit, zero-based, unique and preserves caller order",
+        "refuses format, profile, provenance, seeds, fingerprints and saved assignment drift before output",
+        "empty complete maps render without invented objects",
+        "SVG reuses full chart bounds, exact asset rectangles and layer order",
+        "decode errors name the resource; valid approved transparent PNG/WebP bytes decode without a pixel checker",
+        "static output is byte reproducible, deduplicates pinned resources and never overwrites",
+        "release reads ignore absent working assets, reject unavailable releases, and never use a fallback",
+        "CLI rejects malformed, implicit or duplicate selection options",
+        "B2 reads a completed B1 corpus, saves full independently verifiable variants, and reproduces all deterministic files",
+        "B2 enumeration exhaustion produces unknown starts and no successful candidates",
+        "B2 counts incomplete true pools even when solver budgets allow no stored candidate",
+        "missing route ordinals are proven unavailable, with no claim that the map cannot generate puzzles",
+        "corrupt rows, inconsistent summaries and unfinished B1 inputs fail before creating output",
+        "explicit CLI budgets, uint32 seed, distinct route indices, six steps and separate output are enforced",
+        "P2-2: valid existing B1 format-1 experiments remain readable with their original batch",
+        "P2-2: unchanged B1 example from reviewed c74899a is accepted with its hash-bound original source",
+        "P2-2: valid B1 budget-incomplete counts remain acceptable",
+        "P2-2: a regularly completed source with zero accepted maps retains valid empty B1 selection",
+        "P2-2: rejects nonexistent embedded release",
+        "P2-2: rejects nonexistent saved motif",
+        "P2-2: rejects negative assignment seed",
+        "P2-2: rejects wrong generation seed",
+        "P2-2: rejects wrong original candidate index",
+        "P2-2: rejects changed embedded seed plan",
+        "P2-2: rejects changed embedded batch summary",
+        "P2-2: the recorded source hashes bind exact original bytes, including unselected records",
+        "P2-2: existing batch/release validator rejects forged release even after all B1 source hashes are rebound",
+        "P2-2: existing batch/release validator rejects forged seed plan even after all B1 source hashes are rebound",
+        "P2-2: existing batch/release validator rejects forged unselected assignment even after all B1 source hashes are rebound",
+        "P2-2: CLI rejects manipulated provenance before reserving output or starting candidate search",
+        "file and directory symlink CLI calls execute and produce the canonical result files",
+        "real completed input produces byte-identical B1 files across output paths and preserves every selected map",
+        "explicit selection order, duplicates of map content, and incomplete counts remain visible without replacements",
+        "all also records a completed source batch with zero accepted cards",
+        "invalid or unfinished input, including corrupt UNSELECTED records, is refused before reserving output",
+        "source suitability filters cannot silently select the B1 corpus",
+        "accepted positions resolve original attempts and both independent seeds without changing records",
+        "only accepted complete results are displayed; removed selection and invalid result indices are refused",
+        "both saved streams and target summaries are validated including unselected rows",
+        "complete rendering preserves exact motif rectangle, anchor, orientation and edge placement",
+        "HTML links result, attempt, fingerprint and saved motif anchors and is byte reproducible",
+        "regular budget exhaustion retains actual accepted results and explicitly reports an unmet target",
+        "a thousand-result batch supports sparse selection across the complete accepted stream",
+        "real released target batch replaces rejected attempts, saves only complete accepted maps and replays byte exactly",
+        "budget exhaustion and impossible catalog requests report zero or actual accepted count without substitute maps",
+        "empty maps remain explicit duplicates; no uniqueness condition or invented quality score is introduced",
+        "target replay rejects manifest/version/seed/decision drift and remains usable after interruption",
+        "CLI refuses removed mode/count/preference flags and invalid budgets before output",
+        "target run and replay use Git release resources with absent working assets; missing approval cannot fall back"
+      ]
+    },
+    "previouslyFailingCasesPhysicalTempMain": {
+      "state": "running_at_review_freeze",
+      "passedSoFar": 1,
+      "selectionSize": 61,
+      "log": "logbook-baseline-failed-cases.log",
+      "completionLocation": "PR description"
+    },
+    "sameCasesPhysicalTempCandidate": {
+      "state": "running_at_review_freeze",
+      "passedSoFar": 1,
+      "selectionSize": 61,
+      "log": "logbook-candidate-failed-cases.log",
+      "completionLocation": "PR description"
+    }
+  },
+  "failureClassification": {
+    "macEnvironment": "Unveränderter main liefert im Standard-TMPDIR 61 CLI-/Fixturefehler. macOS /var versus /private/var verursacht nicht startende CLI-Einstiege, leere JSON-Ausgaben und Folgefehler in erzeugten Testbeständen. Ein physischer TMPDIR wird für den unveränderten Gegenvergleich auf main und Kandidat verwendet; keine Tests oder Programmlogik dafür verändert.",
+    "webkitMeasurement": "Der erste breite Lauf enthielt einen Fehler des neu hinzugefügten Layouttests: Häkchen nach einem automatisch scrollenden Klick wurde mit einer davor gemessenen absoluten Randposition verglichen. Beide Rechtecke werden jetzt zusammen nach dem Klick gemessen. Die Grenze bleibt 0,5 CSS-Pixel. Unveränderte positionsbezogene Vorher/Nachher-Prüfungen sichern weiterhin jeden Textsprung ab. Die komplette neue Logbuchmatrix besteht anschließend in beiden Browserfamilien.",
+    "developmentFixture": "Beim Übertragen auf main wurden die strikten Erwartungen der neuen Tests an dessen seit der visuellen Vorlage ergänzte Start-Plakette angepasst; keine Änderung am Referenzcontroller.",
+    "noWeakening": "Keine neuen Skips, keine zusätzlichen Retries, keine erhöhten fachlichen Toleranzen oder Testbudgets. Zwei vorhandene Eingabeart-Skips bleiben im breiten Browserlauf erhalten."
+  },
+  "visualEvidence": {
+    "bookStates": [
+      "desktop-without-place-open.png",
+      "desktop-without-place-done.png",
+      "desktop-with-place-open.png",
+      "desktop-with-place-done.png",
+      "mobile-without-place-open.png",
+      "mobile-without-place-done.png",
+      "mobile-with-place-open.png",
+      "mobile-with-place-done.png"
+    ],
+    "longBookClue": [
+      "desktop-long-with-place-done.png",
+      "mobile-long-with-place-done.png"
+    ],
+    "overview": [
+      "desktop-overview-open.png",
+      "desktop-overview-done.png",
+      "mobile-overview-open.png",
+      "mobile-overview-done.png"
+    ],
+    "viewports": {
+      "desktop": [
+        1440,
+        1080
+      ],
+      "mobile": [
+        390,
+        844
+      ]
+    },
+    "allReviewed": true,
+    "layoutWidths": [
+      320,
+      390,
+      620,
+      768,
+      900,
+      1440
+    ]
+  },
+  "historicalEvidence": [
+    "../logbook-skeuomorphic-approved/abnahme.html",
+    "../logbook-skeuomorphic-v2/abnahme.html",
+    "vorher/abnahme.png"
+  ],
+  "ciEvidence": "Reguläre CI unverändert in Umfang, Budgets und Retry-Konfiguration; zusätzliche logbook-*.png werden in den bestehenden UI-Artefakten aufbewahrt. Review-Head und aktueller CI-Status stehen in der PR-Beschreibung.",
+  "reviewFreezeNote": "Zusätzliche umfangreiche Nachprüfungen der bestehenden macOS-CLI-Fälle können beim Einfrieren des Review-Trees noch laufen. Alle relevanten Logbuch-, Engine-/Integrations- und Deploymentprüfungen sind abgeschlossen. Ihr späterer Abschluss und der CI-Status werden ohne Änderung des Review-Heads in der PR-Beschreibung berichtet.",
+  "runtimeFilesSha256": {
+    "index.html": "ad029527a66011e1a0ee655508b53e97edfcee1e83319a3d6b019ce66eee2f3b",
+    "src/ui/app.mjs": "494f34d5f1b98a4aaff2fb4a41003b175172ce2939c855dca984b805cb4d3724",
+    "src/ui/asset-layer.mjs": "36838748f0ff09afa53c04317ede6048e7a93cc73a3254e2d153faad83061255",
+    "src/ui/asset-resources.mjs": "9687f23332af315a5fcd187a7d9a216010be16b34473a4e1b4b87616a21ef0cf",
+    "src/ui/bordbook.mjs": "33e1578c00f5db1c066043a6306b9768e91ff041f6dcc20935b87face8315b1d",
+    "src/ui/cell-registry.mjs": "46f4106868811826aa5443fa9beceb7afb0107952e1626aca4ed779c1e92694a",
+    "src/ui/chart-art.mjs": "9c153b06084fd5d206be986e16b5e177bc3b4f47c5e3fd6131721188947a0b2f",
+    "src/ui/chart-asset-contract.mjs": "53ed79cadea316d3d0b2e7d55d3586e5de36c8bdf73b830c93c49866b414b36f",
+    "src/ui/chart-geometry.mjs": "19b51c3324874e88108a168e8fda84cdb107591970958f3679ce59d47e097d13",
+    "src/ui/chart-gestures.mjs": "1f49787157b16dc971581f8f69a9c313264eb95f9bdbb60ff89db1f9700f0aae",
+    "src/ui/coordinates.mjs": "d817e8059798a6295a694e073603351be15fbe23017d1dc174b95d97ddd734f3",
+    "src/ui/game.mjs": "ddbc488e6d304bd4c44d02639c148063cd116a20abdacefa168a53d9ed36b4bf",
+    "src/ui/map.mjs": "c5499edbaffc96ca5622cfad55c0e43d55ec54a37cb7b54bdbf8403f8d6c8638",
+    "src/ui/material-icons.mjs": "3fd700477474b34dc6929196abbffcecd9d5e291f7916677efa1d1721f134c62",
+    "src/ui/mobile-views.mjs": "b6807afc380f461ee805722107384ed8d3fad823018b944bec2bd86d76af441d",
+    "src/ui/parchment-frame.mjs": "a6cfd84e70c46fe9613099411765b3cc2246e049faa7a9d403eddbcdafd6d28b",
+    "src/ui/place-labels.mjs": "a0c8f5bf883e7f4d4945a4ce7b18fec8359ade5ebea880a967572ce3bf52aeb5",
+    "src/ui/place-references.mjs": "02e50b90ca8272f34db7ec1fcbcd96e70530894c30124c45e1004bd73cd2c41a",
+    "src/ui/route-ink.mjs": "e8db05989ec6928ee54c38d1826d97f21c77793f778added509a05c4d8c3504c",
+    "src/ui/rules.mjs": "e7ce07288d0b2b576e1af8f618dc236d31ae82d4d905202becfc7c62176022b2",
+    "src/ui/toolbar.mjs": "c93d3175fdf7fa37bb17659394ab415feac90e571762e8e5b2c79e75ef7cea93",
+    "src/ui/chart-frame.css": "099245f9d8c147f58f9f5b1503893bc14ac56102b1c7fe64171f24cfbf54586f",
+    "src/ui/chart-ux.css": "f320303e089611f553b94943074a34d5d58eaa55babf386fe5908b0045b2af6f",
+    "src/ui/game.css": "3ab4719b44ae65294090aac9a0131ecdce955611ceb951857f13bd04fb33cc84",
+    "src/ui/layout-polish.css": "f68511fac5eed85cf0ec362f7afdfe8689c5932bb6b9c069eeba6fc31d06eae1",
+    "src/ui/materials.css": "77c1505a93f5eaee74d9d4a90d4943a5a9c787bbc9d00dcc1bf526df28cc6595"
+  }
+}

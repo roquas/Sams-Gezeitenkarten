@@ -1,0 +1,218 @@
+
+> sams-gezeitenkarten@0.1.0 test:puzzles
+> node scripts/validate-puzzles.mjs
+
+[
+  {
+    "id": "model-demo",
+    "kind": "demo",
+    "status": "unique",
+    "count": 1,
+    "solutions": [
+      [
+        "A5",
+        "B5",
+        "C5",
+        "D5"
+      ]
+    ],
+    "legalRouteCount": 24,
+    "metrics": {
+      "remainingCandidates": [
+        {
+          "clueId": "I",
+          "count": 11
+        },
+        {
+          "clueId": "II",
+          "count": 3
+        },
+        {
+          "clueId": "III",
+          "count": 1
+        }
+      ],
+      "withoutClue": [
+        {
+          "clueId": "I",
+          "count": 2
+        },
+        {
+          "clueId": "II",
+          "count": 3
+        },
+        {
+          "clueId": "III",
+          "count": 3
+        }
+      ],
+      "redundantClueIds": [],
+      "forcedPositions": [
+        {
+          "hour": 0,
+          "cell": "A5"
+        },
+        {
+          "hour": 1,
+          "cell": "B5"
+        },
+        {
+          "hour": 2,
+          "cell": "C5"
+        },
+        {
+          "hour": 3,
+          "cell": "D5"
+        }
+      ],
+      "forcedEarlySteps": [
+        "B5",
+        "C5",
+        "D5"
+      ],
+      "clueTypes": [
+        "direction"
+      ],
+      "difficulty": {
+        "provisional": true,
+        "method": "log2(legal routes / solutions), enumeration only; not a human difficulty proof",
+        "score": 4.584962500721156
+      },
+      "explanation": [
+        "I: 11 Routen erfüllen alle bisher geprüften Hinweise.",
+        "II: 3 Routen erfüllen alle bisher geprüften Hinweise.",
+        "III: 1 Routen erfüllen alle bisher geprüften Hinweise."
+      ]
+    }
+  },
+  {
+    "id": "drei-peilungen",
+    "kind": "demo",
+    "status": "unique",
+    "count": 1,
+    "solutions": [
+      [
+        "A1",
+        "A2",
+        "B2",
+        "C2",
+        "D1",
+        "D2",
+        "E2"
+      ]
+    ],
+    "legalRouteCount": 1185,
+    "metrics": {
+      "remainingCandidates": [
+        {
+          "clueId": "H1",
+          "count": 390
+        },
+        {
+          "clueId": "H2",
+          "count": 117
+        },
+        {
+          "clueId": "H3",
+          "count": 13
+        },
+        {
+          "clueId": "H4",
+          "count": 9
+        },
+        {
+          "clueId": "H5",
+          "count": 3
+        },
+        {
+          "clueId": "H6",
+          "count": 1
+        }
+      ],
+      "withoutClue": [
+        {
+          "clueId": "H1",
+          "count": 3
+        },
+        {
+          "clueId": "H2",
+          "count": 5
+        },
+        {
+          "clueId": "H3",
+          "count": 4
+        },
+        {
+          "clueId": "H4",
+          "count": 2
+        },
+        {
+          "clueId": "H5",
+          "count": 4
+        },
+        {
+          "clueId": "H6",
+          "count": 3
+        }
+      ],
+      "redundantClueIds": [],
+      "forcedPositions": [
+        {
+          "hour": 0,
+          "cell": "A1"
+        },
+        {
+          "hour": 1,
+          "cell": "A2"
+        },
+        {
+          "hour": 2,
+          "cell": "B2"
+        },
+        {
+          "hour": 3,
+          "cell": "C2"
+        },
+        {
+          "hour": 4,
+          "cell": "D1"
+        },
+        {
+          "hour": 5,
+          "cell": "D2"
+        },
+        {
+          "hour": 6,
+          "cell": "E2"
+        }
+      ],
+      "forcedEarlySteps": [
+        "A2",
+        "B2",
+        "C2",
+        "D1",
+        "D2",
+        "E2"
+      ],
+      "clueTypes": [
+        "direction",
+        "distanceToPlace",
+        "distanceBetweenHours",
+        "countDistanceToPlace"
+      ],
+      "difficulty": {
+        "provisional": true,
+        "method": "log2(legal routes / solutions), enumeration only; not a human difficulty proof",
+        "score": 10.210671343785622
+      },
+      "explanation": [
+        "H1: 390 Routen erfüllen alle bisher geprüften Hinweise.",
+        "H2: 117 Routen erfüllen alle bisher geprüften Hinweise.",
+        "H3: 13 Routen erfüllen alle bisher geprüften Hinweise.",
+        "H4: 9 Routen erfüllen alle bisher geprüften Hinweise.",
+        "H5: 3 Routen erfüllen alle bisher geprüften Hinweise.",
+        "H6: 1 Routen erfüllen alle bisher geprüften Hinweise."
+      ]
+    }
+  }
+]

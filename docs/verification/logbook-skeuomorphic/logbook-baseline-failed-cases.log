@@ -1,0 +1,7 @@
+TAP version 13
+# Subtest: actual CLI needs only Git and committed release data despite absent working catalog/resources and poisoned image preparation
+ok 1 - actual CLI needs only Git and committed release data despite absent working catalog/resources and poisoned image preparation
+  ---
+  duration_ms: 77821.561958
+  type: 'test'
+  ...

@@ -177,7 +177,13 @@ $("hint").onclick=()=>{
 };
 $("reset").onclick=()=>{if(confirm("Alle Notizen, Route und Strafpunkte löschen?")){cancelGesture();state=initial();history.clear();render()}};
 let initialPlaces=false;
-const bordbook=createBordbook({clues,onSelect:id=>{placeReferencesFor($("map")).show(cluePlaceIds(puzzle,id),{start:initialPlaces});initialPlaces=false;},getState:()=>state,markup:safeMarkup,toggleClue:id=>{
+const bordbook=createBordbook({clues,onSelect:id=>{placeReferencesFor($("map")).show(cluePlaceIds(puzzle,id),{start:initialPlaces});initialPlaces=false;},
+ hasPlace:id=>cluePlaceIds(puzzle,id).some(placeId=>namedPlaceIds(puzzle).includes(placeId)),
+ onShowPlace:id=>{
+  cancelGesture();
+  document.querySelector('.mapbox').scrollIntoView({block:'center',behavior:'instant'});
+  placeReferencesFor($("map")).show(cluePlaceIds(puzzle,id));
+ },getState:()=>state,markup:safeMarkup,toggleClue:id=>{
  snapshot();state.doneClues=state.doneClues.includes(id)?state.doneClues.filter(v=>v!==id):[...state.doneClues,id];save();
 }});
 $("showChart").addEventListener("change",()=>renderMap());

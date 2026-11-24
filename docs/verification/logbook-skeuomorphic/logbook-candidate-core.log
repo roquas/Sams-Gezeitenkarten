@@ -1,0 +1,976 @@
+TAP version 13
+# Subtest: all pairs and triples are enumerated once, plus a separately labelled full control
+ok 1 - all pairs and triples are enumerated once, plus a separately labelled full control
+  ---
+  duration_ms: 40.839042
+  type: 'test'
+  ...
+# Subtest: all current local forms preserve every solution, with replayable provenance
+ok 2 - all current local forms preserve every solution, with replayable provenance
+  ---
+  duration_ms: 32888.80275
+  type: 'test'
+  ...
+# Subtest: a necessary premise cannot be supplied by an unlinked earlier step or the full solution space
+ok 3 - a necessary premise cannot be supplied by an unlinked earlier step or the full solution space
+  ---
+  duration_ms: 279.699791
+  type: 'test'
+  ...
+# Subtest: a necessary transitive restriction must reconstruct the recorded before state
+ok 4 - a necessary transitive restriction must reconstruct the recorded before state
+  ---
+  duration_ms: 362.348292
+  type: 'test'
+  ...
+# Subtest: count-bounds cannot exclude a definite hit hidden by an unlinked clue (534 counterexamples)
+ok 5 - count-bounds cannot exclude a definite hit hidden by an unlinked clue (534 counterexamples)
+  ---
+  duration_ms: 712.521875
+  type: 'test'
+  ...
+# Subtest: zero/all residual count bounds include hour 0 and use fixed information
+ok 6 - zero/all residual count bounds include hour 0 and use fixed information
+  ---
+  duration_ms: 302.594083
+  type: 'test'
+  ...
+# Subtest: unknown is not excluded or fixed; contradiction is not a singleton
+ok 7 - unknown is not excluded or fixed; contradiction is not a singleton
+  ---
+  duration_ms: 40.845083
+  type: 'test'
+  ...
+# Subtest: unsupported local types are explicitly reported; exact analysis rejects them
+ok 8 - unsupported local types are explicitly reported; exact analysis rejects them
+  ---
+  duration_ms: 120.6635
+  type: 'test'
+  ...
+# Subtest: diagnosis never reads a stored answer, mutates logic or seeds local domains from exact projections
+ok 9 - diagnosis never reads a stored answer, mutates logic or seeds local domains from exact projections
+  ---
+  duration_ms: 423.872333
+  type: 'test'
+  ...
+# Subtest: composition counts occurrences once and uses every existing presentation identifier
+ok 10 - composition counts occurrences once and uses every existing presentation identifier
+  ---
+  duration_ms: 26.759084
+  type: 'test'
+  ...
+# Subtest: identical parameters are occurrences, not distinct-clue or candidate-form counters
+ok 11 - identical parameters are occurrences, not distinct-clue or candidate-form counters
+  ---
+  duration_ms: 33.617917
+  type: 'test'
+  ...
+# Subtest: empty populations have zero totals and unknown types are not invented report categories
+ok 12 - empty populations have zero totals and unknown types are not invented report categories
+  ---
+  duration_ms: 1.058541
+  type: 'test'
+  ...
+# Subtest: bounded alternatives avoid the shortcut, retain necessity, and replay exactly
+ok 13 - bounded alternatives avoid the shortcut, retain necessity, and replay exactly
+  ---
+  duration_ms: 6.372667
+  type: 'test'
+  ...
+# Subtest: budget exhaustion is reported and cannot accept an unproven candidate
+ok 14 - budget exhaustion is reported and cannot accept an unproven candidate
+  ---
+  duration_ms: 0.293625
+  type: 'test'
+  ...
+# Subtest: empty/no-progress pools and already unique backgrounds terminate
+ok 15 - empty/no-progress pools and already unique backgrounds terminate
+  ---
+  duration_ms: 0.626667
+  type: 'test'
+  ...
+# Subtest: protocol rejects hidden knobs, duplicate arms and unlabelled strategies
+ok 16 - protocol rejects hidden knobs, duplicate arms and unlabelled strategies
+  ---
+  duration_ms: 51.55225
+  type: 'test'
+  ...
+# Subtest: global matching prevents blocked reuse, permits distinct paintings of a form and diagnoses shortage
+ok 17 - global matching prevents blocked reuse, permits distinct paintings of a form and diagnoses shortage
+  ---
+  duration_ms: 40.838958
+  type: 'test'
+  ...
+# Subtest: matching finds full assignments across overlapping candidate sets and maximizes passable diversity
+ok 18 - matching finds full assignments across overlapping candidate sets and maximizes passable diversity
+  ---
+  duration_ms: 553.525208
+  type: 'test'
+  ...
+# Subtest: passable paintings are distinct before reuse, then least-used matching paintings are preferred
+ok 19 - passable paintings are distinct before reuse, then least-used matching paintings are preferred
+  ---
+  duration_ms: 177.049333
+  type: 'test'
+  ...
+# Subtest: capacity profile derives forms, availability and counts from eligible catalog entries only
+ok 20 - capacity profile derives forms, availability and counts from eligible catalog entries only
+  ---
+  duration_ms: 136.072375
+  type: 'test'
+  ...
+# Subtest: constrained generation uses only covered shapes, respects all edges and preserves geographic/asset separation
+ok 21 - constrained generation uses only covered shapes, respects all edges and preserves geographic/asset separation
+  ---
+  duration_ms: 6981.124958
+  type: 'test'
+  ...
+# Subtest: capacity, passability, size and spacing shortages exhaust the explicit budget without relaxation
+ok 22 - capacity, passability, size and spacing shortages exhaust the explicit budget without relaxation
+  ---
+  duration_ms: 25.942125
+  type: 'test'
+  ...
+# Subtest: profile normalization ignores enumeration and duplicate footprints and rejects invalid metadata
+ok 23 - profile normalization ignores enumeration and duplicate footprints and rejects invalid metadata
+  ---
+  duration_ms: 439.08825
+  type: 'test'
+  ...
+# Subtest: analysis budgets and assignment do not enter geographic random streams or identities
+ok 24 - analysis budgets and assignment do not enter geographic random streams or identities
+  ---
+  duration_ms: 213.150375
+  type: 'test'
+  ...
+# Subtest: position enumeration uses all actual object cells, excludes decoration and sea, and keeps sea routes legal
+ok 25 - position enumeration uses all actual object cells, excludes decoration and sea, and keeps sea routes legal
+  ---
+  duration_ms: 55.976709
+  type: 'test'
+  ...
+# Subtest: position domains are restricted before truth checks and budgets; object order cannot change enumeration
+ok 26 - position domains are restricted before truth checks and budgets; object order cannot change enumeration
+  ---
+  duration_ms: 774.271875
+  type: 'test'
+  ...
+# Subtest: distance clues including zero remain bound to passable and blocked objects with all their cells
+ok 27 - distance clues including zero remain bound to passable and blocked objects with all their cells
+  ---
+  duration_ms: 15.144125
+  type: 'test'
+  ...
+# Subtest: B2 requires complete approved object illustrations while general placement validation permits partial maps
+ok 28 - B2 requires complete approved object illustrations while general placement validation permits partial maps
+  ---
+  duration_ms: 158.030417
+  type: 'test'
+  ...
+# Subtest: derived NotDistanceAt: hours 3-3, count 0, distance 2
+ok 29 - derived NotDistanceAt: hours 3-3, count 0, distance 2
+  ---
+  duration_ms: 34.2395
+  type: 'test'
+  ...
+# Subtest: derived HasDistanceAt: hours 3-3, count 1, distance 2
+ok 30 - derived HasDistanceAt: hours 3-3, count 1, distance 2
+  ---
+  duration_ms: 0.464875
+  type: 'test'
+  ...
+# Subtest: derived CountDistanceNever: hours 2-5, count 0, distance 2
+ok 31 - derived CountDistanceNever: hours 2-5, count 0, distance 2
+  ---
+  duration_ms: 2.621041
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 1, distance 2
+ok 32 - derived countDistanceToPlace: hours 2-5, count 1, distance 2
+  ---
+  duration_ms: 5.016375
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 2, distance 2
+ok 33 - derived countDistanceToPlace: hours 2-5, count 2, distance 2
+  ---
+  duration_ms: 2.381333
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 3, distance 2
+ok 34 - derived countDistanceToPlace: hours 2-5, count 3, distance 2
+  ---
+  duration_ms: 0.316209
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 4, distance 2
+ok 35 - derived countDistanceToPlace: hours 2-5, count 4, distance 2
+  ---
+  duration_ms: 7.24825
+  type: 'test'
+  ...
+# Subtest: derived NotDistanceAt: hours 3-3, count 0, distance 0
+ok 36 - derived NotDistanceAt: hours 3-3, count 0, distance 0
+  ---
+  duration_ms: 0.231917
+  type: 'test'
+  ...
+# Subtest: derived HasDistanceAt: hours 3-3, count 1, distance 0
+ok 37 - derived HasDistanceAt: hours 3-3, count 1, distance 0
+  ---
+  duration_ms: 13.222791
+  type: 'test'
+  ...
+# Subtest: derived NotDistanceAt: hours 3-3, count 0, distance 1
+ok 38 - derived NotDistanceAt: hours 3-3, count 0, distance 1
+  ---
+  duration_ms: 8.794167
+  type: 'test'
+  ...
+# Subtest: derived HasDistanceAt: hours 3-3, count 1, distance 1
+ok 39 - derived HasDistanceAt: hours 3-3, count 1, distance 1
+  ---
+  duration_ms: 3.499708
+  type: 'test'
+  ...
+# Subtest: derived NotDistanceAt: hours 0-0, count 0, distance 0
+ok 40 - derived NotDistanceAt: hours 0-0, count 0, distance 0
+  ---
+  duration_ms: 6.595
+  type: 'test'
+  ...
+# Subtest: derived HasDistanceAt: hours 0-0, count 1, distance 0
+ok 41 - derived HasDistanceAt: hours 0-0, count 1, distance 0
+  ---
+  duration_ms: 7.815083
+  type: 'test'
+  ...
+# Subtest: derived CountDistanceNever: hours 0-6, count 0, distance 0
+ok 42 - derived CountDistanceNever: hours 0-6, count 0, distance 0
+  ---
+  duration_ms: 7.808875
+  type: 'test'
+  ...
+# Subtest: derived CountDistanceNever: hours 2-5, count 0, distance 1
+ok 43 - derived CountDistanceNever: hours 2-5, count 0, distance 1
+  ---
+  duration_ms: 0.165125
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 4, distance 0
+ok 44 - derived countDistanceToPlace: hours 2-5, count 4, distance 0
+  ---
+  duration_ms: 0.096917
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 4, distance 1
+ok 45 - derived countDistanceToPlace: hours 2-5, count 4, distance 1
+  ---
+  duration_ms: 0.100584
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 1, distance 0
+ok 46 - derived countDistanceToPlace: hours 2-5, count 1, distance 0
+  ---
+  duration_ms: 0.095958
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 2, distance 1
+ok 47 - derived countDistanceToPlace: hours 2-5, count 2, distance 1
+  ---
+  duration_ms: 0.092917
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 0-6, count 7, distance 1
+ok 48 - derived countDistanceToPlace: hours 0-6, count 7, distance 1
+  ---
+  duration_ms: 0.089292
+  type: 'test'
+  ...
+# Subtest: larger partial counts use natural number words
+ok 49 - larger partial counts use natural number words
+  ---
+  duration_ms: 0.196166
+  type: 'test'
+  ...
+# Subtest: formatting preserves minimum distance to all cells of a multihex object and inclusive hour zero
+ok 50 - formatting preserves minimum distance to all cells of a multihex object and inclusive hour zero
+  ---
+  duration_ms: 38.755708
+  type: 'test'
+  ...
+# Subtest: invalid counts and reversed intervals still fail the existing validation contract
+ok 51 - invalid counts and reversed intervals still fail the existing validation contract
+  ---
+  duration_ms: 45.887042
+  type: 'test'
+  ...
+# Subtest: other logical types keep their presentation form
+ok 52 - other logical types keep their presentation form
+  ---
+  duration_ms: 0.273708
+  type: 'test'
+  ...
+# Subtest: S01 presentation statistics derive from historical clues without migrating artifacts or identities
+ok 53 - S01 presentation statistics derive from historical clues without migrating artifacts or identities
+  ---
+  duration_ms: 852.056709
+  type: 'test'
+  ...
+# Subtest: different forms of one logical type count once each within a candidate
+ok 54 - different forms of one logical type count once each within a candidate
+  ---
+  duration_ms: 5.480792
+  type: 'test'
+  ...
+# Subtest: Mulberry32 and phase derivation have fixed uint32 vectors, including zero and maximum seed
+ok 55 - Mulberry32 and phase derivation have fixed uint32 vectors, including zero and maximum seed
+  ---
+  duration_ms: 70.418459
+  type: 'test'
+  ...
+# Subtest: generator version, canonical options and repeated calls remain reproducible
+ok 56 - generator version, canonical options and repeated calls remain reproducible
+  ---
+  duration_ms: 260.027833
+  type: 'test'
+  ...
+# Subtest: 256 seeds produce valid, disjoint, independently connected objects of all sizes and both passabilities
+ok 57 - 256 seeds produce valid, disjoint, independently connected objects of all sizes and both passabilities
+  ---
+  duration_ms: 19883.02425
+  type: 'test'
+  ...
+# Subtest: invalid options and impossible area budgets fail early with INVALID_CONFIG
+ok 58 - invalid options and impossible area budgets fail early with INVALID_CONFIG
+  ---
+  duration_ms: 8.984583
+  type: 'test'
+  ...
+# Subtest: empty maps remain valid; impossible catalog sizes exhaust without substitute geography
+ok 59 - empty maps remain valid; impossible catalog sizes exhaust without substitute geography
+  ---
+  duration_ms: 258.607458
+  type: 'test'
+  ...
+# Subtest: analysis finds an isolated water region and never promotes free water into a start
+ok 60 - analysis finds an isolated water region and never promotes free water into a start
+  ---
+  duration_ms: 36.055917
+  type: 'test'
+  ...
+# Subtest: component size is only necessary: a four-cell star has no simple three-step route
+ok 61 - component size is only necessary: a four-cell star has no simple three-step route
+  ---
+  duration_ms: 37.242708
+  type: 'test'
+  ...
+# Subtest: exact route counts agree with the existing engine for every start and 1–6 steps
+ok 62 - exact route counts agree with the existing engine for every start and 1–6 steps
+  ---
+  duration_ms: 56.818209
+  type: 'test'
+  ...
+# Subtest: search budgets distinguish unknown from absence and partial positive counts from exact counts
+ok 63 - search budgets distinguish unknown from absence and partial positive counts from exact counts
+  ---
+  duration_ms: 40.05975
+  type: 'test'
+  ...
+# Subtest: analysis rejects invalid maps/options, is order invariant, and does not mutate frozen maps
+ok 64 - analysis rejects invalid maps/options, is order invariant, and does not mutate frozen maps
+  ---
+  duration_ms: 232.672667
+  type: 'test'
+  ...
+# Subtest: explicit filters report proven rejections, incomplete searches, and deterministic retries separately
+ok 65 - explicit filters report proven rejections, incomplete searches, and deterministic retries separately
+  ---
+  duration_ms: 1258.609208
+  type: 'test'
+  ...
+# Subtest: fixed v2 identity vectors and canonicalization are stable
+ok 66 - fixed v2 identity vectors and canonicalization are stable
+  ---
+  duration_ms: 12.047917
+  type: 'test'
+  ...
+# Subtest: map fingerprint accepts a map directly and ignores object and cell enumeration order
+ok 67 - map fingerprint accepts a map directly and ignores object and cell enumeration order
+  ---
+  duration_ms: 1.391292
+  type: 'test'
+  ...
+# Subtest: asset, placement, names, story and data revisions do not change any logical identities
+ok 68 - asset, placement, names, story and data revisions do not change any logical identities
+  ---
+  duration_ms: 1.058875
+  type: 'test'
+  ...
+# Subtest: start and target route change instance identity, clues only variant; clue IDs/order are editorial but multiplicity is retained
+ok 69 - start and target route change instance identity, clues only variant; clue IDs/order are editorial but multiplicity is retained
+  ---
+  duration_ms: 24.182583
+  type: 'test'
+  ...
+# Subtest: target route and step count belong to the instance, independently of the chosen clues
+ok 70 - target route and step count belong to the instance, independently of the chosen clues
+  ---
+  duration_ms: 44.516667
+  type: 'test'
+  ...
+# Subtest: P2-1: old B2 lines 73/77 have distinct parameter fingerprints and equal individual clue effects on all 821 routes
+ok 71 - P2-1: old B2 lines 73/77 have distinct parameter fingerprints and equal individual clue effects on all 821 routes
+  ---
+  duration_ms: 254.861583
+  type: 'test'
+  ...
+# Subtest: P2-1: same seed and six restarts retain one of the equivalent variants without replacement search
+ok 72 - P2-1: same seed and six restarts retain one of the equivalent variants without replacement search
+  ---
+  duration_ms: 5499.503
+  type: 'test'
+  ...
+# Subtest: P2-1: effect keys ignore clue order and parameter aliases, use complete route universes, and consume existing masks
+ok 73 - P2-1: effect keys ignore clue order and parameter aliases, use complete route universes, and consume existing masks
+  ---
+  duration_ms: 361.500958
+  type: 'test'
+  ...
+# Subtest: new production restricts only position references while historical non-position parameters stay identical
+ok 74 - new production restricts only position references while historical non-position parameters stay identical
+  ---
+  duration_ms: 834.011583
+  type: 'test'
+  ...
+# Subtest: all six clue families have valid parameters and are true by existing predicates; production does not mutate inputs
+ok 75 - all six clue families have valid parameters and are true by existing predicates; production does not mutate inputs
+  ---
+  duration_ms: 481.066875
+  type: 'test'
+  ...
+# Subtest: successful variants for one target are independently unique, matching and irredundant
+ok 76 - successful variants for one target are independently unique, matching and irredundant
+  ---
+  duration_ms: 11606.507041
+  type: 'test'
+  ...
+# Subtest: seeded runs include stable proofs, properties, variants, counters and budget termination
+ok 77 - seeded runs include stable proofs, properties, variants, counters and budget termination
+  ---
+  duration_ms: 46397.26225
+  type: 'test'
+  ...
+# Subtest: clue production and each solver work budget stop cleanly without unproven candidates
+ok 78 - clue production and each solver work budget stop cleanly without unproven candidates
+  ---
+  duration_ms: 507.391542
+  type: 'test'
+  ...
+# Subtest: an insufficient clue pool records an unsuccessful budget-limited search, never impossibility
+ok 79 - an insufficient clue pool records an unsuccessful budget-limited search, never impossibility
+  ---
+  duration_ms: 0.629417
+  type: 'test'
+  ...
+# Subtest: complete zero-route workspaces and already unique routes have exact, distinct outcomes
+ok 80 - complete zero-route workspaces and already unique routes have exact, distinct outcomes
+  ---
+  duration_ms: 5.16425
+  type: 'test'
+  ...
+# Subtest: individually exact hours agree with solving each clue alone and exclude combined deductions
+ok 81 - individually exact hours agree with solving each clue alone and exclude combined deductions
+  ---
+  duration_ms: 5616.784291
+  type: 'test'
+  ...
+# Subtest: cached subset solver agrees with public solver; permutation and duplicate indices share a single check
+ok 82 - cached subset solver agrees with public solver; permutation and duplicate indices share a single check
+  ---
+  duration_ms: 157.969125
+  type: 'test'
+  ...
+# Subtest: sequential removal retains distinct minimal alternatives for different randomized orders
+ok 83 - sequential removal retains distinct minimal alternatives for different randomized orders
+  ---
+  duration_ms: 2.811291
+  type: 'test'
+  ...
+# Subtest: invalid budgets and routes do not silently alter engine contracts or route lengths
+ok 84 - invalid budgets and routes do not silently alter engine contracts or route lengths
+  ---
+  duration_ms: 2.124667
+  type: 'test'
+  ...
+# Subtest: hex vectors and all board pairs agree with an independent offset-neighbour BFS
+ok 85 - hex vectors and all board pairs agree with an independent offset-neighbour BFS
+  ---
+  duration_ms: 145.982542
+  type: 'test'
+  ...
+# Subtest: routes derive blocked cells from objects and permit every cell of a multi-cell passable object
+ok 86 - routes derive blocked cells from objects and permit every cell of a multi-cell passable object
+  ---
+  duration_ms: 19.948625
+  type: 'test'
+  ...
+# Subtest: minimum distance replaces existence semantics for passable and blocked footprints
+ok 87 - minimum distance replaces existence semantics for passable and blocked footprints
+  ---
+  duration_ms: 12.898791
+  type: 'test'
+  ...
+# Subtest: countDistanceToPlace counts inclusive hours once, supports zero distance and zero counts
+ok 88 - countDistanceToPlace counts inclusive hours once, supports zero distance and zero counts
+  ---
+  duration_ms: 0.765042
+  type: 'test'
+  ...
+# Subtest: position, direction, turn signs and wraparound, and hour distances retain their meaning
+ok 89 - position, direction, turn signs and wraparound, and hour distances retain their meaning
+  ---
+  duration_ms: 0.862875
+  type: 'test'
+  ...
+# Subtest: solver independently finds unique, ambiguous and impossible cases and fails on exhausted budgets
+ok 90 - solver independently finds unique, ambiguous and impossible cases and fails on exhausted budgets
+  ---
+  duration_ms: 1.558542
+  type: 'test'
+  ...
+# Subtest: solver applies both new distance operators directly, including multi-cell distance zero
+ok 91 - solver applies both new distance operators directly, including multi-cell distance zero
+  ---
+  duration_ms: 32.463667
+  type: 'test'
+  ...
+# Subtest: logic validation and solver never inspect presentation, private generator fields or catalogs
+ok 92 - logic validation and solver never inspect presentation, private generator fields or catalogs
+  ---
+  duration_ms: 51.782333
+  type: 'test'
+  ...
+# Subtest: bounded and detailed modes agree on the exact independent one-step solution and omissions
+ok 93 - bounded and detailed modes agree on the exact independent one-step solution and omissions
+  ---
+  duration_ms: 88.416458
+  type: 'test'
+  ...
+# Subtest: duplicate hints are individually redundant; removing both releases alternatives
+ok 94 - duplicate hints are individually redundant; removing both releases alternatives
+  ---
+  duration_ms: 14.177542
+  type: 'test'
+  ...
+# Subtest: target diagnostics distinguish absence, invalidity, mismatch and ambiguity
+ok 95 - target diagnostics distinguish absence, invalidity, mismatch and ambiguity
+  ---
+  duration_ms: 46.980625
+  type: 'test'
+  ...
+# Subtest: search saturation is never an exact ambiguity count or a uniqueness claim on budget failure
+ok 96 - search saturation is never an exact ambiguity count or a uniqueness claim on budget failure
+  ---
+  duration_ms: 1.221708
+  type: 'test'
+  ...
+# Subtest: comparison CLI executes through a directory symlink and rejects missing arguments
+ok 97 - comparison CLI executes through a directory symlink and rejects missing arguments
+  ---
+  duration_ms: 17788.718917
+  type: 'test'
+  ...
+# Subtest: beta transport preserves validated F02 envelope identities without a second loader or additional request
+ok 98 - beta transport preserves validated F02 envelope identities without a second loader or additional request
+  ---
+  duration_ms: 235.322958
+  type: 'test'
+  ...
+# Subtest: catalog context keeps development stocks explicit and rejects unknown stock names
+ok 99 - catalog context keeps development stocks explicit and rejects unknown stock names
+  ---
+  duration_ms: 1.223917
+  type: 'test'
+  ...
+# Subtest: identity binds versions and F02 identities without a second hash function
+ok 100 - identity binds versions and F02 identities without a second hash function
+  ---
+  duration_ms: 8.8155
+  type: 'test'
+  ...
+# Subtest: solved evidence, feedback and phase history survive replay and game reset
+ok 101 - solved evidence, feedback and phase history survive replay and game reset
+  ---
+  duration_ms: 2.412041
+  type: 'test'
+  ...
+# Subtest: ordinary reopening creates no new phase and giving feedback alone does not start a puzzle
+ok 102 - ordinary reopening creates no new phase and giving feedback alone does not start a puzzle
+  ---
+  duration_ms: 1.526291
+  type: 'test'
+  ...
+# Subtest: export keeps removed puzzles, versions and a stable tester; excludes game routes
+ok 103 - export keeps removed puzzles, versions and a stable tester; excludes game routes
+  ---
+  duration_ms: 4.660792
+  type: 'test'
+  ...
+# Subtest: general-only and empty exports are valid; latest fields from concurrent store instances are retained
+ok 104 - general-only and empty exports are valid; latest fields from concurrent store instances are retained
+  ---
+  duration_ms: 0.985375
+  type: 'test'
+  ...
+# Subtest: quota and denied reads report failure, retain an in-page export, and never overwrite unreadable data
+ok 105 - quota and denied reads report failure, retain an in-page export, and never overwrite unreadable data
+  ---
+  duration_ms: 2.611875
+  type: 'test'
+  ...
+# Subtest: monotonic active time pauses for background, manual pause, inactivity, sleep and loss of ownership
+ok 106 - monotonic active time pauses for background, manual pause, inactivity, sleep and loss of ownership
+  ---
+  duration_ms: 24.583583
+  type: 'test'
+  ...
+# Subtest: time reload only adds new deltas and each optional result text has an independent fallback
+ok 107 - time reload only adds new deltas and each optional result text has an independent fallback
+  ---
+  duration_ms: 0.432958
+  type: 'test'
+  ...
+# Subtest: cell registry replaces both list and lookup when rule cell sets change
+ok 108 - cell registry replaces both list and lookup when rule cell sets change
+  ---
+  duration_ms: 0.895625
+  type: 'test'
+  ...
+# Subtest: a new phase never counts old saved help usage twice
+ok 109 - a new phase never counts old saved help usage twice
+  ---
+  duration_ms: 48.923042
+  type: 'test'
+  ...
+# Subtest: abandonment resumes once with history and feedback intact (corrected=false, reload=false)
+ok 110 - abandonment resumes once with history and feedback intact (corrected=false, reload=false)
+  ---
+  duration_ms: 27.543583
+  type: 'test'
+  ...
+# Subtest: abandonment resumes once with history and feedback intact (corrected=false, reload=true)
+ok 111 - abandonment resumes once with history and feedback intact (corrected=false, reload=true)
+  ---
+  duration_ms: 0.5325
+  type: 'test'
+  ...
+# Subtest: abandonment resumes once with history and feedback intact (corrected=true, reload=false)
+ok 112 - abandonment resumes once with history and feedback intact (corrected=true, reload=false)
+  ---
+  duration_ms: 0.487792
+  type: 'test'
+  ...
+# Subtest: abandonment resumes once with history and feedback intact (corrected=true, reload=true)
+ok 113 - abandonment resumes once with history and feedback intact (corrected=true, reload=true)
+  ---
+  duration_ms: 0.492625
+  type: 'test'
+  ...
+# Subtest: feedback corrections preserve solved evidence and cannot reopen a solved phase
+ok 114 - feedback corrections preserve solved evidence and cannot reopen a solved phase
+  ---
+  duration_ms: 0.533916
+  type: 'test'
+  ...
+# Subtest: book cycles through all clues forward and backward
+ok 115 - book cycles through all clues forward and backward
+  ---
+  duration_ms: 14.242292
+  type: 'test'
+  ...
+# Subtest: book swipe ignores short, vertical and diagonal scroll gestures
+ok 116 - book swipe ignores short, vertical and diagonal scroll gestures
+  ---
+  duration_ms: 7.574958
+  type: 'test'
+  ...
+# Subtest: all 25 coordinates share badges and a full accessible name
+ok 117 - all 25 coordinates share badges and a full accessible name
+  ---
+  duration_ms: 13.328083
+  type: 'test'
+  ...
+# Subtest: distance presentation distinguishes disabled, awaiting and selected without changing state
+ok 118 - distance presentation distinguishes disabled, awaiting and selected without changing state
+  ---
+  duration_ms: 60.613625
+  type: 'test'
+  ...
+# Subtest: each margin heading is centered in its new symmetric geometry band
+ok 119 - each margin heading is centered in its new symmetric geometry band
+  ---
+  duration_ms: 0.5565
+  type: 'test'
+  ...
+# Subtest: S03-06: H2 and H3 are separately necessary; their union preserves every legal route and the unique target
+ok 120 - S03-06: H2 and H3 are separately necessary; their union preserves every legal route and the unique target
+  ---
+  duration_ms: 315.013
+  type: 'test'
+  ...
+# Subtest: identity, source IDs and serialization are deterministic without changing raw definitions
+ok 121 - identity, source IDs and serialization are deterministic without changing raw definitions
+  ---
+  duration_ms: 217.9235
+  type: 'test'
+  ...
+# Subtest: all individual properties, effect identity and selection signals use the five normalized clues
+ok 122 - all individual properties, effect identity and selection signals use the five normalized clues
+  ---
+  duration_ms: 2480.981542
+  type: 'test'
+  ...
+# Subtest: a normalized candidate violating minimum clue count or dominance is rejected, without filler or repeat diagnosis
+ok 123 - a normalized candidate violating minimum clue count or dominance is rejected, without filler or repeat diagnosis
+  ---
+  duration_ms: 264.189125
+  type: 'test'
+  ...
+# Subtest: new proof work consumes the same bounded solver budget; exhaustion never yields a valid candidate
+ok 124 - new proof work consumes the same bounded solver budget; exhaustion never yields a valid candidate
+  ---
+  duration_ms: 122.362084
+  type: 'test'
+  ...
+# Subtest: even an equivalent transformation cannot pass a redundant candidate from another strategy
+ok 125 - even an equivalent transformation cannot pass a redundant candidate from another strategy
+  ---
+  duration_ms: 90.904584
+  type: 'test'
+  ...
+# Subtest: independent persisted-candidate verification detects damaged provenance
+ok 126 - independent persisted-candidate verification detects damaged provenance
+  ---
+  duration_ms: 9995.606916
+  type: 'test'
+  ...
+# Subtest: trusted live raw capture survives a self-consistent rewrite of candidate origin IDs during evaluation
+ok 127 - trusted live raw capture survives a self-consistent rewrite of candidate origin IDs during evaluation
+  ---
+  duration_ms: 57.5135
+  type: 'test'
+  ...
+# Subtest: new unchanged candidates and old historical rows have separate valid contracts
+ok 128 - new unchanged candidates and old historical rows have separate valid contracts
+  ---
+  duration_ms: 646.175458
+  type: 'test'
+  ...
+# Subtest: normalized zero/all text is natural using the unchanged technical formatter
+ok 129 - normalized zero/all text is natural using the unchanged technical formatter
+  ---
+  duration_ms: 30.438333
+  type: 'test'
+  ...
+# Subtest: public exporter and game loader consume one five-clue definition and omit private provenance
+ok 130 - public exporter and game loader consume one five-clue definition and omit private provenance
+  ---
+  duration_ms: 610.779625
+  type: 'test'
+  ...
+# Subtest: positive combination countercontrol remains intact: B2-S03-V2-M011-A5-R787-V01
+ok 131 - positive combination countercontrol remains intact: B2-S03-V2-M011-A5-R787-V01
+  ---
+  duration_ms: 272.591083
+  type: 'test'
+  ...
+# Subtest: positive combination countercontrol remains intact: B2-BC-T06-M005-E3-R00
+ok 132 - positive combination countercontrol remains intact: B2-BC-T06-M005-E3-R00
+  ---
+  duration_ms: 461.204791
+  type: 'test'
+  ...
+# Subtest: historical mode and historical exports keep S03-06 as six separately identified clues
+ok 133 - historical mode and historical exports keep S03-06 as six separately identified clues
+  ---
+  duration_ms: 3399.099
+  type: 'test'
+  ...
+# Subtest: historical artifacts and this PR preserve the fixed baseline; merged program files match their checkout
+ok 134 - historical artifacts and this PR preserve the fixed baseline; merged program files match their checkout
+  ---
+  duration_ms: 4346.632666
+  type: 'test'
+  ...
+# Subtest: the three fixed-case evidence files reproduce without generation
+ok 135 - the three fixed-case evidence files reproduce without generation
+  ---
+  duration_ms: 1545.06725
+  type: 'test'
+  ...
+# Subtest: S01: exported count texts reach the game loader with identical predicates and solution sets
+ok 136 - S01: exported count texts reach the game loader with identical predicates and solution sets
+  ---
+  duration_ms: 60044.147125
+  type: 'test'
+  ...
+# Subtest: S02: exported count texts reach the game loader with identical predicates and solution sets
+ok 137 - S02: exported count texts reach the game loader with identical predicates and solution sets
+  ---
+  duration_ms: 6079.568875
+  type: 'test'
+  ...
+# Subtest: BC: exported count texts reach the game loader with identical predicates and solution sets
+ok 138 - BC: exported count texts reach the game loader with identical predicates and solution sets
+  ---
+  duration_ms: 917.004583
+  type: 'test'
+  ...
+# Subtest: distance overlay survives every editing tool without altering notes or route
+ok 139 - distance overlay survives every editing tool without altering notes or route
+  ---
+  duration_ms: 38.871542
+  type: 'test'
+  ...
+# Subtest: one press turns either active phase off; reactivation always needs a fresh origin
+ok 140 - one press turns either active phase off; reactivation always needs a fresh origin
+  ---
+  duration_ms: 4.739667
+  type: 'test'
+  ...
+# Subtest: choosing an edit tool cancels pending origin selection but retains a completed overlay
+ok 141 - choosing an edit tool cancels pending origin selection but retains a completed overlay
+  ---
+  duration_ms: 0.546291
+  type: 'test'
+  ...
+# Subtest: undo and reload retain an independent overlay and never resurrect one switched off
+ok 142 - undo and reload retain an independent overlay and never resurrect one switched off
+  ---
+  duration_ms: 1.100708
+  type: 'test'
+  ...
+# Subtest: reset and another puzzle storage key start with no origin or overlay
+ok 143 - reset and another puzzle storage key start with no origin or overlay
+  ---
+  duration_ms: 35.968834
+  type: 'test'
+  ...
+# Subtest: undo preserves current display, navigation and paid hint after an older edit
+ok 144 - undo preserves current display, navigation and paid hint after an older edit
+  ---
+  duration_ms: 111.741792
+  type: 'test'
+  ...
+# Subtest: undo restores edits and note-check cost, while retaining later hint cost
+ok 145 - undo restores edits and note-check cost, while retaining later hint cost
+  ---
+  duration_ms: 0.567875
+  type: 'test'
+  ...
+# Subtest: persisted invalid routes safely reset instead of crashing rendering
+ok 146 - persisted invalid routes safely reset instead of crashing rendering
+  ---
+  duration_ms: 15.199541
+  type: 'test'
+  ...
+# Subtest: restore sanitizes notes, settings and transient HTML
+ok 147 - restore sanitizes notes, settings and transient HTML
+  ---
+  duration_ms: 0.445542
+  type: 'test'
+  ...
+# Subtest: storage is isolated per puzzle, reloads without history and tolerates unavailable storage
+ok 148 - storage is isolated per puzzle, reloads without history and tolerates unavailable storage
+  ---
+  duration_ms: 0.993792
+  type: 'test'
+  ...
+# Subtest: land cells are valid distance origins but invalid for marking or navigation
+ok 149 - land cells are valid distance origins but invalid for marking or navigation
+  ---
+  duration_ms: 53.222292
+  type: 'test'
+  ...
+# Subtest: temporary plaques include passable single hexes and the full multihex centroid
+ok 150 - temporary plaques include passable single hexes and the full multihex centroid
+  ---
+  duration_ms: 50.481542
+  type: 'test'
+  ...
+# Subtest: even long names at all chart edges stay within the visible chart
+ok 151 - even long names at all chart edges stay within the visible chart
+  ---
+  duration_ms: 13.213917
+  type: 'test'
+  ...
+# Subtest: organic edges add waves at longer widths instead of stretching their amplitude
+ok 152 - organic edges add waves at longer widths instead of stretching their amplitude
+  ---
+  duration_ms: 0.690708
+  type: 'test'
+  ...
+# Subtest: only named logical instances are labels, regardless of passability or hex count
+ok 153 - only named logical instances are labels, regardless of passability or hex count
+  ---
+  duration_ms: 57.59375
+  type: 'test'
+  ...
+# Subtest: references use existing placeIds and explicit editorial lists, never text or position cells
+ok 154 - references use existing placeIds and explicit editorial lists, never text or position cells
+  ---
+  duration_ms: 8.902042
+  type: 'test'
+  ...
+# Subtest: optional presentation references are validated and survive public projection without changing logic
+ok 155 - optional presentation references are validated and survive public projection without changing logic
+  ---
+  duration_ms: 105.421083
+  type: 'test'
+  ...
+# Subtest: K-final geometry reproduces the original referenz scene
+ok 156 - K-final geometry reproduces the original referenz scene
+  ---
+  duration_ms: 39.540709
+  type: 'test'
+  ...
+# Subtest: K-final geometry reproduces the original gerade scene
+ok 157 - K-final geometry reproduces the original gerade scene
+  ---
+  duration_ms: 5.603167
+  type: 'test'
+  ...
+# Subtest: K-final geometry reproduces the original knick scene
+ok 158 - K-final geometry reproduces the original knick scene
+  ---
+  duration_ms: 2.744833
+  type: 'test'
+  ...
+# Subtest: the K contour faces the actual destination in all six directions
+ok 159 - the K contour faces the actual destination in all six directions
+  ---
+  duration_ms: 17.382459
+  type: 'test'
+  ...
+# Subtest: hour edges rotate around the same hex in six distinct positions
+ok 160 - hour edges rotate around the same hex in six distinct positions
+  ---
+  duration_ms: 28.354083
+  type: 'test'
+  ...
+# Subtest: verification readiness requires six legal segments, independently of clue success
+ok 161 - verification readiness requires six legal segments, independently of clue success
+  ---
+  duration_ms: 72.432
+  type: 'test'
+  ...
+1..161
+# tests 161
+# suites 0
+# pass 161
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 80827.99775

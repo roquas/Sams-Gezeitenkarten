@@ -91,6 +91,7 @@ jobs:
           path: |
             test-results/**/ink-*.png
             test-results/**/status-*.png
+            test-results/**/logbook-*.png
             test-results/**/frame-choice-*.png
             test-results/**/resume-lifecycle.json
             test-results/**/cold-chart-timeline.json
@@ -135,6 +136,7 @@ jobs:
             webkit-results.json
             webkit-test-results/**/ink-*.png
             webkit-test-results/**/status-*.png
+            webkit-test-results/**/logbook-*.png
             webkit-test-results/**/frame-choice-*.png
             webkit-test-results/**/resume-lifecycle.json
             webkit-test-results/**/cold-chart-timeline.json

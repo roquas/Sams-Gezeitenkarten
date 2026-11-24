@@ -1,0 +1,3867 @@
+
+> sams-gezeitenkarten@0.1.0 test:unit
+> node --test tests/engine/*.test.mjs tests/contracts/*.test.mjs tests/integration/*.test.mjs
+
+TAP version 13
+# Subtest: A0 includes exactly eleven approved round-5 exports and excludes prison island 02
+ok 1 - A0 includes exactly eleven approved round-5 exports and excludes prison island 02
+  ---
+  duration_ms: 72.907042
+  type: 'test'
+  ...
+# Subtest: A0 preserves all ten previously accepted images and their exact background approvals
+ok 2 - A0 preserves all ten previously accepted images and their exact background approvals
+  ---
+  duration_ms: 7.540125
+  type: 'test'
+  ...
+# Subtest: all 206 new anchors match independent axial enumeration and exact object footprints on both row parities
+ok 3 - all 206 new anchors match independent axial enumeration and exact object footprints on both row parities
+  ---
+  duration_ms: 362.982875
+  type: 'test'
+  ...
+# Subtest: shifted resource base survives package validation, archive, validation, projector and nested public URL loading
+ok 4 - shifted resource base survives package validation, archive, validation, projector and nested public URL loading
+  ---
+  duration_ms: 3855.335708
+  type: 'test'
+  ...
+# Subtest: publication identity uses public paths and bytes, independent of internal resource storage and provenance
+ok 5 - publication identity uses public paths and bytes, independent of internal resource storage and provenance
+  ---
+  duration_ms: 132.594792
+  type: 'test'
+  ...
+# Subtest: missing, manipulated or misbound resources fail clearly, including rechecks by a live projector
+ok 6 - missing, manipulated or misbound resources fail clearly, including rechecks by a live projector
+  ---
+  duration_ms: 35.039875
+  type: 'test'
+  ...
+# Subtest: package-relative resolution normalizes directory segments and rejects URL or root escapes
+ok 7 - package-relative resolution normalizes directory segments and rejects URL or root escapes
+  ---
+  duration_ms: 0.655625
+  type: 'test'
+  ...
+# Subtest: generic archive and preview use pinned source bytes and detached identity bindings
+ok 8 - generic archive and preview use pinned source bytes and detached identity bindings
+  ---
+  duration_ms: 21.024959
+  type: 'test'
+  ...
+# Subtest: publication identity covers full delivered document and resource inventory; map identity stays independent
+ok 9 - publication identity covers full delivered document and resource inventory; map identity stays independent
+  ---
+  duration_ms: 7.363833
+  type: 'test'
+  ...
+# Subtest: archive rejects corruption, conflicting identities, duplicate entries and mutable accepted history
+ok 10 - archive rejects corruption, conflicting identities, duplicate entries and mutable accepted history
+  ---
+  duration_ms: 13.852833
+  type: 'test'
+  ...
+# Subtest: empty unpublished archive is valid; legacy aliases and old rule versions are rejected
+ok 11 - empty unpublished archive is valid; legacy aliases and old rule versions are rejected
+  ---
+  duration_ms: 6.47925
+  type: 'test'
+  ...
+# Subtest: archive catalog location is explicit and approval checks use snapshot bytes instead of the installed content package
+ok 12 - archive catalog location is explicit and approval checks use snapshot bytes instead of the installed content package
+  ---
+  duration_ms: 10.912
+  type: 'test'
+  ...
+# Subtest: fixed snapshot and full publication vectors bind all delivered source bytes
+ok 13 - fixed snapshot and full publication vectors bind all delivered source bytes
+  ---
+  duration_ms: 3.949125
+  type: 'test'
+  ...
+# Subtest: private provenance changes cannot change publication identity, but cannot be shipped either
+ok 14 - private provenance changes cannot change publication identity, but cannot be shipped either
+  ---
+  duration_ms: 5.360042
+  type: 'test'
+  ...
+# Subtest: delivered DTO bytes must be public and exactly project the pinned internal definition
+ok 15 - delivered DTO bytes must be public and exactly project the pinned internal definition
+  ---
+  duration_ms: 2.071166
+  type: 'test'
+  ...
+# Subtest: adapter accepts a locally legal upper-tip pixel at A1 and C3 with all 25 profile positions
+ok 16 - adapter accepts a locally legal upper-tip pixel at A1 and C3 with all 25 profile positions
+  ---
+  duration_ms: 3669.521583
+  type: 'test'
+  ...
+# Subtest: real decoded horizontal, diagonal and asymmetric tip pixels fit every geometric anchor
+ok 17 - real decoded horizontal, diagonal and asymmetric tip pixels fit every geometric anchor
+  ---
+  duration_ms: 2681.535375
+  type: 'test'
+  ...
+# Subtest: old position-dependent verifications must be prepared again under the corrected contract
+ok 18 - old position-dependent verifications must be prepared again under the corrected contract
+  ---
+  duration_ms: 416.80075
+  type: 'test'
+  ...
+# Subtest: adapter rejects stale approvals and corrupt backgrounds; pure services never infer pixel validity
+ok 19 - adapter rejects stale approvals and corrupt backgrounds; pure services never infer pixel validity
+  ---
+  duration_ms: 447.783375
+  type: 'test'
+  ...
+# Subtest: invalid but hash-bound local images produce explicit image failures and no generation footprints
+ok 20 - invalid but hash-bound local images produce explicit image failures and no generation footprints
+  ---
+  duration_ms: 281.007208
+  type: 'test'
+  ...
+# Subtest: semantic classification is explicit, small and versioned, independent of passability
+ok 21 - semantic classification is explicit, small and versioned, independent of passability
+  ---
+  duration_ms: 5.173542
+  type: 'test'
+  ...
+# Subtest: one illustration exactly matches one object footprint and passability at either row parity
+ok 22 - one illustration exactly matches one object footprint and passability at either row parity
+  ---
+  duration_ms: 5.420583
+  type: 'test'
+  ...
+# Subtest: placements reject absent references, partial footprints, duplicate ownership, overlaps, transforms and passability mismatch
+ok 23 - placements reject absent references, partial footprints, duplicate ownership, overlaps, transforms and passability mismatch
+  ---
+  duration_ms: 4.699542
+  type: 'test'
+  ...
+# Subtest: decorations have no logical references, passability or overlap with logical objects
+ok 24 - decorations have no logical references, passability or overlap with logical objects
+  ---
+  duration_ms: 0.582708
+  type: 'test'
+  ...
+# Subtest: explicit art release, concrete background approval and byte hashes are independent gates
+ok 25 - explicit art release, concrete background approval and byte hashes are independent gates
+  ---
+  duration_ms: 1.995916
+  type: 'test'
+  ...
+# Subtest: geometry rejects disconnected, fractional, duplicate, empty and nonorigin footprints; renderer preserves aspect ratio
+ok 26 - geometry rejects disconnected, fractional, duplicate, empty and nonorigin footprints; renderer preserves aspect ratio
+  ---
+  duration_ms: 0.616959
+  type: 'test'
+  ...
+# Subtest: full validation and public projection accept explicit asset context while pure identity and solver need none
+ok 27 - full validation and public projection accept explicit asset context while pure identity and solver need none
+  ---
+  duration_ms: 8.193416
+  type: 'test'
+  ...
+# Subtest: assignment matches all 23 outcomes under catalog-assignment-1, including diagnostics and reference failures
+ok 28 - assignment matches all 23 outcomes under catalog-assignment-1, including diagnostics and reference failures
+  ---
+  duration_ms: 36.283917
+  type: 'test'
+  ...
+# Subtest: standalone and scoped candidates preserve reviewed validation errors and their order
+ok 29 - standalone and scoped candidates preserve reviewed validation errors and their order
+  ---
+  duration_ms: 8.521584
+  type: 'test'
+  ...
+# Subtest: final validation still rejects overlaps, duplicate IDs and duplicate object illustrations between valid candidates
+ok 30 - final validation still rejects overlaps, duplicate IDs and duplicate object illustrations between valid candidates
+  ---
+  duration_ms: 0.384917
+  type: 'test'
+  ...
+# Subtest: scoped indices cannot escape, survive an exception, run asynchronously or accept metadata changes
+ok 31 - scoped indices cannot escape, survive an exception, run asynchronously or accept metadata changes
+  ---
+  duration_ms: 1.46
+  type: 'test'
+  ...
+# Subtest: 28/128/512 assets need exactly two full catalog validations rather than one per candidate
+ok 32 - 28/128/512 assets need exactly two full catalog validations rather than one per candidate
+  ---
+  duration_ms: 134.591125
+  type: 'test'
+  ...
+# Subtest: assignment translates exact one/multicell footprints across row parities without mutating inputs
+ok 33 - assignment translates exact one/multicell footprints across row parities without mutating inputs
+  ---
+  duration_ms: 11.606459
+  type: 'test'
+  ...
+# Subtest: asymmetric rotations and mirrors never match; cell order and translation do
+ok 34 - asymmetric rotations and mirrors never match; cell order and translation do
+  ---
+  duration_ms: 2.29025
+  type: 'test'
+  ...
+# Subtest: full, partial, absent and empty coverage remain diagnosable; blocked reuse is refused
+ok 35 - full, partial, absent and empty coverage remain diagnosable; blocked reuse is refused
+  ---
+  duration_ms: 2.271167
+  type: 'test'
+  ...
+# Subtest: passability, production, exact background approval and image/position failures have explicit reasons
+ok 36 - passability, production, exact background approval and image/position failures have explicit reasons
+  ---
+  duration_ms: 8.387375
+  type: 'test'
+  ...
+# Subtest: catalog semantics/version and stale metadata attestation are enforced without guessing object classes
+ok 37 - catalog semantics/version and stale metadata attestation are enforced without guessing object classes
+  ---
+  duration_ms: 2.598708
+  type: 'test'
+  ...
+# Subtest: multiple paintings use a separate reproducible stream, sorted candidates, and expose type usage
+ok 38 - multiple paintings use a separate reproducible stream, sorted candidates, and expose type usage
+  ---
+  duration_ms: 23.79675
+  type: 'test'
+  ...
+# Subtest: fixed BC selection binds exactly eight original records, four B/C pairs and five to seven clues
+ok 39 - fixed BC selection binds exactly eight original records, four B/C pairs and five to seven clues
+  ---
+  duration_ms: 568.995625
+  type: 'test'
+  ...
+# Subtest: eight public puzzles load unchanged and independent verifier confirms all proofs and stored diagnostics
+ok 40 - eight public puzzles load unchanged and independent verifier confirms all proofs and stored diagnostics
+  ---
+  duration_ms: 1885.002875
+  type: 'test'
+  ...
+# Subtest: changed comparison provenance, selection identities and diagnostics fail closed
+ok 41 - changed comparison provenance, selection identities and diagnostics fail closed
+  ---
+  duration_ms: 16.770458
+  type: 'test'
+  ...
+# Subtest: export is byte-identical, repairs 700 directories, and protected inventories retain PR101 bytes except the optional A2b presentation field
+ok 42 - export is byte-identical, repairs 700 directories, and protected inventories retain PR101 bytes except the optional A2b presentation field
+  ---
+  duration_ms: 9441.767
+  type: 'test'
+  ...
+# Subtest: positive profiles retain shared anchors, local vector, distinct witnesses and effective count mechanism
+ok 43 - positive profiles retain shared anchors, local vector, distinct witnesses and effective count mechanism
+  ---
+  duration_ms: 12.9235
+  type: 'test'
+  ...
+# Subtest: BC gaps, partial coverage and per-finding minimum proofs remain distinct
+ok 44 - BC gaps, partial coverage and per-finding minimum proofs remain distinct
+  ---
+  duration_ms: 5.004625
+  type: 'test'
+  ...
+# Subtest: removing stored subsets downgrades cardinality and inclusion claims without changing known witnesses
+ok 45 - removing stored subsets downgrades cardinality and inclusion claims without changing known witnesses
+  ---
+  duration_ms: 17.411875
+  type: 'test'
+  ...
+# Subtest: givens and their baseline consequences are context, and field/edge facts are not duplicate milestones
+ok 46 - givens and their baseline consequences are context, and field/edge facts are not duplicate milestones
+  ---
+  duration_ms: 0.804167
+  type: 'test'
+  ...
+# Subtest: state, source hash, trace and mechanism references resolve to stored evidence
+ok 47 - state, source hash, trace and mechanism references resolve to stored evidence
+  ---
+  duration_ms: 951.383167
+  type: 'test'
+  ...
+# Subtest: report is deterministic, read-only and reproduces six versioned artifacts without engine imports
+ok 48 - report is deterministic, read-only and reproduces six versioned artifacts without engine imports
+  ---
+  duration_ms: 607.030792
+  type: 'test'
+  ...
+# Subtest: every reference subset has sufficient reachable premises and agrees with the solver, including the hypothetical given
+ok 49 - every reference subset has sufficient reachable premises and agrees with the solver, including the hypothetical given
+  ---
+  duration_ms: 3693.331542
+  type: 'test'
+  ...
+# Subtest: combination-only claims are absent from every proper subset, not merely route reductions
+ok 50 - combination-only claims are absent from every proper subset, not merely route reductions
+  ---
+  duration_ms: 29.187208
+  type: 'test'
+  ...
+# Subtest: T07 control preserves original and independently predicts an unresolved late remainder
+ok 51 - T07 control preserves original and independently predicts an unresolved late remainder
+  ---
+  duration_ms: 20.701042
+  type: 'test'
+  ...
+# Subtest: actual unmodified historical reference is pinned and explicitly incompatible, never substituted
+ok 52 - actual unmodified historical reference is pinned and explicitly incompatible, never substituted
+  ---
+  duration_ms: 1.454292
+  type: 'test'
+  ...
+# Subtest: all offline artifacts reproduce byte for byte without changing source inventories
+ok 53 - all offline artifacts reproduce byte for byte without changing source inventories
+  ---
+  duration_ms: 895.561042
+  type: 'test'
+  ...
+# Subtest: C exposes five count exclusions with reachable witnesses before any field fixation
+ok 54 - C exposes five count exclusions with reachable witnesses before any field fixation
+  ---
+  duration_ms: 126.271917
+  type: 'test'
+  ...
+# Subtest: A shows one clue carrying the complete local solution without a quality claim
+ok 55 - A shows one clue carrying the complete local solution without a quality claim
+  ---
+  duration_ms: 2.625208
+  type: 'test'
+  ...
+# Subtest: D preserves exclusions, possible hour 6 and non-representable associations
+ok 56 - D preserves exclusions, possible hour 6 and non-representable associations
+  ---
+  duration_ms: 0.188292
+  type: 'test'
+  ...
+# Subtest: large transition sets keep directed-transition units and field-set wording
+ok 57 - large transition sets keep directed-transition units and field-set wording
+  ---
+  duration_ms: 0.675416
+  type: 'test'
+  ...
+# Subtest: version 2 is additive, preserves all base fields and leaves version 1 byte-identical
+ok 58 - version 2 is additive, preserves all base fields and leaves version 1 byte-identical
+  ---
+  duration_ms: 21.855708
+  type: 'test'
+  ...
+# Subtest: every additional mark and reuse edge resolves to its actual state and trace
+ok 59 - every additional mark and reuse edge resolves to its actual state and trace
+  ---
+  duration_ms: 12.61775
+  type: 'test'
+  ...
+# Subtest: unknown states stay unknown; input order does not become a human ordering
+ok 60 - unknown states stay unknown; input order does not become a human ordering
+  ---
+  duration_ms: 55.781541
+  type: 'test'
+  ...
+# Subtest: new sources and profiles reproduce within the fixed four-case scope; normal CLI stays read-only
+ok 61 - new sources and profiles reproduce within the fixed four-case scope; normal CLI stays read-only
+  ---
+  duration_ms: 1711.183875
+  type: 'test'
+  ...
+# Subtest: all supplied observations have stable identities, source hashes, play status and separate evidence layers
+ok 62 - all supplied observations have stable identities, source hashes, play status and separate evidence layers
+  ---
+  duration_ms: 9.096833
+  type: 'test'
+  ...
+# Subtest: the full ten-series has original inventory identities, no fabricated repeated-test judgment, and explicit typo uncertainty
+ok 63 - the full ten-series has original inventory identities, no fabricated repeated-test judgment, and explicit typo uncertainty
+  ---
+  duration_ms: 26.240583
+  type: 'test'
+  ...
+# Subtest: A/B/C/D are corrected from unknown without inventing an order; controls remain individual experiences
+ok 64 - A/B/C/D are corrected from unknown without inventing an order; controls remain individual experiences
+  ---
+  duration_ms: 0.701834
+  type: 'test'
+  ...
+# Subtest: all nine S03 accounts preserve counterexamples, observed reuse and known context discrepancies
+ok 65 - all nine S03 accounts preserve counterexamples, observed reuse and known context discrepancies
+  ---
+  duration_ms: 2.778042
+  type: 'test'
+  ...
+# Subtest: B2 exports all 95 unfiltered candidates through the existing public loader and solution control
+ok 66 - B2 exports all 95 unfiltered candidates through the existing public loader and solution control
+  ---
+  duration_ms: 2378.066959
+  type: 'test'
+  ...
+# Subtest: export is byte-reproducible and names survive reordering and removal of other entries
+ok 67 - export is byte-reproducible and names survive reordering and removal of other entries
+  ---
+  duration_ms: 5319.124625
+  type: 'test'
+  ...
+# Subtest: binding rejects changed definitions, solutions, art, identities, source runs and missing candidates
+ok 68 - binding rejects changed definitions, solutions, art, identities, source runs and missing candidates
+  ---
+  duration_ms: 43.439417
+  type: 'test'
+  ...
+# Subtest: technical text states all six clue meanings, with signs, interval endpoints and multi-cell places
+ok 69 - technical text states all six clue meanings, with signs, interval endpoints and multi-cell places
+  ---
+  duration_ms: 0.300542
+  type: 'test'
+  ...
+# Subtest: V2 validates all 64 reachable-premise graphs and a necessary count edge cannot be cut
+ok 70 - V2 validates all 64 reachable-premise graphs and a necessary count edge cannot be cut
+  ---
+  duration_ms: 1462.68975
+  type: 'test'
+  ...
+# Subtest: V2 evidence preserves its historical provenance and reproduces, changed count fails, and the first design remains the delivered design
+ok 71 - V2 evidence preserves its historical provenance and reproduces, changed count fails, and the first design remains the delivered design
+  ---
+  duration_ms: 1254.495125
+  type: 'test'
+  ...
+# Subtest: V2 motifs remain placeable on every hex and public loader receives only the public projection
+ok 72 - V2 motifs remain placeable on every hex and public loader receives only the public projection
+  ---
+  duration_ms: 137.254459
+  type: 'test'
+  ...
+# Subtest: hand-authored reference meets the precommitted A–F contract without changing deduction rules
+ok 73 - hand-authored reference meets the precommitted A–F contract without changing deduction rules
+  ---
+  duration_ms: 913.255625
+  type: 'test'
+  ...
+# Subtest: recorded evidence preserves its historical provenance and reproduces and a broken central condition fails the fixed contract
+ok 74 - recorded evidence preserves its historical provenance and reproduces and a broken central condition fails the fixed contract
+  ---
+  duration_ms: 440.416833
+  type: 'test'
+  ...
+# Subtest: every used motif remains approved and placeable on all 25 passable hexes
+ok 75 - every used motif remains approved and placeable on all 25 passable hexes
+  ---
+  duration_ms: 76.728417
+  type: 'test'
+  ...
+# Subtest: public reference uses the existing loader, excludes private data, and exports reproducibly with static-host permissions
+ok 76 - public reference uses the existing loader, excludes private data, and exports reproducibly with static-host permissions
+  ---
+  duration_ms: 125.984791
+  type: 'test'
+  ...
+# Subtest: S02 registers the complete fixed 20-map experiment without selection or renumbering
+ok 77 - S02 registers the complete fixed 20-map experiment without selection or renumbering
+  ---
+  duration_ms: 2913.083209
+  type: 'test'
+  ...
+# Subtest: all 96 unfiltered S02 candidates load through the real public loader without private payloads
+ok 78 - all 96 unfiltered S02 candidates load through the real public loader without private payloads
+  ---
+  duration_ms: 1277.850458
+  type: 'test'
+  ...
+# Subtest: S02 candidate proofs, omission counts, fingerprints and effects pass the independent solver
+ok 79 - S02 candidate proofs, omission counts, fingerprints and effects pass the independent solver
+  ---
+  duration_ms: 2546.876084
+  type: 'test'
+  ...
+# Subtest: S02 binding rejects changed candidates, rebound names, duplicate identities and wrong stocks
+ok 80 - S02 binding rejects changed candidates, rebound names, duplicate identities and wrong stocks
+  ---
+  duration_ms: 46.539333
+  type: 'test'
+  ...
+# Subtest: S02 report has exact independent marginals, cross table and a trace for every stored clue
+ok 81 - S02 report has exact independent marginals, cross table and a trace for every stored clue
+  ---
+  duration_ms: 324.333
+  type: 'test'
+  ...
+# Subtest: S01 defaults and stored bytes stay pinned; the public export uses H1 count texts
+ok 82 - S01 defaults and stored bytes stay pinned; the public export uses H1 count texts
+  ---
+  duration_ms: 3032.932333
+  type: 'test'
+  ...
+# Subtest: explicit stock selection rejects unknown or duplicate flags before touching exported files
+ok 83 - explicit stock selection rejects unknown or duplicate flags before touching exported files
+  ---
+  duration_ms: 0.3515
+  type: 'test'
+  ...
+# Subtest: all eighteen cases use original identities, correct S03 display numbers and all 617 existing states
+ok 84 - all eighteen cases use original identities, correct S03 display numbers and all 617 existing states
+  ---
+  duration_ms: 1623.662667
+  type: 'test'
+  ...
+# Subtest: each local exclusion, reuse and alternative witness resolves to the bound stored trace
+ok 85 - each local exclusion, reuse and alternative witness resolves to the bound stored trace
+  ---
+  duration_ms: 1900.00875
+  type: 'test'
+  ...
+# Subtest: C has useful certified exclusions before fixation, while A already completes with a single clue
+ok 86 - C has useful certified exclusions before fixation, while A already completes with a single clue
+  ---
+  duration_ms: 0.661792
+  type: 'test'
+  ...
+# Subtest: known versus proven minima remain distinct; no requirement for early hour fixations
+ok 87 - known versus proven minima remain distinct; no requirement for early hour fixations
+  ---
+  duration_ms: 0.413167
+  type: 'test'
+  ...
+# Subtest: 75 exact routes versus 107 recombinations demonstrate loss beyond neighbor projections
+ok 88 - 75 exact routes versus 107 recombinations demonstrate loss beyond neighbor projections
+  ---
+  duration_ms: 163.377834
+  type: 'test'
+  ...
+# Subtest: 05 protects against penalizing large sets and 08 retains exclusion and relational progress
+ok 89 - 05 protects against penalizing large sets and 08 retains exclusion and relational progress
+  ---
+  duration_ms: 0.415792
+  type: 'test'
+  ...
+# Subtest: 01 has a locally open finish and 09 offers late fixed anchors and small connections
+ok 90 - 01 has a locally open finish and 09 offers late fixed anchors and small connections
+  ---
+  duration_ms: 0.410542
+  type: 'test'
+  ...
+# Subtest: budget failure, unrequested and missing states never become complete or zero counts
+ok 91 - budget failure, unrequested and missing states never become complete or zero counts
+  ---
+  duration_ms: 42.608875
+  type: 'test'
+  ...
+# Subtest: Markdown distinguishes mixed complete/unknown states and absent route evidence
+ok 92 - Markdown distinguishes mixed complete/unknown states and absent route evidence
+  ---
+  duration_ms: 20.357
+  type: 'test'
+  ...
+# Subtest: Markdown reproduction claims require complete parent, state and single-intersection evidence
+ok 93 - Markdown reproduction claims require complete parent, state and single-intersection evidence
+  ---
+  duration_ms: 22.667375
+  type: 'test'
+  ...
+# Subtest: sources and exact projections are checked; changed logic or givens have distinct bindings
+ok 94 - sources and exact projections are checked; changed logic or givens have distinct bindings
+  ---
+  duration_ms: 65.56975
+  type: 'test'
+  ...
+# Subtest: deterministic diagnostics do not depend on answers or mutate existing profile formats
+ok 95 - deterministic diagnostics do not depend on answers or mutate existing profile formats
+  ---
+  duration_ms: 666.149541
+  type: 'test'
+  ...
+# Subtest: bounded plan, truncation, singleton intersection and route fragments retain their stated units
+ok 96 - bounded plan, truncation, singleton intersection and route fragments retain their stated units
+  ---
+  duration_ms: 1.324708
+  type: 'test'
+  ...
+# Subtest: 37 reports reproduce byte-for-byte; CLI validates arguments and retains explicit boundaries
+ok 97 - 37 reports reproduce byte-for-byte; CLI validates arguments and retains explicit boundaries
+  ---
+  duration_ms: 2252.588875
+  type: 'test'
+  ...
+# Subtest: two successive legitimate main merges retain protected imports without attributing them to S04-B
+ok 98 - two successive legitimate main merges retain protected imports without attributing them to S04-B
+  ---
+  duration_ms: 2255.690958
+  type: 'test'
+  ...
+# Subtest: manual conflict resolution outside protected paths remains permitted
+ok 99 - manual conflict resolution outside protected paths remains permitted
+  ---
+  duration_ms: 2087.014292
+  type: 'test'
+  ...
+# Subtest: reject a PR-owned protected edit after legitimate main merges
+ok 100 - reject a PR-owned protected edit after legitimate main merges
+  ---
+  duration_ms: 1705.936584
+  type: 'test'
+  ...
+# Subtest: reject a PR-owned protected addition after legitimate main merges
+ok 101 - reject a PR-owned protected addition after legitimate main merges
+  ---
+  duration_ms: 1726.242667
+  type: 'test'
+  ...
+# Subtest: reject a PR-owned protected deletion after legitimate main merges
+ok 102 - reject a PR-owned protected deletion after legitimate main merges
+  ---
+  duration_ms: 1689.164
+  type: 'test'
+  ...
+# Subtest: reject a PR-owned protected historical edit after legitimate main merges
+ok 103 - reject a PR-owned protected historical edit after legitimate main merges
+  ---
+  duration_ms: 1650.850833
+  type: 'test'
+  ...
+# Subtest: reject an unauthorized edit even if a later PR commit reverts the final tree
+ok 104 - reject an unauthorized edit even if a later PR commit reverts the final tree
+  ---
+  duration_ms: 1775.588542
+  type: 'test'
+  ...
+# Subtest: reject a protected edit hidden inside an otherwise legitimate main merge commit
+ok 105 - reject a protected edit hidden inside an otherwise legitimate main merge commit
+  ---
+  duration_ms: 2091.403209
+  type: 'test'
+  ...
+# Subtest: a non-main side branch cannot smuggle a protected change through a merge
+ok 106 - a non-main side branch cannot smuggle a protected change through a merge
+  ---
+  duration_ms: 2161.458584
+  type: 'test'
+  ...
+# Subtest: the ID-inclusive origin is canonical, stable through JSON, and independent of input ordering
+ok 107 - the ID-inclusive origin is canonical, stable through JSON, and independent of input ordering
+  ---
+  duration_ms: 9.456625
+  type: 'test'
+  ...
+# Subtest: the fixed Git source and independently expected receipt digest reproduce the stored contract
+ok 108 - the fixed Git source and independently expected receipt digest reproduce the stored contract
+  ---
+  duration_ms: 119.603833
+  type: 'test'
+  ...
+# Subtest: external inventory prevents stripping records, keys, markers and all provenance together
+ok 109 - external inventory prevents stripping records, keys, markers and all provenance together
+  ---
+  duration_ms: 637.717667
+  type: 'test'
+  ...
+# Subtest: fully coordinated candidate and sidecar changes cannot replace the independent trust anchor
+ok 110 - fully coordinated candidate and sidecar changes cannot replace the independent trust anchor
+  ---
+  duration_ms: 2.475584
+  type: 'test'
+  ...
+# Subtest: trusted contract status and policy must agree with the actual preparation
+ok 111 - trusted contract status and policy must agree with the actual preparation
+  ---
+  duration_ms: 74.72625
+  type: 'test'
+  ...
+# Subtest: all previously reviewed evidence is unchanged except the new provenance fields
+ok 112 - all previously reviewed evidence is unchanged except the new provenance fields
+  ---
+  duration_ms: 37.372792
+  type: 'test'
+  ...
+# Subtest: approved diagnostic entry reproduces the single-contract 128-seed report with separate release provenance
+ok 113 - approved diagnostic entry reproduces the single-contract 128-seed report with separate release provenance
+  ---
+  duration_ms: 6891.198709
+  type: 'test'
+  ...
+# Subtest: entry accepts only explicit release/background arguments, never contexts, provenance or batch options
+ok 114 - entry accepts only explicit release/background arguments, never contexts, provenance or batch options
+  ---
+  duration_ms: 6610.107042
+  type: 'test'
+  ...
+# Subtest: CLI argument errors exit unsuccessfully without emitting a report
+ok 115 - CLI argument errors exit unsuccessfully without emitting a report
+  ---
+  duration_ms: 347.650375
+  type: 'test'
+  ...
+# Subtest: actual CLI needs only Git and committed release data despite absent working catalog/resources and poisoned image preparation
+not ok 116 - actual CLI needs only Git and committed release data despite absent working catalog/resources and poisoned image preparation
+  ---
+  duration_ms: 2344.379125
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/catalog-diagnostics.test.mjs:70:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/catalog-diagnostics.test.mjs:97:36)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: diagnostic refuses a committed archive with missing approval even when its other data are present
+ok 117 - diagnostic refuses a committed archive with missing approval even when its other data are present
+  ---
+  duration_ms: 2722.420833
+  type: 'test'
+  ...
+# Subtest: legacy preparation of the real pinned bytes matches the complete release context, profile and deterministic assignments
+ok 118 - legacy preparation of the real pinned bytes matches the complete release context, profile and deterministic assignments
+  ---
+  duration_ms: 737479.626167
+  type: 'test'
+  ...
+# Subtest: approved motifs have exactly every fitting anchor, including edges and corners, with unchanged local geometry
+ok 119 - approved motifs have exactly every fitting anchor, including edges and corners, with unchanged local geometry
+  ---
+  duration_ms: 597.67225
+  type: 'test'
+  ...
+# Subtest: approved image bytes fit local cells and both archived frames clear every complete board cell
+ok 120 - approved image bytes fit local cells and both archived frames clear every complete board cell
+  ---
+  duration_ms: 37750.228209
+  type: 'test'
+  ...
+# Subtest: exactly the verified selection appears once, without extra assets or inferred approval
+ok 121 - exactly the verified selection appears once, without extra assets or inferred approval
+  ---
+  duration_ms: 1.567084
+  type: 'test'
+  ...
+# Subtest: one relative shape uses original image contracts and gameplay vertices for all selected motifs
+ok 122 - one relative shape uses original image contracts and gameplay vertices for all selected motifs
+  ---
+  duration_ms: 8.118875
+  type: 'test'
+  ...
+# Subtest: relative display adds no board-fitting restrictions and preserves concave and negative-coordinate shapes
+ok 123 - relative display adds no board-fitting restrictions and preserves concave and negative-coordinate shapes
+  ---
+  duration_ms: 3.059625
+  type: 'test'
+  ...
+# Subtest: export is byte deterministic, uses pinned resource bytes, preserves the candidate and refuses overwrite
+ok 124 - export is byte deterministic, uses pinned resource bytes, preserves the candidate and refuses overwrite
+  ---
+  duration_ms: 49848.062292
+  type: 'test'
+  ...
+# Subtest: expected count mismatch is visible and never changes the selection
+ok 125 - expected count mismatch is visible and never changes the selection
+  ---
+  duration_ms: 27781.440708
+  type: 'test'
+  ...
+# Subtest: missing/corrupt candidate evidence and image resources fail explicitly
+ok 126 - missing/corrupt candidate evidence and image resources fail explicitly
+  ---
+  duration_ms: 544.237208
+  type: 'test'
+  ...
+# Subtest: read-only candidate handle uses Git bytes when working resources are missing or subsequently modified
+ok 127 - read-only candidate handle uses Git bytes when working resources are missing or subsequently modified
+  ---
+  duration_ms: 71500.031625
+  type: 'test'
+  ...
+# Subtest: CLI requires explicit candidate and output; rejects duplicate/unknown options
+ok 128 - CLI requires explicit candidate and output; rejects duplicate/unknown options
+  ---
+  duration_ms: 2.342208
+  type: 'test'
+  ...
+# Subtest: candidate is reproducible and inventories all referenced assets, backgrounds, frames and contracts
+not ok 129 - candidate is reproducible and inventories all referenced assets, backgrounds, frames and contracts
+  ---
+  duration_ms: 20794.559
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/catalog-release.test.mjs:63:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        catalogId: 'gk-catalog-content-v1-sha256-726d1abdfc9704d9c14cb61af9095d51a3125a2cd3bcff1fc04d1379e34ad0db',
+    +   directory: '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-release-tests-EkmNv7/case-Oy1zKQ/second',
+    -   directory: '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-release-tests-EkmNv7/case-Oy1zKQ/second',
+        manifestSha256: 'af96f1d80c64a012f9f4e9708a376be7ecc7c03c06f1079544dce5312cd93be2',
+        releaseId: 'gk-catalog-release-v1-sha256-c6a121ffe6adce018c75a718f30dd471669f407d81e4032e5291aa1ce3eaaee3'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    releaseId: 'gk-catalog-release-v1-sha256-c6a121ffe6adce018c75a718f30dd471669f407d81e4032e5291aa1ce3eaaee3'
+    catalogId: 'gk-catalog-content-v1-sha256-726d1abdfc9704d9c14cb61af9095d51a3125a2cd3bcff1fc04d1379e34ad0db'
+    manifestSha256: 'af96f1d80c64a012f9f4e9708a376be7ecc7c03c06f1079544dce5312cd93be2'
+    directory: '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-release-tests-EkmNv7/case-Oy1zKQ/second'
+  actual:
+    releaseId: 'gk-catalog-release-v1-sha256-c6a121ffe6adce018c75a718f30dd471669f407d81e4032e5291aa1ce3eaaee3'
+    catalogId: 'gk-catalog-content-v1-sha256-726d1abdfc9704d9c14cb61af9095d51a3125a2cd3bcff1fc04d1379e34ad0db'
+    manifestSha256: 'af96f1d80c64a012f9f4e9708a376be7ecc7c03c06f1079544dce5312cd93be2'
+    directory: '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-release-tests-EkmNv7/case-Oy1zKQ/second'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/catalog-release.test.mjs:65:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: manual approval binds exact ID/hash, preserves art decisions and creates only five JSON files without committing
+ok 130 - manual approval binds exact ID/hash, preserves art decisions and creates only five JSON files without committing
+  ---
+  duration_ms: 42910.639083
+  type: 'test'
+  ...
+# Subtest: build and load ignore dirty resource, schema, policy and checker working files
+ok 131 - build and load ignore dirty resource, schema, policy and checker working files
+  ---
+  duration_ms: 36583.789834
+  type: 'test'
+  ...
+# Subtest: loader and candidate verification work with only Git on PATH and never invoke Python
+ok 132 - loader and candidate verification work with only Git on PATH and never invoke Python
+  ---
+  duration_ms: 17162.171125
+  type: 'test'
+  ...
+# Subtest: missing Git objects and mismatched source bytes fail without working-tree fallback
+ok 133 - missing Git objects and mismatched source bytes fail without working-tree fallback
+  ---
+  duration_ms: 1799.740708
+  type: 'test'
+  ...
+# Subtest: strict verification rejects incomplete, duplicate, unsupported and contradictory rebound evidence
+ok 134 - strict verification rejects incomplete, duplicate, unsupported and contradictory rebound evidence
+  ---
+  duration_ms: 141622.474042
+  type: 'test'
+  ...
+# Subtest: explicit source contracts and unsafe/symlinked resources are checked, never replaced by checkout validators
+ok 135 - explicit source contracts and unsafe/symlinked resources are checked, never replaced by checkout validators
+  ---
+  duration_ms: 28540.454458
+  type: 'test'
+  ...
+# Subtest: a technically broken enabled asset prevents candidate creation instead of shrinking production selection
+ok 136 - a technically broken enabled asset prevents candidate creation instead of shrinking production selection
+  ---
+  duration_ms: 12137.686791
+  type: 'test'
+  ...
+# Subtest: production background is pinned configuration rather than a hardcoded loader restriction
+ok 137 - production background is pinned configuration rather than a hardcoded loader restriction
+  ---
+  duration_ms: 47042.121042
+  type: 'test'
+  ...
+# Subtest: nonproductive resource changes affect catalog identity, while checker-only changes affect release identity
+ok 138 - nonproductive resource changes affect catalog identity, while checker-only changes affect release identity
+  ---
+  duration_ms: 55955.9025
+  type: 'test'
+  ...
+# Subtest: parallel approval attempts produce one complete release and never overwrite it
+ok 139 - parallel approval attempts produce one complete release and never overwrite it
+  ---
+  duration_ms: 25374.596125
+  type: 'test'
+  ...
+# Subtest: interrupted staging, locks and incomplete candidates cannot become accepted releases
+ok 140 - interrupted staging, locks and incomplete candidates cannot become accepted releases
+  ---
+  duration_ms: 9267.62275
+  type: 'test'
+  ...
+# Subtest: archive comparison detects edits/deletions and new incomplete releases; bad approval binding is rejected
+ok 141 - archive comparison detects edits/deletions and new incomplete releases; bad approval binding is rejected
+  ---
+  duration_ms: 30006.845917
+  type: 'test'
+  ...
+# Subtest: committing a candidate cannot approve it and approval requires a source ancestor
+ok 142 - committing a candidate cannot approve it and approval requires a source ancestor
+  ---
+  duration_ms: 12428.655
+  type: 'test'
+  ...
+# Subtest: V1 keeps all 674 current-catalog fixture anchors in fresh processes from the actually changed runtime checkout
+not ok 143 - V1 keeps all 674 current-catalog fixture anchors in fresh processes from the actually changed runtime checkout
+  ---
+  duration_ms: 317931.963333
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/catalog-release.test.mjs:247:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/catalog-release.test.mjs:278:22)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: rebound evidence rejects contradictory background/frame facts and shortened V1 pixel scopes
+ok 144 - rebound evidence rejects contradictory background/frame facts and shortened V1 pixel scopes
+  ---
+  duration_ms: 68103.345959
+  type: 'test'
+  ...
+# Subtest: two background IDs sharing one resource must report identical dimensions
+ok 145 - two background IDs sharing one resource must report identical dimensions
+  ---
+  duration_ms: 141437.73525
+  type: 'test'
+  ...
+# Subtest: all 20 text, plaque and four-unit soft zones are explicit; complete plaques on paper
+ok 146 - all 20 text, plaque and four-unit soft zones are explicit; complete plaques on paper
+  ---
+  duration_ms: 77.176125
+  type: 'test'
+  ...
+# Subtest: bounding-box centered map retains every center, polygon, distance and adjacency
+ok 147 - bounding-box centered map retains every center, polygon, distance and adjacency
+  ---
+  duration_ms: 1.674583
+  type: 'test'
+  ...
+# Subtest: nonconvex hull preserves staggered recesses and covers every hour-marker circle
+ok 148 - nonconvex hull preserves staggered recesses and covers every hour-marker circle
+  ---
+  duration_ms: 14.780541
+  type: 'test'
+  ...
+# Subtest: SVG alpha reference and JSON use identical union polygons, not an even-odd overlapping hole
+ok 149 - SVG alpha reference and JSON use identical union polygons, not an even-odd overlapping hole
+  ---
+  duration_ms: 1.798708
+  type: 'test'
+  ...
+# Subtest: universal frame excludes puzzle-specific overlays and fixed decoration corners
+ok 150 - universal frame excludes puzzle-specific overlays and fixed decoration corners
+  ---
+  duration_ms: 0.88225
+  type: 'test'
+  ...
+# Subtest: typed and grouped JSON contract remains independent of reference puzzle
+ok 151 - typed and grouped JSON contract remains independent of reference puzzle
+  ---
+  duration_ms: 0.190209
+  type: 'test'
+  ...
+# Subtest: prepared renderer has one uniformly scaled image per independent layer
+ok 152 - prepared renderer has one uniformly scaled image per independent layer
+  ---
+  duration_ms: 0.229833
+  type: 'test'
+  ...
+# Subtest: geographic grid: empty
+ok 153 - geographic grid: empty
+  ---
+  duration_ms: 5.644541
+  type: 'test'
+  ...
+# Subtest: geographic grid: passable single
+ok 154 - geographic grid: passable single
+  ---
+  duration_ms: 1.520708
+  type: 'test'
+  ...
+# Subtest: geographic grid: blocked single
+ok 155 - geographic grid: blocked single
+  ---
+  duration_ms: 1.088
+  type: 'test'
+  ...
+# Subtest: geographic grid: blocked multihex with an omitted interior cell
+ok 156 - geographic grid: blocked multihex with an omitted interior cell
+  ---
+  duration_ms: 0.954709
+  type: 'test'
+  ...
+# Subtest: geographic grid: edges, corners and both row parities
+ok 157 - geographic grid: edges, corners and both row parities
+  ---
+  duration_ms: 0.657084
+  type: 'test'
+  ...
+# Subtest: geographic grid: mixed kinds and passable multihex
+ok 158 - geographic grid: mixed kinds and passable multihex
+  ---
+  duration_ms: 1.587667
+  type: 'test'
+  ...
+# Subtest: overlapping zero: exact union, provenance, no mutation and idempotence
+ok 159 - overlapping zero: exact union, provenance, no mutation and idempotence
+  ---
+  duration_ms: 5.253167
+  type: 'test'
+  ...
+# Subtest: adjacent zero: exact union, provenance, no mutation and idempotence
+ok 160 - adjacent zero: exact union, provenance, no mutation and idempotence
+  ---
+  duration_ms: 2.988041
+  type: 'test'
+  ...
+# Subtest: overlapping all: exact union, provenance, no mutation and idempotence
+ok 161 - overlapping all: exact union, provenance, no mutation and idempotence
+  ---
+  duration_ms: 0.386167
+  type: 'test'
+  ...
+# Subtest: adjacent all: exact union, provenance, no mutation and idempotence
+ok 162 - adjacent all: exact union, provenance, no mutation and idempotence
+  ---
+  duration_ms: 0.286667
+  type: 'test'
+  ...
+# Subtest: nested all: exact union, provenance, no mutation and idempotence
+ok 163 - nested all: exact union, provenance, no mutation and idempotence
+  ---
+  duration_ms: 0.257459
+  type: 'test'
+  ...
+# Subtest: hour zero and singletons: exact union, provenance, no mutation and idempotence
+ok 164 - hour zero and singletons: exact union, provenance, no mutation and idempotence
+  ---
+  duration_ms: 2.056375
+  type: 'test'
+  ...
+# Subtest: all 56 extreme intervals and every pair agree for all 128 hour assignments
+ok 165 - all 56 extreme intervals and every pair agree for all 128 hour assignments
+  ---
+  duration_ms: 134.22325
+  type: 'test'
+  ...
+# Subtest: connected groups, bridging intervals and all input permutations have one canonical representation
+ok 166 - connected groups, bridging intervals and all input permutations have one canonical representation
+  ---
+  duration_ms: 4.858125
+  type: 'test'
+  ...
+# Subtest: unchanged: interior counts
+ok 167 - unchanged: interior counts
+  ---
+  duration_ms: 1.590625
+  type: 'test'
+  ...
+# Subtest: unchanged: different objects
+ok 168 - unchanged: different objects
+  ---
+  duration_ms: 0.970416
+  type: 'test'
+  ...
+# Subtest: unchanged: different distances
+ok 169 - unchanged: different distances
+  ---
+  duration_ms: 0.212125
+  type: 'test'
+  ...
+# Subtest: unchanged: real gap
+ok 170 - unchanged: real gap
+  ---
+  duration_ms: 0.091208
+  type: 'test'
+  ...
+# Subtest: unchanged: different predicates
+ok 171 - unchanged: different predicates
+  ---
+  duration_ms: 0.125167
+  type: 'test'
+  ...
+# Subtest: unchanged: mixed all and zero
+ok 172 - unchanged: mixed all and zero
+  ---
+  duration_ms: 0.07575
+  type: 'test'
+  ...
+# Subtest: unchanged: partial and all
+ok 173 - unchanged: partial and all
+  ---
+  duration_ms: 0.068708
+  type: 'test'
+  ...
+# Subtest: unchanged: overlap is not additive
+ok 174 - unchanged: overlap is not additive
+  ---
+  duration_ms: 0.06675
+  type: 'test'
+  ...
+# Subtest: uncertain or invalid input fails rather than being repaired
+ok 175 - uncertain or invalid input fails rather than being repaired
+  ---
+  duration_ms: 0.419292
+  type: 'test'
+  ...
+# Subtest: auxiliary solver pool covers every subset union without adding selectable clues
+ok 176 - auxiliary solver pool covers every subset union without adding selectable clues
+  ---
+  duration_ms: 1.754208
+  type: 'test'
+  ...
+# Subtest: fixed generator output: accepted-reviewed-attempt
+ok 177 - fixed generator output: accepted-reviewed-attempt
+  ---
+  duration_ms: 0.77725
+  type: 'test'
+  ...
+# Subtest: fixed generator output: exhausted-placement-budget
+ok 178 - fixed generator output: exhausted-placement-budget
+  ---
+  duration_ms: 0.098292
+  type: 'test'
+  ...
+# Subtest: fixed generator output: accepted-after-filter-rejection
+ok 179 - fixed generator output: accepted-after-filter-rejection
+  ---
+  duration_ms: 0.107083
+  type: 'test'
+  ...
+# Subtest: Voronoi bisectors use the stretched infinite lattice; cells tile without positive-area overlaps
+ok 180 - Voronoi bisectors use the stretched infinite lattice; cells tile without positive-area overlaps
+  ---
+  duration_ms: 121.101209
+  type: 'test'
+  ...
+# Subtest: shared edges and vertices have one canonical axial owner regardless of enumeration order
+ok 181 - shared edges and vertices have one canonical axial owner regardless of enumeration order
+  ---
+  duration_ms: 2.083875
+  type: 'test'
+  ...
+# Subtest: four production canvases and centroid placement agree at both row parities
+ok 182 - four production canvases and centroid placement agree at both row parities
+  ---
+  duration_ms: 1.463375
+  type: 'test'
+  ...
+# Subtest: concave shapes and enclosed omissions remain unions, never a hull or a bounding rectangle
+ok 183 - concave shapes and enclosed omissions remain unions, never a hull or a bounding rectangle
+  ---
+  duration_ms: 0.377791
+  type: 'test'
+  ...
+# Subtest: all 25 board cells have their full area, independently of gameplay protection
+ok 184 - all 25 board cells have their full area, independently of gameplay protection
+  ---
+  duration_ms: 4.130458
+  type: 'test'
+  ...
+# Subtest: every geometrically fitting translation retains the exact local contract and orientation
+ok 185 - every geometrically fitting translation retains the exact local contract and orientation
+  ---
+  duration_ms: 56.552291
+  type: 'test'
+  ...
+# Subtest: gallery deterministically covers both one-based row parities and all feasible edge/interior categories
+ok 186 - gallery deterministically covers both one-based row parities and all feasible edge/interior categories
+  ---
+  duration_ms: 2.667083
+  type: 'test'
+  ...
+# Subtest: technical template contracts match the browser contract
+ok 187 - technical template contracts match the browser contract
+  ---
+  duration_ms: 1.749416
+  type: 'test'
+  ...
+# Subtest: six-hour default is the validated reference with exact logical identities and public-only projection
+ok 188 - six-hour default is the validated reference with exact logical identities and public-only projection
+  ---
+  duration_ms: 170.225625
+  type: 'test'
+  ...
+# Subtest: coordinate notation shares the same labeled badges across every legal cell and supported spelling
+ok 189 - coordinate notation shares the same labeled badges across every legal cell and supported spelling
+  ---
+  duration_ms: 0.858209
+  type: 'test'
+  ...
+# Subtest: loader resolves explicitly supplied package locations without repository names or puzzle lists
+ok 190 - loader resolves explicitly supplied package locations without repository names or puzzle lists
+  ---
+  duration_ms: 11.616959
+  type: 'test'
+  ...
+# Subtest: empty catalogs are valid and unavailable catalogs give actionable errors
+ok 191 - empty catalogs are valid and unavailable catalogs give actionable errors
+  ---
+  duration_ms: 0.342292
+  type: 'test'
+  ...
+# Subtest: loader rejects mismatched IDs, internal documents, invalid versions and malformed JSON
+ok 192 - loader rejects mismatched IDs, internal documents, invalid versions and malformed JSON
+  ---
+  duration_ms: 3.378292
+  type: 'test'
+  ...
+# Subtest: existing topology and incomplete route analysis are preserved with their exactness flags
+ok 193 - existing topology and incomplete route analysis are preserved with their exactness flags
+  ---
+  duration_ms: 44.195375
+  type: 'test'
+  ...
+# Subtest: empty maps, duplicates, exhaustion and inconclusive filters are retained as distinct outcomes
+ok 194 - empty maps, duplicates, exhaustion and inconclusive filters are retained as distinct outcomes
+  ---
+  duration_ms: 43.618917
+  type: 'test'
+  ...
+# Subtest: an unexpected assignment error preserves geography and is never coverage none
+ok 195 - an unexpected assignment error preserves geography and is never coverage none
+  ---
+  duration_ms: 10.390583
+  type: 'test'
+  ...
+# Subtest: actual CLI writes every record, canonical manifest and summary; repeated batches and replay are byte identical
+not ok 196 - actual CLI writes every record, canonical manifest and summary; repeated batches and replay are byte identical
+  ---
+  duration_ms: 190.457167
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:75:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:36:104)
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:39:49)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:76:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CLI accepts the maximum uint32 seed for a one-attempt batch
+not ok 197 - CLI accepts the maximum uint32 seed for a one-attempt batch
+  ---
+  duration_ms: 170.779209
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:93:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:36:104)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:94:30)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CLI refuses malformed arguments/configs and unapproved releases before creating output
+not ok 198 - CLI refuses malformed arguments/configs and unapproved releases before creating output
+  ---
+  duration_ms: 174.148875
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:98:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:106:96)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: replay refuses commit, algorithm, format, profile, provenance and stored-result drift without output
+not ok 199 - replay refuses commit, algorithm, format, profile, provenance and stored-result drift without output
+  ---
+  duration_ms: 156.404667
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:109:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:36:104)
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:39:49)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:113:15)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: replay rejects dirty actual program files and a different actual program commit
+not ok 200 - replay rejects dirty actual program files and a different actual program commit
+  ---
+  duration_ms: 172.354542
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:121:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:36:104)
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:39:49)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:122:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: complete candidates remain replayable after interruption; truncated target records fail
+not ok 201 - complete candidates remain replayable after interruption; truncated target records fail
+  ---
+  duration_ms: 170.090666
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:133:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:36:104)
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:39:49)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:134:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: write failure leaves earlier candidates and no successful summary
+not ok 202 - write failure leaves earlier candidates and no successful summary
+  ---
+  duration_ms: 179.691834
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:140:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:151:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: unexpected assignment failure in the actual CLI retains geography and aborts the batch
+not ok 203 - unexpected assignment failure in the actual CLI retains geography and aborts the batch
+  ---
+  duration_ms: 415.596417
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:155:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:162:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: batch and replay read pinned Git resources with Git-only PATH and no working resource files
+not ok 204 - batch and replay read pinned Git resources with Git-only PATH and no working resource files
+  ---
+  duration_ms: 1172.908834
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:170:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:36:104)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-batch.test.mjs:176:2)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: selection is explicit, zero-based, unique and preserves caller order
+not ok 205 - selection is explicit, zero-based, unique and preserves caller order
+  ---
+  duration_ms: 2.080542
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:25:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-2OB51e/batch/manifest.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    readJson (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:20:36)
+    readContactBatch (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:43:17)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:14:61)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+  ...
+# Subtest: refuses format, profile, provenance, seeds, fingerprints and saved assignment drift before output
+not ok 206 - refuses format, profile, provenance, seeds, fingerprints and saved assignment drift before output
+  ---
+  duration_ms: 0.088083
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:35:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-2OB51e/batch/manifest.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    readJson (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:20:36)
+    readContactBatch (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:43:17)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:14:61)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+  ...
+# Subtest: empty complete maps render without invented objects
+not ok 207 - empty complete maps render without invented objects
+  ---
+  duration_ms: 0.04725
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:56:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-2OB51e/batch/manifest.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    readJson (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:20:36)
+    readContactBatch (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:43:17)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:14:61)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+  ...
+# Subtest: SVG reuses full chart bounds, exact asset rectangles and layer order
+not ok 208 - SVG reuses full chart bounds, exact asset rectangles and layer order
+  ---
+  duration_ms: 0.121334
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:67:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-2OB51e/batch/manifest.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    readJson (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:20:36)
+    readContactBatch (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:43:17)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:14:61)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+  ...
+# Subtest: decode errors name the resource; valid approved transparent PNG/WebP bytes decode without a pixel checker
+not ok 209 - decode errors name the resource; valid approved transparent PNG/WebP bytes decode without a pixel checker
+  ---
+  duration_ms: 0.047208
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:88:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-2OB51e/batch/manifest.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    readJson (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:20:36)
+    readContactBatch (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:43:17)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:14:61)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+  ...
+# Subtest: static output is byte reproducible, deduplicates pinned resources and never overwrites
+not ok 210 - static output is byte reproducible, deduplicates pinned resources and never overwrites
+  ---
+  duration_ms: 0.027708
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:97:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-2OB51e/batch/manifest.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    readJson (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:20:36)
+    readContactBatch (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:43:17)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:14:61)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+  ...
+# Subtest: release reads ignore absent working assets, reject unavailable releases, and never use a fallback
+not ok 211 - release reads ignore absent working assets, reject unavailable releases, and never use a fallback
+  ---
+  duration_ms: 0.118042
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:112:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-2OB51e/batch/manifest.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    readJson (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:20:36)
+    readContactBatch (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:43:17)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:14:61)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+  ...
+# Subtest: CLI rejects malformed, implicit or duplicate selection options
+not ok 212 - CLI rejects malformed, implicit or duplicate selection options
+  ---
+  duration_ms: 0.030542
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:120:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-2OB51e/batch/manifest.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    readJson (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:20:36)
+    readContactBatch (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/scripts/lib/map-contact-sheet.mjs:43:17)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/map-contact-sheet.test.mjs:14:61)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+  ...
+# Subtest: published schemas equal executable contracts
+ok 213 - published schemas equal executable contracts
+  ---
+  duration_ms: 4.894958
+  type: 'test'
+  ...
+# Subtest: objects have stable unique IDs and disjoint connected nonempty cell sets
+ok 214 - objects have stable unique IDs and disjoint connected nonempty cell sets
+  ---
+  duration_ms: 3
+  type: 'test'
+  ...
+# Subtest: abstract maps reject presentation and instance data, including independently maintained blocked lists
+ok 215 - abstract maps reject presentation and instance data, including independently maintained blocked lists
+  ---
+  duration_ms: 2.073583
+  type: 'test'
+  ...
+# Subtest: start must be an explicit cell on a passable object; unnamed objects are valid
+ok 216 - start must be an explicit cell on a passable object; unnamed objects are valid
+  ---
+  duration_ms: 2.825792
+  type: 'test'
+  ...
+# Subtest: logic validates clue references, inclusive ranges, zero distance and strict parameter types
+ok 217 - logic validates clue references, inclusive ranges, zero distance and strict parameter types
+  ---
+  duration_ms: 2.203084
+  type: 'test'
+  ...
+# Subtest: new rules and schema versions are explicit; dataVersion is a content revision
+ok 218 - new rules and schema versions are explicit; dataVersion is a content revision
+  ---
+  duration_ms: 0.727333
+  type: 'test'
+  ...
+# Subtest: complete document validation is independent of solver execution and validates optional target separately
+ok 219 - complete document validation is independent of solver execution and validates optional target separately
+  ---
+  duration_ms: 0.627625
+  type: 'test'
+  ...
+# Subtest: public projection deep allowlists maps, objects, clues and placements, and cannot leak internal target or seed
+ok 220 - public projection deep allowlists maps, objects, clues and placements, and cannot leak internal target or seed
+  ---
+  duration_ms: 4.116417
+  type: 'test'
+  ...
+# Subtest: public DTO rejects private fields and mismatching versions at every strict boundary
+ok 221 - public DTO rejects private fields and mismatching versions at every strict boundary
+  ---
+  duration_ms: 2.058042
+  type: 'test'
+  ...
+# Subtest: presentation requires only referenced clue texts, permits optional names, rejects unknown object names
+ok 222 - presentation requires only referenced clue texts, permits optional names, rejects unknown object names
+  ---
+  duration_ms: 5.648834
+  type: 'test'
+  ...
+# Subtest: both interval operators reject reversed ranges and out-of-instance hours; a legal schema may be unsatisfiable
+ok 223 - both interval operators reject reversed ranges and out-of-instance hours; a legal schema may be unsatisfiable
+  ---
+  duration_ms: 0.557667
+  type: 'test'
+  ...
+# Subtest: B2 reads a completed B1 corpus, saves full independently verifiable variants, and reproduces all deterministic files
+not ok 224 - B2 reads a completed B1 corpus, saves full independently verifiable variants, and reproduces all deterministic files
+  ---
+  duration_ms: 0.751666
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:36:1'
+  failureType: 'hookFailed'
+  error: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-DtKnj3/batch'
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:32:9)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:27:1
+    ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+  ...
+# Subtest: B2 enumeration exhaustion produces unknown starts and no successful candidates
+not ok 225 - B2 enumeration exhaustion produces unknown starts and no successful candidates
+  ---
+  duration_ms: 0.058
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:78:1'
+  failureType: 'hookFailed'
+  error: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-DtKnj3/batch'
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:32:9)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:27:1
+    ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+  ...
+# Subtest: B2 counts incomplete true pools even when solver budgets allow no stored candidate
+not ok 226 - B2 counts incomplete true pools even when solver budgets allow no stored candidate
+  ---
+  duration_ms: 0.040292
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:85:1'
+  failureType: 'hookFailed'
+  error: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-DtKnj3/batch'
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:32:9)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:27:1
+    ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+  ...
+# Subtest: missing route ordinals are proven unavailable, with no claim that the map cannot generate puzzles
+not ok 227 - missing route ordinals are proven unavailable, with no claim that the map cannot generate puzzles
+  ---
+  duration_ms: 0.039542
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:97:1'
+  failureType: 'hookFailed'
+  error: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-DtKnj3/batch'
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:32:9)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:27:1
+    ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+  ...
+# Subtest: corrupt rows, inconsistent summaries and unfinished B1 inputs fail before creating output
+not ok 228 - corrupt rows, inconsistent summaries and unfinished B1 inputs fail before creating output
+  ---
+  duration_ms: 0.060833
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:107:1'
+  failureType: 'hookFailed'
+  error: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-DtKnj3/batch'
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:32:9)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:27:1
+    ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+  ...
+# Subtest: explicit CLI budgets, uint32 seed, distinct route indices, six steps and separate output are enforced
+not ok 229 - explicit CLI budgets, uint32 seed, distinct route indices, six steps and separate output are enforced
+  ---
+  duration_ms: 0.033167
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:119:1'
+  failureType: 'hookFailed'
+  error: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-DtKnj3/batch'
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:32:9)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-experiment.test.mjs:27:1
+    ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+  ...
+# ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+# Subtest: P2-2: valid existing B1 format-1 experiments remain readable with their original batch
+not ok 230 - P2-2: valid existing B1 format-1 experiments remain readable with their original batch
+  ---
+  duration_ms: 3.778583
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:40:1'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: unchanged B1 example from reviewed c74899a is accepted with its hash-bound original source
+not ok 231 - P2-2: unchanged B1 example from reviewed c74899a is accepted with its hash-bound original source
+  ---
+  duration_ms: 0.173333
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:45:1'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: valid B1 budget-incomplete counts remain acceptable
+not ok 232 - P2-2: valid B1 budget-incomplete counts remain acceptable
+  ---
+  duration_ms: 0.075834
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:52:1'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: a regularly completed source with zero accepted maps retains valid empty B1 selection
+not ok 233 - P2-2: a regularly completed source with zero accepted maps retains valid empty B1 selection
+  ---
+  duration_ms: 0.095166
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:60:1'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: rejects nonexistent embedded release
+not ok 234 - P2-2: rejects nonexistent embedded release
+  ---
+  duration_ms: 0.340584
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:78:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: rejects nonexistent saved motif
+not ok 235 - P2-2: rejects nonexistent saved motif
+  ---
+  duration_ms: 0.067083
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:78:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: rejects negative assignment seed
+not ok 236 - P2-2: rejects negative assignment seed
+  ---
+  duration_ms: 0.176417
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:78:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: rejects wrong generation seed
+not ok 237 - P2-2: rejects wrong generation seed
+  ---
+  duration_ms: 0.041042
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:78:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: rejects wrong original candidate index
+not ok 238 - P2-2: rejects wrong original candidate index
+  ---
+  duration_ms: 0.463875
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:78:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: rejects changed embedded seed plan
+not ok 239 - P2-2: rejects changed embedded seed plan
+  ---
+  duration_ms: 0.290958
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:78:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: rejects changed embedded batch summary
+not ok 240 - P2-2: rejects changed embedded batch summary
+  ---
+  duration_ms: 0.03975
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:78:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: the recorded source hashes bind exact original bytes, including unselected records
+not ok 241 - P2-2: the recorded source hashes bind exact original bytes, including unselected records
+  ---
+  duration_ms: 0.033375
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:83:1'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: existing batch/release validator rejects forged release even after all B1 source hashes are rebound
+not ok 242 - P2-2: existing batch/release validator rejects forged release even after all B1 source hashes are rebound
+  ---
+  duration_ms: 0.030083
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:101:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: existing batch/release validator rejects forged seed plan even after all B1 source hashes are rebound
+not ok 243 - P2-2: existing batch/release validator rejects forged seed plan even after all B1 source hashes are rebound
+  ---
+  duration_ms: 0.030958
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:101:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: existing batch/release validator rejects forged unselected assignment even after all B1 source hashes are rebound
+not ok 244 - P2-2: existing batch/release validator rejects forged unselected assignment even after all B1 source hashes are rebound
+  ---
+  duration_ms: 0.029292
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:101:3'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: P2-2: CLI rejects manipulated provenance before reserving output or starting candidate search
+not ok 245 - P2-2: CLI rejects manipulated provenance before reserving output or starting candidate search
+  ---
+  duration_ms: 0.097459
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:107:1'
+  failureType: 'hookFailed'
+  error: |-
+    Command failed: /opt/homebrew/Cellar/node@22/22.23.3_3/bin/node /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/program/scripts/run-route-experiment.mjs --batch /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch --accepted-indices 1,2 --max-nodes-per-start 100000 --out /var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/b1
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-G0hVUM/batch'
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:916:11)
+    execFileSync (node:child_process:952:15)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/puzzle-provenance.test.mjs:18:2)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+  ...
+# Subtest: real approved release supplies exactly 18 assets, 368 anchors and 154 geographic profile placements
+ok 246 - real approved release supplies exactly 18 assets, 368 anchors and 154 geographic profile placements
+  ---
+  duration_ms: 64.582625
+  type: 'test'
+  ...
+# Subtest: every archived anchor can represent its exact object without changing map identities or admitting excluded assets
+ok 247 - every archived anchor can represent its exact object without changing map identities or admitting excluded assets
+  ---
+  duration_ms: 2112.519084
+  type: 'test'
+  ...
+# Subtest: context and provenance are deeply immutable; all 54 resource reads return isolated verified bytes
+ok 248 - context and provenance are deeply immutable; all 54 resource reads return isolated verified bytes
+  ---
+  duration_ms: 97.291834
+  type: 'test'
+  ...
+# Subtest: release and production background must be explicit; archived alternatives do not inherit approval
+ok 249 - release and production background must be explicit; archived alternatives do not inherit approval
+  ---
+  duration_ms: 23413.13375
+  type: 'test'
+  ...
+# Subtest: working-tree archive files cannot promote the pre-approval source commit
+ok 250 - working-tree archive files cannot promote the pre-approval source commit
+  ---
+  duration_ms: 1552.888583
+  type: 'test'
+  ...
+# Subtest: missing or mismatched approval and changed selection/anchors are rejected before any context is returned
+ok 251 - missing or mismatched approval and changed selection/anchors are rejected before any context is returned
+  ---
+  duration_ms: 23624.167083
+  type: 'test'
+  ...
+# Subtest: dirty catalog, image, checker, policy and approval files cannot change a pinned context or its resources
+ok 252 - dirty catalog, image, checker, policy and approval files cannot change a pinned context or its resources
+  ---
+  duration_ms: 13284.729917
+  type: 'test'
+  ...
+# Subtest: later archive commits change observed provenance without changing the release, catalog or technical digest
+ok 253 - later archive commits change observed provenance without changing the release, catalog or technical digest
+  ---
+  duration_ms: 14276.586375
+  type: 'test'
+  ...
+# Subtest: fresh adapter, profile and assignment process uses only Git, never imports image-preparation modules
+ok 254 - fresh adapter, profile and assignment process uses only Git, never imports image-preparation modules
+  ---
+  duration_ms: 6803.266458
+  type: 'test'
+  ...
+# Subtest: committed archive documents without pinned source objects cannot fall back to working resources
+ok 255 - committed archive documents without pinned source objects cannot fall back to working resources
+  ---
+  duration_ms: 544.855833
+  type: 'test'
+  ...
+# Subtest: B1 counts all eligible starts at exactly six steps using existing route semantics
+ok 256 - B1 counts all eligible starts at exactly six steps using existing route semantics
+  ---
+  duration_ms: 77.9425
+  type: 'test'
+  ...
+# Subtest: empty and blocked-only maps remain explicit no-start results with exact zero
+ok 257 - empty and blocked-only maps remain explicit no-start results with exact zero
+  ---
+  duration_ms: 2.559125
+  type: 'test'
+  ...
+# Subtest: component proof and exhaustive zero routes are distinguished from budget exhaustion
+ok 258 - component proof and exhaustive zero routes are distinguished from budget exhaustion
+  ---
+  duration_ms: 7.191541
+  type: 'test'
+  ...
+# Subtest: B2 route ordinals use the engine order, stable instance identity and an independent explicit budget
+ok 259 - B2 route ordinals use the engine order, stable instance identity and an independent explicit budget
+  ---
+  duration_ms: 68.007083
+  type: 'test'
+  ...
+# Subtest: symlink CLI without required arguments fails like the canonical entry point
+ok 260 - symlink CLI without required arguments fails like the canonical entry point
+  ---
+  duration_ms: 379.252208
+  type: 'test'
+  ...
+# Subtest: file and directory symlink CLI calls execute and produce the canonical result files
+not ok 261 - file and directory symlink CLI calls execute and produce the canonical result files
+  ---
+  duration_ms: 188.037542
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:112:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-ulN41q/batch'
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:102:9)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:113:18)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: real completed input produces byte-identical B1 files across output paths and preserves every selected map
+not ok 262 - real completed input produces byte-identical B1 files across output paths and preserves every selected map
+  ---
+  duration_ms: 0.72225
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:128:1'
+  failureType: 'testCodeFailure'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-ulN41q/batch/manifest.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    read (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:94:27)
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:129:113
+    Array.map (<anonymous>)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:129:103)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: explicit selection order, duplicates of map content, and incomplete counts remain visible without replacements
+not ok 263 - explicit selection order, duplicates of map content, and incomplete counts remain visible without replacements
+  ---
+  duration_ms: 179.988667
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:149:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-ulN41q/batch'
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:102:9)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:150:17)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: all also records a completed source batch with zero accepted cards
+not ok 264 - all also records a completed source batch with zero accepted cards
+  ---
+  duration_ms: 2748.931792
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:167:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-Qc29pk/batch'
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:102:9)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:170:11)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid or unfinished input, including corrupt UNSELECTED records, is refused before reserving output
+not ok 265 - invalid or unfinished input, including corrupt UNSELECTED records, is refused before reserving output
+  ---
+  duration_ms: 0.86375
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:175:1'
+  failureType: 'testCodeFailure'
+  error: "ENOENT: no such file or directory, lstat '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-ulN41q/batch'"
+  code: 'ENOENT'
+  stack: |-
+    cpSyncFn (node:internal/fs/cp/cp-sync:56:13)
+    Object.cpSync (node:fs:3132:3)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:180:35)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: source suitability filters cannot silently select the B1 corpus
+not ok 266 - source suitability filters cannot silently select the B1 corpus
+  ---
+  duration_ms: 2707.465083
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:189:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /suitability filters/. Input:
+    
+    "ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-T00SiN/batch'\n"
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    ENOENT: no such file or directory, lstat '/private/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-T00SiN/batch'
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/route-experiment.test.mjs:193:35)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CLI rejects implicit budgets, shorter routes, malformed and duplicate selections and unknown strategy flags
+ok 267 - CLI rejects implicit budgets, shorter routes, malformed and duplicate selections and unknown strategy flags
+  ---
+  duration_ms: 382.532667
+  type: 'test'
+  ...
+# Subtest: S03 excludes multi-hour S0 in parameter production, retaining single S0 and all other families
+ok 268 - S03 excludes multi-hour S0 in parameter production, retaining single S0 and all other families
+  ---
+  duration_ms: 207.850041
+  type: 'test'
+  ...
+# Subtest: optional early evaluation preserves default search, records rejection and never diagnoses a repeated identity
+ok 269 - optional early evaluation preserves default search, records rejection and never diagnoses a repeated identity
+  ---
+  duration_ms: 490.807709
+  type: 'test'
+  ...
+# Subtest: frozen early and late filter boundaries are experimental and independent
+ok 270 - frozen early and late filter boundaries are experimental and independent
+  ---
+  duration_ms: 0.290458
+  type: 'test'
+  ...
+# Subtest: existing source-bound V2 certificates yield signals without treating missing subsets as negative evidence
+ok 271 - existing source-bound V2 certificates yield signals without treating missing subsets as negative evidence
+  ---
+  duration_ms: 126.227625
+  type: 'test'
+  ...
+# Subtest: series selection rewards new observed features, respects map/signature caps and uses stable identity ties
+ok 272 - series selection rewards new observed features, respects map/signature caps and uses stable identity ties
+  ---
+  duration_ms: 0.607083
+  type: 'test'
+  ...
+# Subtest: source geography and release assignments are verified; inputs and historical identities stay unchanged
+ok 273 - source geography and release assignments are verified; inputs and historical identities stay unchanged
+  ---
+  duration_ms: 8946.912791
+  type: 'test'
+  ...
+# Subtest: S03 uses the existing public export, binds records and keeps private evidence out
+ok 274 - S03 uses the existing public export, binds records and keeps private evidence out
+  ---
+  duration_ms: 170.71475
+  type: 'test'
+  ...
+# Subtest: round-robin covers every eligible map before second choices and handles uneven source groups
+ok 275 - round-robin covers every eligible map before second choices and handles uneven source groups
+  ---
+  duration_ms: 2.486834
+  type: 'test'
+  ...
+# Subtest: planning depends only on source ordinal and existing early criteria, never prior diagnosis success
+ok 276 - planning depends only on source ordinal and existing early criteria, never prior diagnosis success
+  ---
+  duration_ms: 2.765125
+  type: 'test'
+  ...
+# Subtest: all eighty v1 candidates are materialized with identical logical identities and a result-independent forty-position plan
+ok 277 - all eighty v1 candidates are materialized with identical logical identities and a result-independent forty-position plan
+  ---
+  duration_ms: 14.992375
+  type: 'test'
+  ...
+# Subtest: source importer rejects changed fingerprints, definitions, seed and identity while discarding old diagnostic payload
+ok 278 - source importer rejects changed fingerprints, definitions, seed and identity while discarding old diagnostic payload
+  ---
+  duration_ms: 12660.649458
+  type: 'test'
+  ...
+# Subtest: v2 public export uses the released formatter without changing logical clues or exposing private sources
+ok 279 - v2 public export uses the released formatter without changing logical clues or exposing private sources
+  ---
+  duration_ms: 28.054042
+  type: 'test'
+  ...
+# Subtest: released formatter, radar, solver and deduction rules are byte-identical to synchronized main
+ok 280 - released formatter, radar, solver and deduction rules are byte-identical to synchronized main
+  ---
+  duration_ms: 294.590167
+  type: 'test'
+  ...
+# Subtest: S04-C is a completed small new experiment with fixed source, no public export and no final production
+ok 281 - S04-C is a completed small new experiment with fixed source, no public export and no final production
+  ---
+  duration_ms: 79.431625
+  type: 'test'
+  ...
+# Subtest: S04-C A receipts, normalized proofs, diagnosis plan, all states and private cohorts replay
+ok 282 - S04-C A receipts, normalized proofs, diagnosis plan, all states and private cohorts replay
+  ---
+  duration_ms: 1649.915208
+  type: 'test'
+  ...
+# Subtest: S04-C B receipts, normalized proofs, diagnosis plan, all states and private cohorts replay
+ok 283 - S04-C B receipts, normalized proofs, diagnosis plan, all states and private cohorts replay
+  ---
+  duration_ms: 1780.320167
+  type: 'test'
+  ...
+# Subtest: new candidates fit the existing v2 presentation/public allowlist without shipping private analysis
+ok 284 - new candidates fit the existing v2 presentation/public allowlist without shipping private analysis
+  ---
+  duration_ms: 226.933208
+  type: 'test'
+  ...
+# Subtest: new private candidates bind the authenticated B1 maps, starts and released assignments
+ok 285 - new private candidates bind the authenticated B1 maps, starts and released assignments
+  ---
+  duration_ms: 9227.941667
+  type: 'test'
+  ...
+# Subtest: production retains reviewed budgets and preferences, expands diagnosis capacity and explicitly fixes all map options
+ok 286 - production retains reviewed budgets and preferences, expands diagnosis capacity and explicitly fixes all map options
+  ---
+  duration_ms: 10.837208
+  type: 'test'
+  ...
+# Subtest: only two fair rounds are scheduled even when fewer maps leave spare diagnosis capacity
+ok 287 - only two fair rounds are scheduled even when fewer maps leave spare diagnosis capacity
+  ---
+  duration_ms: 1.047833
+  type: 'test'
+  ...
+# Subtest: neutral handoff contains no group, preference, diagnosis or automatic flavor and audits control reservations privately
+ok 288 - neutral handoff contains no group, preference, diagnosis or automatic flavor and audits control reservations privately
+  ---
+  duration_ms: 1.249958
+  type: 'test'
+  ...
+# Subtest: verification never learns an expected origin digest from the inspected files
+ok 289 - verification never learns an expected origin digest from the inspected files
+  ---
+  duration_ms: 1.833792
+  type: 'test'
+  ...
+# Subtest: preferences accept a bounded unresolved route and distinguish missing interaction from mathematical redundancy
+ok 290 - preferences accept a bounded unresolved route and distinguish missing interaction from mathematical redundancy
+  ---
+  duration_ms: 2.705417
+  type: 'test'
+  ...
+# Subtest: controls come from the independently defined nonpreferred frame, before preferred map reservation
+ok 291 - controls come from the independently defined nonpreferred frame, before preferred map reservation
+  ---
+  duration_ms: 4.684167
+  type: 'test'
+  ...
+# Subtest: cohort sizes do not pad missing controls and signature cap spans both groups
+ok 292 - cohort sizes do not pad missing controls and signature cap spans both groups
+  ---
+  duration_ms: 0.443125
+  type: 'test'
+  ...
+# Subtest: both arms preserve all S03 early exclusions and the identical round-robin diagnosis capacity
+ok 293 - both arms preserve all S03 early exclusions and the identical round-robin diagnosis capacity
+  ---
+  duration_ms: 1.078167
+  type: 'test'
+  ...
+# Subtest: fixed small protocol binds normalization, S0 policy, two arms and original budget ceilings
+ok 294 - fixed small protocol binds normalization, S0 policy, two arms and original budget ceilings
+  ---
+  duration_ms: 0.425083
+  type: 'test'
+  ...
+# Subtest: historical inventory excludes old maps and variants without editing or trusting changed bytes
+ok 295 - historical inventory excludes old maps and variants without editing or trusting changed bytes
+  ---
+  duration_ms: 922.285583
+  type: 'test'
+  ...
+# Subtest: accepted positions resolve original attempts and both independent seeds without changing records
+not ok 296 - accepted positions resolve original attempts and both independent seeds without changing records
+  ---
+  duration_ms: 0.76
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:27:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-N5XDtp/batch/accepted.jsonl'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    rows (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:12:29)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:16:11)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:14:1
+  ...
+# Subtest: only accepted complete results are displayed; removed selection and invalid result indices are refused
+not ok 297 - only accepted complete results are displayed; removed selection and invalid result indices are refused
+  ---
+  duration_ms: 0.118875
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:39:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-N5XDtp/batch/accepted.jsonl'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    rows (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:12:29)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:16:11)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:14:1
+  ...
+# Subtest: both saved streams and target summaries are validated including unselected rows
+not ok 298 - both saved streams and target summaries are validated including unselected rows
+  ---
+  duration_ms: 0.053875
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:50:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-N5XDtp/batch/accepted.jsonl'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    rows (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:12:29)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:16:11)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:14:1
+  ...
+# Subtest: complete rendering preserves exact motif rectangle, anchor, orientation and edge placement
+not ok 299 - complete rendering preserves exact motif rectangle, anchor, orientation and edge placement
+  ---
+  duration_ms: 0.141458
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:68:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-N5XDtp/batch/accepted.jsonl'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    rows (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:12:29)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:16:11)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:14:1
+  ...
+# Subtest: HTML links result, attempt, fingerprint and saved motif anchors and is byte reproducible
+not ok 300 - HTML links result, attempt, fingerprint and saved motif anchors and is byte reproducible
+  ---
+  duration_ms: 0.064375
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:88:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-N5XDtp/batch/accepted.jsonl'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    rows (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:12:29)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:16:11)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:14:1
+  ...
+# Subtest: regular budget exhaustion retains actual accepted results and explicitly reports an unmet target
+not ok 301 - regular budget exhaustion retains actual accepted results and explicitly reports an unmet target
+  ---
+  duration_ms: 0.038542
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:106:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-N5XDtp/batch/accepted.jsonl'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    rows (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:12:29)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:16:11)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:14:1
+  ...
+# Subtest: a thousand-result batch supports sparse selection across the complete accepted stream
+not ok 302 - a thousand-result batch supports sparse selection across the complete accepted stream
+  ---
+  duration_ms: 0.139458
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:115:1'
+  failureType: 'hookFailed'
+  error: "ENOENT: no such file or directory, open '/var/folders/tc/3y2h3s814yv2v1s5q_ycfp7c0000gn/T/gk-contact-test-N5XDtp/batch/accepted.jsonl'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:440:20)
+    rows (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:12:29)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:16:11)
+    TestHook.runInAsyncScope (node:async_hooks:214:14)
+    TestHook.run (node:internal/test_runner/test:1047:25)
+    TestHook.run (node:internal/test_runner/test:1354:18)
+    TestHook.run (node:internal/util:580:20)
+    Test.createHook (node:internal/test_runner/test:872:33)
+    node:internal/test_runner/harness:335:12
+    file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-contact-sheet.test.mjs:14:1
+  ...
+# Subtest: target options require an explicit bounded budget, canonical seed schedules
+ok 303 - target options require an explicit bounded budget, canonical seed schedules
+  ---
+  duration_ms: 2.874792
+  type: 'test'
+  ...
+# Subtest: target records use original attempt indices/seeds and existing geography and assignment services
+ok 304 - target records use original attempt indices/seeds and existing geography and assignment services
+  ---
+  duration_ms: 95.020875
+  type: 'test'
+  ...
+# Subtest: whole-map assignment remains a final acceptance gate even if a trusted profile overstates stock
+ok 305 - whole-map assignment remains a final acceptance gate even if a trusted profile overstates stock
+  ---
+  duration_ms: 20.20475
+  type: 'test'
+  ...
+# Subtest: real released target batch replaces rejected attempts, saves only complete accepted maps and replays byte exactly
+not ok 306 - real released target batch replaces rejected attempts, saves only complete accepted maps and replays byte exactly
+  ---
+  duration_ms: 234.149666
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:75:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:37:88)
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:40:16)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:76:24)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: budget exhaustion and impossible catalog requests report zero or actual accepted count without substitute maps
+not ok 307 - budget exhaustion and impossible catalog requests report zero or actual accepted count without substitute maps
+  ---
+  duration_ms: 246.915417
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:104:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:37:88)
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:40:16)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:105:24)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: empty maps remain explicit duplicates; no uniqueness condition or invented quality score is introduced
+not ok 308 - empty maps remain explicit duplicates; no uniqueness condition or invented quality score is introduced
+  ---
+  duration_ms: 216.321
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:114:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:37:88)
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:40:16)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:115:24)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: target replay rejects manifest/version/seed/decision drift and remains usable after interruption
+not ok 309 - target replay rejects manifest/version/seed/decision drift and remains usable after interruption
+  ---
+  duration_ms: 209.788292
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:121:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:37:88)
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:40:16)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:122:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CLI refuses removed mode/count/preference flags and invalid budgets before output
+not ok 310 - CLI refuses removed mode/count/preference flags and invalid budgets before output
+  ---
+  duration_ms: 231.11175
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:135:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:139:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: target run and replay use Git release resources with absent working assets; missing approval cannot fall back
+not ok 311 - target run and replay use Git release resources with absent working assets; missing approval cannot fall back
+  ---
+  duration_ms: 1935.560916
+  type: 'test'
+  location: '/Users/roquas/Documents/ChatGPT/Sams Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:143:1'
+  failureType: 'testCodeFailure'
+  error: 'Unexpected end of JSON input'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    JSON.parse (<anonymous>)
+    success (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:37:88)
+    run (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:40:16)
+    TestContext.<anonymous> (file:///Users/roquas/Documents/ChatGPT/Sams%20Gezeitenkarten/.dev/logbook-baseline/tests/contracts/target-map-batch.test.mjs:146:22)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: all pairs and triples are enumerated once, plus a separately labelled full control
+ok 312 - all pairs and triples are enumerated once, plus a separately labelled full control
+  ---
+  duration_ms: 4.0835
+  type: 'test'
+  ...
+# Subtest: all current local forms preserve every solution, with replayable provenance
+ok 313 - all current local forms preserve every solution, with replayable provenance
+  ---
+  duration_ms: 2506.977959
+  type: 'test'
+  ...
+# Subtest: a necessary premise cannot be supplied by an unlinked earlier step or the full solution space
+ok 314 - a necessary premise cannot be supplied by an unlinked earlier step or the full solution space
+  ---
+  duration_ms: 23.626625
+  type: 'test'
+  ...
+# Subtest: a necessary transitive restriction must reconstruct the recorded before state
+ok 315 - a necessary transitive restriction must reconstruct the recorded before state
+  ---
+  duration_ms: 26.507791
+  type: 'test'
+  ...
+# Subtest: count-bounds cannot exclude a definite hit hidden by an unlinked clue (534 counterexamples)
+ok 316 - count-bounds cannot exclude a definite hit hidden by an unlinked clue (534 counterexamples)
+  ---
+  duration_ms: 59.420208
+  type: 'test'
+  ...
+# Subtest: zero/all residual count bounds include hour 0 and use fixed information
+ok 317 - zero/all residual count bounds include hour 0 and use fixed information
+  ---
+  duration_ms: 18.265792
+  type: 'test'
+  ...
+# Subtest: unknown is not excluded or fixed; contradiction is not a singleton
+ok 318 - unknown is not excluded or fixed; contradiction is not a singleton
+  ---
+  duration_ms: 9.144417
+  type: 'test'
+  ...
+# Subtest: unsupported local types are explicitly reported; exact analysis rejects them
+ok 319 - unsupported local types are explicitly reported; exact analysis rejects them
+  ---
+  duration_ms: 6.015125
+  type: 'test'
+  ...
+# Subtest: diagnosis never reads a stored answer, mutates logic or seeds local domains from exact projections
+ok 320 - diagnosis never reads a stored answer, mutates logic or seeds local domains from exact projections
+  ---
+  duration_ms: 47.270125
+  type: 'test'
+  ...
+# Subtest: composition counts occurrences once and uses every existing presentation identifier
+ok 321 - composition counts occurrences once and uses every existing presentation identifier
+  ---
+  duration_ms: 6.10475
+  type: 'test'
+  ...
+# Subtest: identical parameters are occurrences, not distinct-clue or candidate-form counters
+ok 322 - identical parameters are occurrences, not distinct-clue or candidate-form counters
+  ---
+  duration_ms: 0.427625
+  type: 'test'
+  ...
+# Subtest: empty populations have zero totals and unknown types are not invented report categories
+ok 323 - empty populations have zero totals and unknown types are not invented report categories
+  ---
+  duration_ms: 0.65075
+  type: 'test'
+  ...
+# Subtest: bounded alternatives avoid the shortcut, retain necessity, and replay exactly
+ok 324 - bounded alternatives avoid the shortcut, retain necessity, and replay exactly
+  ---
+  duration_ms: 5.94125
+  type: 'test'
+  ...
+# Subtest: budget exhaustion is reported and cannot accept an unproven candidate
+ok 325 - budget exhaustion is reported and cannot accept an unproven candidate
+  ---
+  duration_ms: 0.218417
+  type: 'test'
+  ...
+# Subtest: empty/no-progress pools and already unique backgrounds terminate
+ok 326 - empty/no-progress pools and already unique backgrounds terminate
+  ---
+  duration_ms: 0.311334
+  type: 'test'
+  ...
+# Subtest: protocol rejects hidden knobs, duplicate arms and unlabelled strategies
+ok 327 - protocol rejects hidden knobs, duplicate arms and unlabelled strategies
+  ---
+  duration_ms: 24.338208
+  type: 'test'
+  ...
+# Subtest: global matching prevents blocked reuse, permits distinct paintings of a form and diagnoses shortage
+ok 328 - global matching prevents blocked reuse, permits distinct paintings of a form and diagnoses shortage
+  ---
+  duration_ms: 12.57075
+  type: 'test'
+  ...
+# Subtest: matching finds full assignments across overlapping candidate sets and maximizes passable diversity
+ok 329 - matching finds full assignments across overlapping candidate sets and maximizes passable diversity
+  ---
+  duration_ms: 57.051375
+  type: 'test'
+  ...
+# Subtest: passable paintings are distinct before reuse, then least-used matching paintings are preferred
+ok 330 - passable paintings are distinct before reuse, then least-used matching paintings are preferred
+  ---
+  duration_ms: 14.81175
+  type: 'test'
+  ...
+# Subtest: capacity profile derives forms, availability and counts from eligible catalog entries only
+ok 331 - capacity profile derives forms, availability and counts from eligible catalog entries only
+  ---
+  duration_ms: 17.633917
+  type: 'test'
+  ...
+# Subtest: constrained generation uses only covered shapes, respects all edges and preserves geographic/asset separation
+ok 332 - constrained generation uses only covered shapes, respects all edges and preserves geographic/asset separation
+  ---
+  duration_ms: 659.425709
+  type: 'test'
+  ...
+# Subtest: capacity, passability, size and spacing shortages exhaust the explicit budget without relaxation
+ok 333 - capacity, passability, size and spacing shortages exhaust the explicit budget without relaxation
+  ---
+  duration_ms: 2.397959
+  type: 'test'
+  ...
+# Subtest: profile normalization ignores enumeration and duplicate footprints and rejects invalid metadata
+ok 334 - profile normalization ignores enumeration and duplicate footprints and rejects invalid metadata
+  ---
+  duration_ms: 34.975375
+  type: 'test'
+  ...
+# Subtest: analysis budgets and assignment do not enter geographic random streams or identities
+ok 335 - analysis budgets and assignment do not enter geographic random streams or identities
+  ---
+  duration_ms: 23.822375
+  type: 'test'
+  ...
+# Subtest: position enumeration uses all actual object cells, excludes decoration and sea, and keeps sea routes legal
+ok 336 - position enumeration uses all actual object cells, excludes decoration and sea, and keeps sea routes legal
+  ---
+  duration_ms: 5.307542
+  type: 'test'
+  ...
+# Subtest: position domains are restricted before truth checks and budgets; object order cannot change enumeration
+ok 337 - position domains are restricted before truth checks and budgets; object order cannot change enumeration
+  ---
+  duration_ms: 88.454084
+  type: 'test'
+  ...
+# Subtest: distance clues including zero remain bound to passable and blocked objects with all their cells
+ok 338 - distance clues including zero remain bound to passable and blocked objects with all their cells
+  ---
+  duration_ms: 1.855042
+  type: 'test'
+  ...
+# Subtest: B2 requires complete approved object illustrations while general placement validation permits partial maps
+ok 339 - B2 requires complete approved object illustrations while general placement validation permits partial maps
+  ---
+  duration_ms: 4.270291
+  type: 'test'
+  ...
+# Subtest: derived NotDistanceAt: hours 3-3, count 0, distance 2
+ok 340 - derived NotDistanceAt: hours 3-3, count 0, distance 2
+  ---
+  duration_ms: 6.024125
+  type: 'test'
+  ...
+# Subtest: derived HasDistanceAt: hours 3-3, count 1, distance 2
+ok 341 - derived HasDistanceAt: hours 3-3, count 1, distance 2
+  ---
+  duration_ms: 0.561375
+  type: 'test'
+  ...
+# Subtest: derived CountDistanceNever: hours 2-5, count 0, distance 2
+ok 342 - derived CountDistanceNever: hours 2-5, count 0, distance 2
+  ---
+  duration_ms: 0.162083
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 1, distance 2
+ok 343 - derived countDistanceToPlace: hours 2-5, count 1, distance 2
+  ---
+  duration_ms: 0.381583
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 2, distance 2
+ok 344 - derived countDistanceToPlace: hours 2-5, count 2, distance 2
+  ---
+  duration_ms: 0.37575
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 3, distance 2
+ok 345 - derived countDistanceToPlace: hours 2-5, count 3, distance 2
+  ---
+  duration_ms: 0.30475
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 4, distance 2
+ok 346 - derived countDistanceToPlace: hours 2-5, count 4, distance 2
+  ---
+  duration_ms: 0.2875
+  type: 'test'
+  ...
+# Subtest: derived NotDistanceAt: hours 3-3, count 0, distance 0
+ok 347 - derived NotDistanceAt: hours 3-3, count 0, distance 0
+  ---
+  duration_ms: 0.11125
+  type: 'test'
+  ...
+# Subtest: derived HasDistanceAt: hours 3-3, count 1, distance 0
+ok 348 - derived HasDistanceAt: hours 3-3, count 1, distance 0
+  ---
+  duration_ms: 0.880333
+  type: 'test'
+  ...
+# Subtest: derived NotDistanceAt: hours 3-3, count 0, distance 1
+ok 349 - derived NotDistanceAt: hours 3-3, count 0, distance 1
+  ---
+  duration_ms: 0.697458
+  type: 'test'
+  ...
+# Subtest: derived HasDistanceAt: hours 3-3, count 1, distance 1
+ok 350 - derived HasDistanceAt: hours 3-3, count 1, distance 1
+  ---
+  duration_ms: 0.332
+  type: 'test'
+  ...
+# Subtest: derived NotDistanceAt: hours 0-0, count 0, distance 0
+ok 351 - derived NotDistanceAt: hours 0-0, count 0, distance 0
+  ---
+  duration_ms: 0.089917
+  type: 'test'
+  ...
+# Subtest: derived HasDistanceAt: hours 0-0, count 1, distance 0
+ok 352 - derived HasDistanceAt: hours 0-0, count 1, distance 0
+  ---
+  duration_ms: 0.069625
+  type: 'test'
+  ...
+# Subtest: derived CountDistanceNever: hours 0-6, count 0, distance 0
+ok 353 - derived CountDistanceNever: hours 0-6, count 0, distance 0
+  ---
+  duration_ms: 0.066333
+  type: 'test'
+  ...
+# Subtest: derived CountDistanceNever: hours 2-5, count 0, distance 1
+ok 354 - derived CountDistanceNever: hours 2-5, count 0, distance 1
+  ---
+  duration_ms: 0.065166
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 4, distance 0
+ok 355 - derived countDistanceToPlace: hours 2-5, count 4, distance 0
+  ---
+  duration_ms: 0.061
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 4, distance 1
+ok 356 - derived countDistanceToPlace: hours 2-5, count 4, distance 1
+  ---
+  duration_ms: 0.12375
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 1, distance 0
+ok 357 - derived countDistanceToPlace: hours 2-5, count 1, distance 0
+  ---
+  duration_ms: 0.248292
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 2-5, count 2, distance 1
+ok 358 - derived countDistanceToPlace: hours 2-5, count 2, distance 1
+  ---
+  duration_ms: 0.262958
+  type: 'test'
+  ...
+# Subtest: derived countDistanceToPlace: hours 0-6, count 7, distance 1
+ok 359 - derived countDistanceToPlace: hours 0-6, count 7, distance 1
+  ---
+  duration_ms: 0.113292
+  type: 'test'
+  ...
+# Subtest: larger partial counts use natural number words
+ok 360 - larger partial counts use natural number words
+  ---
+  duration_ms: 0.310208
+  type: 'test'
+  ...
+# Subtest: formatting preserves minimum distance to all cells of a multihex object and inclusive hour zero
+ok 361 - formatting preserves minimum distance to all cells of a multihex object and inclusive hour zero
+  ---
+  duration_ms: 2.75575
+  type: 'test'
+  ...
+# Subtest: invalid counts and reversed intervals still fail the existing validation contract
+ok 362 - invalid counts and reversed intervals still fail the existing validation contract
+  ---
+  duration_ms: 1.004042
+  type: 'test'
+  ...
+# Subtest: other logical types keep their presentation form
+ok 363 - other logical types keep their presentation form
+  ---
+  duration_ms: 0.091917
+  type: 'test'
+  ...
+# Subtest: S01 presentation statistics derive from historical clues without migrating artifacts or identities
+ok 364 - S01 presentation statistics derive from historical clues without migrating artifacts or identities
+  ---
+  duration_ms: 70.10225
+  type: 'test'
+  ...
+# Subtest: different forms of one logical type count once each within a candidate
+ok 365 - different forms of one logical type count once each within a candidate
+  ---
+  duration_ms: 0.186875
+  type: 'test'
+  ...
+# Subtest: Mulberry32 and phase derivation have fixed uint32 vectors, including zero and maximum seed
+ok 366 - Mulberry32 and phase derivation have fixed uint32 vectors, including zero and maximum seed
+  ---
+  duration_ms: 10.606959
+  type: 'test'
+  ...
+# Subtest: generator version, canonical options and repeated calls remain reproducible
+ok 367 - generator version, canonical options and repeated calls remain reproducible
+  ---
+  duration_ms: 43.505833
+  type: 'test'
+  ...
+# Subtest: 256 seeds produce valid, disjoint, independently connected objects of all sizes and both passabilities
+ok 368 - 256 seeds produce valid, disjoint, independently connected objects of all sizes and both passabilities
+  ---
+  duration_ms: 2168.187375
+  type: 'test'
+  ...
+# Subtest: invalid options and impossible area budgets fail early with INVALID_CONFIG
+ok 369 - invalid options and impossible area budgets fail early with INVALID_CONFIG
+  ---
+  duration_ms: 1.68925
+  type: 'test'
+  ...
+# Subtest: empty maps remain valid; impossible catalog sizes exhaust without substitute geography
+ok 370 - empty maps remain valid; impossible catalog sizes exhaust without substitute geography
+  ---
+  duration_ms: 12.594458
+  type: 'test'
+  ...
+# Subtest: analysis finds an isolated water region and never promotes free water into a start
+ok 371 - analysis finds an isolated water region and never promotes free water into a start
+  ---
+  duration_ms: 3.922542
+  type: 'test'
+  ...
+# Subtest: component size is only necessary: a four-cell star has no simple three-step route
+ok 372 - component size is only necessary: a four-cell star has no simple three-step route
+  ---
+  duration_ms: 2.117459
+  type: 'test'
+  ...
+# Subtest: exact route counts agree with the existing engine for every start and 1–6 steps
+ok 373 - exact route counts agree with the existing engine for every start and 1–6 steps
+  ---
+  duration_ms: 3.928625
+  type: 'test'
+  ...
+# Subtest: search budgets distinguish unknown from absence and partial positive counts from exact counts
+ok 374 - search budgets distinguish unknown from absence and partial positive counts from exact counts
+  ---
+  duration_ms: 5.130167
+  type: 'test'
+  ...
+# Subtest: analysis rejects invalid maps/options, is order invariant, and does not mutate frozen maps
+ok 375 - analysis rejects invalid maps/options, is order invariant, and does not mutate frozen maps
+  ---
+  duration_ms: 12.473
+  type: 'test'
+  ...
+# Subtest: explicit filters report proven rejections, incomplete searches, and deterministic retries separately
+ok 376 - explicit filters report proven rejections, incomplete searches, and deterministic retries separately
+  ---
+  duration_ms: 88.408042
+  type: 'test'
+  ...
+# Subtest: fixed v2 identity vectors and canonicalization are stable
+ok 377 - fixed v2 identity vectors and canonicalization are stable
+  ---
+  duration_ms: 8.001791
+  type: 'test'
+  ...
+# Subtest: map fingerprint accepts a map directly and ignores object and cell enumeration order
+ok 378 - map fingerprint accepts a map directly and ignores object and cell enumeration order
+  ---
+  duration_ms: 1.427833
+  type: 'test'
+  ...
+# Subtest: asset, placement, names, story and data revisions do not change any logical identities
+ok 379 - asset, placement, names, story and data revisions do not change any logical identities
+  ---
+  duration_ms: 0.51175
+  type: 'test'
+  ...
+# Subtest: start and target route change instance identity, clues only variant; clue IDs/order are editorial but multiplicity is retained
+ok 380 - start and target route change instance identity, clues only variant; clue IDs/order are editorial but multiplicity is retained
+  ---
+  duration_ms: 2.84625
+  type: 'test'
+  ...
+# Subtest: target route and step count belong to the instance, independently of the chosen clues
+ok 381 - target route and step count belong to the instance, independently of the chosen clues
+  ---
+  duration_ms: 2.068
+  type: 'test'
+  ...
+# Subtest: P2-1: old B2 lines 73/77 have distinct parameter fingerprints and equal individual clue effects on all 821 routes
+ok 382 - P2-1: old B2 lines 73/77 have distinct parameter fingerprints and equal individual clue effects on all 821 routes
+  ---
+  duration_ms: 20.527375
+  type: 'test'
+  ...
+# Subtest: P2-1: same seed and six restarts retain one of the equivalent variants without replacement search
+ok 383 - P2-1: same seed and six restarts retain one of the equivalent variants without replacement search
+  ---
+  duration_ms: 916.749916
+  type: 'test'
+  ...
+# Subtest: P2-1: effect keys ignore clue order and parameter aliases, use complete route universes, and consume existing masks
+ok 384 - P2-1: effect keys ignore clue order and parameter aliases, use complete route universes, and consume existing masks
+  ---
+  duration_ms: 32.294917
+  type: 'test'
+  ...
+# Subtest: new production restricts only position references while historical non-position parameters stay identical
+ok 385 - new production restricts only position references while historical non-position parameters stay identical
+  ---
+  duration_ms: 118.340625
+  type: 'test'
+  ...
+# Subtest: all six clue families have valid parameters and are true by existing predicates; production does not mutate inputs
+ok 386 - all six clue families have valid parameters and are true by existing predicates; production does not mutate inputs
+  ---
+  duration_ms: 65.320791
+  type: 'test'
+  ...
+# Subtest: successful variants for one target are independently unique, matching and irredundant
+ok 387 - successful variants for one target are independently unique, matching and irredundant
+  ---
+  duration_ms: 1130.76375
+  type: 'test'
+  ...
+# Subtest: seeded runs include stable proofs, properties, variants, counters and budget termination
+ok 388 - seeded runs include stable proofs, properties, variants, counters and budget termination
+  ---
+  duration_ms: 4592.516833
+  type: 'test'
+  ...
+# Subtest: clue production and each solver work budget stop cleanly without unproven candidates
+ok 389 - clue production and each solver work budget stop cleanly without unproven candidates
+  ---
+  duration_ms: 178.014333
+  type: 'test'
+  ...
+# Subtest: an insufficient clue pool records an unsuccessful budget-limited search, never impossibility
+ok 390 - an insufficient clue pool records an unsuccessful budget-limited search, never impossibility
+  ---
+  duration_ms: 1.980292
+  type: 'test'
+  ...
+# Subtest: complete zero-route workspaces and already unique routes have exact, distinct outcomes
+ok 391 - complete zero-route workspaces and already unique routes have exact, distinct outcomes
+  ---
+  duration_ms: 2.95775
+  type: 'test'
+  ...
+# Subtest: individually exact hours agree with solving each clue alone and exclude combined deductions
+ok 392 - individually exact hours agree with solving each clue alone and exclude combined deductions
+  ---
+  duration_ms: 1350.218166
+  type: 'test'
+  ...
+# Subtest: cached subset solver agrees with public solver; permutation and duplicate indices share a single check
+ok 393 - cached subset solver agrees with public solver; permutation and duplicate indices share a single check
+  ---
+  duration_ms: 69.628833
+  type: 'test'
+  ...
+# Subtest: sequential removal retains distinct minimal alternatives for different randomized orders
+ok 394 - sequential removal retains distinct minimal alternatives for different randomized orders
+  ---
+  duration_ms: 2.34175
+  type: 'test'
+  ...
+# Subtest: invalid budgets and routes do not silently alter engine contracts or route lengths
+ok 395 - invalid budgets and routes do not silently alter engine contracts or route lengths
+  ---
+  duration_ms: 2.408334
+  type: 'test'
+  ...
+# Subtest: hex vectors and all board pairs agree with an independent offset-neighbour BFS
+ok 396 - hex vectors and all board pairs agree with an independent offset-neighbour BFS
+  ---
+  duration_ms: 20.409833
+  type: 'test'
+  ...
+# Subtest: routes derive blocked cells from objects and permit every cell of a multi-cell passable object
+ok 397 - routes derive blocked cells from objects and permit every cell of a multi-cell passable object
+  ---
+  duration_ms: 3.649416
+  type: 'test'
+  ...
+# Subtest: minimum distance replaces existence semantics for passable and blocked footprints
+ok 398 - minimum distance replaces existence semantics for passable and blocked footprints
+  ---
+  duration_ms: 0.722708
+  type: 'test'
+  ...
+# Subtest: countDistanceToPlace counts inclusive hours once, supports zero distance and zero counts
+ok 399 - countDistanceToPlace counts inclusive hours once, supports zero distance and zero counts
+  ---
+  duration_ms: 0.61625
+  type: 'test'
+  ...
+# Subtest: position, direction, turn signs and wraparound, and hour distances retain their meaning
+ok 400 - position, direction, turn signs and wraparound, and hour distances retain their meaning
+  ---
+  duration_ms: 0.568375
+  type: 'test'
+  ...
+# Subtest: solver independently finds unique, ambiguous and impossible cases and fails on exhausted budgets
+ok 401 - solver independently finds unique, ambiguous and impossible cases and fails on exhausted budgets
+  ---
+  duration_ms: 2.2495
+  type: 'test'
+  ...
+# Subtest: solver applies both new distance operators directly, including multi-cell distance zero
+ok 402 - solver applies both new distance operators directly, including multi-cell distance zero
+  ---
+  duration_ms: 1.5125
+  type: 'test'
+  ...
+# Subtest: logic validation and solver never inspect presentation, private generator fields or catalogs
+ok 403 - logic validation and solver never inspect presentation, private generator fields or catalogs
+  ---
+  duration_ms: 4.266167
+  type: 'test'
+  ...
+# Subtest: bounded and detailed modes agree on the exact independent one-step solution and omissions
+ok 404 - bounded and detailed modes agree on the exact independent one-step solution and omissions
+  ---
+  duration_ms: 3.818416
+  type: 'test'
+  ...
+# Subtest: duplicate hints are individually redundant; removing both releases alternatives
+ok 405 - duplicate hints are individually redundant; removing both releases alternatives
+  ---
+  duration_ms: 1.608709
+  type: 'test'
+  ...
+# Subtest: target diagnostics distinguish absence, invalidity, mismatch and ambiguity
+ok 406 - target diagnostics distinguish absence, invalidity, mismatch and ambiguity
+  ---
+  duration_ms: 3.027417
+  type: 'test'
+  ...
+# Subtest: search saturation is never an exact ambiguity count or a uniqueness claim on budget failure
+ok 407 - search saturation is never an exact ambiguity count or a uniqueness claim on budget failure
+  ---
+  duration_ms: 0.833625
+  type: 'test'
+  ...
+# Subtest: comparison CLI executes through a directory symlink and rejects missing arguments
+ok 408 - comparison CLI executes through a directory symlink and rejects missing arguments
+  ---
+  duration_ms: 3555.7475
+  type: 'test'
+  ...
+# Subtest: beta transport preserves validated F02 envelope identities without a second loader or additional request
+ok 409 - beta transport preserves validated F02 envelope identities without a second loader or additional request
+  ---
+  duration_ms: 14.91175
+  type: 'test'
+  ...
+# Subtest: catalog context keeps development stocks explicit and rejects unknown stock names
+ok 410 - catalog context keeps development stocks explicit and rejects unknown stock names
+  ---
+  duration_ms: 1.205125
+  type: 'test'
+  ...
+# Subtest: identity binds versions and F02 identities without a second hash function
+ok 411 - identity binds versions and F02 identities without a second hash function
+  ---
+  duration_ms: 3.232959
+  type: 'test'
+  ...
+# Subtest: solved evidence, feedback and phase history survive replay and game reset
+ok 412 - solved evidence, feedback and phase history survive replay and game reset
+  ---
+  duration_ms: 2.531667
+  type: 'test'
+  ...
+# Subtest: ordinary reopening creates no new phase and giving feedback alone does not start a puzzle
+ok 413 - ordinary reopening creates no new phase and giving feedback alone does not start a puzzle
+  ---
+  duration_ms: 1.361292
+  type: 'test'
+  ...
+# Subtest: export keeps removed puzzles, versions and a stable tester; excludes game routes
+ok 414 - export keeps removed puzzles, versions and a stable tester; excludes game routes
+  ---
+  duration_ms: 2.929167
+  type: 'test'
+  ...
+# Subtest: general-only and empty exports are valid; latest fields from concurrent store instances are retained
+ok 415 - general-only and empty exports are valid; latest fields from concurrent store instances are retained
+  ---
+  duration_ms: 0.710709
+  type: 'test'
+  ...
+# Subtest: quota and denied reads report failure, retain an in-page export, and never overwrite unreadable data
+ok 416 - quota and denied reads report failure, retain an in-page export, and never overwrite unreadable data
+  ---
+  duration_ms: 1.101208
+  type: 'test'
+  ...
+# Subtest: monotonic active time pauses for background, manual pause, inactivity, sleep and loss of ownership
+ok 417 - monotonic active time pauses for background, manual pause, inactivity, sleep and loss of ownership
+  ---
+  duration_ms: 0.796667
+  type: 'test'
+  ...
+# Subtest: time reload only adds new deltas and each optional result text has an independent fallback
+ok 418 - time reload only adds new deltas and each optional result text has an independent fallback
+  ---
+  duration_ms: 0.9885
+  type: 'test'
+  ...
+# Subtest: cell registry replaces both list and lookup when rule cell sets change
+ok 419 - cell registry replaces both list and lookup when rule cell sets change
+  ---
+  duration_ms: 1.268292
+  type: 'test'
+  ...
+# Subtest: a new phase never counts old saved help usage twice
+ok 420 - a new phase never counts old saved help usage twice
+  ---
+  duration_ms: 1.561209
+  type: 'test'
+  ...
+# Subtest: abandonment resumes once with history and feedback intact (corrected=false, reload=false)
+ok 421 - abandonment resumes once with history and feedback intact (corrected=false, reload=false)
+  ---
+  duration_ms: 2.620625
+  type: 'test'
+  ...
+# Subtest: abandonment resumes once with history and feedback intact (corrected=false, reload=true)
+ok 422 - abandonment resumes once with history and feedback intact (corrected=false, reload=true)
+  ---
+  duration_ms: 0.5255
+  type: 'test'
+  ...
+# Subtest: abandonment resumes once with history and feedback intact (corrected=true, reload=false)
+ok 423 - abandonment resumes once with history and feedback intact (corrected=true, reload=false)
+  ---
+  duration_ms: 0.341791
+  type: 'test'
+  ...
+# Subtest: abandonment resumes once with history and feedback intact (corrected=true, reload=true)
+ok 424 - abandonment resumes once with history and feedback intact (corrected=true, reload=true)
+  ---
+  duration_ms: 0.70525
+  type: 'test'
+  ...
+# Subtest: feedback corrections preserve solved evidence and cannot reopen a solved phase
+ok 425 - feedback corrections preserve solved evidence and cannot reopen a solved phase
+  ---
+  duration_ms: 0.677625
+  type: 'test'
+  ...
+# Subtest: book cycles through all clues forward and backward
+ok 426 - book cycles through all clues forward and backward
+  ---
+  duration_ms: 3.279167
+  type: 'test'
+  ...
+# Subtest: book swipe ignores short, vertical and diagonal scroll gestures
+ok 427 - book swipe ignores short, vertical and diagonal scroll gestures
+  ---
+  duration_ms: 0.377166
+  type: 'test'
+  ...
+# Subtest: all 25 coordinates share badges and a full accessible name
+ok 428 - all 25 coordinates share badges and a full accessible name
+  ---
+  duration_ms: 3.344042
+  type: 'test'
+  ...
+# Subtest: distance presentation distinguishes disabled, awaiting and selected without changing state
+ok 429 - distance presentation distinguishes disabled, awaiting and selected without changing state
+  ---
+  duration_ms: 3.251583
+  type: 'test'
+  ...
+# Subtest: each margin heading is centered in its new symmetric geometry band
+ok 430 - each margin heading is centered in its new symmetric geometry band
+  ---
+  duration_ms: 0.454416
+  type: 'test'
+  ...
+# Subtest: S03-06: H2 and H3 are separately necessary; their union preserves every legal route and the unique target
+ok 431 - S03-06: H2 and H3 are separately necessary; their union preserves every legal route and the unique target
+  ---
+  duration_ms: 29.234667
+  type: 'test'
+  ...
+# Subtest: identity, source IDs and serialization are deterministic without changing raw definitions
+ok 432 - identity, source IDs and serialization are deterministic without changing raw definitions
+  ---
+  duration_ms: 28.355167
+  type: 'test'
+  ...
+# Subtest: all individual properties, effect identity and selection signals use the five normalized clues
+ok 433 - all individual properties, effect identity and selection signals use the five normalized clues
+  ---
+  duration_ms: 189.623833
+  type: 'test'
+  ...
+# Subtest: a normalized candidate violating minimum clue count or dominance is rejected, without filler or repeat diagnosis
+ok 434 - a normalized candidate violating minimum clue count or dominance is rejected, without filler or repeat diagnosis
+  ---
+  duration_ms: 17.026458
+  type: 'test'
+  ...
+# Subtest: new proof work consumes the same bounded solver budget; exhaustion never yields a valid candidate
+ok 435 - new proof work consumes the same bounded solver budget; exhaustion never yields a valid candidate
+  ---
+  duration_ms: 14.940125
+  type: 'test'
+  ...
+# Subtest: even an equivalent transformation cannot pass a redundant candidate from another strategy
+ok 436 - even an equivalent transformation cannot pass a redundant candidate from another strategy
+  ---
+  duration_ms: 6.929292
+  type: 'test'
+  ...
+# Subtest: independent persisted-candidate verification detects damaged provenance
+ok 437 - independent persisted-candidate verification detects damaged provenance
+  ---
+  duration_ms: 2299.263542
+  type: 'test'
+  ...
+# Subtest: trusted live raw capture survives a self-consistent rewrite of candidate origin IDs during evaluation
+ok 438 - trusted live raw capture survives a self-consistent rewrite of candidate origin IDs during evaluation
+  ---
+  duration_ms: 8.093417
+  type: 'test'
+  ...
+# Subtest: new unchanged candidates and old historical rows have separate valid contracts
+ok 439 - new unchanged candidates and old historical rows have separate valid contracts
+  ---
+  duration_ms: 70.970416
+  type: 'test'
+  ...
+# Subtest: normalized zero/all text is natural using the unchanged technical formatter
+ok 440 - normalized zero/all text is natural using the unchanged technical formatter
+  ---
+  duration_ms: 1.472125
+  type: 'test'
+  ...
+# Subtest: public exporter and game loader consume one five-clue definition and omit private provenance
+ok 441 - public exporter and game loader consume one five-clue definition and omit private provenance
+  ---
+  duration_ms: 58.556917
+  type: 'test'
+  ...
+# Subtest: positive combination countercontrol remains intact: B2-S03-V2-M011-A5-R787-V01
+ok 442 - positive combination countercontrol remains intact: B2-S03-V2-M011-A5-R787-V01
+  ---
+  duration_ms: 25.871875
+  type: 'test'
+  ...
+# Subtest: positive combination countercontrol remains intact: B2-BC-T06-M005-E3-R00
+ok 443 - positive combination countercontrol remains intact: B2-BC-T06-M005-E3-R00
+  ---
+  duration_ms: 58.451125
+  type: 'test'
+  ...
+# Subtest: historical mode and historical exports keep S03-06 as six separately identified clues
+ok 444 - historical mode and historical exports keep S03-06 as six separately identified clues
+  ---
+  duration_ms: 250.493833
+  type: 'test'
+  ...
+# Subtest: historical artifacts and this PR preserve the fixed baseline; merged program files match their checkout
+ok 445 - historical artifacts and this PR preserve the fixed baseline; merged program files match their checkout
+  ---
+  duration_ms: 1383.399209
+  type: 'test'
+  ...
+# Subtest: the three fixed-case evidence files reproduce without generation
+ok 446 - the three fixed-case evidence files reproduce without generation
+  ---
+  duration_ms: 190.463833
+  type: 'test'
+  ...
+# Subtest: S01: exported count texts reach the game loader with identical predicates and solution sets
+ok 447 - S01: exported count texts reach the game loader with identical predicates and solution sets
+  ---
+  duration_ms: 7385.749583
+  type: 'test'
+  ...
+# Subtest: S02: exported count texts reach the game loader with identical predicates and solution sets
+ok 448 - S02: exported count texts reach the game loader with identical predicates and solution sets
+  ---
+  duration_ms: 5488.617292
+  type: 'test'
+  ...
+# Subtest: BC: exported count texts reach the game loader with identical predicates and solution sets
+ok 449 - BC: exported count texts reach the game loader with identical predicates and solution sets
+  ---
+  duration_ms: 858.656833
+  type: 'test'
+  ...
+# Subtest: distance overlay survives every editing tool without altering notes or route
+ok 450 - distance overlay survives every editing tool without altering notes or route
+  ---
+  duration_ms: 6.597916
+  type: 'test'
+  ...
+# Subtest: one press turns either active phase off; reactivation always needs a fresh origin
+ok 451 - one press turns either active phase off; reactivation always needs a fresh origin
+  ---
+  duration_ms: 0.511292
+  type: 'test'
+  ...
+# Subtest: choosing an edit tool cancels pending origin selection but retains a completed overlay
+ok 452 - choosing an edit tool cancels pending origin selection but retains a completed overlay
+  ---
+  duration_ms: 0.367542
+  type: 'test'
+  ...
+# Subtest: undo and reload retain an independent overlay and never resurrect one switched off
+ok 453 - undo and reload retain an independent overlay and never resurrect one switched off
+  ---
+  duration_ms: 2.773708
+  type: 'test'
+  ...
+# Subtest: reset and another puzzle storage key start with no origin or overlay
+ok 454 - reset and another puzzle storage key start with no origin or overlay
+  ---
+  duration_ms: 0.580416
+  type: 'test'
+  ...
+# Subtest: undo preserves current display, navigation and paid hint after an older edit
+ok 455 - undo preserves current display, navigation and paid hint after an older edit
+  ---
+  duration_ms: 4.830416
+  type: 'test'
+  ...
+# Subtest: undo restores edits and note-check cost, while retaining later hint cost
+ok 456 - undo restores edits and note-check cost, while retaining later hint cost
+  ---
+  duration_ms: 0.881459
+  type: 'test'
+  ...
+# Subtest: persisted invalid routes safely reset instead of crashing rendering
+ok 457 - persisted invalid routes safely reset instead of crashing rendering
+  ---
+  duration_ms: 1.566583
+  type: 'test'
+  ...
+# Subtest: restore sanitizes notes, settings and transient HTML
+ok 458 - restore sanitizes notes, settings and transient HTML
+  ---
+  duration_ms: 0.691708
+  type: 'test'
+  ...
+# Subtest: storage is isolated per puzzle, reloads without history and tolerates unavailable storage
+ok 459 - storage is isolated per puzzle, reloads without history and tolerates unavailable storage
+  ---
+  duration_ms: 1.10775
+  type: 'test'
+  ...
+# Subtest: land cells are valid distance origins but invalid for marking or navigation
+ok 460 - land cells are valid distance origins but invalid for marking or navigation
+  ---
+  duration_ms: 3.535792
+  type: 'test'
+  ...
+# Subtest: temporary plaques include passable single hexes and the full multihex centroid
+ok 461 - temporary plaques include passable single hexes and the full multihex centroid
+  ---
+  duration_ms: 4.571
+  type: 'test'
+  ...
+# Subtest: even long names at all chart edges stay within the visible chart
+ok 462 - even long names at all chart edges stay within the visible chart
+  ---
+  duration_ms: 1.129667
+  type: 'test'
+  ...
+# Subtest: organic edges add waves at longer widths instead of stretching their amplitude
+ok 463 - organic edges add waves at longer widths instead of stretching their amplitude
+  ---
+  duration_ms: 0.449584
+  type: 'test'
+  ...
+# Subtest: only named logical instances are labels, regardless of passability or hex count
+ok 464 - only named logical instances are labels, regardless of passability or hex count
+  ---
+  duration_ms: 2.921625
+  type: 'test'
+  ...
+# Subtest: references use existing placeIds and explicit editorial lists, never text or position cells
+ok 465 - references use existing placeIds and explicit editorial lists, never text or position cells
+  ---
+  duration_ms: 0.536084
+  type: 'test'
+  ...
+# Subtest: optional presentation references are validated and survive public projection without changing logic
+ok 466 - optional presentation references are validated and survive public projection without changing logic
+  ---
+  duration_ms: 9.386167
+  type: 'test'
+  ...
+# Subtest: K-final geometry reproduces the original referenz scene
+ok 467 - K-final geometry reproduces the original referenz scene
+  ---
+  duration_ms: 10.960209
+  type: 'test'
+  ...
+# Subtest: K-final geometry reproduces the original gerade scene
+ok 468 - K-final geometry reproduces the original gerade scene
+  ---
+  duration_ms: 3.238459
+  type: 'test'
+  ...
+# Subtest: K-final geometry reproduces the original knick scene
+ok 469 - K-final geometry reproduces the original knick scene
+  ---
+  duration_ms: 1.790334
+  type: 'test'
+  ...
+# Subtest: the K contour faces the actual destination in all six directions
+ok 470 - the K contour faces the actual destination in all six directions
+  ---
+  duration_ms: 5.576959
+  type: 'test'
+  ...
+# Subtest: hour edges rotate around the same hex in six distinct positions
+ok 471 - hour edges rotate around the same hex in six distinct positions
+  ---
+  duration_ms: 2.529708
+  type: 'test'
+  ...
+# Subtest: verification readiness requires six legal segments, independently of clue success
+ok 472 - verification readiness requires six legal segments, independently of clue success
+  ---
+  duration_ms: 16.597584
+  type: 'test'
+  ...
+1..472
+# tests 472
+# suites 0
+# pass 411
+# fail 61
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1041262.109917

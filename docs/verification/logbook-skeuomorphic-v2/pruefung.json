@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-24",
+  "phase": "Lokale visuelle Konzeption und Abnahme; keine PR-Aktion vor ausdrücklicher Freigabe",
+  "changes": [
+    "Ort zeigen rechtsbündig zwischen Buchüberschrift und Hinweistext",
+    "Tintenstrich entlang der Textblockhöhe, oben und unten jeweils 6 CSS-Pixel länger; Häkchen vertikal mittig",
+    "Blätterpfeile horizontal und vertikal in die Papierfläche eingerückt",
+    "Abhak-Hilfe kontrastreicher bei gleicher Schriftgröße"
+  ],
+  "layout": "Unveränderte Buchtexturen und Typografie. Kurze Seiten behalten die bisherigen Mindestmaße; unterer Papierfreiraum wächst bei langen Texten mit.",
+  "semantics": "Keine weiteren Änderungen an Rätsellogik, Spielständen, Abhaken, Ortsreferenzen oder Animationsdauer gegenüber der zuvor lokal umgesetzten Fassung.",
+  "visualAcceptance": {
+    "browser": "Chromium",
+    "desktopViewport": {
+      "width": 1440,
+      "height": 1080
+    },
+    "mobileViewport": {
+      "width": 390,
+      "height": 844
+    },
+    "matrix": [
+      "desktop-without-place-open.png",
+      "desktop-without-place-done.png",
+      "desktop-with-place-open.png",
+      "desktop-with-place-done.png",
+      "mobile-without-place-open.png",
+      "mobile-without-place-done.png",
+      "mobile-with-place-open.png",
+      "mobile-with-place-done.png"
+    ],
+    "longText": [
+      "desktop-long-with-place-done.png",
+      "mobile-long-with-place-done.png"
+    ],
+    "allTenImagesVisuallyReviewed": true,
+    "numberAndTextUnchangedBetweenCompletionStates": true,
+    "textSizedInkLineAndCenteredCheck": true,
+    "placeActionAboveTextAndRightAligned": true,
+    "navigationClearOfIllustratedEdges": true,
+    "footerClearOfIllustratedBottomEdge": true,
+    "geometryWidthsChecked": [
+      320,
+      390,
+      620,
+      768,
+      900,
+      1440
+    ],
+    "minimumTargetCssPixels": 44,
+    "finalCaptureCommand": "npx playwright test tests/browser/logbook-skeuomorphic.spec.mjs --project=chromium --grep='fixed ink margin|top navigation' --workers=1 --output=.dev/logbook-followup-final-visual",
+    "finalCapturePassed": 5,
+    "finalCaptureFailed": 0,
+    "finalCaptureLog": "visual-capture.log",
+    "fixture": "Isolierte Präsentations-Testvorlage mit explizit benannten Orten; keine Änderungen an regulären Rätseldaten."
+  },
+  "preservedPreviousEvidence": {
+    "overview": "vorher/abnahme.png",
+    "report": "vorher/pruefung.json"
+  },
+  "regressionStatus": {
+    "fullApprovalRun": "Erst nach gestalterischer Freigabe und ausdrücklichem PR-Auftrag.",
+    "alreadyStartedBeforeClarification": {
+      "integration": {
+        "passed": 18,
+        "failed": 0,
+        "log": "integration-before-clarification.log"
+      },
+      "webkit": {
+        "passed": 18,
+        "failed": 1,
+        "skipped": 1,
+        "failure": "Ein Seitenlade-Timeout in page.goto vor der Buchdarstellung; kein fehlerfreier Gesamtlauf behauptet.",
+        "log": "webkit-before-clarification.log"
+      },
+      "chromium": {
+        "passed": 78,
+        "failed": 1,
+        "skipped": 3,
+        "failure": "Lade-/Initialisierungs-Timeout: vor der Interaktion 0 statt 25 Kartenfelder.",
+        "log": "chromium-before-clarification.log"
+      },
+      "note": "Diese Läufe wurden vor der Präzisierung zur visuellen Phase und vor Abschluss der Nachkorrektur gestartet. Sie ersetzen keine vollständige Regression am später freigegebenen PR-Stand. Keine weiteren vollständigen Läufe nach der Präzisierung gestartet."
+    }
+  },
+  "publication": {
+    "prCreated": false,
+    "prUpdated": false,
+    "merged": false,
+    "remoteFilesChanged": false
+  }
+}
