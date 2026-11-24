@@ -1,0 +1,90 @@
+{
+  "manifestSchemaVersion": 1,
+  "schemaStatus": "handoff-draft-not-an-established-F01-schema",
+  "packageId": "sams-gezeitenkarten-carribera-world-style",
+  "version": "1.0.0",
+  "title": "Welt-/Stilpaket v1 – F02-A/2",
+  "status": "draft-for-technical-handoff",
+  "language": "de",
+  "date": "2026-11-24",
+  "versioning": "One shared version for world.md, style.md and production.md; changes require a new package version.",
+  "files": [
+    {
+      "path": "world.md",
+      "role": "world-knowledge-and-provenance",
+      "sha256": "2d7fbeab20b57f67f5c68651bfba7f767321d69d57bf9a1a78d887ab074ca592"
+    },
+    {
+      "path": "style.md",
+      "role": "narrative-style-and-creative-guidance",
+      "sha256": "d2af985b4559048b6d343deeb7e760e5df6af285470bb30c5b697648907986c9"
+    },
+    {
+      "path": "production.md",
+      "role": "binding-functional-production-rules",
+      "sha256": "61426fe73c99d2a9864b2a5bbe752c0f3ef9cf72b8038836b693ecf887658a46"
+    }
+  ],
+  "sourceCategories": {
+    "A": "Automatically transcribed audio content; not a direct listening audit",
+    "B": "Official companion text",
+    "U": "User-contributed world knowledge; not independently verified",
+    "I": "Interpretation",
+    "N": "New creative proposal or invention"
+  },
+  "sources": [
+    {
+      "id": "R",
+      "path": "../referenzen/ploetzlich-piratin-stil-und-weltreferenz.md",
+      "researchDate": "2026-10-11",
+      "sha256": "317602fe3759ec6fc55a32c65d85d13d4318d4b65af36871774089152664f7be",
+      "status": "unchanged-reference-copy"
+    },
+    {
+      "id": "K",
+      "type": "conversation",
+      "conversationId": "6b059203-5090-83eb-911b-745316182b27",
+      "title": "F02-A Konzeptentwicklung",
+      "url": "https://chatgpt.com/c/6b059203-5090-83eb-911b-745316182b27",
+      "status": "conceptual-decisions-and-U001-through-U015"
+    },
+    {
+      "id": "H",
+      "type": "current-user-request",
+      "status": "handoff-authoring-only-no-repository-implementation"
+    }
+  ],
+  "handoffReferences": {
+    "concept": "../F02-A-2-Konzept.md",
+    "workchatAssignment": "../Workchat-Uebergabe.md",
+    "decisionAndSourceStatus": "../Quellen-und-Entscheidungsstatus.md"
+  },
+  "technicalIntegration": {
+    "repositoryVerified": false,
+    "F01SchemaCompatibilityVerified": false,
+    "requiredNextStep": "Read-only repository review and preparation of the Codex implementation assignment in the existing workchat"
+  },
+  "pilot": {
+    "caseIds": [
+      "C-06",
+      "C-02",
+      "C-03",
+      "C-11"
+    ],
+    "storyType": "independent",
+    "draftsPerCase": 1
+  },
+  "laterBeta": {
+    "totalPuzzles": 15,
+    "independentStories": 10,
+    "serialStoryEpisodes": 5,
+    "caseAssignment": "not-yet-selected",
+    "fullHumanTestReading": true
+  },
+  "informationBoundary": {
+    "publicStartAndObjectNameAllowed": true,
+    "targetRouteAllowed": false,
+    "privateSolverKnowledgeAllowed": false
+  },
+  "qualityStatus": "Package provenance is not semantic approval of any generated flavor; no episodes are included."
+}

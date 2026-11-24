@@ -1,0 +1,33 @@
+{
+  "manifestVersion": 1,
+  "packageId": "sams-gezeitenkarten-carribera-world-style",
+  "version": "1.0.0",
+  "language": "de",
+  "files": [
+    {
+      "path": "world.md",
+      "sha256": "fbc7d8082139854cfeff125257fec3a580afd095c11ff2f88450b783cd21b67a"
+    },
+    {
+      "path": "style.md",
+      "sha256": "d2af985b4559048b6d343deeb7e760e5df6af285470bb30c5b697648907986c9"
+    },
+    {
+      "path": "production.md",
+      "sha256": "61426fe73c99d2a9864b2a5bbe752c0f3ef9cf72b8038836b693ecf887658a46"
+    }
+  ],
+  "sourceCategories": {
+    "A": "Automatically transcribed audio; no listening audit",
+    "B": "Official companion text",
+    "U": "User contribution; not independently verified",
+    "I": "Interpretation",
+    "N": "New episode-local invention"
+  },
+  "provenance": {
+    "archive": "f02-a-2-uebergabe-20261124.zip",
+    "archiveSha256": "ec1cc06550f1790113efc135235b827942f1a3e5af3cf2f8e1ea5cf6c7a3069d",
+    "originalManifestSha256": "a6b9bbb0c141329adb657cd122cbd2d489786500e42dae094fbad674472c87ee",
+    "integration": "world.md: relative source links and archive wording adapted; source files are not production inputs. style.md and production.md unchanged."
+  }
+}
