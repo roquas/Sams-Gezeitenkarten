@@ -132,3 +132,10 @@ Eine gemeinsame, nicht interaktive SVG-Ebene animiert 0,4 s Einblenden,
 3 s Halten und 2 s Ausblenden; reduzierte Bewegung zeigt sie 3 s ohne Übergänge.
 Neue Auslöser ersetzen den Ablauf, ohne Spielstand oder Undo zu verändern.
 Ein Orts-/Assetverzeichnis gehört nicht zu dieser Darstellung.
+
+## Offline-Flavor-Vertrag
+
+Der separate [F01-Vertrag](FLAVOR-PIPELINE-F01.md) bindet Originalhinweise und
+Präsentation für spätere Offline-Generierung, Einzelhinweisprüfung und Reparatur.
+Er erweitert weder dieses Rätselschema noch die Laufzeitlogik. Freie Texte
+bleiben ohne vollständigen semantischen Nachweis `UNCERTAIN`.
