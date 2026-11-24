@@ -1,5 +1,10 @@
 # S04-C Phase C – neuer privater Kandidatenbestand
 
+> Folgeentscheidung 24.11.2026: Der damalige private Übergabeweg ist für die
+> ausgewählten 15 Community-Fälle durch die [Git-versionierte Ablage und den
+> Betatestplan](../../S04-C-COMMUNITY-BETA.md) abgelöst. Der folgende Text
+> dokumentiert unverändert den historischen Produktionsauftrag.
+
 **11 bevorzugte Fälle und 4 Kontrollen auf 15 unterschiedlichen Karten/Zielen.**
 Die Zielgrößen sind erreicht, ohne Nachgenerierung oder Regeländerung.
 Vollständige neue Daten bleiben lokal privat; dieses öffentliche Dokument nennt

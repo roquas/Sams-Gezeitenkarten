@@ -10,6 +10,54 @@ test.beforeEach(async({page})=>{
  await page.route('**/puzzles/manifest.json',r=>r.fulfill({json:manifest}));const errors=[];pageErrors.set(page,errors);page.on('pageerror',error=>errors.push(error.message));});
 test.afterEach(({page})=>{expect(pageErrors.get(page)).toEqual([]);});
 const read=p=>JSON.parse(readFileSync(new URL('../../'+p,import.meta.url)));
+test('community pool offers all fifteen freely and retains optional ratings and experience in the download',async({page},testInfo)=>{
+ await page.goto('/?catalog=s04-c-community-v1');
+ await expect(page.locator('#feedbackRecords details')).toHaveCount(15);
+ await expect(page.getByRole('link',{name:'Beginnen',exact:true})).toHaveCount(15);
+ await expect(page.locator('#landing')).toContainText('Fang gerne auch in der Mitte an');
+ await expect(page.locator('#landing')).toContainText('noch nicht für den Community-Test freigegeben');
+ await page.locator('#puzzleExperience').selectOption('occasional');
+ expect((await page.locator('#puzzleExperience').boundingBox()).height).toBeGreaterThanOrEqual(44);
+ const details=page.locator('#feedbackRecords details').filter({has:page.locator('summary').filter({hasText:/^C-10$/})});
+ await details.locator('summary').click();
+ const style=details.getByRole('combobox',{name:'Wie bist Du bei diesem Rätsel bisher überwiegend vorgegangen?',exact:true});
+ await expect(style).toHaveValue('');
+ await expect(style.getByRole('option',{name:'Schrittweise Möglichkeiten ausschließen',exact:true})).toHaveAttribute('value','stepwise');
+ await details.locator('[name=fun]').selectOption('4');
+ await details.locator('[name=solvingStyle]').selectOption('route-comparison');
+ await page.reload();await expect(page.locator('#feedbackRecords details')).toHaveCount(15);
+ await expect(page.locator('#puzzleExperience')).toHaveValue('occasional');
+ await details.locator('summary').click();await expect(details.locator('[name=fun]')).toHaveValue('4');
+ const data=await download(page);
+ expect(data.application.catalog).toBe('community:S04-C-v1');
+ expect(data.generalFeedback.experience).toBe('occasional');
+ expect(data.puzzles).toHaveLength(1);expect(data.puzzles[0].phases).toEqual([]);
+ expect(data.puzzles[0].feedback).toMatchObject({fun:4,solvingStyle:'route-comparison'});
+ await page.screenshot({path:testInfo.outputPath('community-feedback.png'),fullPage:true});
+ const card=page.locator('.beta-card').filter({has:page.getByRole('heading',{name:'C-10',exact:true})});
+ await card.getByRole('link',{name:'Beginnen',exact:true}).click();
+ await expect(page.locator('#map .cell')).toHaveCount(25);
+ expect(new URL(page.url()).searchParams.get('catalog')).toBe('s04-c-community-v1');
+ await page.locator('#backToSelection').click();await expect(page.locator('#feedbackRecords details')).toHaveCount(15);
+ expect(new URL(page.url()).searchParams.get('catalog')).toBe('s04-c-community-v1');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+test('community solution dialog archives fun and style on replay without changing its route',async({page})=>{
+ await page.goto('/?catalog=s04-c-community-v1&puzzle=C-06');
+ await expect(page.locator('#map .cell')).toHaveCount(25);
+ const source=read('content/community-beta/s04-c-v1/cases.json').cases.find(c=>c.id==='C-06');
+ await solve(page,source.definition.solution.slice(1));
+ const dialog=page.getByRole('dialog');await expect(dialog).toContainText('Richtig gelöst!');
+ await dialog.locator('[name=fun]').selectOption('5');await dialog.locator('[name=solvingStyle]').selectOption('mixed');
+ await page.getByRole('button',{name:'Feedback speichern',exact:true}).click();
+ await page.locator('#backToSelection').click();await expect(page.locator('#feedbackRecords details')).toHaveCount(15);
+ const card=page.locator('.beta-card').filter({has:page.getByRole('heading',{name:'C-06',exact:true})});
+ await card.getByRole('link',{name:'Erneut spielen',exact:true}).click();
+ await expect(page.locator('#map .cell')).toHaveCount(25);
+ const record=(await records(page))[0];expect(record.phases).toHaveLength(2);
+ expect(record.phases[0].feedbackAtEnd).toMatchObject({fun:5,solvingStyle:'mixed'});
+ expect(record.feedback).toMatchObject({fun:null,solvingStyle:null});expect(record.solvedAt).toBeTruthy();
+});
 const cell=(page,id)=>page.locator(`#map .cell[data-id="${id}"]`);
 const game=async page=>{await page.goto('/?puzzle=model-demo');await expect(cell(page,'A5')).toBeVisible();};
 const records=page=>page.evaluate(()=>Object.keys(localStorage).filter(k=>k.startsWith('gezeitenkarten-beta-v1:record:')).map(k=>JSON.parse(localStorage.getItem(k))));
@@ -70,8 +118,10 @@ test('success persists across reset, feedback can be edited, replay archives ear
 });
 test('unsolved feedback and deliberate abandonment are independent of ordinary navigation',async({page})=>{
  await page.goto('/');let details=await feedbackDetails(page);await details.locator('[name=comment]').fill('Noch nicht gespielt');let r=(await download(page)).puzzles[0];expect(r.phases).toEqual([]);
+ await details.getByRole('combobox',{name:'Wie bist Du bei diesem Rätsel bisher überwiegend vorgegangen?',exact:true}).selectOption('stepwise');
+ expect((await download(page)).puzzles[0].feedback.solvingStyle).toBe('stepwise');
  await page.getByRole('link',{name:'Beginnen',exact:true}).click();await expect(cell(page,'A5')).toBeVisible();await cell(page,'A1').click();await page.locator('#backToSelection').click();r=(await download(page)).puzzles[0];expect(r.phases[0].status).toBe('open');
- details=await feedbackDetails(page);await details.locator('[name=status]').selectOption('abandoned');await expect(page.locator('.beta-card')).toContainText('bewusst aufgegeben');await page.reload();r=(await download(page)).puzzles[0];expect(r.phases[0].status).toBe('abandoned');expect(r.solvedAt).toBeNull();await page.getByRole('link',{name:'Fortsetzen',exact:true}).click();await expect(cell(page,'A1')).toContainText('?');r=(await records(page))[0];expect(r.phases).toHaveLength(2);expect(r.phases[1].status).toBe('open');
+ details=await feedbackDetails(page);await details.locator('[name=status]').selectOption('abandoned');await expect(page.locator('.beta-card')).toContainText('bewusst aufgegeben');await page.reload();r=(await download(page)).puzzles[0];expect(r.phases[0].status).toBe('abandoned');expect(r.feedback.solvingStyle).toBe('stepwise');expect(r.phases[0].feedbackAtEnd.solvingStyle).toBe('stepwise');expect(r.solvedAt).toBeNull();await page.getByRole('link',{name:'Fortsetzen',exact:true}).click();await expect(cell(page,'A1')).toContainText('?');r=(await records(page))[0];expect(r.phases).toHaveLength(2);expect(r.phases[1].status).toBe('open');
 });
 for(const reload of [false,true])test(`abandonment feedback correction resumes one preserved phase history (reload=${reload})`,async({page,context})=>{
  await page.addInitScript(()=>Object.defineProperty(document,'hidden',{configurable:true,get:()=>false}));

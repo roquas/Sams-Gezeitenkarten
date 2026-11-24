@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {dragTouch} from './touch-gesture.mjs';
 import {selectionUse} from './webkit-startup.mjs';
+import {openGame} from '../helpers/open-game.mjs';
 
 const cell=(page,id)=>page.locator(`#map [data-id="${id}"]`);
 const state=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('gezeitenkarten-model-demo-schema2-data1')));
@@ -94,7 +95,7 @@ export function registerChartScrollTests(url){
  for(const width of [390,820,1024])test.describe(`chart touch input ${width}px`,()=>{
   test.use({viewport:{width,height:900},hasTouch:true});
   for(const [id,surface] of [['D3','water'],['B2','land']])test(`vertical scrolling starts on ${surface} without notes`,async({page,browserName},info)=>{
-   await page.goto(url);await expect(cell(page,id)).toBeVisible();
+   await openGame(page,url);await expect(cell(page,id)).toBeVisible();
    await expect(page.locator('#map')).toHaveCSS('touch-action','pan-y pinch-zoom');
    await top(page);
    const point=await center(page,id),before=await scroll(page),saved=await state(page);
@@ -109,7 +110,7 @@ export function registerChartScrollTests(url){
    // Start this independent scroll contract in its actual persisted waiting
    // state instead of paying for another full DPR-2 map render first.
    await page.addInitScript(()=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'maybe',distanceMode:true,distanceOrigin:null})));
-   await page.goto(url);await expect(cell(page,'D3')).toBeVisible();
+   await openGame(page,url);await expect(cell(page,'D3')).toBeVisible();
    const radar=page.locator('#toggleDistances');await expect(radar).toHaveAttribute('data-distance-state','waiting');
    await top(page);
    const point=await center(page,'D3'),before=await scroll(page);
@@ -124,7 +125,7 @@ export function registerChartScrollTests(url){
   test.describe(()=>{
   test.use(selectionUse);
   test('native tap and horizontal touch drawing preserve one-step undo',async({page,browserName})=>{
-   await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
+   await openGame(page,url);await expect(cell(page,'A1')).toBeVisible();
    await cell(page,'A1').tap();expect((await state(page)).marks).toEqual({'1:A1':'maybe'});
    await page.locator('#undo').click();expect((await state(page)).marks).toEqual({});
    const first=await center(page,'A1'),second=await center(page,'B1');
@@ -134,7 +135,7 @@ export function registerChartScrollTests(url){
   });
   });
   test('cancelled, uncaptured and diagonal touches never make accidental notes',async({page})=>{
-   await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
+   await openGame(page,url);await expect(cell(page,'A1')).toBeVisible();
    for(const end of ['pointercancel','lostpointercapture','second-finger','view-switch']){
     const point=await center(page,'A1');
     await page.evaluate(({point,end})=>{
@@ -162,7 +163,7 @@ export function registerChartScrollTests(url){
   test.describe(()=>{
   test.use(selectionUse);
   test('touch erasing is one undoable gesture',async({page,browserName})=>{
-   await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
+   await openGame(page,url);await expect(cell(page,'A1')).toBeVisible();
    await cell(page,'A1').tap();await cell(page,'B1').tap();
    await page.locator('[data-tool="erase"]').tap();
    const from=await center(page,'A1'),to=await center(page,'B1');
@@ -173,7 +174,7 @@ export function registerChartScrollTests(url){
   for(const erase of [false,true])test(`single touch ${erase?'erasure':'drawing'} and native undo retain project pixel density`,async({page,browserName})=>{
    const marked={'1:A1':'maybe','1:B1':'maybe'};
    if(erase)await page.addInitScript(marks=>localStorage.setItem('gezeitenkarten-model-demo-schema2-data1',JSON.stringify({route:['A5'],layer:1,tool:'erase',marks})),marked);
-   await page.goto(url);await expect(cell(page,'A1')).toBeVisible();
+   await openGame(page,url);await expect(cell(page,'A1')).toBeVisible();
    expect((await state(page)).marks).toEqual(erase?marked:{});
    const [from,to]=await horizontalCenters(page,['A1','B1']);
    await dragTouch(page,{browserName,from,to,pointer:true});

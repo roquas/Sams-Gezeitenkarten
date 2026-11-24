@@ -1,0 +1,129 @@
+{
+  "identity": {
+    "instanceId": "inst-ef038bd5a2c6975aa2c41dc00112207d042441d6707f272a295ffd0f50cbc1ee",
+    "mapStructureId": "map-0b72f0a2f6a1525f0a664c2dac6d895dcba63ef8e089ef6af57e62bd9e05177f",
+    "variantId": "var-d1ee74aef47dcb237f5f72ee0345a36bc997083390a2429445d3f725e0ecda5f"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "C-03",
+    "logic": {
+      "clues": [
+        {
+          "count": 0,
+          "distance": 2,
+          "fromHour": 3,
+          "id": "H1",
+          "placeId": "geo-02",
+          "toHour": 3,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 0,
+          "distance": 3,
+          "fromHour": 3,
+          "id": "H2",
+          "placeId": "geo-02",
+          "toHour": 3,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 2,
+          "fromHour": 2,
+          "id": "H3",
+          "placeId": "geo-01",
+          "toHour": 4,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "direction": "NW",
+          "hour": 1,
+          "id": "H4",
+          "type": "direction"
+        },
+        {
+          "distance": 1,
+          "hour": 6,
+          "id": "H5",
+          "placeId": "geo-02",
+          "type": "distanceToPlace"
+        },
+        {
+          "distance": 1,
+          "hours": [
+            0,
+            2
+          ],
+          "id": "H6",
+          "type": "distanceBetweenHours"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "B4"
+            ],
+            "id": "geo-01",
+            "passable": true
+          },
+          {
+            "cells": [
+              "D4",
+              "E4"
+            ],
+            "id": "geo-02",
+            "passable": false
+          }
+        ]
+      },
+      "start": "B4",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "B4",
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "id": "art-01",
+          "objectId": "geo-01"
+        },
+        {
+          "anchor": "D4",
+          "assetId": "land-coast.island.h2.lookout-bay-01.v1",
+          "id": "art-02",
+          "objectId": "geo-02"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "In Stunde 3 war das Schiff nicht genau 2 Hexfelder von dem Ort geo-02 (D4, E4) entfernt.",
+        "H2": "In Stunde 3 war das Schiff nicht genau 3 Hexfelder von dem Ort geo-02 (D4, E4) entfernt.",
+        "H3": "Von Stunde 2 bis Stunde 4 war das Schiff genau zweimal genau 2 Hexfelder von dem Ort geo-01 (B4) entfernt.",
+        "H4": "Fahrtrichtung von Stunde 0 zu Stunde 1: Nordwest.",
+        "H5": "Hexabstand in Stunde 6 zu Ort geo-02 (D4, E4): genau 1.",
+        "H6": "Hexabstand zwischen den Positionen in Stunde 0 und Stunde 2: genau 1."
+      },
+      "hints": [],
+      "intro": [
+        "Redaktionelle Vorschau – Podcasttexte und Bedeutungsprüfung stehen noch aus.",
+        "Hexabstand zu einem Ort: kleinster geometrischer Abstand zu einer seiner Zellen; Land verlängert ihn nicht."
+      ],
+      "objectNames": {
+        "geo-01": "Ort geo-01",
+        "geo-02": "Ort geo-02"
+      },
+      "title": "C-03"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}

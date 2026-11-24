@@ -162,16 +162,18 @@ test('rapid manual and clue triggers replace one animation and restart its compl
  });
  try{
   await page.locator('#showPlaces').click();
-  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries[0]?.samples.some(s=>
-   s.connected&&s.states.every(v=>v==='running')&&s.currentTimes.every(t=>t>=2200)))).toBe(true);
+  // Poll in the WebProcess: a satisfied sample must not lose its deadline
+  // while another DevTools round-trip waits for the compositor. Same 5s limit.
+  await page.waitForFunction(()=>window.rapidLifecycle.entries[0]?.samples.some(s=>
+   s.connected&&s.states.every(v=>v==='running')&&s.currentTimes.every(t=>t>=2200)),null,{polling:100,timeout:5000});
   for(let i=0;i<4;i++){await page.locator('#nextClue').click();await page.locator('#showPlaces').click();}
   await expect(page.locator('.place-references')).toHaveCount(1);
   await expect(names(page)).toHaveText(['Roberts Boot','Zwilling','Kiste','Start']);
-  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
-   s.connected&&s.currentTimes.every(t=>t>=3400)&&s.groups===1&&s.labels===4))).toBe(true);
+  await page.waitForFunction(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
+   s.connected&&s.currentTimes.every(t=>t>=3400)&&s.groups===1&&s.labels===4),null,{polling:100,timeout:5000});
   // Preserve PR #117's 3.5s cleanup deadline, starting at native end observation.
-  await expect.poll(()=>page.evaluate(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
-   s.states.every(v=>v==='finished')))).toBe(true);
+  await page.waitForFunction(()=>window.rapidLifecycle.entries.at(-1)?.samples.some(s=>
+   s.states.every(v=>v==='finished')),null,{polling:100,timeout:5000});
   await expect(labels(page)).toHaveCount(0,{timeout:3500});
   await expect(page.locator('.place-references')).toHaveCount(0);
   const report=await page.evaluate(()=>({...window.rapidLifecycle,states:window.rapidAnimationStates()}));

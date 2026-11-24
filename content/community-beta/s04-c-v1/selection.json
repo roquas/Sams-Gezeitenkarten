@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "poolId": "S04-C-community-v1",
+  "status": "awaiting-flavor",
+  "scope": "community:S04-C-v1",
+  "selection": "All 15 existing selected S04-C cases; no further selection by one tester’s taste. Roles are editorial hypotheses and are not shown as quality or difficulty labels to players.",
+  "assignment": "free-choice",
+  "order": [
+    "C-06",
+    "C-11",
+    "C-07",
+    "C-02",
+    "C-08",
+    "C-14",
+    "C-03",
+    "C-05",
+    "C-09",
+    "C-12",
+    "C-01",
+    "C-04",
+    "C-13",
+    "C-15",
+    "C-10"
+  ],
+  "entries": [
+    {
+      "id": "C-01",
+      "roleHypothesis": "global-combination",
+      "firstPlayAssessment": "unplayed",
+      "rationale": "Vier Hinweise mit globaler Kombination und Drehungen; noch keine menschliche Bewertung."
+    },
+    {
+      "id": "C-02",
+      "roleHypothesis": "visible-deduction",
+      "firstPlayAssessment": "positive",
+      "rationale": "Sichtbare Ausschlüsse und als hilfreich erlebte Teilerfolge."
+    },
+    {
+      "id": "C-03",
+      "roleHypothesis": "visible-deduction",
+      "firstPlayAssessment": "positive",
+      "rationale": "Nachvollziehbarer Aufbau mit Markierungen; Startbezug sprachlich prüfen."
+    },
+    {
+      "id": "C-04",
+      "roleHypothesis": "challenging-comparison",
+      "firstPlayAssessment": "positive-with-reservations",
+      "rationale": "Guter Anfang, schwieriger Schluss bis nahe an die Aufgabe; H5 wurde übersehen, kein bestätigter Solver- oder UI-Fehler."
+    },
+    {
+      "id": "C-05",
+      "roleHypothesis": "end-anchor",
+      "firstPlayAssessment": "less-convincing",
+      "rationale": "Leicht und fair, trotzdem unbefriedigender Aufbau; wichtig gegen Gleichsetzung leicht = Spaß."
+    },
+    {
+      "id": "C-06",
+      "roleHypothesis": "early-route",
+      "firstPlayAssessment": "positive",
+      "rationale": "Früh zeichnbare Route und verschiedene Hinweise; Referenz für den Flavor-Pilot."
+    },
+    {
+      "id": "C-07",
+      "roleHypothesis": "global-combination",
+      "firstPlayAssessment": "less-convincing",
+      "rationale": "Gleichzeitiges gedankliches Verwalten der Bedingungen; mobile Darstellung mitbeobachten."
+    },
+    {
+      "id": "C-08",
+      "roleHypothesis": "challenging-comparison",
+      "firstPlayAssessment": "positive-with-reservations",
+      "rationale": "Anspruchsvoll, dennoch reizvoll; Zählhinweise und Radarwechsel."
+    },
+    {
+      "id": "C-09",
+      "roleHypothesis": "complex-deduction",
+      "firstPlayAssessment": "positive",
+      "rationale": "Komplexere Deduktion trotz später zeichnbarer Route interessant."
+    },
+    {
+      "id": "C-10",
+      "roleHypothesis": "global-combination",
+      "firstPlayAssessment": "unplayed",
+      "rationale": "Drei Hinweise, sehr geringe lokale Fortschritte; bewusster explorativer Vergleich, kein Qualitätsurteil."
+    },
+    {
+      "id": "C-11",
+      "roleHypothesis": "end-anchor",
+      "firstPlayAssessment": "positive-with-reservations",
+      "rationale": "Markierungen und Endanker mit anschließendem begrenztem Routenvergleich; hat Spaß gemacht."
+    },
+    {
+      "id": "C-12",
+      "roleHypothesis": "geometry-combination",
+      "firstPlayAssessment": "less-convincing",
+      "rationale": "Geometrisches Nadelöhr mit größerer mentaler Routenprüfung; anderer Lösungsstil."
+    },
+    {
+      "id": "C-13",
+      "roleHypothesis": "global-combination",
+      "firstPlayAssessment": "less-convincing",
+      "rationale": "Gefundene Route ohne als überzeugend erlebte Herleitung; Kontrast zur technischen lokalen Lösbarkeit."
+    },
+    {
+      "id": "C-14",
+      "roleHypothesis": "turn-combination",
+      "firstPlayAssessment": "less-convincing",
+      "rationale": "Später Endanker und Drehbeziehungen; positive Kartenästhetik getrennt betrachten."
+    },
+    {
+      "id": "C-15",
+      "roleHypothesis": "mixed-comparison",
+      "firstPlayAssessment": "unplayed",
+      "rationale": "Markierungen und relationale Kombination; noch keine menschliche Bewertung."
+    }
+  ]
+}

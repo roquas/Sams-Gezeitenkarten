@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "background": "sea-blue-01",
+  "cases": [
+    {
+      "id": "C-01",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-02",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-03",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-04",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-05",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-06",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-07",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-08",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-09",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-10",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-11",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-12",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-13",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-14",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    },
+    {
+      "id": "C-15",
+      "dataVersion": 1,
+      "status": "pending",
+      "presentation": null,
+      "semanticReview": null
+    }
+  ]
+}

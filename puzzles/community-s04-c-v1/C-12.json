@@ -1,0 +1,185 @@
+{
+  "identity": {
+    "instanceId": "inst-19fbb550be9a84ea87c18fc220e2620ce694a5f9e9d41f80009a8433d3846c3b",
+    "mapStructureId": "map-5a5dd5ee776201cd79813bb550bb6ea3ecaa336dc22d9d72606bf6b2204e6d82",
+    "variantId": "var-3d06d5bbd78d6064162b35d899781f5a38cf4459f20f05499e3613d5e6b257e8"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "C-12",
+    "logic": {
+      "clues": [
+        {
+          "count": 1,
+          "distance": 2,
+          "fromHour": 6,
+          "id": "H1",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 3,
+          "fromHour": 3,
+          "id": "H2",
+          "placeId": "geo-07",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 3,
+          "fromHour": 1,
+          "id": "H3",
+          "placeId": "geo-01",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "distance": 2,
+          "hours": [
+            3,
+            6
+          ],
+          "id": "H4",
+          "type": "distanceBetweenHours"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "A5"
+            ],
+            "id": "geo-01",
+            "passable": true
+          },
+          {
+            "cells": [
+              "E4"
+            ],
+            "id": "geo-02",
+            "passable": true
+          },
+          {
+            "cells": [
+              "B2",
+              "C1"
+            ],
+            "id": "geo-03",
+            "passable": false
+          },
+          {
+            "cells": [
+              "B4",
+              "C5"
+            ],
+            "id": "geo-04",
+            "passable": false
+          },
+          {
+            "cells": [
+              "A3"
+            ],
+            "id": "geo-05",
+            "passable": true
+          },
+          {
+            "cells": [
+              "E1"
+            ],
+            "id": "geo-06",
+            "passable": true
+          },
+          {
+            "cells": [
+              "A1"
+            ],
+            "id": "geo-07",
+            "passable": true
+          }
+        ]
+      },
+      "start": "A1",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "A5",
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "id": "art-01",
+          "objectId": "geo-01"
+        },
+        {
+          "anchor": "E4",
+          "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+          "id": "art-02",
+          "objectId": "geo-02"
+        },
+        {
+          "anchor": "B2",
+          "assetId": "land-coast.island.h2.lookout-bay-02.v1",
+          "id": "art-03",
+          "objectId": "geo-03"
+        },
+        {
+          "anchor": "B4",
+          "assetId": "land-coast.settlement.h2.hut-settlement-03.v1",
+          "id": "art-04",
+          "objectId": "geo-04"
+        },
+        {
+          "anchor": "A3",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "id": "art-05",
+          "objectId": "geo-05"
+        },
+        {
+          "anchor": "E1",
+          "assetId": "sea-life.accent.h1.crate.v1",
+          "id": "art-06",
+          "objectId": "geo-06"
+        },
+        {
+          "anchor": "A1",
+          "assetId": "land-coast.atoll.h1.broken-passages.v1",
+          "id": "art-07",
+          "objectId": "geo-07"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "In Stunde 6 war das Schiff genau 2 Hexfelder von dem Ort geo-02 (E4) entfernt.",
+        "H2": "Von Stunde 3 bis Stunde 5 war das Schiff genau einmal genau 3 Hexfelder von dem Ort geo-07 (A1) entfernt.",
+        "H3": "Von Stunde 1 bis Stunde 6 war das Schiff genau zweimal genau 3 Hexfelder von dem Ort geo-01 (A5) entfernt.",
+        "H4": "Hexabstand zwischen den Positionen in Stunde 3 und Stunde 6: genau 2."
+      },
+      "hints": [],
+      "intro": [
+        "Redaktionelle Vorschau – Podcasttexte und Bedeutungsprüfung stehen noch aus.",
+        "Hexabstand zu einem Ort: kleinster geometrischer Abstand zu einer seiner Zellen; Land verlängert ihn nicht."
+      ],
+      "objectNames": {
+        "geo-01": "Ort geo-01",
+        "geo-02": "Ort geo-02",
+        "geo-03": "Ort geo-03",
+        "geo-04": "Ort geo-04",
+        "geo-05": "Ort geo-05",
+        "geo-06": "Ort geo-06",
+        "geo-07": "Ort geo-07"
+      },
+      "title": "C-12"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}

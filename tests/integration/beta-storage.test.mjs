@@ -7,6 +7,23 @@ import {resultMessage} from '../../src/beta/result-dialog.mjs';
 function setup(){const data=new Map(),errors=[];let id=0;const storage={getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v),key:i=>[...data.keys()][i],get length(){return data.size;}};const options={storage,report:e=>errors.push(e),now:()=> '2026-11-20T12:00:00.000Z',newId:()=>String(++id)};return {data,errors,storage,options,store:createBetaStore(options)};}
 const puzzle={id:'one',schemaVersion:2,dataVersion:1,rulesVersion:'gezeitenkarten/1',identity:{variantId:'var-one',sourcePublicationId:'pub-one'}};
 const identity=puzzleIdentity(puzzle,'regular');
+test('optional fun, style and tester experience survive reload, export and replay without changing old records',()=>{
+ const {store,options,data}=setup();store.start(identity,'One');
+ // Simulate a record written before this additive extension.
+ const key=PREFIX+'record:'+recordId(identity),old=JSON.parse(data.get(key));
+ delete old.feedback.fun;delete old.feedback.solvingStyle;data.set(key,JSON.stringify(old));
+ let current=createBetaStore(options);
+ assert.equal(current.exportData({}).puzzles[0].feedback.fun,null);
+ assert.equal(current.exportData({}).generalFeedback.experience,null);
+ current.feedback(identity,{fun:5,solvingStyle:'mixed'});current.setExperience('experienced');
+ current.setGeneral('Comment kept');current=createBetaStore(options);
+ assert.equal(current.exportData({}).generalFeedback.experience,'experienced');
+ current.start(identity,'One',{replay:true});
+ const record=current.exportData({}).puzzles[0];
+ assert.equal(record.phases[0].feedbackAtEnd.fun,5);assert.equal(record.phases[0].feedbackAtEnd.solvingStyle,'mixed');
+ assert.equal(record.feedback.fun,null);assert.equal(record.feedback.solvingStyle,null);
+ current.setExperience(null);assert.equal(current.exportData({}).generalFeedback.comment,'Comment kept');
+});
 test('identity binds versions and F02 identities without a second hash function',()=>{
  const identities=[identity,puzzleIdentity({...puzzle,dataVersion:2},'regular'),puzzleIdentity(puzzle,'b2:S01'),puzzleIdentity({...puzzle,identity:{...puzzle.identity,sourcePublicationId:'pub-two'}},'regular'),puzzleIdentity({...puzzle,identity:{...puzzle.identity,variantId:'var-two'}},'regular')];
  assert.equal(new Set(identities.map(recordId)).size,5);assert.equal(identity.sourcePublicationId,'pub-one');

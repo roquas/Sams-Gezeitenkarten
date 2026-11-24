@@ -1,0 +1,155 @@
+{
+  "identity": {
+    "instanceId": "inst-9420fc57e05f90dde60bb087bf5a89ff2757d514b914726a6c1bb83aacf65771",
+    "mapStructureId": "map-643cd9357e326d6e6f4d5b2045f551fdb40eecac3850b907123ae4062404e41c",
+    "variantId": "var-a512eb09f0dceb5cbf822d8129124c6f87e831b617397f6af806dc0f2fc75103"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "C-13",
+    "logic": {
+      "clues": [
+        {
+          "count": 1,
+          "distance": 1,
+          "fromHour": 4,
+          "id": "H1",
+          "placeId": "geo-02",
+          "toHour": 6,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 2,
+          "fromHour": 3,
+          "id": "H2",
+          "placeId": "geo-02",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "distance": 1,
+          "hour": 5,
+          "id": "H3",
+          "placeId": "geo-05",
+          "type": "distanceToPlace"
+        },
+        {
+          "distance": 3,
+          "hour": 4,
+          "id": "H4",
+          "placeId": "geo-01",
+          "type": "distanceToPlace"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "B4",
+              "C4",
+              "C5",
+              "D5"
+            ],
+            "id": "geo-01",
+            "passable": false
+          },
+          {
+            "cells": [
+              "E3"
+            ],
+            "id": "geo-02",
+            "passable": false
+          },
+          {
+            "cells": [
+              "A3"
+            ],
+            "id": "geo-03",
+            "passable": true
+          },
+          {
+            "cells": [
+              "B1",
+              "B2"
+            ],
+            "id": "geo-04",
+            "passable": false
+          },
+          {
+            "cells": [
+              "D1"
+            ],
+            "id": "geo-05",
+            "passable": true
+          }
+        ]
+      },
+      "start": "A3",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "B4",
+          "assetId": "land-coast.island.h4.jungle-temple.v1",
+          "id": "art-01",
+          "objectId": "geo-01"
+        },
+        {
+          "anchor": "E3",
+          "assetId": "land-coast.island.h1.palm-beach.v1",
+          "id": "art-02",
+          "objectId": "geo-02"
+        },
+        {
+          "anchor": "A3",
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "id": "art-03",
+          "objectId": "geo-03"
+        },
+        {
+          "anchor": "B1",
+          "assetId": "land-coast.island.h2.mist-forest-03.v1",
+          "id": "art-04",
+          "objectId": "geo-04"
+        },
+        {
+          "anchor": "D1",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "id": "art-05",
+          "objectId": "geo-05"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "Von Stunde 4 bis Stunde 6 war das Schiff genau einmal neben dem Ort geo-02 (E3).",
+        "H2": "Von Stunde 3 bis Stunde 5 war das Schiff genau zweimal genau 2 Hexfelder von dem Ort geo-02 (E3) entfernt.",
+        "H3": "Hexabstand in Stunde 5 zu Ort geo-05 (D1): genau 1.",
+        "H4": "Hexabstand in Stunde 4 zu Ort geo-01 (B4, C4, C5, D5): genau 3."
+      },
+      "hints": [],
+      "intro": [
+        "Redaktionelle Vorschau – Podcasttexte und Bedeutungsprüfung stehen noch aus.",
+        "Hexabstand zu einem Ort: kleinster geometrischer Abstand zu einer seiner Zellen; Land verlängert ihn nicht."
+      ],
+      "objectNames": {
+        "geo-01": "Ort geo-01",
+        "geo-02": "Ort geo-02",
+        "geo-03": "Ort geo-03",
+        "geo-04": "Ort geo-04",
+        "geo-05": "Ort geo-05"
+      },
+      "title": "C-13"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}

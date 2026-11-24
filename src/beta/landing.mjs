@@ -16,13 +16,15 @@ export async function showLanding(){
  <section class="panel pad" aria-labelledby="selectionTitle"><h2 id="selectionTitle" tabindex="-1">Rätselauswahl</h2><p id="catalogStatus" role="status">Katalog wird geladen …</p><div id="puzzleCards" class="beta-cards"></div></section>
  <section class="panel pad" aria-labelledby="feedbackTitle"><h2 id="feedbackTitle">Dein Betatest-Feedback</h2>
  <p>Freiwillig und jederzeit änderbar. Änderungen hier werden automatisch lokal gespeichert, sofern die Browserspeicherung verfügbar ist. Bitte keine persönlichen Angaben eintragen.</p>
- <div id="feedbackRecords"></div><label class="beta-general" for="generalFeedback">Allgemeines Feedback zu Bedienung, Lesbarkeit, Regeln oder Mobilnutzung<textarea id="generalFeedback" rows="5"></textarea></label>
+ <label class="beta-general">Wie viel Erfahrung hast Du mit Logik- und Deduktionsrätseln? (Einmal pro Browser, freiwillig)<select id="puzzleExperience"><option value="">Keine Angabe</option><option value="beginner">Kaum / keine</option><option value="occasional">Gelegentlich</option><option value="experienced">Viel Erfahrung</option></select></label><div id="feedbackRecords"></div><label class="beta-general" for="generalFeedback">Allgemeines Feedback zu Bedienung, Lesbarkeit, Regeln oder Mobilnutzung<textarea id="generalFeedback" rows="5"></textarea></label>
  <p id="feedbackSaveStatus" role="status"></p><button class="btn primary" id="exportFeedback" type="button">Betatest-Feedback exportieren</button><p class="muted">Eine JSON-Datei mit Testkennung, Bearbeitungsstatus, ungefährer aktiver Zeit, Hilfenzählern und freiwilligen Rückmeldungen. Keine Routen und kein Klickverlauf. Die Datei bleibt bei Dir.</p></section>
  <section class="panel pad" aria-labelledby="landingRulesTitle"><h2 id="landingRulesTitle" tabindex="-1">Vollständige Spielregeln</h2><div id="landingRules"></div></section>`;
  document.body.append(main);main.querySelector('#landingRules').append(rules);
  const storage=localStorageAccess(),store=createBetaStore({storage,report:storageNotice});
  const $=id=>main.querySelector('#'+id),general=$('generalFeedback');general.value=store.general().comment;
  general.addEventListener('input',()=>{$('feedbackSaveStatus').textContent=store.setGeneral(general.value)?'Allgemeines Feedback lokal gespeichert.':'Noch nicht dauerhaft gespeichert. Bitte exportieren.';});
+ const experience=$('puzzleExperience');experience.value=store.general().experience??'';
+ experience.addEventListener('change',()=>{$('feedbackSaveStatus').textContent=store.setExperience(experience.value||null)?'Rätselerfahrung lokal gespeichert.':'Noch nicht dauerhaft gespeichert. Bitte exportieren.';});
  let context,catalog,loaded=[];const refreshCards=[];
  function renderFeedback(){
   const records=new Map(store.records().map(r=>[r.recordId,r]));
@@ -53,11 +55,16 @@ export async function showLanding(){
  try{
   context=puzzleContext();catalog=await context.loader.manifest();
   $('catalogStatus').textContent=(context.development?'Entwicklungsbestand '+context.stock+' · ':'')+catalog.puzzles.length+(catalog.puzzles.length===1?' verfügbares Rätsel':' verfügbare Rätsel');
+  if(context.community){
+   const invitation=document.createElement('p');invitation.textContent='Wähle frei, was Dich anspricht, und teste so viel oder wenig Du möchtest. Fang gerne auch in der Mitte an, damit sich die Rückmeldungen verteilen.';$('catalogStatus').after(invitation);
+   const inventory=await fetch(new URL('inventory.json',context.manifestUrl)).then(r=>{if(!r.ok)throw Error('Katalogstatus nicht verfügbar');return r.json();});
+   if(!inventory.releaseReady){const notice=document.createElement('p');notice.role='status';notice.textContent='Redaktionelle Vorschau: Podcasttexte und Bedeutungsprüfung stehen noch aus. Dieser Stand ist noch nicht für den Community-Test freigegeben.';$('catalogStatus').after(notice);}
+  }
   for(const entry of [...catalog.puzzles].sort((a,b)=>Number(b.id===catalog.defaultId)-Number(a.id===catalog.defaultId))){
    const card=document.createElement('article');card.className='beta-card';const heading=document.createElement('h3');heading.textContent=entry.title;card.append(heading);$('puzzleCards').append(card);
    try{
     const puzzle=await context.loader.load(entry.id);loaded.push(puzzle);const identity=puzzleIdentity(puzzle,context.scope),record=store.get(identity);
-    const description=document.createElement('p');description.className='muted';description.textContent=puzzle.steps+' Etappen'+(entry.id===catalog.defaultId?' · Standardrätsel':entry.id==='model-demo'?' · Technische Probefahrt':'');card.append(description);
+    const description=document.createElement('p');description.className='muted';description.textContent=puzzle.steps+' Etappen'+(entry.id===catalog.defaultId&&!context.community?' · Standardrätsel':entry.id==='model-demo'?' · Technische Probefahrt':'');card.append(description);
     const saved=loadState(puzzle,storage),begun=record?.phases.length||Object.keys(saved.marks).length||saved.route.length>1||saved.doneClues.length||saved.hintCount;
     const solved=!!record?.solvedAt,abandoned=record?.phases.at(-1)?.status==='abandoned';
     const status=document.createElement('p');card.append(status);

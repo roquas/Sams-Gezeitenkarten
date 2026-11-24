@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "scope": "community:S04-C-v1",
+  "releaseReady": false,
+  "files": [
+    {
+      "path": "C-06.json",
+      "bytes": 3965,
+      "sha256": "a0eaffdc4351a5435664285f6b79c05dfc929f04534f59b10ca2298038e9f153"
+    },
+    {
+      "path": "C-11.json",
+      "bytes": 4226,
+      "sha256": "2cfb029a8213746c6744ad3a36ce84a1d870aa46e78cfdd61324bd10599e0d19"
+    },
+    {
+      "path": "C-07.json",
+      "bytes": 2921,
+      "sha256": "9da20003da36c295af6f522576a1556c4ad8473617e3a9a5740dd9a87a2b1ef0"
+    },
+    {
+      "path": "C-02.json",
+      "bytes": 4303,
+      "sha256": "c5623fce8c7aa0571e03238b58b3bc7c0c482f83b07fe0ce1864b03d078e574c"
+    },
+    {
+      "path": "C-08.json",
+      "bytes": 4784,
+      "sha256": "6973e4a34934b5983d55ba266493b9754bb5b64a12b9332d870a1ba77aafa393"
+    },
+    {
+      "path": "C-14.json",
+      "bytes": 2632,
+      "sha256": "dac30b3251368e1b44ddf1ee2321b852c634d5ba767e5b3577497b724529d001"
+    },
+    {
+      "path": "C-03.json",
+      "bytes": 3518,
+      "sha256": "add83e101739b7445aaf22ed736bda72137aa468f02271f0126c334700c0d3f6"
+    },
+    {
+      "path": "C-05.json",
+      "bytes": 3347,
+      "sha256": "a94ace4aad719f130897973cd9c4d4760546493c814e611227db220345739873"
+    },
+    {
+      "path": "C-09.json",
+      "bytes": 4323,
+      "sha256": "be28ccf497b08c6bd0d387739f941f72de6df66bb03210a45abb0547390a0c2b"
+    },
+    {
+      "path": "C-12.json",
+      "bytes": 4806,
+      "sha256": "42c69932c3fc883a74f69acf548963b125c12d323748ca1ebc88363bd6d65951"
+    },
+    {
+      "path": "C-01.json",
+      "bytes": 3281,
+      "sha256": "5dd1dcfa14878fb8cae6720b35d087ced7fbf170be5f017c7774f40267661d34"
+    },
+    {
+      "path": "C-04.json",
+      "bytes": 3806,
+      "sha256": "df1b9bfa9fcbcaf699d35d94eb4e1a290a1b66f7a2e49ae40cb6d3fe5d01a108"
+    },
+    {
+      "path": "C-13.json",
+      "bytes": 4036,
+      "sha256": "e60cd39527cb13943a39aefc51488598a4d27b19eea201e42db5adfaf7c2ac94"
+    },
+    {
+      "path": "C-15.json",
+      "bytes": 3216,
+      "sha256": "b23c8436c64bed06853d4d49a9e4e688740b23ddffa5b788095c39d342e84af6"
+    },
+    {
+      "path": "C-10.json",
+      "bytes": 3851,
+      "sha256": "98b82b1c145337d4b9e87a9821b90a6cc7cc9f43a65752585c9801f1aac6ac0b"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 1710,
+      "sha256": "c48ad6b851142387263c087b11e5c08db12e52e7acfb7dbd43abbfb806ebba34"
+    }
+  ]
+}

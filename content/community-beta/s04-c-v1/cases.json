@@ -1,0 +1,1941 @@
+{
+  "format": "s04-c-editorial-handoff-1",
+  "cases": [
+    {
+      "id": "C-01",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M017/gk-variant-v2-sha256:8507620de68af19cd9dc8bc43c38e4bfed1f9a06584d8a9f350385ff0a56f94f",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D3"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "B3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "B5"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "start": "B3",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 5,
+              "toHour": 5,
+              "placeId": "geo-03",
+              "distance": 5,
+              "count": 1
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 6,
+              "placeId": "geo-01",
+              "distance": 2,
+              "count": 3
+            },
+            {
+              "id": "H3",
+              "type": "turn",
+              "hour": 6,
+              "degrees": -120
+            },
+            {
+              "id": "H4",
+              "type": "turn",
+              "hour": 4,
+              "degrees": 60
+            }
+          ]
+        },
+        "solution": [
+          "B3",
+          "B2",
+          "C1",
+          "D1",
+          "D2",
+          "E2",
+          "E1"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "land-coast.settlement.h1.restaurant-island.v1",
+          "anchor": "D3",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.crate.v1",
+          "anchor": "B3",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "land-coast.atoll.h1.broken-passages.v1",
+          "anchor": "B5",
+          "objectId": "geo-03"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:fd13b58981b8973e3a55cc4fee6d261b329e95e97f19daf7aff91ebb994cab4c",
+        "instance": "gk-instance-v2-sha256:fceff0d5ca55e054b07dc14160ef6a1c5918b2b38e838dfd4ad514019d6113e0",
+        "variant": "gk-variant-v2-sha256:8507620de68af19cd9dc8bc43c38e4bfed1f9a06584d8a9f350385ff0a56f94f"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-02",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M028/gk-variant-v2-sha256:59d896ba35679c86cf33767ee829a094e53045c9a844d44a7a9b1e9b3fc581e6",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "B4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "D1",
+                  "D2",
+                  "E1",
+                  "E2"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "start": "B1",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 0,
+              "count": 0
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 6,
+              "toHour": 6,
+              "placeId": "geo-03",
+              "distance": 5,
+              "count": 0
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 5,
+              "placeId": "geo-01",
+              "distance": 1,
+              "count": 1
+            },
+            {
+              "id": "H4",
+              "type": "countDistanceToPlace",
+              "fromHour": 2,
+              "toHour": 2,
+              "placeId": "geo-03",
+              "distance": 3,
+              "count": 1
+            },
+            {
+              "id": "H5",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 3,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 2
+            },
+            {
+              "id": "H6",
+              "type": "distanceToPlace",
+              "hour": 5,
+              "placeId": "geo-02",
+              "distance": 1
+            },
+            {
+              "id": "H7",
+              "type": "distanceBetweenHours",
+              "hours": [
+                1,
+                3
+              ],
+              "distance": 2
+            }
+          ]
+        },
+        "solution": [
+          "B1",
+          "B2",
+          "B3",
+          "A3",
+          "A4",
+          "B5",
+          "C5"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "anchor": "B1",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "anchor": "B4",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "land-coast.settlement.h4.tesoro.v4",
+          "anchor": "D1",
+          "objectId": "geo-03"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:de81b1b901905361b352c2fadce4778a2e490b626eec1370966d37af47d6019f",
+        "instance": "gk-instance-v2-sha256:ffa99f1936cd93835bda552bc37ac95b651379831d7cc1b3d8f00626aed9bb39",
+        "variant": "gk-variant-v2-sha256:59d896ba35679c86cf33767ee829a094e53045c9a844d44a7a9b1e9b3fc581e6"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-03",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M025/gk-variant-v2-sha256:d1ee74aef47dcb237f5f72ee0345a36bc997083390a2429445d3f725e0ecda5f",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "D4",
+                  "E4"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "start": "B4",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 3,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 0
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 3,
+              "placeId": "geo-02",
+              "distance": 3,
+              "count": 0
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 2,
+              "toHour": 4,
+              "placeId": "geo-01",
+              "distance": 2,
+              "count": 2
+            },
+            {
+              "id": "H4",
+              "type": "direction",
+              "hour": 1,
+              "direction": "NW"
+            },
+            {
+              "id": "H5",
+              "type": "distanceToPlace",
+              "hour": 6,
+              "placeId": "geo-02",
+              "distance": 1
+            },
+            {
+              "id": "H6",
+              "type": "distanceBetweenHours",
+              "hours": [
+                0,
+                2
+              ],
+              "distance": 1
+            }
+          ]
+        },
+        "solution": [
+          "B4",
+          "B3",
+          "C3",
+          "D3",
+          "C2",
+          "D2",
+          "E3"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "anchor": "B4",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "land-coast.island.h2.lookout-bay-01.v1",
+          "anchor": "D4",
+          "objectId": "geo-02"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:0b72f0a2f6a1525f0a664c2dac6d895dcba63ef8e089ef6af57e62bd9e05177f",
+        "instance": "gk-instance-v2-sha256:ef038bd5a2c6975aa2c41dc00112207d042441d6707f272a295ffd0f50cbc1ee",
+        "variant": "gk-variant-v2-sha256:d1ee74aef47dcb237f5f72ee0345a36bc997083390a2429445d3f725e0ecda5f"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-04",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M022/gk-variant-v2-sha256:24889c8160dc13c1441bb8f81164c0ca5c41a21a47cf05454b4ebe9b2442514f",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "A4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "E4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "A2",
+                  "B2",
+                  "C2",
+                  "D2"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "start": "A4",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 4,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 1,
+              "count": 0
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 2,
+              "placeId": "geo-02",
+              "distance": 3,
+              "count": 0
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 2,
+              "toHour": 6,
+              "placeId": "geo-03",
+              "distance": 3,
+              "count": 0
+            },
+            {
+              "id": "H4",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 5,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 1
+            },
+            {
+              "id": "H5",
+              "type": "distanceBetweenHours",
+              "hours": [
+                3,
+                5
+              ],
+              "distance": 2
+            }
+          ]
+        },
+        "solution": [
+          "A4",
+          "A3",
+          "B3",
+          "B4",
+          "C3",
+          "D3",
+          "C4"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+          "anchor": "A4",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "anchor": "E4",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "land-coast.island.h4.long-sand.v1",
+          "anchor": "A2",
+          "objectId": "geo-03"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:0136ca736382b037a62770e67fb2e515b458b0f6105c35bc7dec01cd7e5d19e0",
+        "instance": "gk-instance-v2-sha256:805e2eaf9e0926d5b1592177987eb47ef17d372e309d8e3799d5e6f1a067e6f6",
+        "variant": "gk-variant-v2-sha256:24889c8160dc13c1441bb8f81164c0ca5c41a21a47cf05454b4ebe9b2442514f"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-05",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M021/gk-variant-v2-sha256:a5937b0821594cee2f645ba660c68a563f6f84c68d7e76645e364b44be0f3aa8",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D3",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "start": "A5",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 6,
+              "toHour": 6,
+              "placeId": "geo-01",
+              "distance": 2,
+              "count": 0
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 6,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 1
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 5,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 3,
+              "count": 1
+            },
+            {
+              "id": "H4",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 4,
+              "placeId": "geo-02",
+              "distance": 3,
+              "count": 2
+            },
+            {
+              "id": "H5",
+              "type": "direction",
+              "hour": 2,
+              "direction": "E"
+            }
+          ]
+        },
+        "solution": [
+          "A5",
+          "A4",
+          "B4",
+          "C3",
+          "B2",
+          "A2",
+          "A3"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "land-coast.island.h2.mist-forest-01.v1",
+          "anchor": "D3",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.barrels.v1",
+          "anchor": "A5",
+          "objectId": "geo-02"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:0515bd4045e2b20b75bd327bb988ccb6218858cf0dbb88674cf64263ec1a9c49",
+        "instance": "gk-instance-v2-sha256:ec94a741ddd11cbb634a1c8d5ee5a1f5005073794c4ecc08543f0a5cdb5a6a7d",
+        "variant": "gk-variant-v2-sha256:a5937b0821594cee2f645ba660c68a563f6f84c68d7e76645e364b44be0f3aa8"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-06",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M005/gk-variant-v2-sha256:09a5d3fdd65cb416aff0d4ad22154dd6ae3930d4ad49a3b76ff55cc8a108fbe0",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "D3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "B1",
+                  "B2"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "start": "D1",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 5,
+              "placeId": "geo-01",
+              "distance": 3,
+              "count": 0
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 4,
+              "toHour": 5,
+              "placeId": "geo-03",
+              "distance": 2,
+              "count": 1
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 4,
+              "placeId": "geo-02",
+              "distance": 1,
+              "count": 2
+            },
+            {
+              "id": "H4",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 2,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 2
+            },
+            {
+              "id": "H5",
+              "type": "direction",
+              "hour": 3,
+              "direction": "SW"
+            },
+            {
+              "id": "H6",
+              "type": "distanceBetweenHours",
+              "hours": [
+                3,
+                6
+              ],
+              "distance": 2
+            }
+          ]
+        },
+        "solution": [
+          "D1",
+          "E1",
+          "E2",
+          "E3",
+          "D2",
+          "C2",
+          "C3"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "anchor": "D1",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "anchor": "D3",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "land-coast.settlement.h2.prison-island-03.v1",
+          "anchor": "B1",
+          "objectId": "geo-03"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:22f59cd7393e4f34830e3039fcac2677fe1dac4de54ab8217dd3221da1abbb07",
+        "instance": "gk-instance-v2-sha256:1111b58ac97e5598858a1c033bd65f37cf7e3b408bdcbdd3c0026151d2fbe135",
+        "variant": "gk-variant-v2-sha256:09a5d3fdd65cb416aff0d4ad22154dd6ae3930d4ad49a3b76ff55cc8a108fbe0"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-07",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M015/gk-variant-v2-sha256:2dabfbbbbabfb2255ed780c195c2b874490c8bf247430390e7e871e5443776e3",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "B4"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "start": "A5",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 6,
+              "placeId": "geo-01",
+              "distance": 5,
+              "count": 1
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 2,
+              "toHour": 4,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 2
+            },
+            {
+              "id": "H3",
+              "type": "turn",
+              "hour": 4,
+              "degrees": 120
+            },
+            {
+              "id": "H4",
+              "type": "direction",
+              "hour": 6,
+              "direction": "NE"
+            }
+          ]
+        },
+        "solution": [
+          "A5",
+          "A4",
+          "B3",
+          "A2",
+          "B2",
+          "C2",
+          "D1"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "anchor": "A5",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.crate.v1",
+          "anchor": "B4",
+          "objectId": "geo-02"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:97392df7f2d323e340209c759d8160d774f554a43f3fc1edced11bb7beea382b",
+        "instance": "gk-instance-v2-sha256:c825b557619ed3e2f536593c61e93ee57afa8f280dd5dca44dc79a02fab0e757",
+        "variant": "gk-variant-v2-sha256:2dabfbbbbabfb2255ed780c195c2b874490c8bf247430390e7e871e5443776e3"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-08",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M018/gk-variant-v2-sha256:ce143fac9432b6500970e71d9b64f38c3b495f5094be054fe67cc547297351ed",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "C4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "B5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "B2"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "A3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-06",
+                "cells": [
+                  "E3"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "start": "A3",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 6,
+              "placeId": "geo-03",
+              "distance": 1,
+              "count": 1
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 6,
+              "toHour": 6,
+              "placeId": "geo-06",
+              "distance": 2,
+              "count": 1
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 5,
+              "placeId": "geo-02",
+              "distance": 3,
+              "count": 1
+            },
+            {
+              "id": "H4",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 6,
+              "placeId": "geo-04",
+              "distance": 2,
+              "count": 2
+            },
+            {
+              "id": "H5",
+              "type": "countDistanceToPlace",
+              "fromHour": 4,
+              "toHour": 5,
+              "placeId": "geo-01",
+              "distance": 2,
+              "count": 2
+            }
+          ]
+        },
+        "solution": [
+          "A3",
+          "A2",
+          "B3",
+          "B4",
+          "C3",
+          "D3",
+          "C2"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "sea-life.accent.h1.barrels.v1",
+          "anchor": "D1",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "anchor": "C4",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+          "anchor": "B5",
+          "objectId": "geo-03"
+        },
+        {
+          "id": "art-04",
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "anchor": "B2",
+          "objectId": "geo-04"
+        },
+        {
+          "id": "art-05",
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "anchor": "A3",
+          "objectId": "geo-05"
+        },
+        {
+          "id": "art-06",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "anchor": "E3",
+          "objectId": "geo-06"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:1ced80abbe8fa3bed383a030eb0c30e90255114d5984bce6ca350016c92d0a0c",
+        "instance": "gk-instance-v2-sha256:c4fa54b33dd1c5bd71c3b885a256ffaa757fab943718d88593680e90515ee20f",
+        "variant": "gk-variant-v2-sha256:ce143fac9432b6500970e71d9b64f38c3b495f5094be054fe67cc547297351ed"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-09",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M026/gk-variant-v2-sha256:02dd37bbeb3e4ac1d215d87f0e42f66650e44760af192281b4f41087266bcb20",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "C2"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "D5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "E4"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "A3",
+                  "B3"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "start": "C2",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 6,
+              "toHour": 6,
+              "placeId": "geo-01",
+              "distance": 1,
+              "count": 1
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 2,
+              "toHour": 2,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 1
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 5,
+              "toHour": 6,
+              "placeId": "geo-04",
+              "distance": 2,
+              "count": 1
+            },
+            {
+              "id": "H4",
+              "type": "countDistanceToPlace",
+              "fromHour": 6,
+              "toHour": 6,
+              "placeId": "geo-04",
+              "distance": 3,
+              "count": 1
+            },
+            {
+              "id": "H5",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 6,
+              "placeId": "geo-01",
+              "distance": 1,
+              "count": 3
+            },
+            {
+              "id": "H6",
+              "type": "distanceToPlace",
+              "hour": 4,
+              "placeId": "geo-03",
+              "distance": 1
+            }
+          ]
+        },
+        "solution": [
+          "C2",
+          "C3",
+          "B4",
+          "C4",
+          "D4",
+          "D3",
+          "D2"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "land-coast.atoll.h1.broken-passages.v1",
+          "anchor": "C2",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "anchor": "D5",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "land-coast.settlement.h1.restaurant-island.v1",
+          "anchor": "E4",
+          "objectId": "geo-03"
+        },
+        {
+          "id": "art-04",
+          "assetId": "land-coast.island.h2.mist-forest-01.v1",
+          "anchor": "A3",
+          "objectId": "geo-04"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:c184cf4120ce98c9b4fad4c526c43fff49dcdd3175edfc26f1153084f50af252",
+        "instance": "gk-instance-v2-sha256:42742842f156a6bf59da8fd23bbf0a418a44f0c61f69866385783f05c47920cd",
+        "variant": "gk-variant-v2-sha256:02dd37bbeb3e4ac1d215d87f0e42f66650e44760af192281b4f41087266bcb20"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-10",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M013/gk-variant-v2-sha256:1dd5a6a72713fbfda2d30d18fc3e347df0afe377d04e116900f1438d8495a5d9",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "D4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "B1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "B4"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "E1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "C2"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "start": "B1",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 2,
+              "placeId": "geo-04",
+              "distance": 4,
+              "count": 1
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 2,
+              "toHour": 6,
+              "placeId": "geo-05",
+              "distance": 4,
+              "count": 1
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 3,
+              "placeId": "geo-05",
+              "distance": 1,
+              "count": 2
+            }
+          ]
+        },
+        "solution": [
+          "B1",
+          "A2",
+          "B2",
+          "C3",
+          "B3",
+          "A4",
+          "A5"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "land-coast.atoll.h1.broken-passages.v1",
+          "anchor": "D4",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.barrels.v1",
+          "anchor": "B1",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "navigation.lighthouse.h1.cyan-magenta-island.v1",
+          "anchor": "B4",
+          "objectId": "geo-03"
+        },
+        {
+          "id": "art-04",
+          "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+          "anchor": "E1",
+          "objectId": "geo-04"
+        },
+        {
+          "id": "art-05",
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "anchor": "C2",
+          "objectId": "geo-05"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:2b9fbb64d1d5e2990cd38296a495424caf28e3f5f54bbd8d0c3da56f3643bc86",
+        "instance": "gk-instance-v2-sha256:44fff1572c07f7be6041ab5105e1a4365135475170db7cd0a4c9b2f680d1d944",
+        "variant": "gk-variant-v2-sha256:1dd5a6a72713fbfda2d30d18fc3e347df0afe377d04e116900f1438d8495a5d9"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-11",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M027/gk-variant-v2-sha256:2676716b8e4edcd425f77b3dddd07c00d294ace341ab3a5cbc7de4c0e536b24d",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "E2",
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "E5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "C4",
+                  "C5"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "A3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "B2",
+                  "C1",
+                  "D1"
+                ],
+                "passable": false
+              }
+            ]
+          },
+          "start": "A3",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 5,
+              "placeId": "geo-02",
+              "distance": 1,
+              "count": 0
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 2,
+              "toHour": 5,
+              "placeId": "geo-02",
+              "distance": 4,
+              "count": 0
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 5,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 1,
+              "count": 1
+            },
+            {
+              "id": "H4",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 6,
+              "placeId": "geo-04",
+              "distance": 3,
+              "count": 1
+            }
+          ]
+        },
+        "solution": [
+          "A3",
+          "A4",
+          "B5",
+          "B4",
+          "C3",
+          "D3",
+          "D4"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "land-coast.settlement.h2.hut-settlement-02.v1",
+          "anchor": "E3",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.rowboat.v1",
+          "anchor": "E5",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "land-coast.island.h2.mist-forest-02.v1",
+          "anchor": "C5",
+          "objectId": "geo-03"
+        },
+        {
+          "id": "art-04",
+          "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+          "anchor": "A3",
+          "objectId": "geo-04"
+        },
+        {
+          "id": "art-05",
+          "assetId": "land-coast.island.h3.smuggler-cove.v1",
+          "anchor": "B2",
+          "objectId": "geo-05"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:db8dec752e54f7173e94e1ff1bad814d7af075a9505ebdb113ce59d6883fb5e2",
+        "instance": "gk-instance-v2-sha256:02ebd990d1a32105f24068b17b5ff9f655fee67ecb44c0f91e002bc8f062e549",
+        "variant": "gk-variant-v2-sha256:2676716b8e4edcd425f77b3dddd07c00d294ace341ab3a5cbc7de4c0e536b24d"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-12",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M006/gk-variant-v2-sha256:3d06d5bbd78d6064162b35d899781f5a38cf4459f20f05499e3613d5e6b257e8",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "A5"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "E4"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "B2",
+                  "C1"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "B4",
+                  "C5"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "A3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-06",
+                "cells": [
+                  "E1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-07",
+                "cells": [
+                  "A1"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "start": "A1",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 6,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 1
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 5,
+              "placeId": "geo-07",
+              "distance": 3,
+              "count": 1
+            },
+            {
+              "id": "H3",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 6,
+              "placeId": "geo-01",
+              "distance": 3,
+              "count": 2
+            },
+            {
+              "id": "H4",
+              "type": "distanceBetweenHours",
+              "hours": [
+                3,
+                6
+              ],
+              "distance": 2
+            }
+          ]
+        },
+        "solution": [
+          "A1",
+          "A2",
+          "B3",
+          "C3",
+          "D3",
+          "E3",
+          "D2"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "anchor": "A5",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+          "anchor": "E4",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "land-coast.island.h2.lookout-bay-02.v1",
+          "anchor": "B2",
+          "objectId": "geo-03"
+        },
+        {
+          "id": "art-04",
+          "assetId": "land-coast.settlement.h2.hut-settlement-03.v1",
+          "anchor": "B4",
+          "objectId": "geo-04"
+        },
+        {
+          "id": "art-05",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "anchor": "A3",
+          "objectId": "geo-05"
+        },
+        {
+          "id": "art-06",
+          "assetId": "sea-life.accent.h1.crate.v1",
+          "anchor": "E1",
+          "objectId": "geo-06"
+        },
+        {
+          "id": "art-07",
+          "assetId": "land-coast.atoll.h1.broken-passages.v1",
+          "anchor": "A1",
+          "objectId": "geo-07"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:5a5dd5ee776201cd79813bb550bb6ea3ecaa336dc22d9d72606bf6b2204e6d82",
+        "instance": "gk-instance-v2-sha256:19fbb550be9a84ea87c18fc220e2620ce694a5f9e9d41f80009a8433d3846c3b",
+        "variant": "gk-variant-v2-sha256:3d06d5bbd78d6064162b35d899781f5a38cf4459f20f05499e3613d5e6b257e8"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-13",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M001/gk-variant-v2-sha256:a512eb09f0dceb5cbf822d8129124c6f87e831b617397f6af806dc0f2fc75103",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "B4",
+                  "C4",
+                  "C5",
+                  "D5"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "E3"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-03",
+                "cells": [
+                  "A3"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-04",
+                "cells": [
+                  "B1",
+                  "B2"
+                ],
+                "passable": false
+              },
+              {
+                "id": "geo-05",
+                "cells": [
+                  "D1"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "start": "A3",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 4,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 1,
+              "count": 1
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 5,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 2
+            },
+            {
+              "id": "H3",
+              "type": "distanceToPlace",
+              "hour": 5,
+              "placeId": "geo-05",
+              "distance": 1
+            },
+            {
+              "id": "H4",
+              "type": "distanceToPlace",
+              "hour": 4,
+              "placeId": "geo-01",
+              "distance": 3
+            }
+          ]
+        },
+        "solution": [
+          "A3",
+          "B3",
+          "C3",
+          "C2",
+          "D1",
+          "D2",
+          "E1"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "land-coast.island.h4.jungle-temple.v1",
+          "anchor": "B4",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "land-coast.island.h1.palm-beach.v1",
+          "anchor": "E3",
+          "objectId": "geo-02"
+        },
+        {
+          "id": "art-03",
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "anchor": "A3",
+          "objectId": "geo-03"
+        },
+        {
+          "id": "art-04",
+          "assetId": "land-coast.island.h2.mist-forest-03.v1",
+          "anchor": "B1",
+          "objectId": "geo-04"
+        },
+        {
+          "id": "art-05",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "anchor": "D1",
+          "objectId": "geo-05"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:643cd9357e326d6e6f4d5b2045f551fdb40eecac3850b907123ae4062404e41c",
+        "instance": "gk-instance-v2-sha256:9420fc57e05f90dde60bb087bf5a89ff2757d514b914726a6c1bb83aacf65771",
+        "variant": "gk-variant-v2-sha256:a512eb09f0dceb5cbf822d8129124c6f87e831b617397f6af806dc0f2fc75103"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-14",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M002/gk-variant-v2-sha256:99d32997b8a8f6334eff448abcc10de769e6dc962507052ca0906e32bb0e2fe0",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "E2"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "D5"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "start": "D5",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 5,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 5,
+              "count": 1
+            },
+            {
+              "id": "H2",
+              "type": "turn",
+              "hour": 5,
+              "degrees": -120
+            },
+            {
+              "id": "H3",
+              "type": "turn",
+              "hour": 3,
+              "degrees": -60
+            }
+          ]
+        },
+        "solution": [
+          "D5",
+          "C4",
+          "C3",
+          "B3",
+          "B2",
+          "A2",
+          "A1"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "anchor": "E2",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "navigation.wreck.h1.offcenter-sloop.v1",
+          "anchor": "D5",
+          "objectId": "geo-02"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:11d5cacc74e77ce2f8de46afe00678447d3e4210d97cd72abfe4754301deb23e",
+        "instance": "gk-instance-v2-sha256:215a5d662d11dabd52aa092c5e270bd2cd644462e59107c048a3e26ff5c90043",
+        "variant": "gk-variant-v2-sha256:99d32997b8a8f6334eff448abcc10de769e6dc962507052ca0906e32bb0e2fe0"
+      },
+      "editorialStatus": "pending"
+    },
+    {
+      "id": "C-15",
+      "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M014/gk-variant-v2-sha256:36dd1f869d9029df976a7b577e72b97c3910b3a8409fb51572be308d33a2e40e",
+      "definition": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "logic": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "id": "geo-01",
+                "cells": [
+                  "E1"
+                ],
+                "passable": true
+              },
+              {
+                "id": "geo-02",
+                "cells": [
+                  "C5"
+                ],
+                "passable": true
+              }
+            ]
+          },
+          "start": "C5",
+          "steps": 6,
+          "clues": [
+            {
+              "id": "H1",
+              "type": "countDistanceToPlace",
+              "fromHour": 3,
+              "toHour": 6,
+              "placeId": "geo-02",
+              "distance": 2,
+              "count": 0
+            },
+            {
+              "id": "H2",
+              "type": "countDistanceToPlace",
+              "fromHour": 1,
+              "toHour": 1,
+              "placeId": "geo-01",
+              "distance": 4,
+              "count": 0
+            },
+            {
+              "id": "H3",
+              "type": "turn",
+              "hour": 2,
+              "degrees": 60
+            },
+            {
+              "id": "H4",
+              "type": "distanceBetweenHours",
+              "hours": [
+                3,
+                6
+              ],
+              "distance": 1
+            },
+            {
+              "id": "H5",
+              "type": "distanceBetweenHours",
+              "hours": [
+                0,
+                4
+              ],
+              "distance": 3
+            }
+          ]
+        },
+        "solution": [
+          "C5",
+          "C4",
+          "D4",
+          "E3",
+          "D2",
+          "E1",
+          "E2"
+        ]
+      },
+      "assetPlacements": [
+        {
+          "id": "art-01",
+          "assetId": "sea-life.accent.h1.barrels.v1",
+          "anchor": "E1",
+          "objectId": "geo-01"
+        },
+        {
+          "id": "art-02",
+          "assetId": "sea-life.accent.h1.buoy.v1",
+          "anchor": "C5",
+          "objectId": "geo-02"
+        }
+      ],
+      "fingerprints": {
+        "mapStructure": "gk-map-v2-sha256:fe7d3c0170a50eac4dfcf84778493f345996c63f438dd24d2f352c099fb7ff14",
+        "instance": "gk-instance-v2-sha256:7c3e9f70f7b3e02d94034d2f1fa07440ec5fc90117b7ed440acd66ad7b591e58",
+        "variant": "gk-variant-v2-sha256:36dd1f869d9029df976a7b577e72b97c3910b3a8409fb51572be308d33a2e40e"
+      },
+      "editorialStatus": "pending"
+    }
+  ]
+}

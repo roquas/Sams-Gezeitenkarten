@@ -13,3 +13,9 @@ test('beta transport preserves validated F02 envelope identities without a secon
 test('catalog context keeps development stocks explicit and rejects unknown stock names',()=>{
  assert.equal(puzzleContext('').scope,'regular');assert.equal(puzzleContext('?stock=S02').scope,'regular');assert.equal(puzzleContext('?dev=b2&stock=S02').scope,'b2:S02');assert.throws(()=>puzzleContext('?dev=b2&stock=UNKNOWN'),/Unbekannter/);
 });
+test('community catalog has its own feedback scope and cannot mix with a development stock',()=>{
+ const context=puzzleContext('?catalog=s04-c-community-v1');
+ assert.equal(context.scope,'community:S04-C-v1');assert.equal(context.community,true);
+ assert.match(String(context.manifestUrl),/puzzles\/community-s04-c-v1\/manifest.json$/);
+ assert.throws(()=>puzzleContext('?catalog=s04-c-community-v1&dev=b2'),/nicht kombinieren/);
+});

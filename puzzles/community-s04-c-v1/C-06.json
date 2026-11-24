@@ -1,0 +1,145 @@
+{
+  "identity": {
+    "instanceId": "inst-1111b58ac97e5598858a1c033bd65f37cf7e3b408bdcbdd3c0026151d2fbe135",
+    "mapStructureId": "map-22f59cd7393e4f34830e3039fcac2677fe1dac4de54ab8217dd3221da1abbb07",
+    "variantId": "var-09a5d3fdd65cb416aff0d4ad22154dd6ae3930d4ad49a3b76ff55cc8a108fbe0"
+  },
+  "projectionSchemaVersion": 2,
+  "puzzle": {
+    "dataVersion": 1,
+    "id": "C-06",
+    "logic": {
+      "clues": [
+        {
+          "count": 0,
+          "distance": 3,
+          "fromHour": 1,
+          "id": "H1",
+          "placeId": "geo-01",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 1,
+          "distance": 2,
+          "fromHour": 4,
+          "id": "H2",
+          "placeId": "geo-03",
+          "toHour": 5,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 1,
+          "fromHour": 1,
+          "id": "H3",
+          "placeId": "geo-02",
+          "toHour": 4,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "count": 2,
+          "distance": 2,
+          "fromHour": 1,
+          "id": "H4",
+          "placeId": "geo-02",
+          "toHour": 2,
+          "type": "countDistanceToPlace"
+        },
+        {
+          "direction": "SW",
+          "hour": 3,
+          "id": "H5",
+          "type": "direction"
+        },
+        {
+          "distance": 2,
+          "hours": [
+            3,
+            6
+          ],
+          "id": "H6",
+          "type": "distanceBetweenHours"
+        }
+      ],
+      "map": {
+        "geometry": "even-row-offset-pointy-v1",
+        "grid": {
+          "columns": 5,
+          "rows": 5
+        },
+        "objects": [
+          {
+            "cells": [
+              "D1"
+            ],
+            "id": "geo-01",
+            "passable": true
+          },
+          {
+            "cells": [
+              "D3"
+            ],
+            "id": "geo-02",
+            "passable": true
+          },
+          {
+            "cells": [
+              "B1",
+              "B2"
+            ],
+            "id": "geo-03",
+            "passable": false
+          }
+        ]
+      },
+      "start": "D1",
+      "steps": 6
+    },
+    "presentation": {
+      "assetPlacements": [
+        {
+          "anchor": "D1",
+          "assetId": "sea-life.accent.h1.driftwood.v1",
+          "id": "art-01",
+          "objectId": "geo-01"
+        },
+        {
+          "anchor": "D3",
+          "assetId": "sea-life.accent.h1.bottle.v1",
+          "id": "art-02",
+          "objectId": "geo-02"
+        },
+        {
+          "anchor": "B1",
+          "assetId": "land-coast.settlement.h2.prison-island-03.v1",
+          "id": "art-03",
+          "objectId": "geo-03"
+        }
+      ],
+      "background": "sea-blue-01",
+      "clueTexts": {
+        "H1": "Von Stunde 1 bis Stunde 5 war das Schiff nie genau 3 Hexfelder von dem Ort geo-01 (D1) entfernt.",
+        "H2": "Von Stunde 4 bis Stunde 5 war das Schiff genau einmal genau 2 Hexfelder von dem Ort geo-03 (B1, B2) entfernt.",
+        "H3": "Von Stunde 1 bis Stunde 4 war das Schiff genau zweimal neben dem Ort geo-02 (D3).",
+        "H4": "Von Stunde 1 bis Stunde 2 war das Schiff in jeder Stunde genau 2 Hexfelder von dem Ort geo-02 (D3) entfernt.",
+        "H5": "Fahrtrichtung von Stunde 2 zu Stunde 3: Südwest.",
+        "H6": "Hexabstand zwischen den Positionen in Stunde 3 und Stunde 6: genau 2."
+      },
+      "hints": [],
+      "intro": [
+        "Redaktionelle Vorschau – Podcasttexte und Bedeutungsprüfung stehen noch aus.",
+        "Hexabstand zu einem Ort: kleinster geometrischer Abstand zu einer seiner Zellen; Land verlängert ihn nicht."
+      ],
+      "objectNames": {
+        "geo-01": "Ort geo-01",
+        "geo-02": "Ort geo-02",
+        "geo-03": "Ort geo-03"
+      },
+      "title": "C-06"
+    },
+    "rulesVersion": "gezeitenkarten-2",
+    "schemaVersion": 2
+  },
+  "rulesVersion": "gezeitenkarten-2"
+}
