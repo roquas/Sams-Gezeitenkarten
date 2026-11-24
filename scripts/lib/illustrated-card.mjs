@@ -57,7 +57,8 @@ export function describeIllustratedCard({map,background,assetPlacements},release
    const a=byId.get(assetId);
    // Resource revision includes render-relevant metadata, not storage paths,
    // catalog-wide digests, annotations or unused resources.
-   const revision={geometry:a.geometry,image:{width:a.image.width,height:a.image.height},role:a.role,...(a.role==='geographic'?{passable:a.passable}:{})};
+   const cells=[...a.geometry.cells].sort((a,b)=>Number(b[0]===0&&b[1]===0)-Number(a[0]===0&&a[1]===0)||a[1]-b[1]||a[0]-b[0]);
+   const revision={geometry:{cells},image:{width:a.image.width,height:a.image.height},role:a.role,...(a.role==='geographic'?{passable:a.passable}:{})};
    return {assetId,imageSha256:sha256(readResource(a.image.path)),revisionSha256:sha256(canonicalJson(revision))};
   })};
  const body={map:normalizedMap,mapFingerprint:mapFingerprint(map),background,assetPlacements:placements,resources};

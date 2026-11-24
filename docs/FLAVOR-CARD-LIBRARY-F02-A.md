@@ -26,7 +26,8 @@ erweitert oder umgedeutet. Eingaben der Identität:
   aus Geometrie, Bildmaßen, Rolle und Befahrbarkeit.
 
 Platzierungen und Ressourcen werden sortiert, technische Platzierungs-IDs
-entfernt. Die gespeicherte Karte sortiert Objekte/Zelllisten und vergibt lokale
+entfernt. Relative Ressourcenzellen werden ebenfalls sortiert: Ursprung zuerst,
+danach axiale Zeile und Spalte. Ihre bloße Aufzählungsreihenfolge ist keine Revision. Die gespeicherte Karte sortiert Objekte/Zelllisten und vergibt lokale
 Darstellungs-IDs `art-001` usw. Ressourcenpfade, Kataloggesamtchecksummen,
 Releaseherkunft, Namen, Start, Route, Hinweise, Seeds, Versuch und Speicherort
 sind keine Schlüsselbestandteile. Ein unbenutztes neues Katalogasset ändert den

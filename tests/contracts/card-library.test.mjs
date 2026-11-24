@@ -45,6 +45,10 @@ test('logical fingerprint stays unchanged; array order and placement plumbing do
  assert.equal(a.mapFingerprint,mapFingerprint(input.map));assert.deepEqual(input,before);
  const resources=copy(a);resources.resources.assets.reverse();resources.assetPlacements.reverse();
  assert.equal(illustratedCardKey(resources),a.key);
+ const multi=fixture(released,[['town',TESORO,'A1']]),original=describeIllustratedCard(multi,released),catalog=copy(released.catalog);
+ catalog.library.assets.reverse();catalog.library.backgrounds.reverse();catalog.library.reviews.reverse();
+ catalog.library.assets.find(a=>a.id===TESORO).geometry.cells.reverse();
+ assert.equal(describeIllustratedCard(multi,{...released,catalog}).key,original.key);
 });
 
 test('unconsumed catalog entries, resource paths, release and run provenance do not change card identity',()=>{
