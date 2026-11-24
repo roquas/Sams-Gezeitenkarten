@@ -36,6 +36,11 @@ body.beta-landing{background-color:#e9ddc5;background-image:linear-gradient(#e3d
 #landing .beta-intro h1{font-size:clamp(30px,5vw,46px);color:#47331f}
 .beta-intro-copy p{max-width:60ch}
 .beta-intro-copy>p:not(.story){font-size:14px;line-height:1.65}
+.beta-community-invitation{max-width:60ch;font-size:16px;line-height:1.65}
+.beta-community-invitation h2{margin:24px 0 16px}
+.beta-community-invitation p{margin:16px 0}
+.beta-community-invitation ul{padding-left:1.4em;margin:16px 0}
+.beta-community-invitation li{padding-left:.2em;margin:12px 0}
 .beta-intro-nav{display:flex;align-items:center;flex-wrap:wrap;gap:12px 22px;margin:20px 0 4px}
 .beta-intro-nav a:not(.btn){color:var(--navy);text-underline-offset:3px}
 .beta-intro .brass-rail{left:0;right:0;bottom:-8px}

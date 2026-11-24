@@ -56,6 +56,26 @@ export async function showLanding(){
   context=puzzleContext();catalog=await context.loader.manifest();
   $('catalogStatus').textContent=(context.development?'Entwicklungsbestand '+context.stock+' · ':'')+catalog.puzzles.length+(catalog.puzzles.length===1?' verfügbares Rätsel':' verfügbare Rätsel');
   if(context.community){
+   const story=main.querySelector('.beta-intro-copy>.story');story.nextElementSibling.remove();
+   story.outerHTML=`<div class="beta-community-invitation">
+    <h2>Sam und Robin brauchen eure Hilfe!</h2>
+    <p>Also. Wir haben da ein paar Gezeitenkarten. Und ein paar Schiffsreisen, bei denen offenbar niemand auf die Idee gekommen ist, den tatsächlichen Kurs ordentlich aufzuschreiben.</p>
+    <p>Robin behauptet, dass man die Routen mit den vorhandenen Hinweisen trotzdem herausfinden kann. Sam behauptet, dass Robin das dann ja gerne mal vormachen darf.</p>
+    <p>Und jetzt kommt ihr ins Spiel!</p>
+    <p><strong>Ihr könnt uns helfen, die verschollenen Routen zu rekonstruieren.</strong> Dabei gibt es ein paar Dinge, die ihr wissen solltet:</p>
+    <ul>
+     <li><strong>Fangt ruhig irgendwo an!</strong> Ihr müsst die Rätsel nicht der Reihe nach lösen. Besonders hilfreich wäre es sogar, wenn nicht alle mit dem ersten anfangen.</li>
+     <li><strong>Spielt so viel oder wenig, wie ihr mögt.</strong> Ein einziges Rätsel hilft uns schon. Wenn euch alle packen, umso besser!</li>
+     <li><strong>Kein Stress!</strong> Ihr müsst nicht alles hintereinander lösen. Heute eine Karte, morgen die nächste – ganz wie es euch passt.</li>
+     <li><strong>Eure Fortschritte und Rückmeldungen bleiben im Browser gespeichert.</strong> Ihr könnt also auch an einem anderen Tag weiterspielen. Wichtig: Handy und Computer speichern getrennt. Wenn ihr auf beiden Geräten spielt, entstehen zwei getrennte Spielstände und Feedbacksammlungen. Bitte exportiert am Ende gegebenenfalls beide.</li>
+     <li><strong>Schickt uns eure Ergebnisse bitte erst am Schluss.</strong> Dafür gibt es eine Exportfunktion. Egal ob ihr eine Karte oder fünfzehn gelöst habt: Wir freuen uns über eure Rückmeldungen!</li>
+    </ul>
+    <p>Und noch etwas: Uns interessiert nicht nur, <strong>ob</strong> ihr eine Route findet, sondern auch, ob euch das Knobeln Spaß macht. Wenn euch ein Rätsel begeistert, sagt es uns. Wenn ihr am liebsten die Karte über Bord werfen würdet, sagt uns das bitte ebenfalls.</p>
+    <p><strong>Vielen Dank fürs Mithelfen!</strong></p>
+    <p>Sam &amp; Robin</p>
+    <p><em>P. S. von Sam: „Über Bord werfen“ ist übrigens nicht wörtlich gemeint. Wir brauchen die Karten noch.</em></p>
+    <p><em>P. P. S. von Robin: Ich habe das mit dem Aufschreiben der Kurse vorgeschlagen. Mehrfach.</em></p>
+   </div>`;
    const invitation=document.createElement('p');invitation.textContent='Wähle frei, was Dich anspricht, und teste so viel oder wenig Du möchtest. Fang gerne auch in der Mitte an, damit sich die Rückmeldungen verteilen.';$('catalogStatus').after(invitation);
    const inventory=await fetch(new URL('inventory.json',context.manifestUrl)).then(r=>{if(!r.ok)throw Error('Katalogstatus nicht verfügbar');return r.json();});
    if(!inventory.releaseReady){const notice=document.createElement('p');notice.role='status';notice.textContent='Redaktionelle Vorschau: Podcasttexte und Bedeutungsprüfung stehen noch aus. Dieser Stand ist noch nicht für den Community-Test freigegeben.';$('catalogStatus').after(notice);}
