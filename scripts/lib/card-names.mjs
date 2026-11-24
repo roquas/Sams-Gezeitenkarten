@@ -17,8 +17,12 @@ export const nameSupplySchema=object({schemaVersion:{const:1},version:id,selecti
 // Immutable v1 world reference, independent of replaceable ordinary supplies.
 // Later illustrations can bind the same world ID without changing this registry.
 const worldRegistry=JSON.parse(readFileSync(new URL('../../content/card-names/world-places-v1.json',import.meta.url),'utf8'));
-assert.equal(schemaErrors(worldRegistry,object({schemaVersion:{const:1},places:dict(object({name:text,source:text,assetIds:{type:'array',minItems:1,uniqueItems:true,items:id}}))})).length,0);
+assert.equal(schemaErrors(worldRegistry,object({schemaVersion:{const:1},reservedNames:{type:'array',uniqueItems:true,items:text},
+ places:dict(object({name:text,source:text,assetIds:{type:'array',minItems:1,uniqueItems:true,items:id}}))})).length,0);
 export const nameKey=name=>name.normalize('NFKC').toLocaleLowerCase('de-DE');
+// Reserve known geography even before it has a dedicated illustration or an
+// entry in a replaceable supply. Fixed illustrated places are reserved too.
+const reservedWorldNames=new Set([...worldRegistry.reservedNames,...Object.values(worldRegistry.places).map(p=>p.name)].map(nameKey));
 const compare=(a,b)=>a<b?-1:a>b?1:0;
 export function validateNameSupply(supply){
  const errors=schemaErrors(supply,nameSupplySchema);assert.equal(errors.length,0,'card names: '+errors.join('; '));
@@ -33,6 +37,9 @@ export function validateNameSupply(supply){
  }
  const uniqueNames=Object.values(supply.uniquePlaces).map(p=>nameKey(p.name));
  assert.equal(new Set(uniqueNames).size,uniqueNames.length,'card names: conflicting unique names');
+ for(const [worldId,place] of Object.entries(supply.uniquePlaces))if(reservedWorldNames.has(nameKey(place.name))){
+  assert.equal(worldRegistry.places[worldId]?.name,place.name,'card names: reserved world name conflict: '+place.name);
+ }
  for(const pool of Object.values(supply.pools)){
   assert.ok(pool.names.every(n=>n===n.trim()&&n===n.normalize('NFC')),'card names: noncanonical name');
   assert.equal(new Set(pool.names.map(nameKey)).size,pool.names.length,'card names: duplicate pool name');
@@ -56,7 +63,7 @@ export function sliceNameSupply(supply,assetIds){
 }
 export function selectCardNames(key,placements,supply){
  validateNameSupply(supply);
- const objectNames={},bindings={},used=new Set(Object.values(supply.uniquePlaces).map(p=>nameKey(p.name))),worldPlaces=new Set();
+ const objectNames={},bindings={},used=new Set([...reservedWorldNames,...Object.values(supply.uniquePlaces).map(p=>nameKey(p.name))]),worldPlaces=new Set();
  // Unique places first, so a pool can never consume a known world name.
  const places=placements.filter(p=>p.objectId).sort((a,b)=>compare(a.objectId,b.objectId));
  for(const p of places){

@@ -1,5 +1,11 @@
 {
   "schemaVersion": 1,
+  "reservedNames": [
+    "Carribera",
+    "Kapuzien",
+    "Nombreo",
+    "Tiburon"
+  ],
   "places": {
     "world.tesoro": {
       "name": "Tesoro",

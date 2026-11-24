@@ -131,6 +131,32 @@ test('Tesoro has a stable world ID; ordinary selection reserves world names, inc
  }
 });
 
+test('known world names stay reserved with replacement supplies and no corresponding asset bindings',()=>{
+ const input=fixture(released,[['rock',ROCK,'A1']]);
+ for(const name of ['Nombreo','Tiburon','Kapuzien','Carribera']){
+  const fullwidth=name.replace(/[A-Za-z]/g,c=>String.fromCharCode(c.charCodeAt(0)+0xfee0));
+  for(const spelling of [name,name.toUpperCase(),fullwidth]){
+   const replacement=supply();replacement.version='replacement-names-2';
+   delete replacement.assetBindings[TESORO];
+   assert.ok(!Object.values(replacement.uniquePlaces).some(p=>p.name===name));
+   replacement.pools.rock.names=[spelling,'Felswacht'];
+   const card=createNamedCard(input,released,replacement,source());
+   assert.equal(card.naming.objectNames.rock,'Felswacht',spelling+' must remain reserved');
+   replacement.pools.rock.names=[spelling];
+   assert.throws(()=>createNamedCard(input,released,replacement,source()),/exhausted pool/);
+  }
+ }
+});
+
+test('replacement supplies cannot rebind a reserved world name through an invented unique place',()=>{
+ for(const name of ['Nombreo','Tiburon','Kapuzien','Carribera']){
+  const replacement=supply();
+  replacement.uniquePlaces['world.claimed']={name,source:'replacement supply'};
+  replacement.assetBindings[ROCK]={mode:'unique',worldPlaceId:'world.claimed',source:'replacement supply'};
+  assert.throws(()=>validateNameSupply(replacement),/reserved world name conflict/);
+ }
+});
+
 test('persisted cards survive new runs and supply extensions without writes or renaming',t=>{
  const lib=library(t),first=store(lib),file=path.join(lib.directory,'cards',first.card.key.split(':')[1]+'.json');
  const bytes=fs.readFileSync(file),stat=fs.statSync(file),extended=supply();extended.version='card-names-de-2';extended.pools.rock.names.push('Newrockname');

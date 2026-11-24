@@ -135,7 +135,16 @@ Assetzuordnung kann später weitere Illustrationen an dieselbe Kennung binden.
 `land-coast.settlement.h4.tesoro.v4` → `world.tesoro` → **Tesoro**. Zwei Darstellungen
 desselben Weltorts auf einer Karte sind ein Konflikt. Bekannte Weltortnamen sind
 auch dann gegenüber gewöhnlichen Pools reserviert, wenn ihre Illustration auf
-der Karte fehlt. Dies führt weder eine neue Assetklasse noch verbindliche
+der Karte fehlt. Die unabhängige Registry reserviert außerdem **Nombreo, Tiburon,
+Kapuzien und Carribera**, auch wenn ein Ersatzvorrat diese Namen nicht kennt und
+noch keine Illustrationen dafür bestehen. Nombreo/Tiburon sind in der vorhandenen
+Weltreferenz belegt; Kapuzien und Carribera wurden vom Projektverfasser in der
+F02-A-Konzeption am 24.11.2026 bestätigt. Der Vergleich verwendet ebenfalls NFKC
+und deutsche Kleinschreibung. Ein Ersatzvorrat kann diese Reservierung auch nicht
+über eine erfundene `uniquePlaces`-Zuordnung umgehen; dafür ist eine ausdrückliche
+Weltort-/Assetbindung in der Registry nötig. Nicht reservierte Alternativen aus
+demselben Pool bleiben verwendbar; ohne Alternative wird Poolerschöpfung gemeldet.
+Die vier gespeicherten Karten bleiben bytegleich. Dies führt weder eine neue Assetklasse noch verbindliche
 Entfernungen zwischen Weltorten ein.
 
 ## Verwendung und Anschluss
