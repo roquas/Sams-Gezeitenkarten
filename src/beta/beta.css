@@ -10,6 +10,7 @@ body.beta-landing{padding-bottom:0;background:var(--sand)}
 .beta-feedback{display:grid;gap:14px;padding:12px 0}
 .beta-feedback label,.beta-general{display:grid;gap:6px}
 .beta-feedback select,.beta-feedback textarea,.beta-general select,.beta-general textarea{font:inherit;width:100%;min-height:44px;padding:10px;color:var(--ink);background:var(--paper);border:1px solid #9b8c71;border-radius:6px}
+.beta-general select{height:44px;appearance:menulist-button}
 .beta-feedback textarea,.beta-general textarea{resize:vertical}
 .beta-general{margin:18px 0 8px}
 .beta-result{max-width:560px;width:calc(100% - 24px);max-height:calc(100dvh - 32px);overflow:auto;background:var(--paper);color:var(--ink);border:2px solid var(--gold);border-radius:12px;padding:24px;box-shadow:0 12px 60px #0006}
