@@ -1,4 +1,9 @@
-# Erster F02-A/2-Produktionsauftrag
+# Archivierter erster F02-A/2-Produktionsauftrag
+
+Dieser bereits ausgeführte Auftrag bleibt mit seinen Hashes unverändert.
+Seine historischen technischen Beschreibungen sind keine aktuelle Namensregel.
+Neue Aufträge verwenden `flavor-production-2` und vollständige F01-v2-Drafts
+mit allen Startortnamen. Die vorhandenen vier Geschichten bleiben unverändert.
 
 **Nur `public/` vollständig an den separaten Produktionschat übergeben.**
 `public/prompt.md` ist die exakte Anweisung, `public/index.html` die statische

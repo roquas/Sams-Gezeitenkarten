@@ -39,11 +39,17 @@ keinen Kartenstart und beschränkt nicht die Engine: Rätsel dürfen weiterhin a
 einem Mehrfeldobjekt starten. Distanzbezüge gelten der **gesamten Objektfläche**,
 während das Startfeld eine einzelne Zelle bleibt.
 
-Der F01-Vertrag bleibt Version 1. Der Request und die Produktion kennen sämtliche
-Namen einschließlich Startname. `createFlavorDraft` lässt intern weiterhin den
-Namen des starttragenden Objekts aus. Diese **interne F01-Darstellung ist keine
-Wissenssperre für die Textproduktion**. Erst die reine Präsentationsprojektion
-setzt wieder sämtliche Namen aus der gepinnten Karte ein.
+F01-Requests und ihre Quellhashes bleiben Version 1. Neue F01-Drafts,
+Checkpoints und kontrollierte Prüfungen verwenden Version 2. Sämtliche Namen
+bleiben erhalten, auch der Name des starttragenden Objekts. Der Startort darf
+und soll wie jeder andere Ort namentlich referenziert werden. Seine Startfunktion
+hat keinen Einfluss auf den Namen. Eine Präsentationsprojektion erhält diese
+vollständige Zuordnung, statt einen ausgelassenen Startnamen wiederherzustellen.
+
+Historische Aufträge, v1-Records und Antworten bleiben unverändert lesbar.
+`validateStoredProductionRecords` prüft akzeptierte Snapshots mit ihrer tatsächlich
+gespeicherten Wire-Version; neue Imports erzeugen ausschließlich vollständige
+v2-Drafts. Alte Vorlagen/Prompts werden nicht als aktuelle Anweisungen verwendet.
 
 ## Welt-/Stilpaket und unveränderte Quellen
 
@@ -80,7 +86,8 @@ und erhalten keine automatische Aufnahme in das Weltpaket.
 
 ## Export, Sichtbarkeit und Determinismus
 
-`flavor-production-package.mjs` verbindet F01, Kartenbibliothek und bestehende
+Die aktuelle Promptrevision ist `flavor-production-2`; der
+Produktionsumschlag bleibt Version 1. `flavor-production-package.mjs` verbindet F01, Kartenbibliothek und bestehende
 Release-/Renderkomponenten. `renderSavedMapSvg` ist die kleine gemeinsame
 Kartenansicht unterhalb von `renderContactSvg`; `drawAssetPlacements`,
 `createChartBaseLayers` und die bestehenden Hexpolygone bleiben zuständig.

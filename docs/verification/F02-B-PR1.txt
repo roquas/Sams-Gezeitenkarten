@@ -40,3 +40,19 @@ ZIP-SHA256 262dc7963d40d1c64da3e6c7dfb1f1e93820242233a7cfe8a5afe38b8fd9c634; 942
 inspect dieses echten Jobs: 0 importierte Qualitätsantworten; Reader/Vergleich/Gesamtprüfung fehlen; qualified:false für alle vier Items. F01-Checkpoints bleiben UNCERTAIN. Keine echten Reader-/Reviewer-Antworten oder Kalibrierungsbeobachtungen erfunden. Technische Testdoubles werden nur in temporären Teststores benutzt; technical-test-Evidenz kann keine reale F02-B-Qualifikation erteilen.
 
 Weiter offen: externe unabhängige Blindinterpretation, danach deterministischer Vergleich und separater unabhängiger Gesamtprüflauf, empirische Auswertung und später 10+5-Kalibrierung. PR 2 beginnt erst nach unabhängiger Review und Integration von PR 1 durch den vorgesehenen gesonderten Prozess.
+
+
+Nachtrag: vollständige Startortnamen, 25.11.2026
+
+Die ausdrücklich beauftragte Startnamen-Korrektur wird in PR 1 integriert. Neue Drafts/Checkpoints verwenden v2, alle gepinnten Namen einschließlich Startobjekt bleiben vollständig erhalten. Requests und Quellhashes bleiben v1. Kontrollierte neue Hinweise verwenden tatsächliche Namen statt Startalias. Die aktive Produktionsanweisung ist flavor-production-2. Bestehende Records werden versionsgetreu validiert; die realen Pilotantworten und alten Nachweise werden nicht neu erzeugt.
+
+Erfolgreiche lokale Abnahme der Codekorrektur (Node v22.23.3, Python-Testumgebung /private/tmp/sams-f02a-python/bin, TMPDIR=/private/tmp):
+- 123/123 Vertragsprüfungen: node --test --test-concurrency=2 tests/contracts/flavor.test.mjs tests/contracts/count-clue-normalization.test.mjs tests/contracts/flavor-production.test.mjs tests/contracts/flavor-quality.test.mjs
+- 1/1 reale Kartenintegration: node --test --test-name-pattern='four real versioned cases' tests/integration/card-import.test.mjs
+- 21/21 Inhaltstests: node --test tests/content/*.test.mjs
+- Darin enthalten: vollständige Namen bei verschiedenen Starts auf derselben Karte und ein-/mehrfeldrigen Startobjekten, unveränderte Objektflächen, historische kontrollierte Checkpoints samt neuer v2-Reparatur, exakter wiederholter Import der vier tatsächlichen Pilotfassungen, gleiche vollständige Spieleransicht, Ablehnung manipulierter Archivrecords.
+- Die zusätzlichen 2/2 isolierten Pilotregressionen sind bereits in den 123 Vertragsprüfungen enthalten und werden nicht doppelt gezählt.
+- Gegen a67de476278f26f6455032370bf7b9405b4ee54c unverändert: tatsächliche Pilotantworten/Records/Receipts, Originalaufträge und Exportdateien, bestehender Qualitätsauftrag, persistierte Karten und Beta-/Engine-Dateien. Originaldateien des mitgelieferten Pilotimports sind bytegleich.
+- git diff --check erfolgreich. Keine neue Spezifikationsdatei und kein separater Korrektur-PR; aktuelle Regeln stehen in den bestehenden F01-/Produktions-/F02-B-Unterlagen.
+
+Grenzen: Die zuvor begonnenen breiten lokalen Gesamtläufe wurden ohne Abschlussergebnis beendet; diese werden nicht als bestanden ausgegeben. Die unveränderte vollständige CI wird mit dem aktualisierten PR neu angestoßen. Keine semantischen Modellprüfungen, neuen Geschichten, Auswahl, Freigabe oder Merge.

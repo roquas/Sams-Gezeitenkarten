@@ -1,8 +1,10 @@
 # F02-B PR 1: manueller Prüfweg
 
-Dieser Schritt ergänzt F01/F02-A um eine eigene Qualitätsmethode `f02b-three-stage-1`. Er ändert weder `FLAVOR_VERSION=1`, `flavor-check-v1`, historische Antwortbytes noch die 23 `UNCERTAIN`-Checkpoints des tatsächlichen Piloten. Er erzeugt keine Modellantworten. Automatische Klärung, Reparatur, Ersatzproduktion, Auswahl, Merge und Veröffentlichung gehören nicht zu PR 1.
+Dieser Schritt ergänzt F01/F02-A um eine eigene Qualitätsmethode `f02b-three-stage-1` und übernimmt die nachträglich beschlossene Gleichbehandlung benannter Startorte. Alle persistierten Ortsnamen bleiben in neuen Drafts vollständig erhalten; neue Drafts/Checkpoints verwenden v2. `FLAVOR_VERSION=1` bezeichnet weiterhin den unveränderten Request-/Quellhashvertrag. Historische Antwortbytes und die 23 `flavor-check-v1`-Prüfungen mit `UNCERTAIN` des tatsächlichen Piloten bleiben unverändert. Es werden keine Modellantworten erzeugt. Automatische Klärung, Reparatur, Ersatzproduktion, Auswahl, Merge und Veröffentlichung gehören nicht zu PR 1.
 
-Die unveränderte fachliche Übergabe und die technische Konzeption stehen unter `docs/handoff/f02-b-20261125/`. Die darin enthaltene ursprüngliche Konzeptionsanweisung „noch keine Implementierung“ beschreibt deren damaligen Auftrag. Die aktuelle Implementierung folgt ausschließlich dem ausdrücklich beauftragten `02-Codex-Auftrag-PR1.txt`; der fachliche Umfang von PR 2 wird nicht vorgezogen.
+Der Pilotleser validiert gespeicherte Records mit `validateStoredProductionRecords`, statt sie unter dem aktuellen Generator neu zu erzeugen. Benannte Startorte dürfen und sollen wie jeder andere Ort namentlich referenziert werden. Ihre Startfunktion beschränkt die Benennung nicht. Vertrag und historische Lesekompatibilität sind in [FLAVOR-PIPELINE-F01.md](FLAVOR-PIPELINE-F01.md#vollständige-ortsnamen) und [FLAVOR-PRODUCTION-F02-A-2.md](FLAVOR-PRODUCTION-F02-A-2.md) beschrieben.
+
+Die ursprüngliche fachliche Übergabe und technische Konzeption stehen unverändert unter `docs/handoff/f02-b-20261125/`. Deren Aussagen über einen global unveränderten F01-v1-Vertrag sind durch die spätere Startnamen-Korrektur insoweit überholt. Die dort enthaltene Konzeptionsanweisung „noch keine Implementierung“ beschreibt den damaligen Auftrag. Die Implementierung folgt `02-Codex-Auftrag-PR1.txt` mit dieser ausdrücklich beauftragten Namenskorrektur; der fachliche Umfang von PR 2 wird nicht vorgezogen.
 
 ## Reale Quellen und Grenzen
 

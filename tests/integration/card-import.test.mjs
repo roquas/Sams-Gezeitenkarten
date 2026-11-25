@@ -58,7 +58,7 @@ test('four real versioned cases reuse immutable named cards; route/start, defini
    background:card.background,assetPlacements:card.assetPlacements}};
   const request=createFlavorRequest(doc,{assetLibrary:catalog}),draft=createFlavorDraft(request);
   const startId=row.definition.logic.map.objects.find(o=>o.cells.includes(row.definition.logic.start)).id;
-  assert.ok(Object.hasOwn(card.naming.objectNames,startId));assert.equal(Object.hasOwn(draft.presentation.objectNames,startId),false);
+  assert.ok(Object.hasOwn(card.naming.objectNames,startId));assert.deepEqual(draft.presentation.objectNames,card.naming.objectNames);
   assert.deepEqual(row,original);
  }
  assert.deepEqual(protectedFiles(),before);assert.deepEqual(digestDir(path.join(ROOT,stored)),cardBytes);

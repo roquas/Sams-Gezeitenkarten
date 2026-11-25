@@ -8,7 +8,7 @@ import {buildReaderInputs,createReaderJob,METHOD_HASH,packageFiles} from '../../
 import {validateReaderItem,validateReviewerItem,validateEnvelope,textUnits,hash,qualify} from '../../scripts/lib/flavor-quality-contract.mjs';
 import {compareClue,compareReaderItem,normalForm} from '../../scripts/lib/flavor-quality-compare.mjs';
 import {parseQualityResponse} from '../../scripts/lib/flavor-quality-json.mjs';
-import {createProductionRecords,createProductionOrder,contentHash} from '../../scripts/lib/flavor-production.mjs';
+import {createProductionRecords,createProductionOrder,contentHash,materializeFlavorRevision,validateStoredProductionRecords} from '../../scripts/lib/flavor-production.mjs';
 import {revisionReference} from '../../scripts/lib/flavor-production-store.mjs';
 import {createFlavorCheckpoint} from '../../scripts/lib/flavor-contract.mjs';
 import {canonicalJson,sha256} from '../../scripts/lib/content-hash.mjs';
@@ -34,6 +34,24 @@ test('supplied real snapshots preserve response SHA, receipt, four records, all 
   assert.deepEqual(pilot.presentations[i].puzzle.presentation.objectNames,pilot.order.positions[i].card.objectNames);
  }
  assert.equal(pilot.provenance.producer.model,null);assert.equal(pilot.provenance.producer.producedAt,null);
+});
+
+test('new drafts retain complete pilot names while historical idempotent imports keep every stored byte',()=>{
+ const pilot=verifyPilot(),response=JSON.parse(pilot.files.get('response.json'));
+ const current=createProductionRecords(pilot.order,response);
+ for(const [i,r] of current.entries()){
+  assert.equal(r.draft.contractVersion,2);
+  assert.deepEqual(r.draft.presentation.objectNames,pilot.order.positions[i].card.objectNames);
+  assert.deepEqual(materializeFlavorRevision(pilot.order.positions[i],r).puzzle,pilot.presentations[i].puzzle);
+ }
+ const {production}=preparePilotStore(path.join(dir,'legacy-idempotent'));
+ const receipt=JSON.parse(pilot.files.get('receipt.json'));
+ const imported=production.importResponse({orderId:pilot.order.orderId,runId:'pilot-1',responseBytes:pilot.files.get('response.json'),operator:receipt.operator.value});
+ assert.equal(imported.created,false);assert.deepEqual(imported.records,pilot.records);
+ for(const [ref,bytes] of pilot.files)assert.deepEqual(fs.readFileSync(path.join(production.directory,'imports/pilot-1',ref)),bytes);
+ for(const mutate of [r=>r.pop(),r=>{r[0].draft.contractVersion=3;},r=>{r[0].draft.presentation.objectNames.unknown='Invented';},r=>{r[0].draft.presentation.title+=' changed';}]){
+  const changed=copy(pilot.records);mutate(changed);assert.throws(()=>validateStoredProductionRecords(pilot.order,response,changed));
+ }
 });
 
 test('blind files, image bytes, filenames, metadata and template expose only positive-list inputs',()=>{

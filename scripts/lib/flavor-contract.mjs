@@ -4,7 +4,8 @@ import {validateLogicDefinition,validateLogic} from '../../src/engine/validate.m
 import {validateDefinition} from '../../src/puzzles/validate.mjs';
 import {canonicalJson,sha256} from './content-hash.mjs';
 
-export const FLAVOR_VERSION=1;
+export const FLAVOR_VERSION=1; // Unchanged public request/source-hash protocol.
+export const FLAVOR_DRAFT_VERSION=2; // Complete pinned names, including every start object.
 const object=(properties,required=Object.keys(properties))=>({type:'object',properties,required,additionalProperties:false});
 const text={type:'string',minLength:1,maxLength:12000};
 const id={type:'string',pattern:'^[A-Za-z0-9][A-Za-z0-9._-]*$',maxLength:80};
@@ -17,16 +18,19 @@ export const flavorRequestSchema=object({contractVersion:{const:FLAVOR_VERSION},
 // Only these existing presentation fields may be edited. Artwork stays in source.
 const editableFields=['title','intro','objectNames','clueTexts','hints','cluePlaceRefs'];
 const presentationSchema=object(Object.fromEntries(editableFields.map(k=>[k,puzzleSchema.properties.presentation.properties[k]])),editableFields.filter(k=>k!=='cluePlaceRefs'));
-export const flavorEvidenceSchema={oneOf:[object({mode:{const:'free'}}),object({mode:{const:'controlled-v1'},
- statement:logicSchema.properties.clues.items,order:{enum:['time-first','fact-first']},startAlias:{enum:['Start','Ausgangspunkt','Beginn der Fahrt']}})]};
-export const flavorDraftSchema=object({contractVersion:{const:FLAVOR_VERSION},sourceHash:hash,revision,
- presentation:presentationSchema,resultTexts:puzzleSchema.properties.resultTexts,evidence:dict(flavorEvidenceSchema)});
-const resultSchema=object({status:{enum:['PASS','FAIL','UNCERTAIN']},method:{const:'flavor-check-v1'},
+const evidenceSchema=version=>({oneOf:[object({mode:{const:'free'}}),version===1?
+ object({mode:{const:'controlled-v1'},statement:logicSchema.properties.clues.items,order:{enum:['time-first','fact-first']},startAlias:{enum:['Start','Ausgangspunkt','Beginn der Fahrt']}}):
+ object({mode:{const:'controlled-v2'},statement:logicSchema.properties.clues.items,order:{enum:['time-first','fact-first']}})]});
+export const flavorEvidenceSchema=evidenceSchema(FLAVOR_DRAFT_VERSION);
+const draftSchema=version=>object({contractVersion:{const:version},sourceHash:hash,revision,
+ presentation:presentationSchema,resultTexts:puzzleSchema.properties.resultTexts,evidence:dict(evidenceSchema(version))});
+export const flavorDraftSchema={oneOf:[draftSchema(1),draftSchema(FLAVOR_DRAFT_VERSION)]};
+const resultSchema=version=>object({status:{enum:['PASS','FAIL','UNCERTAIN']},method:{const:'flavor-check-v'+version},
  scope:{const:'single-clue-contract'},code:text,details:text,inputHash:hash});
-export const flavorCheckpointSchema=object({contractVersion:{const:FLAVOR_VERSION},sourceHash:hash,draft:flavorDraftSchema,checks:dict(resultSchema)});
+export const flavorCheckpointSchema={oneOf:[1,FLAVOR_DRAFT_VERSION].map(version=>object({contractVersion:{const:version},sourceHash:hash,draft:draftSchema(version),checks:dict(resultSchema(version))}))};
 const assert=(ok,message)=>{if(!ok)throw Error(`flavor: ${message}`);};
 function structure(value,schema){const errors=schemaErrors(value,schema);assert(!errors.length,errors.join('; '));}
-const digest=value=>sha256('gezeitenkarten-flavor/v1\0'+canonicalJson(value));
+const digest=(value,version=FLAVOR_VERSION)=>sha256('gezeitenkarten-flavor/v'+version+'\0'+canonicalJson(value));
 const same=(a,b)=>canonicalJson(a)===canonicalJson(b);
 const copy=structuredClone;
 const own=(record,key,fallback)=>record&&Object.hasOwn(record,key)?record[key]:fallback;
@@ -51,11 +55,17 @@ export function createFlavorRequest(document,options={}){
 export function validateFlavorDraft(request,draft){
  validateFlavorRequest(request);structure(draft,flavorDraftSchema);
  assert(draft.sourceHash===request.sourceHash,'draft belongs to another source');references(request.source,draft.presentation);
- const expectedNames=copy(request.source.presentation.objectNames);delete expectedNames[startObjectId(request.source)];
- assert(same(draft.presentation.objectNames,expectedNames),'object names must equal the pinned names without a start name');
+ const expectedNames=request.source.presentation.objectNames,actualNames=draft.presentation.objectNames;
+ if(draft.contractVersion===FLAVOR_DRAFT_VERSION)assert(same(actualNames,expectedNames),'object names must equal all pinned names');
+ else{
+  // Read-only wire compatibility: old snapshots may lack this entry. No new
+  // draft generator removes names, and a complete old map is valid as well.
+  assert(Object.entries(actualNames).every(([id,name])=>own(expectedNames,id)!==undefined&&name===own(expectedNames,id)),'legacy pinned name mismatch');
+  assert(Object.keys(expectedNames).every(id=>Object.hasOwn(actualNames,id)||id===startObjectId(request.source)),'legacy missing pinned name');
+ }
  const clueIds=request.source.logic.clues.map(c=>c.id);
  assert(Object.keys(draft.evidence).every(k=>clueIds.includes(k)),'unknown evidence clue ID');
- for(const [key,evidence] of Object.entries(draft.evidence))if(evidence.mode==='controlled-v1'){
+ for(const [key,evidence] of Object.entries(draft.evidence))if(evidence.mode!=='free'){
   assert(evidence.statement.id===key,'statement clue ID mismatch');
   validateLogic({...request.source.logic,clues:[evidence.statement]});
  }
@@ -64,20 +74,27 @@ export function validateFlavorDraft(request,draft){
 export function createFlavorDraft(request){
  validateFlavorRequest(request);
  const presentation=Object.fromEntries(editableFields.filter(k=>Object.hasOwn(request.source.presentation,k)).map(k=>[k,copy(request.source.presentation[k])]));
- delete presentation.objectNames[startObjectId(request.source)];
- return validateFlavorDraft(request,{contractVersion:FLAVOR_VERSION,sourceHash:request.sourceHash,revision:1,
+ return validateFlavorDraft(request,{contractVersion:FLAVOR_DRAFT_VERSION,sourceHash:request.sourceHash,revision:1,
   presentation,resultTexts:copy(request.source.resultTexts??{}),evidence:{}});
 }
 
 // A finite controlled language, NOT a natural-language interpreter. Full byte
 // equality binds every word to the structured statement, including negation.
-export function renderControlledClue(request,statement,{order='time-first',startAlias='Start'}={}){
+export function renderControlledClue(request,statement,options={}){
  validateFlavorRequest(request);validateLogic({...request.source.logic,clues:[statement]});
- assert(['time-first','fact-first'].includes(order),'unknown controlled order');
- assert(['Start','Ausgangspunkt','Beginn der Fahrt'].includes(startAlias),'unknown start alias');
+ assert(!Object.hasOwn(options,'startAlias'),'startAlias is obsolete; use the pinned object name');
+ const {order='time-first'}=options;
+ return renderStatement(statement,order,()=>`${JSON.stringify(own(request.source.presentation.objectNames,statement.placeId,'Ort'))} [${statement.placeId}]`);
+}
+// Only verifies already persisted v1 evidence. Never used to create new drafts.
+function archivedControlledText(request,statement,{order,startAlias}){
  const place=()=>statement.placeId===startObjectId(request.source)?
   (request.source.logic.map.objects.find(o=>o.id===statement.placeId).cells.length===1?`${startAlias} [${statement.placeId}]`:`Objekt [${statement.placeId}], das ${startAlias} enthält`):
   `${JSON.stringify(own(request.source.presentation.objectNames,statement.placeId,'Ort'))} [${statement.placeId}]`;
+ return renderStatement(statement,order,place);
+}
+function renderStatement(statement,order,place){
+ assert(['time-first','fact-first'].includes(order),'unknown controlled order');
  let time,fact;
  switch(statement.type){
   case 'position':time=`In Stunde ${statement.hour}`;fact=`befindet sich das Schiff auf Feld ${statement.cell}`;break;
@@ -95,10 +112,10 @@ function checkValidated(request,draft,clueId){
  const original=request.source.logic.clues.find(c=>c.id===clueId);assert(original,'unknown clue ID');
  const text=draft.presentation.clueTexts[clueId],evidence=own(draft.evidence,clueId,{mode:'free'});
  const placeRefs=own(draft.presentation.cluePlaceRefs,clueId,null);
- const inputHash=digest({sourceHash:request.sourceHash,clueId,text,evidence,placeRefs});
- const result=(status,code,details)=>({status,method:'flavor-check-v1',scope:'single-clue-contract',code,details,inputHash});
+ const inputHash=digest({sourceHash:request.sourceHash,clueId,text,evidence,placeRefs},draft.contractVersion);
+ const result=(status,code,details)=>({status,method:'flavor-check-v'+draft.contractVersion,scope:'single-clue-contract',code,details,inputHash});
  if(evidence.mode==='free')return result('UNCERTAIN','interpretation-required','Free prose has no verified complete interpretation, including possible additional constraints.');
- const rendered=renderControlledClue(request,evidence.statement,evidence);
+ const rendered=draft.contractVersion===1?archivedControlledText(request,evidence.statement,evidence):renderControlledClue(request,evidence.statement,evidence);
  if(text!==rendered)return result('FAIL','uncovered-text','Text is not exactly the complete controlled rendering; evidence does not cover every word.');
  // Parameter preservation is the F01 contract, not arbitrary logical theorem
  // proving. Even accidentally redundant changes fail this stricter contract.
@@ -110,7 +127,7 @@ function checkValidated(request,draft,clueId){
 export function checkFlavorClue(request,draft,clueId){validateFlavorDraft(request,draft);return checkValidated(request,draft,clueId);}
 export function createFlavorCheckpoint(request,draft){
  validateFlavorDraft(request,draft);
- return {contractVersion:FLAVOR_VERSION,sourceHash:request.sourceHash,draft:copy(draft),
+ return {contractVersion:draft.contractVersion,sourceHash:request.sourceHash,draft:copy(draft),
   checks:Object.fromEntries(request.source.logic.clues.map(c=>[c.id,checkValidated(request,draft,c.id)]))};
 }
 export function resumeFlavorCheckpoint(request,checkpoint){
@@ -124,6 +141,11 @@ export function repairFlavorClue(request,checkpoint,{clueId,expectedRevision,tex
  assert(current.draft.revision===expectedRevision,'stale repair revision');
  assert(Object.hasOwn(current.draft.presentation.clueTexts,clueId),'unknown repair clue ID');
  const draft=copy(current.draft);draft.revision++;
+ if(draft.contractVersion!==FLAVOR_DRAFT_VERSION){
+  draft.contractVersion=FLAVOR_DRAFT_VERSION;draft.presentation.objectNames=copy(request.source.presentation.objectNames);
+  // Old proof syntax is not silently promoted to a new method. Text stays put.
+  draft.evidence=Object.fromEntries(Object.entries(draft.evidence).map(([id])=>[id,{mode:'free'}]));
+ }
  draft.presentation.clueTexts[clueId]=text;draft.evidence[clueId]=copy(evidence);
  if(placeRefs!==undefined){draft.presentation.cluePlaceRefs??={};draft.presentation.cluePlaceRefs[clueId]=copy(placeRefs);}
  return createFlavorCheckpoint(request,draft);

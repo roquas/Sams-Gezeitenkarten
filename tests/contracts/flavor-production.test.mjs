@@ -30,7 +30,7 @@ test('real pilot has four pinned cards, all names and 23 unchanged ordered clues
   assert.equal(p.request.source.logic.start,cases.find(r=>r.id===p.caseId).definition.logic.start);
   assert.deepEqual(Object.keys(p.card.objectNames).sort(),p.card.map.objects.map(o=>o.id).sort());
   const start=p.card.map.objects.find(o=>o.cells.includes(p.request.source.logic.start));
-  assert.equal(records[i].draft.presentation.objectNames[start.id],undefined);
+  assert.equal(records[i].draft.presentation.objectNames[start.id],p.card.objectNames[start.id]);
   assert.deepEqual(records[i].checkpoint,createFlavorCheckpoint(p.request,records[i].draft));
   assert.ok(Object.values(records[i].checkpoint.checks).every(c=>c.status==='UNCERTAIN'));
  }
@@ -96,7 +96,7 @@ test('one saved card supports different puzzle starts without storing a start; m
  const fakeCard={key:p.cardRef,map:source.logic.map,mapFingerprint:mapFingerprint(source.logic.map),background:source.presentation.background,assetPlacements:[],naming:{objectNames:source.presentation.objectNames}};
  const multi=createProductionPosition({caseId:'TEST',positionId:'TEST',document:source,card:fakeCard,intent:p.intent});
  assert.equal(multi.request.source.logic.start,'C3');assert.deepEqual(multi.card.map.objects[0].cells,['C3','D3']);
- assert.equal(createFlavorDraft(multi.request).presentation.objectNames.port,undefined);
+ assert.equal(createFlavorDraft(multi.request).presentation.objectNames.port,'Alter Hafen');
  assert.equal(createRules(source.logic).distanceToPlace('E3','port'),1);assert.equal(distance('E3',source.logic.start),2);
  fakeCard.map.objects=fakeCard.map.objects.filter(o=>o.id!=='single');source.logic.map=fakeCard.map;delete source.presentation.objectNames.single;fakeCard.mapFingerprint=mapFingerprint(fakeCard.map);
  assert.throws(()=>createProductionPosition({caseId:'TEST',positionId:'TEST',document:source,card:fakeCard,intent:p.intent}),/single-hex/);
@@ -146,13 +146,15 @@ test('all new code/data and renderer change keep the existing full CI profile',(
  assert.equal(classifyChanges([{path:p,status:'A',oldMode:'000000',newMode:'100644'}]).profile,'full');
 });
 
-test('checked-in pilot is the exact reproducible public export and keeps its local origin outside the transport',async()=>{
+test('archived pilot stays byte-identical and readable while new exports use the current prompt',async()=>{
  const {readTree,openProductionStore}=await import('../../scripts/lib/flavor-production-store.mjs');
  const f=productionFixture(),base=path.join(ROOT,'content/flavor/pilot-v1');
  const files=readTree(path.join(base,'public'));
- assert.deepEqual(packageInventory(files),packageInventory(f.files));
+ const archived=verifyProductionPackage(files);
+ assert.equal(archived.promptRevision,'flavor-production-1');assert.equal(f.order.promptRevision,'flavor-production-2');
+ assert.deepEqual(archived.positions,f.order.positions);
  const store=openProductionStore({directory:path.join(base,'local')});
- const saved=store.loadOrder(f.order.orderId);assert.deepEqual(saved.order,f.order);
+ const saved=store.loadOrder(archived.orderId);assert.deepEqual(saved.order,archived);assert.deepEqual(packageInventory(saved.files),packageInventory(files));
  assert.equal(saved.binding.origin.positions.length,4);
  assert.equal(files.has('binding.json'),false);assert.equal(files.has('complete.json'),false);
  assert.equal(fs.readdirSync(path.join(base,'local/imports')).length,0);

@@ -194,14 +194,16 @@ Die vier echten Karten und ihre Begleitlinks liegen unter
 Schnittstellen lesen wie neue Karten. Originaldefinitionen, Zielrouten,
 logische Fingerprints, Beta-Projektionen und `editorial.json` bleiben unverändert.
 
-## Anschlusskonflikt für PR 2 und Grenzen
+## Vollständige Namen im Flavor-Anschluss
 
-Der Community-Beta-Importer verlangt derzeit in einer redaktionellen Präsentation
-Namen für **alle** Objekte. F01 entfernt dagegen aus seinem Draft den Namen des
-starttragenden Objekts. Die Kartenbibliothek speichert alle Namen; die
-Startausnahme ist erst je Rätsel anzuwenden. **PR 2 muss die Übergabe beider
-Verträge ausdrücklich lösen**, ohne einen davon abzuschwächen. Hier wird weder
-F01 noch der Beta-Importer geändert. Die Tests zeigen beide Anforderungen.
+Kartenbibliothek, neue F01-Drafts und Beta-Präsentation enthalten sämtliche
+gepinnten Ortsnamen einschließlich Startort. Seine Startfunktion hat keinen
+Einfluss auf die Benennung. Unterschiedliche Rätselstarts auf derselben Karte
+verändern keine Namen. Die UI hebt den benannten Startort lediglich hervor.
+
+Historische v1-Imports bleiben unverändert lesbar. Neue Drafts verwenden den
+vollständigen Namensvertrag der Version 2; es gibt keinen aktiven Sonderfall
+zur Unterdrückung oder Ersetzung eines Startnamens.
 
 Eine fertige Karte bleibt unveränderlich. Spätere F02-B-Checkpoints enthalten
 hingegen den fortlaufend reparierten Textstand; sie sind ein anderer Lebenszyklus.

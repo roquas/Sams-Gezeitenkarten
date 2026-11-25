@@ -24,9 +24,11 @@ F01 erfindet keinen Ersatz für mapStructureId/instanceId/variantId.
 ## Versionierte JSON-Verträge
 
 Alle drei Schemas sind exportiert, strikt gegen unbekannte Felder und mit dem
-vorhandenen Schema-Evaluator ausführbar. `contractVersion:1` bezeichnet nur den
-Offline-Vertrag. Änderungen an Formulierungen oder Beweisregeln erfordern eine
-neue Vertrags-/Methodenversion; Rätselschema 2 und rulesVersion bleiben bestehen.
+vorhandenen Schema-Evaluator ausführbar. Requests und ihre Quellhashes bleiben
+bei `contractVersion:1`. Neue Drafts und Checkpoints verwenden Version 2 mit
+vollständigen gepinnten Ortsnamen; kontrollierte Belege und Prüfmethode heißen
+`controlled-v2` / `flavor-check-v2`. Historische v1-Snapshots werden nur gelesen
+und unverändert geprüft. Rätselschema 2 und rulesVersion bleiben bestehen.
 
 - **Request** (`flavorRequestSchema`): `contractVersion`, `sourceHash`, `source`.
   Source enthält `schemaVersion`, `rulesVersion`, `dataVersion`, `id`, die
@@ -37,7 +39,7 @@ neue Vertrags-/Methodenversion; Rätselschema 2 und rulesVersion bleiben bestehe
   `presentation`, `resultTexts`, `evidence`. Editierbar sind die bestehenden
   Textfelder title/intro/clueTexts/hints/cluePlaceRefs und resultTexts.
   Hintergrund und Assetplatzierungen verbleiben unverändert in Source.
-  Die Namen stammen aus der eingefrorenen Eingabe; nur der Startname entfällt.
+  Die Namen entsprechen vollständig der eingefrorenen Eingabe, einschließlich des Startortes.
   `evidence` ist eine optionale Belegzuordnung je Hinweis-ID. Fehlende Belege
   bedeuten freie Prosa, niemals Erfolg.
 - **Checkpoint** (`flavorCheckpointSchema`): `contractVersion`, `sourceHash`,
@@ -45,7 +47,8 @@ neue Vertrags-/Methodenversion; Rätselschema 2 und rulesVersion bleiben bestehe
   `status`, `method`, `scope`, `code`, `details` und `inputHash`.
 
 Der SHA-256-Hash nutzt die bestehende kanonische JSON-Funktion, mit eigener
-Domain `gezeitenkarten-flavor/v1`. Er bindet alle Eingabefelder einschließlich
+Domain `gezeitenkarten-flavor/v1` für Requests; neue Einzelchecks verwenden
+`gezeitenkarten-flavor/v2`. Er bindet alle Eingabefelder einschließlich
 Objektnamen, Präsentation und Originalhinweisen. Er ist ein Integritätsbezug,
 keine Signatur: Der Batchrunner muss den ursprünglich gespeicherten Request als
 vertrauenswürdige Referenz behalten. Eine neue Quelle oder Namensrevision erhält
@@ -85,10 +88,9 @@ eigenen ausgewiesenen Beweisumfang.
 
 ```js
 {
-  mode: 'controlled-v1',
+  mode: 'controlled-v2',
   statement: originalClue, // bestehende Hinweisstruktur, keine neue Logiksprache
-  order: 'time-first',    // alternativ 'fact-first'
-  startAlias: 'Start'     // alternativ 'Ausgangspunkt', 'Beginn der Fahrt'
+  order: 'time-first'     // alternativ 'fact-first'
 }
 ```
 
@@ -124,20 +126,26 @@ KI-Interpreter muss **sämtliche** logischen Aussagen und unaufgelöste Textstel
 abdecken. Eine vom Generator selbst behauptete Gleichwertigkeit oder eine
 bloße extrahierte Teilmenge genügt nicht. KI-Konfidenz allein wird kein Beweis.
 
-## Startfeld-Sonderregel
+## Vollständige Ortsnamen
 
-Die Karte zeigt weiterhin „Start“; F01 verändert die UI nicht. Der Draft führt
-für das Objekt, das `logic.start` enthält, keinen zusätzlichen redaktionellen
-Namen. Vorhandene Namen bleiben in der unveränderten Source nachvollziehbar,
-die technische Objekt-ID und der Footprint bleiben identisch.
+Jeder benannte Ort behält seinen tatsächlichen gepinnten Namen. Das gilt
+unabhängig davon, ob das konkrete Rätsel dort startet. Draft und kontrollierte
+Formulierung verwenden den Namen des Startobjekts wie jeden anderen Ortsnamen.
+Die Startfunktion wird durch die UI hervorgehoben; sie verändert keinen Namen.
+Es gibt keine Ausblendung, Aliasvorgabe oder Ersetzung durch „Start“ in der
+aktuellen Flavor-Erzeugung.
 
-Bei einem einfeldrigen Startobjekt verwendet die kontrollierte Sprache Start,
-Ausgangspunkt oder Beginn der Fahrt mit stabiler ID. Bei einem mehrfeldrigen
-Objekt heißt es ausdrücklich „Objekt [id], das Start enthält“; seine Fläche darf
-nicht mit dem einzelnen Startfeld gleichgesetzt werden. Der Abstand bleibt das
-Minimum zur vollständigen Objektfläche. Freie eindeutige Umschreibungen sind als
-Text zulässig, benötigen aber weiterhin Interpretation. Eine allgemeine
-Ortsreferenzierbarkeitsarchitektur wird nicht eingeführt.
+Bei allen Distanzhinweisen zählt weiterhin die vollständige Objektfläche.
+Ein mehrfeldriger Ort wird durch einen Start auf einer seiner Zellen nicht
+auf dieses einzelne Feld verkleinert. Namen bleiben über verschiedene Starts
+auf derselben Karte unverändert.
+
+Alte v1-Belege und bereits gespeicherte Antworten bleiben als unveränderliche
+Historie lesbar. Sie sind keine Vorlage für neue Benennungen. Eine Reparatur
+eines alten Drafts erzeugt Version 2 mit allen Namen; alte kontrollierte Belege
+werden dabei nicht stillschweigend als neue Beweismethode ausgegeben. Ihre
+unveränderten Texte bleiben erhalten, die bisherigen kontrollierten Belege
+werden bis zu einer neuen Prüfung als freie Prosa mit UNCERTAIN geführt.
 
 ## Einzelreparatur und Wiederaufnahme
 
@@ -167,7 +175,7 @@ Aufgabe des späteren Runners.
 ## Vorgesehene Produktionsschnittstellen für F02
 
 1. **Ortsnamensverwaltung:** Gepinnte `objectNames` nach stabiler Objekt-ID aus
-   einer kuratierten, versionierten Quelle bereitstellen. Start ausnehmen.
+   einer kuratierten, versionierten Quelle vollständig bereitstellen, einschließlich Startort.
    Konsistenz, Namenskollisionen und Kanonzugehörigkeit vor Requesterzeugung
    prüfen. Keine Namen aus Motiven erraten; Verwaltung selbst ist nicht gebaut.
 2. **GenAI-Generierung:** Request plus explizites versioniertes Welt-/Stilpaket

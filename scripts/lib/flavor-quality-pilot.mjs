@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {sha256} from './content-hash.mjs';
-import {json,same,createProductionRecords,materializeFlavorRevision} from './flavor-production.mjs';
+import {json,same,validateStoredProductionRecords,materializeFlavorRevision} from './flavor-production.mjs';
 import {ROOT} from './flavor-production-package.mjs';
 import {openProductionStore,revisionReference} from './flavor-production-store.mjs';
 import {directory,readTree,unseal,publishTree,withStoreLock,parseJsonBytes as parse} from './immutable-file-store.mjs';
@@ -20,7 +20,7 @@ export function verifyPilot(){
  assert.equal(sha256(fs.readFileSync(path.join(PILOT_DIRECTORY,'production-source.txt'))),provenance.source.sha256);
  assert.equal(provenance.derivedResponse.sha256,PILOT_RESPONSE_SHA);assert.equal(provenance.derivedResponse.exactOriginalProducerBytesKnown,false);
  same(parse(fs.readFileSync(path.join(PILOT_DIRECTORY,'order.json'))),order,'real pilot order');
- const records=createProductionRecords(order,parse(bytes));same(parse(body.get('records.json')),records,'real pilot records/checkpoints');
+ const records=validateStoredProductionRecords(order,parse(bytes),parse(body.get('records.json')));
  same(records.map(r=>r.caseId),['C-06','C-02','C-03','C-11'],'real pilot order');
  same(records.map(r=>Object.keys(r.draft.presentation.clueTexts).length),[6,7,6,4],'real pilot clue counts');
  const presentations=records.map((record,i)=>materializeFlavorRevision(order.positions[i],record));

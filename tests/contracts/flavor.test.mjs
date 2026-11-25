@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {createFlavorRequest,validateFlavorRequest,createFlavorDraft,validateFlavorDraft,renderControlledClue,
  checkFlavorClue,createFlavorCheckpoint,resumeFlavorCheckpoint,repairFlavorClue} from '../../scripts/lib/flavor-contract.mjs';
 import {flavorFixture,alteredStatements,freeProse} from '../fixtures/flavor/public.mjs';
@@ -10,7 +11,7 @@ import {definition,catalog} from '../fixtures/model/factories.mjs';
 import {logicalFingerprints} from '../../scripts/lib/publication-archive.mjs';
 const setup=()=>{const request=createFlavorRequest(flavorFixture());return {request,draft:createFlavorDraft(request)};};
 function controlled(request,draft,statement,options={}){
- const evidence={mode:'controlled-v1',statement:structuredClone(statement),order:'time-first',startAlias:'Start',...options};
+ const evidence={mode:'controlled-v2',statement:structuredClone(statement),order:'time-first',...options};
  draft.evidence[statement.id]=evidence;draft.presentation.clueTexts[statement.id]=renderControlledClue(request,statement,evidence);
  return evidence;
 }
@@ -49,17 +50,37 @@ test('negation, exact counts, hour zero and inclusive endpoints are explicit',()
   assert.equal(checkFlavorClue(next,output,'count').status,'PASS');
  }
 });
-test('start has no editorial name, stable identity, aliases and whole multihex footprint',()=>{
+test('start retains its pinned name on single and multihex objects and across different starts',()=>{
  const source=flavorFixture(),before=structuredClone(source),request=createFlavorRequest(source),draft=createFlavorDraft(request);
- assert.equal(draft.presentation.objectNames.port,undefined);assert.equal(draft.presentation.objectNames.shore,'Klippeninsel');
- assert.deepEqual(source,before);assert.equal(request.source.presentation.objectNames.port,'Alter Hafen');
- for(const startAlias of ['Start','Ausgangspunkt','Beginn der Fahrt']){
-  const statement={id:'start-ref',type:'distanceToPlace',hour:0,placeId:'port',distance:0};
-  assert.ok(renderControlledClue(request,statement,{startAlias}).includes(`Objekt [port], das ${startAlias} enthält`));
- }
+ assert.equal(draft.contractVersion,2);assert.deepEqual(draft.presentation.objectNames,request.source.presentation.objectNames);
+ assert.equal(draft.presentation.objectNames.port,'Alter Hafen');assert.deepEqual(source,before);
+ const statement={id:'start-ref',type:'distanceToPlace',hour:0,placeId:'port',distance:0};
+ assert.match(renderControlledClue(request,statement),/gesamten Fläche von "Alter Hafen" \[port\]/);
+ assert.throws(()=>renderControlledClue(request,statement,{startAlias:'Start'}),/obsolete/);
  source.logic.map.objects[0].cells=['C3'];const single=createFlavorRequest(source);
- assert.match(renderControlledClue(single,{id:'s',type:'distanceToPlace',hour:0,placeId:'port',distance:0}),/Start \[port\]/);
- draft.presentation.objectNames.port='Piratenhafen';assert.throws(()=>validateFlavorDraft(request,draft),/without a start name/);
+ assert.match(renderControlledClue(single,statement),/"Alter Hafen" \[port\]/);
+ const other=structuredClone(source);other.logic.map.objects.push({id:'boat',cells:['E5'],passable:true});other.presentation.objectNames.boat='Kahn';
+ const first=createFlavorDraft(createFlavorRequest(other));other.logic.start='E5';
+ const second=createFlavorDraft(createFlavorRequest(other));assert.deepEqual(first.presentation.objectNames,second.presentation.objectNames);
+ const missing=structuredClone(draft);delete missing.presentation.objectNames.port;
+ assert.throws(()=>validateFlavorDraft(request,missing),/all pinned names/);
+ draft.presentation.objectNames.port='Piratenhafen';assert.throws(()=>validateFlavorDraft(request,draft),/all pinned names/);
+});
+test('archived v1 proofs remain readable; repairing them creates a complete-name v2 draft without rewriting old text',()=>{
+ const old=JSON.parse(fs.readFileSync(new URL('../fixtures/flavor/archived-v1.json',import.meta.url),'utf8'));
+ const before=structuredClone(old);assert.deepEqual(resumeFlavorCheckpoint(old.request,old.checkpoint).pendingClueIds,[]);
+ assert.equal(old.checkpoint.draft.presentation.objectNames.port,undefined);
+ const statement=old.request.source.logic.clues.find(c=>c.id==='start_ref');
+ const evidence={mode:'controlled-v2',statement,order:'time-first'};
+ const updated=repairFlavorClue(old.request,old.checkpoint,{clueId:statement.id,expectedRevision:1,text:renderControlledClue(old.request,statement),evidence});
+ assert.equal(updated.contractVersion,2);assert.equal(updated.draft.revision,2);
+ assert.deepEqual(updated.draft.presentation.objectNames,old.request.source.presentation.objectNames);
+ assert.equal(updated.checks.start_ref.method,'flavor-check-v2');assert.equal(updated.checks.start_ref.status,'PASS');
+ for(const c of old.request.source.logic.clues.filter(c=>c.id!=='start_ref')){
+  assert.equal(updated.draft.presentation.clueTexts[c.id],old.checkpoint.draft.presentation.clueTexts[c.id]);
+  assert.equal(updated.checks[c.id].status,'UNCERTAIN');
+ }
+ assert.deepEqual(old,before);
 });
 test('names and references bind IDs; duplicates, unknowns and renaming fail',()=>{
  for(const mutate of [
@@ -72,7 +93,7 @@ test('names and references bind IDs; duplicates, unknowns and renaming fail',()=
 });
 test('invalid statements, extra predicates and unsupported contract versions fail closed',()=>{
  for(const mutate of [
-  d=>{d.contractVersion=2;},d=>{d.presentation.logic={};},d=>{d.evidence.count.statement.extra='never north';},
+  d=>{d.contractVersion=3;},d=>{d.presentation.logic={};},d=>{d.evidence.count.statement.extra='never north';},
   d=>{d.evidence.count.statement.count=8;},d=>{d.evidence.count.statement.toHour=7;},
   d=>{d.evidence.count.statement.fromHour=6;d.evidence.count.statement.toHour=0;},
   d=>{d.evidence.count.statement.placeId='missing';},d=>{d.evidence.count.statement.id='wrong';},
@@ -91,7 +112,7 @@ test('checkpoint resume recomputes proof and repairs exactly one clue with revis
  const {request,draft}=setup();controlled(request,draft,request.source.logic.clues[0]);
  const checkpoint=JSON.parse(JSON.stringify(createFlavorCheckpoint(request,draft))),before=structuredClone(checkpoint);
  assert.deepEqual(resumeFlavorCheckpoint(request,checkpoint).pendingClueIds,['turn','position','place','between','count']);
- const statement=request.source.logic.clues[1],evidence={mode:'controlled-v1',statement,order:'fact-first',startAlias:'Start'};
+ const statement=request.source.logic.clues[1],evidence={mode:'controlled-v2',statement,order:'fact-first'};
  const updated=repairFlavorClue(request,checkpoint,{clueId:statement.id,expectedRevision:1,text:renderControlledClue(request,statement,evidence),evidence});
  assert.equal(updated.draft.revision,2);assert.equal(updated.checks.turn.status,'PASS');assert.deepEqual(checkpoint,before);
  assert.deepEqual(updated.checks.direction,checkpoint.checks.direction);

@@ -5,7 +5,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {sha256} from './content-hash.mjs';
 import {openCardLibrary} from './card-library.mjs';
-import {json,contentHash,same,structure,revisionRefSchema,validateProductionOrder,createProductionRecords} from './flavor-production.mjs';
+import {json,contentHash,same,structure,revisionRefSchema,validateProductionOrder,createProductionRecords,validateStoredProductionRecords} from './flavor-production.mjs';
 import {packageInventory,verifyProductionPackage,ROOT} from './flavor-production-package.mjs';
 
 import {localId as id,parseJsonBytes as parse,directory,readTree,publishTree,seal,unseal,withStoreLock} from './immutable-file-store.mjs';
@@ -44,8 +44,7 @@ export function openProductionStore({directory:target,libraryDirectory=path.join
    id(runId);const files=unseal(readTree(path.join(root,'imports',runId)));
    const receipt=parse(files.get('receipt.json')),responseBytes=files.get('response.json');
    assert.equal(receipt.runId,runId);assert.equal(sha256(responseBytes),receipt.responseSha256,'flavor production: response hash mismatch');
-   const {order}=loadOrder(receipt.orderId),records=createProductionRecords(order,parse(responseBytes));
-   same(parse(files.get('records.json')),records,'stored records/checkpoints');
+   const {order}=loadOrder(receipt.orderId),records=validateStoredProductionRecords(order,parse(responseBytes),parse(files.get('records.json')));
    return {receipt,records};
   });
  }
@@ -89,8 +88,8 @@ export function openProductionStore({directory:target,libraryDirectory=path.join
     const files=unseal(readTree(dest)),prior=parse(files.get('receipt.json'));
     same([prior.orderId,prior.responseSha256,prior.operator],[orderId,responseSha256,{origin:'operator-supplied',value:operator}],'run reference conflict');
     assert.equal(sha256(files.get('response.json')),prior.responseSha256,'flavor production: stored response hash');
-    same(parse(files.get('records.json')),records,'idempotent records');
-    return {runId,responseSha256,created:false,records};
+    const stored=validateStoredProductionRecords(order,parse(responseBytes),parse(files.get('records.json')));
+    return {runId,responseSha256,created:false,records:stored};
    }
    checkIntents(order,allRecords());
    const receipt={schemaVersion:1,orderId,runId,responseSha256,operator:{origin:'operator-supplied',value:structuredClone(operator)},
