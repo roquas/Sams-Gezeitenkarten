@@ -56,3 +56,20 @@ Erfolgreiche lokale Abnahme der Codekorrektur (Node v22.23.3, Python-Testumgebun
 - git diff --check erfolgreich. Keine neue Spezifikationsdatei und kein separater Korrektur-PR; aktuelle Regeln stehen in den bestehenden F01-/Produktions-/F02-B-Unterlagen.
 
 Grenzen: Die zuvor begonnenen breiten lokalen Gesamtläufe wurden ohne Abschlussergebnis beendet; diese werden nicht als bestanden ausgegeben. Die unveränderte vollständige CI wird mit dem aktualisierten PR neu angestoßen. Keine semantischen Modellprüfungen, neuen Geschichten, Auswahl, Freigabe oder Merge.
+
+
+Nachtrag zur unabhängigen Review: P2 „gemischte Revisionsstände“, 25.11.2026
+
+Finding am geprüften Head 8ef12c8 bestätigt: Eine neue C-06-Revision machte im bisherigen Code auch C-02 ohne Serienkontext unanwendbar und blockierte den Review-Export trotz vorhandener Reader-Antwort. Der neue Regressionstest wurde zunächst gegen die bisherige Implementierung ausgeführt und schlug genau an dieser falschen Geschwisterinvalidierung fehl.
+
+Korrektur: Aktualität wird je Item über dessen eigene Revision und tatsächlichen Serienkontext geprüft. Vergleich, Review-Export, Status und Wiederverwendung fertiger Items nutzen diese Prüfung. Verspätete gemischte Antworten behalten ihre strukturell gültigen, revisionsgebundenen Nachweise; aktuelle Geschwister bleiben bearbeitbar, staleItemIds benennt veraltete Antworten. Eine Antwort ausschließlich veralteter Items oder mit veraltetem gemeinsamen Kontext wird nicht neu angenommen. Historische Importbytes und Prüfergebnisse werden nicht umgeschrieben.
+
+3/3 neue Integrationsregressionen lokal erfolgreich (Python-Testumgebung /private/tmp/sams-f02a-python/bin, TMPDIR=/private/tmp):
+node --test --test-name-pattern='independent mixed-revision|late mixed reader|changed shared series' tests/integration/flavor-quality.test.mjs
+Abgedeckt sind der ursprüngliche Zweierbatch samt vorhandenen Vergleichen/Review, verspätete gemischte Reader- und Reviewer-Antworten, idempotente Wiederholung, einzelne aktuelle Teilantworten, kein erneuter Blindlauf für C-02 sowie weiterhin vollständige Invalidierung tatsächlich gemeinsamer Serienabhängigkeiten. Alle Antworten sind markierte technische Doubles, keine reale Qualifikation.
+
+Der vollständige gezielte lokale Lauf wurde zusätzlich gestartet; ein vollständiger Abschluss wird nur bei tatsächlich erfolgreicher Beendigung behauptet. Die unveränderte vollständige CI startet mit dem neuen Commit erneut. CI #533 war für den vorherigen Head 8ef12c8 grün; das ersetzt keinen Nachweis für den neuen Stand.
+
+Weil flavor-quality-store.mjs an METHOD_HASH gebunden ist, ändert die Korrektur den Methodenstand. Der bisher im Repository archivierte Auftrag bleibt bytegleich historisch erhalten. Ein frischer tatsächlicher Blindauftrag wurde über prepare-pilot erzeugt: vier unveränderte Fassungen, 23 Hinweise, keine Qualitätsantworten und keine Qualifikationen. Sämtliche öffentlichen fachlichen Inputs und Inputhashes sind mit dem vorher gelieferten Blindpaket identisch; nur Job-/Itemkennungen und Methodenbindung sind neu. Transport ausschließlich des neu exportierten öffentlichen Pakets. Alte Antworten nicht umetikettieren. Aktueller Methodenhash: de1532c24a10bd8c9733c52dbd77d22667659f5b59f68bd5b5bb9ef41b659e8b.
+
+Die realen Pilottexte, Produktionsimporte, historischen Qualitätsaufträge, Karten und Beta-/Freigabedaten bleiben unverändert. Kein Merge, keine Auswahl, keine fachlichen Modellantworten, kein Beginn von PR 2.

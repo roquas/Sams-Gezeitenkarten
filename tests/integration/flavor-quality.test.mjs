@@ -14,10 +14,10 @@ import {technicalReader,technicalReviewer,TECHNICAL_OPERATOR} from '../fixtures/
 import {main} from '../../scripts/flavor-quality.mjs';
 const copy=structuredClone,bytes=v=>Buffer.from(json(v));
 const root=fs.mkdtempSync(path.join(os.tmpdir(),'f02b-integration-'));let pilot,serial=0;
-function setup({count=1,beforePublish,production:override}={}){
+function setup({count=1,beforePublish,production:override,context}={}){
  pilot??=preparePilotStore(path.join(root,'production'));
  const production=override??pilot.production,quality=openQualityStore({directory:path.join(root,'quality-'+(++serial)),production,beforePublish});
- const batch=quality.createBlindBatch({references:pilot.references.slice(0,count)}),saved=quality.loadJob(batch.jobId);
+ const batch=quality.createBlindBatch({references:pilot.references.slice(0,count),context}),saved=quality.loadJob(batch.jobId);
  const originals=pilot.references.slice(0,count).map(r=>production.findRecord(r).request.source.logic.clues),reader=technicalReader(saved.job,originals);
  return {production,quality,batch,saved,reader};
 }
@@ -91,6 +91,63 @@ test('stale revision, context switch and changed actual series production invali
  latest={...latest,revision:2,revisionHash:'0'.repeat(64)};
  assert.throws(()=>acceptReader(f),/stale production revision\/context/);assert.equal(f.quality.inspect(f.batch.jobId).items[0].applicable,false);
  assert.equal(fs.readdirSync(path.join(f.quality.directory,'imports')).length,0);
+});
+
+function revisablePilot(){
+ pilot??=preparePilotStore(path.join(root,'production'));
+ const latest=new Map();
+ const production={...pilot.production,latestRevision:(c,v)=>latest.get(c+'/'+v)??pilot.production.latestRevision(c,v)};
+ return {production,revise:ref=>latest.set(ref.caseId+'/'+ref.flavorVariantId,{...ref,revision:ref.revision+1,revisionHash:'0'.repeat(64)})};
+}
+
+test('independent mixed-revision items retain reader/comparison/review progress without a repeated blind run',()=>{
+ const source=revisablePilot(),f=review(setup({count:2,production:source.production}));
+ const before=packageInventory(readTree(f.production.directory)),[changed,unchanged]=f.saved.job.items;
+ source.revise(pilot.references[0]);
+ for(const jobId of [f.batch.jobId,f.reviewBatch.jobId]){
+  const items=f.quality.inspect(jobId).items;assert.deepEqual(items.map(i=>i.applicable),[false,true]);
+  assert.ok(items[0].reasons.includes('stale-binding'));assert.ok(!items[1].reasons.includes('stale-binding'));
+ }
+ const comparison=f.quality.compare(f.batch.jobId);
+ assert.deepEqual(comparison.results.map(i=>i.itemId),[unchanged.itemId]);assert.deepEqual(comparison.staleItemIds,[changed.itemId]);
+ const next=f.quality.createReviewBatch({readerJobId:f.batch.jobId});assert.equal(next.items,1);
+ const selected=f.quality.loadJob(next.jobId);assert.equal(selected.sidecar.items[0].revisionRef.caseId,'C-02');
+ assert.equal(selected.sidecar.items[0].readerItemId,unchanged.itemId);
+ // A late mixed reviewer reply retains old evidence, but only C-02 applies.
+ const imported=f.quality.importResponse({jobId:f.reviewBatch.jobId,runId:'late-mixed-review',responseBytes:bytes(f.reviewer),operator:TECHNICAL_OPERATOR});
+ assert.equal(imported.accepted.length,2);assert.equal(imported.applicable,false);
+ assert.deepEqual(imported.staleItemIds,[f.reviewSaved.job.items[0].itemId]);
+ const state=f.quality.inspect(f.reviewBatch.jobId).items;
+ assert.deepEqual(state.map(i=>i.applicable),[false,true]);assert.equal(state[1].technicalWouldQualify,true);assert.ok(state.every(i=>!i.qualified));
+ assert.equal(f.quality.createReviewBatch({readerJobId:f.batch.jobId}).jobId,null);
+ const skipped=f.quality.createBlindBatch({references:[pilot.references[1]]});assert.equal(skipped.jobId,null);assert.equal(skipped.skipped.length,1);
+ assert.deepEqual(packageInventory(readTree(f.production.directory)),before);
+});
+
+test('late mixed reader replies advance unchanged siblings and do not compare or review stale items',()=>{
+ const source=revisablePilot(),f=setup({count:2,production:source.production}),[changed,unchanged]=f.saved.job.items;
+ source.revise(pilot.references[0]);
+ const result=acceptReader(f);assert.equal(result.accepted.length,2);assert.equal(result.applicable,false);assert.deepEqual(result.staleItemIds,[changed.itemId]);
+ const replay=acceptReader(f);assert.equal(replay.created,false);assert.deepEqual(replay.staleItemIds,[changed.itemId]);
+ const staleOnly=copy(f.reader);staleOnly.items=[staleOnly.items[0]];
+ assert.throws(()=>acceptReader(f,staleOnly,'stale-only'),/stale production revision\/context/);
+ const currentOnly=copy(f.reader);currentOnly.items=[currentOnly.items[1]];
+ assert.equal(acceptReader(f,currentOnly,'current-only').applicable,true);
+ assert.deepEqual(f.quality.inspect(f.batch.jobId).items.map(i=>i.applicable),[false,true]);
+ assert.deepEqual(f.quality.compare(f.batch.jobId).results.map(i=>i.itemId),[unchanged.itemId]);
+ const next=f.quality.createReviewBatch({readerJobId:f.batch.jobId});assert.equal(next.items,1);
+ assert.equal(f.quality.loadJob(next.jobId).sidecar.items[0].revisionRef.caseId,'C-02');
+});
+
+test('changed shared series revisions still invalidate every dependent item while independent context remains available',()=>{
+ const source=revisablePilot(),context={version:1,episodes:[pilot.references[2]]};
+ const f=review(setup({count:2,production:source.production,context}));source.revise(pilot.references[2]);
+ for(const jobId of [f.batch.jobId,f.reviewBatch.jobId])assert.ok(f.quality.inspect(jobId).items.every(i=>!i.applicable&&i.reasons.includes('stale-binding')));
+ assert.throws(()=>acceptReader(f,f.reader,'changed-context'),/stale production revision\/context/);
+ assert.throws(()=>f.quality.importResponse({jobId:f.reviewBatch.jobId,runId:'changed-context-review',responseBytes:bytes(f.reviewer),operator:TECHNICAL_OPERATOR}),/stale production revision\/context/);
+ assert.throws(()=>f.quality.compare(f.batch.jobId),/stale comparison source/);
+ assert.throws(()=>f.quality.createReviewBatch({readerJobId:f.batch.jobId}),/stale review source/);
+ const independent=f.quality.createBlindBatch({references:[pilot.references[1]]});assert.equal(independent.items,1);
 });
 
 test('stored source, response, comparison and public package corruption fail closed; incoming response cannot replace local job',()=>{

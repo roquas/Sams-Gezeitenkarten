@@ -63,11 +63,19 @@ export function openQualityStore({directory:target,production,beforePublish}={})
   }
   return saved;
  }
- function current(saved,context=saved.sidecar.context){
+ function current(saved,context=saved.sidecar.context,items=saved.sidecar.items){
   structure(context,contextSchema);
   if(saved.historical)return false;
   if(canonicalJson(context)!==canonicalJson(saved.sidecar.context))return false;
-  return [...saved.sidecar.items.map(i=>i.revisionRef),...context.episodes].every(ref=>canonicalJson(production.latestRevision(ref.caseId,ref.flavorVariantId))===canonicalJson(ref));
+  return [...items.map(i=>i.revisionRef),...context.episodes].every(ref=>canonicalJson(production.latestRevision(ref.caseId,ref.flavorVariantId))===canonicalJson(ref));
+ }
+ function currentItem(saved,itemId,context){
+  const binding=saved.sidecar.items.find(i=>i.itemId===itemId);assert.ok(binding,'flavor quality: unknown source binding');
+  return current(saved,context,[binding]);
+ }
+ function responseApplicability(saved,response,context){
+  const staleItemIds=response.items.filter(i=>!currentItem(saved,i.itemId,context)).map(i=>i.itemId);
+  return {applicable:response.items.length?staleItemIds.length===0:current(saved,context),staleItemIds};
  }
  function evaluate(saved,response){
   validateEnvelope(saved.job,response);const accepted=[],errors=[];
@@ -118,7 +126,7 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     for(const jobId of names(path.join(root,'jobs'))){
      const raw=rawJob(jobId);if(raw.historical||raw.job.stage!=='reader')continue;
      const prior=loadJob(jobId),accepted=acceptedResults(prior);
-     for(const b of prior.sidecar.items)if(accepted.has(b.itemId))done.add(b.sourceBinding);
+     for(const b of prior.sidecar.items)if(accepted.has(b.itemId)&&currentItem(prior,b.itemId))done.add(b.sourceBinding);
     }
     skipped=inputs.entries.filter(e=>done.has(e.binding.sourceBinding)).map(e=>e.binding.revisionRef);
     const pending=references.filter((r,i)=>!done.has(inputs.entries[i].binding.sourceBinding));
@@ -141,20 +149,24 @@ export function openQualityStore({directory:target,production,beforePublish}={})
   localId(runId);assert.ok(Buffer.isBuffer(responseBytes),'flavor quality: exact UTF-8 response bytes required');structure(operator,operatorSchema);
   return locked(()=>{
    const saved=loadJob(jobId);assert.ok(!saved.historical,'flavor quality: obsolete method; historical evidence retained but not accepted as current');
-   const result=evaluate(saved,parseQualityResponse(responseBytes)),responseSha256=sha256(responseBytes),dest=location('imports',runId);
+   const response=parseQualityResponse(responseBytes),result=evaluate(saved,response),responseSha256=sha256(responseBytes),dest=location('imports',runId);
    if(fs.existsSync(dest)){
     const old=unseal(readTree(dest)),receipt=parse(old.get('receipt.json'));
     same([receipt.jobId,receipt.responseSha256,receipt.operator],[jobId,responseSha256,operator],'quality run conflict');
     assert.equal(sha256(old.get('response.json')),responseSha256);same(parse(old.get('results.json')),result,'idempotent quality import');
-    return {runId,created:false,responseSha256,applicable:current(saved,context),...result};
+    return {runId,created:false,responseSha256,...responseApplicability(saved,response,context),...result};
    }
-   assert.ok(current(saved,context),'flavor quality: stale production revision/context; historical job retained');
+   // Structural acceptance is immutable evidence for the pinned revision. A
+   // mixed reply may retain stale siblings as history without blocking current
+   // items. Only item-level applicability permits further active processing.
+   const submitted=response.items.length?response.items:saved.job.items;
+   assert.ok(submitted.some(i=>currentItem(saved,i.itemId,context)),'flavor quality: stale production revision/context; historical job retained');
    const prior=acceptedResults(saved);
    for(const item of result.accepted)if(prior.has(item.itemId))same(prior.get(item.itemId).result,item,'contradictory repeat result');
    const receipt={version:1,jobId,runId,methodHash:METHOD_HASH,responseSha256,bindings:saved.sidecar.items,operator:structuredClone(operator),
     observedAt:new Date().toISOString(),limits:'Manual declaration; execution/model/time and hidden chat sources not independently observed.'};
    publishTree(dest,seal(new Map([['response.json',responseBytes],['receipt.json',json(receipt)],['results.json',json(result)]])),beforePublish);
-   return {runId,created:true,responseSha256,applicable:true,...result};
+   return {runId,created:true,responseSha256,...responseApplicability(saved,response,context),...result};
   });
  }
  function comparisonId(saved,itemId){
@@ -173,9 +185,11 @@ export function openQualityStore({directory:target,production,beforePublish}={})
  }
  function compare(jobId){
   return locked(()=>{
-   const saved=loadJob(jobId);assert.equal(saved.job.stage,'reader');assert.ok(current(saved),'flavor quality: stale comparison source');
+   const saved=loadJob(jobId);assert.equal(saved.job.stage,'reader');
+   const currentItems=saved.job.items.filter(i=>currentItem(saved,i.itemId));
+   assert.ok(currentItems.length,'flavor quality: stale comparison source');
    const accepted=acceptedResults(saved),results=[];
-   for(const item of saved.job.items){
+   for(const item of currentItems){
     if(!accepted.has(item.itemId))continue;
     const binding=saved.sidecar.items.find(i=>i.itemId===item.itemId),record=production.findRecord(binding.revisionRef),reader=accepted.get(item.itemId).result;
     const result=compareReaderItem(item,reader,record.request.source.logic.clues);
@@ -183,19 +197,22 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     const created=publishTree(location('comparisons',comparisonId(saved,item.itemId)),seal(new Map([['comparison.json',json(result)],['binding.json',json(proof)]])),beforePublish);
     results.push({itemId:item.itemId,created,result});
    }
-   return {jobId,results,missing:saved.job.items.filter(i=>!accepted.has(i.itemId)).map(i=>i.itemId)};
+   return {jobId,results,missing:currentItems.filter(i=>!accepted.has(i.itemId)).map(i=>i.itemId),
+    staleItemIds:saved.job.items.filter(i=>!currentItem(saved,i.itemId)).map(i=>i.itemId)};
   });
  }
  function createReviewBatch({readerJobId,omitCompleted=true}){
   return locked(()=>{
-   const parent=loadJob(readerJobId);assert.equal(parent.job.stage,'reader');assert.ok(current(parent),'flavor quality: stale review source');
+   const parent=loadJob(readerJobId);assert.equal(parent.job.stage,'reader');
+   const currentItems=parent.job.items.filter(i=>currentItem(parent,i.itemId));
+   assert.ok(currentItems.length,'flavor quality: stale review source');
    const accepted=acceptedResults(parent),done=new Set();
    if(omitCompleted)for(const jobId of names(path.join(root,'jobs'))){
     const raw=rawJob(jobId);if(raw.historical||raw.job.stage!=='reviewer')continue;
     const review=loadJob(jobId),complete=acceptedResults(review);
-    for(const b of review.sidecar.items)if(complete.has(b.itemId))done.add(hash([b.sourceBinding,b.readerHash,b.comparisonHash]));
+    for(const b of review.sidecar.items)if(complete.has(b.itemId)&&currentItem(review,b.itemId))done.add(hash([b.sourceBinding,b.readerHash,b.comparisonHash]));
    }
-   const items=parent.job.items.filter(i=>{
+   const items=currentItems.filter(i=>{
     if(!accepted.has(i.itemId))return false;
     const c=loadComparison(parent,i.itemId);if(!c)return false;
     const binding=parent.sidecar.items.find(b=>b.itemId===i.itemId);
@@ -212,9 +229,9 @@ export function openQualityStore({directory:target,production,beforePublish}={})
  function inspect(jobId,{context}={}){
   const saved=loadJob(jobId);
   if(saved.historical)return {jobId,stage:saved.job.stage,methodHash:saved.job.methodHash,items:saved.sidecar.items.map(b=>({itemId:b.itemId,revisionRef:b.revisionRef,qualified:false,applicable:false,reasons:['obsolete-method']})),limits:'Historical bytes retained. This runtime does not replay an obsolete method or transfer its findings.'};
-  const accepted=acceptedResults(saved),applicable=current(saved,context),imports=importSnapshots(saved);
+  const accepted=acceptedResults(saved),imports=importSnapshots(saved);
   const items=saved.job.items.map(item=>{
-   const binding=saved.sidecar.items.find(b=>b.itemId===item.itemId);
+   const binding=saved.sidecar.items.find(b=>b.itemId===item.itemId),applicable=currentItem(saved,item.itemId,context);
    let reader,comparison,review,operators=[];
    if(saved.job.stage==='reader'){
     const found=accepted.get(item.itemId);reader=found?.result;if(found)operators.push(found.operator);
