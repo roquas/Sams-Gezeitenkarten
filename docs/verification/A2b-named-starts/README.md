@@ -83,3 +83,11 @@ Die Bilder stammen aus nativen Browseraufnahmen mit unveränderten Kartenassets.
 ![Identische Karte mit Sams Ankerplatz als Start](chromium-other-start.png)
 ![Reine Schriftphase mit erhaltener besonderer Farbe](chromium-ink.png)
 ![Fallback Start auf unbenanntem Objekt](chromium-unnamed-object.png)
+
+## Vollständige CI: Bordbuch-Verträge nachgezogen
+
+Der erste vollständige Lauf [45634296567](https://github.com/roquas/Sams-Gezeitenkarten/actions/runs/45634296567) auf `01be36d605b9602ad2e1f9e9499fdb76dbc0d4f5` fand weitere veraltete Erwartungen in den Bordbuchtests: Die Hinweisaktion `showCluePlace` erwartete neben den beiden explizit referenzierten Mehrhex-Orten noch das implizite „Start“. Im WebKit-Log sind zunächst genau zwei korrekte Beschriftungen und nach deren regulärem Ablauf null zu sehen. Das Warten auf drei Labels kann daher nicht erfolgreich sein; die Frist ist nicht die Ursache.
+
+Alle vier betroffenen Assertions in `logbook-overview.spec.mjs` und `logbook-skeuomorphic.spec.mjs` erwarten nun weiterhin die **exakte** Ortsnamenliste `['Roberts Boot','Zwilling']` und zusätzlich ausdrücklich **null** Startbeschriftungen. Die Prüfungen für unveränderte Gruppenidentität beim Abhaken, erneute Auslösung der Hinweisaktion, Tastatur-/Touch-Eingaben, Spielzustand und Undo bleiben bestehen. Keine Anwendungscode-, Timeout- oder Konfigurationsänderung. Initial- und X-Aktionsprüfungen behalten ihren zusätzlichen Fallback „Start“.
+
+Nachprüfung aller vier betroffenen Fälle: Chromium Desktop/Mobil **8/8**, WebKit Desktop/Mobil **8/8**, jeweils ohne Retry. Der vollständige CI-Lauf wird auf dem korrigierten Head neu gestartet.

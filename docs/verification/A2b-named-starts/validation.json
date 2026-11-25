@@ -21,5 +21,12 @@
   },
   "content": "passed",
   "publicPuzzles": "passed",
-  "diffCheck": "passed"
+  "diffCheck": "passed",
+  "logbookContractRecheck": {
+    "chromiumPassed": 8,
+    "webkitPassed": 8,
+    "retries": 0,
+    "applicationChanges": false,
+    "timeoutChanges": false
+  }
 }

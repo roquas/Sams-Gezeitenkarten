@@ -92,7 +92,7 @@ test('book and overview immediately share checks, keyboard state, undo, and save
 test('checking either view does not restart the current place references',async({page})=>{
  await open(page);
  await page.locator('#showCluePlace').click();
- await expect(page.locator('#map .place-label text')).toHaveText(['Roberts Boot','Zwilling','Start']);
+ await expect(page.locator('#map .place-label text')).toHaveText(['Roberts Boot','Zwilling']);await expect(page.locator('#map .start-label')).toHaveCount(0);
  await page.locator('#map .place-references').evaluate(el=>{
   window.currentReferenceGroup=el;
   // Hold an existing display while exercising both views; do not retrigger it.
