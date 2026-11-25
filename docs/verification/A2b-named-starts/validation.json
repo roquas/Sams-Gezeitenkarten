@@ -1,0 +1,43 @@
+{
+  "base": "abeb1824d6278b6fc646a101f44f71d4d89b1f16",
+  "webkit": {
+    "startTime": "2026-11-25T13:58:34.687Z",
+    "duration": 202379.057,
+    "expected": 96,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "chromium": {
+    "existingPassed": 80,
+    "skipped": 2,
+    "finalNewTestsPassed": 16,
+    "finalNewRetries": 0
+  },
+  "unit": {
+    "primaryPassed": 183,
+    "dependencyRetryPassed": 7,
+    "totalDistinctPassed": 190
+  },
+  "content": "passed",
+  "publicPuzzles": "passed",
+  "diffCheck": "passed",
+  "logbookContractRecheck": {
+    "chromiumPassed": 8,
+    "webkitPassed": 8,
+    "retries": 0,
+    "applicationChanges": false,
+    "timeoutChanges": false
+  },
+  "outlineCorrection": {
+    "regularStroke": "#f3e5c5",
+    "startAndFallbackStroke": "#e5cda6",
+    "strokeWidth": 0.8,
+    "unitPassed": 3,
+    "chromiumPassed": 16,
+    "webkitPassed": 16,
+    "retries": 0,
+    "screenshotsUpdated": 16,
+    "additionalAnimation": false
+  }
+}

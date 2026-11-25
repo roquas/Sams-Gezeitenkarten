@@ -66,7 +66,7 @@ test('place action repeats only the current references, reveals the map, and pre
  await open(page,{places:true});
  await clue(page).click();const before=await saved(page);
  await page.locator('#showCluePlace').focus();await page.keyboard.press('Enter');
- await expect(page.locator('#map .place-label text')).toHaveText(['Roberts Boot','Zwilling','Start']);
+ await expect(page.locator('#map .place-label text')).toHaveText(['Roberts Boot','Zwilling']);await expect(page.locator('#map .start-label')).toHaveCount(0);
  expect(await saved(page)).toBe(before);await expect(clue(page)).toHaveAttribute('aria-checked','true');
  const map=await page.locator('#map').boundingBox();
  const navigation=await page.locator('.mobile-view-nav').evaluate(el=>el.getClientRects().length?el.getBoundingClientRect().y:innerHeight);
@@ -148,7 +148,7 @@ test('keyboard navigation and place action remain separate from checking',async(
  await expect(page.locator('#cluePosition')).toHaveText('I / III');
  await page.locator('#showCluePlace').focus();
  expect(await page.locator('#showCluePlace').evaluate(el=>getComputedStyle(el).outlineStyle)).toBe('solid');
- await page.keyboard.press('Space');await expect(page.locator('#map .place-label text')).toHaveText(['Roberts Boot','Zwilling','Start']);
+ await page.keyboard.press('Space');await expect(page.locator('#map .place-label text')).toHaveText(['Roberts Boot','Zwilling']);await expect(page.locator('#map .start-label')).toHaveCount(0);
  expect(await saved(page)).toBe(initial);await expect(clue(page)).toHaveAttribute('aria-checked','false');
  await clue(page).focus();await page.keyboard.press('Enter');await expect(clue(page)).toHaveAttribute('aria-checked','true');
  await page.locator('#showCluePlace').focus();const checked=await saved(page);await page.keyboard.press('Enter');
@@ -161,7 +161,7 @@ test('native touch taps and a swipe navigate, check, and show places independent
  await page.setViewportSize({width:390,height:844});await open(page,{places:true});
  await clue(page).tap();await expect(clue(page)).toHaveAttribute('aria-checked','true');
  const checked=await saved(page);await page.locator('#showCluePlace').tap();
- await expect(page.locator('#map .place-label text')).toHaveText(['Roberts Boot','Zwilling','Start']);expect(await saved(page)).toBe(checked);
+ await expect(page.locator('#map .place-label text')).toHaveText(['Roberts Boot','Zwilling']);await expect(page.locator('#map .start-label')).toHaveCount(0);expect(await saved(page)).toBe(checked);
  await page.locator('#nextClue').tap();await expect(page.locator('#cluePosition')).toHaveText('II / III');
  await page.locator('#prevClue').tap();await expect(page.locator('#cluePosition')).toHaveText('I / III');
  await book(page).scrollIntoViewIfNeeded();const r=await page.locator('#clueViewport').boundingBox();
