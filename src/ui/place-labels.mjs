@@ -60,6 +60,6 @@ export function drawParchmentLabel(el,layout,text,{start=false,objectId}={}){
  paper.append(el('path',{d:`M ${-width/2+5} ${-height/2+3} q -3 5 0 9 M ${width/2-4} ${height/2-3} q 2 -4 -1 -8`,fill:'none',stroke:edge,'stroke-width':'.7',opacity:'.38'}));
  g.append(paper);
  g.append(el('text',{class:'label-ink',x:0,y:0,dy:'.35em','text-anchor':'middle','font-family':"Georgia,'Times New Roman',serif",'font-size':fontSize,
-  'font-weight':'600',fill:start?'#a15f43':'#392b19',stroke:'#f6e8cd','stroke-width':'.8','stroke-linejoin':'round','paint-order':'stroke'},text));
+  'font-weight':'600',fill:start?'#a15f43':'#392b19',stroke:start?'#e5cda6':'#f3e5c5','stroke-width':'.8','stroke-linejoin':'round','paint-order':'stroke'},text));
  return g;
 }

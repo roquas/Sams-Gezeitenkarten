@@ -28,5 +28,16 @@
     "retries": 0,
     "applicationChanges": false,
     "timeoutChanges": false
+  },
+  "outlineCorrection": {
+    "regularStroke": "#f3e5c5",
+    "startAndFallbackStroke": "#e5cda6",
+    "strokeWidth": 0.8,
+    "unitPassed": 3,
+    "chromiumPassed": 16,
+    "webkitPassed": 16,
+    "retries": 0,
+    "screenshotsUpdated": 16,
+    "additionalAnimation": false
   }
 }

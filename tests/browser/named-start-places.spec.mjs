@@ -94,6 +94,7 @@ for(const kind of ['unnamed-object','free-hex'])test(`${kind} uses the same spec
  await expect(names(page)).toHaveText(kind==='unnamed-object'?['Sams Ankerplatz','Die Zwillingsinsel','Start']:['Sams Ankerplatz','Die Zwillingsinsel','Abendwacht','Start']);
  await expect(start(page).locator('.label-paper>path').first()).toHaveAttribute('fill','#e5cda6');
  await expect(start(page).locator('text')).toHaveAttribute('fill','#a15f43');
+ await expect(start(page).locator('text')).toHaveAttribute('stroke','#e5cda6');
  await seek(page,650);if(kind==='unnamed-object')await shot(page,info,kind);
  await page.locator('#nextClue').click();
  await expect(names(page)).toHaveText(kind==='unnamed-object'?[]:['Abendwacht']);
@@ -155,8 +156,8 @@ test('start parchment and ink reuse current route pigment, remain distinct in in
    font:ink.getAttribute('font-family'),size:+ink.getAttribute('font-size'),measured:ink.getComputedTextLength(),available:+n.dataset.labelWidth-16,events:getComputedStyle(n).pointerEvents};
  }));
  const special=styles.find(s=>s.id==='o4'),regular=styles.find(s=>s.id==='o2');
- expect(special).toMatchObject({paper:'rgb(229, 205, 166)',edge:'rgb(161, 95, 67)',ink:'rgb(161, 95, 67)',outline:'rgb(246, 232, 205)',outlineWidth:.8,events:'none'});
- expect(regular).toMatchObject({paper:'rgb(243, 229, 197)',edge:'rgb(158, 123, 69)',ink:'rgb(57, 43, 25)',width:.5});
+ expect(special).toMatchObject({paper:'rgb(229, 205, 166)',edge:'rgb(161, 95, 67)',ink:'rgb(161, 95, 67)',outline:'rgb(229, 205, 166)',outlineWidth:.8,events:'none'});
+ expect(regular).toMatchObject({paper:'rgb(243, 229, 197)',edge:'rgb(158, 123, 69)',ink:'rgb(57, 43, 25)',outline:'rgb(243, 229, 197)',outlineWidth:.8,width:.5});
  expect(special.width).toBeGreaterThan(regular.width);
  expect(special.font).toBe(regular.font);
  for(const style of styles){expect(style.size).toBeGreaterThan(0);expect(style.size).toBeLessThanOrEqual(18);expect(style.measured).toBeLessThanOrEqual(style.available+.5);}
@@ -166,6 +167,8 @@ test('start parchment and ink reuse current route pigment, remain distinct in in
  expect(await start(page).locator('text').evaluate(n=>+getComputedStyle(n).opacity)).toBeGreaterThan(.9);
  await expect(start(page).locator('text')).toHaveCSS('fill',special.ink);
  await expect(place(page,'o2').locator('text')).toHaveCSS('fill',regular.ink);
+ await expect(start(page).locator('text')).toHaveCSS('stroke',special.paper);
+ await expect(place(page,'o2').locator('text')).toHaveCSS('stroke',regular.paper);
  await shot(page,info,'ink');
  // Native pointer at the named start goes through its overlay onto the hex.
  const target=page.locator('#map .cell[data-id="D3"]');

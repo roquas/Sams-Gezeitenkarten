@@ -12,14 +12,16 @@ Das auf main eingeführte Ausschneiden des Starthex aus Mehrhex-Orten und dessen
 
 ## Farbwahl
 
-| Merkmal | Regulärer Ort (unverändert) | Startort / Fallback |
+| Merkmal | Regulärer Ort | Startort / Fallback |
 |---|---|---|
 | Papier | `#f3e5c5` | `#e5cda6` |
 | Rand | `#9e7b45`, 0,5 SVG-Einheiten | `#a15f43`, 1,1 SVG-Einheiten |
 | Schrift | `#392b19` | `#a15f43` |
-| Helle Schriftkontur | `#f6e8cd`, 0,8 SVG-Einheiten | gleich |
+| Schriftkontur | `#f3e5c5`, 0,8 SVG-Einheiten | `#e5cda6`, 0,8 SVG-Einheiten |
 
 Der bisherige Startschriftton war `#8c3e2c`. Statt einer weiteren roten Variante verwenden Rand und Schrift jetzt exakt den vorhandenen warmen Rotbraunton `#a15f43` des **aktuellen A3-Richtungspigments** in `src/ui/route-ink.mjs`. Der braune Routenpinsel (`#694934`), die dunkleren inaktiven Richtungssegmente (`#452d21`) sowie die bordeauxfarbene aktive Routennummer (`#893625`) bleiben unverändert. Der Browsertest vergleicht den Startschriftton mit dem tatsächlich gerenderten aktuellen Routengradienten.
+
+Die Schriftkontur entspricht der jeweiligen Pergamentgrundfarbe. Sie verschmilzt in der Papierphase weitgehend mit dem Hintergrund und bleibt nach dessen Ausblenden als Kontrast zum Kartenmotiv erhalten. Ihre Stärke bleibt bei 0,8 SVG-Einheiten; sie erhält keine eigene Animation.
 
 Die Schriftfarbe liegt auf dem unabhängigen Ink-Track und bleibt daher auch nach dem Ausblenden des Papiers erhalten. Organische Form, Georgia, Ausgangsgröße 18, gemessene Textanpassung, Textur und Kartenbegrenzung sind unverändert. Kein Zusatzsymbol und kein Namenszusatz.
 
@@ -91,3 +93,11 @@ Der erste vollständige Lauf [45634296567](https://github.com/roquas/Sams-Gezeit
 Alle vier betroffenen Assertions in `logbook-overview.spec.mjs` und `logbook-skeuomorphic.spec.mjs` erwarten nun weiterhin die **exakte** Ortsnamenliste `['Roberts Boot','Zwilling']` und zusätzlich ausdrücklich **null** Startbeschriftungen. Die Prüfungen für unveränderte Gruppenidentität beim Abhaken, erneute Auslösung der Hinweisaktion, Tastatur-/Touch-Eingaben, Spielzustand und Undo bleiben bestehen. Keine Anwendungscode-, Timeout- oder Konfigurationsänderung. Initial- und X-Aktionsprüfungen behalten ihren zusätzlichen Fallback „Start“.
 
 Nachprüfung aller vier betroffenen Fälle: Chromium Desktop/Mobil **8/8**, WebKit Desktop/Mobil **8/8**, jeweils ohne Retry. Der vollständige CI-Lauf wird auf dem korrigierten Head neu gestartet.
+
+## Visuelle Nachkorrektur der Schriftkontur
+
+Nach positiver fachlicher Review wurde ausschließlich die Schriftkontur an die jeweilige Papiergrundfarbe angepasst: reguläre Orte `#f3e5c5`, Startorte einschließlich Fallback „Start“ `#e5cda6`. Schriftfüllung, Konturstärke, Papier, Typografie und Animationsverlauf bleiben unverändert. Der Anwendungscode ändert dafür nur das bestehende SVG-Attribut `stroke`; es gibt keine zusätzliche Konturanimation.
+
+Die Farbassertionen prüfen benannte Startorte, den Fallback und reguläre Orte sowie die erhaltende Konturfarbe in der reinen Schriftphase. Alle 16 Vergleichsbilder wurden mit dieser Korrektur neu aufgenommen, einschließlich der Mobilansichten. Ergebnisse und finaler CI-Lauf stehen im PR.
+
+Lokale Nachprüfung der Konturkorrektur: **3/3** Geometrie-/Labeltests, Chromium Desktop/Pixel 7 **16/16**, WebKit Desktop/iPhone 13 **16/16**, jeweils ohne Retry. Die temporäre lokale Testkonfiguration verwendet wegen eines bereits belegten Standardports lediglich Port 4193; Projekt- und CI-Konfiguration bleiben unverändert. Papier- und Schriftphase wurden insbesondere in beiden Mobilprofilen visuell geprüft.
