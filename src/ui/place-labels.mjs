@@ -53,11 +53,13 @@ export function drawParchmentLabel(el,layout,text,{start=false,objectId}={}){
  const paper=el('g',{class:'label-paper'}),d=parchmentPath(width,height);
  const clipId=`place-paper-${start?'start':'object-'+objectId}`;
  const defs=el('defs'),clip=el('clipPath',{id:clipId});clip.append(el('path',{d}));defs.append(clip);paper.append(defs);
- paper.append(el('path',{d,fill:'#f3e5c5',stroke:'#9e7b45','stroke-width':'.5',opacity:'.96'}));
+ // Reuse the current A3 direction pigment; regular parchment stays unchanged.
+ const edge=start?'#a15f43':'#9e7b45';
+ paper.append(el('path',{d,fill:start?'#e5cda6':'#f3e5c5',stroke:edge,'stroke-width':start?'1.1':'.5',opacity:'.96'}));
  paper.append(el('image',{href:'assets/ui/paper-grain.webp',x:-width/2,y:-height/2,width,height,preserveAspectRatio:'none',opacity:'.12','clip-path':`url(#${clipId})`}));
- paper.append(el('path',{d:`M ${-width/2+5} ${-height/2+3} q -3 5 0 9 M ${width/2-4} ${height/2-3} q 2 -4 -1 -8`,fill:'none',stroke:'#9e7b45','stroke-width':'.7',opacity:'.38'}));
+ paper.append(el('path',{d:`M ${-width/2+5} ${-height/2+3} q -3 5 0 9 M ${width/2-4} ${height/2-3} q 2 -4 -1 -8`,fill:'none',stroke:edge,'stroke-width':'.7',opacity:'.38'}));
  g.append(paper);
  g.append(el('text',{class:'label-ink',x:0,y:0,dy:'.35em','text-anchor':'middle','font-family':"Georgia,'Times New Roman',serif",'font-size':fontSize,
-  'font-weight':'600',fill:start?'#8c3e2c':'#392b19',stroke:'#f6e8cd','stroke-width':'.8','stroke-linejoin':'round','paint-order':'stroke'},text));
+  'font-weight':'600',fill:start?'#a15f43':'#392b19',stroke:'#f6e8cd','stroke-width':'.8','stroke-linejoin':'round','paint-order':'stroke'},text));
  return g;
 }

@@ -1,0 +1,251 @@
+{
+  "reason": "complete",
+  "elapsed": 4947,
+  "timelineStarted": 376,
+  "removed": {
+    "wall": 4947,
+    "timeline": 5324
+  },
+  "allFinished": 4947,
+  "lastTrackFinished": 4947,
+  "cleanupAfterLastTrack": 0,
+  "tracks": [
+    {
+      "duration": 4900,
+      "delay": 0,
+      "endDelay": 0,
+      "iterations": 1,
+      "endTime": 4900,
+      "playbackRate": 1,
+      "created": {
+        "wall": 0,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "ready": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "finished": {
+        "wall": 4947,
+        "timeline": 5324,
+        "start": 376,
+        "current": 4900,
+        "state": "finished"
+      }
+    },
+    {
+      "duration": 4900,
+      "delay": 0,
+      "endDelay": 0,
+      "iterations": 1,
+      "endTime": 4900,
+      "playbackRate": 1,
+      "created": {
+        "wall": 0,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "ready": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "finished": {
+        "wall": 4947,
+        "timeline": 5324,
+        "start": 376,
+        "current": 4900,
+        "state": "finished"
+      }
+    },
+    {
+      "duration": 4900,
+      "delay": 0,
+      "endDelay": 0,
+      "iterations": 1,
+      "endTime": 4900,
+      "playbackRate": 1,
+      "created": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "ready": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "finished": {
+        "wall": 4947,
+        "timeline": 5324,
+        "start": 376,
+        "current": 4900,
+        "state": "finished"
+      }
+    },
+    {
+      "duration": 4900,
+      "delay": 0,
+      "endDelay": 0,
+      "iterations": 1,
+      "endTime": 4900,
+      "playbackRate": 1,
+      "created": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "ready": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "finished": {
+        "wall": 4947,
+        "timeline": 5324,
+        "start": 376,
+        "current": 4900,
+        "state": "finished"
+      }
+    },
+    {
+      "duration": 4900,
+      "delay": 0,
+      "endDelay": 0,
+      "iterations": 1,
+      "endTime": 4900,
+      "playbackRate": 1,
+      "created": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "ready": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "finished": {
+        "wall": 4947,
+        "timeline": 5324,
+        "start": 376,
+        "current": 4900,
+        "state": "finished"
+      }
+    },
+    {
+      "duration": 4900,
+      "delay": 0,
+      "endDelay": 0,
+      "iterations": 1,
+      "endTime": 4900,
+      "playbackRate": 1,
+      "created": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "ready": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "finished": {
+        "wall": 4947,
+        "timeline": 5324,
+        "start": 376,
+        "current": 4900,
+        "state": "finished"
+      }
+    },
+    {
+      "duration": 4900,
+      "delay": 0,
+      "endDelay": 0,
+      "iterations": 1,
+      "endTime": 4900,
+      "playbackRate": 1,
+      "created": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "ready": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "finished": {
+        "wall": 4947,
+        "timeline": 5324,
+        "start": 376,
+        "current": 4900,
+        "state": "finished"
+      }
+    },
+    {
+      "duration": 4900,
+      "delay": 0,
+      "endDelay": 0,
+      "iterations": 1,
+      "endTime": 4900,
+      "playbackRate": 1,
+      "created": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "ready": {
+        "wall": 1,
+        "timeline": 376,
+        "start": 376,
+        "current": 0,
+        "state": "running"
+      },
+      "finished": {
+        "wall": 4947,
+        "timeline": 5324,
+        "start": 376,
+        "current": 4900,
+        "state": "finished"
+      }
+    }
+  ],
+  "overlayConnected": false,
+  "overlays": 0,
+  "labels": 0,
+  "svgAnimations": 0,
+  "connectedTargets": 0
+}

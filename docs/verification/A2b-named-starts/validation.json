@@ -1,0 +1,25 @@
+{
+  "base": "abeb1824d6278b6fc646a101f44f71d4d89b1f16",
+  "webkit": {
+    "startTime": "2026-11-25T13:58:34.687Z",
+    "duration": 202379.057,
+    "expected": 96,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "chromium": {
+    "existingPassed": 80,
+    "skipped": 2,
+    "finalNewTestsPassed": 16,
+    "finalNewRetries": 0
+  },
+  "unit": {
+    "primaryPassed": 183,
+    "dependencyRetryPassed": 7,
+    "totalDistinctPassed": 190
+  },
+  "content": "passed",
+  "publicPuzzles": "passed",
+  "diffCheck": "passed"
+}

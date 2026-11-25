@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {cluePlaceIds,namedPlaceIds} from '../../src/ui/place-references.mjs';
+import {cluePlaceIds,namedPlaceIds,namedStartPlaceId} from '../../src/ui/place-references.mjs';
 import {definition} from '../fixtures/model/factories.mjs';
 import {validateDefinition} from '../../src/puzzles/validate.mjs';
 import {projectPublicPuzzle,validatePublicPuzzle} from '../../src/puzzles/public.mjs';
@@ -28,4 +28,18 @@ test('optional presentation references are validated and survive public projecti
  for(const refs of [{missing:['port']},{E:['unknown']},{E:['port','port']},{E:'port'}]){
   d.presentation.cluePlaceRefs=refs;assert.throws(()=>validateDefinition(d),/cluePlaceRefs/);
  }
+});
+
+test('start identity resolves only a named passable singleton at puzzle.start, without changing names',()=>{
+ const names={land:'Insel',boat:'Roberts Boot',unnamed:'   '};
+ const original={...puzzle,start:'A1',objectNames:names};
+ assert.equal(namedStartPlaceId(original),'boat');
+ for(const start of ['E5','D4','B2'])assert.equal(namedStartPlaceId({...original,start}),undefined);
+ assert.equal(namedStartPlaceId({...original,objectNames:{}}),undefined);
+ assert.equal(namedStartPlaceId({...original,objectNames:Object.create({boat:'Inherited'})}),undefined);
+ assert.equal(namedStartPlaceId({...original,map:{objects:[{id:'boat',cells:['A1'],passable:false}]}}),undefined);
+ assert.equal(namedStartPlaceId({...original,map:{objects:[{id:'boat',cells:['A1','A2'],passable:true}]}}),undefined);
+ assert.equal(namedStartPlaceId({...original,start:'D4'}),undefined);
+ assert.deepEqual(original.objectNames,names);
+ assert.equal(namedStartPlaceId(original),'boat');
 });

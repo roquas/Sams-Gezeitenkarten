@@ -1,0 +1,4485 @@
+{
+  "entries": [
+    {
+      "tracks": [
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        }
+      ],
+      "samples": [
+        {
+          "event": "created",
+          "wall": 428,
+          "currentTimes": [
+            0
+          ],
+          "states": [
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 429,
+          "currentTimes": [
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 429,
+          "currentTimes": [
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 429,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 429,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 429,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 429,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 429,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 529,
+          "currentTimes": [
+            101,
+            101,
+            101,
+            101,
+            101,
+            101,
+            101,
+            101
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 630,
+          "currentTimes": [
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 730,
+          "currentTimes": [
+            310,
+            310,
+            310,
+            310,
+            310,
+            310,
+            310,
+            310
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 831,
+          "currentTimes": [
+            411,
+            411,
+            411,
+            411,
+            411,
+            411,
+            411,
+            411
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 931,
+          "currentTimes": [
+            499,
+            499,
+            499,
+            499,
+            499,
+            499,
+            499,
+            499
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1032,
+          "currentTimes": [
+            599,
+            599,
+            599,
+            599,
+            599,
+            599,
+            599,
+            599
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1134,
+          "currentTimes": [
+            699,
+            699,
+            699,
+            699,
+            699,
+            699,
+            699,
+            699
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1237,
+          "currentTimes": [
+            816,
+            816,
+            816,
+            816,
+            816,
+            816,
+            816,
+            816
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1341,
+          "currentTimes": [
+            916,
+            916,
+            916,
+            916,
+            916,
+            916,
+            916,
+            916
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1446,
+          "currentTimes": [
+            1016,
+            1016,
+            1016,
+            1016,
+            1016,
+            1016,
+            1016,
+            1016
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1550,
+          "currentTimes": [
+            1116,
+            1116,
+            1116,
+            1116,
+            1116,
+            1116,
+            1116,
+            1116
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1653,
+          "currentTimes": [
+            1233,
+            1233,
+            1233,
+            1233,
+            1233,
+            1233,
+            1233,
+            1233
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1757,
+          "currentTimes": [
+            1337,
+            1337,
+            1337,
+            1337,
+            1337,
+            1337,
+            1337,
+            1337
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1861,
+          "currentTimes": [
+            1437,
+            1437,
+            1437,
+            1437,
+            1437,
+            1437,
+            1437,
+            1437
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 1966,
+          "currentTimes": [
+            1537,
+            1537,
+            1537,
+            1537,
+            1537,
+            1537,
+            1537,
+            1537
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 2070,
+          "currentTimes": [
+            1638,
+            1638,
+            1638,
+            1638,
+            1638,
+            1638,
+            1638,
+            1638
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 2173,
+          "currentTimes": [
+            1749,
+            1749,
+            1749,
+            1749,
+            1749,
+            1749,
+            1749,
+            1749
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 2277,
+          "currentTimes": [
+            1849,
+            1849,
+            1849,
+            1849,
+            1849,
+            1849,
+            1849,
+            1849
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 2382,
+          "currentTimes": [
+            1950,
+            1950,
+            1950,
+            1950,
+            1950,
+            1950,
+            1950,
+            1950
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 2486,
+          "currentTimes": [
+            2051,
+            2051,
+            2051,
+            2051,
+            2051,
+            2051,
+            2051,
+            2051
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 2589,
+          "currentTimes": [
+            2166,
+            2166,
+            2166,
+            2166,
+            2166,
+            2166,
+            2166,
+            2166
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 2693,
+          "currentTimes": [
+            2266,
+            2266,
+            2266,
+            2266,
+            2266,
+            2266,
+            2266,
+            2266
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "rejected",
+          "wall": 2764,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 1
+        },
+        {
+          "event": "rejected",
+          "wall": 2764,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 1
+        },
+        {
+          "event": "rejected",
+          "wall": 2764,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 1
+        },
+        {
+          "event": "rejected",
+          "wall": 2764,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 1
+        },
+        {
+          "event": "rejected",
+          "wall": 2764,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 1
+        },
+        {
+          "event": "rejected",
+          "wall": 2764,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 1
+        },
+        {
+          "event": "rejected",
+          "wall": 2764,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 1
+        },
+        {
+          "event": "rejected",
+          "wall": 2764,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 1
+        }
+      ],
+      "removedAt": 2764
+    },
+    {
+      "tracks": [
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        }
+      ],
+      "samples": [
+        {
+          "event": "created",
+          "wall": 2764,
+          "currentTimes": [
+            0
+          ],
+          "states": [
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 1
+        },
+        {
+          "event": "created",
+          "wall": 2764,
+          "currentTimes": [
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 1
+        },
+        {
+          "event": "rejected",
+          "wall": 2801,
+          "currentTimes": [
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "rejected",
+          "wall": 2801,
+          "currentTimes": [
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 4
+        }
+      ],
+      "removedAt": 2801
+    },
+    {
+      "tracks": [
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        }
+      ],
+      "samples": [
+        {
+          "event": "created",
+          "wall": 2801,
+          "currentTimes": [
+            0
+          ],
+          "states": [
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2801,
+          "currentTimes": [
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2801,
+          "currentTimes": [
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2801,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2801,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2801,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2801,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2801,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "rejected",
+          "wall": 2844,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2844,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2844,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2844,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2844,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2844,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2844,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2844,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        }
+      ],
+      "removedAt": 2844
+    },
+    {
+      "tracks": [
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        }
+      ],
+      "samples": [
+        {
+          "event": "created",
+          "wall": 2894,
+          "currentTimes": [
+            0
+          ],
+          "states": [
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2894,
+          "currentTimes": [
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2894,
+          "currentTimes": [
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2894,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2894,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2894,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2894,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2894,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "rejected",
+          "wall": 2947,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2947,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2947,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2947,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2947,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2947,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2947,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        },
+        {
+          "event": "rejected",
+          "wall": 2947,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        }
+      ],
+      "removedAt": 2947
+    },
+    {
+      "tracks": [
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        }
+      ],
+      "samples": [
+        {
+          "event": "created",
+          "wall": 2997,
+          "currentTimes": [
+            0
+          ],
+          "states": [
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2997,
+          "currentTimes": [
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2997,
+          "currentTimes": [
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2997,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2997,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2997,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2997,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 2997,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "rejected",
+          "wall": 3044,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "rejected",
+          "wall": 3044,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "rejected",
+          "wall": 3044,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "rejected",
+          "wall": 3044,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "rejected",
+          "wall": 3044,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "rejected",
+          "wall": 3044,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "rejected",
+          "wall": 3044,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "rejected",
+          "wall": 3044,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 2
+        }
+      ],
+      "removedAt": 3044
+    },
+    {
+      "tracks": [
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "AbortError"
+        }
+      ],
+      "samples": [
+        {
+          "event": "created",
+          "wall": 3044,
+          "currentTimes": [
+            0
+          ],
+          "states": [
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "created",
+          "wall": 3044,
+          "currentTimes": [
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "created",
+          "wall": 3044,
+          "currentTimes": [
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "created",
+          "wall": 3044,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 2
+        },
+        {
+          "event": "rejected",
+          "wall": 3118,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "rejected",
+          "wall": 3118,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "rejected",
+          "wall": 3118,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "rejected",
+          "wall": 3118,
+          "currentTimes": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "states": [
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "connected": false,
+          "groups": 1,
+          "labels": 4
+        }
+      ],
+      "removedAt": 3118
+    },
+    {
+      "tracks": [
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "finished"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "finished"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "finished"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "finished"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "finished"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "finished"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "finished"
+        },
+        {
+          "duration": 4900,
+          "createdCurrent": 0,
+          "outcome": "finished"
+        }
+      ],
+      "samples": [
+        {
+          "event": "created",
+          "wall": 3118,
+          "currentTimes": [
+            0
+          ],
+          "states": [
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 3118,
+          "currentTimes": [
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 3118,
+          "currentTimes": [
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 3118,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 3118,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 3118,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 3118,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "created",
+          "wall": 3118,
+          "currentTimes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 3218,
+          "currentTimes": [
+            97,
+            97,
+            97,
+            97,
+            97,
+            97,
+            97,
+            97
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 3319,
+          "currentTimes": [
+            196,
+            196,
+            196,
+            196,
+            196,
+            196,
+            196,
+            196
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 3420,
+          "currentTimes": [
+            295,
+            295,
+            295,
+            295,
+            295,
+            295,
+            295,
+            295
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 3520,
+          "currentTimes": [
+            395,
+            395,
+            395,
+            395,
+            395,
+            395,
+            395,
+            395
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 3620,
+          "currentTimes": [
+            507,
+            507,
+            507,
+            507,
+            507,
+            507,
+            507,
+            507
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 3721,
+          "currentTimes": [
+            607,
+            607,
+            607,
+            607,
+            607,
+            607,
+            607,
+            607
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 3821,
+          "currentTimes": [
+            707,
+            707,
+            707,
+            707,
+            707,
+            707,
+            707,
+            707
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 3926,
+          "currentTimes": [
+            807,
+            807,
+            807,
+            807,
+            807,
+            807,
+            807,
+            807
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4030,
+          "currentTimes": [
+            907,
+            907,
+            907,
+            907,
+            907,
+            907,
+            907,
+            907
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4133,
+          "currentTimes": [
+            1020,
+            1020,
+            1020,
+            1020,
+            1020,
+            1020,
+            1020,
+            1020
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4237,
+          "currentTimes": [
+            1124,
+            1124,
+            1124,
+            1124,
+            1124,
+            1124,
+            1124,
+            1124
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4341,
+          "currentTimes": [
+            1224,
+            1224,
+            1224,
+            1224,
+            1224,
+            1224,
+            1224,
+            1224
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4446,
+          "currentTimes": [
+            1324,
+            1324,
+            1324,
+            1324,
+            1324,
+            1324,
+            1324,
+            1324
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4549,
+          "currentTimes": [
+            1424,
+            1424,
+            1424,
+            1424,
+            1424,
+            1424,
+            1424,
+            1424
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4653,
+          "currentTimes": [
+            1541,
+            1541,
+            1541,
+            1541,
+            1541,
+            1541,
+            1541,
+            1541
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4758,
+          "currentTimes": [
+            1646,
+            1646,
+            1646,
+            1646,
+            1646,
+            1646,
+            1646,
+            1646
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4862,
+          "currentTimes": [
+            1741,
+            1741,
+            1741,
+            1741,
+            1741,
+            1741,
+            1741,
+            1741
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 4966,
+          "currentTimes": [
+            1840,
+            1840,
+            1840,
+            1840,
+            1840,
+            1840,
+            1840,
+            1840
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 5069,
+          "currentTimes": [
+            1957,
+            1957,
+            1957,
+            1957,
+            1957,
+            1957,
+            1957,
+            1957
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 5173,
+          "currentTimes": [
+            2061,
+            2061,
+            2061,
+            2061,
+            2061,
+            2061,
+            2061,
+            2061
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 5277,
+          "currentTimes": [
+            2161,
+            2161,
+            2161,
+            2161,
+            2161,
+            2161,
+            2161,
+            2161
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 5381,
+          "currentTimes": [
+            2262,
+            2262,
+            2262,
+            2262,
+            2262,
+            2262,
+            2262,
+            2262
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 5485,
+          "currentTimes": [
+            2368,
+            2368,
+            2368,
+            2368,
+            2368,
+            2368,
+            2368,
+            2368
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 5589,
+          "currentTimes": [
+            2474,
+            2474,
+            2474,
+            2474,
+            2474,
+            2474,
+            2474,
+            2474
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 5694,
+          "currentTimes": [
+            2568,
+            2568,
+            2568,
+            2568,
+            2568,
+            2568,
+            2568,
+            2568
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 5797,
+          "currentTimes": [
+            2673,
+            2673,
+            2673,
+            2673,
+            2673,
+            2673,
+            2673,
+            2673
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 5901,
+          "currentTimes": [
+            2774,
+            2774,
+            2774,
+            2774,
+            2774,
+            2774,
+            2774,
+            2774
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6005,
+          "currentTimes": [
+            2893,
+            2893,
+            2893,
+            2893,
+            2893,
+            2893,
+            2893,
+            2893
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6109,
+          "currentTimes": [
+            2994,
+            2994,
+            2994,
+            2994,
+            2994,
+            2994,
+            2994,
+            2994
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6214,
+          "currentTimes": [
+            3094,
+            3094,
+            3094,
+            3094,
+            3094,
+            3094,
+            3094,
+            3094
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6318,
+          "currentTimes": [
+            3194,
+            3194,
+            3194,
+            3194,
+            3194,
+            3194,
+            3194,
+            3194
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6421,
+          "currentTimes": [
+            3308,
+            3308,
+            3308,
+            3308,
+            3308,
+            3308,
+            3308,
+            3308
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6525,
+          "currentTimes": [
+            3409,
+            3409,
+            3409,
+            3409,
+            3409,
+            3409,
+            3409,
+            3409
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6630,
+          "currentTimes": [
+            3508,
+            3508,
+            3508,
+            3508,
+            3508,
+            3508,
+            3508,
+            3508
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6734,
+          "currentTimes": [
+            3608,
+            3608,
+            3608,
+            3608,
+            3608,
+            3608,
+            3608,
+            3608
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6838,
+          "currentTimes": [
+            3724,
+            3724,
+            3724,
+            3724,
+            3724,
+            3724,
+            3724,
+            3724
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 6941,
+          "currentTimes": [
+            3824,
+            3824,
+            3824,
+            3824,
+            3824,
+            3824,
+            3824,
+            3824
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7045,
+          "currentTimes": [
+            3924,
+            3924,
+            3924,
+            3924,
+            3924,
+            3924,
+            3924,
+            3924
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7150,
+          "currentTimes": [
+            4024,
+            4024,
+            4024,
+            4024,
+            4024,
+            4024,
+            4024,
+            4024
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7253,
+          "currentTimes": [
+            4141,
+            4141,
+            4141,
+            4141,
+            4141,
+            4141,
+            4141,
+            4141
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7357,
+          "currentTimes": [
+            4243,
+            4243,
+            4243,
+            4243,
+            4243,
+            4243,
+            4243,
+            4243
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7461,
+          "currentTimes": [
+            4346,
+            4346,
+            4346,
+            4346,
+            4346,
+            4346,
+            4346,
+            4346
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7566,
+          "currentTimes": [
+            4441,
+            4441,
+            4441,
+            4441,
+            4441,
+            4441,
+            4441,
+            4441
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7669,
+          "currentTimes": [
+            4544,
+            4544,
+            4544,
+            4544,
+            4544,
+            4544,
+            4544,
+            4544
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7773,
+          "currentTimes": [
+            4658,
+            4658,
+            4658,
+            4658,
+            4658,
+            4658,
+            4658,
+            4658
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7877,
+          "currentTimes": [
+            4759,
+            4759,
+            4759,
+            4759,
+            4759,
+            4759,
+            4759,
+            4759
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 7982,
+          "currentTimes": [
+            4858,
+            4858,
+            4858,
+            4858,
+            4858,
+            4858,
+            4858,
+            4858
+          ],
+          "states": [
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running",
+            "running"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "finished",
+          "wall": 8020,
+          "currentTimes": [
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900
+          ],
+          "states": [
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "finished",
+          "wall": 8020,
+          "currentTimes": [
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900
+          ],
+          "states": [
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "finished",
+          "wall": 8020,
+          "currentTimes": [
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900
+          ],
+          "states": [
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "finished",
+          "wall": 8020,
+          "currentTimes": [
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900
+          ],
+          "states": [
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "finished",
+          "wall": 8020,
+          "currentTimes": [
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900
+          ],
+          "states": [
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "finished",
+          "wall": 8020,
+          "currentTimes": [
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900
+          ],
+          "states": [
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "finished",
+          "wall": 8020,
+          "currentTimes": [
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900
+          ],
+          "states": [
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "finished",
+          "wall": 8020,
+          "currentTimes": [
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900
+          ],
+          "states": [
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished"
+          ],
+          "connected": true,
+          "groups": 1,
+          "labels": 4
+        },
+        {
+          "event": "interval",
+          "wall": 8085,
+          "currentTimes": [
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900,
+            4900
+          ],
+          "states": [
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished",
+            "finished"
+          ],
+          "connected": false,
+          "groups": 0,
+          "labels": 0
+        }
+      ],
+      "finishedAt": 8020,
+      "removedAt": 8020
+    }
+  ],
+  "unhandled": [],
+  "states": [
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "idle",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "finished",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "finished",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "finished",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "finished",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "finished",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "finished",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "finished",
+      "pending": false
+    },
+    {
+      "connected": false,
+      "playState": "finished",
+      "pending": false
+    }
+  ]
+}
