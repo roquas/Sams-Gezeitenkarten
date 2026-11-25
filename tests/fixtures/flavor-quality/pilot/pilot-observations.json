@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "runId": "pilot-1",
+  "scope": "Pilot calibration observations; no beta approval or automatic semantic certificate",
+  "revisions": [
+    {
+      "caseId": "C-06",
+      "flavorVariantId": "independent-1",
+      "revision": 1,
+      "revisionHash": "426356b695a0e224e4fc6a36ea98aacf2596b57657a1a8795b0672100c38a947",
+      "draftHash": "dbeb1dfbecafdefc23c8365e1158e55d4b7d4847eb4c6b7192c6dc5d7ef6c012"
+    },
+    {
+      "caseId": "C-02",
+      "flavorVariantId": "independent-1",
+      "revision": 1,
+      "revisionHash": "5b66dac1b374141c8b124c01fa8b67a7bdbc342ddf1104a9bcaeed6be0800f4f",
+      "draftHash": "0599b8d4de070f68b72653d8f1fea9f2d4f20fc32ee3c3c3bc3fe39f6f04c6ec"
+    },
+    {
+      "caseId": "C-03",
+      "flavorVariantId": "independent-1",
+      "revision": 1,
+      "revisionHash": "59d66d452d98aebea46a51f5e80fab1e557cae2edae8aedd15d390240e8bb60b",
+      "draftHash": "3db5bbd8f31320d459c9522d4c7b4fd1a89fa63af9d9cccc4ff7ef030b467929"
+    },
+    {
+      "caseId": "C-11",
+      "flavorVariantId": "independent-1",
+      "revision": 1,
+      "revisionHash": "c872743b0f874f105147428ae3f3fbff4ec8fe09e4afcff92fa0d5247180c5df",
+      "draftHash": "48fe3a34dcb11f93a278b57b2f4a75f29b3156dc839b3ba800490f4b290e629f"
+    }
+  ],
+  "userTestReading": {
+    "source": "user feedback in current conversation on 2026-11-25",
+    "conclusion": "The four puzzles are clearly different, coherent, with recognisable clues and humour/style fitting the world."
+  },
+  "assistantLanguageReview": {
+    "source": "manual comparison in current conversation on 2026-11-25",
+    "publicInputsOnly": true,
+    "cluesReviewed": 23,
+    "framesReviewed": 4,
+    "conclusion": "No necessary repair identified; no additional route conditions recognised in titles and introductions.",
+    "formalAutomatedSemanticProof": false
+  },
+  "f01": {
+    "singleClueStatuses": {
+      "UNCERTAIN": 23
+    },
+    "selected": false,
+    "betaApproval": false
+  },
+  "nextCalibrationNeeds": [
+    "Changed inclusive interval boundaries",
+    "Lost negations or exact counts",
+    "Confused multihex object distance",
+    "Invented visits or other route claims in framing text"
+  ]
+}

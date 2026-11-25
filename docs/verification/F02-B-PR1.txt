@@ -1,0 +1,43 @@
+F02-B PR 1 – technischer Prüfbeleg, 25.11.2026
+
+Basis: origin/main = abeb1824d6278b6fc646a101f44f71d4d89b1f16 (PR #130), unmittelbar vor dem PR erneut gefetcht und unverändert. Eigener Branch codex/f02-b-pr1-quality-contracts in separatem Clone /private/tmp/sams-f02b-pr1-20261125. Die ursprüngliche Arbeitskopie mit fremden uncommitteten UI-Änderungen wurde nicht verändert. Kein Merge, keine Auswahl/Freigabe, keine Veröffentlichung, kein API-/GenAI-Aufruf.
+
+Umgebung:
+macOS arm64; Node v22.23.3, npm ci --offline --no-audit --no-fund erfolgreich.
+Vorhandene Python-Testumgebung /private/tmp/f01-test-venv/bin (Python 3.9, Pillow 11.3.0, numpy 2.0.2) wird über PATH benutzt. Das Standard-Python besitzt kein Pillow; erste Bestandsversuche wurden deshalb nicht als bestanden gewertet und ersetzt.
+Reproduktionsgates benötigen ausdrücklich Node v24.19.0: /private/tmp/b1s04b-node24-runtime/node-v24.19.0-darwin-arm64/bin/node. Der ähnlich benannte ältere temporäre Ordner enthielt nur defekte npm/npx-Symlinks, keinen Node; jener Versuch lief tatsächlich mit Node 22 und wurde nicht als bestanden gewertet.
+Auf macOS ist os.tmpdir() teilweise /var/folders/... statt des kanonischen /private/var/folders/.... Historische CLI-Skripte vergleichen import.meta.url mit process.argv[1], weshalb extrahierte Reproduktionsprogramme unter diesem Symlink ohne Ausgabe enden. Korrigierter Reproduktionslauf mit TMPDIR=/private/tmp; historische Programme und Tests unverändert. CI läuft auf den bestehenden Linux-Runnern mit den konfigurierten Node-Versionen.
+
+Ausgeführte Befehle und bei PR-Erstellung bereits abgeschlossene Befunde:
+- node --test tests/contracts/flavor-quality.test.mjs: 11/11 bestanden (einschließlich privater Originalmutation bei identischem vollständigem Blindpaket, Unicode, geschlossener Abdeckung, Vergleichsrichtungen/Gegenbeispielen, Budget und leerem Routenraum). Der danach zusätzlich um verschachtelte technische Original-/Produzenten-Sentinels erweiterte Einzeltest wurde erneut gestartet.
+- node --test tests/contracts/flavor-quality-calibration.test.mjs: 2/2 bestanden; 22 künstliche Fälle und ungepaarter Export ohne Erwartungslecks. Reale Piloten bleiben unverändert.
+- node --test tests/integration/flavor-quality.test.mjs: erste Entwicklungsprüfung 10/11; einziger Fehler war ein ungültiger Proxy im Test auf das eingefrorene Produktionsstore-Objekt, korrigiert durch expliziten Testadapter. Es waren keine fachlichen GenAI-Prüfungen. Erneuter Gesamtqualitätslauf unten.
+- npm run test:content: 21/21 bestanden.
+- npm run test:puzzles: erfolgreich, unveränderte Rätselvalidierung.
+- npm run check:community: erfolgreich, 15 bestehende Fälle validiert.
+- npm run check:community:release: erwartungsgemäß Exit 1, Flavor not approved: C-06, pending statt approved. Kein Gate angepasst.
+- node scripts/catalog-release.mjs check-archive --previous origin/main: erfolgreich, 2 bestehende Releases, unverändertes Archiv.
+- python3 scripts/dev-server.py --self-test: erfolgreich mit lokalem Loopback-Port außerhalb der Port-Sandbox. Erster Sandboxversuch konnte den Port nicht binden; kein Produktfehler.
+- git diff --check und git diff --cached --check: erfolgreich. .github/workflows/tests.yml, scripts/ci-changes.mjs, package.json und package-lock.json unverändert. Keine neue Allowlist; die neuen Pfade behalten das vollständige CI-Profil.
+
+Zusätzlich vollständig gestartete Bestands-/Abnahmeläufe; ihr endgültiger Status wird im PR/CI ausgewiesen, solange hier kein erfolgreicher Abschluss protokolliert ist:
+PATH=/private/tmp/f01-test-venv/bin:$PATH npm run test:unit
+PATH=/private/tmp/f01-test-venv/bin:$PATH npm run test:assets
+PATH=/private/tmp/f01-test-venv/bin:$PATH node --test tests/contracts/flavor-quality.test.mjs tests/contracts/flavor-quality-calibration.test.mjs tests/integration/flavor-quality.test.mjs
+TMPDIR=/private/tmp PATH=/private/tmp/f01-test-venv/bin:$PATH /private/tmp/b1s04b-node24-runtime/node-v24.19.0-darwin-arm64/bin/node --test --test-reporter=tap tests/reproduction/b2-s02.test.mjs tests/reproduction/b2-search-comparison.test.mjs tests/reproduction/s03-evidence.test.mjs tests/reproduction/s03.test.mjs tests/reproduction/s03-v2-evidence.test.mjs tests/reproduction/s03-v2.test.mjs
+
+Die vollständigen lokalen Chromium- und WebKit-Suiten wurden ebenfalls unverändert gestartet. Wegen der historischen macOS-CLI-Temporärpfadfrage und gemeinsamer lokaler Laufzeitlast wurden diese Läufe beendet; sie werden nicht als grün behauptet. Die vollständige unveränderte Linux-CI einschließlich Browser, Assets, Archiv, Reproduktion und Deployment-Packaging ist für den neuen PR maßgeblich. Kein Profil/Gate wurde reduziert.
+
+Tatsächlicher Pilotexport:
+node scripts/flavor-quality.mjs prepare-pilot --production-store .dev/f02b-delivery/production --quality-store content/flavor/quality-pilot-v1/local --out .dev/f02b-delivery/reader-public
+job-80e2e387-1553-4711-b0be-0cbe59c0cc14
+MethodHash 9819a13260102abc9479d21f8eeef38706182e7dfcb6bccbd1f81e7739c2d88a
+Produktionsantwort-SHA e69847b8d1c031196aeeb455f558ce2621a0bb6b33af67cff0310e2748adf3c1
+4 tatsächliche Fassungen, 23 Hinweise, Texteinheiten 10/12/10/8 (40 insgesamt), 28 öffentliche Dateien, 9582128 Paketbytes.
+Öffentlicher Inhalt unter content/flavor/quality-pilot-v1/local/jobs/JOB/public/, lokale Bindung daneben; Reader-Paket per Inventar, Quellenhashes, statischen SVG-Referenzen und Leckprüfung verifiziert. Chromium-Loadcheck aller vier Artikel/Karten: alle SVGs geladen, 5/5/4/7 Bilder, keine fehlerhaften oder externen Ressourcen. Screenshot nur zur technischen Präsentationskontrolle; kein semantisches Modellprüfergebnis.
+Separates ZIP enthält ausschließlich diese 28 öffentlichen Dateien im neutralen Ordner reader-batch/.
+ZIP-SHA256 262dc7963d40d1c64da3e6c7dfb1f1e93820242233a7cfe8a5afe38b8fd9c634; 9422257 Bytes.
+
+inspect dieses echten Jobs: 0 importierte Qualitätsantworten; Reader/Vergleich/Gesamtprüfung fehlen; qualified:false für alle vier Items. F01-Checkpoints bleiben UNCERTAIN. Keine echten Reader-/Reviewer-Antworten oder Kalibrierungsbeobachtungen erfunden. Technische Testdoubles werden nur in temporären Teststores benutzt; technical-test-Evidenz kann keine reale F02-B-Qualifikation erteilen.
+
+Weiter offen: externe unabhängige Blindinterpretation, danach deterministischer Vergleich und separater unabhängiger Gesamtprüflauf, empirische Auswertung und später 10+5-Kalibrierung. PR 2 beginnt erst nach unabhängiger Review und Integration von PR 1 durch den vorgesehenen gesonderten Prozess.

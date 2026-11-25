@@ -98,3 +98,5 @@ npx playwright test --config playwright.deployment.config.mjs
 
 Ein Paketbau veröffentlicht nichts. Externe Deployments und Merges benötigen
 einen gesonderten Auftrag.
+
+F02-B PR 1 ergänzt den getrennten manuellen Qualitätsweg für importierte Flavor-Revisionen: [Verträge, CLI, Blindpakete und Grenzen](docs/F02-B-PR1.md). F01-UNCERTAIN, Auswahl und Veröffentlichung bleiben eigenständige Vorgänge.

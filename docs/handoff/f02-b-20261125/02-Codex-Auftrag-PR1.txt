@@ -1,0 +1,124 @@
+CODEX-IMPLEMENTIERUNGSAUFTRAG F02-B / PR 1
+Prüfverträge, blinder Leser, deterministischer Vergleich und unabhängige Gesamtprüfung
+
+1. AUSGANG UND AUTORITÄT
+Repository roquas/Sams-Gezeitenkarten. Beginne auf aktuellem main einschließlich PR #129 und #130; verifizierter Vorbereitungsstand ist abeb1824d6278b6fc646a101f44f71d4d89b1f16. Lies vorhandene Repositoryanweisungen, prüfe Änderungen und bewahre fremde Arbeiten. Fachlich verbindlich sind F02-B-Auftrag-aus-Konzeptionschat.txt und die beigefügte technische Konzeption. Öffne bereits beschlossene Grundlagen nicht erneut.
+
+Dieser Auftrag ist der erste von zwei zusammengehörigen Implementierungsschritten. Er liefert den vollständigen manuell transportierbaren Prüfweg, noch nicht die automatische Reparatur-/Ersatzsteuerung aus PR 2. Erzeuge einen eigenen reviewbereiten PR. Kein Merge, keine Veröffentlichung, keine neue Geschichtenproduktion, keine kostenpflichtige API und keine GenAI-Prüfergebnisse erfinden. PR 2 beginnt erst nach Review/Integration der hier festgelegten Verträge.
+
+2. ZIELVERHALTEN
+Ein vorhandener importierter Flavor-Record kann unverändert in einen sicheren Blindauftrag exportiert werden. Eine externe Reader-Antwort lässt sich nachvollziehbar importieren, ihre Textabdeckung strukturell kontrollieren und ihre rekonstruierte Mathematik deterministisch mit den Originalen vergleichen. Daraus entsteht ein gesonderter vollständiger Auftrag für die unabhängige vergleichende Gesamtprüfung. Deren Antwort wird importiert und ein evidenzbasierter Qualifikationsbefund mit benanntem Methoden-/Kalibrierungsumfang lokal abgeleitet.
+
+F01 bleibt Version 1. PASS/FAIL/UNCERTAIN und flavor-check-v1 werden nicht umgedeutet. Freie Texte und ihre vorhandenen F01-Checkpoints bleiben unverändert UNCERTAIN, auch wenn ein separater F02-B-Befund sie qualifiziert. Technische Unvollständigkeit und offene relevante Unsicherheit ergeben keine Qualifikation. Auswahl und Veröffentlichung bleiben gesondert.
+
+3. ECHTE EINGABEN UND SCHLANKE STRUKTUR
+Die Beigabe pilot/ enthält den tatsächlichen Import pilot-1, nicht die technischen Antworten aus tests/fixtures/flavor-production.mjs. Verifiziere complete.json, receipt.json, Antwort-SHA und die Records gegen den im Repository gespeicherten Auftrag flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df. Die Antwort-SHA ist e69847b8d1c031196aeeb455f558ce2621a0bb6b33af67cff0310e2748adf3c1. Bei Bedarf den vorhandenen lokalen Orderbestand in einen ausdrücklich benannten temporären Store kopieren und den unveränderten Importsnapshot ergänzen; historische Bytes nicht neu erfinden oder überschreiben.
+
+Vier reale Fassungen: C-06, C-02, C-03, C-11; jeweils independent-1, Revision 1; 6/7/6/4 Hinweise. Referenzierte Hashes stehen in 04-Pruefbelege.json und im echten Import. Die Nutzereinfügung wurde dokumentiert entmaskiert, Produzentenmodell und Zeitpunkt sind unbekannt. Diese Herkunft weder zu exakten Produzentenbytes noch zu formaler semantischer Freigabe aufwerten.
+
+Verwende bestehende F01-/Produktions-/Kartenmodule, canonicalJson/sha256, Schema-Evaluator, Regeln und Renderer. Neue schmale Module beispielsweise scripts/lib/flavor-quality-contract.mjs, flavor-quality-compare.mjs, flavor-quality-package.mjs, flavor-quality-store.mjs und eine dünne CLI scripts/flavor-quality.mjs. Dies sind empfohlene neue Pfade, keine existierenden Kommandos. Keine Datenbank, Queue, Weboberfläche, eigene Geometrie oder allgemeine Workflow-/Sprachplattform.
+
+Für tatsächlich gemeinsame Dateisystemoperationen darf eine kleine interne Hilfsdatei aus dem Produktionsstore extrahiert werden. Bewahre Verhalten und alte Bytes. Qualitätsjobs/Nachweise sind ein eigener Lebenszyklus; Drafts und Revisionen bleiben in der vorhandenen Produktionsablage.
+
+4. REVISIONS- UND QUELLBINDUNG
+Verwende bestehende revisionRef und validierte Produktionsrecords. Binde zusätzlich die vollständige materialisierte Spielerpräsentation mit allen Namen, öffentliche Basisregeln, Originalhinweise im lokalen Vergleich, Welt-/Stilpaket, Serienkontext, Prompt-/Methodenrevision, Abdeckungseinheiten und Stufenabhängigkeiten.
+
+Qualitätsmethode und Transport erhalten eine eigene ausdrücklich benannte Version/Hashdomäne. Ein neuer Text, anderer tatsächlicher Kontext oder geänderte Methode erzeugt andere Bindungen. Alte Befunde bleiben erhalten, gelten aber nicht automatisch für den neuen Stand. F01-inputHash bleibt der bestehende Einzelhinweisbezug, nicht der Ersatz für einen vollständigen Episoden-/Kontextbezug.
+
+Der initiale Pilot ist unabhängig; Serienkontext ist ausdrücklich leer. Bereite einen schlichten versionierten optionalen Snapshot tatsächlicher Serien-Spielertexte mit Reihenfolge und Revisionsreferenzen vor. Verwende nicht automatisch editorial.context aus der Produktion als tatsächlichen Spielertext. Für den späteren Fünfteiler darf zunächst der vollständige tatsächliche Serienstand gebunden werden, ohne neue Relevanzklassifikation. Definiere die Invalidierung abhängiger Prüfungen bei Kontextänderung.
+
+5. BLINDEXPORT: EIGENE POSITIVLISTE
+Exportiere je Episode ausschließlich:
+- tatsächlich materialisierten Titel, alle Einleitungsabsätze und genau die vorhandenen vollständigen Hinweistexte in fester Reihenfolge;
+- öffentliche Karte, Objekt-IDs, sämtliche Namen, Flächen, Befahrbarkeit, Assets und statische Bilder;
+- bekannten Start und Etappenzahl;
+- öffentliche Regeln, Welt-/Stilpaket und tatsächlichen relevanten Serienkontext;
+- aus genau diesen zulässigen Daten gebildete öffentliche Inhaltsreferenzen und Texteinheiten sowie unabhängig opake Auftragskennungen, die keine Originalwerte codieren.
+
+Nicht exportieren: Originalprädikate aus logic.clues, technische Ausgangsformulierungen aus request.source.presentation, F01-Requests, Checkpoints/Belege, Produzenten-Metadaten, Findings, Reparaturziele, Qualitätsurteile, Kalibrierungslabels/Erwartungswerte, Ursprungspfade, lokale Zuordnung, Zielroute, Solveranalyse oder anderweitig zugängliche private Quellen. Auch keine nach Original-placeId erzeugten Hinweis-Ortsmarker. materializeFlavorRevision enthält weiterhin logic.clues; compilePuzzle enthält wieder Lösung/Analyse; beide sind als vollständige Blindpayload ungeeignet.
+
+Pseudonymisiere Aufgaben-/Dateinamen und halte revisionRef/sourceHash/Originalfallzuordnung in einem separaten lokalen Sidecar. Kein Verweis auf einen vollständigen Produktionsordner oder ein Repository als Reader-Anhang. Statische Ressourcen müssen offline vollständig auflösbar und inventarisiert sein. Verwende vorhandene Renderer und öffentliche Namenstabellen, keine neue Assetproduktion.
+
+Schreibe eine exakte Reader-Anweisung und einen geschlossenen Antwortvertrag. Weise alle transportierten Episoden gemeinsam an; keine Handarbeit je Hinweis. Der reale Reader läuft nach Implementierung in einem frischen separaten Chat ohne Repository-/Projektquellen. Eine Anweisung, vorhandene Originalhinweise nicht anzusehen, ist keine Isolation.
+
+6. TEXTEINHEITEN UND INTERPRETATION
+Exporter bildet stabile IDs, Feldbezüge, unveränderte Wortlaute und lokal berechnete Bereiche für vollständige Textabdeckung. Satzsegmentierung ist zulässig, ihre Version und erzeugten Einheiten sind zu pinnen. Modelle adressieren Einheiten-IDs statt Zeichenpositionen zu erraten. Unicode, Umlaute, Emoji, Zeilenumbrüche, Abkürzungen und mehrsatzige Frage-Antwort-Hinweise müssen verlustfrei abgedeckt sein. Auch Titel, Einleitung und Kontext gehören zur Abdeckung.
+
+Die Reader-Antwort rekonstruiert alle mathematischen, sonstigen potenziell rätselrelevanten und erzählerischen Aussagen, Erfindungen, Mehrdeutigkeiten sowie Wechselwirkungen zwischen mehreren Textstellen. Jede Einheit muss nachvollziehbar bewertet sein; Claims müssen gültige Textbezüge tragen. Einheiten können gemeinsam eine Aussage tragen. Bloßes Echo des Texts oder Auflisten aller IDs gilt nur als formale Abdeckung, nicht als Interpretationsbeweis.
+
+Minimal formalisierbar ist zunächst eine Konjunktion von Atomen der vorhandenen sechs Hinweisformen aus logicSchema. Die äußere Hinweis-ID und 1:1-Zuordnung bleiben erhalten. Sichere Null-/Alle-Normalisierung darf nur innerhalb dieser einen Interpretation verwendet werden, nicht über verschiedene Spielerhinweise hinweg. Sonstige komplexe oder nicht sicher darstellbare Bedingungen als explizit ungelöste Claims erhalten; keine allgemeine NL-DSL, keine stillschweigende Beschränkung auf einen korrekt extrahierten Teil.
+
+Originalhinweise sind nicht Teil der Reader-Antwortvorlage. Referenz-/Abdeckungsprüfungen und unbekannte Felder werden strikt kontrolliert. Ein technisch ungültiges Resultat ist ein fehlgeschlagener Prüflauf, kein ERROR des Spielertexts. Ein vollständiges Resultat mit nicht auflösbarer Bedeutung bleibt relevant UNCERTAIN.
+
+7. DETERMINISTISCHER VERGLEICH
+Benutze ausschließlich createRules und matches der bestehenden Engine. Vergleiche jeden Originalhinweis gegen die vollständige rekonstruierte Konjunktion dieses Hinweises unter Karte, Start, Etappen und öffentlichen Regeln, ausdrücklich ohne die anderen Hinweise und ohne gespeicherte Zielroute.
+
+Zuerst ID-unabhängige kanonische Atombedeutung und die sichere vorhandene Normalisierung nutzen. Bei anderen Repräsentationen den Effekt auf allen legalen Routen vergleichen. Die bestehende B2-effectKey-Menge einzelner Masken ist kein Ersatz für den Vergleich der gemeinsamen Konjunktion. Halte den Adapter klein; ändere historische B2-/S03-Verträge nicht.
+
+Ergebnis unterscheidet Gleichwertigkeit, Abschwächung, Verschärfung, sonstige Änderung und unvollständige/ungeeignete Vergleichbarkeit samt Methode, Umfang und Evidenz. Weise beide Differenzrichtungen aus. Bewahre wenige deterministisch ausgewählte Gegenbeispiele und deren Wahrheit auf beiden Seiten; das sind generierte legale Gegenbeispiele, keine gelesene Zielroute.
+
+Mit bestehenden sinnvollen endlichen Suchbudgets arbeiten; 250000 Knoten ist der geprüfte Startwert. Keine positive Gleichwertigkeit aus unvollständiger Enumeration, Hashgleichheit unvollständiger Masken oder leerem Vergleichsraum ableiten. Ein bereits gefundener Gegenbeispielpfad bleibt auch bei Budgetende eine belastbare Differenz, aber einseitige Mengeninklusion darf dann nicht ohne vollständige Prüfung behauptet werden. Ressourcen-/Eingabefehler sind operative Fehler.
+
+Mathematische Aussagen aus Titel/Einleitung/Kontext werden nicht ignoriert. Sie benötigen in der Gesamtprüfung einen ausdrücklichen zulässigen Faktenbezug; vollständige Hinweisbestand-Implikation oder Vakuumgleichheit autorisieren keinen Zusatz.
+
+8. UNABHÄNGIGE VERGLEICHENDE GESAMTPRÜFUNG
+Separater Export, separater frischer Chat. Er erhält vollständigen tatsächlichen Spielertext, Originalhinweise und öffentliche Quellen, Reader-Antwort mit Abdeckung, Vergleich samt erforderlicher Evidenz und tatsächlichen Welt-/Serienkontext. Keine gespeicherte Zielroute nötig. Keine bereits behauptete Pilotfreigabe und keine erwarteten Kalibrierungsergebnisse an das Modell geben.
+
+Die Prüfung muss behandeln: übersehene/falsche/unvollständige Interpretation; Zusatzbedingungen und indirekte Spielerfolgerungen; vorweggenommene Deduktion; Vollständigkeit jedes Hinweises ohne notwendige ausgelagerte Angaben; Widersprüche; relevante Mehrdeutigkeit; Welt-/Stilpassung und Verständlichkeit; potenziell rechtlich, politisch, diskriminierend oder sexuell problematische Inhalte und Namen, jeweils konkret und kontextbezogen.
+
+Prüfer diagnostiziert, er schreibt keine verbesserten Geschichten. Keine automatische Kritik allein wegen erlaubter Piraten-/Bier-/Geistermotive, Absurdität oder neuen [N]-Ideen. ADVISORY ist optional, keine Änderungsanweisung.
+
+Findings tragen ERROR/UNCERTAIN/ADVISORY, Anforderung, konkrete Einheiten/Textbelege, Begründung, Methode/Evidenzbezüge und gegebenenfalls Reparaturziel. Technische Fehlläufe und Unterschiede einer möglicherweise falschen Interpretation sind getrennt von bestätigten Textfehlern. Gesamtprüfung kann eine Reader-Interpretation begründet beanstanden, aber nicht den alten Blindoutput überschreiben.
+
+Lass Formen, Themen, Motive, neue Ideen, Namen und redaktionelle Auffälligkeiten aus dem tatsächlichen Text mit Belegen unabhängig erheben. Produktionsmetadaten sind keine Ersatzquelle.
+
+9. ERGEBNIS, STORE UND MANUELLER ABLAUF
+Ein expliziter lokaler Qualitätsstore speichert immutable Jobs/Sidecars, echte Antwortbytes, Importbelege, Vergleiche und Gesamtprüfungen. Nutze die bewährten Sperr-/Atomizitäts-/Integritätsmuster. Der lokale Originalauftrag ist Vertrauensanker; Rückantworten können ihn nicht ersetzen. Gegenläufige Wiederholungen, Quellenwechsel, veraltete Revisionen und beschädigte Bestände werden abgewiesen bzw. als nicht auf aktuellen Stand anwendbar archiviert. Exakte Wiederholung ist idempotent.
+
+Bereite itemweisen Fortschritt vor: vollständige gültige Episodenergebnisse eines eindeutig gültigen Umschlags können abgeschlossen werden, andere bleiben technisch offen. Ein mehrdeutiger/kaputter Umschlag erzeugt keinen Teilerfolg. Jede Annahme ist atomar; kein fehlender oder defekter Check wird als Textfehler oder Erfolg ausgelegt. Erneute Exporte können abgeschlossene Items auslassen.
+
+CLI/API muss den manuellen Weg unterstützen: vorhandene Revisionen referenzieren; Blindbatch exportieren; Reader-Antwort importieren; deterministisch vergleichen; Gesamtprüfungsbatch exportieren; Antwort importieren; lokalen Befund anzeigen. Die konkreten Namen sind zu implementieren und in --help sowie Dokumentation anzugeben, nicht als bereits bestehend ausgeben.
+
+Qualifikation wird lokal abgeleitet: alle erforderlichen Stufen und Bereiche für genau diese Revision/Quellen/Methode gültig abgeschlossen, relevante Differenzen geklärt, keine offenen ERROR oder relevanten UNCERTAIN. Formale Abdeckung allein, Modellkonfidenz oder ein Modellfeld qualified:true genügen nicht. F02-B-Methode und empirischer Kalibrierungsstand bleiben erkennbar; keine unbewiesene Produktionszuverlässigkeit und keine automatische Auswahl/Freigabe.
+
+10. KALIBRIERUNGSKORPUS
+Lege einen dauerhaft nutzbaren, strikt von Produktionsvarianten getrennten Korpus unter tests/fixtures bzw. einem passenden Kalibrierungsort an:
+- die vier echten importierten Pilotfassungen als unveränderte reale Snapshots mit Herkunft/Inhaltsbindung;
+- getrennte künstliche positive, negative und mehrdeutige Fälle mit begründeten Erwartungswerten;
+- keine echten Reparaturrevisionen des gelungenen Piloten nur für Testzwecke.
+
+Abdecken: Intervallgrenzen inklusive Stunde 0, Negation/exakte Häufigkeit, falsche Objekte, ganze Mehrhexflächen statt Anker/Startfeld, geometrische Distanz statt gefahrene Etappen, zusätzliche Bedingung neben korrekt extrahiertem Original, erfundene Besuche, Zusatzinformation in Titel/Einleitung/Serienkontext, Mehrdeutigkeit und zulässige kreative Ausschmückung. position und turn sind im echten Pilot nicht enthalten; synthetische Fälle ergänzen alle sechs Typen. Bestehende F01-Fixture ist verfügbar, aber ihre Texte sind künstliche Quellen, keine realen Episoden.
+
+Zwei besonders wichtige Gegenbeispiele: Ein Text übernimmt einen korrekten Hinweis und ergänzt einen anderen Originalhinweis; das Gesamträtsel kann gleich bleiben, der isolierte Vergleich muss die Verschärfung erkennen. Eine erste Richtungsangabe wird durch die vom Start abgeleitete konkrete Position ersetzt; Stufe 2 kann Gleichwertigkeit feststellen, Stufe 3 muss die mögliche Vorwegnahme eines Deduktionsschritts getrennt bewerten.
+
+Erwartungslabels, Mutationsnamen und richtige Antworten bleiben bei empirischen Exporten lokal. Keine Paarung mit offensichtlich markierter korrekter Ausgangsfassung als unbeabsichtigter Hinweis für den blinden Leser. Zeichne künftige echte Modelloutputs als Beobachtungen mit Methode/Prompt/Modell soweit bekannt auf; CI mit aufgezeichneten Fixtures beweist keine zukünftige Modellzuverlässigkeit.
+
+11. TESTS UND ABNAHME
+Prüfe mindestens:
+- tatsächliche vier Records, 23 Hinweise, vollständige Namen, identische alte Bytes;
+- Blindpayload inklusive Bilder/Dateinamen/Metadaten frei von tief verschachtelten Originalen, Originaltexten, sourceHash-Zuordnung, controlled evidence, Findings und Kalibrierungserwartungen;
+- Originalhinweismutation bei gleichem tatsächlichem Spielertext verändert keinen fachlichen Blindinput; unabhängig opake Job-/Laufkennungen und die lokale Quellbindung können sich ändern. Keine alten quellgebundenen Qualifikationen ungeprüft übernehmen. Tatsächliche Text-/Karten-/Kontextänderung ändert die passende Bindung;
+- vollständige Einheitenabdeckung, Unicode, fehlende/doppelte/fremde Einheiten und Claims, nicht unterstützte Aussagen;
+- gleiche Normalform, äquivalente andere Form, echte Abschwächung/Verschärfung/Änderung, Zusatzbedingung, irreführend gleicher Gesamtlösungstest, Budgets, leere Routebasis und validierte Gegenbeispiele;
+- Vergleich bleibt bei Änderung anderer Originalhinweise unverändert;
+- Gesamtprüfung fehlt, technisch defekt, offen ERROR/UNCERTAIN, nur ADVISORY und gültiger separater F02-B-Befund bei unverändertem F01-UNCERTAIN;
+- idempotente/konkurrierende/unterbrochene Imports, Teilfortschritt, stale hashes und Kontextwechsel;
+- kreative positive Gegenbeispiele werden durch die Infrastruktur nicht pauschal als Fehler klassifiziert.
+
+Neue Tests in bestehenden contracts/integration-Gruppen; vorgeschlagene Dateien sind neu anzulegen und dann tatsächlich auszuführen. Bestehende passende Befehle:
+node --test tests/contracts/flavor.test.mjs tests/contracts/count-clue-normalization.test.mjs
+node --test tests/contracts/flavor-production.test.mjs tests/integration/flavor-production.test.mjs
+npm run test:unit
+npm run test:content
+npm run test:puzzles
+npm run check:community
+npm run check:community:release
+
+Der Release-Check muss beim unveränderten pending-Bestand weiterhin scheitern. Vollständige unveränderte CI verwenden, keine neue Allowlist zur Reduktion von Gates. Browser-/Asset-/Archiv-/Reproduktionsprüfungen nach vorhandenem Profil erhalten. Git-diff-Prüfung und tatsächliche Kommandos/Umgebung dokumentieren.
+
+12. LIEFERUNG UND GRENZE
+Liefern: eigener reviewbereiter PR, dokumentierte ausführbare Schemas und Methoden, vollständiger manueller dreistufiger Prüfweg, unveränderte echte Pilotbasis, getrenntes Regression-/Kalibrierungskorpus, sichere öffentliche Reader-Pakete und getrennte lokale Bindungen, tatsächlich ausgeführte Tests und ein echter Blindbatch für die vier importierten Fassungen.
+
+Keine gefälschten realen Reader-/Reviewer-Antworten. Ohne externe Modellantwort bleiben diese Schritte offen. Technische Testantworten strikt kennzeichnen. Das erste echte Blindpaket enthält weder den späteren Gesamtprüfungsauftrag noch dieses Konzeptions-/Implementierungspaket. Starte keine anderen Chats oder externen Nachrichten automatisch.
+
+PR 2 ergänzt auf dieser überprüften Grundlage die vollständige Ablaufsteuerung, Klärung, autorisierte Mehrfeldreparaturen, Ersatzproduktion und den spoilerarmen Bericht. Noch kein Merge, keine Auswahl, keine Freigabe und kein Deployment.

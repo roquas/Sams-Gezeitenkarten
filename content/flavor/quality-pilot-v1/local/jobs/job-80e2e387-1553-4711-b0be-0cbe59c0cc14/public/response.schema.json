@@ -1,0 +1,405 @@
+{
+  "type": "object",
+  "properties": {
+    "transportVersion": {
+      "const": 1
+    },
+    "stage": {
+      "const": "reader"
+    },
+    "jobId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+    },
+    "methodHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+          },
+          "inputHash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "coverage": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "unitId": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+                },
+                "claimIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+                  },
+                  "maxItems": 4096,
+                  "uniqueItems": true
+                },
+                "assessment": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 60000
+                }
+              },
+              "required": [
+                "unitId",
+                "claimIds",
+                "assessment"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 4096
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+                },
+                "unitIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+                  },
+                  "maxItems": 4096,
+                  "uniqueItems": true,
+                  "minItems": 1
+                },
+                "kind": {
+                  "enum": [
+                    "mathematical",
+                    "potential",
+                    "narrative",
+                    "invention",
+                    "ambiguous",
+                    "interaction"
+                  ]
+                },
+                "meaning": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 60000
+                },
+                "clueId": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+                    }
+                  ]
+                },
+                "state": {
+                  "enum": [
+                    "formalized",
+                    "unresolved",
+                    "narrative"
+                  ]
+                },
+                "atoms": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                            "maxLength": 80
+                          },
+                          "type": {
+                            "const": "direction"
+                          },
+                          "hour": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 6
+                          },
+                          "direction": {
+                            "enum": [
+                              "E",
+                              "SE",
+                              "SW",
+                              "W",
+                              "NW",
+                              "NE"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "hour",
+                          "direction"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                            "maxLength": 80
+                          },
+                          "type": {
+                            "const": "turn"
+                          },
+                          "hour": {
+                            "type": "integer",
+                            "minimum": 2,
+                            "maximum": 6
+                          },
+                          "degrees": {
+                            "enum": [
+                              -180,
+                              -120,
+                              -60,
+                              0,
+                              60,
+                              120,
+                              180
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "hour",
+                          "degrees"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                            "maxLength": 80
+                          },
+                          "type": {
+                            "const": "position"
+                          },
+                          "hour": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 6
+                          },
+                          "cell": {
+                            "type": "string",
+                            "pattern": "^[A-E][1-5]$"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "hour",
+                          "cell"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                            "maxLength": 80
+                          },
+                          "type": {
+                            "const": "distanceToPlace"
+                          },
+                          "hour": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 6
+                          },
+                          "placeId": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                            "maxLength": 80
+                          },
+                          "distance": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 8
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "hour",
+                          "placeId",
+                          "distance"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                            "maxLength": 80
+                          },
+                          "type": {
+                            "const": "distanceBetweenHours"
+                          },
+                          "hours": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 6
+                            },
+                            "minItems": 2,
+                            "maxItems": 2
+                          },
+                          "distance": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 8
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "hours",
+                          "distance"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                            "maxLength": 80
+                          },
+                          "type": {
+                            "const": "countDistanceToPlace"
+                          },
+                          "fromHour": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 6
+                          },
+                          "toHour": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 6
+                          },
+                          "placeId": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+                            "maxLength": 80
+                          },
+                          "distance": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 8
+                          },
+                          "count": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 7
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "fromHour",
+                          "toHour",
+                          "placeId",
+                          "distance",
+                          "count"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "maxItems": 4096
+                }
+              },
+              "required": [
+                "id",
+                "unitIds",
+                "kind",
+                "meaning",
+                "clueId",
+                "state",
+                "atoms"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 4096
+          },
+          "interpretations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "clueId": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+                },
+                "claimIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+                  },
+                  "maxItems": 4096,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "clueId",
+                "claimIds"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 4096
+          }
+        },
+        "required": [
+          "itemId",
+          "inputHash",
+          "coverage",
+          "claims",
+          "interpretations"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 4096
+    }
+  },
+  "required": [
+    "transportVersion",
+    "stage",
+    "jobId",
+    "methodHash",
+    "items"
+  ],
+  "additionalProperties": false
+}

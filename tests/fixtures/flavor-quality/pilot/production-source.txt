@@ -1,0 +1,249 @@
+{\
+&#x20; "contractVersion": 1,\
+&#x20; "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df",\
+&#x20; "positions": [\
+&#x20;   {\
+&#x20;     "positionId": "P01",\
+&#x20;     "caseId": "C-06",\
+&#x20;     "puzzleId": "C-06",\
+&#x20;     "cardRef": "gk-illustrated-card-v1-sha256:7dc68f72bed7af2fcd7e9d1e51b42be34da13767d19ace4b59a122aa5530ae08",\
+&#x20;     "sourceHash": "deb882ea41d811be6cba1cf4594a12ed431976c993997360c66c3522208577bc",\
+&#x20;     "flavorVariantId": "independent-1",\
+&#x20;     "revision": 1,\
+&#x20;     "predecessor": null,\
+&#x20;     "status": "complete",\
+&#x20;     "title": "Sam und die geistige Unterstützung",\
+&#x20;     "intro": [\
+&#x20;       "Liebes morgiges Ich, ich hatte heute einen Flaschengeist als Fahrgast. Der wollte sich nützlich machen, weil er für einen Plüschwal spart. Also habe ich ihm bei Tangruh das Logbuch anvertraut.",\
+&#x20;       "Er hat sich als ausgesprochen gewissenhafter Buchhalter erwiesen. Allerdings hält er es für Platzverschwendung, Dinge aufzuschreiben, die man seiner Meinung nach aus anderen Dingen herleiten kann. Ich hätte ihm lieber das Geld gegeben.",\
+&#x20;       "Hier sind seine Aufzeichnungen. Die Bemerkungen über meine Handschrift habe ich weggelassen."\
+&#x20;     ],\
+&#x20;     "clues": [\
+&#x20;       {\
+&#x20;         "id": "H1",\
+&#x20;         "text": "In keiner der Stunden 1 bis einschließlich 5 betrug unser Abstand zu Tangruh genau drei Hexfelder."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H2",\
+&#x20;         "text": "In Stunde 4 und Stunde 5 habe ich den Abstand zu Zaunkante notiert. Genau einmal waren es exakt zwei Hexfelder bis zum nächstgelegenen Feld von Zaunkante."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H3",\
+&#x20;         "text": "Von Stunde 1 bis einschließlich Stunde 4 befanden wir uns genau zweimal auf einem Nachbarfeld von Flaschenruh. Ein sehr hübscher Name, nebenbei bemerkt."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H4",\
+&#x20;         "text": "Sowohl in Stunde 1 als auch in Stunde 2 betrug der Abstand zu Flaschenruh genau zwei Hexfelder."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H5",\
+&#x20;         "text": "Die Etappe von Stunde 2 zu Stunde 3 führte uns nach Südwesten."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H6",\
+&#x20;         "text": "Zwischen unseren Positionen in Stunde 3 und Stunde 6 liegen genau zwei Hexfelder geometrischer Abstand. Die gefahrenen Etappen abzuzählen wäre hier übrigens die falsche Buchhaltung."\
+&#x20;       }\
+&#x20;     ],\
+&#x20;     "metadata": {\
+&#x20;       "form": "Sams Tagebuch mit Logbuchaufzeichnungen eines Flaschengeists",\
+&#x20;       "themes": [\
+&#x20;         "Geister",\
+&#x20;         "Nebenerwerb",\
+&#x20;         "Buchhaltung",\
+&#x20;         "Unvollständige Übergabe"\
+&#x20;       ],\
+&#x20;       "worldMotifs": [\
+&#x20;         "Sams Tagebuch als Übergabe an das morgige Selbst [A/B]",\
+&#x20;         "U007 – Flaschengeister und Plüschwale [U]"\
+&#x20;       ],\
+&#x20;       "inventions": [\
+&#x20;         "Ein Flaschengeist verdient sich als Fahrgast und Buchhalter Geld für einen Plüschwal.",\
+&#x20;         "Der Geist hält vollständig ausgeschriebene Fahrtaufzeichnungen für Platzverschwendung.",\
+&#x20;         "Sam übergibt dem Geist bei Tangruh das Logbuch."\
+&#x20;       ]\
+&#x20;     }\
+&#x20;   },\
+&#x20;   {\
+&#x20;     "positionId": "P02",\
+&#x20;     "caseId": "C-02",\
+&#x20;     "puzzleId": "C-02",\
+&#x20;     "cardRef": "gk-illustrated-card-v1-sha256:e9181dc6e6d798c6b8dc690a663e8908ce94308997d7df506a8853dbcbf5cd44",\
+&#x20;     "sourceHash": "ad4c8329b94efab3554ced0ef2d3fd88a255e47850481bd624ec98884d539869",\
+&#x20;     "flavorVariantId": "independent-1",\
+&#x20;     "revision": 1,\
+&#x20;     "predecessor": null,\
+&#x20;     "status": "complete",\
+&#x20;     "title": "Ein Freibier auf eigene Kosten",\
+&#x20;     "intro": [\
+&#x20;       "Sehr geehrte Mitreisende,",\
+&#x20;       "Sie haben bei der Buchung Ihrer Uberfahrt den Tarif mit Bierraten gewählt. Herzlichen Glückwunsch zur korrekten Identifizierung unseres Calicos Kübelbiers!",\
+&#x20;       "Der Bierpreis entfällt selbstverständlich. Bedauerlicherweise hat sich unser Buchungssystem daraufhin auch von der Fahrtaufzeichnung getrennt. Um Ihnen eine ordentliche Rechnung für die Fahrt mit Ausgangspunkt Gelbpunkt ausstellen zu können, benötigen wir Ihre Mithilfe.",\
+&#x20;       "Die nachstehenden Angaben sind noch vorhanden. Wir bitten Sie, die Unannehmlichkeiten zu entschuldigen. Die Entschuldigung ist ebenfalls kostenlos."\
+&#x20;     ],\
+&#x20;     "clues": [\
+&#x20;       {\
+&#x20;         "id": "H1",\
+&#x20;         "text": "Für die Stunden 3 bis einschließlich 6 ist ein Aufenthalt auf dem Feld von Tangruh ausgeschlossen."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H2",\
+&#x20;         "text": "Der kürzeste Hexabstand zu Tesoro betrug in Stunde 6 nicht genau fünf Hexfelder."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H3",\
+&#x20;         "text": "Von Stunde 1 bis einschließlich Stunde 5 befand sich unser Schiff genau einmal auf einem Nachbarfeld von Gelbpunkt."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H4",\
+&#x20;         "text": "Für Stunde 2 liegt eine vollständige Entfernungsangabe vor: genau drei Hexfelder bis zum nächstgelegenen Feld von Tesoro."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H5",\
+&#x20;         "text": "In den Stunden 1 bis einschließlich 3 wurde genau zweimal ein Abstand von exakt zwei Hexfeldern zu Tangruh verzeichnet."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H6",\
+&#x20;         "text": "In Stunde 5 betrug der Abstand zu Tangruh genau ein Hexfeld."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H7",\
+&#x20;         "text": "Die Positionen unseres Schiffs in Stunde 1 und Stunde 3 hatten einen Hexabstand von genau zwei. Eine Entfernungsangabe, keine Abrechnung von Fahretappen."\
+&#x20;       }\
+&#x20;     ],\
+&#x20;     "metadata": {\
+&#x20;       "form": "Kundenschreiben eines Uberfahrers",\
+&#x20;       "themes": [\
+&#x20;         "Kundenservice",\
+&#x20;         "Freibier",\
+&#x20;         "Abrechnung",\
+&#x20;         "Buchungspanne"\
+&#x20;       ],\
+&#x20;       "worldMotifs": [\
+&#x20;         "U001 – Uberfahren und Uberfahrer [U]",\
+&#x20;         "U002 – Bierraten [U]",\
+&#x20;         "U003 – Calicos Kübelbier [U]",\
+&#x20;         "Geld, Preise und Verhandlungen als praktische Erzählmotive [A/I]"\
+&#x20;       ],\
+&#x20;       "inventions": [\
+&#x20;         "Ein Uberfahrttarif mit integriertem Bierraten.",\
+&#x20;         "Ein Buchungssystem, das beim Erlass des Bierpreises die vollständige Fahrtaufzeichnung verliert.",\
+&#x20;         "Ein Kundenschreiben zur Rekonstruktion der Fahrt und Vorbereitung der Rechnung."\
+&#x20;       ]\
+&#x20;     }\
+&#x20;   },\
+&#x20;   {\
+&#x20;     "positionId": "P03",\
+&#x20;     "caseId": "C-03",\
+&#x20;     "puzzleId": "C-03",\
+&#x20;     "cardRef": "gk-illustrated-card-v1-sha256:ba92ade296b267061c7ff3cd6d8c6ece7a3c550b074638c418451c27080f37a3",\
+&#x20;     "sourceHash": "c4f4c6cbcd0225349656241460fb38022ee054965af4f3706f5e4701b419d62b",\
+&#x20;     "flavorVariantId": "independent-1",\
+&#x20;     "revision": 1,\
+&#x20;     "predecessor": null,\
+&#x20;     "status": "complete",\
+&#x20;     "title": "Karten klamüsern",\
+&#x20;     "intro": [\
+&#x20;       "Aus den Ausbildungsunterlagen von Robert Rotbart: Karten klamüsern – eine Navigationsübung nach dem Vorbild des beliebten Klüsen klamüsern.",\
+&#x20;       "Die Idee zu dieser Übung entstand bei dem Versuch, die Anschaffung neuer Würfel aus dem Ausbildungsbudget zu vermeiden. Die Anschaffung neuer Seekarten war erheblich teurer, aber da war die Übung schon angekündigt.",\
+&#x20;       "Gegenstand der heutigen Prüfung ist eine Fahrt mit Ausgangspunkt Treibkahn. Die Auskünfte des Prüfers stehen bereits fest. Weitere Fragen beantwortet er aus Gründen der Vergleichbarkeit nicht."\
+&#x20;     ],\
+&#x20;     "clues": [\
+&#x20;       {\
+&#x20;         "id": "H1",\
+&#x20;         "text": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau zwei Hexfelder? Antwort: Nein."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H2",\
+&#x20;         "text": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau drei Hexfelder? Antwort: Ebenfalls nein."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H3",\
+&#x20;         "text": "Frage: In wie vielen der Stunden 2 bis einschließlich 4 betrug der Abstand zu Treibkahn exakt zwei Hexfelder? Antwort: In genau zwei Stunden."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H4",\
+&#x20;         "text": "Frage: In welche Richtung führte die Etappe von Stunde 0 zu Stunde 1? Antwort: Nordwesten."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H5",\
+&#x20;         "text": "Frage: Wie groß war in Stunde 6 der kürzeste Hexabstand zu Blickwinkel? Antwort: Genau ein Hexfeld."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H6",\
+&#x20;         "text": "Frage: Welchen Hexabstand hatten die Positionen in Stunde 0 und Stunde 2 voneinander? Antwort: Genau ein Hexfeld."\
+&#x20;       }\
+&#x20;     ],\
+&#x20;     "metadata": {\
+&#x20;       "form": "Prüfungsunterlage mit Frage-Antwort-Protokoll",\
+&#x20;       "themes": [\
+&#x20;         "Piratenausbildung",\
+&#x20;         "Deduktion",\
+&#x20;         "Kneipenspiele",\
+&#x20;         "Sparmaßnahmen"\
+&#x20;       ],\
+&#x20;       "worldMotifs": [\
+&#x20;         "Robert Rotbart als Piratenausbilder [B]",\
+&#x20;         "Raster- und Würfelaufgaben im Piratentraining [A]",\
+&#x20;         "U011 – Klüsen klamüsern [U]"\
+&#x20;       ],\
+&#x20;       "inventions": [\
+&#x20;         "Karten klamüsern als Navigationsübung nach dem Vorbild von Klüsen klamüsern.",\
+&#x20;         "Die vermeintliche Einsparung bei der Beschaffung von Ausbildungsmaterial.",\
+&#x20;         "Das konkrete Prüfungsformat mit vorgegebenen Fragen und Antworten."\
+&#x20;       ]\
+&#x20;     }\
+&#x20;   },\
+&#x20;   {\
+&#x20;     "positionId": "P04",\
+&#x20;     "caseId": "C-11",\
+&#x20;     "puzzleId": "C-11",\
+&#x20;     "cardRef": "gk-illustrated-card-v1-sha256:2a5eb9b67733d5c327549b50546ade516befec6a9e44ac0463124d11c64e2f70",\
+&#x20;     "sourceHash": "40a07acfd88870168ea304a4552a2c97df6260d9cd524d9823f691db49fb78b0",\
+&#x20;     "flavorVariantId": "independent-1",\
+&#x20;     "revision": 1,\
+&#x20;     "predecessor": null,\
+&#x20;     "status": "complete",\
+&#x20;     "title": "Die amtliche Nebenkostenabrechnung",\
+&#x20;     "intro": [\
+&#x20;       "++ AN DIE PIRAT:INNEN-INNUNG +++",\
+&#x20;       "++ BEANTRAGE ERSTATTUNG DER NAVIGATIONSKOSTEN +++ FAHRTBEGINN NEBELLICHT +++ VOLLSTÄNDIGES FAHRTPROTOKOLL FEHLT +++ AUFZEICHNUNGEN ANBEI +++",\
+&#x20;       "++ BITTE AUCH KOSTEN DIESES TELEGRAMMS ERSTATTEN +++ JEDES WORT KOSTET +++ DANKE +++"\
+&#x20;     ],\
+&#x20;     "clues": [\
+&#x20;       {\
+&#x20;         "id": "H1",\
+&#x20;         "text": "STUNDE 1 BIS EINSCHLIESSLICH 5: NIE AUF NACHBARFELD VON WACKELKAHN."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H2",\
+&#x20;         "text": "STUNDE 2 BIS EINSCHLIESSLICH 5: NIE EXAKT VIER HEXFELDER ABSTAND ZU WACKELKAHN."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H3",\
+&#x20;         "text": "STUNDE 5 UND 6: IN GENAU EINER DIESER STUNDEN AUF NACHBARFELD VON WACKELKAHN."\
+&#x20;       },\
+&#x20;       {\
+&#x20;         "id": "H4",\
+&#x20;         "text": "STUNDE 3 BIS EINSCHLIESSLICH 6: IN GENAU EINER STUNDE EXAKT DREI HEXFELDER ABSTAND ZU NEBELLICHT."\
+&#x20;       }\
+&#x20;     ],\
+&#x20;     "metadata": {\
+&#x20;       "form": "Telegramm mit beigefügten Fahrtaufzeichnungen",\
+&#x20;       "themes": [\
+&#x20;         "Bürokratie",\
+&#x20;         "Kostenerstattung",\
+&#x20;         "Sparsamkeit"\
+&#x20;       ],\
+&#x20;       "worldMotifs": [\
+&#x20;         "Pirat:innen-Innung [B]",\
+&#x20;         "Organisierter Piratenalltag und Geldangelegenheiten [A/I]"\
+&#x20;       ],\
+&#x20;       "inventions": [\
+&#x20;         "Ein Antrag auf Erstattung von Navigationskosten durch die Pirat:innen-Innung.",\
+&#x20;         "Eine kostenpflichtige, nach Wörtern abgerechnete Telegrammübermittlung.",\
+&#x20;         "Die zusätzliche Beantragung der Erstattung der Telegrammkosten."\
+&#x20;       ]\
+&#x20;     }\
+&#x20;   }\
+&#x20; ]\
+}

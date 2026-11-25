@@ -1,0 +1,904 @@
+{
+  "transportVersion": 1,
+  "stage": "reader",
+  "jobId": "job-80e2e387-1553-4711-b0be-0cbe59c0cc14",
+  "methodHash": "9819a13260102abc9479d21f8eeef38706182e7dfcb6bccbd1f81e7739c2d88a",
+  "items": [
+    {
+      "itemId": "item-faeeccad-312d-4d47-9ab4-c45d928c479e",
+      "inputHash": "5c6fbbe3c7dab172659ef320c55466eff172a3e963142ccf2880d533cecd190a",
+      "input": {
+        "presentation": {
+          "title": "Sam und die geistige Unterstützung",
+          "intro": [
+            "Liebes morgiges Ich, ich hatte heute einen Flaschengeist als Fahrgast. Der wollte sich nützlich machen, weil er für einen Plüschwal spart. Also habe ich ihm bei Tangruh das Logbuch anvertraut.",
+            "Er hat sich als ausgesprochen gewissenhafter Buchhalter erwiesen. Allerdings hält er es für Platzverschwendung, Dinge aufzuschreiben, die man seiner Meinung nach aus anderen Dingen herleiten kann. Ich hätte ihm lieber das Geld gegeben.",
+            "Hier sind seine Aufzeichnungen. Die Bemerkungen über meine Handschrift habe ich weggelassen."
+          ],
+          "clues": [
+            {
+              "id": "H1",
+              "text": "In keiner der Stunden 1 bis einschließlich 5 betrug unser Abstand zu Tangruh genau drei Hexfelder."
+            },
+            {
+              "id": "H2",
+              "text": "In Stunde 4 und Stunde 5 habe ich den Abstand zu Zaunkante notiert. Genau einmal waren es exakt zwei Hexfelder bis zum nächstgelegenen Feld von Zaunkante."
+            },
+            {
+              "id": "H3",
+              "text": "Von Stunde 1 bis einschließlich Stunde 4 befanden wir uns genau zweimal auf einem Nachbarfeld von Flaschenruh. Ein sehr hübscher Name, nebenbei bemerkt."
+            },
+            {
+              "id": "H4",
+              "text": "Sowohl in Stunde 1 als auch in Stunde 2 betrug der Abstand zu Flaschenruh genau zwei Hexfelder."
+            },
+            {
+              "id": "H5",
+              "text": "Die Etappe von Stunde 2 zu Stunde 3 führte uns nach Südwesten."
+            },
+            {
+              "id": "H6",
+              "text": "Zwischen unseren Positionen in Stunde 3 und Stunde 6 liegen genau zwei Hexfelder geometrischer Abstand. Die gefahrenen Etappen abzuzählen wäre hier übrigens die falsche Buchhaltung."
+            }
+          ]
+        },
+        "chart": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "cells": [
+                  "D1"
+                ],
+                "id": "geo-01",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D3"
+                ],
+                "id": "geo-02",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B1",
+                  "B2"
+                ],
+                "id": "geo-03",
+                "passable": false
+              }
+            ]
+          },
+          "start": "D1",
+          "steps": 6,
+          "objectNames": {
+            "geo-01": "Tangruh",
+            "geo-02": "Flaschenruh",
+            "geo-03": "Zaunkante"
+          },
+          "background": "sea-blue-01",
+          "assetPlacements": [
+            {
+              "id": "art-001",
+              "assetId": "land-coast.settlement.h2.prison-island-03.v1",
+              "anchor": "B1",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-002",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "D1",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-003",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "anchor": "D3",
+              "objectId": "geo-02"
+            }
+          ],
+          "assets": [
+            {
+              "id": "land-coast.settlement.h2.prison-island-03.v1",
+              "image": "resources/a558685ddaec7c7bfcef040e26a4c76e4cc98d13b0452ccac4f34eac91c1c299.png"
+            },
+            {
+              "id": "sea-life.accent.h1.driftwood.v1",
+              "image": "resources/a224cc0693fe02f357085e86406d757696ff12a1b97181275145142fa74c02f9.png"
+            },
+            {
+              "id": "sea-life.accent.h1.bottle.v1",
+              "image": "resources/df44a66dac7b54a02c146f6a2fc93367b39a3c4f5389169a348d03ac3858d0f8.png"
+            }
+          ],
+          "image": "maps/m001.svg",
+          "imageSha256": "fa95cde68663f61791f1f53f88a5cfe040d055ec0ff27bdf300eb62f6f65e42c"
+        },
+        "sources": {
+          "rules": {
+            "version": "gezeitenkarten-2",
+            "sha256": "e6824f888c949a81c5482d6010c9ed4e2511f0345c3b54f8bc4c9da0339c33fc"
+          },
+          "world": {
+            "packageId": "sams-gezeitenkarten-carribera-world-style",
+            "version": "1.0.0",
+            "publicView": "production-p01-p14-1",
+            "files": [
+              {
+                "path": "world/world.md",
+                "sha256": "fbc7d8082139854cfeff125257fec3a580afd095c11ff2f88450b783cd21b67a"
+              },
+              {
+                "path": "world/style.md",
+                "sha256": "d2af985b4559048b6d343deeb7e760e5df6af285470bb30c5b697648907986c9"
+              },
+              {
+                "path": "world/production.md",
+                "sha256": "e6e7636a28d7f1b2a5ff3e7c072dd5acf0c16d0a28cd4746c45888f30e9117fd"
+              }
+            ]
+          }
+        },
+        "seriesContext": {
+          "version": 1,
+          "episodes": []
+        },
+        "unitMethod": "whole-field-utf16-1",
+        "units": [
+          {
+            "id": "u0001",
+            "field": "title",
+            "start": 0,
+            "end": 34,
+            "text": "Sam und die geistige Unterstützung"
+          },
+          {
+            "id": "u0002",
+            "field": "intro.0",
+            "start": 0,
+            "end": 192,
+            "text": "Liebes morgiges Ich, ich hatte heute einen Flaschengeist als Fahrgast. Der wollte sich nützlich machen, weil er für einen Plüschwal spart. Also habe ich ihm bei Tangruh das Logbuch anvertraut."
+          },
+          {
+            "id": "u0003",
+            "field": "intro.1",
+            "start": 0,
+            "end": 235,
+            "text": "Er hat sich als ausgesprochen gewissenhafter Buchhalter erwiesen. Allerdings hält er es für Platzverschwendung, Dinge aufzuschreiben, die man seiner Meinung nach aus anderen Dingen herleiten kann. Ich hätte ihm lieber das Geld gegeben."
+          },
+          {
+            "id": "u0004",
+            "field": "intro.2",
+            "start": 0,
+            "end": 92,
+            "text": "Hier sind seine Aufzeichnungen. Die Bemerkungen über meine Handschrift habe ich weggelassen."
+          },
+          {
+            "id": "u0005",
+            "field": "clues.H1",
+            "start": 0,
+            "end": 98,
+            "text": "In keiner der Stunden 1 bis einschließlich 5 betrug unser Abstand zu Tangruh genau drei Hexfelder."
+          },
+          {
+            "id": "u0006",
+            "field": "clues.H2",
+            "start": 0,
+            "end": 154,
+            "text": "In Stunde 4 und Stunde 5 habe ich den Abstand zu Zaunkante notiert. Genau einmal waren es exakt zwei Hexfelder bis zum nächstgelegenen Feld von Zaunkante."
+          },
+          {
+            "id": "u0007",
+            "field": "clues.H3",
+            "start": 0,
+            "end": 152,
+            "text": "Von Stunde 1 bis einschließlich Stunde 4 befanden wir uns genau zweimal auf einem Nachbarfeld von Flaschenruh. Ein sehr hübscher Name, nebenbei bemerkt."
+          },
+          {
+            "id": "u0008",
+            "field": "clues.H4",
+            "start": 0,
+            "end": 95,
+            "text": "Sowohl in Stunde 1 als auch in Stunde 2 betrug der Abstand zu Flaschenruh genau zwei Hexfelder."
+          },
+          {
+            "id": "u0009",
+            "field": "clues.H5",
+            "start": 0,
+            "end": 62,
+            "text": "Die Etappe von Stunde 2 zu Stunde 3 führte uns nach Südwesten."
+          },
+          {
+            "id": "u0010",
+            "field": "clues.H6",
+            "start": 0,
+            "end": 181,
+            "text": "Zwischen unseren Positionen in Stunde 3 und Stunde 6 liegen genau zwei Hexfelder geometrischer Abstand. Die gefahrenen Etappen abzuzählen wäre hier übrigens die falsche Buchhaltung."
+          }
+        ]
+      }
+    },
+    {
+      "itemId": "item-cb960688-cc93-4ec0-8d59-975e6ea7a538",
+      "inputHash": "49bcc31bc40d31dd090933479ee2ad300a570343601607cb96a653cc92ad588d",
+      "input": {
+        "presentation": {
+          "title": "Ein Freibier auf eigene Kosten",
+          "intro": [
+            "Sehr geehrte Mitreisende,",
+            "Sie haben bei der Buchung Ihrer Uberfahrt den Tarif mit Bierraten gewählt. Herzlichen Glückwunsch zur korrekten Identifizierung unseres Calicos Kübelbiers!",
+            "Der Bierpreis entfällt selbstverständlich. Bedauerlicherweise hat sich unser Buchungssystem daraufhin auch von der Fahrtaufzeichnung getrennt. Um Ihnen eine ordentliche Rechnung für die Fahrt mit Ausgangspunkt Gelbpunkt ausstellen zu können, benötigen wir Ihre Mithilfe.",
+            "Die nachstehenden Angaben sind noch vorhanden. Wir bitten Sie, die Unannehmlichkeiten zu entschuldigen. Die Entschuldigung ist ebenfalls kostenlos."
+          ],
+          "clues": [
+            {
+              "id": "H1",
+              "text": "Für die Stunden 3 bis einschließlich 6 ist ein Aufenthalt auf dem Feld von Tangruh ausgeschlossen."
+            },
+            {
+              "id": "H2",
+              "text": "Der kürzeste Hexabstand zu Tesoro betrug in Stunde 6 nicht genau fünf Hexfelder."
+            },
+            {
+              "id": "H3",
+              "text": "Von Stunde 1 bis einschließlich Stunde 5 befand sich unser Schiff genau einmal auf einem Nachbarfeld von Gelbpunkt."
+            },
+            {
+              "id": "H4",
+              "text": "Für Stunde 2 liegt eine vollständige Entfernungsangabe vor: genau drei Hexfelder bis zum nächstgelegenen Feld von Tesoro."
+            },
+            {
+              "id": "H5",
+              "text": "In den Stunden 1 bis einschließlich 3 wurde genau zweimal ein Abstand von exakt zwei Hexfeldern zu Tangruh verzeichnet."
+            },
+            {
+              "id": "H6",
+              "text": "In Stunde 5 betrug der Abstand zu Tangruh genau ein Hexfeld."
+            },
+            {
+              "id": "H7",
+              "text": "Die Positionen unseres Schiffs in Stunde 1 und Stunde 3 hatten einen Hexabstand von genau zwei. Eine Entfernungsangabe, keine Abrechnung von Fahretappen."
+            }
+          ]
+        },
+        "chart": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "cells": [
+                  "B1"
+                ],
+                "id": "geo-01",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B4"
+                ],
+                "id": "geo-02",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D1",
+                  "D2",
+                  "E1",
+                  "E2"
+                ],
+                "id": "geo-03",
+                "passable": false
+              }
+            ]
+          },
+          "start": "B1",
+          "steps": 6,
+          "objectNames": {
+            "geo-01": "Gelbpunkt",
+            "geo-02": "Tangruh",
+            "geo-03": "Tesoro"
+          },
+          "background": "sea-blue-01",
+          "assetPlacements": [
+            {
+              "id": "art-001",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "anchor": "B1",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-002",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "anchor": "B4",
+              "objectId": "geo-02"
+            },
+            {
+              "id": "art-003",
+              "assetId": "land-coast.settlement.h4.tesoro.v4",
+              "anchor": "D1",
+              "objectId": "geo-03"
+            }
+          ],
+          "assets": [
+            {
+              "id": "sea-life.accent.h1.buoy.v1",
+              "image": "resources/dc75de096edb1061a06c1c7224a7a8388ff85724d67d3abd9bdb9c50b5d925e5.png"
+            },
+            {
+              "id": "sea-life.accent.h1.driftwood.v1",
+              "image": "resources/a224cc0693fe02f357085e86406d757696ff12a1b97181275145142fa74c02f9.png"
+            },
+            {
+              "id": "land-coast.settlement.h4.tesoro.v4",
+              "image": "resources/5f0e774404cdea43237b230d3b12515df5c4b0dc547b3ff5bee8ad33c1ed2b61.png"
+            }
+          ],
+          "image": "maps/m002.svg",
+          "imageSha256": "c5e0e681d15dfc8f15e89e7459a269bf385ee1ceb052342f306250764bb9ed34"
+        },
+        "sources": {
+          "rules": {
+            "version": "gezeitenkarten-2",
+            "sha256": "e6824f888c949a81c5482d6010c9ed4e2511f0345c3b54f8bc4c9da0339c33fc"
+          },
+          "world": {
+            "packageId": "sams-gezeitenkarten-carribera-world-style",
+            "version": "1.0.0",
+            "publicView": "production-p01-p14-1",
+            "files": [
+              {
+                "path": "world/world.md",
+                "sha256": "fbc7d8082139854cfeff125257fec3a580afd095c11ff2f88450b783cd21b67a"
+              },
+              {
+                "path": "world/style.md",
+                "sha256": "d2af985b4559048b6d343deeb7e760e5df6af285470bb30c5b697648907986c9"
+              },
+              {
+                "path": "world/production.md",
+                "sha256": "e6e7636a28d7f1b2a5ff3e7c072dd5acf0c16d0a28cd4746c45888f30e9117fd"
+              }
+            ]
+          }
+        },
+        "seriesContext": {
+          "version": 1,
+          "episodes": []
+        },
+        "unitMethod": "whole-field-utf16-1",
+        "units": [
+          {
+            "id": "u0001",
+            "field": "title",
+            "start": 0,
+            "end": 30,
+            "text": "Ein Freibier auf eigene Kosten"
+          },
+          {
+            "id": "u0002",
+            "field": "intro.0",
+            "start": 0,
+            "end": 25,
+            "text": "Sehr geehrte Mitreisende,"
+          },
+          {
+            "id": "u0003",
+            "field": "intro.1",
+            "start": 0,
+            "end": 155,
+            "text": "Sie haben bei der Buchung Ihrer Uberfahrt den Tarif mit Bierraten gewählt. Herzlichen Glückwunsch zur korrekten Identifizierung unseres Calicos Kübelbiers!"
+          },
+          {
+            "id": "u0004",
+            "field": "intro.2",
+            "start": 0,
+            "end": 270,
+            "text": "Der Bierpreis entfällt selbstverständlich. Bedauerlicherweise hat sich unser Buchungssystem daraufhin auch von der Fahrtaufzeichnung getrennt. Um Ihnen eine ordentliche Rechnung für die Fahrt mit Ausgangspunkt Gelbpunkt ausstellen zu können, benötigen wir Ihre Mithilfe."
+          },
+          {
+            "id": "u0005",
+            "field": "intro.3",
+            "start": 0,
+            "end": 147,
+            "text": "Die nachstehenden Angaben sind noch vorhanden. Wir bitten Sie, die Unannehmlichkeiten zu entschuldigen. Die Entschuldigung ist ebenfalls kostenlos."
+          },
+          {
+            "id": "u0006",
+            "field": "clues.H1",
+            "start": 0,
+            "end": 98,
+            "text": "Für die Stunden 3 bis einschließlich 6 ist ein Aufenthalt auf dem Feld von Tangruh ausgeschlossen."
+          },
+          {
+            "id": "u0007",
+            "field": "clues.H2",
+            "start": 0,
+            "end": 80,
+            "text": "Der kürzeste Hexabstand zu Tesoro betrug in Stunde 6 nicht genau fünf Hexfelder."
+          },
+          {
+            "id": "u0008",
+            "field": "clues.H3",
+            "start": 0,
+            "end": 115,
+            "text": "Von Stunde 1 bis einschließlich Stunde 5 befand sich unser Schiff genau einmal auf einem Nachbarfeld von Gelbpunkt."
+          },
+          {
+            "id": "u0009",
+            "field": "clues.H4",
+            "start": 0,
+            "end": 121,
+            "text": "Für Stunde 2 liegt eine vollständige Entfernungsangabe vor: genau drei Hexfelder bis zum nächstgelegenen Feld von Tesoro."
+          },
+          {
+            "id": "u0010",
+            "field": "clues.H5",
+            "start": 0,
+            "end": 119,
+            "text": "In den Stunden 1 bis einschließlich 3 wurde genau zweimal ein Abstand von exakt zwei Hexfeldern zu Tangruh verzeichnet."
+          },
+          {
+            "id": "u0011",
+            "field": "clues.H6",
+            "start": 0,
+            "end": 60,
+            "text": "In Stunde 5 betrug der Abstand zu Tangruh genau ein Hexfeld."
+          },
+          {
+            "id": "u0012",
+            "field": "clues.H7",
+            "start": 0,
+            "end": 153,
+            "text": "Die Positionen unseres Schiffs in Stunde 1 und Stunde 3 hatten einen Hexabstand von genau zwei. Eine Entfernungsangabe, keine Abrechnung von Fahretappen."
+          }
+        ]
+      }
+    },
+    {
+      "itemId": "item-871b7841-43d6-4d63-9120-e9dcb872c484",
+      "inputHash": "dc57f772409f47457736a53753847eb9a004ff8c3e3c704ae6fdf30a49fd9e9d",
+      "input": {
+        "presentation": {
+          "title": "Karten klamüsern",
+          "intro": [
+            "Aus den Ausbildungsunterlagen von Robert Rotbart: Karten klamüsern – eine Navigationsübung nach dem Vorbild des beliebten Klüsen klamüsern.",
+            "Die Idee zu dieser Übung entstand bei dem Versuch, die Anschaffung neuer Würfel aus dem Ausbildungsbudget zu vermeiden. Die Anschaffung neuer Seekarten war erheblich teurer, aber da war die Übung schon angekündigt.",
+            "Gegenstand der heutigen Prüfung ist eine Fahrt mit Ausgangspunkt Treibkahn. Die Auskünfte des Prüfers stehen bereits fest. Weitere Fragen beantwortet er aus Gründen der Vergleichbarkeit nicht."
+          ],
+          "clues": [
+            {
+              "id": "H1",
+              "text": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau zwei Hexfelder? Antwort: Nein."
+            },
+            {
+              "id": "H2",
+              "text": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau drei Hexfelder? Antwort: Ebenfalls nein."
+            },
+            {
+              "id": "H3",
+              "text": "Frage: In wie vielen der Stunden 2 bis einschließlich 4 betrug der Abstand zu Treibkahn exakt zwei Hexfelder? Antwort: In genau zwei Stunden."
+            },
+            {
+              "id": "H4",
+              "text": "Frage: In welche Richtung führte die Etappe von Stunde 0 zu Stunde 1? Antwort: Nordwesten."
+            },
+            {
+              "id": "H5",
+              "text": "Frage: Wie groß war in Stunde 6 der kürzeste Hexabstand zu Blickwinkel? Antwort: Genau ein Hexfeld."
+            },
+            {
+              "id": "H6",
+              "text": "Frage: Welchen Hexabstand hatten die Positionen in Stunde 0 und Stunde 2 voneinander? Antwort: Genau ein Hexfeld."
+            }
+          ]
+        },
+        "chart": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "cells": [
+                  "B4"
+                ],
+                "id": "geo-01",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D4",
+                  "E4"
+                ],
+                "id": "geo-02",
+                "passable": false
+              }
+            ]
+          },
+          "start": "B4",
+          "steps": 6,
+          "objectNames": {
+            "geo-01": "Treibkahn",
+            "geo-02": "Blickwinkel"
+          },
+          "background": "sea-blue-01",
+          "assetPlacements": [
+            {
+              "id": "art-001",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "anchor": "B4",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-002",
+              "assetId": "land-coast.island.h2.lookout-bay-01.v1",
+              "anchor": "D4",
+              "objectId": "geo-02"
+            }
+          ],
+          "assets": [
+            {
+              "id": "sea-life.accent.h1.rowboat.v1",
+              "image": "resources/aa0b04087dc4cdca9edaf9c92771c371d0988a464bc644cf3141912cbb8e976f.png"
+            },
+            {
+              "id": "land-coast.island.h2.lookout-bay-01.v1",
+              "image": "resources/8d9d8a2f456b55a13b10d4fc191a88e4877ea0dc493eeed89008d302cac26ce6.png"
+            }
+          ],
+          "image": "maps/m003.svg",
+          "imageSha256": "d90ec9dc2dbe21f155358ce003a0158c7710983e5c1af907df988f242c8c7f58"
+        },
+        "sources": {
+          "rules": {
+            "version": "gezeitenkarten-2",
+            "sha256": "e6824f888c949a81c5482d6010c9ed4e2511f0345c3b54f8bc4c9da0339c33fc"
+          },
+          "world": {
+            "packageId": "sams-gezeitenkarten-carribera-world-style",
+            "version": "1.0.0",
+            "publicView": "production-p01-p14-1",
+            "files": [
+              {
+                "path": "world/world.md",
+                "sha256": "fbc7d8082139854cfeff125257fec3a580afd095c11ff2f88450b783cd21b67a"
+              },
+              {
+                "path": "world/style.md",
+                "sha256": "d2af985b4559048b6d343deeb7e760e5df6af285470bb30c5b697648907986c9"
+              },
+              {
+                "path": "world/production.md",
+                "sha256": "e6e7636a28d7f1b2a5ff3e7c072dd5acf0c16d0a28cd4746c45888f30e9117fd"
+              }
+            ]
+          }
+        },
+        "seriesContext": {
+          "version": 1,
+          "episodes": []
+        },
+        "unitMethod": "whole-field-utf16-1",
+        "units": [
+          {
+            "id": "u0001",
+            "field": "title",
+            "start": 0,
+            "end": 16,
+            "text": "Karten klamüsern"
+          },
+          {
+            "id": "u0002",
+            "field": "intro.0",
+            "start": 0,
+            "end": 139,
+            "text": "Aus den Ausbildungsunterlagen von Robert Rotbart: Karten klamüsern – eine Navigationsübung nach dem Vorbild des beliebten Klüsen klamüsern."
+          },
+          {
+            "id": "u0003",
+            "field": "intro.1",
+            "start": 0,
+            "end": 214,
+            "text": "Die Idee zu dieser Übung entstand bei dem Versuch, die Anschaffung neuer Würfel aus dem Ausbildungsbudget zu vermeiden. Die Anschaffung neuer Seekarten war erheblich teurer, aber da war die Übung schon angekündigt."
+          },
+          {
+            "id": "u0004",
+            "field": "intro.2",
+            "start": 0,
+            "end": 192,
+            "text": "Gegenstand der heutigen Prüfung ist eine Fahrt mit Ausgangspunkt Treibkahn. Die Auskünfte des Prüfers stehen bereits fest. Weitere Fragen beantwortet er aus Gründen der Vergleichbarkeit nicht."
+          },
+          {
+            "id": "u0005",
+            "field": "clues.H1",
+            "start": 0,
+            "end": 101,
+            "text": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau zwei Hexfelder? Antwort: Nein."
+          },
+          {
+            "id": "u0006",
+            "field": "clues.H2",
+            "start": 0,
+            "end": 111,
+            "text": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau drei Hexfelder? Antwort: Ebenfalls nein."
+          },
+          {
+            "id": "u0007",
+            "field": "clues.H3",
+            "start": 0,
+            "end": 141,
+            "text": "Frage: In wie vielen der Stunden 2 bis einschließlich 4 betrug der Abstand zu Treibkahn exakt zwei Hexfelder? Antwort: In genau zwei Stunden."
+          },
+          {
+            "id": "u0008",
+            "field": "clues.H4",
+            "start": 0,
+            "end": 90,
+            "text": "Frage: In welche Richtung führte die Etappe von Stunde 0 zu Stunde 1? Antwort: Nordwesten."
+          },
+          {
+            "id": "u0009",
+            "field": "clues.H5",
+            "start": 0,
+            "end": 99,
+            "text": "Frage: Wie groß war in Stunde 6 der kürzeste Hexabstand zu Blickwinkel? Antwort: Genau ein Hexfeld."
+          },
+          {
+            "id": "u0010",
+            "field": "clues.H6",
+            "start": 0,
+            "end": 113,
+            "text": "Frage: Welchen Hexabstand hatten die Positionen in Stunde 0 und Stunde 2 voneinander? Antwort: Genau ein Hexfeld."
+          }
+        ]
+      }
+    },
+    {
+      "itemId": "item-3387153f-c6ec-4511-8f62-c9b13e0064c3",
+      "inputHash": "46fe8024dc8f601a322b2d9428281f078c32a214e174ac11d2c5c1530e1d15d3",
+      "input": {
+        "presentation": {
+          "title": "Die amtliche Nebenkostenabrechnung",
+          "intro": [
+            "++ AN DIE PIRAT:INNEN-INNUNG +++",
+            "++ BEANTRAGE ERSTATTUNG DER NAVIGATIONSKOSTEN +++ FAHRTBEGINN NEBELLICHT +++ VOLLSTÄNDIGES FAHRTPROTOKOLL FEHLT +++ AUFZEICHNUNGEN ANBEI +++",
+            "++ BITTE AUCH KOSTEN DIESES TELEGRAMMS ERSTATTEN +++ JEDES WORT KOSTET +++ DANKE +++"
+          ],
+          "clues": [
+            {
+              "id": "H1",
+              "text": "STUNDE 1 BIS EINSCHLIESSLICH 5: NIE AUF NACHBARFELD VON WACKELKAHN."
+            },
+            {
+              "id": "H2",
+              "text": "STUNDE 2 BIS EINSCHLIESSLICH 5: NIE EXAKT VIER HEXFELDER ABSTAND ZU WACKELKAHN."
+            },
+            {
+              "id": "H3",
+              "text": "STUNDE 5 UND 6: IN GENAU EINER DIESER STUNDEN AUF NACHBARFELD VON WACKELKAHN."
+            },
+            {
+              "id": "H4",
+              "text": "STUNDE 3 BIS EINSCHLIESSLICH 6: IN GENAU EINER STUNDE EXAKT DREI HEXFELDER ABSTAND ZU NEBELLICHT."
+            }
+          ]
+        },
+        "chart": {
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "cells": [
+                  "E2",
+                  "E3"
+                ],
+                "id": "geo-01",
+                "passable": false
+              },
+              {
+                "cells": [
+                  "E5"
+                ],
+                "id": "geo-02",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "C4",
+                  "C5"
+                ],
+                "id": "geo-03",
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A3"
+                ],
+                "id": "geo-04",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B2",
+                  "C1",
+                  "D1"
+                ],
+                "id": "geo-05",
+                "passable": false
+              }
+            ]
+          },
+          "start": "A3",
+          "steps": 6,
+          "objectNames": {
+            "geo-01": "Plankendorf",
+            "geo-02": "Wackelkahn",
+            "geo-03": "Schattenhain",
+            "geo-04": "Nebellicht",
+            "geo-05": "Hinterbucht"
+          },
+          "background": "sea-blue-01",
+          "assetPlacements": [
+            {
+              "id": "art-001",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "anchor": "A3",
+              "objectId": "geo-04"
+            },
+            {
+              "id": "art-002",
+              "assetId": "land-coast.island.h3.smuggler-cove.v1",
+              "anchor": "B2",
+              "objectId": "geo-05"
+            },
+            {
+              "id": "art-003",
+              "assetId": "land-coast.island.h2.mist-forest-02.v1",
+              "anchor": "C5",
+              "objectId": "geo-03"
+            },
+            {
+              "id": "art-004",
+              "assetId": "land-coast.settlement.h2.hut-settlement-02.v1",
+              "anchor": "E3",
+              "objectId": "geo-01"
+            },
+            {
+              "id": "art-005",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "anchor": "E5",
+              "objectId": "geo-02"
+            }
+          ],
+          "assets": [
+            {
+              "id": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "image": "resources/716ab0f81fafb7669ccad71907c6845c7db77d380595abcdefa7b4139dc4e68f.png"
+            },
+            {
+              "id": "land-coast.island.h3.smuggler-cove.v1",
+              "image": "resources/ef714948e10fb923fc6c7e5299ea4cc7064468a8d267c5e0f6463dbe0c1d4075.png"
+            },
+            {
+              "id": "land-coast.island.h2.mist-forest-02.v1",
+              "image": "resources/69c73a2eeac9960c6ae1f0102ac3dac41679f572837e89a1b0b62798496eaf91.png"
+            },
+            {
+              "id": "land-coast.settlement.h2.hut-settlement-02.v1",
+              "image": "resources/c7a9911a877ae26445aaf4999252098598463296d3e0f7a776fb6eb5950cd44f.png"
+            },
+            {
+              "id": "sea-life.accent.h1.rowboat.v1",
+              "image": "resources/aa0b04087dc4cdca9edaf9c92771c371d0988a464bc644cf3141912cbb8e976f.png"
+            }
+          ],
+          "image": "maps/m004.svg",
+          "imageSha256": "2ad9bc1aff03cbcb2211b34cf95d9a978aafe9089c313fd6b819b37e5246a5ba"
+        },
+        "sources": {
+          "rules": {
+            "version": "gezeitenkarten-2",
+            "sha256": "e6824f888c949a81c5482d6010c9ed4e2511f0345c3b54f8bc4c9da0339c33fc"
+          },
+          "world": {
+            "packageId": "sams-gezeitenkarten-carribera-world-style",
+            "version": "1.0.0",
+            "publicView": "production-p01-p14-1",
+            "files": [
+              {
+                "path": "world/world.md",
+                "sha256": "fbc7d8082139854cfeff125257fec3a580afd095c11ff2f88450b783cd21b67a"
+              },
+              {
+                "path": "world/style.md",
+                "sha256": "d2af985b4559048b6d343deeb7e760e5df6af285470bb30c5b697648907986c9"
+              },
+              {
+                "path": "world/production.md",
+                "sha256": "e6e7636a28d7f1b2a5ff3e7c072dd5acf0c16d0a28cd4746c45888f30e9117fd"
+              }
+            ]
+          }
+        },
+        "seriesContext": {
+          "version": 1,
+          "episodes": []
+        },
+        "unitMethod": "whole-field-utf16-1",
+        "units": [
+          {
+            "id": "u0001",
+            "field": "title",
+            "start": 0,
+            "end": 34,
+            "text": "Die amtliche Nebenkostenabrechnung"
+          },
+          {
+            "id": "u0002",
+            "field": "intro.0",
+            "start": 0,
+            "end": 32,
+            "text": "++ AN DIE PIRAT:INNEN-INNUNG +++"
+          },
+          {
+            "id": "u0003",
+            "field": "intro.1",
+            "start": 0,
+            "end": 140,
+            "text": "++ BEANTRAGE ERSTATTUNG DER NAVIGATIONSKOSTEN +++ FAHRTBEGINN NEBELLICHT +++ VOLLSTÄNDIGES FAHRTPROTOKOLL FEHLT +++ AUFZEICHNUNGEN ANBEI +++"
+          },
+          {
+            "id": "u0004",
+            "field": "intro.2",
+            "start": 0,
+            "end": 84,
+            "text": "++ BITTE AUCH KOSTEN DIESES TELEGRAMMS ERSTATTEN +++ JEDES WORT KOSTET +++ DANKE +++"
+          },
+          {
+            "id": "u0005",
+            "field": "clues.H1",
+            "start": 0,
+            "end": 67,
+            "text": "STUNDE 1 BIS EINSCHLIESSLICH 5: NIE AUF NACHBARFELD VON WACKELKAHN."
+          },
+          {
+            "id": "u0006",
+            "field": "clues.H2",
+            "start": 0,
+            "end": 79,
+            "text": "STUNDE 2 BIS EINSCHLIESSLICH 5: NIE EXAKT VIER HEXFELDER ABSTAND ZU WACKELKAHN."
+          },
+          {
+            "id": "u0007",
+            "field": "clues.H3",
+            "start": 0,
+            "end": 77,
+            "text": "STUNDE 5 UND 6: IN GENAU EINER DIESER STUNDEN AUF NACHBARFELD VON WACKELKAHN."
+          },
+          {
+            "id": "u0008",
+            "field": "clues.H4",
+            "start": 0,
+            "end": 97,
+            "text": "STUNDE 3 BIS EINSCHLIESSLICH 6: IN GENAU EINER STUNDE EXAKT DREI HEXFELDER ABSTAND ZU NEBELLICHT."
+          }
+        ]
+      }
+    }
+  ]
+}

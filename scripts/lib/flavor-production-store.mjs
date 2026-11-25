@@ -3,63 +3,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
-import {randomUUID} from 'node:crypto';
-import {TextDecoder} from 'node:util';
 import {sha256} from './content-hash.mjs';
 import {openCardLibrary} from './card-library.mjs';
-import {resolvePackagePath} from './package-path.mjs';
 import {json,contentHash,same,structure,revisionRefSchema,validateProductionOrder,createProductionRecords} from './flavor-production.mjs';
 import {packageInventory,verifyProductionPackage,ROOT} from './flavor-production-package.mjs';
 
-const id=value=>assert.match(value,/^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$/,'flavor production: invalid local reference');
-const parse=bytes=>JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
-const regular=file=>{const stat=fs.lstatSync(file);assert.ok(stat.isFile()&&!stat.isSymbolicLink(),'flavor production: regular file required: '+file);};
-function directory(dir){fs.mkdirSync(dir,{recursive:true});assert.ok(!fs.lstatSync(dir).isSymbolicLink()&&fs.statSync(dir).isDirectory(),'flavor production: real directory required');}
-export function readTree(dir){
- assert.ok(!fs.lstatSync(dir).isSymbolicLink()&&fs.statSync(dir).isDirectory(),'flavor production: real snapshot directory required');
- const files=new Map();
- function walk(root,prefix=''){
-  for(const entry of fs.readdirSync(root,{withFileTypes:true}).sort((a,b)=>a.name<b.name?-1:1)){
-   const ref=prefix+entry.name,file=path.join(root,entry.name);
-   assert.ok(!entry.isSymbolicLink(),'flavor production: symlink in snapshot');
-   if(entry.isDirectory())walk(file,ref+'/');else{regular(file);files.set(ref,fs.readFileSync(file));}
-  }
- }
- walk(dir);return files;
-}
-function fsyncDirectory(dir){const fd=fs.openSync(dir,'r');try{fs.fsyncSync(fd);}finally{fs.closeSync(fd);}}
-function publishTree(target,files,beforePublish){
- if(fs.existsSync(target)){
-  const existing=readTree(target);same(packageInventory(existing),packageInventory(files),'immutable snapshot conflict: '+path.basename(target));return false;
- }
- const staging=path.join(path.dirname(target),'.pending-'+randomUUID());fs.mkdirSync(staging);
- try{
-  for(const [ref,bytes] of files){
-   const safe=resolvePackagePath('.',ref);assert.equal(safe,ref,'flavor production: invalid snapshot path');
-   const file=path.join(staging,safe);fs.mkdirSync(path.dirname(file),{recursive:true});
-   const fd=fs.openSync(file,'wx',0o600);try{fs.writeFileSync(fd,bytes);fs.fsyncSync(fd);}finally{fs.closeSync(fd);}
-  }
-  const dirs=[staging,...fs.readdirSync(staging,{recursive:true}).map(ref=>path.join(staging,ref)).filter(f=>fs.statSync(f).isDirectory())];
-  dirs.reverse().forEach(fsyncDirectory);
-  beforePublish?.();fs.renameSync(staging,target);fsyncDirectory(path.dirname(target));return true;
- }finally{fs.rmSync(staging,{recursive:true,force:true});}
-}
-function seal(files){return new Map([...files,['complete.json',json(packageInventory(files))]]);}
-function unseal(files){
- assert.ok(files.has('complete.json'),'flavor production: incomplete snapshot');
- const body=new Map([...files].filter(([ref])=>ref!=='complete.json'));
- same(parse(files.get('complete.json')),packageInventory(body),'snapshot integrity mismatch');return body;
-}
+import {localId as id,parseJsonBytes as parse,directory,readTree,publishTree,seal,unseal,withStoreLock} from './immutable-file-store.mjs';
+export {readTree} from './immutable-file-store.mjs';
 export function openProductionStore({directory:target,libraryDirectory=path.join(ROOT,'content/card-library/f02a-v1'),beforePublish}={}){
  assert.ok(typeof target==='string'&&target.trim(),'flavor production: explicit store directory required');
  directory(target);const root=fs.realpathSync(target);
  for(const sub of ['orders','imports','selections'])directory(path.join(root,sub));
- function locked(work){
-  const file=path.join(root,'.write-lock');let fd;
-  try{fd=fs.openSync(file,'wx',0o600);}catch(e){if(e.code==='EEXIST')throw Error('flavor production: writer lock exists; inspect an interrupted writer before manual removal');throw e;}
-  try{fs.writeFileSync(fd,json({pid:process.pid}));fs.fsyncSync(fd);return work();}
-  finally{fs.closeSync(fd);fs.unlinkSync(file);}
- }
+ const locked=work=>withStoreLock(root,work);
  let cachedLibrary;
  const library=()=>cachedLibrary??=openCardLibrary({directory:libraryDirectory});
  function verifyOrigin(order,origin){
@@ -173,6 +128,7 @@ export function openProductionStore({directory:target,libraryDirectory=path.join
   });
  }
  return Object.freeze({directory:root,saveOrder,loadOrder,exportOrder,importResponse,findRecord,selected,selectRevision,
+  latestRevision:(caseId,variant)=>{const latest=allRecords().filter(r=>r.caseId===caseId&&r.flavorVariantId===variant).sort((a,b)=>a.draft.revision-b.draft.revision).at(-1);return latest?revisionReference(latest):null;},
   validateIntent:order=>checkIntents(order,allRecords())});
 }
 export const revisionReference=record=>({caseId:record.caseId,flavorVariantId:record.flavorVariantId,revision:record.draft.revision,revisionHash:record.revisionHash});
