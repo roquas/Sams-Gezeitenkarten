@@ -1,0 +1,190 @@
+{
+  "contractVersion": 1,
+  "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df",
+  "positions": [
+    {
+      "positionId": "P01",
+      "caseId": "C-06",
+      "puzzleId": "C-06",
+      "cardRef": "gk-illustrated-card-v1-sha256:7dc68f72bed7af2fcd7e9d1e51b42be34da13767d19ace4b59a122aa5530ae08",
+      "sourceHash": "deb882ea41d811be6cba1cf4594a12ed431976c993997360c66c3522208577bc",
+      "flavorVariantId": "independent-1",
+      "revision": 1,
+      "predecessor": null,
+      "status": "complete",
+      "title": "TITEL ERSETZEN",
+      "intro": [
+        "EINLEITUNG ERSETZEN"
+      ],
+      "clues": [
+        {
+          "id": "H1",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H2",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H3",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H4",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H5",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H6",
+          "text": "HINWEISTEXT ERSETZEN"
+        }
+      ],
+      "metadata": {
+        "form": "ERZÄHLFORM ERSETZEN",
+        "themes": [],
+        "worldMotifs": [],
+        "inventions": []
+      }
+    },
+    {
+      "positionId": "P02",
+      "caseId": "C-02",
+      "puzzleId": "C-02",
+      "cardRef": "gk-illustrated-card-v1-sha256:e9181dc6e6d798c6b8dc690a663e8908ce94308997d7df506a8853dbcbf5cd44",
+      "sourceHash": "ad4c8329b94efab3554ced0ef2d3fd88a255e47850481bd624ec98884d539869",
+      "flavorVariantId": "independent-1",
+      "revision": 1,
+      "predecessor": null,
+      "status": "complete",
+      "title": "TITEL ERSETZEN",
+      "intro": [
+        "EINLEITUNG ERSETZEN"
+      ],
+      "clues": [
+        {
+          "id": "H1",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H2",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H3",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H4",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H5",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H6",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H7",
+          "text": "HINWEISTEXT ERSETZEN"
+        }
+      ],
+      "metadata": {
+        "form": "ERZÄHLFORM ERSETZEN",
+        "themes": [],
+        "worldMotifs": [],
+        "inventions": []
+      }
+    },
+    {
+      "positionId": "P03",
+      "caseId": "C-03",
+      "puzzleId": "C-03",
+      "cardRef": "gk-illustrated-card-v1-sha256:ba92ade296b267061c7ff3cd6d8c6ece7a3c550b074638c418451c27080f37a3",
+      "sourceHash": "c4f4c6cbcd0225349656241460fb38022ee054965af4f3706f5e4701b419d62b",
+      "flavorVariantId": "independent-1",
+      "revision": 1,
+      "predecessor": null,
+      "status": "complete",
+      "title": "TITEL ERSETZEN",
+      "intro": [
+        "EINLEITUNG ERSETZEN"
+      ],
+      "clues": [
+        {
+          "id": "H1",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H2",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H3",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H4",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H5",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H6",
+          "text": "HINWEISTEXT ERSETZEN"
+        }
+      ],
+      "metadata": {
+        "form": "ERZÄHLFORM ERSETZEN",
+        "themes": [],
+        "worldMotifs": [],
+        "inventions": []
+      }
+    },
+    {
+      "positionId": "P04",
+      "caseId": "C-11",
+      "puzzleId": "C-11",
+      "cardRef": "gk-illustrated-card-v1-sha256:2a5eb9b67733d5c327549b50546ade516befec6a9e44ac0463124d11c64e2f70",
+      "sourceHash": "40a07acfd88870168ea304a4552a2c97df6260d9cd524d9823f691db49fb78b0",
+      "flavorVariantId": "independent-1",
+      "revision": 1,
+      "predecessor": null,
+      "status": "complete",
+      "title": "TITEL ERSETZEN",
+      "intro": [
+        "EINLEITUNG ERSETZEN"
+      ],
+      "clues": [
+        {
+          "id": "H1",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H2",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H3",
+          "text": "HINWEISTEXT ERSETZEN"
+        },
+        {
+          "id": "H4",
+          "text": "HINWEISTEXT ERSETZEN"
+        }
+      ],
+      "metadata": {
+        "form": "ERZÄHLFORM ERSETZEN",
+        "themes": [],
+        "worldMotifs": [],
+        "inventions": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df",
+  "inventorySha256": "7c601e008606349f13b5dec1d0f2568124a13e1dcb8c5bcc768b0e6923be52e7",
+  "origin": {
+    "schemaVersion": 1,
+    "kind": "existing-s04-c-editorial-handoff",
+    "sourceFiles": [
+      {
+        "path": "content/community-beta/s04-c-v1/cases.json",
+        "sha256": "4b574935f63e3f4884abece2f5259f4513d308b5900c1f734bda2dce843de2cc"
+      },
+      {
+        "path": "content/community-beta/s04-c-v1/migration.json",
+        "sha256": "20b901024107745816f8151dbb98c40ca5f65df2cfc217bd3fb376ff9c165994"
+      }
+    ],
+    "positions": [
+      {
+        "caseId": "C-06",
+        "source": {
+          "kind": "puzzle-candidate",
+          "id": "community:s04-c-v1/C-06",
+          "sha256": "d6110ff864346f1bafaeee5d7d0e5a7ba465dbf9def7f6b377389a21b7bcc04d"
+        },
+        "link": {
+          "schemaVersion": 1,
+          "source": {
+            "kind": "puzzle-candidate",
+            "id": "community:s04-c-v1/C-06",
+            "sha256": "d6110ff864346f1bafaeee5d7d0e5a7ba465dbf9def7f6b377389a21b7bcc04d"
+          },
+          "cardKey": "gk-illustrated-card-v1-sha256:7dc68f72bed7af2fcd7e9d1e51b42be34da13767d19ace4b59a122aa5530ae08",
+          "cardIntegritySha256": "fc6fd2b06ec8214a2165783b53b56c437be691133683f516f84ba70ae2c8d442",
+          "release": {
+            "adapterVersion": "released-asset-catalog-1",
+            "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+            "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+            "sourceCommit": "511dfcf743a6e8c4f0c36b3354dcf36d1afe865e",
+            "archiveCommit": "1899b8b178efa8f8538ba6beb42b1f7707a7bf51",
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "ed76bb4402f2eb8111d1d086daac6d336f4236546cf350af85e39855d59e0037"
+          },
+          "integritySha256": "d893ac3fa11cdde4b148bbd2d7b5d8e2f3b5df229e1e1b648edbf6f03e0aef4c"
+        },
+        "cardIntegritySha256": "fc6fd2b06ec8214a2165783b53b56c437be691133683f516f84ba70ae2c8d442",
+        "identity": {
+          "mapStructure": "gk-map-v2-sha256:22f59cd7393e4f34830e3039fcac2677fe1dac4de54ab8217dd3221da1abbb07",
+          "instance": "gk-instance-v2-sha256:1111b58ac97e5598858a1c033bd65f37cf7e3b408bdcbdd3c0026151d2fbe135",
+          "variant": "gk-variant-v2-sha256:09a5d3fdd65cb416aff0d4ad22154dd6ae3930d4ad49a3b76ff55cc8a108fbe0"
+        },
+        "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M005/gk-variant-v2-sha256:09a5d3fdd65cb416aff0d4ad22154dd6ae3930d4ad49a3b76ff55cc8a108fbe0"
+      },
+      {
+        "caseId": "C-02",
+        "source": {
+          "kind": "puzzle-candidate",
+          "id": "community:s04-c-v1/C-02",
+          "sha256": "bfd134b7e23237cd04e5f18acc76acbbb929f66e90ab16afc254111b8d0a25f5"
+        },
+        "link": {
+          "schemaVersion": 1,
+          "source": {
+            "kind": "puzzle-candidate",
+            "id": "community:s04-c-v1/C-02",
+            "sha256": "bfd134b7e23237cd04e5f18acc76acbbb929f66e90ab16afc254111b8d0a25f5"
+          },
+          "cardKey": "gk-illustrated-card-v1-sha256:e9181dc6e6d798c6b8dc690a663e8908ce94308997d7df506a8853dbcbf5cd44",
+          "cardIntegritySha256": "b49add802c01a7d80ea1370ed93e92986667595a95815bc7b6b4e65f4351d359",
+          "release": {
+            "adapterVersion": "released-asset-catalog-1",
+            "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+            "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+            "sourceCommit": "511dfcf743a6e8c4f0c36b3354dcf36d1afe865e",
+            "archiveCommit": "1899b8b178efa8f8538ba6beb42b1f7707a7bf51",
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "ed76bb4402f2eb8111d1d086daac6d336f4236546cf350af85e39855d59e0037"
+          },
+          "integritySha256": "e7c63cdef9eda008ee916a9740b4e4b1bbd16a7f0fcd5f14d46947b9cfb9f962"
+        },
+        "cardIntegritySha256": "b49add802c01a7d80ea1370ed93e92986667595a95815bc7b6b4e65f4351d359",
+        "identity": {
+          "mapStructure": "gk-map-v2-sha256:de81b1b901905361b352c2fadce4778a2e490b626eec1370966d37af47d6019f",
+          "instance": "gk-instance-v2-sha256:ffa99f1936cd93835bda552bc37ac95b651379831d7cc1b3d8f00626aed9bb39",
+          "variant": "gk-variant-v2-sha256:59d896ba35679c86cf33767ee829a094e53045c9a844d44a7a9b1e9b3fc581e6"
+        },
+        "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M028/gk-variant-v2-sha256:59d896ba35679c86cf33767ee829a094e53045c9a844d44a7a9b1e9b3fc581e6"
+      },
+      {
+        "caseId": "C-03",
+        "source": {
+          "kind": "puzzle-candidate",
+          "id": "community:s04-c-v1/C-03",
+          "sha256": "1e01cf02aa9f8eb524eecbf88ca4cace52ba95c4daeeb18f00eb2e3064d2021a"
+        },
+        "link": {
+          "schemaVersion": 1,
+          "source": {
+            "kind": "puzzle-candidate",
+            "id": "community:s04-c-v1/C-03",
+            "sha256": "1e01cf02aa9f8eb524eecbf88ca4cace52ba95c4daeeb18f00eb2e3064d2021a"
+          },
+          "cardKey": "gk-illustrated-card-v1-sha256:ba92ade296b267061c7ff3cd6d8c6ece7a3c550b074638c418451c27080f37a3",
+          "cardIntegritySha256": "54df652f05a2ae87c04ecc219ef191a9ddde7d3edec2b5066b87618ffe054fa2",
+          "release": {
+            "adapterVersion": "released-asset-catalog-1",
+            "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+            "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+            "sourceCommit": "511dfcf743a6e8c4f0c36b3354dcf36d1afe865e",
+            "archiveCommit": "1899b8b178efa8f8538ba6beb42b1f7707a7bf51",
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "ed76bb4402f2eb8111d1d086daac6d336f4236546cf350af85e39855d59e0037"
+          },
+          "integritySha256": "180b3ab5021b32c2878e7329d8ca70a737f388a855bd4144679415ea641e4f02"
+        },
+        "cardIntegritySha256": "54df652f05a2ae87c04ecc219ef191a9ddde7d3edec2b5066b87618ffe054fa2",
+        "identity": {
+          "mapStructure": "gk-map-v2-sha256:0b72f0a2f6a1525f0a664c2dac6d895dcba63ef8e089ef6af57e62bd9e05177f",
+          "instance": "gk-instance-v2-sha256:ef038bd5a2c6975aa2c41dc00112207d042441d6707f272a295ffd0f50cbc1ee",
+          "variant": "gk-variant-v2-sha256:d1ee74aef47dcb237f5f72ee0345a36bc997083390a2429445d3f725e0ecda5f"
+        },
+        "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M025/gk-variant-v2-sha256:d1ee74aef47dcb237f5f72ee0345a36bc997083390a2429445d3f725e0ecda5f"
+      },
+      {
+        "caseId": "C-11",
+        "source": {
+          "kind": "puzzle-candidate",
+          "id": "community:s04-c-v1/C-11",
+          "sha256": "e7d2b82092127bd7491640ef69d0c29dc3ce8d149107798b719ca82e23c1b08d"
+        },
+        "link": {
+          "schemaVersion": 1,
+          "source": {
+            "kind": "puzzle-candidate",
+            "id": "community:s04-c-v1/C-11",
+            "sha256": "e7d2b82092127bd7491640ef69d0c29dc3ce8d149107798b719ca82e23c1b08d"
+          },
+          "cardKey": "gk-illustrated-card-v1-sha256:2a5eb9b67733d5c327549b50546ade516befec6a9e44ac0463124d11c64e2f70",
+          "cardIntegritySha256": "20ae7903b83e8f774a3cee18e6abdc549df6056db489d040c00b6bb7818fa1ee",
+          "release": {
+            "adapterVersion": "released-asset-catalog-1",
+            "releaseId": "gk-catalog-release-v1-sha256-f9dbeb5e6be3664adcef72c1624615e7a016681cd4024ad0442fd54ec825497e",
+            "catalogId": "gk-catalog-content-v1-sha256-7afd0a6cc977a5435051dddd1875cbfa7acbc579da1cfcfa5f895899ac7d0ad3",
+            "sourceCommit": "511dfcf743a6e8c4f0c36b3354dcf36d1afe865e",
+            "archiveCommit": "1899b8b178efa8f8538ba6beb42b1f7707a7bf51",
+            "backgroundId": "sea-blue-01",
+            "catalogSha256": "ed76bb4402f2eb8111d1d086daac6d336f4236546cf350af85e39855d59e0037"
+          },
+          "integritySha256": "e8696abe52e96cabb057e48fac284c5f9388d147f05e0747edc25be5620eca8c"
+        },
+        "cardIntegritySha256": "20ae7903b83e8f774a3cee18e6abdc549df6056db489d040c00b6bb7818fa1ee",
+        "identity": {
+          "mapStructure": "gk-map-v2-sha256:db8dec752e54f7173e94e1ff1bad814d7af075a9505ebdb113ce59d6883fb5e2",
+          "instance": "gk-instance-v2-sha256:02ebd990d1a32105f24068b17b5ff9f655fee67ecb44c0f91e002bc8f062e549",
+          "variant": "gk-variant-v2-sha256:2676716b8e4edcd425f77b3dddd07c00d294ace341ab3a5cbc7de4c0e536b24d"
+        },
+        "candidateId": "gk-s04-c-production-sha256:828a90acad20f39bb8e24186dbb5685bbfd7f7d6b6244a1d4ec47a622d5808ae/C/M027/gk-variant-v2-sha256:2676716b8e4edcd425f77b3dddd07c00d294ace341ab3a5cbc7de4c0e536b24d"
+      }
+    ]
+  },
+  "originHash": "9cdf59faab7f4fadcef3dee38df83044c13d63294e5326ff76ab04bdc28cf1b6"
+}

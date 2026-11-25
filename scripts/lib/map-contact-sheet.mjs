@@ -160,16 +160,32 @@ function createGeographicGrid(el,map){
 
 export function renderContactSvg(row,library,files,resolveImage){
  assert(row.decision==='accepted'&&row.assignment?.status==='complete','only accepted complete maps can be rendered');
- const el=elementFactory(resolveImage,'candidate-'+row.index+'-');
- const svg=el('svg',{xmlns:'http://www.w3.org/2000/svg',viewBox:CHART_VIEWBOX,role:'img','aria-labelledby':'candidate-'+row.index+'-title'});
- svg.append(el('title',{id:'title'},'Versuch '+row.index+' · '+row.assignment.status));
+ return renderSavedMapSvg({map:row.generation.map,placements:row.assignment.placements,
+  prefix:'candidate-'+row.index+'-',title:'Versuch '+row.index+' · '+row.assignment.status},library,files,resolveImage);
+}
+
+// Presentation of an already validated saved card, independent of B1/B2 rows.
+export function renderSavedMapSvg({map,placements,prefix,title,coordinates=false},library,files,resolveImage){
+ const el=elementFactory(resolveImage,prefix);
+ const svg=el('svg',{xmlns:'http://www.w3.org/2000/svg',viewBox:CHART_VIEWBOX,role:'img','aria-labelledby':prefix+'title'});
+ svg.append(el('title',{id:'title'},title));
  svg.append(el('rect',{...CHART_BOUNDS,fill:'#e9d5b0'}));
  const {sea,frame}=createChartBaseLayers(el,files);svg.append(sea);
  const objects=el('g',{'data-chart-layer':'objects'});
- drawAssetPlacements(el,objects,row.assignment.placements,library,byId,new URL('https://released.invalid/'));
+ drawAssetPlacements(el,objects,placements,library,byId,new URL('https://released.invalid/'));
  svg.append(objects);
  svg.append(frame);
- svg.append(createGeographicGrid(el,row.generation.map));return svg.toString();
+ const grid=createGeographicGrid(el,map);
+ if(coordinates){
+  // Same gameplay polygons as the contact sheet, with explicit technical cells.
+  const visible=el('g',{'data-chart-layer':'public-coordinates'});
+  for(const hex of HEXES){
+   visible.append(el('polygon',{points:hex.polygon.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#253a48','stroke-width':0.7,'stroke-opacity':0.55}));
+   visible.append(el('text',{x:hex.center[0],y:hex.center[1]+4,'text-anchor':'middle','font-size':12,'font-family':'sans-serif',fill:'#17232a',stroke:'#fff6db','stroke-width':3,'paint-order':'stroke'},hex.id));
+  }
+  svg.append(visible);
+ }
+ svg.append(grid);return svg.toString();
 }
 
 export async function createMapContactSheet(input){
