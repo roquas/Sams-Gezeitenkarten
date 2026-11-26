@@ -11,7 +11,7 @@ import {loadReleasedAssetCatalog} from './released-asset-catalog.mjs';
 import {renderSavedMapSvg} from './map-contact-sheet.mjs';
 import {READER_PROMPT,REVIEWER_PROMPT} from './flavor-quality-prompts.mjs';
 import {COMPARE_METHOD} from './flavor-quality-compare.mjs';
-import {QUALITY_VERSION,QUALITY_METHOD,UNIT_METHOD,hash,object,array,structure,textUnits,responseSchema} from './flavor-quality-contract.mjs';
+import {QUALITY_VERSION,QUALITY_METHOD,UNIT_METHOD,REVIEW_AREAS,OBSERVATION_CATEGORIES,hash,object,array,structure,textUnits,responseSchema} from './flavor-quality-contract.mjs';
 
 const implementationFiles=['flavor-quality-contract.mjs','flavor-quality-compare.mjs','flavor-quality-package.mjs','flavor-quality-prompts.mjs','flavor-quality-store.mjs','flavor-quality-json.mjs','count-clue-normalization.mjs','../../src/engine/puzzle.mjs','../../src/engine/hex.mjs','../../src/engine/validate.mjs','../../src/puzzles/schema.mjs','../../src/puzzles/json-schema.mjs'];
 const implementationHash=hash(implementationFiles.map(name=>sha256(fs.readFileSync(new URL(name,import.meta.url)))));
@@ -112,10 +112,19 @@ export function createReviewerJob({readerJob,readerSidecar,readerResults,compari
  return {job,sidecar,files:packageFiles(job,sourceFiles)};
 }
 export function packageFiles(job,sources){
- const files=new Map(sources),schema=responseSchema(job.stage);
+ const files=new Map(sources),schema=responseSchema(job.stage,job);
  files.set('job.json',json(job));files.set('prompt.txt',job.stage==='reader'?READER_PROMPT:REVIEWER_PROMPT);files.set('response.schema.json',json(schema));
- const items=job.items.map(i=>job.stage==='reader'?{itemId:i.itemId,inputHash:i.inputHash,coverage:[],claims:[],interpretations:i.input.presentation.clues.map(c=>({clueId:c.id,claimIds:[]}))}:
-  {itemId:i.itemId,inputHash:i.inputHash,readerHash:hash(i.input.reader),comparisonHash:hash(i.input.comparison),coverage:[],checks:[],claims:[],clues:[],findings:[],observations:[]});
+ const emptyEvidence=()=>({unitIds:[],factRefs:[],rationale:''});
+ const items=job.items.map(i=>{
+  const input=job.stage==='reader'?i.input:i.input.public;
+  const coverage=input.units.map(u=>job.stage==='reader'?{unitId:u.id,claimIds:[],assessment:''}:{unitId:u.id,assessment:''});
+  if(job.stage==='reader')return {itemId:i.itemId,inputHash:i.inputHash,coverage,claims:[],interpretations:input.presentation.clues.map(c=>({clueId:c.id,claimIds:[]}))};
+  return {itemId:i.itemId,inputHash:i.inputHash,readerHash:hash(i.input.reader),comparisonHash:hash(i.input.comparison),coverage,
+   checks:REVIEW_AREAS.map(area=>({area,conclusion:null,...emptyEvidence()})),
+   claims:i.input.reader.claims.map(c=>({claimId:c.id,disposition:null,...emptyEvidence()})),
+   clues:input.presentation.clues.map(c=>({clueId:c.id,interpretation:null,selfContained:null,informationBoundary:null,...emptyEvidence(),factRefs:['original.'+c.id]})),
+   findings:[],observations:OBSERVATION_CATEGORIES.map(category=>({category,value:'',unitIds:[]}))};
+ });
  files.set('response-template.json',json({transportVersion:1,stage:job.stage,jobId:job.jobId,methodHash:METHOD_HASH,items}));
  const article=job.items.map(item=>{
   const p=job.stage==='reader'?item.input:item.input.public;
@@ -130,7 +139,7 @@ export function verifyQualityPackage(files){
  const body=new Map([...files].filter(([name])=>name!=='inventory.json'));
  same(JSON.parse(files.get('inventory.json')),packageInventory(body),'quality package inventory');
  const job=JSON.parse(files.get('job.json'));assert.equal(job.methodHash,METHOD_HASH,'flavor quality: unsupported method');
- same(JSON.parse(files.get('response.schema.json')),responseSchema(job.stage),'quality response schema');
+ same(JSON.parse(files.get('response.schema.json')),responseSchema(job.stage,job),'quality response schema');
  for(const item of job.items){
   assert.equal(item.inputHash,hash(item.input),'flavor quality: public item integrity');
   const p=job.stage==='reader'?item.input:item.input.public;

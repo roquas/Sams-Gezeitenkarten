@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {preparePilotStore,verifyPilot,PILOT_RESPONSE_SHA} from '../../scripts/lib/flavor-quality-pilot.mjs';
-import {buildReaderInputs,createReaderJob,METHOD_HASH,packageFiles} from '../../scripts/lib/flavor-quality-package.mjs';
-import {validateReaderItem,validateReviewerItem,validateEnvelope,textUnits,hash,qualify} from '../../scripts/lib/flavor-quality-contract.mjs';
+import {buildReaderInputs,createReaderJob,createReviewerJob,METHOD_HASH,packageFiles} from '../../scripts/lib/flavor-quality-package.mjs';
+import {validateReaderItem,validateReviewerItem,validateEnvelope,textUnits,hash,qualify,responseSchema} from '../../scripts/lib/flavor-quality-contract.mjs';
 import {compareClue,compareReaderItem,normalForm} from '../../scripts/lib/flavor-quality-compare.mjs';
 import {parseQualityResponse} from '../../scripts/lib/flavor-quality-json.mjs';
 import {createProductionRecords,createProductionOrder,contentHash,materializeFlavorRevision,validateStoredProductionRecords} from '../../scripts/lib/flavor-production.mjs';
@@ -14,7 +14,8 @@ import {createFlavorCheckpoint} from '../../scripts/lib/flavor-contract.mjs';
 import {canonicalJson,sha256} from '../../scripts/lib/content-hash.mjs';
 import {createRules} from '../../src/engine/puzzle.mjs';
 import {direction} from '../../src/engine/hex.mjs';
-import {technicalReader} from '../fixtures/flavor-quality/technical-responses.mjs';
+import {schemaErrors} from '../../src/puzzles/schema.mjs';
+import {technicalReader,technicalReviewer} from '../fixtures/flavor-quality/technical-responses.mjs';
 const copy=structuredClone;
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),'f02b-contract-'));
 let fixture;
@@ -181,4 +182,70 @@ test('budget exhaustion and empty legal bases never assert equivalence or unprov
  const chart=copy(f().inputs.entries[0].input.chart);chart.start='A1';chart.map.objects=[{id:'start',cells:['A1'],passable:true},{id:'wall',cells:['B1','A2','B2'],passable:false}];chart.steps=2;
  const c={id:'H1',type:'position',hour:0,cell:'A1'},empty=compareClue({...chart,original:c,atoms:[c]});assert.equal(empty.scope.emptyBase,true);assert.equal(empty.result,'incomparable');
  assert.throws(()=>compareClue({...chart,original:c,atoms:[{...c,hour:6}]}));
+});
+
+
+test('exported kind/state/atom variants match runtime acceptance, including pilot-invalid combinations',()=>{
+ const {pkg,reader}=f(),job=pkg.job,item=job.items[0],good=reader.items[0],schema=responseSchema('reader',job);
+ const index=good.claims.findIndex(c=>c.state==='formalized');
+ for(const kind of ['mathematical','potential','narrative','invention','ambiguous','interaction'])for(const state of ['formalized','unresolved','narrative'])for(const atoms of [[],good.claims[index].atoms]){
+  const r=copy(good);Object.assign(r.claims[index],{kind,state,atoms:copy(atoms)});
+  const expected=state==='formalized'?kind==='mathematical'&&atoms.length>0:atoms.length===0&&(state==='unresolved'||['narrative','invention'].includes(kind));
+  const envelope={...copy(reader),items:[r]};assert.equal(schemaErrors(envelope,schema).length===0,expected,kind+'/'+state+'/'+atoms.length);
+  if(expected)assert.doesNotThrow(()=>validateReaderItem(item,r));else assert.throws(()=>validateReaderItem(item,r));
+ }
+});
+
+test('job-bound reply schema exposes reference namespaces and complete required slots; templates remain invalid work',()=>{
+ const {pkg,inputs,reader}=f();
+ assert.ok(schemaErrors(JSON.parse(pkg.files.get('response-template.json')),JSON.parse(pkg.files.get('response.schema.json'))).length);
+ const comparisons=reader.items.map((r,i)=>compareReaderItem(pkg.job.items[i],r,inputs.entries[i].originals));
+ // Build an independent reviewer job through the public factory, with no inferred result defaults.
+ const review=createReviewerJob({readerJob:pkg.job,readerSidecar:pkg.sidecar,readerResults:reader.items,comparisons,originals:inputs.entries.map(e=>e.originals),files:pkg.files});
+ const response=technicalReviewer(review.job),schema=JSON.parse(review.files.get('response.schema.json'));
+ assert.deepEqual(schemaErrors(response,schema),[]);
+ const template=JSON.parse(review.files.get('response-template.json'));assert.ok(schemaErrors(template,schema).length);
+ assert.equal(template.items[0].coverage.length,review.job.items[0].input.public.units.length);
+ assert.equal(template.items[0].checks.length,13);assert.equal(template.items[0].claims.length,reader.items[0].claims.length);
+ assert.ok(template.items[0].checks.every(c=>c.conclusion===null));
+ const bad=copy(response),r=bad.items[0],unit=review.job.items[0].input.public.units[0].id;
+ r.findings=[{id:'F1',severity:'ADVISORY',requirement:'Technical namespace regression',unitIds:[unit],factRefs:['public.rules'],rationale:'Technical double',claimIds:[],method:'technical-test',evidenceRefs:[unit],repairTarget:null}];
+ assert.ok(schemaErrors(bad,schema).length);assert.throws(()=>validateReviewerItem(review.job.items[0],r));
+ r.findings[0].evidenceRefs=['reader'];assert.deepEqual(schemaErrors(bad,schema),[]);validateReviewerItem(review.job.items[0],r);
+ r.inputHash='0'.repeat(64);assert.ok(schemaErrors(bad,schema).length);
+});
+
+test('multi-hint Reader reasoning requires independent supported source-bound approval; narrative math and disclosure stay blocked',()=>{
+ const {pkg,inputs,reader}=f(),publicItem=copy(pkg.job.items[0]),r=copy(reader.items[0]);
+ const hints=r.claims.filter(c=>c.clueId!==null).slice(0,2),extra={id:'cross',unitIds:hints.flatMap(c=>c.unitIds),kind:'mathematical',meaning:'TECHNICAL Reader conjunction, not a new player statement',clueId:null,state:'formalized',atoms:hints.flatMap(c=>copy(c.atoms))};
+ r.claims.push(extra);for(const u of extra.unitIds)r.coverage.find(c=>c.unitId===u).claimIds.push(extra.id);
+ validateReaderItem(publicItem,r);
+ const comparison=compareReaderItem(publicItem,r,inputs.entries[0].originals),reviewJob=createReviewerJob({readerJob:{...pkg.job,items:[publicItem]},readerSidecar:{...pkg.sidecar,items:[pkg.sidecar.items[0]]},readerResults:[r],comparisons:[comparison],originals:[inputs.entries[0].originals],files:pkg.files});
+ const item=reviewJob.job.items[0],review=technicalReviewer(reviewJob.job).items[0],claim=review.claims.find(c=>c.claimId==='cross');claim.unitIds=extra.unitIds;claim.factRefs=hints.map(c=>'original.'+c.clueId);
+ validateReviewerItem(item,review);assert.equal(qualify(item,r,comparison,review).qualified,true);
+ for(const mutate of [
+  v=>{v.checks.find(c=>c.area==='deduction-disclosure').conclusion='error';},
+  v=>{v.checks.find(c=>c.area==='additional-information').conclusion='uncertain';},
+  v=>{v.clues[0].informationBoundary='deduction';},
+  v=>{v.claims.find(c=>c.claimId==='cross').factRefs.pop();},
+  v=>{v.claims.find(c=>c.claimId==='cross').disposition='unresolved';}
+ ]){const changed=copy(review);mutate(changed);assert.equal(qualify(item,r,comparison,changed).qualified,false);}
+ for(const field of ['title','intro.0','series.0.clues.H1']){
+  const changed=copy(item),source=copy(r);changed.input.public.units.push({id:'outside',field,start:0,end:1,text:'X'});source.claims.find(c=>c.id==='cross').unitIds.push('outside');
+  assert.ok(qualify(changed,source,comparison,review).reasons.includes('additional-mathematics:cross'));
+ }
+ // Intro mathematics still needs authority even if a Reader supplies an outer clue ID.
+ const withIntro=copy(r),ordinary=withIntro.claims.find(c=>c.id===hints[0].id),intro=publicItem.input.units.find(u=>u.field==='intro.0');
+ ordinary.unitIds.push(intro.id);withIntro.coverage.find(c=>c.unitId===intro.id).claimIds.push(ordinary.id);
+ validateReaderItem(publicItem,withIntro);
+ assert.ok(qualify(item,withIntro,comparison,review).reasons.includes('additional-mathematics:'+ordinary.id));
+ // An unrelated uncertain area does not relabel a supported inference as extra text;
+ // it independently keeps the overall result blocked.
+ const otherIssue=copy(review);otherIssue.checks.find(c=>c.area==='ambiguity').conclusion='uncertain';
+ const blocked=qualify(item,r,comparison,otherIssue);assert.equal(blocked.qualified,false);
+ assert.ok(!blocked.reasons.includes('additional-mathematics:cross'));
+ const single=copy(r);single.claims.find(c=>c.id==='cross').unitIds=hints[0].unitIds;
+ assert.ok(qualify(item,single,comparison,review).reasons.includes('additional-mathematics:cross'));
+ const unresolved=copy(r);unresolved.claims.find(c=>c.id==='cross').state='unresolved';unresolved.claims.find(c=>c.id==='cross').atoms=[];
+ assert.equal(qualify(item,unresolved,comparison,review).qualified,false);
 });
