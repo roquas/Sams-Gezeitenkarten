@@ -129,6 +129,28 @@ class PackagingTests(unittest.TestCase):
                 for ref in re.findall(r"(?:from\s*|import\s*)[\"']([^\"']+)[\"']", text):
                     self.assertIn(posixpath.normpath(posixpath.join(posixpath.dirname(name), ref)), names)
 
+    def test_external_navigation_is_retained_without_becoming_a_runtime_dependency(self):
+        page = self.root / 'index.html'
+        links = '<a href="https://lanoinc.de">Impressum</a><a HREF="https://example.org/source">Quelle</a>'
+        page.write_text(page.read_text() + links)
+        with contextlib.redirect_stdout(io.StringIO()):
+            output = packager.package(self.root)
+        with zipfile.ZipFile(output) as archive:
+            self.assertIn(links, archive.read('index.html').decode())
+            self.assertFalse(any('https:' in name for name in archive.namelist()))
+
+    def test_external_resources_and_unsafe_navigation_remain_rejected(self):
+        page = self.root / 'index.html'
+        original = page.read_text()
+        for html in ['<script src="https://example.org/app.js"></script>',
+                     '<img SRC="https://example.org/image.png">',
+                     '<link href="https://example.org/style.css" rel="stylesheet">',
+                     '<a href="javascript:alert(1)">invalid</a>']:
+            with self.subTest(html=html):
+                page.write_text(original + html)
+                self.rejected('Nicht eigenständig verpackbare Referenz')
+        page.write_text(original)
+
     def test_missing_puzzle(self):
         (self.root / 'puzzles/model-demo.json').unlink()
         self.rejected('model-demo.json')
