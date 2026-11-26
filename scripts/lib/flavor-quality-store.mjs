@@ -57,7 +57,8 @@ export function openQualityStore({directory:target,production,beforePublish}={})
    const readerResults=readerItems.map(p=>accepted.get(p.itemId)?.result),comparisons=readerItems.map(p=>loadComparison(parent,p.itemId));
    const inputs=buildReaderInputs({production,references:parent.sidecar.items.map(i=>i.revisionRef),context:parent.sidecar.context});
    const originals=readerItems.map(p=>inputs.entries[parent.job.items.findIndex(x=>x.itemId===p.itemId)].originals);
-   const expected=createReviewerJob({readerJob:{...parent.job,items:readerItems},readerSidecar:{...parent.sidecar,items:readerItems.map(p=>parent.sidecar.items.find(b=>b.itemId===p.itemId))},
+   const clarification=sidecar.clarification?clarificationEvidence(sidecar.clarification):null;
+   const expected=createReviewerJob({clarification,clarificationReference:sidecar.clarification??null,readerJob:{...parent.job,items:readerItems},readerSidecar:{...parent.sidecar,items:readerItems.map(p=>parent.sidecar.items.find(b=>b.itemId===p.itemId))},
     readerResults,comparisons,originals,files:parent.files},{jobId,itemIds:job.items.map(i=>i.itemId)});
    same(sidecar,expected.sidecar,'review dependency binding');same(packageInventory(saved.files),packageInventory(expected.files),'review job trust anchor');
   }
@@ -117,7 +118,7 @@ export function openQualityStore({directory:target,production,beforePublish}={})
   return {jobId:pkg.job.jobId,stage:pkg.job.stage,items:pkg.job.items.length,
    created:publishTree(location('jobs',pkg.job.jobId),files,beforePublish)};
  }
- function createBlindBatch({references,context=EMPTY_CONTEXT,omitCompleted=true}){
+ function createBlindBatch({references,context=EMPTY_CONTEXT,omitCompleted=true,jobId}){
   return locked(()=>{
    let inputs=buildReaderInputs({production,references,context}),skipped=[];
    assert.ok(current({sidecar:{context,items:inputs.entries.map(e=>e.binding)}}),'flavor quality: stale production revision/context');
@@ -133,7 +134,7 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     if(!pending.length)return {jobId:null,stage:'reader',items:0,skipped,created:false};
     inputs=buildReaderInputs({production,references:pending,context});
    }
-   const pkg=createReaderJob(inputs);assert.ok(current(pkg),'flavor quality: stale production revision/context');return {...saveJob(pkg),skipped};
+   const pkg=createReaderJob(inputs,jobId?{jobId}:{});assert.ok(current(pkg),'flavor quality: stale production revision/context');return {...saveJob(pkg),skipped};
   });
  }
  function exportJob(jobId,out){
@@ -201,11 +202,15 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     staleItemIds:saved.job.items.filter(i=>!currentItem(saved,i.itemId)).map(i=>i.itemId)};
   });
  }
- function createReviewBatch({readerJobId,omitCompleted=true}){
+ function createReviewBatch({readerJobId,omitCompleted=true,clarification=null,jobId}){
   return locked(()=>{
    const parent=loadJob(readerJobId);assert.equal(parent.job.stage,'reader');
    const currentItems=parent.job.items.filter(i=>currentItem(parent,i.itemId));
    assert.ok(currentItems.length,'flavor quality: stale review source');
+   if(clarification){const prior=loadJob(clarification.jobId);assert.equal(prior.job.stage,'reviewer');
+    const binding=prior.sidecar.items.find(i=>i.itemId===clarification.itemId);assert.ok(binding);
+    assert.ok(parent.sidecar.items.every(i=>i.sourceBinding===binding.sourceBinding),'clarification exact source binding');same(parent.sidecar.context,prior.sidecar.context,'clarification context');
+   }
    const accepted=acceptedResults(parent),done=new Set();
    if(omitCompleted)for(const jobId of names(path.join(root,'jobs'))){
     const raw=rawJob(jobId);if(raw.historical||raw.job.stage!=='reviewer')continue;
@@ -220,11 +225,22 @@ export function openQualityStore({directory:target,production,beforePublish}={})
    });
    if(!items.length)return {jobId:null,stage:'reviewer',items:0,created:false};
    const inputs=buildReaderInputs({production,references:parent.sidecar.items.map(b=>b.revisionRef),context:parent.sidecar.context});
-   const pkg=createReviewerJob({readerJob:{...parent.job,items},readerSidecar:{...parent.sidecar,items:items.map(i=>parent.sidecar.items.find(b=>b.itemId===i.itemId))},
+   const pkg=createReviewerJob({clarification:clarification?clarificationEvidence(clarification):null,clarificationReference:clarification,readerJob:{...parent.job,items},readerSidecar:{...parent.sidecar,items:items.map(i=>parent.sidecar.items.find(b=>b.itemId===i.itemId))},
     readerResults:items.map(i=>accepted.get(i.itemId).result),comparisons:items.map(i=>loadComparison(parent,i.itemId)),
-    originals:items.map(i=>inputs.entries[parent.job.items.findIndex(p=>p.itemId===i.itemId)].originals),files:parent.files});
+    originals:items.map(i=>inputs.entries[parent.job.items.findIndex(p=>p.itemId===i.itemId)].originals),files:parent.files},jobId?{jobId}:{});
    return saveJob(pkg);
   });
+ }
+ function evidence(jobId){
+  const saved=loadJob(jobId);assert.ok(!saved.historical,'historical evidence cannot drive current orchestration');
+  return {job:saved.job,sidecar:saved.sidecar,results:[...acceptedResults(saved).values()].map(v=>structuredClone(v))};
+ }
+ function clarificationEvidence(reference){
+  const prior=evidence(reference.jobId);assert.equal(prior.job.stage,'reviewer');
+  const item=prior.job.items.find(i=>i.itemId===reference.itemId),binding=prior.sidecar.items.find(i=>i.itemId===reference.itemId);
+  const result=prior.results.find(r=>r.result.itemId===reference.itemId);assert.ok(item&&result,'complete prior review required');
+  return {priorInput:item.input,priorReview:result.result,revisionRef:binding.revisionRef,
+   instruction:'Resolve the actual differences with specific text and source evidence. Agreement or a majority is not a resolution. A reader error does not justify changing a correct story. All current standard checks remain mandatory.'};
  }
  function inspect(jobId,{context}={}){
   const saved=loadJob(jobId);
@@ -240,7 +256,7 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     reader=item.input.reader;comparison=item.input.comparison;const found=accepted.get(item.itemId);review=found?.result;if(found)operators.push(found.operator);
     const parent=loadJob(binding.readerJobId);operators.push(acceptedResults(parent).get(binding.readerItemId).operator);
    }
-   const derived=qualify(item,reader,comparison,review),technical=operators.some(o=>o.kind==='technical-test');
+   const derived=qualify(item,reader,comparison,review),technical=operators.some(o=>o.kind==='technical-test')||!!anchor.isTechnicalRevision?.(binding.revisionRef);
    return {itemId:item.itemId,revisionRef:binding.revisionRef,sourceBinding:binding.sourceBinding,applicable,
     reader:!!reader,comparison:!!comparison,review:!!review,...derived,
     technicalWouldQualify:technical?derived.qualified:null,qualified:applicable&&!technical&&derived.qualified,
@@ -252,5 +268,5 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     importedResponses:imports.length,declaredModels:imports.map(i=>i.receipt.operator.model),tokens:null,cost:null},
    limits:'No external model invocation. F01/checkpoints, selection and publication unchanged.'};
  }
- return Object.freeze({directory:root,...Object.fromEntries(Object.entries({createBlindBatch,exportJob,loadJob,importResponse,compare,createReviewBatch,inspect}).map(([name,fn])=>[name,(...args)=>operation(()=>fn(...args))]))});
+ return Object.freeze({directory:root,...Object.fromEntries(Object.entries({createBlindBatch,exportJob,loadJob,importResponse,compare,createReviewBatch,inspect,evidence}).map(([name,fn])=>[name,(...args)=>operation(()=>fn(...args))]))});
 }

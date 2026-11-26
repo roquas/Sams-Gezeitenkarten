@@ -38,7 +38,7 @@ export function main(args=process.argv.slice(2)){
  const selection=store.selected(flags.case);
  if(command==='inspect')return selection;
  assert.ok(selection.selected,'flavor production: no selected revision');
- const record=store.findRecord(selection.selected),{order}=store.loadOrder(record.orderId),position=order.positions.find(p=>p.positionId===record.positionId);
+ const {record,position}=store.resolveRevisionContext(selection.selected);
  const editorial=prepareBetaEditorial({editorial:read(path.join(ROOT,'content/community-beta/s04-c-v1/editorial.json')),position,record,dataVersion:Number(flags['data-version'])});
  fs.writeFileSync(flags.out,json(editorial),{flag:'wx'});
  return {out:path.resolve(flags.out),status:'draft',presentationSha256:materializeFlavorRevision(position,record).presentationHash};

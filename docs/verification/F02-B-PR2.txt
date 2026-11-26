@@ -1,0 +1,55 @@
+F02-B PR 2 – technischer Nachweis, 26.11.2026
+
+Ausgang: main a268484de6350bc3216c7be3f9729e631fd6a9f8.
+PR #132 ist einschließlich Head 89f1b9236e47380450a349859cc6747d7b8c79d7
+integriert (git merge-base --is-ancestor erfolgreich). Unabhängige Nachprüfung
+im Chat „PR 132 unabhängig prüfen“: keine belastbaren Findings, 143/143
+gezielte Tests und 22/22 Packagingtests; vollständige CI #540 erfolgreich.
+GitHub enthält dafür keine separat eingereichte Review. Kein Merge durch
+PR 2. Separater Checkout /private/tmp/sams-f02b-pr2; fremde uncommittete
+UI-Änderungen im ursprünglichen Workspace nicht verändert.
+
+Umgebung: macOS 15.1 arm64, Node v22.23.3.
+Bildabhängige Tests: PATH=/private/tmp/sams-f02a-python/bin:$PATH,
+TMPDIR=/private/tmp. npm ci erfolgreich, unveränderte Lockdatei.
+
+Bereits erfolgreich abgeschlossen:
+node --test tests/contracts/flavor.test.mjs tests/contracts/count-clue-normalization.test.mjs
+72/72 bestanden.
+node --test tests/contracts/flavor-scoped-repair.test.mjs
+14/14 bestanden, ausschließlich öffentliche künstliche Vertragsfixture.
+node --test tests/contracts/flavor-production.test.mjs tests/integration/flavor-production.test.mjs
+Mit der oben genannten Python-Umgebung: 46/46 bestanden.
+Der erste Lauf ohne diesen PATH scheiterte wegen fehlendem PIL im
+Standard-Python (45 fehlgeschlagene Tests). Kein Gate/Produktcode wurde
+hierfür gelockert; der vollständige Wiederholungslauf bestand.
+npm run test:content
+21/21 bestanden.
+npm run test:puzzles
+Erfolgreich.
+npm run check:community
+Erfolgreich, 15 bestehende Fälle validiert.
+npm run check:community:release
+Erwartet Exit 1: Flavor not approved, pending statt approved.
+
+Die zusätzlichen Batch-/Qualitätsregressionen und npm run test:unit wurden
+vollständig gestartet. Endgültige Ergebnisse und konkreter CI-Head werden
+nach Abschluss ergänzt; laufende Tests sind hier nicht als bestanden gezählt.
+Die unveränderte vollständige CI bleibt maßgeblich für Browser, WebKit,
+Assets, Katalogarchiv, Reproduktion und Deployment-Packaging.
+Keine Workflow-/Classifier-/Allowliständerung und keine Gate-Reduktion.
+
+Die gebundene minimale Pilotklarstellung wurde ausschließlich in einem
+getrennten lokalen Arbeitsstore als eine neue menschlich-redaktionelle
+Revision angenommen. Exakte private Autorisierung, ursprünglicher Finding,
+Patchbytes, Ableitungsnachweis und Importresultat verbleiben außerhalb des
+Repositorys. Alle anderen Spielertextfelder sind gegen den Vorgänger geprüft
+unverändert; keine Auswahl. Die Neubeurteilung wird als aktueller öffentlicher
+Readerauftrag bereitgestellt. Ohne neue externe Antworten bleiben Reader,
+Vergleich und unabhängige Gesamtprüfung offen. Kein echter Reparaturmodelllauf
+und keine fachliche Qualifikation aus dem technischen Import.
+
+Historische Produktions-/Qualitätsdaten, Pilottexte, Auswahl, Karten, Namen,
+Assets und Beta-Freigabedaten bleiben unverändert. Neue Regressionen verwenden
+explizit technische Antworten. Die endlichen synthetischen Abläufe belegen
+keine zukünftige Modellgüte, keinen Livebetrieb und keine 10+5-Produktion.
