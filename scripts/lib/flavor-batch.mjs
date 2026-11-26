@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
+import {sha256} from './content-hash.mjs';
 import {json,contentHash,same,structure,revisionRefSchema} from './flavor-production.mjs';
 import {revisionReference} from './flavor-production-store.mjs';
 import {METHOD_HASH,EMPTY_CONTEXT,contextSchema,resolveRevision} from './flavor-quality-package.mjs';
@@ -16,7 +17,8 @@ export const DEFAULT_BUDGETS=Object.freeze({clarifications:1,technicalRetries:2,
 export const BATCH_METHOD=contentHash({version:BATCH_VERSION,quality:METHOD_HASH,implementation:fs.readFileSync(new URL('./flavor-batch.mjs',import.meta.url),'utf8')});
 // d461120 transport compatibility: same quality contracts, immutable old plans.
 const PRE_PARTIAL_TRANSPORT_METHOD='afebf95e6a50d41d7962ed78d5540700179938cd83ee78856f893317ef9c035d';
-function currentPlan(p){assert.equal(p.qualityMethod,METHOD_HASH,'obsolete batch quality method');assert.ok([BATCH_METHOD,PRE_PARTIAL_TRANSPORT_METHOD].includes(p.method),'obsolete batch method');}
+const PRE_FAILURE_BUDGET_METHOD='28e59b900c323bb9a26a2d739e3358428968d96f0a9fe319c4c99e5900588807';
+function currentPlan(p){assert.equal(p.qualityMethod,METHOD_HASH,'obsolete batch quality method');assert.ok([BATCH_METHOD,PRE_PARTIAL_TRANSPORT_METHOD,PRE_FAILURE_BUDGET_METHOD].includes(p.method),'obsolete batch method');}
 const key=ref=>ref.caseId+'/'+ref.flavorVariantId;
 const op={kind:'external-manual',model:null,producedAt:null};
 export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
@@ -151,7 +153,45 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
   const pkg=createProductionPackage({...inputs,world,editorial});production.saveOrder({...pkg,origin:inputs.origin});
   return saveWork({version:1,id:'work-'+randomUUID(),kind:'replacement',reference:item.reference,orderId:pkg.order.orderId,variant,context},[...pkg.files]);
  }
- function failures(w){return events().filter(e=>e.type==='technical-failure'&&e.data.workId===w.id).length;}
+ // Read-only reassessment of the exact d461120 partial-response rejection.
+ // The receipt must already have existed when each failure was recorded.
+ function legacyPartialProof(p,data){
+  assert.equal(p.method,PRE_PARTIAL_TRANSPORT_METHOD);assert.equal(p.qualityMethod,METHOD_HASH);
+  assert.equal(data.category,'response-contract');
+  assert.equal(data.diagnostic,'technical incomplete/invalid standard response; accepted complete items retained');
+  const w=work(data.workId);assert.ok(['reader','reviewer'].includes(w.kind));
+  const rejected=unseal(readTree(path.join(root,'rejected',contentHash([w.id,data.responseHash,data.diagnostic])))),raw=rejected.get('response.json');
+  assert.equal(rejected.get('diagnostic.txt').toString(),data.diagnostic);assert.equal(contentHash([...raw]),data.responseHash);
+  const runId='batch-'+contentHash([batchId,w.id,data.responseHash]).slice(0,40),files=unseal(readTree(path.join(quality.directory,'imports',runId)));
+  const receipt=parse(files.get('receipt.json')),result=parse(files.get('results.json'));
+  assert.deepEqual(files.get('response.json'),raw);assert.equal(receipt.responseSha256,sha256(raw));
+  assert.equal(receipt.runId,runId);assert.equal(receipt.jobId,w.jobId);assert.equal(receipt.methodHash,p.qualityMethod);
+  // evidence replays the exact stored imports and verifies the source, method,
+  // schema and (for review jobs) the complete original reader dependency.
+  const saved=quality.evidence(w.jobId),binding=saved.sidecar.items.find(b=>w.itemId?b.itemId===w.itemId:contentHash(b.revisionRef)===contentHash(w.reference));
+  assert.ok(binding);assert.equal(saved.job.stage,w.kind);same(receipt.bindings,saved.sidecar.items,'legacy import bindings');
+  same(binding.revisionRef,w.reference,'legacy work revision');production.findRecord(w.reference);
+  assert.ok(p.references.some(r=>key(r)===key(w.reference)),'legacy plan variant');same(saved.sidecar.context,p.context,'legacy plan context');
+  same(w.clarification??null,saved.sidecar.clarification??null,'legacy clarification');
+  same(w.parent??null,w.kind==='reviewer'?binding.readerJobId:null,'legacy parent');
+  same(w.binding,contentHash({reference:w.reference,context:saved.sidecar.context,method:p.qualityMethod,round:w.round,stage:w.kind,parent:w.parent??null,clarification:w.clarification??null,readerItemId:w.kind==='reviewer'?binding.readerItemId:null}),'legacy work binding');
+  assert.ok(result.accepted.length&&result.missing.length&&!result.errors.length,'only missing siblings caused this rejection');
+  assert.ok(result.accepted.some(i=>i.itemId===binding.itemId),'this work item was accepted');
+  for(const item of result.accepted)same(saved.results.find(r=>r.result.itemId===item.itemId)?.result,item,'legacy accepted item proof');
+  return {workId:w.id,jobId:w.jobId,itemId:binding.itemId,runId,responseHash:data.responseHash,responseSha256:receipt.responseSha256,importObservedAt:receipt.observedAt,methodHash:receipt.methodHash,reference:w.reference,sourceBinding:binding.sourceBinding,context:saved.sidecar.context};
+ }
+ function technicalFailureBudget(p){
+  const observed=events().filter(e=>e.type==='technical-failure'),effective=[],corrected=[],proofs=new Map();
+  for(const event of observed){let proof=null;
+   try{
+    const token=contentHash(event.data);if(!proofs.has(token))proofs.set(token,legacyPartialProof(p,event.data));proof=proofs.get(token);
+    const importedAt=Date.parse(proof.importObservedAt),failedAt=Date.parse(event.observedAt);assert.ok(Number.isFinite(importedAt)&&Number.isFinite(failedAt)&&importedAt<=failedAt,'legacy import must predate failure');
+   }catch{proof=null;}
+   if(proof)corrected.push({eventHash:event.hash,sequence:event.sequence,reason:'verified-d461120-partial-response',proof});else effective.push(event);
+  }
+  return {observed,effective,corrected};
+ }
+ function failures(w,budget){return budget.effective.filter(e=>e.data.workId===w.id).length;}
  function imported(w){return events().some(e=>e.type==='accepted'&&e.data.workId===w.id);}
  function lineage(reference){const records=[];let r=production.findRecord(reference);while(['scoped-repair-v1','scoped-repair-v2'].includes(r.derivation?.kind)){records.push(r);r=production.findRecord(r.predecessor);}return records;}
  const comparableContext=(context,reference)=>contentHash({...context,episodes:context.episodes.map(r=>key(r)===key(reference)?{self:key(reference)}:r)});
@@ -183,8 +223,8 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
  function analyzeSnapshot(){
   const p=plan();currentPlan(p);
   const context=contextFor(p);if(contentHash(context)!==contentHash(p.context))once('context-change',{context});
-  const pending=[],positions=[],history=events();
-  const errorGroups={};for(const e of history.filter(e=>e.type==='technical-failure'))errorGroups[e.data.category]=(errorGroups[e.data.category]??0)+1;
+  const pending=[],positions=[],history=events(),budget=technicalFailureBudget(p);
+  const errorGroups={};for(const e of budget.effective)errorGroups[e.data.category]=(errorGroups[e.data.category]??0)+1;
   const systematic=Object.values(errorGroups).some(n=>n>=p.budgets.systematicFailures);
   for(const item of active(p)){
    const ref=item.reference,discarded=discardOf(ref);
@@ -217,8 +257,8 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
    if(w){pending.push(w);positions.push({...item,state:'waiting-repair',failedRepairs:repairs});}
    else positions.push({...item,state:'blocked',reason:'source-or-unresolved-reader-conflict',evidence:finalReview.jobId});
   }
-  const stopped=pending.filter(w=>failures(w)>p.budgets.technicalRetries);
-  return {p,positions,pending:systematic||stopped.length?[]:pending,stopped:systematic?'systematic-contract-failures':stopped.length?'technical-budget-exhausted':null};
+  const stopped=pending.filter(w=>failures(w,budget)>p.budgets.technicalRetries);
+  return {p,positions,technicalFailureBudget:budget,pending:systematic||stopped.length?[]:pending,stopped:systematic?'systematic-contract-failures':stopped.length?'technical-budget-exhausted':null};
  }
  function importOne({workId,responseBytes,operator=op}){
   const w=work(workId),p=plan();currentPlan(p);
@@ -332,10 +372,10 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
   const summary={version:1,mode:history.some(e=>e.type==='execution-mode'&&e.data.kind==='technical-test')?'includes-technical-test':'manual-beta',status:state.stopped??(state.pending.length?'waiting-manual-transport':'settled'),counts,stages,findings,discardedRevisionCounts,
    independentObservationCounts:observations,abstractIndependentThemes:abstractThemes,discardedStories:terminal.length,humanAcceptances:history.filter(e=>e.type==='editorial-decision').length,
    effort:{qualityExports:exports,manualPackageExports:history.filter(e=>e.type==='manual-export').length,manualExportBytes:history.filter(e=>e.type==='manual-export').reduce((n,e)=>n+e.data.bytes,0),qualityPackageBytes:bytes,qualityImports:imports,repairImports:history.filter(e=>e.type==='accepted'&&work(e.data.workId).kind==='repair').length,
-    technicalFailures:history.filter(e=>e.type==='technical-failure').length,observedModelCalls:null,tokens:null,cost:null},
+    technicalFailures:state.technicalFailureBudget.effective.length,historicalTechnicalFailures:state.technicalFailureBudget.observed.length,correctedHistoricalTechnicalFailures:state.technicalFailureBudget.corrected.length,observedModelCalls:null,tokens:null,cost:null},
    calibration:{falseAcceptedErrors:null,falseFlaggedTexts:null,unnecessaryRepairs:null,empiricalReliability:'open; technical fixtures are not empirical model observations'},
    limits:'Manual beta transport; no live operation or empirical model reliability proved. Technical evidence cannot qualify. No selection or publication.',details:'Separate local detail report contains actual references and text.'};
-  const details={version:1,plan:state.p,positions:state.positions,pending:state.pending.map(w=>({id:w.id,kind:w.kind})),events:history,variantHistory:sharedEvents().filter(e=>['discarded','failed-repair-review','replacement-accepted'].includes(e.type)&&visibleVariants.has(key(e.data.reference))),
+  const details={version:1,plan:state.p,positions:state.positions,pending:state.pending.map(w=>({id:w.id,kind:w.kind})),events:history,technicalFailureBudget:{observed:state.technicalFailureBudget.observed.length,effective:state.technicalFailureBudget.effective.map(e=>({eventHash:e.hash,sequence:e.sequence,workId:e.data.workId})),corrected:state.technicalFailureBudget.corrected},variantHistory:sharedEvents().filter(e=>['discarded','failed-repair-review','replacement-accepted'].includes(e.type)&&visibleVariants.has(key(e.data.reference))),
    evidence:allWork().map(w=>({work:w,...(['reader','reviewer'].includes(w.kind)?{quality:quality.evidence(w.jobId)}:{})}))};
   return {summary,details,work:state.pending.map(w=>({id:w.id,kind:w.kind}))};
  }

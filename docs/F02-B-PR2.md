@@ -266,3 +266,39 @@ und die bestehende separate Readerbindung von d461120 bleiben gültig; der neue
 Batchmethodenhash ist ein eigener Orchestrierungsbezug. Es gibt keinen Anlass für
 neue Readerjobs, Produktionsimporte oder Revisionen an den privaten Beständen.
 Die erneute unabhängige Nachprüfung des Transportfixes steht aus.
+
+## Belegte alte Transport-Fehlzählungen (Nachreview von f8c3ea0)
+
+Die unabhängige Nachreview bestätigte den übrigen Transportfix und die A/B-
+Garantien. Bereits unter d461120 aufgezeichnete falsche Transportfehler konnten
+jedoch das aktive Budget weiterhin erschöpfen. Der Batch leitet dieses Budget
+jetzt aus der unveränderten Historie ab; es gibt keinen Reset, Ersatzbatch oder
+Umschreiben angenommener Antworten und keine Korrekturereignisse.
+
+Nur der bekannte d461120-Batchmethodenstand bei unveränderter Qualitätsmethode
+kommt für diese enge Neubewertung infrage. Der genaue Fehler muss mit dem
+versiegelten Workauftrag, der ursprünglichen Revisions-/Item-/Kontextbindung,
+den unveränderten abgelehnten Antwortbytes samt Hash und dem deterministisch
+zugehörigen Qualitätsimport verknüpft sein. Die vorhandene Qualitätsprüfung
+verifiziert Paket, Quelle, Methode, Antwortschema und angenommene Ergebnisse;
+bei Reviewerjobs einschließlich der ursprünglichen Readerabhängigkeit. Der
+konkrete Import muss das benötigte Item bereits vor dem Fehlereignis gültig
+angenommen haben, ohne Itemfehler und mit tatsächlich fehlenden Geschwistern.
+Allein eine spätere andere gültige Antwort oder ein passender Fehlertext genügt
+nicht. Unklare, fehlende, beschädigte oder anders gebundene Belege berechtigen
+zu keiner Neutralisierung. Echte Fehler behalten ihre Budgetwirkung.
+
+`effort.technicalFailures` zählt die wirksamen Fehler; `historicalTechnicalFailures`
+die insgesamt aufgezeichneten und `correctedHistoricalTechnicalFailures` die
+belegten alten Fehlklassifikationen. Diese Standardzähler enthalten keine Texte
+oder Referenzen. `details.technicalFailureBudget` bindet jede korrigierte
+Klassifikation an Ereignishash/-sequenz, Work/Job/Item, exakten Import und
+Antwort-/Methoden-/Quellen-/Kontextnachweis. Die Ableitung wird nach Reload erneut
+verifiziert. Alle drei Wiederholungsfehler derselben belegten Teilantwort werden
+unwirksam, ohne Importe, Jobs oder Korrekturereignisse zu vervielfachen. Fachliche
+Verwerfung aufgrund tatsächlicher Inhaltsmisserfolge bleibt davon unberührt.
+
+Versiegelte f8c3ea0-Batchpläne bleiben ebenfalls bei identischer Qualitätsmethode
+kompatibel, erhalten aber keine pauschale Fehleramnestie. Der Qualitätsmethodenhash
+und die bestehende separate Readerbindung von d461120 bleiben unverändert gültig.
+Die erneute unabhängige Nachprüfung dieser Budgetkorrektur steht aus.

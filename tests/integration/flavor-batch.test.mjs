@@ -449,10 +449,10 @@ test('variant-wide counting excludes positive and advisory revisions but retains
 });
 
 // Sealed d461120 plan/work format, built synthetically without rewriting snapshots.
-function persistedMultiWork(f,jobId,references=f.refs,stage='reader',parent=null){
+function persistedMultiWork(f,jobId,references=f.refs,stage='reader',parent=null,options={}){
  const saved=f.quality.loadJob(jobId),id='persisted-'+(++n),base=f.quality.directory+'/batches/'+id;
  fs.mkdirSync(base+'/events',{recursive:true});fs.mkdirSync(base+'/work');
- const plan={version:1,id,method:'afebf95e6a50d41d7962ed78d5540700179938cd83ee78856f893317ef9c035d',qualityMethod:METHOD_HASH,references,context:{version:1,episodes:[]},budgets:{clarifications:1,technicalRetries:2,systematicFailures:3,replacements:1}};
+ const plan={version:1,id,method:'afebf95e6a50d41d7962ed78d5540700179938cd83ee78856f893317ef9c035d',qualityMethod:METHOD_HASH,references,context:{version:1,episodes:[]},budgets:{clarifications:1,technicalRetries:2,systematicFailures:3,replacements:1,...options.budgets}};
  publishTree(base+'/plan',seal(new Map([['plan.json',json(plan)]])));
  const works=references.map((reference,i)=>{
   const b=saved.sidecar.items.find(b=>b.revisionRef.revisionHash===reference.revisionHash),readerItemId=stage==='reviewer'?b.readerItemId:null;
@@ -525,4 +525,83 @@ test('multi-item transport: new one-position batch leaves old sibling open and a
  assert.notEqual(w.jobId,old.jobId);assert.equal(saved.job.items.length,1);assert.deepEqual(saved.sidecar.items[0].revisionRef,f.refs[0]);
  assert.ok(!batch.importMany([{workId:w.id,responseBytes:bytes(response(f,w)),operator:TECHNICAL_OPERATOR}])[0].error);
  report=batch.run(f.manual);assert.deepEqual(report.work.map(w=>w.kind),['reviewer']);assert.equal(report.summary.effort.technicalFailures,0);assert.deepEqual(f.quality.inspect(old.jobId).items.map(i=>i.reader),[false,false]);
+});
+
+const oldPartialDiagnostic='technical incomplete/invalid standard response; accepted complete items retained';
+function appendSyntheticEvent(base,type,data,observedAt=new Date().toISOString()){
+ const dirs=fs.readdirSync(base+'/events').sort(),last=dirs.length?JSON.parse(readTree(base+'/events/'+dirs.at(-1)).get('event.json')):null;
+ const body={version:1,sequence:dirs.length+1,previous:last?.hash??null,type,data,observedAt},event={...body,hash:contentHash(body)};
+ publishTree(base+'/events/'+String(event.sequence).padStart(10,'0'),seal(new Map([['event.json',json(event)]])));return event;
+}
+function oldBudgetFixture({f=setup(2),references=[f.refs[0]],stage='reader',invalid=false,skipImport=false,budgets={}}={}){
+ let reader=f.quality.createBlindBatch({references:[...references,f.refs[1]],omitCompleted:false}),jobId=reader.jobId,parent=null;
+ if(stage==='reviewer'){
+  f.quality.importResponse({jobId,runId:'reader-before-old-review',responseBytes:bytes(technicalReader(f.quality.loadJob(jobId).job,[...references,f.refs[1]].map(r=>f.production.findRecord(r).request.source.logic.clues))),operator:TECHNICAL_OPERATOR});f.quality.compare(jobId);
+  parent=jobId;jobId=f.quality.createReviewBatch({readerJobId:jobId}).jobId;
+ }
+ const legacy=persistedMultiWork(f,jobId,references,stage,parent,{budgets}),w=legacy.works[0],id=legacy.batch.report().details.plan.id,base=f.quality.directory+'/batches/'+id;
+ const reply=partialReply(f,jobId,0);if(invalid)reply.items[0].coverage.pop();const raw=bytes(reply),digest=contentHash([...raw]),runId='batch-'+contentHash([id,w.id,digest]).slice(0,40);
+ if(!skipImport)f.quality.importResponse({jobId,runId,responseBytes:raw,operator:TECHNICAL_OPERATOR});
+ const detailId=contentHash([w.id,digest,oldPartialDiagnostic]);fs.mkdirSync(base+'/rejected',{recursive:true});publishTree(base+'/rejected/'+detailId,seal(new Map([['response.json',raw],['diagnostic.txt',oldPartialDiagnostic]])));
+ const errors=Array.from({length:3},()=>appendSyntheticEvent(base,'technical-failure',{workId:w.id,responseHash:digest,category:'response-contract',diagnostic:oldPartialDiagnostic},skipImport?'2000-01-01T00:00:00.000Z':new Date().toISOString()));
+ return {f,legacy,w,id,base,jobId,runId,raw,digest,detailId,errors};
+}
+function assertOldBytes(before,base){for(const [name,data] of before)assert.deepEqual(fs.readFileSync(path.join(base,name)),data,name+' historical bytes');}
+function resealSynthetic(dir,change){const files=readTree(dir);files.delete('complete.json');change(files);fs.rmSync(dir,{recursive:true});publishTree(dir,seal(files));}
+
+test('legacy budget: resumes all three proven false failures without a new answer; repeat and reload preserve every historical byte',()=>{
+ const h=oldBudgetFixture(),{f,legacy,w}=h,before=readTree(f.quality.directory),readerJobs=fs.readdirSync(f.quality.directory+'/jobs').filter(id=>f.quality.loadJob(id).job.stage==='reader');
+ let report=legacy.batch.run(f.manual);assert.deepEqual(report.work.map(w=>w.kind),['reviewer']);assert.equal(report.summary.effort.technicalFailures,0);assert.equal(report.summary.effort.historicalTechnicalFailures,3);assert.equal(report.summary.effort.correctedHistoricalTechnicalFailures,3);
+ assert.equal(report.details.technicalFailureBudget.corrected.length,3);assert.ok(report.details.technicalFailureBudget.corrected.every(c=>c.proof.runId===h.runId&&c.proof.itemId===w.itemId));
+ assert.ok(!JSON.stringify(report.summary).includes(h.jobId));const jobs=fs.readdirSync(f.quality.directory+'/jobs'),imports=fs.readdirSync(f.quality.directory+'/imports');
+ for(let i=0;i<3;i++){assert.equal(legacy.batch.importMany([{workId:w.id,responseBytes:h.raw,operator:TECHNICAL_OPERATOR}])[0].created,false);report=legacy.batch.run(f.manual);assert.equal(report.summary.effort.technicalFailures,0);}
+ const reopened=openFlavorBatch({quality:f.quality,production:f.production,batchId:h.id}).run(f.manual);assert.deepEqual(reopened.details.technicalFailureBudget,report.details.technicalFailureBudget);
+ assert.deepEqual(fs.readdirSync(f.quality.directory+'/jobs'),jobs);assert.deepEqual(fs.readdirSync(f.quality.directory+'/imports'),imports);assert.deepEqual(jobs.filter(id=>f.quality.loadJob(id).job.stage==='reader'),readerJobs);assertOldBytes(before,f.quality.directory);legacy.unchanged();
+});
+
+test('legacy budget: mixed history keeps actual transport failures and still exhausts the real budget',()=>{
+ const h=oldBudgetFixture();let report=h.legacy.batch.run(h.f.manual);
+ for(let i=1;i<=3;i++){
+  assert.ok(h.legacy.batch.importMany([{workId:h.w.id,responseBytes:Buffer.from('{')}])[0].error);report=h.legacy.batch.run(h.f.manual);
+  assert.equal(report.summary.effort.technicalFailures,i);assert.equal(report.summary.effort.correctedHistoricalTechnicalFailures,3);
+  assert.equal(report.summary.status,i===3?'systematic-contract-failures':'waiting-manual-transport');
+ }
+ assert.equal(report.summary.effort.historicalTechnicalFailures,6);
+});
+
+test('legacy budget: later different valid bytes or a later receipt cannot excuse the original failed response',()=>{
+ for(const mode of ['invalid-old','late-receipt']){
+  const h=oldBudgetFixture({invalid:mode==='invalid-old',skipImport:mode==='late-receipt'}),raw=bytes(partialReply(h.f,h.jobId,0));
+  h.f.quality.importResponse({jobId:h.jobId,runId:mode==='late-receipt'?h.runId:'later-different-valid-answer',responseBytes:raw,operator:TECHNICAL_OPERATOR});
+  assert.equal(h.f.quality.inspect(h.jobId).items[0].reader,true);
+  const report=h.legacy.batch.run(h.f.manual);assert.equal(report.summary.status,'systematic-contract-failures');assert.equal(report.summary.effort.technicalFailures,3);assert.equal(report.summary.effort.correctedHistoricalTechnicalFailures,0);
+ }
+});
+
+test('legacy budget: missing, corrupt and mismatched proof never receives an amnesty',()=>{
+ const h=oldBudgetFixture();
+ for(const mode of ['missing-rejection','changed-rejection','missing-import','wrong-work-binding','wrong-context','other-batch-method','wrong-import-method']){
+  const copy=root+'/proof-negative-'+(++n);fs.cpSync(h.f.dir,copy,{recursive:true});const qualityDir=copy+'/quality',base=qualityDir+'/batches/'+h.id,importDir=qualityDir+'/imports/'+h.runId;
+  if(mode==='missing-rejection')fs.rmSync(base+'/rejected/'+h.detailId,{recursive:true});
+  if(mode==='changed-rejection')fs.appendFileSync(base+'/rejected/'+h.detailId+'/response.json',' ');
+  if(mode==='missing-import')fs.rmSync(importDir,{recursive:true});
+  if(mode==='wrong-work-binding')resealSynthetic(base+'/work/'+h.w.id,files=>{const w=JSON.parse(files.get('work.json'));w.binding='b'.repeat(64);files.set('work.json',bytes(w));});
+  if(mode==='wrong-context'||mode==='other-batch-method')resealSynthetic(base+'/plan',files=>{const p=JSON.parse(files.get('plan.json'));if(mode==='wrong-context')p.context.episodes=[h.f.refs[1]];else p.method='28e59b900c323bb9a26a2d739e3358428968d96f0a9fe319c4c99e5900588807';files.set('plan.json',bytes(p));});
+  if(mode==='wrong-import-method')resealSynthetic(importDir,files=>{const r=JSON.parse(files.get('receipt.json'));r.methodHash='a'.repeat(64);files.set('receipt.json',bytes(r));});
+  const production=openProductionStore({directory:copy+'/prod'}),quality=openQualityStore({directory:qualityDir,production}),batch=openFlavorBatch({quality,production,batchId:h.id});
+  if(mode==='wrong-import-method'){assert.throws(()=>batch.run(manualBetaAdapter({out:copy+'/negative-out'})),/integrity|method/);continue;}
+  const report=batch.run(manualBetaAdapter({out:copy+'/negative-out'}));assert.equal(report.summary.status,'systematic-contract-failures',mode);assert.equal(report.summary.effort.technicalFailures,3,mode);assert.equal(report.summary.effort.correctedHistoricalTechnicalFailures,0,mode);
+ }
+});
+
+test('legacy budget: reviewer partial-item proof is bound to its own accepted import and retains technical provenance',()=>{
+ const h=oldBudgetFixture({stage:'reviewer'}),report=h.legacy.batch.run(h.f.manual);
+ assert.equal(report.summary.effort.technicalFailures,0);assert.equal(report.summary.effort.correctedHistoricalTechnicalFailures,3);assert.equal(report.summary.counts['technical-complete'],1);assert.equal(report.summary.counts.qualified,undefined);assert.equal(report.work.length,0);
+});
+
+test('legacy budget: correcting transport accounting never reactivates a variant discarded for real content failures',()=>{
+ const f=setup(2,{clarifications:0,replacements:0});let ref=revisionReference(importPatch(f,f.refs[0],'budget-negative-r2').records[0]);f.batch=anotherBatch(f,'budget-content-a',[ref],{clarifications:0,replacements:0});pauseRepair(f);
+ ref=revisionReference(importPatch(f,ref,'budget-negative-r3').records[0]);const h=oldBudgetFixture({f,references:[ref],budgets:{clarifications:0,replacements:0}});
+ f.batch=anotherBatch(f,'budget-content-b',[ref],{clarifications:0,replacements:0});assert.equal(pauseRepair(f).summary.discardedStories,1);
+ const report=h.legacy.batch.run(f.manual);assert.equal(report.summary.effort.technicalFailures,0);assert.equal(report.summary.effort.correctedHistoricalTechnicalFailures,3);assert.equal(report.summary.discardedStories,1);assert.equal(report.summary.counts.blocked,1);assert.equal(report.work.length,0);
 });

@@ -1,3 +1,63 @@
+F02-B PR 2 – belegte alte Transport-Fehlzählungen nach f8c3ea0
+
+Ausgangshead f8c3ea094f0024ce02f4a7c0d6f3b14141b4f345 auf GitHub und im sauberen
+Implementierungscheckout bestätigt. Unabhängige Nachreview bestätigte übrigen
+Transportfix und A/B, fand aber weiterhin blockierte tatsächlich betroffene
+Altbatches. Enge Korrektur ausschließlich des wirksamen technischen Budgets:
+read-only Ableitung aus unveränderten Ereignissen und exakt verknüpften Belegen.
+Kein Reset, Ersatzbatch, neue Antwortfamilie oder Mutieren historischer Dateien.
+
+Bekannter d461120-Methodenstand plus gleiche Qualitätsmethode, Work-/Job-/Item-/
+Revisions-/Kontextbindung, ursprüngliche versiegelte Ablehnung mit exakt denselben
+Antwortbytes/Hash und deterministisch zugehöriger Qualitätsimport. Dessen bereits
+vor dem Fehlereignis angenommene vollständige Teilitems werden durch den bestehenden
+Qualitätsvertrag erneut verifiziert; nur fehlende Geschwister, keine Itemfehler.
+Spätere andere gültige Antworten, spätere Ersatzbelege, fremde Bindungen sowie
+fehlende/beschädigte Belege erlauben keine Entlastung. Echte Fehler wirken weiter.
+Standardbericht unterscheidet wirksame, aufgezeichnete und belegte korrigierte
+Fehler nur durch Zähler; private Details liefern je Ereignishash den Prüfpfad.
+Keine Korrekturereignisse nötig, nach Reload deterministisch erneut verifiziert.
+
+Unabhängige Originalprobe ausschließlich auf getrennten Kopien:
+Vorher systematisch blockiert, 3 Fehler, Reader bereits angenommen. Nachher
+wirksame Fehler 0 / aufgezeichnet 3 / korrigierte Fehlklassifikationen 3, nur
+Reviewer offen, kein neuer Job und keine neue Antwort als Voraussetzung. Alle
+237 Dateien der Originalprobe unverändert und dieselben historischen Dateien
+auch in der fortgesetzten Kopie bytegleich. Synthetische Regression am Vorfix:
+0/1 (Resume zur Reviewarbeit) reproduziert den Fehler.
+
+Finaler eingefrorener Codebaum: 6/6 neue Regressionen bestanden; danach 198/198
+bestehende Vertrags-/Integrationsfälle (neue sechs separat via test-skip-pattern
+ausgenommen), zusammen 204 unterschiedliche Fälle. Gruppen: flavor, count-clue-
+normalization, flavor-production, scoped-repair, quality, quality-calibration
+(Verträge) und production, quality, batch (Integration). Inhalt 21/21; Rätselprüfung
+und Communityprüfung (15 Fälle) erfolgreich. Release-Gate erwarteter Exit 1 am
+unveränderten pending-Bestand. git diff --check einschließlich PR-Diff sauber.
+Node 22.23.3, TMPDIR=/private/tmp, dokumentierter Pillow-PATH.
+Drei Wiederholungen auf fortgesetzter echter Altprobe: Jobs/Importe/Ereignisse
+unverändert 2/1/8, wirksame Fehler 0, korrigierte Klassifikationen 3.
+
+Sechs neue Regressionen: alter blockierter Batch und Wiederholung/Reload ohne
+alte Dateimutationen; gemischte Historie mit echten Fehlern bis Budgeterschöpfung;
+spätere andere Antwort und spätere Importbelege; fehlende/manipulierte Ablehnung,
+fehlender Import, falsche Work-/Kontext-/Methodenbindung; Reviewer-Teilantwort und
+technische Herkunft; terminale Inhaltsverwerfung trotz Budgetkorrektur.
+
+Qualitätsmethodenhash bleibt 5497f85269eafb041d9021374682d694cd50997d0b373130c8ca73e4d7e6c7d8.
+Readerjob job-92930769-ebae-482f-a22f-7d07c3e33c25 bleibt unter seinen ursprünglichen
+Bindungen gültig; kein neuer Readerexport nötig. C06r2 ed07b747ce1e245a4706ba1d895fe7931d58d216e5313a51b3d08a22b0512be0
+unverändert, keine Satzänderung, Produktionsübernahme oder zusätzliche Revision.
+SHA-Nachweis der Originalablagen und alten Probe im neuen privaten Übergabebeleg.
+
+Exakter finaler Head und tatsächliche unveränderte CI in PR #134 und lokalem
+Abschlussbeleg. Laufende Jobs sind kein grüner Endstand; keine historischen
+Unit-/CI-Zahlen als neue Ergebnisse übernehmen. WebKit-/UI-Ausnahme unverändert,
+keine Debugging-/Rerun-/Optimierungsschleife und keine Gate-Reduktion. Neue
+unabhängige Nachprüfung steht aus. Keine Freigabe, Modellaufrufe, echten Reader-/
+Reviewer-/15er-Läufe, automatische Qualifikation/Auswahl, Veröffentlichung oder Merge.
+
+=== HISTORISCHER f8c3ea0-STAND; ÜBRIGER TRANSPORTFIX/A/B BESTÄTIGT, ALTE FEHLZÄHLUNGEN OFFEN ===
+
 F02-B PR 2 – gezielte Mehritem-Transportkorrektur nach d461120
 
 Ausgangshead d4611205602b3531a26806b9edabfe8419459b6e auf GitHub und im sauberen
