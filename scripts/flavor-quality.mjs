@@ -1,3 +1,4 @@
+import {cliFailure} from './lib/flavor-cli-diagnostics.mjs';
 // Manual offline transport only. No GenAI calls, repair, selection or publishing.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -9,7 +10,7 @@ import {openQualityStore} from './lib/flavor-quality-store.mjs';
 import {preparePilotStore} from './lib/flavor-quality-pilot.mjs';
 import {EMPTY_CONTEXT} from './lib/flavor-quality-package.mjs';
 export const HELP=`F02-B PR1 · offline manual three-stage quality checks
-node scripts/flavor-quality.mjs COMMAND --production-store DIR --quality-store DIR ...
+node scripts/flavor-quality.mjs COMMAND --production-store DIR --quality-store DIR [--library DIR] ...
   prepare-pilot --out DIR              Adopt sealed real pilot in separate production store and export blind batch
   blind-export --references FILE --out DIR [--context FILE] [--repeat yes]
   export --job ID --out DIR            Re-export the exact immutable public job
@@ -27,14 +28,14 @@ export function main(args=process.argv.slice(2)){
  const extra={ 'prepare-pilot':['out'],'blind-export':['references','out','context','repeat'],export:['job','out'],
  'reader-import':['job','run','response','model','produced-at','context','evidence-kind'],compare:['job'],
  'review-export':['reader-job','out','repeat'],'review-import':['job','run','response','model','produced-at','context','evidence-kind'],inspect:['job','context']}[command];
- assert.ok(extra,HELP);const allowed=['production-store','quality-store',...extra];
+ assert.ok(extra,HELP);const allowed=['production-store','quality-store','library',...extra];
  for(let i=0;i<rest.length;i+=2){const key=rest[i]?.slice(2);assert.ok(rest[i]?.startsWith('--')&&allowed.includes(key)&&rest[i+1]&&!rest[i+1].startsWith('--')&&!Object.hasOwn(flags,key),HELP);flags[key]=rest[i+1];}
  const required={'prepare-pilot':['out'],'blind-export':['references','out'],export:['job','out'],'reader-import':['job','run','response'],compare:['job'],
  'review-export':['reader-job','out'],'review-import':['job','run','response'],inspect:['job']}[command];
  assert.ok(['production-store','quality-store',...required].every(k=>flags[k]),HELP);
  if(flags.repeat)assert.equal(flags.repeat,'yes',HELP);
- const pilot=command==='prepare-pilot'?preparePilotStore(flags['production-store']):null;
- const production=pilot?.production??openProductionStore({directory:flags['production-store']}),quality=openQualityStore({directory:flags['quality-store'],production});
+ const pilot=command==='prepare-pilot'?preparePilotStore(flags['production-store'],{libraryDirectory:flags.library}):null;
+ const production=pilot?.production??openProductionStore({directory:flags['production-store'],libraryDirectory:flags.library}),quality=openQualityStore({directory:flags['quality-store'],production});
  const context=flags.context?read(flags.context):undefined;
  if(command==='prepare-pilot'||command==='blind-export'){
   const batch=quality.createBlindBatch({references:pilot?.references??read(flags.references),context:context??EMPTY_CONTEXT,omitCompleted:flags.repeat!=='yes'});
@@ -55,5 +56,5 @@ export function main(args=process.argv.slice(2)){
  return quality.inspect(flags.job,{context});
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
- try{const result=main();console.log(typeof result==='string'?result:json(result));}catch(error){console.error(error.message);process.exitCode=1;}
+ try{const result=main();console.log(typeof result==='string'?result:json(result));}catch(error){cliFailure(error);}
 }

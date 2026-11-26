@@ -13,7 +13,7 @@ import {READER_PROMPT,REVIEWER_PROMPT} from './flavor-quality-prompts.mjs';
 import {COMPARE_METHOD} from './flavor-quality-compare.mjs';
 import {QUALITY_VERSION,QUALITY_METHOD,UNIT_METHOD,REVIEW_AREAS,OBSERVATION_CATEGORIES,hash,object,array,structure,textUnits,responseSchema} from './flavor-quality-contract.mjs';
 
-const implementationFiles=['flavor-quality-contract.mjs','flavor-quality-compare.mjs','flavor-quality-package.mjs','flavor-quality-prompts.mjs','flavor-quality-store.mjs','flavor-quality-json.mjs','count-clue-normalization.mjs','../../src/engine/puzzle.mjs','../../src/engine/hex.mjs','../../src/engine/validate.mjs','../../src/puzzles/schema.mjs','../../src/puzzles/json-schema.mjs'];
+const implementationFiles=['flavor-production-store.mjs','flavor-scoped-repair.mjs','flavor-production.mjs','flavor-contract.mjs','flavor-quality-contract.mjs','flavor-quality-compare.mjs','flavor-quality-package.mjs','flavor-quality-prompts.mjs','flavor-quality-store.mjs','flavor-quality-json.mjs','count-clue-normalization.mjs','../../src/engine/puzzle.mjs','../../src/engine/hex.mjs','../../src/engine/validate.mjs','../../src/puzzles/schema.mjs','../../src/puzzles/json-schema.mjs'];
 const implementationHash=hash(implementationFiles.map(name=>sha256(fs.readFileSync(new URL(name,import.meta.url)))));
 export const METHOD_HASH=hash({method:QUALITY_METHOD,implementationHash,units:UNIT_METHOD,comparison:COMPARE_METHOD,
  publicSourceView:'rules-job-reference-and-world-production-p01-p14-1',readerPrompt:READER_PROMPT,reviewPrompt:REVIEWER_PROMPT,readerSchema:responseSchema('reader'),reviewSchema:responseSchema('reviewer')});
@@ -28,7 +28,8 @@ function releaseFor(origin){
 }
 export function resolveRevision(production,reference){
  const record=production.findRecord(reference),stored=production.loadOrder(record.orderId);
- const position=stored.order.positions.find(p=>p.positionId===record.positionId);
+ const position=production.resolveRevisionContext?production.resolveRevisionContext(reference).position:
+  {...stored.order.positions.find(p=>p.positionId===record.positionId),intent:{flavorVariantId:record.flavorVariantId,revision:record.draft.revision,predecessor:record.predecessor}};
  const {puzzle,presentationHash}=materializeFlavorRevision(position,record);
  return {record,position,puzzle,presentationHash,stored};
 }
@@ -83,11 +84,11 @@ export function buildReaderInputs({production,references,context=EMPTY_CONTEXT})
  }
  return {entries,files,context};
 }
-export function createReaderJob(inputs,{jobId='job-'+randomUUID(),itemIds=inputs.entries.map(()=>'item-'+randomUUID())}={}){
+export function createReaderJob(inputs,{jobId='job-'+randomUUID(),itemIds=inputs.entries.map(()=>'item-'+randomUUID()),clarification=null}={}){
  assert.equal(itemIds.length,inputs.entries.length);assert.equal(new Set(itemIds).size,itemIds.length);
  const job={transportVersion:QUALITY_VERSION,stage:'reader',jobId,methodHash:METHOD_HASH,
  items:inputs.entries.map((e,i)=>({itemId:itemIds[i],inputHash:hash(e.input),input:e.input}))};
- const sidecar={version:1,stage:'reader',jobId,methodHash:METHOD_HASH,context:structuredClone(inputs.context),
+ const sidecar={version:1,stage:'reader',jobId,methodHash:METHOD_HASH,context:structuredClone(inputs.context),...(clarification?{clarification:structuredClone(clarification)}:{}),
  items:inputs.entries.map((e,i)=>({itemId:itemIds[i],...e.binding}))};
  return {job,sidecar,files:packageFiles(job,inputs.files)};
 }
@@ -97,15 +98,15 @@ export function reviewFacts(publicInput,originals){
  ...publicInput.sources.world.files.map(f=>({id:'world.'+path.basename(f.path,'.md'),value:f})),
  ...originals.map(c=>({id:'original.'+c.id,value:c}))];
 }
-export function createReviewerJob({readerJob,readerSidecar,readerResults,comparisons,originals,files},
+export function createReviewerJob({readerJob,readerSidecar,readerResults,comparisons,originals,files,clarification=null,clarificationReference=null},
  {jobId='job-'+randomUUID(),itemIds=readerJob.items.map(()=>'item-'+randomUUID())}={}){
  const items=readerJob.items.map((p,i)=>{
   const reader=readerResults[i],comparison=comparisons[i];assert.ok(reader&&comparison,'flavor quality: reader and comparison required');
-  const input={public:p.input,originals:originals[i],facts:reviewFacts(p.input,originals[i]),reader,comparison};
+  const input={public:p.input,originals:originals[i],facts:reviewFacts(p.input,originals[i]),reader,comparison,...(clarification?{clarification}: {})};
   return {itemId:itemIds[i],inputHash:hash(input),input};
  });
  const job={transportVersion:1,stage:'reviewer',jobId,methodHash:METHOD_HASH,items};
- const sidecar={version:1,stage:'reviewer',jobId,methodHash:METHOD_HASH,context:readerSidecar.context,
+ const sidecar={version:1,stage:'reviewer',jobId,methodHash:METHOD_HASH,context:readerSidecar.context,...(clarificationReference?{clarification:clarificationReference}:{}),
  items:readerSidecar.items.map((b,i)=>({...b,itemId:itemIds[i],publicInputHash:items[i].inputHash,
   readerJobId:readerJob.jobId,readerItemId:readerJob.items[i].itemId,readerHash:hash(readerResults[i]),comparisonHash:hash(comparisons[i])}))};
  const sourceFiles=new Map([...files].filter(([name])=>name==='rules.md'||name.startsWith('world/')||name.startsWith('maps/')||name.startsWith('resources/')));

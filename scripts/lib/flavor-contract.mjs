@@ -136,16 +136,21 @@ export function resumeFlavorCheckpoint(request,checkpoint){
  assert(same(checkpoint.checks,fresh.checks),'stale or tampered checks');
  return {checkpoint:fresh,pendingClueIds:Object.keys(fresh.checks).filter(id=>fresh.checks[id].status!=='PASS')};
 }
-export function repairFlavorClue(request,checkpoint,{clueId,expectedRevision,text,evidence,placeRefs}){
- const {checkpoint:current}=resumeFlavorCheckpoint(request,checkpoint);
- assert(current.draft.revision===expectedRevision,'stale repair revision');
- assert(Object.hasOwn(current.draft.presentation.clueTexts,clueId),'unknown repair clue ID');
- const draft=copy(current.draft);draft.revision++;
+export function upgradeFlavorDraft(request,previous){
+ validateFlavorDraft(request,previous);
+ const draft=copy(previous);
  if(draft.contractVersion!==FLAVOR_DRAFT_VERSION){
   draft.contractVersion=FLAVOR_DRAFT_VERSION;draft.presentation.objectNames=copy(request.source.presentation.objectNames);
   // Old proof syntax is not silently promoted to a new method. Text stays put.
   draft.evidence=Object.fromEntries(Object.entries(draft.evidence).map(([id])=>[id,{mode:'free'}]));
  }
+ return draft;
+}
+export function repairFlavorClue(request,checkpoint,{clueId,expectedRevision,text,evidence,placeRefs}){
+ const {checkpoint:current}=resumeFlavorCheckpoint(request,checkpoint);
+ assert(current.draft.revision===expectedRevision,'stale repair revision');
+ assert(Object.hasOwn(current.draft.presentation.clueTexts,clueId),'unknown repair clue ID');
+ const draft=upgradeFlavorDraft(request,current.draft);draft.revision++;
  draft.presentation.clueTexts[clueId]=text;draft.evidence[clueId]=copy(evidence);
  if(placeRefs!==undefined){draft.presentation.cluePlaceRefs??={};draft.presentation.cluePlaceRefs[clueId]=copy(placeRefs);}
  return createFlavorCheckpoint(request,draft);

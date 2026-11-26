@@ -1,0 +1,362 @@
+F02-B PR 2 – belegte alte Transport-Fehlzählungen nach f8c3ea0
+
+Ausgangshead f8c3ea094f0024ce02f4a7c0d6f3b14141b4f345 auf GitHub und im sauberen
+Implementierungscheckout bestätigt. Unabhängige Nachreview bestätigte übrigen
+Transportfix und A/B, fand aber weiterhin blockierte tatsächlich betroffene
+Altbatches. Enge Korrektur ausschließlich des wirksamen technischen Budgets:
+read-only Ableitung aus unveränderten Ereignissen und exakt verknüpften Belegen.
+Kein Reset, Ersatzbatch, neue Antwortfamilie oder Mutieren historischer Dateien.
+
+Bekannter d461120-Methodenstand plus gleiche Qualitätsmethode, Work-/Job-/Item-/
+Revisions-/Kontextbindung, ursprüngliche versiegelte Ablehnung mit exakt denselben
+Antwortbytes/Hash und deterministisch zugehöriger Qualitätsimport. Dessen bereits
+vor dem Fehlereignis angenommene vollständige Teilitems werden durch den bestehenden
+Qualitätsvertrag erneut verifiziert; nur fehlende Geschwister, keine Itemfehler.
+Spätere andere gültige Antworten, spätere Ersatzbelege, fremde Bindungen sowie
+fehlende/beschädigte Belege erlauben keine Entlastung. Echte Fehler wirken weiter.
+Standardbericht unterscheidet wirksame, aufgezeichnete und belegte korrigierte
+Fehler nur durch Zähler; private Details liefern je Ereignishash den Prüfpfad.
+Keine Korrekturereignisse nötig, nach Reload deterministisch erneut verifiziert.
+
+Unabhängige Originalprobe ausschließlich auf getrennten Kopien:
+Vorher systematisch blockiert, 3 Fehler, Reader bereits angenommen. Nachher
+wirksame Fehler 0 / aufgezeichnet 3 / korrigierte Fehlklassifikationen 3, nur
+Reviewer offen, kein neuer Job und keine neue Antwort als Voraussetzung. Alle
+237 Dateien der Originalprobe unverändert und dieselben historischen Dateien
+auch in der fortgesetzten Kopie bytegleich. Synthetische Regression am Vorfix:
+0/1 (Resume zur Reviewarbeit) reproduziert den Fehler.
+
+Finaler eingefrorener Codebaum: 6/6 neue Regressionen bestanden; danach 198/198
+bestehende Vertrags-/Integrationsfälle (neue sechs separat via test-skip-pattern
+ausgenommen), zusammen 204 unterschiedliche Fälle. Gruppen: flavor, count-clue-
+normalization, flavor-production, scoped-repair, quality, quality-calibration
+(Verträge) und production, quality, batch (Integration). Inhalt 21/21; Rätselprüfung
+und Communityprüfung (15 Fälle) erfolgreich. Release-Gate erwarteter Exit 1 am
+unveränderten pending-Bestand. git diff --check einschließlich PR-Diff sauber.
+Node 22.23.3, TMPDIR=/private/tmp, dokumentierter Pillow-PATH.
+Drei Wiederholungen auf fortgesetzter echter Altprobe: Jobs/Importe/Ereignisse
+unverändert 2/1/8, wirksame Fehler 0, korrigierte Klassifikationen 3.
+
+Sechs neue Regressionen: alter blockierter Batch und Wiederholung/Reload ohne
+alte Dateimutationen; gemischte Historie mit echten Fehlern bis Budgeterschöpfung;
+spätere andere Antwort und spätere Importbelege; fehlende/manipulierte Ablehnung,
+fehlender Import, falsche Work-/Kontext-/Methodenbindung; Reviewer-Teilantwort und
+technische Herkunft; terminale Inhaltsverwerfung trotz Budgetkorrektur.
+
+Qualitätsmethodenhash bleibt 5497f85269eafb041d9021374682d694cd50997d0b373130c8ca73e4d7e6c7d8.
+Readerjob job-92930769-ebae-482f-a22f-7d07c3e33c25 bleibt unter seinen ursprünglichen
+Bindungen gültig; kein neuer Readerexport nötig. C06r2 ed07b747ce1e245a4706ba1d895fe7931d58d216e5313a51b3d08a22b0512be0
+unverändert, keine Satzänderung, Produktionsübernahme oder zusätzliche Revision.
+SHA-Nachweis der Originalablagen und alten Probe im neuen privaten Übergabebeleg.
+
+Exakter finaler Head und tatsächliche unveränderte CI in PR #134 und lokalem
+Abschlussbeleg. Laufende Jobs sind kein grüner Endstand; keine historischen
+Unit-/CI-Zahlen als neue Ergebnisse übernehmen. WebKit-/UI-Ausnahme unverändert,
+keine Debugging-/Rerun-/Optimierungsschleife und keine Gate-Reduktion. Neue
+unabhängige Nachprüfung steht aus. Keine Freigabe, Modellaufrufe, echten Reader-/
+Reviewer-/15er-Läufe, automatische Qualifikation/Auswahl, Veröffentlichung oder Merge.
+
+=== HISTORISCHER f8c3ea0-STAND; ÜBRIGER TRANSPORTFIX/A/B BESTÄTIGT, ALTE FEHLZÄHLUNGEN OFFEN ===
+
+F02-B PR 2 – gezielte Mehritem-Transportkorrektur nach d461120
+
+Ausgangshead d4611205602b3531a26806b9edabfe8419459b6e auf GitHub und im sauberen
+Implementierungscheckout bestätigt. Unabhängige Review bestätigte A/B und die
+vorherigen Garantien, meldete eine neue P2-Transportregression. Diese Korrektur
+begrenzt neue offene-Job-Übernahmen auf Einzelitemjobs; angenommene Mehritemstufen
+bleiben wiederverwendbar. Teilantworten bestehender Jobs verlangen keine fehlenden
+Geschwister. Fortschritt folgt tatsächlichen Items; Export und identischer Import
+werden pro Job dedupliziert. Bekannte versiegelte d461120-Pläne sind ohne Mutation
+unter unverändertem Qualitätsmethodenhash kompatibel. Kein neues Antwortformat.
+
+Die ersten vier neuen Grenzfalltests am unveränderten Ausgangscode: 0/4 bestanden, alle vier
+reproduzierten die Regression. Synthetisch erzeugte versiegelte Vorfix-Work-/Plan-
+Snapshots; keine Änderungen realer Daten. Neue Tests prüfen Einzelitem-Fallback,
+Teilannahme und dreifache Wiederholung, falsche Work-/Geschwisterzuordnung,
+Export-/Importdeduplizierung, Reviewer-Teilantwort und Herkunft, fremde Daten.
+
+Finaler eingefrorener Codebaum: 5/5 neue Transportregressionen bestanden. Danach
+193/193 bestehende Vertrags-/Integrationsfälle bestanden (test-skip-pattern für
+die fünf separat geprüften neuen Fälle); zusammen 198 unterschiedliche Fälle.
+Gruppen: flavor, count-clue-normalization, flavor-production, scoped-repair,
+quality, quality-calibration (Verträge) und production, quality, batch (Integration).
+Inhalt 21/21; Rätselprüfung und Communityprüfung (15 Fälle) erfolgreich.
+Release-Gate erwarteter Exit 1 am unveränderten pending-Bestand.
+git diff --check sauber. Node 22.23.3; TMPDIR=/private/tmp und dokumentierter
+Pillow-PATH /private/tmp/sams-f02a-python/bin. Vollständige Unitgruppe in neuer CI;
+keine historischen Unit-Zahlen als neue Ergebnisse übernommen.
+
+Zusätzlicher fünfter Fall: neuer Ein-Positions-Batch bei offenem historischem
+Zweiitemjob verwendet einen vollständigen regulären Einzelitemjob und fordert
+nach Annahme nur Reviewarbeit an. Das bestehende Manifest benennt die tatsächlich
+noch benötigten Item-IDs; historische Jobdateien und Modellantwortformat unverändert.
+Ein erster breiter Lauf wurde vor Abschluss für diese letzte Manifestpräzisierung
+gezielt gestoppt und wird nicht als bestandener neuer Nachweis gezählt.
+
+Qualitätsmethodenhash bleibt 5497f85269eafb041d9021374682d694cd50997d0b373130c8ca73e4d7e6c7d8.
+Die vorhandene Readerbindung job-92930769-ebae-482f-a22f-7d07c3e33c25 bleibt gültig.
+Kein neuer Export/Job, keine Neuetikettierung, keine neue C06r2 und kein Produktions-
+import. Richtige C06r2 ed07b747ce1e245a4706ba1d895fe7931d58d216e5313a51b3d08a22b0512be0.
+SHA-Nachweis aller vier geschützten Ablagen im neuen privaten Übergabebeleg.
+Der 15er-Bestand hatte zu Beginn dieser Runde 171 Dateien; maßgeblich ist der volle
+Byteabgleich dieser Ausgangsinventur, nicht die historische Anzahl 170.
+
+Exakter finaler Head und tatsächlich beobachtete unveränderte CI in PR #134 und
+privatem Abschlussbeleg. CI546 am alten d461120 ist historisch abgeschlossen mit
+12/14 Jobs erfolgreich; nur WebKit2 (Timeout initial/Retry) und WebKit3 (Retry
+bestanden, Flaky-Gate) rot. Keine weitere WebKit-/UI-Debugging-/Rerunschleife,
+keine Gate-Reduktion; Nutzerentscheidung unverändert. Keine vollständige grüne CI
+behaupten, falls nicht belegt. Erneute unabhängige Nachprüfung steht aus.
+Keine Modellaufrufe, echten Reader-/Reviewer-/15er-Läufe, automatische Qualifikation,
+Auswahl, Veröffentlichung oder Merge.
+
+=== HISTORISCHER d461120-STAND; A/B UNABHÄNGIG BESTÄTIGT, TRANSPORT-P2 NOCH OFFEN ===
+
+F02-B PR 2 – zwei Restbefunde nach unabhängiger Nachreview von bf7ae48
+
+Ausgangshead: bf7ae48a895abf153bee75f1585030eedaa05281; vor Beginn auf GitHub
+unverändert, eigener Checkout sauber. Weiterarbeit auf bestehendem PR #134 und
+codex/f02-b-pr2-orchestration. Die unabhängige Nachreview bestätigte ursprüngliche
+Punkte 1, 2, 4, 6, 7; Punkte 3 und 5 waren zuvor nur teilweise behoben. Die folgenden
+neuen Ergebnisse gehören ausschließlich zu diesem Restkorrektur-Codebaum; exakter
+finaler Head und commitgebundene CI stehen in der aktualisierten PR-Beschreibung.
+Keine unabhängige Abnahme der neuen Korrekturen vorweggenommen.
+
+A: Verifizierte Ereignis-/Nachweissicht über alle Batches desselben Qualitätsstores,
+variantenspezifische vollständige Fehlversuche mit Methoden-/Kontextbindung und
+Deduplizierung je Revision. Terminale Verwerfung, akzeptierte Ersatzbeziehungen und
+Ersatzbudget über Batchgrenzen. Gemeinsamer Batchlock, keine Ereignismutation.
+Historische negative Nachweise dienen nur der Verifikation rechtmäßiger Verwerfung,
+nie aktueller Qualifikation. Alte/anders gebundene Fehlnachweise werden nicht zur
+neuen Methoden-/Kontextzählung addiert.
+B: Private Klärungsreader-Ancestry bindet genau den früheren Reviewjob/das Item.
+Angenommene frische Readerantwort plus Vergleich sind wiederverwendbar, auch ohne
+fertigen Klärungsreviewer. Offene Jobs bleiben offen; ursprüngliche Job-, Item-,
+Antwort- und Herkunftsbezüge bleiben erhalten. Erstlesung, mehrere Interpretationen,
+Mehritem-/Teilbatches sowie neue Revision/Methode/Serienkontexte bleiben getrennt.
+Kein privates Klärungswissen wird dem Readerexport hinzugefügt.
+
+Neue gezielte Regressionen: 7/7 bestanden (variant-wide|partial clarification).
+Passende bestehende Vertrags-/Integrationsgruppen: 186/186 bestanden; neue sieben
+Fälle separat bereits bestanden (test-skip-pattern). Gruppen: flavor, count-clue-
+normalization, flavor-production, scoped-repair, quality, quality-calibration
+(Verträge) sowie production, quality und batch (Integration).
+Weitere Checks: test:content 21/21; test:puzzles erfolgreich; check:community
+erfolgreich (15 Fälle). check:community:release erwarteter Exit 1 am unveränderten
+pending-Bestand. git diff --check sauber. Vollständige Unitgruppe in der neuen CI.
+Umgebung: TMPDIR=/private/tmp PATH=/private/tmp/sams-f02a-python/bin:$PATH;
+Node 22, unveränderte Abhängigkeiten. Tests nur synthetisch bzw. auf isolierten Kopien.
+
+Ein früher Restfalllauf hatte 4/5 Erfolge: Die Late-Response-Probe adressierte einen
+Workauftrag mit der falschen Batch-ID und erhielt erwartbar ENOENT. Korrigiert auf
+seinen ursprünglichen Batch und einen zusätzlich parallel geöffneten Auftrag für
+dieselbe spätere Revision; deren verspätete Antworten dürfen nach globaler
+Verwerfung nichts reaktivieren. Keine Produktprüfung dafür gelockert.
+
+Die korrekte private C-06 / independent-1 / Revision 2 mit Hash
+ed07b747ce1e245a4706ba1d895fe7931d58d216e5313a51b3d08a22b0512be0
+bleibt unverändert. Keine erneute Anwendung der genehmigten Satzänderung, kein
+Produktionsimport, keine zusätzliche Revision. Wegen neuem Qualitätsmethodenhash
+wird nur ein getrennter frischer Readerexport erzeugt; der vorige Export bleibt
+unter seinem bisherigen Code-/Methodenbezug historisch erhalten. Ablösung und
+aktuelle private Pfade stehen im neuen Übergabebeleg; keine alten Jobs/Antworten
+neu gebunden. Vorfix- und vollständiger 15er-Bestand bleiben unverändert. Kein
+realer Reader-/Reviewer-/15er-Lauf und keine Modellaufrufe.
+
+CI: Neue unveränderte CI am neuen Commit erforderlich; tatsächlicher Endstand in
+https://github.com/roquas/Sams-Gezeitenkarten/pull/134. Historisch hatte bf7ae48
+CI #545 mit 13/14 Erfolgen, ausschließlich WebKit 1 rot (unveränderter UI-Test,
+Timeout initial und Retry). Keine vollständig grüne CI für diesen alten Head und
+keine Übertragung alter Testergebnisse. Nutzerentscheidung: isolierte WebKit-Flakes
+halten einen Generator-/Skriptbranch nicht auf; kein Rerun, Debugging oder
+CI-Optimierung und keine Gate-Reduktion. Neu verursachte Regressionen bleiben zu
+prüfen. Keine automatische Auswahl, Freigabe, Veröffentlichung oder Merge;
+Modellgüte, Livebetrieb und 10+5-Kalibrierung bleiben empirisch offen.
+
+=== HISTORISCHER bf7ae48-KORREKTURSTAND; PUNKTE 3/5 NUR TEILWEISE BESTÄTIGT ===
+
+F02-B PR 2 – unabhängige Reviewkorrekturen, 26.11.2026
+
+Ausgangspunkt der sieben reproduzierten Findings:
+adafb60c6f45ac0e20137e8265f2718f16488833 (PR #134).
+Geprüft/korrigiert im eigenen Checkout /private/tmp/sams-pr134-review auf
+codex/f02-b-pr2-orchestration. Andere Arbeitskopien bleiben unverändert.
+Der exakte finale Korrekturhead und sein CI-Lauf werden in der PR-Beschreibung
+geführt; die folgenden Ergebnisse gehören zum Codebaum dieses Korrekturcommits.
+
+Korrekturen und Regressionen:
+1. Explizite technische Operatorherkunft bleibt im Ersatzimport erhalten;
+   replacementOf bindet Produktionsabstammung auch über Variantenwechsel.
+   Reload, spätere Prüffolge und erneute Reparatur bleiben technisch.
+   Neue explizite Herkunft hängt nicht von einem Modellnamensmarker ab;
+   alte Belege ohne kind behalten ihren historischen konservativen Lesepfad.
+2. Autorisierung bindet tatsächlichen Serienkontext. Der Batch prüft dessen
+   wirksamen Stand; der Produktionsimport prüft die gebundenen Revisionen
+   unter derselben Sperre wie die Publikation. Fremde ungebundene Episoden
+   invalidieren keine Reparatur. Stale- und Schreiberkonflikte erzeugen keine
+   neue Revision.
+3. Vollständig erfolglos geprüfte Reparaturrevisionen werden mit genauem
+   Review-/Methoden-/Kontextbezug erfasst und pro Revision nur einmal gezählt.
+   Zwei ungeprüfte Patchvorfahren lösen keine vorschnelle Verwerfung aus.
+4. Alle drei Flavor-CLI-Grenzen unterdrücken Parser-/Assertioninhalte.
+   Sichere feste Schreiberkonfliktdiagnosen bleiben handlungsfähig.
+   Batchimportfehler erzeugen Exit 1; vollständige Diagnosen und Antwortbytes
+   stehen separat lokal. Markerprüfungen decken Wiederholung, Parsing und
+   die anderen Batchbefehle ab.
+5. Identisch gebundene aktuelle Stufen werden unter ursprünglichen Job-/Item-IDs
+   wiederverwendet, auch aus Mehritemjobs oder abgeschlossenen Klärungen.
+   Kontext-/Revisions-/Methodenwechsel und Herkunft bleiben getrennt.
+6. Gemeinsamer F01-Übergang liefert bei neuen Scoped-Imports v2-Drafts und
+   Checkpoints samt vollständigen Namen; scoped-repair-v1 bleibt unverändert
+   nach seiner alten Ableitung lesbar. Eine Kopie des alten privaten
+   Arbeitsstores wurde mit unverändertem altem Revisionshash erfolgreich
+   gelesen. Der alte Arbeitsstore und sein Reader-ZIP bleiben Vorfix-Artefakte.
+7. API-Bibliotheksoption und --library der Flavor-CLIs werden konsistent
+   weitergeführt; der Nichtpilot-Ersatztest verwendet eine temporär aufgebaute
+   Bibliothek und unverändert gepinnte Request-/Karten-/Namensdaten.
+
+Umgebung: Node v22.23.3, macOS; bildabhängige Prüfungen mit
+TMPDIR=/private/tmp PATH=/private/tmp/sams-f02a-python/bin:$PATH.
+Technische Testablagen liegen
+unter realpath(os.tmpdir()). Abhängigkeiten aus bestehender Installation mit
+bytegleicher unveränderter package-lock.json in den eigenen Checkout kopiert.
+
+Abschließende lokale Ergebnisse am unveränderten Korrektur-Codebaum:
+- node --test --test-name-pattern='repair context|unreviewed patch|preexisting current|replacement collective|nonpilot replacement|CLI failure|new sparse|completed clarification' tests/contracts/flavor-scoped-repair.test.mjs tests/integration/flavor-batch.test.mjs
+  8/8 gezielte Korrekturproben bestanden.
+- TMPDIR=/private/tmp PATH=/private/tmp/sams-f02a-python/bin:$PATH npm run test:unit
+  722/722 bestanden (vollständige Engine-/Vertrags-/Integrationsgruppe,
+  einschließlich F01, Normalisierung, Produktionsstore, Scoped Repair, Batch,
+  Qualität, Kalibrierung, Legacy-v1/Scoped-v1-Reload und Herkunftstrennung).
+- npm run test:content: 21/21 bestanden.
+- npm run test:puzzles: erfolgreich.
+- npm run check:community: 15 bestehende Fälle erfolgreich validiert.
+- npm run check:community:release: erwarteter Exit 1 am unveränderten pending.
+- git diff --check sowie git diff --check a268484: erfolgreich.
+- Tatsächliche volle Bibliothek: technischer Copy-only-Nichtpilot-Ersatzprobe
+  mit 15 Karten bestanden. Keine echte Qualitätsausführung/Modellproduktion.
+- Alle 261 Dateien des alten privaten Arbeitsstores sowie alle 169 Dateien
+  der getrennten beta15-local-Ablage gegen die Ausgangs-SHA-256-Listen bytegleich.
+  Die neue v2-Ablage wird getrennt erstellt; Details nur im privaten Übergabebeleg.
+CI am neuen Code: der exakte commitgebundene Abschlussstand und neue Lauf
+stehen in der PR-Beschreibung von https://github.com/roquas/Sams-Gezeitenkarten/pull/134.
+Dieser Nachweis überträgt keine CI-Ergebnisse des Vorfix-Heads auf neuen Code.
+Historisch war CI #544 am alten adafb60-Head in Versuch 2 mit 14/14 Jobs grün.
+Erster WebKit-Flaky-Versuch bleibt historisch nachvollziehbar; keine neue
+WebKit-Debugging-/Optimierungsschleife und keine Gateänderung.
+
+Entwicklungszwischenstände, ausdrücklich keine finalen Ergebnisse:
+- Erster breiter lokaler Lauf ohne die dokumentierte TMPDIR-Einstellung:
+  661/722; 61 unveränderte Pfad-/CLIprüfungen trafen den macOS-Alias
+  /var/folders gegenüber dem tatsächlichen /private/var/folders.
+  Eine isolierte unveränderte Katalog-CLI-Probe mit TMPDIR=/private/tmp
+  bestand 1/1. Die gesamte Gruppe wurde mit diesem realen System-Temppfad
+  erneut ausgeführt; ausschließlich ihr Abschluss zählt oben als final.
+- Bestehende gezielte Gruppe zunächst 148/150: zwei CLI-Schreiberkonflikttests
+  verlangten die bisherigen sicheren Diagnosen; die Fehlergrenze erhielt
+  dafür feste inhaltsfreie Meldungen. Keine Vertragsprüfung gelockert.
+- Früher gemischter Scoped-/Batchlauf 32/33: die CLI-Teilprobe lief während
+  Änderungen an den gehashten Methodenmodulen und traf einen anderen
+  Methodenstand als der Elternprozess. Der abschließende Lauf verwendet
+  einen eingefrorenen Codebaum einschließlich CLI-Unterprozessen.
+
+Private Übergabe: neue getrennte Ablage aus gültigem unverändertem
+Revision-1-Bestand; dort ausschließlich die bereits exakt genehmigte
+menschlich-redaktionelle Satzänderung als neue v2-Revision 2. Neue Kennung,
+aktueller Code-/Methodenbezug und frisches Readerpaket stehen im privaten
+Übergabebeleg. Das Vorfixpaket ist dort ausdrücklich als überholt bezeichnet.
+Keine alten Jobs oder Antworten neu gebunden; keine echten Reader-/Reviewerläufe.
+Der vollständige getrennte 15er-Bestand bleibt unverändert. Kein echter
+15er-Batch; Einzelgeschichten/Serie benötigen getrennte spätere Batchpläne.
+
+Technische Doubles belegen keine Modellgüte, keinen Livebetrieb und keine
+10+5-Kalibrierung. Keine automatische Auswahl, Freigabe, Veröffentlichung,
+Modellaufrufe, Deployment oder Merge. Erneute unabhängige Review erforderlich.
+
+=== HISTORISCHE VORFIXNOTIZEN: NUR BIS adafb60, NICHT DER KORREKTURSTAND ===
+
+F02-B PR 2 – technischer Nachweis, 26.11.2026
+
+Ausgang: main a268484de6350bc3216c7be3f9729e631fd6a9f8.
+PR #132 ist einschließlich Head 89f1b9236e47380450a349859cc6747d7b8c79d7
+integriert (git merge-base --is-ancestor erfolgreich). Unabhängige Nachprüfung
+im Chat „PR 132 unabhängig prüfen“: keine belastbaren Findings, 143/143
+gezielte Tests und 22/22 Packagingtests; vollständige CI #540 erfolgreich.
+GitHub enthält dafür keine separat eingereichte Review. Kein Merge durch
+PR 2. Separater Checkout /private/tmp/sams-f02b-pr2; fremde uncommittete
+UI-Änderungen im ursprünglichen Workspace nicht verändert.
+
+Umgebung: macOS 15.1 arm64, Node v22.23.3.
+Bildabhängige Tests: PATH=/private/tmp/sams-f02a-python/bin:$PATH,
+TMPDIR=/private/tmp. npm ci erfolgreich, unveränderte Lockdatei.
+
+Bereits erfolgreich abgeschlossen:
+node --test tests/contracts/flavor.test.mjs tests/contracts/count-clue-normalization.test.mjs
+72/72 bestanden.
+node --test tests/contracts/flavor-scoped-repair.test.mjs
+14/14 bestanden, ausschließlich öffentliche künstliche Vertragsfixture.
+node --test tests/contracts/flavor-production.test.mjs tests/integration/flavor-production.test.mjs
+Mit der oben genannten Python-Umgebung: 46/46 bestanden.
+Der erste Lauf ohne diesen PATH scheiterte wegen fehlendem PIL im
+Standard-Python (45 fehlgeschlagene Tests). Kein Gate/Produktcode wurde
+hierfür gelockert; der vollständige Wiederholungslauf bestand.
+npm run test:content
+21/21 bestanden.
+npm run test:puzzles
+Erfolgreich.
+npm run check:community
+Erfolgreich, 15 bestehende Fälle validiert.
+npm run check:community:release
+Erwartet Exit 1: Flavor not approved, pending statt approved.
+
+Die zusätzlichen Batch-/Qualitätsregressionen und npm run test:unit wurden
+vollständig gestartet. Endgültige Ergebnisse und konkreter CI-Head werden
+nach Abschluss ergänzt; laufende Tests sind hier nicht als bestanden gezählt.
+Die unveränderte vollständige CI bleibt maßgeblich für Browser, WebKit,
+Assets, Katalogarchiv, Reproduktion und Deployment-Packaging.
+Keine Workflow-/Classifier-/Allowliständerung und keine Gate-Reduktion.
+
+Die gebundene minimale Pilotklarstellung wurde ausschließlich in einem
+getrennten lokalen Arbeitsstore als eine neue menschlich-redaktionelle
+Revision angenommen. Exakte private Autorisierung, ursprünglicher Finding,
+Patchbytes, Ableitungsnachweis und Importresultat verbleiben außerhalb des
+Repositorys. Alle anderen Spielertextfelder sind gegen den Vorgänger geprüft
+unverändert; keine Auswahl. Die Neubeurteilung wird als aktueller öffentlicher
+Readerauftrag bereitgestellt. Ohne neue externe Antworten bleiben Reader,
+Vergleich und unabhängige Gesamtprüfung offen. Kein echter Reparaturmodelllauf
+und keine fachliche Qualifikation aus dem technischen Import.
+
+Historische Produktions-/Qualitätsdaten, Pilottexte, Auswahl, Karten, Namen,
+Assets und Beta-Freigabedaten bleiben unverändert. Neue Regressionen verwenden
+explizit technische Antworten. Die endlichen synthetischen Abläufe belegen
+keine zukünftige Modellgüte, keinen Livebetrieb und keine 10+5-Produktion.
+
+Zusätzlich bestanden: gezielter Wiederaufnahmetest nach Produktionsimport
+(1/1). Ein früherer Neuner-Ablauflauf hatte 8/9 Erfolge; seine verbleibende
+Testannahme verlangte fälschlich einen Fehler für einen bereits exakt
+angenommenen alten Import. Korrigiert auf idempotentes created:false samt
+fortbestehender Verwerfung; kein Produktgate wurde dafür abgeschwächt.
+Die erweiterte aktuelle Gruppe wird erneut vollständig ausgeführt.
+
+Weiterer Abnahmestand:
+- 56/56 gezielte Qualitäts-/Scoped-/Ablaufprüfungen bestanden.
+- 4/4 abschließende Runnerprüfungen bestanden (gebündelter Transport,
+  Verwerfung/Ersatz, Produktionsimport-Recovery, Leseabschnitt/Korruption).
+- Persistierter zufälliger Job-Intent vor Jobpublikation: 1/1 bestanden.
+- Der erste breite lokale Lauf endete 641/643. Ein Worker startete vor npm ci
+  und fand @actions/expressions nicht; der parallele Importtest lief während
+  der Methodenentwicklung. Classifier separat nach npm ci: 54/54 bestanden;
+  paralleler Import auf eingefrorenem Stand: 1/1 bestanden. Der vollständige
+  lokale Lauf wurde auf eingefrorenem Stand nochmals gestartet.
+- CI #543, Codehead 2570137c6513df851a785895b173c8a2bfae7fad:
+  Linux fand einen macOS-spezifischen Test-Tempordner (/private/tmp).
+  Korrigiert ausschließlich im neuen Testaufbau auf realpath(os.tmpdir()).
+  Keine Produktänderung und keine Gate-Reduktion. Neuer Head benötigt erneut
+  die vollständige unveränderte CI; Abschlussstand wird im PR ausgewiesen.
+
+Der aktuelle private Arbeitsstore liegt dauerhaft außerhalb des Repositorys
+unter /Users/roquas/Documents/ChatGPT/Sams-Gezeitenkarten-F02B-PR2-Arbeitsstand.
+reader-current.zip enthält ausschließlich den aktuellen öffentlichen
+Readerordner, byteweise gegen dessen Dateien geprüft. Externe Quellen,
+Autorisierung und alte Findings sind nicht enthalten. Keine Modellantworten
+und keine Qualifikation; Arbeitsliste wartet auf manuellen Beta-Transport.
