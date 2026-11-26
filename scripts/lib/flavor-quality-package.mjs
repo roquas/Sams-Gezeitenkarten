@@ -11,7 +11,7 @@ import {loadReleasedAssetCatalog} from './released-asset-catalog.mjs';
 import {renderSavedMapSvg} from './map-contact-sheet.mjs';
 import {READER_PROMPT,REVIEWER_PROMPT} from './flavor-quality-prompts.mjs';
 import {COMPARE_METHOD} from './flavor-quality-compare.mjs';
-import {QUALITY_VERSION,QUALITY_METHOD,UNIT_METHOD,REVIEW_AREAS,OBSERVATION_CATEGORIES,hash,object,array,structure,textUnits,responseSchema} from './flavor-quality-contract.mjs';
+import {QUALITY_VERSION,QUALITY_METHOD,UNIT_METHOD,REVIEW_AREAS,reviewAreas,OBSERVATION_CATEGORIES,hash,object,array,structure,textUnits,responseSchema} from './flavor-quality-contract.mjs';
 
 const implementationFiles=['flavor-production-store.mjs','flavor-scoped-repair.mjs','flavor-production.mjs','flavor-contract.mjs','flavor-quality-contract.mjs','flavor-quality-compare.mjs','flavor-quality-package.mjs','flavor-quality-prompts.mjs','flavor-quality-store.mjs','flavor-quality-json.mjs','count-clue-normalization.mjs','../../src/engine/puzzle.mjs','../../src/engine/hex.mjs','../../src/engine/validate.mjs','../../src/puzzles/schema.mjs','../../src/puzzles/json-schema.mjs'];
 const implementationHash=hash(implementationFiles.map(name=>sha256(fs.readFileSync(new URL(name,import.meta.url)))));
@@ -37,15 +37,14 @@ function publicPresentation(puzzle){
  return {title:puzzle.presentation.title,intro:structuredClone(puzzle.presentation.intro),
  clues:Object.entries(puzzle.presentation.clueTexts).map(([id,text])=>({id,text}))};
 }
-export function buildReaderInputs({production,references,context=EMPTY_CONTEXT}){
+export function buildReaderInputs({production,references,context=EMPTY_CONTEXT,seriesVersion=2}){
  structure(context,contextSchema);assert.ok(references.length&&new Set(references.map(r=>canonicalJson(r))).size===references.length,'flavor quality: distinct revision references required');
  // editorial.context is deliberately not a source of actual series player text.
  assert.equal(new Set(context.episodes.map(r=>canonicalJson(r))).size,context.episodes.length,'flavor quality: duplicate series episode');
  const resolvedContext=context.episodes.map(r=>resolveRevision(production,r));
  const series={version:1,episodes:resolvedContext.map(r=>({presentation:publicPresentation(r.puzzle)}))};
  const contextBinding=hash({snapshot:context,presentations:resolvedContext.map(r=>r.puzzle.presentation)}),files=new Map(),entries=[];
- for(const [i,ref] of references.entries()){
-  const r=resolveRevision(production,ref),{position,puzzle,stored,record}=r;
+ const addCommon=r=>{const {stored,puzzle}=r;
   const sourceRules=stored.files.get('rules.md');assert.ok(sourceRules);assert.equal(sha256(sourceRules),stored.order.inputHashes.rules);
   const rules=Buffer.from(sourceRules.toString().replace('Diese versionierte Erklärung beschreibt src/engine/puzzle.mjs und hex.mjs.\nDie verbindlichen konkreten Daten stehen je Position in request.source.logic.', 'Diese versionierte öffentliche Erklärung beschreibt die geltenden Engine-Regeln.\nDie konkreten öffentlichen Kartendaten, Start und Etappen stehen je Episode in job.json.'));
   // P15/P16 are private pilot-selection/calibration and future scope, not world/style facts.
@@ -57,26 +56,41 @@ export function buildReaderInputs({production,references,context=EMPTY_CONTEXT})
   const common=new Map([['rules.md',rules],...['world.md','style.md','production.md'].map(name=>['world/'+name,name==='production.md'?productionRules:stored.files.get('world/'+name)])]);
   const worldManifest=JSON.parse(stored.files.get('world/manifest.json'));
   for(const [name,bytes] of common){assert.ok(bytes,'flavor quality: missing public source');if(files.has(name))assert.equal(sha256(files.get(name)),sha256(bytes),'flavor quality: mixed public sources');else files.set(name,bytes);}
+  return {rules,sourceRules,worldManifest,common};
+ };
+ const chartFor=(r,mapName,prefix)=>{const {position,stored,puzzle}=r;
   const origin=stored.binding.origin.positions.find(o=>o.caseId===position.caseId),released=releaseFor(origin),library=released.catalog.library,chartFiles=released.chartContract.format.files;
   const resources=[...new Set([chartFiles.sea,chartFiles.frame,...position.card.assetPlacements.map(p=>library.assets.find(a=>a.id===p.assetId).image.path)])],paths=new Map();
   for(const resource of resources){
    assert.match(resource,/\.(png|webp)$/);const bytes=released.readResource(resource),name='resources/'+sha256(bytes)+path.extname(resource);paths.set(resource,name);
    if(files.has(name))assert.equal(sha256(files.get(name)),sha256(bytes));else files.set(name,bytes);
   }
-  const mapName='maps/m'+String(i+1).padStart(3,'0')+'.svg';
-  const svg=renderSavedMapSvg({map:position.card.map,placements:position.card.assetPlacements,prefix:'m'+(i+1)+'-',title:'Öffentliche Karte',coordinates:true},library,chartFiles,resource=>{
+  const svg=renderSavedMapSvg({map:position.card.map,placements:position.card.assetPlacements,prefix,title:'Öffentliche Karte',coordinates:true},library,chartFiles,resource=>{
    const ref=resource.startsWith('https://released.invalid/')?new URL(resource).pathname.slice(1):resource;assert.ok(paths.has(ref),'flavor quality: external resource');return '../'+paths.get(ref);
   });files.set(mapName,svg+'\n');
-  const presentation=publicPresentation(puzzle);
   const chart={map:pick(position.card.map,['geometry','grid','objects']),start:puzzle.logic.start,steps:puzzle.logic.steps,
    objectNames:structuredClone(position.card.objectNames),background:position.card.background,
    assetPlacements:position.card.assetPlacements.map(p=>pick(p,['id','assetId','anchor','objectId'])),
    assets:[...new Set(position.card.assetPlacements.map(p=>p.assetId))].map(assetId=>{
     const a=library.assets.find(x=>x.id===assetId);return {id:assetId,image:paths.get(a.image.path)};
    }),image:mapName,imageSha256:sha256(svg+'\n')};
+  return chart;
+ };
+ const contextCharts=[];
+ if(context.episodes.length&&seriesVersion===2)for(const [i,r] of resolvedContext.entries()){
+  addCommon(r);const episodeId='episode-'+String(i+1).padStart(2,'0'),chart=chartFor(r,'maps/'+episodeId+'.svg',episodeId+'-'),chartRef='charts/'+episodeId+'.json';files.set(chartRef,json(chart));
+  contextCharts.push({episodeId,presentation:publicPresentation(r.puzzle),chartRef,chartSha256:sha256(files.get(chartRef))});
+ }
+ for(const [i,ref] of references.entries()){
+  const r=resolveRevision(production,ref),{stored,puzzle,position,record}=r,{rules,sourceRules,worldManifest,common}=addCommon(r);
+  const contextIndex=context.episodes.findIndex(e=>canonicalJson(e)===canonicalJson(ref));
+  const scoped=context.episodes.length>0&&seriesVersion===2,currentEpisodeId=scoped&&contextIndex>=0?contextCharts[contextIndex].episodeId:'episode-current';
+  const chart=scoped&&contextIndex>=0?JSON.parse(files.get(contextCharts[contextIndex].chartRef)):chartFor(r,'maps/m'+String(i+1).padStart(3,'0')+'.svg','m'+(i+1)+'-');
+  const actualSeries=scoped?{version:2,currentEpisodeId,order:[...(contextIndex<0?[currentEpisodeId]:[]),...contextCharts.map(e=>e.episodeId)],episodes:contextCharts.filter(e=>e.episodeId!==currentEpisodeId)}:series;
+  const presentation=publicPresentation(puzzle);
   const sources={rules:{version:puzzle.rulesVersion,sha256:sha256(rules)},world:{packageId:worldManifest.packageId,version:worldManifest.version,publicView:'production-p01-p14-1',
    files:['world.md','style.md','production.md'].map(name=>({path:'world/'+name,sha256:sha256(common.get('world/'+name))}))}};
-  const input={presentation,chart,sources,seriesContext:series,unitMethod:UNIT_METHOD,units:textUnits(presentation,series)};
+  const input={presentation,chart,sources,seriesContext:actualSeries,unitMethod:UNIT_METHOD,units:textUnits(presentation,actualSeries)};
   const binding={revisionRef:revisionReference(record),sourceHash:position.sourceHash,presentationHash:r.presentationHash,contextHash:contextBinding,
    sourceBinding:hash({methodHash:METHOD_HASH,revisionRef:ref,request:record.request,presentation:puzzle.presentation,sources,
     world:stored.order.world,sourceRulesSha256:sha256(sourceRules),context,contextBinding}),publicInputHash:hash(input)};
@@ -92,24 +106,25 @@ export function createReaderJob(inputs,{jobId='job-'+randomUUID(),itemIds=inputs
  items:inputs.entries.map((e,i)=>({itemId:itemIds[i],...e.binding}))};
  return {job,sidecar,files:packageFiles(job,inputs.files)};
 }
-export function reviewFacts(publicInput,originals){
+export function reviewFacts(publicInput,originals,files){
  return [{id:'public.map',value:publicInput.chart.map},{id:'public.names',value:publicInput.chart.objectNames},
  {id:'public.start',value:publicInput.chart.start},{id:'public.steps',value:publicInput.chart.steps},{id:'public.rules',value:publicInput.sources.rules},
  ...publicInput.sources.world.files.map(f=>({id:'world.'+path.basename(f.path,'.md'),value:f})),
+ ...(publicInput.seriesContext.version===2?[{id:'public.episode',value:{episodeId:publicInput.seriesContext.currentEpisodeId,mathematics:'Only this episode; local H/geo IDs'}},...publicInput.seriesContext.episodes.flatMap(e=>[{id:'series.'+e.episodeId+'.presentation',value:e.presentation},{id:'series.'+e.episodeId+'.chart',value:JSON.parse(files.get(e.chartRef))}])]:[]),
  ...originals.map(c=>({id:'original.'+c.id,value:c}))];
 }
 export function createReviewerJob({readerJob,readerSidecar,readerResults,comparisons,originals,files,clarification=null,clarificationReference=null},
  {jobId='job-'+randomUUID(),itemIds=readerJob.items.map(()=>'item-'+randomUUID())}={}){
  const items=readerJob.items.map((p,i)=>{
   const reader=readerResults[i],comparison=comparisons[i];assert.ok(reader&&comparison,'flavor quality: reader and comparison required');
-  const input={public:p.input,originals:originals[i],facts:reviewFacts(p.input,originals[i]),reader,comparison,...(clarification?{clarification}: {})};
+  const input={public:p.input,originals:originals[i],facts:reviewFacts(p.input,originals[i],files),reader,comparison,...(clarification?{clarification}: {})};
   return {itemId:itemIds[i],inputHash:hash(input),input};
  });
  const job={transportVersion:1,stage:'reviewer',jobId,methodHash:METHOD_HASH,items};
  const sidecar={version:1,stage:'reviewer',jobId,methodHash:METHOD_HASH,context:readerSidecar.context,...(clarificationReference?{clarification:clarificationReference}:{}),
  items:readerSidecar.items.map((b,i)=>({...b,itemId:itemIds[i],publicInputHash:items[i].inputHash,
   readerJobId:readerJob.jobId,readerItemId:readerJob.items[i].itemId,readerHash:hash(readerResults[i]),comparisonHash:hash(comparisons[i])}))};
- const sourceFiles=new Map([...files].filter(([name])=>name==='rules.md'||name.startsWith('world/')||name.startsWith('maps/')||name.startsWith('resources/')));
+ const sourceFiles=new Map([...files].filter(([name])=>name==='rules.md'||name.startsWith('world/')||name.startsWith('maps/')||name.startsWith('charts/')||name.startsWith('resources/')));
  return {job,sidecar,files:packageFiles(job,sourceFiles)};
 }
 export function packageFiles(job,sources){
@@ -119,12 +134,12 @@ export function packageFiles(job,sources){
  const items=job.items.map(i=>{
   const input=job.stage==='reader'?i.input:i.input.public;
   const coverage=input.units.map(u=>job.stage==='reader'?{unitId:u.id,claimIds:[],assessment:''}:{unitId:u.id,assessment:''});
-  if(job.stage==='reader')return {itemId:i.itemId,inputHash:i.inputHash,coverage,claims:[],interpretations:input.presentation.clues.map(c=>({clueId:c.id,claimIds:[]}))};
+  if(job.stage==='reader')return {itemId:i.itemId,inputHash:i.inputHash,coverage,claims:[],interpretations:input.presentation.clues.map(c=>({clueId:c.id,claimIds:[]})),...(input.seriesContext.version===2?{series:input.seriesContext.episodes.map(e=>({episodeId:e.episodeId,assessment:null,unitIds:[],claimIds:[],rationale:''}))}:{})};
   return {itemId:i.itemId,inputHash:i.inputHash,readerHash:hash(i.input.reader),comparisonHash:hash(i.input.comparison),coverage,
-   checks:REVIEW_AREAS.map(area=>({area,conclusion:null,...emptyEvidence()})),
+   checks:reviewAreas(input).map(area=>({area,conclusion:null,...emptyEvidence()})),
    claims:i.input.reader.claims.map(c=>({claimId:c.id,disposition:null,...emptyEvidence()})),
    clues:input.presentation.clues.map(c=>({clueId:c.id,interpretation:null,selfContained:null,informationBoundary:null,...emptyEvidence(),factRefs:['original.'+c.id]})),
-   findings:[],observations:OBSERVATION_CATEGORIES.map(category=>({category,value:'',unitIds:[]}))};
+   ...(input.seriesContext.version===2?{series:input.seriesContext.episodes.map(e=>({episodeId:e.episodeId,conclusion:null,unitIds:[],factRefs:['public.episode','series.'+e.episodeId+'.presentation'],rationale:''}))}:{}),findings:[],observations:OBSERVATION_CATEGORIES.map(category=>({category,value:'',unitIds:[]}))};
  });
  files.set('response-template.json',json({transportVersion:1,stage:job.stage,jobId:job.jobId,methodHash:METHOD_HASH,items}));
  const article=job.items.map(item=>{
@@ -145,6 +160,11 @@ export function verifyQualityPackage(files){
   assert.equal(item.inputHash,hash(item.input),'flavor quality: public item integrity');
   const p=job.stage==='reader'?item.input:item.input.public;
   assert.equal(sha256(files.get(p.chart.image)),p.chart.imageSha256,'flavor quality: chart integrity');
+  if(p.seriesContext.version===2){
+   assert.equal(new Set(p.seriesContext.order).size,p.seriesContext.order.length);assert.ok(p.seriesContext.order.includes(p.seriesContext.currentEpisodeId));
+   assert.deepEqual(p.seriesContext.episodes.map(e=>e.episodeId),p.seriesContext.order.filter(id=>id!==p.seriesContext.currentEpisodeId));
+   for(const e of p.seriesContext.episodes){assert.equal(sha256(files.get(e.chartRef)),e.chartSha256);const c=JSON.parse(files.get(e.chartRef));assert.equal(sha256(files.get(c.image)),c.imageSha256);}
+  }
   assert.equal(sha256(files.get('rules.md')),p.sources.rules.sha256);
   for(const f of p.sources.world.files)assert.equal(sha256(files.get(f.path)),f.sha256);
  }

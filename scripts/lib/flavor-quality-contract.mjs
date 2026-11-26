@@ -5,8 +5,8 @@ import {validateLogic} from '../../src/engine/validate.mjs';
 import {canonicalJson,sha256} from './content-hash.mjs';
 
 export const QUALITY_VERSION=1;
-export const QUALITY_METHOD='f02b-three-stage-2';
-export const UNIT_METHOD='whole-field-utf16-1';
+export const QUALITY_METHOD='f02b-three-stage-3-episode-scope';
+export const UNIT_METHOD='local-fields-and-series-relations-2';
 export const hash=value=>sha256('gezeitenkarten-flavor-quality/v1\0'+canonicalJson(value));
 export const object=properties=>({type:'object',properties,required:Object.keys(properties),additionalProperties:false});
 export const text={type:'string',minLength:1,maxLength:60000};
@@ -49,16 +49,29 @@ export const envelopeSchema=stage=>object({transportVersion:{const:QUALITY_VERSI
 // Job-bound schemas expose public IDs/namespace limits, never private originals
 // in a reader job. Cross-reference reciprocity and engine validity remain runtime
 // checks and are stated in the prompt rather than silently auto-repaired.
+export const scopedSeries=input=>input.seriesContext?.version===2;
+export const reviewAreas=input=>scopedSeries(input)?[...REVIEW_AREAS,'series-independence']:REVIEW_AREAS;
+const seriesRelations=(input,stage)=>{
+ const episodes=input.seriesContext.episodes.map(e=>e.episodeId);
+ return {...array(object({episodeId:{enum:episodes},...(stage==='reader'?{assessment:{enum:['independent','dependency','contradiction','additional-condition','deduction-disclosure','unresolved']},claimIds:{...refs,minItems:1}}:{conclusion:{enum:['independent','dependency','contradiction','additional-condition','deduction-disclosure','uncertain']},factRefs:{...refs,minItems:1}}),unitIds:{...refs,minItems:1},rationale:text})),minItems:episodes.length,maxItems:episodes.length};
+};
 function boundItemSchema(stage,item){
  const schema=structuredClone(stage==='reader'?readerItemSchema:reviewerItemSchema),p=schema.properties;
  p.itemId={const:item.itemId};p.inputHash={const:item.inputHash};
  const input=stage==='reader'?item.input:item.input.public;
  const units=input.units.map(u=>u.id),clues=input.presentation.clues.map(c=>c.id);
+ if(scopedSeries(input)){
+  p.series=seriesRelations(input,stage);schema.required.push('series');
+  if(stage==='reader'){
+   p.claims.items.oneOf.push(object({...claimFields,kind:{const:'context'},clueId:{type:'null'},state:{const:'contextual'},atoms:{...array(atomSchema),maxItems:0}}));
+   for(const branch of p.claims.items.oneOf){const foreign=branch.properties.kind.const==='context';branch.properties.scope={const:foreign?'series-context':'current-episode'};branch.properties.episodeId=foreign?{enum:input.seriesContext.episodes.map(e=>e.episodeId)}:{const:input.seriesContext.currentEpisodeId};branch.required.push('scope','episodeId');}
+  }else p.claims.items.properties.disposition.enum.push('context-only');
+ }
  const references=values=>({...refs,items:{enum:values}});
  const complete=(field,ids)=>{p[field].minItems=ids.length;p[field].maxItems=ids.length;};
  p.coverage.items.properties.unitId={enum:units};complete('coverage',units);
  if(stage==='reader'){
-  for(const branch of p.claims.items.oneOf){branch.properties.unitIds={...references(units),minItems:1};branch.properties.clueId=nullable({enum:clues});}
+  for(const branch of p.claims.items.oneOf){branch.properties.unitIds={...references(units),minItems:1};branch.properties.clueId=branch.properties.kind.const==='context'?{type:'null'}:nullable({enum:clues});}
   p.interpretations.items.properties.clueId={enum:clues};complete('interpretations',clues);
  }else{
   const facts=item.input.facts.map(f=>f.id),claims=item.input.reader.claims.map(c=>c.id);
@@ -67,7 +80,7 @@ function boundItemSchema(stage,item){
    const q=p[field].items.properties;q.unitIds={...references(units),minItems:1};q.factRefs=references(facts);
   }
   p.claims.items.properties.claimId={enum:claims};complete('claims',claims);
-  p.clues.items.properties.clueId={enum:clues};complete('clues',clues);complete('checks',REVIEW_AREAS);
+  p.clues.items.properties.clueId={enum:clues};complete('clues',clues);complete('checks',reviewAreas(input));p.checks.items.properties.area={enum:reviewAreas(input)};
   p.findings.items.properties.claimIds=references(claims);
   p.findings.items.properties.evidenceRefs=references(['reader','comparison',...facts]);
   p.observations.items.properties.unitIds={...references(units),minItems:1};p.observations.minItems=OBSERVATION_CATEGORIES.length;
@@ -104,6 +117,13 @@ export function validateReaderItem(item,result){
  exactIds(claims.map(c=>c.id),[...new Set(claims.map(c=>c.id))],'claims');
  const ids=claims.map(c=>c.id);
  for(const c of claims){
+  if(scopedSeries(item.input)){
+   const current=item.input.seriesContext.currentEpisodeId;
+   if(c.scope==='series-context'){
+    assert.equal(c.kind,'context');assert.equal(c.state,'contextual');assert.equal(c.clueId,null);assert.notEqual(c.episodeId,current);
+    assert.ok(c.unitIds.every(id=>units.find(u=>u.id===id)?.episodeId===c.episodeId),'foreign context claim must stay in its episode');
+   }else{assert.equal(c.scope,'current-episode');assert.equal(c.episodeId,current);assert.notEqual(c.kind,'context');}
+  }
   validRefs(c.unitIds,unitIds,'claim units');
   assert.ok(c.clueId===null||clueIds.includes(c.clueId),'flavor quality: foreign claim clue');
   if(c.clueId!==null)assert.ok(c.unitIds.some(u=>units.find(x=>x.id===u).field==='clues.'+c.clueId),'flavor quality: claim must address its clue text');
@@ -126,7 +146,16 @@ export function validateReaderItem(item,result){
   assert.ok(interpretation.claimIds.length,'flavor quality: missing clue interpretation');
   exactIds(interpretation.claimIds,claims.filter(c=>c.clueId===interpretation.clueId).map(c=>c.id),'clue claims');
  }
+ if(scopedSeries(item.input))validateSeriesRelations(item.input,result,'reader');
  return result;
+}
+function validateSeriesRelations(input,result,stage){
+ const episodes=input.seriesContext.episodes.map(e=>e.episodeId);exactIds(result.series.map(r=>r.episodeId),episodes,'series relations');
+ for(const r of result.series){
+  validRefs(r.unitIds,input.units.map(u=>u.id),'series units');assert.ok(r.unitIds.some(id=>input.units.find(u=>u.id===id)?.episodeId===r.episodeId),'relation needs its foreign episode unit');
+  if(stage==='reader'){validRefs(r.claimIds,result.claims.map(c=>c.id),'series claims');assert.ok(r.claimIds.every(id=>result.claims.find(c=>c.id===id).unitIds.some(u=>r.unitIds.includes(u))),'series claim binding');}
+  else{assert.ok(r.factRefs.includes('series.'+r.episodeId+'.presentation')&&r.factRefs.includes('public.episode'),'series judgment needs both episode scopes');validRefs(r.factRefs,result.__factIds??[], 'series facts');}
+ }
 }
 export function validateReviewerItem(item,result){
  structure(result,boundItemSchema('reviewer',item));assert.equal(result.itemId,item.itemId);assert.equal(result.inputHash,item.inputHash,'flavor quality: stale review input');
@@ -134,20 +163,22 @@ export function validateReviewerItem(item,result){
  const units=item.input.public.units.map(u=>u.id),facts=item.input.facts.map(f=>f.id),claims=item.input.reader.claims.map(c=>c.id);
  const checkEvidence=e=>{validRefs(e.unitIds,units,'review units');validRefs(e.factRefs,facts,'review facts');};
  exactIds(result.coverage.map(u=>u.unitId),units,'review coverage');
- exactIds(result.checks.map(c=>c.area),REVIEW_AREAS,'review areas');
+ exactIds(result.checks.map(c=>c.area),reviewAreas(item.input.public),'review areas');
  exactIds(result.claims.map(c=>c.claimId),claims,'review claims');
  exactIds(result.clues.map(c=>c.clueId),item.input.public.presentation.clues.map(c=>c.id),'review clues');
  exactIds(result.findings.map(f=>f.id),[...new Set(result.findings.map(f=>f.id))],'finding IDs');
  [...result.checks,...result.claims,...result.clues,...result.findings].forEach(checkEvidence);
  for(const c of result.claims){
   const source=item.input.reader.claims.find(x=>x.id===c.claimId);
-  if(source.kind==='mathematical'&&mathematicsNeedsAuthority(item,source)&&c.disposition==='authorized')assert.ok(c.factRefs.some(f=>f.startsWith('public.')||f.startsWith('original.')),'flavor quality: additional mathematics needs explicit public/original fact authority');
+  if(c.disposition==='context-only'){assert.ok(scopedSeries(item.input.public)&&source.scope==='series-context'&&source.kind==='context','only foreign scoped context may receive context-only');assert.ok(c.factRefs.includes('series.'+source.episodeId+'.presentation'),'context judgment requires its exact episode');}
+  if(source.kind==='mathematical'&&mathematicsNeedsAuthority(item,source)&&c.disposition==='authorized')assert.ok(c.factRefs.some(f=>(f.startsWith('public.')&&f!=='public.episode')||f.startsWith('original.')),'flavor quality: additional mathematics needs explicit public/original fact authority');
   if(c.disposition==='reader-error')assert.ok(c.factRefs.length,'flavor quality: reader objection needs source evidence');
  }
  for(const c of result.clues)assert.ok(c.factRefs.includes('original.'+c.clueId),'flavor quality: clue judgment needs its original source');
  for(const f of result.findings){validRefs(f.claimIds,claims,'finding claims');validRefs(f.evidenceRefs,['reader','comparison',...facts],'finding evidence');}
  for(const o of result.observations)validRefs(o.unitIds,units,'observation units');
  exactIds([...new Set(result.observations.map(o=>o.category))],OBSERVATION_CATEGORIES,'observation categories (explicit absence allowed)');
+ if(scopedSeries(item.input.public))validateSeriesRelations(item.input.public,{...result,__factIds:facts},'reviewer');
  return result;
 }
 export function validateEnvelope(job,response){
@@ -159,6 +190,11 @@ export function textUnits(presentation,context){
  const units=[];
  const add=(field,value)=>units.push({id:'u'+String(units.length+1).padStart(4,'0'),field,start:0,end:value.length,text:value});
  const addPresentation=(p,prefix='')=>{add(prefix+'title',p.title);p.intro.forEach((v,i)=>add(prefix+'intro.'+i,v));p.clues.forEach(c=>add(prefix+'clues.'+c.id,c.text));};
+ if(context.version===2){
+  addPresentation(presentation);units.forEach(u=>Object.assign(u,{scope:'current-episode',episodeId:context.currentEpisodeId}));
+  for(const e of context.episodes){const p=e.presentation,value=[p.title,...p.intro,...p.clues.map(c=>e.episodeId+'/'+c.id+': '+c.text)].join('\n\n');add('series.'+e.episodeId,value);Object.assign(units.at(-1),{scope:'series-context',episodeId:e.episodeId});}
+  return units;
+ }
  addPresentation(presentation);context.episodes.forEach((p,i)=>addPresentation(p.presentation,'series.'+i+'.'));
  return units;
 }
@@ -192,8 +228,14 @@ export function qualify(item,reader,comparison,review){
  if(!reader)reasons.push('reader-missing');if(!comparison)reasons.push('comparison-missing');if(!review)reasons.push('review-missing');
  if(comparison&&comparison.clues.some(c=>c.result!=='equivalent'||!c.completeInterpretation))reasons.push('comparison-open');
  if(reader&&review){
+  const input=item.input.public??item.input;
+  if(scopedSeries(input)){
+   if(!reader.series||reader.series.some(r=>r.assessment!=='independent'))reasons.push('reader-series-open');
+   if(!review.series||review.series.some(r=>r.conclusion!=='independent'))reasons.push('series-review-open');
+  }
   for(const c of review.claims){
    const source=reader.claims.find(x=>x.id===c.claimId);
+   if(scopedSeries(input)&&source.scope==='series-context'&&c.disposition!=='context-only')reasons.push('context-review-open:'+c.claimId);
    if(['reader-error','unresolved'].includes(c.disposition))reasons.push('claim-open:'+c.claimId);
    if(source.state==='unresolved'&&c.disposition!=='not-puzzle-relevant')reasons.push('unresolved-interpretation:'+c.claimId);
    if(source.kind==='mathematical'&&mathematicsNeedsAuthority(item,source)&&c.disposition!=='authorized'&&!supportedHintInteraction(item,source,c,review))reasons.push('additional-mathematics:'+c.claimId);
