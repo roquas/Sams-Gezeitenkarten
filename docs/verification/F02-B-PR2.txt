@@ -60,3 +60,26 @@ Testannahme verlangte fälschlich einen Fehler für einen bereits exakt
 angenommenen alten Import. Korrigiert auf idempotentes created:false samt
 fortbestehender Verwerfung; kein Produktgate wurde dafür abgeschwächt.
 Die erweiterte aktuelle Gruppe wird erneut vollständig ausgeführt.
+
+Weiterer Abnahmestand:
+- 56/56 gezielte Qualitäts-/Scoped-/Ablaufprüfungen bestanden.
+- 4/4 abschließende Runnerprüfungen bestanden (gebündelter Transport,
+  Verwerfung/Ersatz, Produktionsimport-Recovery, Leseabschnitt/Korruption).
+- Persistierter zufälliger Job-Intent vor Jobpublikation: 1/1 bestanden.
+- Der erste breite lokale Lauf endete 641/643. Ein Worker startete vor npm ci
+  und fand @actions/expressions nicht; der parallele Importtest lief während
+  der Methodenentwicklung. Classifier separat nach npm ci: 54/54 bestanden;
+  paralleler Import auf eingefrorenem Stand: 1/1 bestanden. Der vollständige
+  lokale Lauf wurde auf eingefrorenem Stand nochmals gestartet.
+- CI #543, Codehead 2570137c6513df851a785895b173c8a2bfae7fad:
+  Linux fand einen macOS-spezifischen Test-Tempordner (/private/tmp).
+  Korrigiert ausschließlich im neuen Testaufbau auf realpath(os.tmpdir()).
+  Keine Produktänderung und keine Gate-Reduktion. Neuer Head benötigt erneut
+  die vollständige unveränderte CI; Abschlussstand wird im PR ausgewiesen.
+
+Der aktuelle private Arbeitsstore liegt dauerhaft außerhalb des Repositorys
+unter /Users/roquas/Documents/ChatGPT/Sams-Gezeitenkarten-F02B-PR2-Arbeitsstand.
+reader-current.zip enthält ausschließlich den aktuellen öffentlichen
+Readerordner, byteweise gegen dessen Dateien geprüft. Externe Quellen,
+Autorisierung und alte Findings sind nicht enthalten. Keine Modellantworten
+und keine Qualifikation; Arbeitsliste wartet auf manuellen Beta-Transport.

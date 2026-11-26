@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import {productionFixture,technicalResponse} from '../fixtures/flavor-production.mjs';
 import {technicalReader,technicalReviewer,TECHNICAL_OPERATOR} from '../fixtures/flavor-quality/technical-responses.mjs';
 import {openProductionStore,revisionReference} from '../../scripts/lib/flavor-production-store.mjs';
@@ -11,7 +12,7 @@ import {applyScopedPatch} from '../../scripts/lib/flavor-scoped-repair.mjs';
 import {json,contentHash,materializeFlavorRevision} from '../../scripts/lib/flavor-production.mjs';
 import {packageInventory} from '../../scripts/lib/flavor-production-package.mjs';
 import {readTree} from '../../scripts/lib/immutable-file-store.mjs';
-const root=fs.mkdtempSync('/private/tmp/f02b-batch-test-'),bytes=x=>Buffer.from(json(x));let n=0,fixture;
+const root=fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()),'f02b-batch-test-')),bytes=x=>Buffer.from(json(x));let n=0,fixture;
 test.after(()=>fs.rmSync(root,{recursive:true,force:true}));
 function setup(count=1,budgets={}){
  fixture??=productionFixture();const dir=path.join(root,String(++n));fs.mkdirSync(dir);
