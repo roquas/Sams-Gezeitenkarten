@@ -3,23 +3,28 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import {spawnSync} from 'node:child_process';
+import {importCommunityCards} from '../../scripts/lib/card-import.mjs';
+import {loadCommunityProduction,createProductionPackage} from '../../scripts/lib/flavor-production-package.mjs';
+import {METHOD_HASH} from '../../scripts/lib/flavor-quality-package.mjs';
 import {productionFixture,technicalResponse} from '../fixtures/flavor-production.mjs';
 import {technicalReader,technicalReviewer,TECHNICAL_OPERATOR} from '../fixtures/flavor-quality/technical-responses.mjs';
 import {openProductionStore,revisionReference} from '../../scripts/lib/flavor-production-store.mjs';
 import {openQualityStore} from '../../scripts/lib/flavor-quality-store.mjs';
 import {openFlavorBatch,manualBetaAdapter,technicalTestAdapter} from '../../scripts/lib/flavor-batch.mjs';
-import {applyScopedPatch} from '../../scripts/lib/flavor-scoped-repair.mjs';
-import {json,contentHash,materializeFlavorRevision} from '../../scripts/lib/flavor-production.mjs';
+import {createFlavorCheckpoint} from '../../scripts/lib/flavor-contract.mjs';
+import {applyScopedPatch,deriveScopedRecord} from '../../scripts/lib/flavor-scoped-repair.mjs';
+import {json,contentHash,materializeFlavorRevision,createProductionRecords,validateStoredProductionRecords} from '../../scripts/lib/flavor-production.mjs';
 import {packageInventory} from '../../scripts/lib/flavor-production-package.mjs';
-import {readTree} from '../../scripts/lib/immutable-file-store.mjs';
+import {readTree,seal,publishTree} from '../../scripts/lib/immutable-file-store.mjs';
 const root=fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()),'f02b-batch-test-')),bytes=x=>Buffer.from(json(x));let n=0,fixture;
 test.after(()=>fs.rmSync(root,{recursive:true,force:true}));
-function setup(count=1,budgets={}){
+function setup(count=1,budgets={},contextIndices=[]){
  fixture??=productionFixture();const dir=path.join(root,String(++n));fs.mkdirSync(dir);
  const production=openProductionStore({directory:dir+'/prod'});production.saveOrder(fixture);
  const result=production.importResponse({orderId:fixture.order.orderId,runId:'technical-seed',responseBytes:bytes(technicalResponse(fixture.order)),operator:{model:'technical-test-adapter',producedAt:null}});
  const refs=result.records.slice(0,count).map(revisionReference),quality=openQualityStore({directory:dir+'/quality',production});
- const batch=openFlavorBatch({quality,production,batchId:'test'});batch.create({references:refs,budgets});
+ const batch=openFlavorBatch({quality,production,batchId:'test'});batch.create({references:refs,budgets,context:{version:1,episodes:contextIndices.map(i=>refs[i])}});
  const manual=manualBetaAdapter({out:dir+'/out'});return {dir,production,quality,batch,refs,manual};
 }
 function response(f,w){const saved=f.quality.loadJob(w.jobId);return saved.job.stage==='reader'?technicalReader(saved.job,saved.sidecar.items.map(i=>f.production.findRecord(i.revisionRef).request.source.logic.clues)):technicalReviewer(saved.job);}
@@ -160,4 +165,147 @@ test('resume finishes a persisted random job intent after interruption before qu
  assert.equal(fs.readdirSync(f.quality.directory+'/jobs').length,0);
  const r=b.run(f.manual);assert.equal(r.work.length,1);assert.equal(fs.readdirSync(f.batch.directory+'/work').length,1);assert.equal(fs.readdirSync(f.quality.directory+'/jobs').length,1);
  assert.match(r.details.evidence[0].work.jobId,/^job-[a-f0-9-]{36}$/);
+});
+
+function blockingReview(f,v,w){
+ if(w.kind==='reviewer'){
+  const unit=f.quality.loadJob(w.jobId).job.items[0].input.public.units.find(u=>u.field==='title').id;
+  v.items[0].findings=[{id:'f1',severity:'ERROR',requirement:'synthetic mandatory issue',unitIds:[unit],factRefs:['public.rules'],rationale:'TECHNICAL TEST',claimIds:[],method:'technical-test',evidenceRefs:['reader'],repairTarget:'title'}];
+ }return v;
+}
+function pauseRepair(f){return f.batch.run(technicalTestAdapter(({work})=>work.some(w=>w.kind==='repair')?[]:work.map(w=>({workId:w.id,responseBytes:bytes(blockingReview(f,response(f,w),w))}))));}
+function importPatch(f,reference,id,value='TECHNICAL PATCH '+id){
+ const authorization={...auth(reference,[{field:'title'}]),jobId:id,sourceHash:f.production.findRecord(reference).request.sourceHash};
+ return f.production.importScopedRepair({runId:id,responseBytes:bytes({version:1,jobId:id,predecessor:reference,changes:[{target:{field:'title'},value}]}),authorization,provenance:{kind:'external-model-patch',actor:'test',operator:TECHNICAL_OPERATOR}});
+}
+
+test('repair context is checked at import, and production lock checks only the actual bound dependencies',()=>{
+ for(const bound of [true,false]){
+  const f=setup(2,{clarifications:0},bound?[1]:[]);
+  // Process only the first position; the second is a context dependency/source.
+  const one=openFlavorBatch({quality:f.quality,production:f.production,batchId:'one'});one.create({references:[f.refs[0]],context:{version:1,episodes:bound?[f.refs[1]]:[]},budgets:{clarifications:0}});f.batch=one;
+  const r=pauseRepair(f),w=r.details.evidence.find(e=>e.work.kind==='repair').work;
+  importPatch(f,f.refs[1],'other-episode');
+  const patch={version:1,jobId:w.id,predecessor:w.reference,changes:[{target:{field:'title'},value:'TECHNICAL CONTEXT PATCH'}]},args={runId:'direct-context',responseBytes:bytes(patch),authorization:w.authorization,provenance:{kind:'external-model-patch',actor:'test',operator:TECHNICAL_OPERATOR}};
+  if(bound){
+   const result=f.batch.importMany([{workId:w.id,responseBytes:bytes(patch),operator:TECHNICAL_OPERATOR}])[0];assert.ok(result.error);
+   assert.throws(()=>f.production.importScopedRepair(args),/stale repair context/);
+   assert.equal(f.production.latestRevision(w.reference.caseId,w.reference.flavorVariantId).revision,1);
+  }else{
+   // Even a second writer arriving after the batch check is serialized by production.
+   fs.writeFileSync(f.production.directory+'/.write-lock','synthetic concurrent writer');
+   try{assert.throws(()=>f.production.importScopedRepair(args),/writer lock/);}finally{fs.unlinkSync(f.production.directory+'/.write-lock');}
+   assert.equal(f.batch.importMany([{workId:w.id,responseBytes:bytes(patch),operator:TECHNICAL_OPERATOR}])[0].created,true);
+  }
+ }
+});
+
+test('unreviewed patch ancestors are not failed full repairs; resume counts each completed failed revision once',()=>{
+ const f=setup(1,{clarifications:0,replacements:0});let ref=f.refs[0];
+ for(const id of ['unreviewed-1','unreviewed-2'])ref=revisionReference(importPatch(f,ref,id).records[0]);
+ let r=pauseRepair(f);assert.equal(r.summary.discardedStories,0);assert.equal(r.summary.counts['waiting-repair'],1);
+ assert.equal(r.details.events.filter(e=>e.type==='failed-repair-review').length,1);
+ r=pauseRepair(f);assert.equal(r.details.events.filter(e=>e.type==='failed-repair-review').length,1);
+ const w=r.details.evidence.find(e=>e.work.kind==='repair').work,patch={version:1,jobId:w.id,predecessor:w.reference,changes:[{target:{field:'title'},value:'TECHNICAL ACTUAL SECOND FAILED REPAIR'}]};
+ assert.equal(f.batch.importMany([{workId:w.id,responseBytes:bytes(patch),operator:TECHNICAL_OPERATOR}])[0].created,true);
+ r=pauseRepair(f);assert.equal(r.summary.discardedStories,1);assert.equal(r.details.events.filter(e=>e.type==='failed-repair-review').length,2);
+ const reopened=openFlavorBatch({quality:f.quality,production:f.production,batchId:'test'}).run(f.manual);assert.equal(reopened.summary.discardedStories,1);
+});
+
+test('preexisting current multi-item reader/comparison and completed chain are reused without re-export or rebinding',()=>{
+ const f=setup(2),reader=f.quality.createBlindBatch({references:f.refs}),saved=f.quality.loadJob(reader.jobId);
+ f.quality.importResponse({jobId:reader.jobId,runId:'prior-reader',responseBytes:bytes(technicalReader(saved.job,f.refs.map(r=>f.production.findRecord(r).request.source.logic.clues))),operator:TECHNICAL_OPERATOR});f.quality.compare(reader.jobId);
+ let r=f.batch.run(f.manual);assert.equal(r.work.length,2);assert.ok(r.work.every(w=>w.kind==='reviewer'));
+ assert.equal(r.details.evidence.filter(e=>e.work.kind==='reader').length,2);assert.ok(r.details.evidence.filter(e=>e.work.kind==='reader').every(e=>e.work.jobId===reader.jobId));
+ r=f.batch.run(adapter(f));assert.equal(r.summary.counts['technical-complete'],2);assert.equal(r.summary.effort.qualityImports,3);
+ const before=fs.readdirSync(f.quality.directory+'/jobs'),batch=openFlavorBatch({quality:f.quality,production:f.production,batchId:'next'});batch.create({references:f.refs});r=batch.run(f.manual);
+ assert.equal(r.work.length,0);assert.equal(r.summary.counts['technical-complete'],2);assert.deepEqual(fs.readdirSync(f.quality.directory+'/jobs'),before);
+ assert.equal(r.summary.counts.qualified,undefined);
+ // Changed actual context cannot reuse either old stage, even for unchanged text.
+ const contextBatch=openFlavorBatch({quality:f.quality,production:f.production,batchId:'context'});contextBatch.create({references:[f.refs[0]],context:{version:1,episodes:[f.refs[1]]}});
+ assert.equal(contextBatch.run(f.manual).work[0].kind,'reader');
+ const next=revisionReference(importPatch(f,f.refs[0],'new-current-revision').records[0]);
+ assert.equal(f.quality.findReusable({reference:next,stage:'reader'}),null);
+});
+
+test('replacement collective import retains explicit technical provenance across reload, repair and later externally declared full checks',()=>{
+ const f=setup(1,{clarifications:0});let replacement;
+ f.batch.run(technicalTestAdapter(({work})=>{
+  if(work.some(w=>w.kind==='replacement')){replacement=work.find(w=>w.kind==='replacement');return [];}
+  return work.map(w=>{let v;if(w.kind==='repair'){const job=JSON.parse(w.files.get('job.json'));v={version:1,jobId:job.jobId,predecessor:job.predecessor,changes:[{target:{field:'title'},value:'TECHNICAL REPAIR '+job.predecessor.revision}]};}else v=blockingReview(f,response(f,w),w);return {workId:w.id,responseBytes:bytes(v)};});
+ }));assert.ok(replacement);
+ const result=f.batch.importMany([{workId:replacement.id,responseBytes:bytes(technicalResponse(JSON.parse(replacement.files.get('order.json')))),operator:TECHNICAL_OPERATOR}]);assert.equal(result[0].created,true);
+ const production=openProductionStore({directory:f.production.directory}),w=JSON.parse(fs.readFileSync(f.batch.directory+'/work/'+replacement.id+'/work.json')),ref=production.latestRevision(f.refs[0].caseId,w.variant);
+ const receipt=JSON.parse(fs.readFileSync(production.directory+'/imports/replacement-'+contentHash(['test',w.id]).slice(0,40)+'/receipt.json'));
+ assert.equal(receipt.operator.value.kind,'technical-test');assert.deepEqual(receipt.replacementOf,w.reference);assert.equal(production.isTechnicalRevision(ref),true);
+ // Simulated declarations only: no external execution occurs in this regression.
+ const r=f.batch.run({kind:'manual-beta',execute:({work})=>work.map(w=>({workId:w.id,responseBytes:bytes(response(f,w)),operator:{kind:'external-manual',model:null,producedAt:null}}))});
+ assert.equal(r.summary.counts.qualified,undefined);assert.equal(r.summary.counts['technical-complete'],1);
+ const next=revisionReference(importPatch(f,ref,'post-replacement').records[0]);assert.equal(openProductionStore({directory:f.production.directory}).isTechnicalRevision(next),true);
+});
+
+test('nonpilot replacement uses the connected library and pins request/card/names while returning normal variant revision one',()=>{
+ const dir=path.join(root,'nonpilot'),library=dir+'/library';importCommunityCards({directory:library,ids:['C-01']});
+ const inputs=loadCommunityProduction({ids:['C-01'],libraryDirectory:library}),pkg=createProductionPackage(inputs),production=openProductionStore({directory:dir+'/prod',libraryDirectory:library});production.saveOrder({...pkg,origin:inputs.origin});
+ const records=production.importResponse({orderId:pkg.order.orderId,runId:'technical',responseBytes:bytes(technicalResponse(pkg.order)),operator:TECHNICAL_OPERATOR}).records;
+ const f={dir,production,refs:records.map(revisionReference)};f.quality=openQualityStore({directory:dir+'/quality',production});f.batch=openFlavorBatch({quality:f.quality,production,batchId:'nonpilot'});f.batch.create({references:f.refs,budgets:{clarifications:0}});
+ let replacement;
+ f.batch.run(technicalTestAdapter(({work})=>{
+  if(work.some(w=>w.kind==='replacement')){replacement=work.find(w=>w.kind==='replacement');return [];}
+  return work.map(w=>{let v;if(w.kind==='repair'){const j=JSON.parse(w.files.get('job.json'));v={version:1,jobId:j.jobId,predecessor:j.predecessor,changes:[{target:{field:'title'},value:'TECHNICAL NONPILOT '+j.predecessor.revision}]};}else v=blockingReview(f,response(f,w),w);return {workId:w.id,responseBytes:bytes(v)};});
+ }));assert.ok(replacement);
+ const p=JSON.parse(replacement.files.get('order.json')).positions[0],prior=production.findRecord(f.refs[0]);
+ assert.deepEqual(p.request,prior.request);assert.equal(p.cardRef,prior.cardRef);assert.deepEqual(p.card.objectNames,pkg.order.positions[0].card.objectNames);assert.equal(p.intent.revision,1);assert.notEqual(p.intent.flavorVariantId,prior.flavorVariantId);
+});
+
+test('CLI failure paths hide response/title markers in stdout and stderr, persist details separately and exit unsuccessfully',()=>{
+ const f=setup(),marker='SYNTHETIC_PRIVATE_TITLE_AND_REPLY';importPatch(f,f.refs[0],'title-marker',marker);
+ const r=f.batch.run(f.manual),w=r.details.evidence[0].work,v=response(f,w);
+ v.items[0].claims[0].meaning=marker;f.batch.importMany([{workId:w.id,responseBytes:bytes(v),operator:TECHNICAL_OPERATOR}]);v.items[0].claims[0].meaning+=' CONFLICT';
+ fs.writeFileSync(f.dir+'/reply.json',bytes(v));fs.writeFileSync(f.dir+'/responses.json',json([{workId:w.id,file:'reply.json',operator:TECHNICAL_OPERATOR}]));
+ const run=args=>spawnSync(process.execPath,['scripts/flavor-batch.mjs',...args],{cwd:new URL('../../',import.meta.url),encoding:'utf8'});
+ const args=['import','--production-store',f.production.directory,'--quality-store',f.quality.directory,'--batch','test','--responses',f.dir+'/responses.json','--out',f.dir+'/cli-out','--report',f.dir+'/reports'];
+ let cli=run(args);assert.equal(cli.status,1);assert.ok(!cli.stdout.includes(marker)&&!cli.stderr.includes(marker));assert.match(cli.stderr,/Import rejected/);
+ const details=fs.readdirSync(f.batch.directory+'/rejected').map(id=>fs.readFileSync(f.batch.directory+'/rejected/'+id+'/diagnostic.txt','utf8')).join('\n');assert.ok(details.includes(marker));
+ fs.writeFileSync(f.dir+'/responses.json','{"'+marker+'":');cli=run(args);assert.equal(cli.status,1);assert.ok(!cli.stdout.includes(marker)&&!cli.stderr.includes(marker));assert.match(cli.stderr,/Command failed/);
+ assert.ok(fs.readdirSync(f.dir+'/reports').some(n=>n.endsWith('-DETAILS.txt')));
+ for(const command of ['start','resume','report','decide','unknown']){cli=run([command,'--'+marker]);assert.equal(cli.status,1);assert.ok(!(cli.stdout+cli.stderr).includes(marker));}
+});
+
+test('completed clarification chain is reused with its original fresh reader and bound comparative reviewer',()=>{
+ const f=setup();let reviews=0;
+ f.batch.run(adapter(f,(v,w)=>{if(w.kind==='reviewer'&&reviews++===0){blockingReview(f,v,w);v.items[0].findings[0].repairTarget=null;}return v;}));
+ const before=fs.readdirSync(f.quality.directory+'/jobs'),batch=openFlavorBatch({quality:f.quality,production:f.production,batchId:'clarification-reuse'});batch.create({references:f.refs});
+ const result=batch.run(f.manual);assert.equal(result.work.length,0);assert.equal(result.summary.counts['technical-complete'],1);assert.deepEqual(fs.readdirSync(f.quality.directory+'/jobs'),before);
+ const reviewers=result.details.evidence.filter(e=>e.work.kind==='reviewer');assert.ok(reviewers.some(e=>e.quality.sidecar.clarification));
+});
+
+test('explicit externally declared production remains separate from technical provenance even with a technical-looking model label',()=>{
+ fixture??=productionFixture();const dir=path.join(root,'manual-provenance'),production=openProductionStore({directory:dir});production.saveOrder(fixture);
+ const operator={kind:'external-manual',model:'technical-test-adapter',producedAt:null},seed=production.importResponse({orderId:fixture.order.orderId,runId:'declared-manual',responseBytes:bytes(technicalResponse(fixture.order)),operator}),ref=revisionReference(seed.records[0]);
+ // Synthetic transport declaration test only; content is not an actual model run.
+ assert.equal(production.isTechnicalRevision(ref),false);
+ const inputs=loadCommunityProduction({ids:[ref.caseId],intents:[{flavorVariantId:'manual-replacement',revision:1,predecessor:null}]}),pkg=createProductionPackage(inputs);production.saveOrder({...pkg,origin:inputs.origin});
+ const result=production.importResponse({orderId:pkg.order.orderId,runId:'manual-replacement',responseBytes:bytes(technicalResponse(pkg.order)),operator,replacementOf:ref}),replacement=revisionReference(result.records[0]);
+ assert.equal(openProductionStore({directory:dir}).isTechnicalRevision(replacement),false);
+});
+
+test('legacy synthetic v1 production and scoped receipts retain their exact bytes/hashes while a fresh scoped import creates v2',()=>{
+ fixture??=productionFixture();const dir=path.join(root,'legacy-store'),production=openProductionStore({directory:dir});production.saveOrder(fixture);
+ const raw=bytes(technicalResponse(fixture.order)),records=createProductionRecords(fixture.order,JSON.parse(raw)).map(record=>{
+  const {revisionHash,draftHash,...body}=structuredClone(record);body.draft.contractVersion=1;
+  const startObject=body.request.source.logic.map.objects.find(o=>o.cells.includes(body.request.source.logic.start));delete body.draft.presentation.objectNames[startObject.id];
+  body.checkpoint=createFlavorCheckpoint(body.request,body.draft);return {...body,revisionHash:contentHash(body),draftHash:contentHash(body.draft)};
+ });validateStoredProductionRecords(fixture.order,JSON.parse(raw),records);
+ const responseSha256=packageInventory(new Map([['response.json',raw]])).files[0].sha256;
+ publishTree(dir+'/imports/legacy-original',seal(new Map([['response.json',raw],['records.json',json(records)],['receipt.json',json({schemaVersion:1,orderId:fixture.order.orderId,runId:'legacy-original',responseSha256,operator:{origin:'operator-supplied',value:{model:'technical-test-adapter',producedAt:null}}})]])));
+ const prior=records[0],reference=revisionReference(prior),authorization={...auth(reference,[{field:'title'}]),sourceHash:prior.request.sourceHash},patch={version:1,jobId:authorization.jobId,predecessor:reference,changes:[{target:{field:'title'},value:'TECHNICAL HISTORICAL PATCH'}]},provenance={kind:'external-model-patch',actor:'synthetic test',operator:TECHNICAL_OPERATOR};
+ const legacy=deriveScopedRecord(prior,authorization,patch,provenance,{historical:true}),rawPatch=bytes(patch),receipt={schemaVersion:1,kind:'scoped-repair-v1',runId:'legacy-repair',orderId:prior.orderId,responseSha256:packageInventory(new Map([['response.json',rawPatch]])).files[0].sha256,provenance};
+ publishTree(dir+'/imports/legacy-repair',seal(new Map([['response.json',rawPatch],['authorization.json',json(authorization)],['receipt.json',json(receipt)],['records.json',json([legacy])]])));
+ const before=packageInventory(readTree(dir)),reopened=openProductionStore({directory:dir}),oldRef=revisionReference(legacy);assert.deepEqual(reopened.findRecord(reference),prior);assert.deepEqual(reopened.findRecord(oldRef),legacy);
+ const nextAuth={...authorization,jobId:'new-v2',predecessor:oldRef},nextPatch={...patch,jobId:nextAuth.jobId,predecessor:oldRef,changes:[{target:{field:'title'},value:'TECHNICAL CURRENT PATCH'}]};
+ const result=reopened.importScopedRepair({runId:'current',responseBytes:bytes(nextPatch),authorization:nextAuth,provenance}),current=result.records[0];assert.equal(current.draft.contractVersion,2);assert.equal(current.checkpoint.contractVersion,2);
+ assert.deepEqual(current.draft.presentation.objectNames,prior.request.source.presentation.objectNames);assert.deepEqual(current.draft.presentation.clueTexts,prior.draft.presentation.clueTexts);assert.deepEqual(current.draft.presentation.intro,prior.draft.presentation.intro);
+ const after=packageInventory(readTree(dir));for(const entry of before.files)assert.deepEqual(after.files.find(f=>f.path===entry.path),entry);
+ assert.deepEqual(openProductionStore({directory:dir}).findRecord(oldRef),legacy);
 });

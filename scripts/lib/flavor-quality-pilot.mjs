@@ -26,7 +26,7 @@ export function verifyPilot(){
  const presentations=records.map((record,i)=>materializeFlavorRevision(order.positions[i],record));
  return {source,order,files,records,presentations,provenance};
 }
-export function preparePilotStore(target){
+export function preparePilotStore(target,{libraryDirectory}={}){
  const verified=verifyPilot();directory(target);const root=fs.realpathSync(target);
  assert.notEqual(root,fs.realpathSync(verified.source),'flavor quality: explicit separate pilot store required');
  for(const sub of ['orders','imports','selections'])directory(path.join(root,sub));
@@ -36,7 +36,7 @@ export function preparePilotStore(target){
   publishTree(path.join(root,'orders',PILOT_ORDER),readTree(path.join(verified.source,'orders',PILOT_ORDER)));
   publishTree(path.join(root,'imports/pilot-1'),verified.files);
  });
- const production=openProductionStore({directory:root});const references=verified.records.map(revisionReference);references.forEach(r=>production.findRecord(r));
+ const production=openProductionStore({directory:root,libraryDirectory});const references=verified.records.map(revisionReference);references.forEach(r=>production.findRecord(r));
  return {production,references,responseSha256:PILOT_RESPONSE_SHA,
   provenance:'Reconstructed user paste; producer bytes, model and time unknown. Sealed original import adopted unchanged. No semantic approval.'};
 }

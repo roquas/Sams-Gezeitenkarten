@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {flavorFixture} from '../fixtures/flavor/public.mjs';
@@ -31,3 +32,15 @@ for(const [name,mutate] of [
  ['owner wording mismatch',f=>f.authorization.exactChanges=[{target:{field:'title'},value:'Different approved text'}]],
  ['overlapping scopes',f=>f.authorization.targets.push({field:'intro'})]
 ])test('scoped repair rejects '+name,()=>{const f=setup();mutate(f);assert.throws(()=>applyScopedPatch(f.prior,f.authorization,f.patch));});
+
+test('new sparse revision upgrades archived v1 names and proof method without changing other player text or historical checkpoint',()=>{
+ const old=JSON.parse(fs.readFileSync(new URL('../fixtures/flavor/archived-v1.json',import.meta.url),'utf8')),before=structuredClone(old);
+ const f=setup();f.prior={request:old.request,draft:old.checkpoint.draft,revisionHash:f.patch.predecessor.revisionHash};
+ f.authorization.sourceHash=old.request.sourceHash;f.authorization.targets=[{field:'title'}];f.patch.changes=[{target:{field:'title'},value:'TECHNICAL v2 TITLE'}];
+ const next=applyScopedPatch(f.prior,f.authorization,f.patch);
+ assert.equal(next.draft.contractVersion,2);assert.equal(next.checkpoint.contractVersion,2);
+ assert.deepEqual(next.draft.presentation.objectNames,old.request.source.presentation.objectNames);
+ assert.deepEqual(next.draft.presentation.intro,old.checkpoint.draft.presentation.intro);assert.deepEqual(next.draft.presentation.clueTexts,old.checkpoint.draft.presentation.clueTexts);
+ assert.ok(Object.values(next.checkpoint.checks).every(c=>c.method==='flavor-check-v2'&&c.status==='UNCERTAIN'));assert.deepEqual(old,before);
+ assert.throws(()=>applyScopedPatch(f.prior,f.authorization,{...f.patch,changes:[{target:{field:'title'},value:old.checkpoint.draft.presentation.title}]}),/no-op/);
+});

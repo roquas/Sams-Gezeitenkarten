@@ -14,7 +14,13 @@ Private externe Pilotbelege bleiben außerhalb des Repositorys.
 
 Node 22 und die unveränderten Repository-/Bildvoraussetzungen aus PR 1.
 Produktions- und Qualitätsstore ausdrücklich getrennt halten. Ein Plan enthält
-bestehende `revisionRef`-Objekte, tatsächlichen Serienkontext und endliche Budgets:
+bestehende `revisionRef`-Objekte, tatsächlichen Serienkontext und endliche Budgets.
+Bei einer externen vollständigen Bibliothek verwenden alle drei Flavor-CLIs
+`--library DIR`; programmatisch gilt weiterhin `openProductionStore({directory,
+libraryDirectory})`. Der Ersatzpfad übernimmt dieselbe angeschlossene Bibliothek.
+Einzelgeschichten laufen mit leerem Kontext, eine Serie in einem getrennten
+Batch mit ihren geordneten aktuellen Episodenreferenzen. Ein gemeinsamer
+Serienkontext würde auch alle unabhängigen Items daran binden. Beispielplan:
 
 ```json
 {
@@ -54,7 +60,11 @@ Reviewer verwenden unverändert die PR-1-Umschläge und ihre jobgebundenen Schem
 Jeder Rollenordner trägt seine verbindlichen Dateien. Leere Vorlagen sind keine
 Ergebnisse. Technische Fehler verbrauchen ein separates Budget, erzeugen keine
 Geschichtsrevision und werden bei wiederholtem Auftreten gesammelt blockiert.
-Die lokale Fehlermeldung ist eine Formatdiagnose, kein Reader-Reparaturziel.
+Standardfehler sind feste handlungsfähige Diagnosen ohne Antwort-/Episodentexte;
+fehlgeschlagene Importe ergeben Exit 1. Die exakten Antworten und vollständigen
+Fehler stehen getrennt in lokalen `rejected/<detailId>`-Snapshots. Mit
+`--report DIR` werden auch übergeordnete CLI-Fehler separat in
+`failure-…-DETAILS.txt` abgelegt. Die lokale Diagnose ist kein Reader-Reparaturziel.
 
 `report` schreibt bzw. zeigt den aggregierten Stand. Mit `--report DIR` entstehen
 getrennte Summary-JSON-/Textdateien und eine ausdrücklich benannte private
@@ -80,6 +90,11 @@ Der wirksame Revisionsstand wird aus dem Produktionsstore aufgelöst. Eine
 zwischenzeitliche Revision oder ein geänderter tatsächlicher Serienkontext
 führt für den neuen Stand zu neuen drei Stufen; alte Jobs bleiben historisch.
 Eine Ersatzvariante ändert auch abhängige tatsächliche Serienreferenzen.
+Bereits angenommene aktuelle Reader-/Reviewer-Items im selben Qualitätsstore
+werden anhand ihrer vollständigen Bindung unter ihren ursprünglichen Job-/Item-IDs
+wiederverwendet, auch aus früheren Batches und einschließlich gebundener Klärung.
+Mehrere Items eines früheren Jobs werden einzeln referenziert. Herkunft und
+Antwortbytes werden nicht umetikettiert; technische Nachweise bleiben technisch.
 Verspätete Antworten bleiben als lokale Transportbelege erhalten und können
 keine verworfene Variante reaktivieren. Widersprüchliche Wiederholungen werden
 vom bestehenden Qualitätsstore abgewiesen. Synchronische Leseabschnitte einer Analyse bzw. eines Berichts teilen
@@ -105,7 +120,11 @@ expliziten Ziele. Titel, Einleitungsabsatz/ganze Einleitung und mehrere
 Hinweis-IDs sind als Sparse Patch möglich. Der reine Apply-Adapter ändert nur
 diese Ziele, lehnt doppelte/überlappende/fremde Ziele und No-op ab und erzeugt
 mit F01-Validierung genau eine neue Revision samt vollständigem Checkpoint.
-Andere Textfelder, Karten, Namen, Start, Regeln und Logik bleiben erhalten.
+Andere Spielertextfelder, Karten, Namen, Start, Regeln und Logik bleiben erhalten.
+Die Autorisierung bindet den tatsächlichen Kontext. Vor Import prüft der Batch
+den wirksamen Kontext erneut; unter derselben Produktionsschreibsperre wie der
+Import werden sämtliche gebundenen aktuellen Episodenrevisionen geprüft.
+Unabhängige nicht gebundene Episoden invalidieren den Auftrag nicht.
 
 `importScopedRepair` archiviert exakte Patchbytes, Autorisierung und klar
 unterschiedene externe bzw. menschlich-redaktionelle Herkunft. Abgeleitete
@@ -114,10 +133,19 @@ Patch rekonstruiert und geprüft. Geerbte Erzählmetadaten sind ausdrücklich al
 geerbt markiert. Alte Produktionsrecords werden unverändert versionsgetreu
 gelesen. `resolveRevisionContext` liefert auch für Patchrevisionen den
 validierten effektiven Position-Intent für Auswahl und Materialisierung.
-Dies führt keine Auswahl oder Veröffentlichung aus.
+Neue Scoped-Imports heißen `scoped-repair-v2`: Auch ein historischer v1-Vorgänger
+erhält durch den gemeinsamen F01-Übergang einen v2-Draft und v2-Checkpoint mit
+allen gepinnten Namen. Alte kontrollierte Belege bleiben bis neuer Prüfung
+UNCERTAIN. Requests und sourceHash behalten ihren Vertrag. Historische
+`scoped-repair-v1`-Records werden ausdrücklich nach ihrer ursprünglichen
+Ableitung gelesen und weder neu gehasht noch migriert. Dies führt keine Auswahl
+oder Veröffentlichung aus.
 
-Nach zwei vollständig geprüften erfolglosen Reparaturrevisionen wird die
-Variante verworfen. Die Ersatzproduktion verwendet den normalen F02-A-Vertrag,
+Nur vollständig erfolglos geprüfte Reparaturrevisionen zählen: Ein
+`failed-repair-review`-Ereignis bindet Revision, Methode, Kontext und vollständigen
+Reviewnachweis. Jede Revision zählt höchstens einmal. Ungeprüfte Patchvorfahren,
+Transportfehler, fehlende Stufen und ADVISORY zählen nicht. Nach zwei solchen
+Reparaturrevisionen wird die Variante einmalig verworfen. Die Ersatzproduktion verwendet den normalen F02-A-Vertrag,
 denselben Request und ursprünglichen redaktionellen Auftrag, eine neue
 Variantenkennung und Revision 1. Standardmäßig ist ein Ersatz zugelassen.
 Alle Revisionen und Befunde der verworfenen Variante bleiben erhalten.
@@ -136,9 +164,13 @@ rollenspezifische öffentliche Dateien und Jobkennungen, keine Store-Handles.
 Das Ergebnis ist eine Liste `{workId,responseBytes,operator}` bestehender
 Standardantworten. Leere Ergebnisse bedeuten Warten. `manualBetaAdapter`
 exportiert gebündelte offene Arbeit. `technicalTestAdapter` erzwingt
-`technical-test` für alle Ergebnisse. Technische Herkunft bleibt auch über
-Produktionsreparaturen/Ersatz erhalten und kann keine reale Qualifikation
-bewirken. Die Testimplementierung ist in den Regressionen ausführbar; sie ist
+`technical-test` für alle Ergebnisse. Die explizite `operator.kind`-Deklaration bleibt beim Produktionsimport erhalten;
+`replacementOf` bindet die echte Ersatzabstammung im unveränderlichen
+Produktionsbeleg. Technische Herkunft wird über Reparatur-/Ersatzketten
+rekonstruiert und verhindert auch nach späteren manuell deklarierten positiven
+Prüfungen eine reale Qualifikation. Modellnamen entscheiden bei neuen explizit
+deklarierten Belegen nicht über diese Herkunft. Der bisherige Modellnamensmarker
+wird ausschließlich für alte Belege ohne `kind` konservativ weitergelesen. Die Testimplementierung ist in den Regressionen ausführbar; sie ist
 keine Modellgüteprüfung.
 
 Kein Liveanbieter ist ausgewählt oder angeschlossen. Ein späterer zulässiger

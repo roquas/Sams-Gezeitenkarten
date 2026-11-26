@@ -1,3 +1,103 @@
+F02-B PR 2 – unabhängige Reviewkorrekturen, 26.11.2026
+
+Ausgangspunkt der sieben reproduzierten Findings:
+adafb60c6f45ac0e20137e8265f2718f16488833 (PR #134).
+Geprüft/korrigiert im eigenen Checkout /private/tmp/sams-pr134-review auf
+codex/f02-b-pr2-orchestration. Andere Arbeitskopien bleiben unverändert.
+Der exakte finale Korrekturhead und sein CI-Lauf werden in der PR-Beschreibung
+geführt; die folgenden Ergebnisse gehören zum Codebaum dieses Korrekturcommits.
+
+Korrekturen und Regressionen:
+1. Explizite technische Operatorherkunft bleibt im Ersatzimport erhalten;
+   replacementOf bindet Produktionsabstammung auch über Variantenwechsel.
+   Reload, spätere Prüffolge und erneute Reparatur bleiben technisch.
+   Neue explizite Herkunft hängt nicht von einem Modellnamensmarker ab;
+   alte Belege ohne kind behalten ihren historischen konservativen Lesepfad.
+2. Autorisierung bindet tatsächlichen Serienkontext. Der Batch prüft dessen
+   wirksamen Stand; der Produktionsimport prüft die gebundenen Revisionen
+   unter derselben Sperre wie die Publikation. Fremde ungebundene Episoden
+   invalidieren keine Reparatur. Stale- und Schreiberkonflikte erzeugen keine
+   neue Revision.
+3. Vollständig erfolglos geprüfte Reparaturrevisionen werden mit genauem
+   Review-/Methoden-/Kontextbezug erfasst und pro Revision nur einmal gezählt.
+   Zwei ungeprüfte Patchvorfahren lösen keine vorschnelle Verwerfung aus.
+4. Alle drei Flavor-CLI-Grenzen unterdrücken Parser-/Assertioninhalte.
+   Sichere feste Schreiberkonfliktdiagnosen bleiben handlungsfähig.
+   Batchimportfehler erzeugen Exit 1; vollständige Diagnosen und Antwortbytes
+   stehen separat lokal. Markerprüfungen decken Wiederholung, Parsing und
+   die anderen Batchbefehle ab.
+5. Identisch gebundene aktuelle Stufen werden unter ursprünglichen Job-/Item-IDs
+   wiederverwendet, auch aus Mehritemjobs oder abgeschlossenen Klärungen.
+   Kontext-/Revisions-/Methodenwechsel und Herkunft bleiben getrennt.
+6. Gemeinsamer F01-Übergang liefert bei neuen Scoped-Imports v2-Drafts und
+   Checkpoints samt vollständigen Namen; scoped-repair-v1 bleibt unverändert
+   nach seiner alten Ableitung lesbar. Eine Kopie des alten privaten
+   Arbeitsstores wurde mit unverändertem altem Revisionshash erfolgreich
+   gelesen. Der alte Arbeitsstore und sein Reader-ZIP bleiben Vorfix-Artefakte.
+7. API-Bibliotheksoption und --library der Flavor-CLIs werden konsistent
+   weitergeführt; der Nichtpilot-Ersatztest verwendet eine temporär aufgebaute
+   Bibliothek und unverändert gepinnte Request-/Karten-/Namensdaten.
+
+Umgebung: Node v22.23.3, macOS; bildabhängige Prüfungen mit
+TMPDIR=/private/tmp PATH=/private/tmp/sams-f02a-python/bin:$PATH.
+Technische Testablagen liegen
+unter realpath(os.tmpdir()). Abhängigkeiten aus bestehender Installation mit
+bytegleicher unveränderter package-lock.json in den eigenen Checkout kopiert.
+
+Abschließende lokale Ergebnisse am unveränderten Korrektur-Codebaum:
+- node --test --test-name-pattern='repair context|unreviewed patch|preexisting current|replacement collective|nonpilot replacement|CLI failure|new sparse|completed clarification' tests/contracts/flavor-scoped-repair.test.mjs tests/integration/flavor-batch.test.mjs
+  8/8 gezielte Korrekturproben bestanden.
+- TMPDIR=/private/tmp PATH=/private/tmp/sams-f02a-python/bin:$PATH npm run test:unit
+  722/722 bestanden (vollständige Engine-/Vertrags-/Integrationsgruppe,
+  einschließlich F01, Normalisierung, Produktionsstore, Scoped Repair, Batch,
+  Qualität, Kalibrierung, Legacy-v1/Scoped-v1-Reload und Herkunftstrennung).
+- npm run test:content: 21/21 bestanden.
+- npm run test:puzzles: erfolgreich.
+- npm run check:community: 15 bestehende Fälle erfolgreich validiert.
+- npm run check:community:release: erwarteter Exit 1 am unveränderten pending.
+- git diff --check sowie git diff --check a268484: erfolgreich.
+- Tatsächliche volle Bibliothek: technischer Copy-only-Nichtpilot-Ersatzprobe
+  mit 15 Karten bestanden. Keine echte Qualitätsausführung/Modellproduktion.
+- Alle 261 Dateien des alten privaten Arbeitsstores sowie alle 169 Dateien
+  der getrennten beta15-local-Ablage gegen die Ausgangs-SHA-256-Listen bytegleich.
+  Die neue v2-Ablage wird getrennt erstellt; Details nur im privaten Übergabebeleg.
+CI am neuen Code: der exakte commitgebundene Abschlussstand und neue Lauf
+stehen in der PR-Beschreibung von https://github.com/roquas/Sams-Gezeitenkarten/pull/134.
+Dieser Nachweis überträgt keine CI-Ergebnisse des Vorfix-Heads auf neuen Code.
+Historisch war CI #544 am alten adafb60-Head in Versuch 2 mit 14/14 Jobs grün.
+Erster WebKit-Flaky-Versuch bleibt historisch nachvollziehbar; keine neue
+WebKit-Debugging-/Optimierungsschleife und keine Gateänderung.
+
+Entwicklungszwischenstände, ausdrücklich keine finalen Ergebnisse:
+- Erster breiter lokaler Lauf ohne die dokumentierte TMPDIR-Einstellung:
+  661/722; 61 unveränderte Pfad-/CLIprüfungen trafen den macOS-Alias
+  /var/folders gegenüber dem tatsächlichen /private/var/folders.
+  Eine isolierte unveränderte Katalog-CLI-Probe mit TMPDIR=/private/tmp
+  bestand 1/1. Die gesamte Gruppe wurde mit diesem realen System-Temppfad
+  erneut ausgeführt; ausschließlich ihr Abschluss zählt oben als final.
+- Bestehende gezielte Gruppe zunächst 148/150: zwei CLI-Schreiberkonflikttests
+  verlangten die bisherigen sicheren Diagnosen; die Fehlergrenze erhielt
+  dafür feste inhaltsfreie Meldungen. Keine Vertragsprüfung gelockert.
+- Früher gemischter Scoped-/Batchlauf 32/33: die CLI-Teilprobe lief während
+  Änderungen an den gehashten Methodenmodulen und traf einen anderen
+  Methodenstand als der Elternprozess. Der abschließende Lauf verwendet
+  einen eingefrorenen Codebaum einschließlich CLI-Unterprozessen.
+
+Private Übergabe: neue getrennte Ablage aus gültigem unverändertem
+Revision-1-Bestand; dort ausschließlich die bereits exakt genehmigte
+menschlich-redaktionelle Satzänderung als neue v2-Revision 2. Neue Kennung,
+aktueller Code-/Methodenbezug und frisches Readerpaket stehen im privaten
+Übergabebeleg. Das Vorfixpaket ist dort ausdrücklich als überholt bezeichnet.
+Keine alten Jobs oder Antworten neu gebunden; keine echten Reader-/Reviewerläufe.
+Der vollständige getrennte 15er-Bestand bleibt unverändert. Kein echter
+15er-Batch; Einzelgeschichten/Serie benötigen getrennte spätere Batchpläne.
+
+Technische Doubles belegen keine Modellgüte, keinen Livebetrieb und keine
+10+5-Kalibrierung. Keine automatische Auswahl, Freigabe, Veröffentlichung,
+Modellaufrufe, Deployment oder Merge. Erneute unabhängige Review erforderlich.
+
+=== HISTORISCHE VORFIXNOTIZEN: NUR BIS adafb60, NICHT DER KORREKTURSTAND ===
+
 F02-B PR 2 – technischer Nachweis, 26.11.2026
 
 Ausgang: main a268484de6350bc3216c7be3f9729e631fd6a9f8.

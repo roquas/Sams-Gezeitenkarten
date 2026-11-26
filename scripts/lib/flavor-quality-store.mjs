@@ -204,10 +204,11 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     staleItemIds:saved.job.items.filter(i=>!currentItem(saved,i.itemId)).map(i=>i.itemId)};
   });
  }
- function createReviewBatch({readerJobId,omitCompleted=true,clarification=null,jobId}){
+ function createReviewBatch({readerJobId,readerItemIds=null,omitCompleted=true,clarification=null,jobId}){
   return locked(()=>{
    const parent=loadJob(readerJobId);assert.equal(parent.job.stage,'reader');
-   const currentItems=parent.job.items.filter(i=>currentItem(parent,i.itemId));
+   if(readerItemIds)assert.ok(readerItemIds.length&&readerItemIds.every(id=>parent.job.items.some(i=>i.itemId===id)),'review reader item selection');
+   const currentItems=parent.job.items.filter(i=>(!readerItemIds||readerItemIds.includes(i.itemId))&&currentItem(parent,i.itemId));
    assert.ok(currentItems.length,'flavor quality: stale review source');
    if(clarification){const prior=loadJob(clarification.jobId);assert.equal(prior.job.stage,'reviewer');
     const binding=prior.sidecar.items.find(i=>i.itemId===clarification.itemId);assert.ok(binding);
@@ -236,6 +237,29 @@ export function openQualityStore({directory:target,production,beforePublish}={})
  function evidence(jobId){
   const saved=loadJob(jobId);assert.ok(!saved.historical,'historical evidence cannot drive current orchestration');
   return {job:saved.job,sidecar:saved.sidecar,results:[...acceptedResults(saved).values()].map(v=>structuredClone(v))};
+ }
+ // Reuse the original job/item, never rebind an answer to a new identity.
+ // Exact sourceBinding includes method, revision, source and actual context;
+ // inspect retains the original technical/manual provenance on reused evidence.
+ function findReusable({reference,context=EMPTY_CONTEXT,stage,readerJobId=null,readerItemId=null,clarification=null}){
+  const input=buildReaderInputs({production,references:[reference],context}).entries[0],matches=[];
+  for(const jobId of names(path.join(root,'jobs'))){
+   const raw=rawJob(jobId);if(raw.historical||raw.job.stage!==stage)continue;
+   if(stage==='reviewer'&&canonicalJson(raw.sidecar.clarification??null)!==canonicalJson(clarification))continue;
+   const bindings=raw.sidecar.items.filter(b=>b.sourceBinding===input.binding.sourceBinding&&
+    (stage==='reader'||(b.readerJobId===readerJobId&&b.readerItemId===readerItemId)));
+   if(!bindings.length)continue;
+   const saved=loadJob(jobId),accepted=acceptedResults(saved);
+   for(const b of bindings)if(currentItem(saved,b.itemId,context)&&accepted.has(b.itemId))matches.push({jobId,itemId:b.itemId});
+  }
+  // Prefer the already completed full chain over a sibling reader-only run.
+  if(stage==='reader')for(const match of matches){
+   if(findReusable({reference,context,stage:'reviewer',readerJobId:match.jobId,readerItemId:match.itemId,clarification}))return match;
+  }
+  // A clarification must not reuse the very first interpretation as a fresh
+  // blind reading. Only an already bound clarification chain is reusable here.
+  if(stage==='reader'&&clarification)return null;
+  return matches[0]??null;
  }
  function clarificationEvidence(reference){
   const prior=evidence(reference.jobId);assert.equal(prior.job.stage,'reviewer');
@@ -270,5 +294,5 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     importedResponses:imports.length,declaredModels:imports.map(i=>i.receipt.operator.model),tokens:null,cost:null},
    limits:'No external model invocation. F01/checkpoints, selection and publication unchanged.'};
  }
- return Object.freeze({directory:root,readSession:work=>operation(work),...Object.fromEntries(Object.entries({createBlindBatch,exportJob,loadJob,importResponse,compare,createReviewBatch,inspect,evidence}).map(([name,fn])=>[name,(...args)=>operation(()=>fn(...args))]))});
+ return Object.freeze({directory:root,readSession:work=>operation(work),...Object.fromEntries(Object.entries({createBlindBatch,exportJob,loadJob,importResponse,compare,createReviewBatch,inspect,evidence,findReusable}).map(([name,fn])=>[name,(...args)=>operation(()=>fn(...args))]))});
 }

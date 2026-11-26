@@ -1,13 +1,13 @@
 // Pure sparse apply: one revision for the complete authorized change.
 import assert from 'node:assert/strict';
 import {contentHash,same,structure,revisionRefSchema} from './flavor-production.mjs';
-import {validateFlavorDraft,createFlavorCheckpoint} from './flavor-contract.mjs';
+import {validateFlavorDraft,createFlavorCheckpoint,upgradeFlavorDraft} from './flavor-contract.mjs';
 const text={type:'string',minLength:1,maxLength:12000};
 const object=properties=>({type:'object',properties,required:Object.keys(properties),additionalProperties:false});
 export const patchTargetSchema={oneOf:[object({field:{const:'title'}}),object({field:{const:'intro'},index:{type:'integer',minimum:0}}),object({field:{const:'intro'}}),object({field:{const:'clue'},id:text})]};
 export const scopedPatchSchema=object({version:{const:1},jobId:text,predecessor:revisionRefSchema,changes:{type:'array',minItems:1,items:object({target:patchTargetSchema,value:{oneOf:[text,{type:'array',minItems:1,items:text}]}})}});
 export const targetKey=t=>JSON.stringify(t.field==='clue'?['clue',t.id]:t.field==='intro'?['intro',t.index??'all']:['title']);
-export function applyScopedPatch(prior,authorization,patch){
+export function applyScopedPatch(prior,authorization,patch,{historical=false}={}){
  structure(patch,scopedPatchSchema);same(patch.predecessor,authorization.predecessor,'repair predecessor');assert.equal(patch.jobId,authorization.jobId);
  assert.equal(prior.revisionHash,patch.predecessor.revisionHash);assert.ok(authorization.actor?.trim()&&authorization.reason?.trim()&&authorization.timestamp?.trim(),'repair authorization provenance');
  assert.match(authorization.methodHash,/^[a-f0-9]{64}$/);assert.ok(authorization.findings?.length,'repair requires bound findings and method');
@@ -27,13 +27,14 @@ export function applyScopedPatch(prior,authorization,patch){
  }
  assert.notEqual(contentHash(draft.presentation),contentHash(prior.draft.presentation),'no-op repair');draft.revision++;
  validateFlavorDraft(prior.request,draft);
- return {draft,checkpoint:createFlavorCheckpoint(prior.request,draft)};
+ const next=historical?draft:upgradeFlavorDraft(prior.request,draft);
+ return {draft:next,checkpoint:createFlavorCheckpoint(prior.request,next)};
 }
-export function deriveScopedRecord(prior,authorization,patch,provenance){
- const {draft,checkpoint}=applyScopedPatch(prior,authorization,patch);
+export function deriveScopedRecord(prior,authorization,patch,provenance,{historical=false}={}){
+ const {draft,checkpoint}=applyScopedPatch(prior,authorization,patch,{historical});
  const body={orderId:prior.orderId,positionId:prior.positionId,caseId:prior.caseId,cardRef:prior.cardRef,flavorVariantId:prior.flavorVariantId,
  predecessor:structuredClone(patch.predecessor),request:structuredClone(prior.request),draft,checkpoint,
  metadata:{origin:'inherited-from-predecessor',predecessor:patch.predecessor,value:structuredClone(prior.metadata.value)},
- derivation:{kind:'scoped-repair-v1',jobId:patch.jobId,authorizationHash:contentHash(authorization),patchHash:contentHash(patch),provenance:structuredClone(provenance)}};
+ derivation:{kind:historical?'scoped-repair-v1':'scoped-repair-v2',jobId:patch.jobId,authorizationHash:contentHash(authorization),patchHash:contentHash(patch),provenance:structuredClone(provenance)}};
  return {...body,revisionHash:contentHash(body),draftHash:contentHash(draft)};
 }

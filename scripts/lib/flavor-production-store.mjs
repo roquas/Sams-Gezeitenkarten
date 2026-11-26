@@ -56,13 +56,13 @@ export function openProductionStore({directory:target,libraryDirectory=path.join
    if(resolved.has(batch))return resolved.get(batch);
    assert.ok(!visiting.has(batch),'flavor production: repair predecessor cycle');visiting.add(batch);
    const {receipt,files,responseBytes}=batch;let records;
-   if(receipt.kind==='scoped-repair-v1'){
+   if(['scoped-repair-v1','scoped-repair-v2'].includes(receipt.kind)){
     const authorization=parse(files.get('authorization.json')),patch=parseQualityResponse(responseBytes);
     const candidates=batches.filter(b=>parse(b.files.get('records.json')).some(r=>r.revisionHash===patch.predecessor.revisionHash));
     assert.equal(candidates.length,1,'flavor production: unique valid repair predecessor required');
     const prior=resolve(candidates[0]).find(r=>r.revisionHash===patch.predecessor.revisionHash);
     same(revisionReference(prior),patch.predecessor,'repair predecessor reference');
-    records=[deriveScopedRecord(prior,authorization,patch,receipt.provenance)];
+    records=[deriveScopedRecord(prior,authorization,patch,receipt.provenance,{historical:receipt.kind==='scoped-repair-v1'})];
     same(records,parse(files.get('records.json')),'derived scoped repair record');
    }else{
     const {order}=loadOrder(receipt.orderId);records=validateStoredProductionRecords(order,parse(responseBytes),parse(files.get('records.json')));
@@ -72,6 +72,11 @@ export function openProductionStore({directory:target,libraryDirectory=path.join
   const result=batches.map(batch=>({receipt:batch.receipt,records:resolve(batch)}));
   const refs=result.flatMap(b=>b.records).map(r=>[r.caseId,r.flavorVariantId,r.draft.revision].join('/'));
   assert.equal(new Set(refs).size,refs.length,'flavor production: conflicting variant revision');
+  for(const batch of result)if(batch.receipt.replacementOf){
+   const prior=result.flatMap(b=>b.records).find(r=>r.revisionHash===batch.receipt.replacementOf.revisionHash);
+   assert.ok(prior,'flavor production: replacement origin missing');same(revisionReference(prior),batch.receipt.replacementOf,'replacement origin');
+   assert.ok(batch.records.every(r=>r.caseId===prior.caseId&&r.flavorVariantId!==prior.flavorVariantId&&r.request.sourceHash===prior.request.sourceHash),'replacement source binding');
+  }
   return result;
  }
  const allRecords=()=>loadImports().flatMap(batch=>batch.records);
@@ -85,16 +90,28 @@ export function openProductionStore({directory:target,libraryDirectory=path.join
    const records=allRecords(),prior=records.find(r=>r.revisionHash===patch.predecessor.revisionHash);
    assert.ok(prior,'flavor production: unknown repair predecessor');
    same(revisionReference(prior),patch.predecessor,'repair predecessor');
-   const record=deriveScopedRecord(prior,authorization,patch,provenance),dest=path.join(root,'imports',runId),responseSha256=sha256(responseBytes);
+   const dest=path.join(root,'imports',runId),responseSha256=sha256(responseBytes);
    if(fs.existsSync(dest)){
     const files=unseal(readTree(dest)),receipt=parse(files.get('receipt.json'));
-    same([receipt.kind,receipt.responseSha256,receipt.provenance],['scoped-repair-v1',responseSha256,provenance],'repair run conflict');
+    assert.ok(['scoped-repair-v1','scoped-repair-v2'].includes(receipt.kind),'repair run kind');
+    const record=deriveScopedRecord(prior,authorization,patch,provenance,{historical:receipt.kind==='scoped-repair-v1'});
+    same([receipt.responseSha256,receipt.provenance],[responseSha256,provenance],'repair run conflict');
     same(parse(files.get('authorization.json')),authorization,'repair authorization conflict');
     same(parse(files.get('records.json')),[record],'repair record conflict');return {created:false,records:[record],runId};
    }
    const latest=records.filter(r=>r.caseId===prior.caseId&&r.flavorVariantId===prior.flavorVariantId).sort((a,b)=>a.draft.revision-b.draft.revision).at(-1);
    same(revisionReference(latest),patch.predecessor,'stale repair predecessor');
-   const receipt={schemaVersion:1,kind:'scoped-repair-v1',runId,orderId:prior.orderId,responseSha256,provenance:structuredClone(provenance),
+   // Read the authorization dependencies under the same production writer lock
+   // as publication. Unrelated revisions do not participate in this check.
+   if(authorization.context){
+    structure(authorization.context,{type:'object',properties:{version:{const:1},episodes:{type:'array',items:revisionRefSchema}},required:['version','episodes'],additionalProperties:false});
+    for(const ref of authorization.context.episodes){
+     const current=records.filter(r=>r.caseId===ref.caseId&&r.flavorVariantId===ref.flavorVariantId).sort((a,b)=>a.draft.revision-b.draft.revision).at(-1);
+     assert.ok(current,'stale repair context');same(revisionReference(current),ref,'stale repair context');
+    }
+   }
+   const record=deriveScopedRecord(prior,authorization,patch,provenance);
+   const receipt={schemaVersion:1,kind:'scoped-repair-v2',runId,orderId:prior.orderId,responseSha256,provenance:structuredClone(provenance),
     observation:{origin:'technically-observed',importedAt:new Date().toISOString()},limits:'Derived from predecessor plus sparse patch; unchanged fields and narrative metadata are inherited, not model output.'};
    publishTree(dest,seal(new Map([['response.json',responseBytes],['authorization.json',json(authorization)],['receipt.json',json(receipt)],['records.json',json([record])]])),beforePublish);
    return {created:true,records:[record],runId};
@@ -135,21 +152,28 @@ export function openProductionStore({directory:target,libraryDirectory=path.join
   // targets are verified byte-for-byte, never overwritten.
   return locked(()=>({out:path.resolve(out),created:publishTree(path.resolve(out),files,beforePublish)}));
  }
- function importResponse({orderId,runId,responseBytes,operator={model:null,producedAt:null}}){
+ function importResponse({orderId,runId,responseBytes,operator={model:null,producedAt:null},replacementOf=null}){
   id(runId);assert.ok(Buffer.isBuffer(responseBytes),'flavor production: exact response bytes required');
-  structure(operator,{type:'object',properties:{model:{oneOf:[{type:'null'},{type:'string',minLength:1}]},producedAt:{oneOf:[{type:'null'},{type:'string',minLength:1}]}},required:['model','producedAt'],additionalProperties:false});
+  structure(operator,{type:'object',properties:{model:{oneOf:[{type:'null'},{type:'string',minLength:1}]},producedAt:{oneOf:[{type:'null'},{type:'string',minLength:1}]},kind:{enum:['external-manual','technical-test']}},required:['model','producedAt'],additionalProperties:false});
   const {order}=loadOrder(orderId),records=createProductionRecords(order,parse(responseBytes));
   return locked(()=>{
    const dest=path.join(root,'imports',runId),responseSha256=sha256(responseBytes);
    if(fs.existsSync(dest)){
     const files=unseal(readTree(dest)),prior=parse(files.get('receipt.json'));
     same([prior.orderId,prior.responseSha256,prior.operator],[orderId,responseSha256,{origin:'operator-supplied',value:operator}],'run reference conflict');
+    same(prior.replacementOf??null,replacementOf,'replacement origin conflict');
     assert.equal(sha256(files.get('response.json')),prior.responseSha256,'flavor production: stored response hash');
     const stored=validateStoredProductionRecords(order,parse(responseBytes),parse(files.get('records.json')));
     return {runId,responseSha256,created:false,records:stored};
    }
-   checkIntents(order,allRecords());
+   const existing=allRecords();checkIntents(order,existing);
+   if(replacementOf){
+    structure(replacementOf,revisionRefSchema);const prior=existing.find(r=>r.revisionHash===replacementOf.revisionHash);
+    assert.ok(prior,'replacement origin missing');same(revisionReference(prior),replacementOf,'replacement origin');
+    assert.ok(records.every(r=>r.caseId===prior.caseId&&r.flavorVariantId!==prior.flavorVariantId&&r.request.sourceHash===prior.request.sourceHash),'replacement source binding');
+   }
    const receipt={schemaVersion:1,orderId,runId,responseSha256,operator:{origin:'operator-supplied',value:structuredClone(operator)},
+    ...(replacementOf?{replacementOf:structuredClone(replacementOf)}:{}),
     observation:{origin:'technically-observed',importedAt:new Date().toISOString()},
     limits:'Manual transport: model execution, hidden system parameters and unprovided chat history are not independently observed.'};
    const files=seal(new Map([['response.json',responseBytes],['receipt.json',json(receipt)],['records.json',json(records)]]));
@@ -158,10 +182,14 @@ export function openProductionStore({directory:target,libraryDirectory=path.join
  }
  function findRecord(ref){structure(ref,revisionRefSchema);const record=allRecords().find(r=>r.revisionHash===ref.revisionHash);
   assert.ok(record,'flavor production: unknown revision');same(revisionReference(record),ref,'revision reference');return record;}
- function isTechnicalRevision(ref){
+ function isTechnicalRevision(ref,seen=new Set()){
+  assert.ok(!seen.has(ref.revisionHash),'production ancestry cycle');seen.add(ref.revisionHash);
   const batch=loadImports().find(b=>b.records.some(r=>r.revisionHash===ref.revisionHash));assert.ok(batch);
   const record=batch.records.find(r=>r.revisionHash===ref.revisionHash),receipt=batch.receipt;
-  return receipt.provenance?.operator?.kind==='technical-test'||receipt.operator?.value?.model==='technical-test-adapter'||(record.predecessor?isTechnicalRevision(record.predecessor):false);
+  return receipt.provenance?.operator?.kind==='technical-test'||receipt.operator?.value?.kind==='technical-test'||
+   (!receipt.operator?.value?.kind&&receipt.operator?.value?.model==='technical-test-adapter')||
+   (record.predecessor?isTechnicalRevision(record.predecessor,seen):false)||
+   (receipt.replacementOf?isTechnicalRevision(receipt.replacementOf,seen):false);
  }
  function selectionHistory(){
   return fs.readdirSync(path.join(root,'selections')).filter(n=>!n.startsWith('.')).sort().map(n=>{
@@ -188,7 +216,7 @@ export function openProductionStore({directory:target,libraryDirectory=path.join
    publishTree(path.join(root,'selections',String(sequence).padStart(10,'0')),seal(new Map([['selection.json',json(event)]])),beforePublish);return event;
   });
  }
- const api={directory:root,saveOrder,loadOrder,exportOrder,importResponse,importScopedRepair,resolveRevisionContext,isTechnicalRevision,findRecord,selected,selectRevision,
+ const api={directory:root,libraryDirectory:path.resolve(libraryDirectory),saveOrder,loadOrder,exportOrder,importResponse,importScopedRepair,resolveRevisionContext,isTechnicalRevision,findRecord,selected,selectRevision,
   latestRevision:(caseId,variant)=>{const latest=allRecords().filter(r=>r.caseId===caseId&&r.flavorVariantId===variant).sort((a,b)=>a.draft.revision-b.draft.revision).at(-1);return latest?revisionReference(latest):null;},
   validateIntent:order=>checkIntents(order,allRecords())};
  return Object.freeze(Object.fromEntries(Object.entries(api).map(([name,value])=>[name,typeof value==='function'?(...args)=>operation(()=>value(...args)):value])));
