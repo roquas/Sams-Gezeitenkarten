@@ -167,6 +167,7 @@ export function openQualityStore({directory:target,production,beforePublish}={})
    const receipt={version:1,jobId,runId,methodHash:METHOD_HASH,responseSha256,bindings:saved.sidecar.items,operator:structuredClone(operator),
     observedAt:new Date().toISOString(),limits:'Manual declaration; execution/model/time and hidden chat sources not independently observed.'};
    publishTree(dest,seal(new Map([['response.json',responseBytes],['receipt.json',json(receipt)],['results.json',json(result)]])),beforePublish);
+   memo?.clear();
    return {runId,created:true,responseSha256,...responseApplicability(saved,response,context),...result};
   });
  }
@@ -196,6 +197,7 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     const result=compareReaderItem(item,reader,record.request.source.logic.clues);
     const proof={version:1,jobId,itemId:item.itemId,sourceBinding:binding.sourceBinding,readerHash:hash(reader),comparisonHash:hash(result),methodHash:METHOD_HASH};
     const created=publishTree(location('comparisons',comparisonId(saved,item.itemId)),seal(new Map([['comparison.json',json(result)],['binding.json',json(proof)]])),beforePublish);
+    memo?.delete('loadComparison:'+saved.job.jobId+':'+item.itemId);
     results.push({itemId:item.itemId,created,result});
    }
    return {jobId,results,missing:currentItems.filter(i=>!accepted.has(i.itemId)).map(i=>i.itemId),
@@ -268,5 +270,5 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     importedResponses:imports.length,declaredModels:imports.map(i=>i.receipt.operator.model),tokens:null,cost:null},
    limits:'No external model invocation. F01/checkpoints, selection and publication unchanged.'};
  }
- return Object.freeze({directory:root,...Object.fromEntries(Object.entries({createBlindBatch,exportJob,loadJob,importResponse,compare,createReviewBatch,inspect,evidence}).map(([name,fn])=>[name,(...args)=>operation(()=>fn(...args))]))});
+ return Object.freeze({directory:root,readSession:work=>operation(work),...Object.fromEntries(Object.entries({createBlindBatch,exportJob,loadJob,importResponse,compare,createReviewBatch,inspect,evidence}).map(([name,fn])=>[name,(...args)=>operation(()=>fn(...args))]))});
 }

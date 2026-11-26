@@ -82,7 +82,10 @@ führt für den neuen Stand zu neuen drei Stufen; alte Jobs bleiben historisch.
 Eine Ersatzvariante ändert auch abhängige tatsächliche Serienreferenzen.
 Verspätete Antworten bleiben als lokale Transportbelege erhalten und können
 keine verworfene Variante reaktivieren. Widersprüchliche Wiederholungen werden
-vom bestehenden Qualitätsstore abgewiesen. Ein vorhandener atomarer
+vom bestehenden Qualitätsstore abgewiesen. Synchronische Leseabschnitte einer Analyse bzw. eines Berichts teilen
+verifizierte unveränderliche Daten und Vergleichsreplays. Nach Abschluss des
+API-Aufrufs werden diese Caches verworfen; neue Imports invalidieren sie.
+Ein vorhandener atomarer
 Produktionsimport wird nach Unterbrechung wiedergefunden, bevor weitere Arbeit
 angefordert wird.
 

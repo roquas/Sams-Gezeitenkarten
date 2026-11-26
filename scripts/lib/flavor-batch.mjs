@@ -52,16 +52,15 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
  });}
  function qualityWork(p,reference,round,stage,parent=null,clarification=null){
   const context=contextFor(p),binding=contentHash({reference,context,method:METHOD_HASH,round,stage,parent,clarification});
-  let w=allWork().find(w=>w.binding===binding);if(w)return w;
-  // A stable job identity closes the crash window between publication and registration.
-  // It never chooses an arbitrary result from another independent reader run.
-  const jobId='job-'+binding;
-  if(!fs.existsSync(path.join(quality.directory,'jobs',jobId))){
-   if(stage==='reader')quality.createBlindBatch({references:[reference],context,omitCompleted:false,jobId});
-   else quality.createReviewBatch({readerJobId:parent,omitCompleted:false,clarification,jobId});
+  let w=allWork().find(w=>w.binding===binding);
+  // Persist the random identity before publishing the quality job. Resume can
+  // finish either side of this boundary without exposing private binding hashes.
+  if(!w){w={version:1,id:'work-'+randomUUID(),kind:stage,jobId:'job-'+randomUUID(),reference,round,binding,parent,clarification};saveWork(w,[]);}
+  if(!fs.existsSync(path.join(quality.directory,'jobs',w.jobId))){
+   if(stage==='reader')quality.createBlindBatch({references:[reference],context,omitCompleted:false,jobId:w.jobId});
+   else quality.createReviewBatch({readerJobId:parent,omitCompleted:false,clarification,jobId:w.jobId});
   }
-  assert.ok(jobId,'quality job required');w={version:1,id:'work-'+randomUUID(),kind:stage,jobId,reference,round,binding,parent,clarification};
-  return saveWork(w,[]);
+  return w;
  }
  function qualityStatus(w){return quality.inspect(w.jobId).items[0];}
  function accepted(w){const saved=quality.evidence(w.jobId);return {saved,result:saved.results[0]?.result??null};}
@@ -102,7 +101,8 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
  function failures(w){return events().filter(e=>e.type==='technical-failure'&&e.data.workId===w.id).length;}
  function imported(w){return events().some(e=>e.type==='accepted'&&e.data.workId===w.id);}
  function lineage(reference){const records=[];let r=production.findRecord(reference);while(r.derivation?.kind==='scoped-repair-v1'){records.push(r);r=production.findRecord(r.predecessor);}return records;}
- function analyze(){
+ function analyze(){return quality.readSession(analyzeSnapshot);}
+ function analyzeSnapshot(){
   const p=plan();assert.equal(p.method,BATCH_METHOD,'batch method changed; retain history and create a new batch plan');
   const context=contextFor(p);if(contentHash(context)!==contentHash(p.context))once('context-change',{context});
   const pending=[],positions=[],history=events();
@@ -207,7 +207,8 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
   const files=new Map([...unseal(readTree(path.join(root,'work',w.id)))].filter(([n])=>n.startsWith('public/')).map(([n,b])=>[n.slice(7),b]));
   return {id:w.id,kind:w.kind,jobId:w.id,files};
  }
- function report(state=analyze()){
+ function report(state=analyze()){return quality.readSession(()=>reportSnapshot(state));}
+ function reportSnapshot(state){
   const history=events(),counts={};for(const i of state.positions)counts[i.state]=(counts[i.state]??0)+1;
   const stages={reader:{complete:0,open:0},comparison:{complete:0,open:0},reviewer:{complete:0,open:0}};
   for(const position of state.positions){const pending=state.pending.find(w=>w.reference.revisionHash===position.reference.revisionHash);

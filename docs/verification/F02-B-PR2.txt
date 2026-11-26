@@ -53,3 +53,10 @@ Historische Produktions-/Qualitätsdaten, Pilottexte, Auswahl, Karten, Namen,
 Assets und Beta-Freigabedaten bleiben unverändert. Neue Regressionen verwenden
 explizit technische Antworten. Die endlichen synthetischen Abläufe belegen
 keine zukünftige Modellgüte, keinen Livebetrieb und keine 10+5-Produktion.
+
+Zusätzlich bestanden: gezielter Wiederaufnahmetest nach Produktionsimport
+(1/1). Ein früherer Neuner-Ablauflauf hatte 8/9 Erfolge; seine verbleibende
+Testannahme verlangte fälschlich einen Fehler für einen bereits exakt
+angenommenen alten Import. Korrigiert auf idempotentes created:false samt
+fortbestehender Verwerfung; kein Produktgate wurde dafür abgeschwächt.
+Die erweiterte aktuelle Gruppe wird erneut vollständig ausgeführt.

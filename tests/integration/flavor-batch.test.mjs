@@ -140,3 +140,23 @@ test('resume recovers accepted production patch after interruption before qualit
  const done=reopened.run(adapter(f));assert.equal(done.summary.counts['technical-complete'],1);assert.equal(f.production.latestRevision(f.refs[0].caseId,f.refs[0].flavorVariantId).revision,2);
  const stages=done.details.evidence.filter(e=>e.work.reference.revision===2).map(e=>e.work.kind);assert.deepEqual(stages.sort(),['reader','reviewer']);assert.equal(f.production.importScopedRepair(args).created,false);
 });
+
+test('synchronous verified read session invalidates imported results and newly published comparison; later corruption is rechecked',()=>{
+ const f=setup();const r=f.batch.run(f.manual),w=r.details.evidence[0].work;
+ f.quality.readSession(()=>{
+  assert.equal(f.quality.inspect(w.jobId).items[0].reader,false);
+  f.quality.importResponse({jobId:w.jobId,runId:'session',responseBytes:bytes(response(f,w)),operator:TECHNICAL_OPERATOR});
+  assert.equal(f.quality.inspect(w.jobId).items[0].reader,true);assert.equal(f.quality.inspect(w.jobId).items[0].comparison,false);
+  f.quality.compare(w.jobId);assert.equal(f.quality.inspect(w.jobId).items[0].comparison,true);assert.equal(f.quality.createReviewBatch({readerJobId:w.jobId}).items,1);
+ });
+ fs.appendFileSync(f.quality.directory+'/imports/session/response.json',' ');assert.throws(()=>f.quality.inspect(w.jobId),/integrity/);
+});
+
+test('resume finishes a persisted random job intent after interruption before quality job publication',()=>{
+ const f=setup();let fail=true;
+ const quality={...f.quality,createBlindBatch:args=>{if(fail){fail=false;throw Error('injected before quality job publication');}return f.quality.createBlindBatch(args);}};
+ const b=openFlavorBatch({quality,production:f.production,batchId:'test'});assert.throws(()=>b.run(f.manual),/injected/);
+ assert.equal(fs.readdirSync(f.quality.directory+'/jobs').length,0);
+ const r=b.run(f.manual);assert.equal(r.work.length,1);assert.equal(fs.readdirSync(f.batch.directory+'/work').length,1);assert.equal(fs.readdirSync(f.quality.directory+'/jobs').length,1);
+ assert.match(r.details.evidence[0].work.jobId,/^job-[a-f0-9-]{36}$/);
+});
