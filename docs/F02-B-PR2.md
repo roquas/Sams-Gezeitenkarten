@@ -185,3 +185,52 @@ Archiv und bereits ausgelieferte statische Pakete bleiben unverändert. Die
 bestehenden Katalog-/Archivanschlüsse erhalten alte Releases; bereits
 heruntergeladene statische Pakete lassen sich hierdurch nicht fernwiderrufen.
 Kein Scheduler, Publisher, Deployment und kein vollständiger 10+5-Lauf.
+
+## Batchübergreifende Zustandsbindung (Nachreview von bf7ae48)
+
+Die unabhängige Nachreview bestätigte die ursprünglichen Korrekturen 1, 2, 4,
+6 und 7. Bei Reparaturgrenze/Verwerfung (3) und Klärungswiederverwendung (5)
+blieben zwei konkret reproduzierte Restlücken; diese Änderung adressiert sie.
+Eine erneute unabhängige Nachprüfung ist damit nicht vorweggenommen.
+
+Die versiegelten Pläne und hashverketteten Ereignisse aller Batches desselben
+Qualitätsstores bilden eine abgeleitete variantenspezifische Sicht. Ein gemeinsamer
+Batch-Schreiberlock serialisiert ihre Entscheidungen zusätzlich zu den bestehenden
+Storelocks. Es gibt keine zweite Revisionsablage und keine Umschreibung alter
+Ereignisse. Vollständig negative Reparaturnachweise werden gegen Produktionsrevision,
+Readerantwort, Vergleich, unabhängige Reviewantwort, Methode und tatsächlichen
+Kontext geprüft und nach Revisionshash dedupliziert. Ein neuer Batch setzt ihre
+Zählung nicht zurück. Bei Fortschreibung der eigenen Episode darf lediglich deren
+Selbstreferenz im Serienkontext mitwandern; andere Kontextrevisionen und die
+Methode müssen für die Zählung übereinstimmen. Positive/ADVISORY-Durchläufe,
+fehlende Stufen, Transportfehler und ungeprüfte Patchvorfahren zählen nicht.
+
+Eine nach zwei passenden vollständigen Fehldurchläufen rechtmäßig verworfene
+Variante bleibt auch in einem anderen Batch oder nach einem Methodenwechsel
+terminal. Historische negative Belege werden hierfür mit ihren ursprünglichen
+Bindungen und Bytes verifiziert; sie werden nie als aktuelle Qualifikation oder
+aktuelle Stufenwiederverwendung ausgegeben. Fehlende/beschädigte Historie führt zu
+einem technischen Fehler statt zur Reaktivierung. Ersatzbeziehungen und bereits
+verbrauchte Ersatzbudgets werden über Batchgrenzen nachvollzogen. Ein wartender
+Ersatzauftrag wird mit seiner ursprünglichen Identität weiterverwendet; der neue
+Variantenstand beginnt unverändert bei Revision 1. Unabhängige Varianten/Fälle
+bleiben getrennt.
+
+Ein frischer Klärungsreader erhält ausschließlich im privaten Sidecar einen Bezug
+auf den konkreten früheren Reviewerjob und dessen Item. Keine frühere Bewertung
+oder Klärungskennzeichnung wird dem öffentlichen Readerjob hinzugefügt. Genau
+diese Bindung erlaubt die Wiederverwendung seiner angenommenen Antwort und des
+Vergleichs, während der Klärungsreviewer noch offen ist. Der neue Batch exportiert
+nur die fehlende Rolle unter den bestehenden Job-/Itembezügen. Auch offene Jobs
+können dabei weiterverwendet werden, ohne aus fehlenden Antworten Erfolg abzuleiten.
+Mehrere Auslegungsverläufe werden als getrennte, zusammenhängende Nachweisketten
+behandelt; ursprüngliche Erstlesungen dürfen nicht zu frischen Klärungen werden.
+Der vergleichende Reviewer bleibt an genau die alten/neuen Belege seiner Kette
+gebunden. Mehrfach referenzierte Jobs zählen im Aufwand weiterhin nur einmal.
+
+Die Implementierungsänderung erzeugt einen neuen Qualitätsmethodenhash. Die
+bestehende korrekte private Produktionsrevision 2 bleibt mit ihrem bisherigen Hash
+und sämtlichen Spielertextbytes gültig. Nur der frühere Readerexport ist unter
+seinem alten Methodenstand historisch. Ein neuer getrennter Export bindet dieselbe
+unveränderte Revision an neue Jobkennungen; keine alte Antwort wird umetikettiert,
+kein Produktionsimport und keine neue Textrevision ausgeführt.

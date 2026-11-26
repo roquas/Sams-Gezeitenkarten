@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
-import {spawnSync} from 'node:child_process';
+import {execFileSync,spawnSync} from 'node:child_process';
 import {importCommunityCards} from '../../scripts/lib/card-import.mjs';
 import {loadCommunityProduction,createProductionPackage} from '../../scripts/lib/flavor-production-package.mjs';
 import {METHOD_HASH} from '../../scripts/lib/flavor-quality-package.mjs';
@@ -308,4 +308,142 @@ test('legacy synthetic v1 production and scoped receipts retain their exact byte
  assert.deepEqual(current.draft.presentation.objectNames,prior.request.source.presentation.objectNames);assert.deepEqual(current.draft.presentation.clueTexts,prior.draft.presentation.clueTexts);assert.deepEqual(current.draft.presentation.intro,prior.draft.presentation.intro);
  const after=packageInventory(readTree(dir));for(const entry of before.files)assert.deepEqual(after.files.find(f=>f.path===entry.path),entry);
  assert.deepEqual(openProductionStore({directory:dir}).findRecord(oldRef),legacy);
+});
+
+function anotherBatch(f,id,references=f.refs,budgets={clarifications:0,replacements:0},context={version:1,episodes:[]}){
+ const b=openFlavorBatch({quality:f.quality,production:f.production,batchId:id});b.create({references,budgets,context});return b;
+}
+function acceptWorkPatch(f,w,label){return f.batch.importMany([{workId:w.id,responseBytes:bytes({version:1,jobId:w.id,predecessor:w.reference,changes:[{target:{field:'title'},value:'TECHNICAL '+label}]}),operator:TECHNICAL_OPERATOR}])[0];}
+
+test('variant-wide failures survive batch changes and duplicate proofs; discarded variants cannot be reactivated or accept late work',()=>{
+ const f=setup(1,{clarifications:0,replacements:0});const r2=revisionReference(importPatch(f,f.refs[0],'cross-r2').records[0]);
+ const sourceBatch=f.batch;let first=pauseRepair(f);assert.equal(first.summary.discardedStories,0);const oldRepair=first.details.evidence.find(e=>e.work.kind==='repair').work;
+ // The same complete negative proof is observed in another batch, not counted twice.
+ f.batch=anotherBatch(f,'duplicate-r2',[r2]);let duplicate=pauseRepair(f);assert.equal(duplicate.summary.discardedStories,0);assert.equal(duplicate.details.positions[0].failedRepairs,1);
+ const r3=revisionReference(importPatch(f,r2,'cross-r3').records[0]),parallel=anotherBatch(f,'parallel-r3',[r3]);const parallelPending=parallel.run(f.manual).details.evidence.find(e=>e.work.kind==='reader').work;f.batch=anotherBatch(f,'second-revision',[r3]);const result=pauseRepair(f);
+ assert.equal(result.summary.discardedStories,1);assert.equal(result.summary.counts.blocked,1);assert.equal(result.work.length,0);
+ const proofs=result.details.variantHistory.filter(e=>e.type==='failed-repair-review');assert.equal(new Set(proofs.map(e=>e.data.reference.revisionHash)).size,2);
+ const jobs=fs.readdirSync(f.quality.directory+'/jobs');f.batch=anotherBatch(f,'after-discard',[r3]);
+ for(let i=0;i<2;i++){const again=f.batch.run(f.manual);assert.equal(again.work.length,0);assert.equal(again.summary.discardedStories,1);assert.equal(again.summary.counts.blocked,1);}
+ assert.deepEqual(fs.readdirSync(f.quality.directory+'/jobs'),jobs);
+ assert.ok(sourceBatch.importMany([{workId:oldRepair.id,responseBytes:bytes({version:1,jobId:oldRepair.id,predecessor:oldRepair.reference,changes:[{target:{field:'title'},value:'TECHNICAL LATE OLD PATCH'}]}),operator:TECHNICAL_OPERATOR}])[0].error);assert.equal(f.production.latestRevision(r3.caseId,r3.flavorVariantId).revision,3);
+ const late=parallel.importMany([{workId:parallelPending.id,responseBytes:bytes(response(f,parallelPending)),operator:TECHNICAL_OPERATOR}])[0];assert.ok(late.error);assert.equal(parallel.run(f.manual).summary.counts.blocked,1);
+ const events=result.details.variantHistory.filter(e=>e.type==='discarded');assert.equal(events.length,1);
+});
+
+test('variant-wide discard shares one bounded replacement across batches and does not block independent cases or variants',()=>{
+ const f=setup(2,{clarifications:0,replacements:0});f.batch=anotherBatch(f,'terminal-a',[f.refs[0]]);
+ let ref=f.refs[0];for(const id of ['terminal-r2','terminal-r3']){ref=revisionReference(importPatch(f,ref,id).records[0]);pauseRepair(f);}
+ f.batch=anotherBatch(f,'replacement-b',[ref],{clarifications:0,replacements:1});let r=f.batch.run(f.manual);assert.equal(r.work[0].kind,'replacement');const w=r.details.evidence.find(e=>e.work.kind==='replacement').work;
+ const orders=fs.readdirSync(f.production.directory+'/orders');const b=anotherBatch(f,'replacement-c',[ref],{clarifications:0,replacements:1});let c=b.run(f.manual);
+ assert.equal(c.work.length,1);assert.equal(c.work[0].id,w.id);assert.deepEqual(fs.readdirSync(f.production.directory+'/orders'),orders);
+ const order=f.production.loadOrder(w.orderId).order;assert.equal(order.positions[0].intent.revision,1);assert.notEqual(w.variant,ref.flavorVariantId);
+ assert.equal(f.batch.importMany([{workId:w.id,responseBytes:bytes(technicalResponse(order)),operator:TECHNICAL_OPERATOR}])[0].created,true);
+ f.batch=b;r=f.batch.run(adapter(f));assert.equal(r.summary.counts['technical-complete'],1);assert.equal(r.details.positions[0].replacements,1);
+ const replacement=r.details.positions[0].reference;f.batch=anotherBatch(f,'direct-replacement-start',[replacement],{clarifications:0,replacements:1});
+ let current=replacement;for(const id of ['replacement-r2','replacement-r3']){current=revisionReference(importPatch(f,current,id).records[0]);pauseRepair(f);}
+ r=f.batch.run(f.manual);assert.equal(r.summary.counts.blocked,1);assert.equal(r.work.length,0);assert.equal(r.summary.discardedStories,2);
+ f.batch=anotherBatch(f,'unrelated-case',[f.refs[1]]);assert.equal(f.batch.run(adapter(f)).summary.counts['technical-complete'],1);
+ const inputs=loadCommunityProduction({ids:[ref.caseId],intents:[{flavorVariantId:'independent-other',revision:1,predecessor:null}]}),pkg=createProductionPackage(inputs);f.production.saveOrder({...pkg,origin:inputs.origin});
+ const fresh=f.production.importResponse({orderId:pkg.order.orderId,runId:'other-independent',responseBytes:bytes(technicalResponse(pkg.order)),operator:TECHNICAL_OPERATOR}).records[0];
+ f.batch=anotherBatch(f,'unrelated-variant',[revisionReference(fresh)]);r=f.batch.run(adapter(f));assert.equal(r.summary.counts['technical-complete'],1);assert.equal(r.summary.discardedStories,0);
+});
+
+test('variant-wide failure counting excludes changed relevant contexts, incomplete stages and transport failures',()=>{
+ const f=setup(2,{clarifications:0,replacements:0});f.batch=anotherBatch(f,'context-a',[f.refs[0]],{clarifications:0,replacements:0},{version:1,episodes:[f.refs[1]]});
+ const r2=revisionReference(importPatch(f,f.refs[0],'bound-r2').records[0]);pauseRepair(f);
+ const sibling=revisionReference(importPatch(f,f.refs[1],'changed-bound-sibling').records[0]),r3=revisionReference(importPatch(f,r2,'bound-r3').records[0]);
+ f.batch=anotherBatch(f,'context-b',[r3],{clarifications:0,replacements:0},{version:1,episodes:[sibling]});let r=f.batch.run(f.manual),w=r.details.evidence.find(e=>e.work.kind==='reader').work;
+ assert.ok(f.batch.importMany([{workId:w.id,responseBytes:Buffer.from('{'),operator:TECHNICAL_OPERATOR}])[0].error);
+ assert.equal(f.batch.report().details.variantHistory.filter(e=>e.type==='failed-repair-review').filter(e=>e.data.reference.revisionHash===r3.revisionHash).length,0);
+ // Only the reader is accepted; missing independent review cannot create failure evidence.
+ f.batch.importMany([{workId:w.id,responseBytes:bytes(response(f,w)),operator:TECHNICAL_OPERATOR}]);r=f.batch.run(f.manual);assert.equal(r.work[0].kind,'reviewer');
+ assert.equal(r.summary.discardedStories,0);r=pauseRepair(f);assert.equal(r.summary.discardedStories,0);assert.equal(r.details.positions[0].failedRepairs,1);
+ // Damage to a foreign batch's history is rejected, never interpreted as reset.
+ const event=f.quality.directory+'/batches/context-a/events/0000000001/event.json';fs.appendFileSync(event,' ');assert.throws(()=>f.batch.report(),/integrity/);
+ fs.renameSync(f.quality.directory+'/batches/context-a/plan',f.quality.directory+'/batches/context-a/.lost-plan');assert.throws(()=>f.batch.report(),/missing batch plan/);
+});
+
+function partialClarification(f){
+ return f.batch.run(technicalTestAdapter(({work})=>{
+  if(work.some(w=>w.kind==='reviewer'&&f.quality.loadJob(w.jobId).sidecar.clarification))return [];
+  return work.map(w=>{const value=response(f,w);if(w.kind==='reviewer'){blockingReview(f,value,w);value.items[0].findings[0].repairTarget=null;}return {workId:w.id,responseBytes:bytes(value)};});
+ }));
+}
+test('partial clarification reuses accepted fresh readers and comparisons across batch IDs; only original reviewer work remains',()=>{
+ const f=setup(2);const first=partialClarification(f);assert.equal(first.work.length,2);assert.ok(first.work.every(w=>w.kind==='reviewer'));
+ const before=fs.readdirSync(f.quality.directory+'/jobs'),oldReviews=first.details.evidence.filter(e=>e.work.kind==='reviewer'&&e.quality.sidecar.clarification).map(e=>e.work.jobId).sort();
+ const readerFiles=first.details.evidence.filter(e=>e.work.kind==='reader').map(e=>[e.work.jobId,packageInventory(f.quality.loadJob(e.work.jobId).files)]);
+ f.batch=anotherBatch(f,'partial-clarification-b',f.refs,{clarifications:1,replacements:0});let next=f.batch.run(f.manual);
+ assert.ok(next.work.every(w=>w.kind==='reviewer'));assert.equal(next.work.length,2);assert.deepEqual(fs.readdirSync(f.quality.directory+'/jobs'),before);
+ assert.deepEqual(next.details.evidence.filter(e=>e.work.kind==='reviewer'&&e.quality.sidecar.clarification).map(e=>e.work.jobId).sort(),oldReviews);
+ assert.equal(next.summary.effort.qualityImports,6);next=f.batch.run(f.manual);assert.deepEqual(fs.readdirSync(f.quality.directory+'/jobs'),before);
+ const replies=next.details.evidence.filter(e=>next.work.some(w=>w.id===e.work.id)).map(e=>({workId:e.work.id,responseBytes:bytes(response(f,e.work)),operator:TECHNICAL_OPERATOR}));
+ assert.equal(f.batch.importMany(replies).filter(r=>r.created).length,2);next=f.batch.run(f.manual);assert.equal(next.work.length,0);assert.equal(next.summary.counts['technical-complete'],2);assert.equal(next.summary.effort.qualityImports,8);
+ for(const [id,inventory] of readerFiles)assert.deepEqual(packageInventory(f.quality.loadJob(id).files),inventory);
+});
+
+test('partial clarification ancestry distinguishes multiple multi-item paths; context/revision changes and missing readers are not relabeled',()=>{
+ const f=setup(2),prior=f.quality.createBlindBatch({references:f.refs}),saved=f.quality.loadJob(prior.jobId);
+ f.quality.importResponse({jobId:prior.jobId,runId:'multi-initial-reader',responseBytes:bytes(technicalReader(saved.job,f.refs.map(r=>f.production.findRecord(r).request.source.logic.clues))),operator:TECHNICAL_OPERATOR});f.quality.compare(prior.jobId);
+ const review=f.quality.createReviewBatch({readerJobId:prior.jobId}),rv=f.quality.loadJob(review.jobId),reply=technicalReviewer(rv.job);
+ for(const item of reply.items)item.findings=[{id:'synthetic-open',severity:'UNCERTAIN',requirement:'technical',unitIds:[rv.job.items.find(i=>i.itemId===item.itemId).input.public.units[0].id],factRefs:['public.rules'],rationale:'TECHNICAL TEST',claimIds:[],method:'technical-test',evidenceRefs:['reader'],repairTarget:null}];
+ f.quality.importResponse({jobId:review.jobId,runId:'multi-initial-review',responseBytes:bytes(reply),operator:TECHNICAL_OPERATOR});
+ const refs=rv.sidecar.items.map(b=>({jobId:review.jobId,itemId:b.itemId})),fresh=[];
+ for(let i=0;i<2;i++){
+  const j=f.quality.createBlindBatch({references:[f.refs[i]],omitCompleted:false,clarification:refs[i]}),s=f.quality.loadJob(j.jobId);fresh.push(s);
+  if(i===0){f.quality.importResponse({jobId:j.jobId,runId:'fresh-only-first',responseBytes:bytes(technicalReader(s.job,[f.production.findRecord(f.refs[i]).request.source.logic.clues])),operator:TECHNICAL_OPERATOR});f.quality.compare(j.jobId);}
+  assert.ok(!s.files.get('job.json').toString().includes(review.jobId));assert.ok(!s.files.get('job.json').toString().includes('clarification'));
+ }
+ assert.equal(f.quality.findReusable({reference:f.refs[0],stage:'reader',clarification:refs[0]}).jobId,fresh[0].job.jobId);
+ assert.equal(f.quality.findReusable({reference:f.refs[1],stage:'reader',clarification:refs[1]}),null);
+ assert.equal(f.quality.findReusable({reference:f.refs[1],stage:'reader',clarification:refs[1],includePending:true}).jobId,fresh[1].job.jobId);
+ assert.equal(f.quality.findReusable({reference:f.refs[0],stage:'reader',clarification:refs[1]}),null);
+ assert.equal(f.quality.findReusable({reference:f.refs[0],context:{version:1,episodes:[f.refs[1]]},stage:'reader',clarification:refs[0]}),null);
+ assert.throws(()=>f.quality.createReviewBatch({readerJobId:prior.jobId,clarification:refs[0]}),/ancestry/);
+ // A second coherent interpretation for the same item must remain a distinct chain.
+ const second=f.quality.createBlindBatch({references:[f.refs[0]],omitCompleted:false}),secondReader=f.quality.loadJob(second.jobId),secondReply=technicalReader(secondReader.job,[f.production.findRecord(f.refs[0]).request.source.logic.clues]);secondReply.items[0].claims[0].meaning+=' SECOND INTERPRETATION';
+ f.quality.importResponse({jobId:second.jobId,runId:'second-interpretation',responseBytes:bytes(secondReply),operator:TECHNICAL_OPERATOR});f.quality.compare(second.jobId);
+ const secondReview=f.quality.createReviewBatch({readerJobId:second.jobId}),secondSaved=f.quality.loadJob(secondReview.jobId),secondResult=technicalReviewer(secondSaved.job);secondResult.items[0].findings=[{...reply.items[0].findings[0],unitIds:[secondSaved.job.items[0].input.public.units[0].id]}];
+ f.quality.importResponse({jobId:secondReview.jobId,runId:'second-review',responseBytes:bytes(secondResult),operator:TECHNICAL_OPERATOR});
+ const secondRef={jobId:secondReview.jobId,itemId:secondSaved.job.items[0].itemId},secondFresh=f.quality.createBlindBatch({references:[f.refs[0]],omitCompleted:false,clarification:secondRef}),secondFreshSaved=f.quality.loadJob(secondFresh.jobId);
+ f.quality.importResponse({jobId:secondFresh.jobId,runId:'second-fresh',responseBytes:bytes(technicalReader(secondFreshSaved.job,[f.production.findRecord(f.refs[0]).request.source.logic.clues])),operator:TECHNICAL_OPERATOR});f.quality.compare(secondFresh.jobId);
+ assert.equal(f.quality.findReusable({reference:f.refs[0],stage:'reader',clarification:refs[0]}).jobId,fresh[0].job.jobId);assert.equal(f.quality.findReusable({reference:f.refs[0],stage:'reader',clarification:secondRef}).jobId,secondFresh.jobId);
+ assert.throws(()=>f.quality.createReviewBatch({readerJobId:fresh[0].job.jobId,clarification:secondRef}),/ancestry/);
+ const count=fs.readdirSync(f.quality.directory+'/jobs').length;f.batch=anotherBatch(f,'multi-partial',f.refs,{clarifications:1,replacements:0});const report=f.batch.run(f.manual);
+ assert.deepEqual(report.work.map(w=>w.kind).sort(),['reader','reviewer']);assert.equal(fs.readdirSync(f.quality.directory+'/jobs').length,count+1);
+ const pendingReader=report.details.evidence.find(e=>report.work.some(w=>w.id===e.work.id&&w.kind==='reader'));assert.equal(pendingReader.work.jobId,fresh[1].job.jobId);
+ const pendingReviewer=report.details.evidence.find(e=>report.work.some(w=>w.id===e.work.id&&w.kind==='reviewer')),parent=f.quality.loadJob(pendingReviewer.quality.sidecar.items[0].readerJobId);
+ assert.deepEqual(pendingReviewer.quality.sidecar.clarification,parent.sidecar.clarification);assert.deepEqual(pendingReviewer.quality.job.items[0].input.reader,f.quality.evidence(parent.job.jobId).results[0].result);
+ const next=revisionReference(importPatch(f,f.refs[0],'clarification-new-revision').records[0]);assert.equal(f.quality.findReusable({reference:next,stage:'reader',clarification:refs[0]}),null);
+});
+
+test('variant-wide terminal history survives a method change but obsolete failures cannot count toward a new-method repair limit',()=>{
+ const repo=path.join(root,'old-method-repo'),data=path.join(root,'old-method-data'),project=new URL('../../',import.meta.url);
+ execFileSync('git',['clone','--quiet','--shared',project.pathname,repo]);
+ for(const folder of ['scripts','src'])fs.cpSync(new URL('../../'+folder,import.meta.url),path.join(repo,folder),{recursive:true});
+ fs.copyFileSync(new URL('../fixtures/flavor-quality/batch-history.mjs',import.meta.url),repo+'/tests/fixtures/flavor-quality/batch-history.mjs');
+ fs.appendFileSync(repo+'/scripts/lib/flavor-quality-prompts.mjs','\n// Synthetic historical method boundary; no real model run.\n');
+ fs.mkdirSync(data);execFileSync(process.execPath,[repo+'/tests/fixtures/flavor-quality/batch-history.mjs',data],{encoding:'utf8'});
+ const [one,two]=JSON.parse(fs.readFileSync(data+'/history.json'));assert.notEqual(one.methodHash,METHOD_HASH);
+ for(const source of [one,two]){
+  const production=openProductionStore({directory:source.directory+'/production'}),quality=openQualityStore({directory:source.directory+'/quality',production}),f={production,quality,refs:[source.reference]};
+  if(source===one){
+   assert.equal(quality.findReusable({reference:source.reference,stage:'reader',clarification:source.partialClarification.reference,includePending:true}),null);
+   assert.equal(quality.inspect(source.partialClarification.readerJobId).items[0].qualified,false);
+   const current=revisionReference(importPatch(f,source.reference,'new-method-r3').records[0]);f.batch=anotherBatch(f,'current-method',[current]);
+   const report=pauseRepair(f);assert.equal(report.summary.discardedStories,0);assert.equal(report.details.positions[0].failedRepairs,1);
+  }else{
+   f.batch=anotherBatch(f,'current-method',[source.reference]);const before=packageInventory(readTree(quality.directory+'/jobs')),report=f.batch.run(manualBetaAdapter({out:source.directory+'/out'}));
+   assert.equal(report.work.length,0);assert.equal(report.summary.counts.blocked,1);assert.equal(report.summary.discardedStories,1);assert.deepEqual(packageInventory(readTree(quality.directory+'/jobs')),before);
+  }
+ }
+});
+
+test('variant-wide counting excludes positive and advisory revisions but retains two failed revisions when only the series self-reference advances',()=>{
+ const f=setup(1,{clarifications:0,replacements:0});let ref=revisionReference(importPatch(f,f.refs[0],'positive-r2').records[0]);
+ let result=f.batch.run(adapter(f,(v,w)=>{if(w.kind==='reviewer'){blockingReview(f,v,w);v.items[0].findings[0].severity='ADVISORY';}return v;}));assert.equal(result.summary.counts['technical-complete'],1);
+ ref=revisionReference(importPatch(f,ref,'negative-r3').records[0]);f.batch=anotherBatch(f,'after-positive',[ref]);result=pauseRepair(f);assert.equal(result.summary.discardedStories,0);assert.equal(result.details.positions[0].failedRepairs,1);
+ const g=setup(1,{clarifications:0,replacements:0});let own=revisionReference(importPatch(g,g.refs[0],'self-r2').records[0]);g.batch=anotherBatch(g,'self-a',[own],{clarifications:0,replacements:0},{version:1,episodes:[own]});pauseRepair(g);
+ own=revisionReference(importPatch(g,own,'self-r3').records[0]);g.batch=anotherBatch(g,'self-b',[own],{clarifications:0,replacements:0},{version:1,episodes:[own]});result=pauseRepair(g);assert.equal(result.summary.discardedStories,1);assert.equal(result.summary.counts.blocked,1);
 });

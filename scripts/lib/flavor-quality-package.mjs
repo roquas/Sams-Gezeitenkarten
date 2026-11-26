@@ -84,11 +84,11 @@ export function buildReaderInputs({production,references,context=EMPTY_CONTEXT})
  }
  return {entries,files,context};
 }
-export function createReaderJob(inputs,{jobId='job-'+randomUUID(),itemIds=inputs.entries.map(()=>'item-'+randomUUID())}={}){
+export function createReaderJob(inputs,{jobId='job-'+randomUUID(),itemIds=inputs.entries.map(()=>'item-'+randomUUID()),clarification=null}={}){
  assert.equal(itemIds.length,inputs.entries.length);assert.equal(new Set(itemIds).size,itemIds.length);
  const job={transportVersion:QUALITY_VERSION,stage:'reader',jobId,methodHash:METHOD_HASH,
  items:inputs.entries.map((e,i)=>({itemId:itemIds[i],inputHash:hash(e.input),input:e.input}))};
- const sidecar={version:1,stage:'reader',jobId,methodHash:METHOD_HASH,context:structuredClone(inputs.context),
+ const sidecar={version:1,stage:'reader',jobId,methodHash:METHOD_HASH,context:structuredClone(inputs.context),...(clarification?{clarification:structuredClone(clarification)}:{}),
  items:inputs.entries.map((e,i)=>({itemId:itemIds[i],...e.binding}))};
  return {job,sidecar,files:packageFiles(job,inputs.files)};
 }

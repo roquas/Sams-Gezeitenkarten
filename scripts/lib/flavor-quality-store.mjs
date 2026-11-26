@@ -47,12 +47,14 @@ export function openQualityStore({directory:target,production,beforePublish}={})
   if(saved.historical)return saved;
   if(job.stage==='reader'){
    const inputs=buildReaderInputs({production,references:sidecar.items.map(i=>i.revisionRef),context:sidecar.context});
-   const expected=createReaderJob(inputs,{jobId,itemIds:job.items.map(i=>i.itemId)});
+   if(sidecar.clarification)checkClarification(sidecar.clarification,inputs);
+   const expected=createReaderJob(inputs,{jobId,itemIds:job.items.map(i=>i.itemId),clarification:sidecar.clarification??null});
    same(sidecar,expected.sidecar,'quality local source binding');same(packageInventory(saved.files),packageInventory(expected.files),'quality job trust anchor');
   }else{
    assert.equal(job.stage,'reviewer');
    const parentIds=[...new Set(sidecar.items.map(i=>i.readerJobId))];assert.equal(parentIds.length,1,'flavor quality: ambiguous reader dependency');
    const parent=loadJob(parentIds[0]),accepted=acceptedResults(parent),readerItems=sidecar.items.map(b=>parent.job.items.find(p=>p.itemId===b.readerItemId));
+   same(parent.sidecar.clarification??null,sidecar.clarification??null,'reviewer reader clarification ancestry');
    assert.ok(readerItems.every(Boolean),'flavor quality: missing reader dependency');
    const readerResults=readerItems.map(p=>accepted.get(p.itemId)?.result),comparisons=readerItems.map(p=>loadComparison(parent,p.itemId));
    const inputs=buildReaderInputs({production,references:parent.sidecar.items.map(i=>i.revisionRef),context:parent.sidecar.context});
@@ -96,7 +98,7 @@ export function openQualityStore({directory:target,production,beforePublish}={})
    // Inspect every receipt's exact bytes even when it belongs to another job.
    assert.equal(sha256(files.get('response.json')),receipt.responseSha256,'flavor quality: imported response integrity');
    if(receipt.jobId!==saved.job.jobId)continue;
-   assert.equal(receipt.methodHash,METHOD_HASH,'flavor quality: import method integrity');
+   assert.equal(receipt.methodHash,saved.job.methodHash,'flavor quality: import method integrity');
    const result=evaluate(saved,parseQualityResponse(files.get('response.json')));same(parse(files.get('results.json')),result,'quality import validation');
    same(receipt.bindings,saved.sidecar.items,'quality import source binding');structure(receipt.operator,operatorSchema);
    snapshots.push({receipt,...result});
@@ -118,15 +120,23 @@ export function openQualityStore({directory:target,production,beforePublish}={})
   return {jobId:pkg.job.jobId,stage:pkg.job.stage,items:pkg.job.items.length,
    created:publishTree(location('jobs',pkg.job.jobId),files,beforePublish)};
  }
- function createBlindBatch({references,context=EMPTY_CONTEXT,omitCompleted=true,jobId}){
+ function checkClarification(reference,inputs){
+  const prior=evidence(reference.jobId),binding=prior.sidecar.items.find(i=>i.itemId===reference.itemId);
+  assert.equal(prior.job.stage,'reviewer');assert.ok(binding&&prior.results.some(r=>r.result.itemId===reference.itemId),'complete clarification predecessor');
+  same(inputs.context,prior.sidecar.context,'clarification reader context');
+  assert.ok(inputs.entries.every(e=>e.binding.sourceBinding===binding.sourceBinding),'clarification reader source');
+ }
+ function createBlindBatch({references,context=EMPTY_CONTEXT,omitCompleted=true,jobId,clarification=null}){
   return locked(()=>{
    let inputs=buildReaderInputs({production,references,context}),skipped=[];
    assert.ok(current({sidecar:{context,items:inputs.entries.map(e=>e.binding)}}),'flavor quality: stale production revision/context');
+   if(clarification)checkClarification(clarification,inputs);
    if(omitCompleted){
     const done=new Set();
     for(const jobId of names(path.join(root,'jobs'))){
      const raw=rawJob(jobId);if(raw.historical||raw.job.stage!=='reader')continue;
      const prior=loadJob(jobId),accepted=acceptedResults(prior);
+     if(canonicalJson(prior.sidecar.clarification??null)!==canonicalJson(clarification))continue;
      for(const b of prior.sidecar.items)if(accepted.has(b.itemId)&&currentItem(prior,b.itemId))done.add(b.sourceBinding);
     }
     skipped=inputs.entries.filter(e=>done.has(e.binding.sourceBinding)).map(e=>e.binding.revisionRef);
@@ -134,7 +144,7 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     if(!pending.length)return {jobId:null,stage:'reader',items:0,skipped,created:false};
     inputs=buildReaderInputs({production,references:pending,context});
    }
-   const pkg=createReaderJob(inputs,jobId?{jobId}:{});assert.ok(current(pkg),'flavor quality: stale production revision/context');return {...saveJob(pkg),skipped};
+   const pkg=createReaderJob(inputs,{...(jobId?{jobId}:{}),clarification});assert.ok(current(pkg),'flavor quality: stale production revision/context');return {...saveJob(pkg),skipped};
   });
  }
  function exportJob(jobId,out){
@@ -174,16 +184,16 @@ export function openQualityStore({directory:target,production,beforePublish}={})
  function comparisonId(saved,itemId){
   const accepted=acceptedResults(saved).get(itemId);assert.ok(accepted,'flavor quality: reader item technically open');
   const binding=saved.sidecar.items.find(i=>i.itemId===itemId);
-  return 'compare-'+hash({jobId:saved.job.jobId,itemId,readerHash:hash(accepted.result),binding,methodHash:METHOD_HASH});
+  return 'compare-'+hash({jobId:saved.job.jobId,itemId,readerHash:hash(accepted.result),binding,methodHash:saved.job.methodHash});
  }
  const loadComparison=(saved,itemId)=>cached('loadComparison:'+saved.job.jobId+':'+itemId,()=>loadComparisonUncached(saved,itemId));
  function loadComparisonUncached(saved,itemId){
   const dest=location('comparisons',comparisonId(saved,itemId));if(!fs.existsSync(dest))return null;
   const files=unseal(readTree(dest)),result=parse(files.get('comparison.json')),proof=parse(files.get('binding.json'));
   const item=saved.job.items.find(i=>i.itemId===itemId),binding=saved.sidecar.items.find(i=>i.itemId===itemId),reader=acceptedResults(saved).get(itemId).result;
-  same(proof,{version:1,jobId:saved.job.jobId,itemId,sourceBinding:binding.sourceBinding,readerHash:hash(reader),comparisonHash:hash(result),methodHash:METHOD_HASH},'comparison dependencies');
+  same(proof,{version:1,jobId:saved.job.jobId,itemId,sourceBinding:binding.sourceBinding,readerHash:hash(reader),comparisonHash:hash(result),methodHash:saved.job.methodHash},'comparison dependencies');
   const {record}=(()=>{const record=production.findRecord(binding.revisionRef);return {record};})();
-  same(result,compareReaderItem(item,reader,record.request.source.logic.clues),'deterministic comparison integrity');return result;
+  if(!saved.historical)same(result,compareReaderItem(item,reader,record.request.source.logic.clues),'deterministic comparison integrity');return result;
  }
  function compare(jobId){
   return locked(()=>{
@@ -204,9 +214,11 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     staleItemIds:saved.job.items.filter(i=>!currentItem(saved,i.itemId)).map(i=>i.itemId)};
   });
  }
- function createReviewBatch({readerJobId,readerItemIds=null,omitCompleted=true,clarification=null,jobId}){
+ function createReviewBatch({readerJobId,readerItemIds=null,omitCompleted=true,clarification,jobId}){
   return locked(()=>{
    const parent=loadJob(readerJobId);assert.equal(parent.job.stage,'reader');
+   clarification??=parent.sidecar.clarification??null;
+   same(parent.sidecar.clarification??null,clarification,'reviewer reader clarification ancestry');
    if(readerItemIds)assert.ok(readerItemIds.length&&readerItemIds.every(id=>parent.job.items.some(i=>i.itemId===id)),'review reader item selection');
    const currentItems=parent.job.items.filter(i=>(!readerItemIds||readerItemIds.includes(i.itemId))&&currentItem(parent,i.itemId));
    assert.ok(currentItems.length,'flavor quality: stale review source');
@@ -241,25 +253,64 @@ export function openQualityStore({directory:target,production,beforePublish}={})
  // Reuse the original job/item, never rebind an answer to a new identity.
  // Exact sourceBinding includes method, revision, source and actual context;
  // inspect retains the original technical/manual provenance on reused evidence.
- function findReusable({reference,context=EMPTY_CONTEXT,stage,readerJobId=null,readerItemId=null,clarification=null}){
+ function findReusable({reference,context=EMPTY_CONTEXT,stage,readerJobId=null,readerItemId=null,clarification=null,includePending=false}){
   const input=buildReaderInputs({production,references:[reference],context}).entries[0],matches=[];
-  for(const jobId of names(path.join(root,'jobs'))){
-   const raw=rawJob(jobId);if(raw.historical||raw.job.stage!==stage)continue;
-   if(stage==='reviewer'&&canonicalJson(raw.sidecar.clarification??null)!==canonicalJson(clarification))continue;
+  const catalog=names(path.join(root,'jobs')).map(rawJob).filter(raw=>!raw.historical);
+  for(const raw of catalog){
+   const jobId=raw.job.jobId;if(raw.job.stage!==stage)continue;
+   if(canonicalJson(raw.sidecar.clarification??null)!==canonicalJson(clarification))continue;
    const bindings=raw.sidecar.items.filter(b=>b.sourceBinding===input.binding.sourceBinding&&
     (stage==='reader'||(b.readerJobId===readerJobId&&b.readerItemId===readerItemId)));
    if(!bindings.length)continue;
    const saved=loadJob(jobId),accepted=acceptedResults(saved);
-   for(const b of bindings)if(currentItem(saved,b.itemId,context)&&accepted.has(b.itemId))matches.push({jobId,itemId:b.itemId});
+   for(const b of bindings)if(currentItem(saved,b.itemId,context)&&(accepted.has(b.itemId)||includePending))matches.push({jobId,itemId:b.itemId,complete:accepted.has(b.itemId)});
   }
-  // Prefer the already completed full chain over a sibling reader-only run.
-  if(stage==='reader')for(const match of matches){
-   if(findReusable({reference,context,stage:'reviewer',readerJobId:match.jobId,readerItemId:match.itemId,clarification}))return match;
+  // Prefer the furthest completed coherent chain, not a mixture of answers
+  // from independent interpretations. Missing reviewer results score zero.
+  const depths=new Map(),visiting=new Set();
+  function depth(jobId,itemId){
+   const token=jobId+'/'+itemId;if(depths.has(token))return depths.get(token);assert.ok(!visiting.has(token),'clarification ancestry cycle');visiting.add(token);
+   const reader=loadJob(jobId);let best=0;
+   for(const review of catalog.filter(s=>s.job.stage==='reviewer')){
+    if(canonicalJson(review.sidecar.clarification??null)!==canonicalJson(reader.sidecar.clarification??null))continue;
+    for(const b of review.sidecar.items.filter(b=>b.readerJobId===jobId&&b.readerItemId===itemId&&b.sourceBinding===input.binding.sourceBinding)){
+     if(!currentItem(review,b.itemId,context)||!acceptedResults(loadJob(review.job.jobId)).has(b.itemId))continue;
+     let further=0;const prior={jobId:review.job.jobId,itemId:b.itemId};
+     for(const child of catalog.filter(s=>s.job.stage==='reader'&&canonicalJson(s.sidecar.clarification??null)===canonicalJson(prior)))for(const c of child.sidecar.items){
+      if(c.sourceBinding===input.binding.sourceBinding&&currentItem(child,c.itemId,context)&&acceptedResults(loadJob(child.job.jobId)).has(c.itemId))further=Math.max(further,depth(child.job.jobId,c.itemId));
+     }
+     best=Math.max(best,1+further);
+    }
+   }
+   visiting.delete(token);depths.set(token,1+best);return 1+best;
   }
-  // A clarification must not reuse the very first interpretation as a fresh
-  // blind reading. Only an already bound clarification chain is reusable here.
-  if(stage==='reader'&&clarification)return null;
-  return matches[0]??null;
+  for(const match of matches)match.progress=match.complete?(stage==='reader'?depth(match.jobId,match.itemId):1):0;
+  matches.sort((a,b)=>b.progress-a.progress);
+  // Private sidecar ancestry identifies the fresh blind reading even while its
+  // comparative review is pending. It is never sent to the reader itself.
+  return matches[0]?{jobId:matches[0].jobId,itemId:matches[0].itemId}:null;
+ }
+ // Negative historical evidence is used solely to verify a terminal discard,
+ // never to qualify/reuse an obsolete job under the current method.
+ function failedReviewProof({reference,reviewJobId,itemId,context,methodHash}){
+  const raw=rawJob(reviewJobId),saved=raw.historical?raw:loadJob(reviewJobId);assert.equal(saved.job.stage,'reviewer');assert.equal(saved.job.methodHash,methodHash);
+  same(saved.sidecar.context,context,'failed review context');
+  const binding=saved.sidecar.items.find(i=>i.itemId===itemId),item=saved.job.items.find(i=>i.itemId===itemId);
+  assert.ok(binding&&item,'failed review item');same(binding.revisionRef,reference,'failed review revision');assert.equal(item.inputHash,hash(item.input));assert.equal(binding.publicInputHash,item.inputHash);
+  const result=acceptedResults(saved).get(itemId)?.result;assert.ok(result,'complete failed review required');
+  const parent=rawJob(binding.readerJobId),readerBinding=parent.sidecar.items.find(i=>i.itemId===binding.readerItemId),readerItem=parent.job.items.find(i=>i.itemId===binding.readerItemId);
+  assert.equal(parent.job.stage,'reader');assert.equal(parent.job.methodHash,methodHash);same(parent.sidecar.context,context,'failed reader context');same(readerBinding?.revisionRef,reference,'failed reader revision');
+  same(binding.sourceBinding,readerBinding.sourceBinding,'failed stage source binding');same(item.input.public,readerItem.input,'failed public input');assert.equal(readerBinding.publicInputHash,readerItem.inputHash);
+  const source=buildReaderInputs({production,references:[reference],context}).entries[0];
+  same(readerItem.input.presentation,source.input.presentation,'archived reader presentation');same(readerBinding.presentationHash,source.binding.presentationHash,'archived presentation binding');
+  const chartWithoutImage=({image,imageSha256,...chart})=>chart;
+  same(chartWithoutImage(readerItem.input.chart),chartWithoutImage(source.input.chart),'archived chart source');same(readerItem.input.sources,source.input.sources,'archived public sources');same(readerItem.input.seriesContext,source.input.seriesContext,'archived actual context');
+  assert.equal(readerBinding.sourceHash,source.binding.sourceHash);assert.equal(readerItem.inputHash,hash(readerItem.input));
+  const reader=acceptedResults(parent).get(binding.readerItemId)?.result,comparison=reader?loadComparison(parent,binding.readerItemId):null;
+  assert.ok(reader&&comparison,'complete failed reader/comparison required');same(item.input.reader,reader,'failed reader input');same(item.input.comparison,comparison,'failed comparison input');
+  assert.equal(binding.readerHash,hash(reader));assert.equal(binding.comparisonHash,hash(comparison));
+  const outcome=qualify(item,reader,comparison,result);assert.ok(!outcome.qualified&&outcome.reasons.length,'positive review is not a failed repair');
+  return {reference,reviewJobId,itemId,context,methodHash,reasons:outcome.reasons};
  }
  function clarificationEvidence(reference){
   const prior=evidence(reference.jobId);assert.equal(prior.job.stage,'reviewer');
@@ -294,5 +345,5 @@ export function openQualityStore({directory:target,production,beforePublish}={})
     importedResponses:imports.length,declaredModels:imports.map(i=>i.receipt.operator.model),tokens:null,cost:null},
    limits:'No external model invocation. F01/checkpoints, selection and publication unchanged.'};
  }
- return Object.freeze({directory:root,readSession:work=>operation(work),...Object.fromEntries(Object.entries({createBlindBatch,exportJob,loadJob,importResponse,compare,createReviewBatch,inspect,evidence,findReusable}).map(([name,fn])=>[name,(...args)=>operation(()=>fn(...args))]))});
+ return Object.freeze({directory:root,readSession:work=>operation(work),...Object.fromEntries(Object.entries({createBlindBatch,exportJob,loadJob,importResponse,compare,createReviewBatch,inspect,evidence,findReusable,failedReviewProof}).map(([name,fn])=>[name,(...args)=>operation(()=>fn(...args))]))});
 }

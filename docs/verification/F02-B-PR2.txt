@@ -1,3 +1,66 @@
+F02-B PR 2 – zwei Restbefunde nach unabhängiger Nachreview von bf7ae48
+
+Ausgangshead: bf7ae48a895abf153bee75f1585030eedaa05281; vor Beginn auf GitHub
+unverändert, eigener Checkout sauber. Weiterarbeit auf bestehendem PR #134 und
+codex/f02-b-pr2-orchestration. Die unabhängige Nachreview bestätigte ursprüngliche
+Punkte 1, 2, 4, 6, 7; Punkte 3 und 5 waren zuvor nur teilweise behoben. Die folgenden
+neuen Ergebnisse gehören ausschließlich zu diesem Restkorrektur-Codebaum; exakter
+finaler Head und commitgebundene CI stehen in der aktualisierten PR-Beschreibung.
+Keine unabhängige Abnahme der neuen Korrekturen vorweggenommen.
+
+A: Verifizierte Ereignis-/Nachweissicht über alle Batches desselben Qualitätsstores,
+variantenspezifische vollständige Fehlversuche mit Methoden-/Kontextbindung und
+Deduplizierung je Revision. Terminale Verwerfung, akzeptierte Ersatzbeziehungen und
+Ersatzbudget über Batchgrenzen. Gemeinsamer Batchlock, keine Ereignismutation.
+Historische negative Nachweise dienen nur der Verifikation rechtmäßiger Verwerfung,
+nie aktueller Qualifikation. Alte/anders gebundene Fehlnachweise werden nicht zur
+neuen Methoden-/Kontextzählung addiert.
+B: Private Klärungsreader-Ancestry bindet genau den früheren Reviewjob/das Item.
+Angenommene frische Readerantwort plus Vergleich sind wiederverwendbar, auch ohne
+fertigen Klärungsreviewer. Offene Jobs bleiben offen; ursprüngliche Job-, Item-,
+Antwort- und Herkunftsbezüge bleiben erhalten. Erstlesung, mehrere Interpretationen,
+Mehritem-/Teilbatches sowie neue Revision/Methode/Serienkontexte bleiben getrennt.
+Kein privates Klärungswissen wird dem Readerexport hinzugefügt.
+
+Neue gezielte Regressionen: 7/7 bestanden (variant-wide|partial clarification).
+Passende bestehende Vertrags-/Integrationsgruppen: 186/186 bestanden; neue sieben
+Fälle separat bereits bestanden (test-skip-pattern). Gruppen: flavor, count-clue-
+normalization, flavor-production, scoped-repair, quality, quality-calibration
+(Verträge) sowie production, quality und batch (Integration).
+Weitere Checks: test:content 21/21; test:puzzles erfolgreich; check:community
+erfolgreich (15 Fälle). check:community:release erwarteter Exit 1 am unveränderten
+pending-Bestand. git diff --check sauber. Vollständige Unitgruppe in der neuen CI.
+Umgebung: TMPDIR=/private/tmp PATH=/private/tmp/sams-f02a-python/bin:$PATH;
+Node 22, unveränderte Abhängigkeiten. Tests nur synthetisch bzw. auf isolierten Kopien.
+
+Ein früher Restfalllauf hatte 4/5 Erfolge: Die Late-Response-Probe adressierte einen
+Workauftrag mit der falschen Batch-ID und erhielt erwartbar ENOENT. Korrigiert auf
+seinen ursprünglichen Batch und einen zusätzlich parallel geöffneten Auftrag für
+dieselbe spätere Revision; deren verspätete Antworten dürfen nach globaler
+Verwerfung nichts reaktivieren. Keine Produktprüfung dafür gelockert.
+
+Die korrekte private C-06 / independent-1 / Revision 2 mit Hash
+ed07b747ce1e245a4706ba1d895fe7931d58d216e5313a51b3d08a22b0512be0
+bleibt unverändert. Keine erneute Anwendung der genehmigten Satzänderung, kein
+Produktionsimport, keine zusätzliche Revision. Wegen neuem Qualitätsmethodenhash
+wird nur ein getrennter frischer Readerexport erzeugt; der vorige Export bleibt
+unter seinem bisherigen Code-/Methodenbezug historisch erhalten. Ablösung und
+aktuelle private Pfade stehen im neuen Übergabebeleg; keine alten Jobs/Antworten
+neu gebunden. Vorfix- und vollständiger 15er-Bestand bleiben unverändert. Kein
+realer Reader-/Reviewer-/15er-Lauf und keine Modellaufrufe.
+
+CI: Neue unveränderte CI am neuen Commit erforderlich; tatsächlicher Endstand in
+https://github.com/roquas/Sams-Gezeitenkarten/pull/134. Historisch hatte bf7ae48
+CI #545 mit 13/14 Erfolgen, ausschließlich WebKit 1 rot (unveränderter UI-Test,
+Timeout initial und Retry). Keine vollständig grüne CI für diesen alten Head und
+keine Übertragung alter Testergebnisse. Nutzerentscheidung: isolierte WebKit-Flakes
+halten einen Generator-/Skriptbranch nicht auf; kein Rerun, Debugging oder
+CI-Optimierung und keine Gate-Reduktion. Neu verursachte Regressionen bleiben zu
+prüfen. Keine automatische Auswahl, Freigabe, Veröffentlichung oder Merge;
+Modellgüte, Livebetrieb und 10+5-Kalibrierung bleiben empirisch offen.
+
+=== HISTORISCHER bf7ae48-KORREKTURSTAND; PUNKTE 3/5 NUR TEILWEISE BESTÄTIGT ===
+
 F02-B PR 2 – unabhängige Reviewkorrekturen, 26.11.2026
 
 Ausgangspunkt der sieben reproduzierten Findings:
