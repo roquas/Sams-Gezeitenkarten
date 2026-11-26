@@ -1,3 +1,57 @@
+F02-B PR 2 – gezielte Mehritem-Transportkorrektur nach d461120
+
+Ausgangshead d4611205602b3531a26806b9edabfe8419459b6e auf GitHub und im sauberen
+Implementierungscheckout bestätigt. Unabhängige Review bestätigte A/B und die
+vorherigen Garantien, meldete eine neue P2-Transportregression. Diese Korrektur
+begrenzt neue offene-Job-Übernahmen auf Einzelitemjobs; angenommene Mehritemstufen
+bleiben wiederverwendbar. Teilantworten bestehender Jobs verlangen keine fehlenden
+Geschwister. Fortschritt folgt tatsächlichen Items; Export und identischer Import
+werden pro Job dedupliziert. Bekannte versiegelte d461120-Pläne sind ohne Mutation
+unter unverändertem Qualitätsmethodenhash kompatibel. Kein neues Antwortformat.
+
+Die ersten vier neuen Grenzfalltests am unveränderten Ausgangscode: 0/4 bestanden, alle vier
+reproduzierten die Regression. Synthetisch erzeugte versiegelte Vorfix-Work-/Plan-
+Snapshots; keine Änderungen realer Daten. Neue Tests prüfen Einzelitem-Fallback,
+Teilannahme und dreifache Wiederholung, falsche Work-/Geschwisterzuordnung,
+Export-/Importdeduplizierung, Reviewer-Teilantwort und Herkunft, fremde Daten.
+
+Finaler eingefrorener Codebaum: 5/5 neue Transportregressionen bestanden. Danach
+193/193 bestehende Vertrags-/Integrationsfälle bestanden (test-skip-pattern für
+die fünf separat geprüften neuen Fälle); zusammen 198 unterschiedliche Fälle.
+Gruppen: flavor, count-clue-normalization, flavor-production, scoped-repair,
+quality, quality-calibration (Verträge) und production, quality, batch (Integration).
+Inhalt 21/21; Rätselprüfung und Communityprüfung (15 Fälle) erfolgreich.
+Release-Gate erwarteter Exit 1 am unveränderten pending-Bestand.
+git diff --check sauber. Node 22.23.3; TMPDIR=/private/tmp und dokumentierter
+Pillow-PATH /private/tmp/sams-f02a-python/bin. Vollständige Unitgruppe in neuer CI;
+keine historischen Unit-Zahlen als neue Ergebnisse übernommen.
+
+Zusätzlicher fünfter Fall: neuer Ein-Positions-Batch bei offenem historischem
+Zweiitemjob verwendet einen vollständigen regulären Einzelitemjob und fordert
+nach Annahme nur Reviewarbeit an. Das bestehende Manifest benennt die tatsächlich
+noch benötigten Item-IDs; historische Jobdateien und Modellantwortformat unverändert.
+Ein erster breiter Lauf wurde vor Abschluss für diese letzte Manifestpräzisierung
+gezielt gestoppt und wird nicht als bestandener neuer Nachweis gezählt.
+
+Qualitätsmethodenhash bleibt 5497f85269eafb041d9021374682d694cd50997d0b373130c8ca73e4d7e6c7d8.
+Die vorhandene Readerbindung job-92930769-ebae-482f-a22f-7d07c3e33c25 bleibt gültig.
+Kein neuer Export/Job, keine Neuetikettierung, keine neue C06r2 und kein Produktions-
+import. Richtige C06r2 ed07b747ce1e245a4706ba1d895fe7931d58d216e5313a51b3d08a22b0512be0.
+SHA-Nachweis aller vier geschützten Ablagen im neuen privaten Übergabebeleg.
+Der 15er-Bestand hatte zu Beginn dieser Runde 171 Dateien; maßgeblich ist der volle
+Byteabgleich dieser Ausgangsinventur, nicht die historische Anzahl 170.
+
+Exakter finaler Head und tatsächlich beobachtete unveränderte CI in PR #134 und
+privatem Abschlussbeleg. CI546 am alten d461120 ist historisch abgeschlossen mit
+12/14 Jobs erfolgreich; nur WebKit2 (Timeout initial/Retry) und WebKit3 (Retry
+bestanden, Flaky-Gate) rot. Keine weitere WebKit-/UI-Debugging-/Rerunschleife,
+keine Gate-Reduktion; Nutzerentscheidung unverändert. Keine vollständige grüne CI
+behaupten, falls nicht belegt. Erneute unabhängige Nachprüfung steht aus.
+Keine Modellaufrufe, echten Reader-/Reviewer-/15er-Läufe, automatische Qualifikation,
+Auswahl, Veröffentlichung oder Merge.
+
+=== HISTORISCHER d461120-STAND; A/B UNABHÄNGIG BESTÄTIGT, TRANSPORT-P2 NOCH OFFEN ===
+
 F02-B PR 2 – zwei Restbefunde nach unabhängiger Nachreview von bf7ae48
 
 Ausgangshead: bf7ae48a895abf153bee75f1585030eedaa05281; vor Beginn auf GitHub

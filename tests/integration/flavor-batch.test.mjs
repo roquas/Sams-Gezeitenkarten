@@ -447,3 +447,82 @@ test('variant-wide counting excludes positive and advisory revisions but retains
  const g=setup(1,{clarifications:0,replacements:0});let own=revisionReference(importPatch(g,g.refs[0],'self-r2').records[0]);g.batch=anotherBatch(g,'self-a',[own],{clarifications:0,replacements:0},{version:1,episodes:[own]});pauseRepair(g);
  own=revisionReference(importPatch(g,own,'self-r3').records[0]);g.batch=anotherBatch(g,'self-b',[own],{clarifications:0,replacements:0},{version:1,episodes:[own]});result=pauseRepair(g);assert.equal(result.summary.discardedStories,1);assert.equal(result.summary.counts.blocked,1);
 });
+
+// Sealed d461120 plan/work format, built synthetically without rewriting snapshots.
+function persistedMultiWork(f,jobId,references=f.refs,stage='reader',parent=null){
+ const saved=f.quality.loadJob(jobId),id='persisted-'+(++n),base=f.quality.directory+'/batches/'+id;
+ fs.mkdirSync(base+'/events',{recursive:true});fs.mkdirSync(base+'/work');
+ const plan={version:1,id,method:'afebf95e6a50d41d7962ed78d5540700179938cd83ee78856f893317ef9c035d',qualityMethod:METHOD_HASH,references,context:{version:1,episodes:[]},budgets:{clarifications:1,technicalRetries:2,systematicFailures:3,replacements:1}};
+ publishTree(base+'/plan',seal(new Map([['plan.json',json(plan)]])));
+ const works=references.map((reference,i)=>{
+  const b=saved.sidecar.items.find(b=>b.revisionRef.revisionHash===reference.revisionHash),readerItemId=stage==='reviewer'?b.readerItemId:null;
+  const w={version:1,id:'legacy-work-'+i,kind:stage,jobId,itemId:b.itemId,reused:true,reference,round:0,binding:contentHash({reference,context:plan.context,method:METHOD_HASH,round:0,stage,parent,clarification:null,readerItemId}),parent,clarification:null};
+  publishTree(base+'/work/'+w.id,seal(new Map([['work.json',json(w)]])));return w;
+ });
+ const before=packageInventory(readTree(base+'/plan')),workBefore=works.map(w=>packageInventory(readTree(base+'/work/'+w.id)));
+ return {batch:openFlavorBatch({quality:f.quality,production:f.production,batchId:id}),works,unchanged(){assert.deepEqual(packageInventory(readTree(base+'/plan')),before);works.forEach((w,i)=>assert.deepEqual(packageInventory(readTree(base+'/work/'+w.id)),workBefore[i]));}};
+}
+function partialReply(f,jobId,index){const saved=f.quality.loadJob(jobId),reply=saved.job.stage==='reader'?technicalReader(saved.job,saved.sidecar.items.map(b=>f.production.findRecord(b.revisionRef).request.source.logic.clues)):technicalReviewer(saved.job);reply.items=[reply.items[index]];return reply;}
+
+test('multi-item transport: pending reuse stays single-item; two old open items get independent complete jobs',()=>{
+ const f=setup(2),old=f.quality.createBlindBatch({references:f.refs}),before=packageInventory(readTree(f.quality.directory+'/jobs/'+old.jobId));
+ const r=f.batch.run(f.manual),readers=r.details.evidence.filter(e=>e.work.kind==='reader');
+ assert.equal(readers.length,2);assert.equal(new Set(readers.map(e=>e.work.jobId)).size,2);assert.equal(f.manual.exports.length,2);
+ for(const e of readers){assert.notEqual(e.work.jobId,old.jobId);assert.equal(e.quality.job.items.length,1);assert.deepEqual(e.quality.sidecar.items[0].revisionRef,e.work.reference);}
+ const a=readers[0].work,reply={workId:a.id,responseBytes:bytes(response(f,a)),operator:TECHNICAL_OPERATOR};
+ assert.ok(!f.batch.importMany([reply])[0].error);assert.equal(f.batch.importMany([reply])[0].created,false);
+ const next=f.batch.run(f.manual);assert.deepEqual(next.work.map(w=>w.kind).sort(),['reader','reviewer']);assert.equal(next.summary.effort.technicalFailures,0);
+ assert.deepEqual(packageInventory(readTree(f.quality.directory+'/jobs/'+old.jobId)),before);
+ const g=setup(),single=g.quality.createBlindBatch({references:g.refs}),pending=g.batch.run(g.manual);assert.equal(pending.details.evidence[0].work.jobId,single.jobId);
+});
+
+test('multi-item transport: persisted single-needed reader accepts partial reply and three identical retries without failures',()=>{
+ const f=setup(2),old=f.quality.createBlindBatch({references:f.refs}),legacy=persistedMultiWork(f,old.jobId,[f.refs[0]]),w=legacy.works[0];
+ const reply={workId:w.id,responseBytes:bytes(partialReply(f,old.jobId,0)),operator:TECHNICAL_OPERATOR};
+ for(let i=0;i<3;i++){const result=legacy.batch.importMany([reply])[0];assert.ok(!result.error);assert.equal(result.created,i===0);}
+ legacy.batch.create({references:[f.refs[0]]});
+ let report=legacy.batch.run(f.manual);assert.deepEqual(report.work.map(w=>w.kind),['reviewer']);assert.equal(report.summary.effort.technicalFailures,0);
+ assert.deepEqual(f.quality.inspect(old.jobId).items.map(i=>i.reader),[true,false]);
+ report=legacy.batch.run(f.manual);assert.equal(report.summary.status,'waiting-manual-transport');assert.equal(report.summary.effort.technicalFailures,0);legacy.unchanged();
+});
+
+test('multi-item transport: persisted shared reader exports once; sibling reply advances only its own item',()=>{
+ const f=setup(2),old=f.quality.createBlindBatch({references:f.refs}),legacy=persistedMultiWork(f,old.jobId),[a,b]=legacy.works;
+ let report=legacy.batch.run(f.manual);assert.equal(f.manual.exports.length,1);assert.equal(report.summary.effort.manualPackageExports,1);
+ assert.deepEqual(f.manual.exports[0].itemIds,[a.itemId,b.itemId]);
+ const manifest=JSON.parse(fs.readFileSync(path.join(path.dirname(f.manual.exports[0].out),'manifest/work-list.json')));assert.deepEqual(manifest.work[0].itemIds,[a.itemId,b.itemId]);
+ // Valid B-only answer submitted through A transport must leave A open.
+ const reply={workId:a.id,responseBytes:bytes(partialReply(f,old.jobId,1)),operator:TECHNICAL_OPERATOR};assert.ok(!legacy.batch.importMany([reply])[0].error);
+ assert.equal(legacy.batch.importMany([{...reply,workId:b.id}])[0].created,false);
+ report=legacy.batch.run(f.manual);assert.deepEqual(report.work.map(w=>w.kind).sort(),['reader','reviewer']);assert.deepEqual(f.quality.inspect(old.jobId).items.map(i=>i.reader),[false,true]);
+ assert.equal(report.work.find(w=>w.kind==='reader').id,a.id);assert.equal(report.summary.effort.technicalFailures,0);
+ assert.deepEqual(f.manual.exports.find(e=>e.role==='reader').itemIds,[a.itemId]);
+ assert.equal(legacy.batch.importMany([reply])[0].created,false);
+ const other={workId:a.id,responseBytes:bytes(partialReply(f,old.jobId,0)),operator:TECHNICAL_OPERATOR};assert.ok(!legacy.batch.importMany([other])[0].error);
+ report=legacy.batch.run(f.manual);assert.ok(report.work.every(w=>w.kind==='reviewer'));assert.equal(report.work.length,2);assert.equal(report.summary.effort.technicalFailures,0);
+ assert.equal(report.summary.effort.qualityImports,2);
+ // A genuinely foreign envelope/item still fails, with spoiler-free diagnostics.
+ const foreign=partialReply(f,old.jobId,0);foreign.items[0].itemId='foreign-private-marker';const rejected=legacy.batch.importMany([{workId:b.id,responseBytes:bytes(foreign)}])[0];assert.ok(rejected.error);assert.ok(!rejected.error.includes('private-marker'));
+ const wrong=partialReply(f,old.jobId,0);wrong.jobId='foreign-job';assert.ok(legacy.batch.importMany([{workId:a.id,responseBytes:bytes(wrong)}])[0].error);
+ // Recheck only original work snapshots; new reviewer work is legitimately appended.
+ for(const w of legacy.works)assert.deepEqual(JSON.parse(readTree(f.quality.directory+'/batches/'+report.details.plan.id+'/work/'+w.id).get('work.json')),w);
+});
+
+test('multi-item transport: persisted reviewer partial reply retains provenance and leaves sibling review pending',()=>{
+ const f=setup(2),reader=f.quality.createBlindBatch({references:f.refs});
+ f.quality.importResponse({jobId:reader.jobId,runId:'complete-reader',responseBytes:bytes(technicalReader(f.quality.loadJob(reader.jobId).job,f.refs.map(r=>f.production.findRecord(r).request.source.logic.clues))),operator:TECHNICAL_OPERATOR});f.quality.compare(reader.jobId);
+ const review=f.quality.createReviewBatch({readerJobId:reader.jobId}),legacy=persistedMultiWork(f,review.jobId,f.refs,'reviewer',reader.jobId),a=legacy.works[0];
+ const reply={workId:a.id,responseBytes:bytes(partialReply(f,review.jobId,0)),operator:TECHNICAL_OPERATOR};
+ for(let i=0;i<3;i++)assert.ok(!legacy.batch.importMany([reply])[0].error);
+ const report=legacy.batch.run(f.manual);assert.deepEqual(f.quality.inspect(review.jobId).items.map(i=>i.review),[true,false]);assert.equal(report.work.length,1);assert.equal(report.work[0].kind,'reviewer');assert.equal(report.work[0].id,legacy.works[1].id);assert.deepEqual(f.manual.exports[0].itemIds,[legacy.works[1].itemId]);
+ assert.equal(report.summary.counts['technical-complete'],1);assert.equal(report.summary.counts.qualified,undefined);assert.equal(report.summary.effort.technicalFailures,0);
+ assert.ok(report.details.evidence.filter(e=>e.work.kind==='reader').every(e=>e.work.jobId===reader.jobId));
+});
+
+test('multi-item transport: new one-position batch leaves old sibling open and accepts only its regular single-item reply',()=>{
+ const f=setup(2),old=f.quality.createBlindBatch({references:f.refs}),batch=anotherBatch(f,'one-needed-item',[f.refs[0]]);
+ let report=batch.run(f.manual);assert.equal(report.work.length,1);const w=report.details.evidence.find(e=>e.work.kind==='reader').work,saved=f.quality.loadJob(w.jobId);
+ assert.notEqual(w.jobId,old.jobId);assert.equal(saved.job.items.length,1);assert.deepEqual(saved.sidecar.items[0].revisionRef,f.refs[0]);
+ assert.ok(!batch.importMany([{workId:w.id,responseBytes:bytes(response(f,w)),operator:TECHNICAL_OPERATOR}])[0].error);
+ report=batch.run(f.manual);assert.deepEqual(report.work.map(w=>w.kind),['reviewer']);assert.equal(report.summary.effort.technicalFailures,0);assert.deepEqual(f.quality.inspect(old.jobId).items.map(i=>i.reader),[false,false]);
+});

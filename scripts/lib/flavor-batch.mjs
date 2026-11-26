@@ -14,6 +14,9 @@ const entries=dir=>fs.readdirSync(dir).filter(n=>!n.startsWith('.')).sort();
 export const BATCH_VERSION=1;
 export const DEFAULT_BUDGETS=Object.freeze({clarifications:1,technicalRetries:2,systematicFailures:3,replacements:1});
 export const BATCH_METHOD=contentHash({version:BATCH_VERSION,quality:METHOD_HASH,implementation:fs.readFileSync(new URL('./flavor-batch.mjs',import.meta.url),'utf8')});
+// d461120 transport compatibility: same quality contracts, immutable old plans.
+const PRE_PARTIAL_TRANSPORT_METHOD='afebf95e6a50d41d7962ed78d5540700179938cd83ee78856f893317ef9c035d';
+function currentPlan(p){assert.equal(p.qualityMethod,METHOD_HASH,'obsolete batch quality method');assert.ok([BATCH_METHOD,PRE_PARTIAL_TRANSPORT_METHOD].includes(p.method),'obsolete batch method');}
 const key=ref=>ref.caseId+'/'+ref.flavorVariantId;
 const op={kind:'external-manual',model:null,producedAt:null};
 export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
@@ -50,6 +53,7 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
   assert.ok(Object.keys(budgets).every(k=>Object.hasOwn(DEFAULT_BUDGETS,k)),'unknown budget');const limits={...DEFAULT_BUDGETS,...budgets};
   for(const n of Object.values(limits))assert.ok(Number.isSafeInteger(n)&&n>=0&&n<=20,'finite small budgets required');assert.ok(limits.systematicFailures>0);
   const p={version:1,id:batchId,method:BATCH_METHOD,qualityMethod:METHOD_HASH,references,context,budgets:limits};
+  if(fs.existsSync(planFile)){const prior=plan();currentPlan(prior);same({...prior,method:BATCH_METHOD},p,'existing batch plan');return prior;}
   publishTree(planFile,seal(new Map([['plan.json',json(p)]])),beforePublish);return p;
  });}
  function work(id){localId(id);if(!loadedWork.has(id))loadedWork.set(id,parse(unseal(readTree(path.join(root,'work',id))).get('work.json')));return loadedWork.get(id);}
@@ -85,7 +89,11 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
   // Persist the random identity before publishing the quality job. Resume can
   // finish either side of this boundary without exposing private binding hashes.
   if(!w){
-   const reusable=quality.findReusable({reference,context,stage,readerJobId:parent,readerItemId,clarification,includePending:true});
+   const query={reference,context,stage,readerJobId:parent,readerItemId,clarification};
+   let reusable=quality.findReusable(query);
+   if(!reusable){const pending=quality.findReusable({...query,includePending:true});
+    if(pending&&quality.loadJob(pending.jobId).job.items.length===1)reusable=pending;
+   }
    w={version:1,id:'work-'+randomUUID(),kind:stage,jobId:reusable?.jobId??'job-'+randomUUID(),...(reusable?{itemId:reusable.itemId,reused:true}:{}),reference,round,binding,parent,clarification};saveWork(w,[]);
   }
   if(!fs.existsSync(path.join(quality.directory,'jobs',w.jobId))){
@@ -173,7 +181,7 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
  }
  function analyze(){return quality.readSession(analyzeSnapshot);}
  function analyzeSnapshot(){
-  const p=plan();assert.equal(p.method,BATCH_METHOD,'batch method changed; retain history and create a new batch plan');
+  const p=plan();currentPlan(p);
   const context=contextFor(p);if(contentHash(context)!==contentHash(p.context))once('context-change',{context});
   const pending=[],positions=[],history=events();
   const errorGroups={};for(const e of history.filter(e=>e.type==='technical-failure'))errorGroups[e.data.category]=(errorGroups[e.data.category]??0)+1;
@@ -213,9 +221,9 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
   return {p,positions,pending:systematic||stopped.length?[]:pending,stopped:systematic?'systematic-contract-failures':stopped.length?'technical-budget-exhausted':null};
  }
  function importOne({workId,responseBytes,operator=op}){
-  const w=work(workId),p=plan();assert.equal(p.method,BATCH_METHOD,'obsolete batch method');
+  const w=work(workId),p=plan();currentPlan(p);
   assert.ok(Buffer.isBuffer(responseBytes),'exact response bytes required');const digest=contentHash([...responseBytes]);
-  const already=events().find(e=>e.type==='accepted'&&e.data.workId===workId&&e.data.responseHash===digest);
+  const already=events().find(e=>e.type==='accepted'&&e.data.responseHash===digest&&(e.data.workId===workId||(['reader','reviewer'].includes(w.kind)&&work(e.data.workId).jobId===w.jobId)));
   if(already)return {created:false,workId};
   try{
    assert.ok(active(p).some(i=>contentHash(i.reference)===contentHash(w.reference)),'stale active variant or revision');
@@ -223,7 +231,7 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
    let result;
    if(w.kind==='reader'||w.kind==='reviewer'){
     result=quality.importResponse({jobId:w.jobId,runId:'batch-'+contentHash([batchId,workId,digest]).slice(0,40),responseBytes,operator,context:contextFor(p)});
-    if(!result.accepted.length||result.errors.length||result.missing.length)throw Error('technical incomplete/invalid standard response; accepted complete items retained');
+    if(!result.accepted.length||result.errors.length)throw Error('technical incomplete/invalid standard response; accepted complete items retained');
    }else if(w.kind==='repair'){
     same(w.authorization.context,contextFor(p),'stale repair context');
     result=production.importScopedRepair({runId:'repair-'+contentHash([batchId,workId]).slice(0,40),responseBytes,authorization:w.authorization,
@@ -282,7 +290,12 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
   for(let step=0;step<1000;step++){
    state=analyze();
    if(!state.pending.length){if(state.positions.some(i=>i.state==='discarded'))continue;return report(state);}
-   const responses=adapter.execute({batchId,work:state.pending.map(w=>publicWork(w))});
+   // Persisted item work may share one historical job. Transport it once;
+   // actual item evidence, not this representative work ID, drives progress.
+   const transport=new Map();for(const w of state.pending){const exported=publicWork(w),prior=transport.get(exported.jobId);
+    if(prior)prior.requestedItemIds=[...new Set([...prior.requestedItemIds,...exported.requestedItemIds])];else transport.set(exported.jobId,exported);
+   }
+   const responses=adapter.execute({batchId,work:[...transport.values()]});
    for(const exportRecord of adapter.exports??[])once('manual-export',exportRecord);
    if(!responses?.length)return report(state);
    const results=responses.map(importOne);if(results.every(r=>!r.created)&&!results.some(r=>r.error))return report(analyze());
@@ -291,7 +304,8 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
  });}
  function publicWork(w){
   if(w.kind==='reader'||w.kind==='reviewer'){
-   const saved=quality.loadJob(w.jobId);return {id:w.id,kind:w.kind,jobId:w.jobId,files:saved.files,job:saved.job};
+   const saved=quality.loadJob(w.jobId),itemId=w.itemId??saved.sidecar.items.find(b=>b.revisionRef.revisionHash===w.reference.revisionHash).itemId;
+   return {id:w.id,kind:w.kind,jobId:w.jobId,files:saved.files,job:saved.job,requestedItemIds:[itemId]};
   }
   const files=new Map([...unseal(readTree(path.join(root,'work',w.id)))].filter(([n])=>n.startsWith('public/')).map(([n,b])=>[n.slice(7),b]));
   return {id:w.id,kind:w.kind,jobId:w.id,files};
@@ -332,10 +346,10 @@ export function openFlavorBatch({quality,production,batchId,beforePublish}={}){
 export function manualBetaAdapter({out}){
  assert.ok(out,'explicit manual transport output required');directory(out);
  const adapter={kind:'manual-beta',exports:[],execute({work}){
-  const wave=contentHash(work.map(w=>[w.id,packageInventory(w.files)])),target=path.join(out,wave);directory(target);
+  const wave=contentHash(work.map(w=>[w.id,w.requestedItemIds??null,packageInventory(w.files)])),target=path.join(out,wave);directory(target);
   for(const w of work)publishTree(path.join(target,w.id),w.files);
-  adapter.exports=work.map(w=>({workId:w.id,role:w.kind,out:path.join(target,w.id),packageHash:contentHash(packageInventory(w.files)),bytes:[...w.files.values()].reduce((n,b)=>n+Buffer.byteLength(b),0)}));
-  publishTree(path.join(target,'manifest'),new Map([['work-list.json',json({version:1,mode:'waiting-manual-beta',work:work.map(w=>({workId:w.id,role:w.kind,directory:'../'+w.id,isolatedFreshContext:true})),instructions:'Give only one role directory to its fresh isolated model context. Never provide the parent manifest or private repository. Import multiple returned standard envelopes together.'})]]));
+  adapter.exports=work.map(w=>({workId:w.id,role:w.kind,...(w.requestedItemIds?{itemIds:w.requestedItemIds}:{}),out:path.join(target,w.id),packageHash:contentHash(packageInventory(w.files)),bytes:[...w.files.values()].reduce((n,b)=>n+Buffer.byteLength(b),0)}));
+  publishTree(path.join(target,'manifest'),new Map([['work-list.json',json({version:1,mode:'waiting-manual-beta',work:work.map(w=>({workId:w.id,role:w.kind,...(w.requestedItemIds?{itemIds:w.requestedItemIds}:{}),directory:'../'+w.id,isolatedFreshContext:true})),instructions:'For quality roles request only the listed itemIds using the unchanged job and response envelope. Give only one role directory to its fresh isolated model context. Never provide the parent manifest or private repository. Import multiple returned standard envelopes together.'})]]));
   return [];
  }};return adapter;
 }

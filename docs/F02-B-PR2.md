@@ -234,3 +234,35 @@ und sämtlichen Spielertextbytes gültig. Nur der frühere Readerexport ist unte
 seinem alten Methodenstand historisch. Ein neuer getrennter Export bindet dieselbe
 unveränderte Revision an neue Jobkennungen; keine alte Antwort wird umetikettiert,
 kein Produktionsimport und keine neue Textrevision ausgeführt.
+
+## Teilantworten bestehender Mehritemjobs (Nachreview von d461120)
+
+Die unabhängige Nachreview bestätigte die batchübergreifenden A/B-Korrekturen.
+Die zusätzliche Übernahme noch offener Mehritemjobs führte jedoch zu einer
+Transportregression. Neue Arbeit übernimmt offene Jobs deshalb nur bei genau
+einem Item; tatsächlich angenommene Stufen bleiben auch aus Mehritemjobs unter
+ihren ursprünglichen Bezügen wiederverwendbar. Andernfalls entsteht ein regulärer
+Einzelitemjob für die tatsächlich fehlende Rolle, ohne neue Antwortschemafamilie.
+
+Bereits versiegelte d461120-Batchpläne bleiben unter genau ihrem bekannten
+Batchmethodenhash und unverändertem Qualitätsmethodenhash ausführbar. Plan und
+Worksnapshots werden nicht umgeschrieben. Unbekannte Batchmethoden und abweichende
+Qualitätsmethoden bleiben gesperrt. Start mit demselben Plan ist idempotent.
+Mehrere offene Work-Items desselben historischen Jobs transportieren dessen
+vollständiges unverändertes Rollenpaket einmal pro Exportwelle. Die Itemliste im
+bestehenden Transportmanifest benennt ausschließlich die aktuell benötigten Items;
+sie ist kein neuer Job oder Modellantwortvertrag. Bei Teilfortschritt ändert sich
+diese Liste, ohne erledigte Items erneut anzufordern. Die Antwort darf
+weiterhin nur vollständige einzelne Items enthalten. Fehlende Geschwister sind
+kein Transportfehler. Ein gültig angenommenes Geschwisteritem schließt weder die
+adressierte andere Workrolle noch den gesamten Batch; maßgeblich ist der tatsächliche
+Qualitätsnachweis je benötigtem Item. Identische Wiederholungen desselben Jobs
+werden nicht erneut importiert oder als technischer Fehler gezählt, auch wenn zwei
+persistierte Work-IDs auf diesen Job zeigen. Fremde/ungültige Antworten bleiben
+abgewiesen; gültige Teilannahmen und ursprüngliche Herkunft bleiben erhalten.
+
+Dieser Fix ändert ausschließlich die Batchorchestrierung. Der Qualitätsmethodenhash
+und die bestehende separate Readerbindung von d461120 bleiben gültig; der neue
+Batchmethodenhash ist ein eigener Orchestrierungsbezug. Es gibt keinen Anlass für
+neue Readerjobs, Produktionsimporte oder Revisionen an den privaten Beständen.
+Die erneute unabhängige Nachprüfung des Transportfixes steht aus.
