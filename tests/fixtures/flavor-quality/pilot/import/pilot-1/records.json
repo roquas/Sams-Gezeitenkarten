@@ -1,0 +1,1275 @@
+[
+  {
+    "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df",
+    "positionId": "P01",
+    "caseId": "C-06",
+    "cardRef": "gk-illustrated-card-v1-sha256:7dc68f72bed7af2fcd7e9d1e51b42be34da13767d19ace4b59a122aa5530ae08",
+    "flavorVariantId": "independent-1",
+    "predecessor": null,
+    "request": {
+      "contractVersion": 1,
+      "sourceHash": "deb882ea41d811be6cba1cf4594a12ed431976c993997360c66c3522208577bc",
+      "source": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "id": "C-06",
+        "logic": {
+          "clues": [
+            {
+              "count": 0,
+              "distance": 3,
+              "fromHour": 1,
+              "id": "H1",
+              "placeId": "geo-01",
+              "toHour": 5,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 1,
+              "distance": 2,
+              "fromHour": 4,
+              "id": "H2",
+              "placeId": "geo-03",
+              "toHour": 5,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 2,
+              "distance": 1,
+              "fromHour": 1,
+              "id": "H3",
+              "placeId": "geo-02",
+              "toHour": 4,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 2,
+              "distance": 2,
+              "fromHour": 1,
+              "id": "H4",
+              "placeId": "geo-02",
+              "toHour": 2,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "direction": "SW",
+              "hour": 3,
+              "id": "H5",
+              "type": "direction"
+            },
+            {
+              "distance": 2,
+              "hours": [
+                3,
+                6
+              ],
+              "id": "H6",
+              "type": "distanceBetweenHours"
+            }
+          ],
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "cells": [
+                  "D1"
+                ],
+                "id": "geo-01",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D3"
+                ],
+                "id": "geo-02",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B1",
+                  "B2"
+                ],
+                "id": "geo-03",
+                "passable": false
+              }
+            ]
+          },
+          "start": "D1",
+          "steps": 6
+        },
+        "presentation": {
+          "assetPlacements": [
+            {
+              "anchor": "B1",
+              "assetId": "land-coast.settlement.h2.prison-island-03.v1",
+              "id": "art-001",
+              "objectId": "geo-03"
+            },
+            {
+              "anchor": "D1",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "id": "art-002",
+              "objectId": "geo-01"
+            },
+            {
+              "anchor": "D3",
+              "assetId": "sea-life.accent.h1.bottle.v1",
+              "id": "art-003",
+              "objectId": "geo-02"
+            }
+          ],
+          "background": "sea-blue-01",
+          "clueTexts": {
+            "H1": "Von Stunde 1 bis Stunde 5 war das Schiff nie genau 3 Hexfelder von dem Ort geo-01 (D1) entfernt.",
+            "H2": "Von Stunde 4 bis Stunde 5 war das Schiff genau einmal genau 2 Hexfelder von dem Ort geo-03 (B1, B2) entfernt.",
+            "H3": "Von Stunde 1 bis Stunde 4 war das Schiff genau zweimal neben dem Ort geo-02 (D3).",
+            "H4": "Von Stunde 1 bis Stunde 2 war das Schiff in jeder Stunde genau 2 Hexfelder von dem Ort geo-02 (D3) entfernt.",
+            "H5": "Fahrtrichtung von Stunde 2 zu Stunde 3: Südwest.",
+            "H6": "Hexabstand zwischen den Positionen in Stunde 3 und Stunde 6: genau 2."
+          },
+          "hints": [],
+          "intro": [
+            "Technische Referenzfassung des öffentlichen Rätsels."
+          ],
+          "objectNames": {
+            "geo-01": "Tangruh",
+            "geo-02": "Flaschenruh",
+            "geo-03": "Zaunkante"
+          },
+          "title": "C-06"
+        }
+      }
+    },
+    "draft": {
+      "contractVersion": 1,
+      "sourceHash": "deb882ea41d811be6cba1cf4594a12ed431976c993997360c66c3522208577bc",
+      "revision": 1,
+      "presentation": {
+        "title": "Sam und die geistige Unterstützung",
+        "intro": [
+          "Liebes morgiges Ich, ich hatte heute einen Flaschengeist als Fahrgast. Der wollte sich nützlich machen, weil er für einen Plüschwal spart. Also habe ich ihm bei Tangruh das Logbuch anvertraut.",
+          "Er hat sich als ausgesprochen gewissenhafter Buchhalter erwiesen. Allerdings hält er es für Platzverschwendung, Dinge aufzuschreiben, die man seiner Meinung nach aus anderen Dingen herleiten kann. Ich hätte ihm lieber das Geld gegeben.",
+          "Hier sind seine Aufzeichnungen. Die Bemerkungen über meine Handschrift habe ich weggelassen."
+        ],
+        "objectNames": {
+          "geo-02": "Flaschenruh",
+          "geo-03": "Zaunkante"
+        },
+        "clueTexts": {
+          "H1": "In keiner der Stunden 1 bis einschließlich 5 betrug unser Abstand zu Tangruh genau drei Hexfelder.",
+          "H2": "In Stunde 4 und Stunde 5 habe ich den Abstand zu Zaunkante notiert. Genau einmal waren es exakt zwei Hexfelder bis zum nächstgelegenen Feld von Zaunkante.",
+          "H3": "Von Stunde 1 bis einschließlich Stunde 4 befanden wir uns genau zweimal auf einem Nachbarfeld von Flaschenruh. Ein sehr hübscher Name, nebenbei bemerkt.",
+          "H4": "Sowohl in Stunde 1 als auch in Stunde 2 betrug der Abstand zu Flaschenruh genau zwei Hexfelder.",
+          "H5": "Die Etappe von Stunde 2 zu Stunde 3 führte uns nach Südwesten.",
+          "H6": "Zwischen unseren Positionen in Stunde 3 und Stunde 6 liegen genau zwei Hexfelder geometrischer Abstand. Die gefahrenen Etappen abzuzählen wäre hier übrigens die falsche Buchhaltung."
+        },
+        "hints": []
+      },
+      "resultTexts": {},
+      "evidence": {
+        "H1": {
+          "mode": "free"
+        },
+        "H2": {
+          "mode": "free"
+        },
+        "H3": {
+          "mode": "free"
+        },
+        "H4": {
+          "mode": "free"
+        },
+        "H5": {
+          "mode": "free"
+        },
+        "H6": {
+          "mode": "free"
+        }
+      }
+    },
+    "checkpoint": {
+      "contractVersion": 1,
+      "sourceHash": "deb882ea41d811be6cba1cf4594a12ed431976c993997360c66c3522208577bc",
+      "draft": {
+        "contractVersion": 1,
+        "sourceHash": "deb882ea41d811be6cba1cf4594a12ed431976c993997360c66c3522208577bc",
+        "revision": 1,
+        "presentation": {
+          "title": "Sam und die geistige Unterstützung",
+          "intro": [
+            "Liebes morgiges Ich, ich hatte heute einen Flaschengeist als Fahrgast. Der wollte sich nützlich machen, weil er für einen Plüschwal spart. Also habe ich ihm bei Tangruh das Logbuch anvertraut.",
+            "Er hat sich als ausgesprochen gewissenhafter Buchhalter erwiesen. Allerdings hält er es für Platzverschwendung, Dinge aufzuschreiben, die man seiner Meinung nach aus anderen Dingen herleiten kann. Ich hätte ihm lieber das Geld gegeben.",
+            "Hier sind seine Aufzeichnungen. Die Bemerkungen über meine Handschrift habe ich weggelassen."
+          ],
+          "objectNames": {
+            "geo-02": "Flaschenruh",
+            "geo-03": "Zaunkante"
+          },
+          "clueTexts": {
+            "H1": "In keiner der Stunden 1 bis einschließlich 5 betrug unser Abstand zu Tangruh genau drei Hexfelder.",
+            "H2": "In Stunde 4 und Stunde 5 habe ich den Abstand zu Zaunkante notiert. Genau einmal waren es exakt zwei Hexfelder bis zum nächstgelegenen Feld von Zaunkante.",
+            "H3": "Von Stunde 1 bis einschließlich Stunde 4 befanden wir uns genau zweimal auf einem Nachbarfeld von Flaschenruh. Ein sehr hübscher Name, nebenbei bemerkt.",
+            "H4": "Sowohl in Stunde 1 als auch in Stunde 2 betrug der Abstand zu Flaschenruh genau zwei Hexfelder.",
+            "H5": "Die Etappe von Stunde 2 zu Stunde 3 führte uns nach Südwesten.",
+            "H6": "Zwischen unseren Positionen in Stunde 3 und Stunde 6 liegen genau zwei Hexfelder geometrischer Abstand. Die gefahrenen Etappen abzuzählen wäre hier übrigens die falsche Buchhaltung."
+          },
+          "hints": []
+        },
+        "resultTexts": {},
+        "evidence": {
+          "H1": {
+            "mode": "free"
+          },
+          "H2": {
+            "mode": "free"
+          },
+          "H3": {
+            "mode": "free"
+          },
+          "H4": {
+            "mode": "free"
+          },
+          "H5": {
+            "mode": "free"
+          },
+          "H6": {
+            "mode": "free"
+          }
+        }
+      },
+      "checks": {
+        "H1": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "5c0fa13573f1b522ade71198da7a4a26db50b06563a9db2d15952a7401a8a143"
+        },
+        "H2": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "c5ebae8ceeb172332bc9e3019becbc2bb23bae45b5209e6903258d9d572c96f3"
+        },
+        "H3": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "2eebd4d636f9f16a99381bdd59955eeb6c61534b32bc9dc64e886f655ad5ac2a"
+        },
+        "H4": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "36848e40559d9cbed65c1e33598b7a4439689e07f8eec7a9b4a79793eda8c21d"
+        },
+        "H5": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "1ef13577f20e4845ba2b7f911a4ddb82481b3883b4fb79b4f1692b4f2bcdf643"
+        },
+        "H6": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "a7aa7af9fb6d2bf8fb63a64294e4224d7a1be9e3bc9ff9c5db1ad7c1b42ad04c"
+        }
+      }
+    },
+    "metadata": {
+      "origin": "model-reported",
+      "value": {
+        "form": "Sams Tagebuch mit Logbuchaufzeichnungen eines Flaschengeists",
+        "themes": [
+          "Geister",
+          "Nebenerwerb",
+          "Buchhaltung",
+          "Unvollständige Übergabe"
+        ],
+        "worldMotifs": [
+          "Sams Tagebuch als Übergabe an das morgige Selbst [A/B]",
+          "U007 – Flaschengeister und Plüschwale [U]"
+        ],
+        "inventions": [
+          "Ein Flaschengeist verdient sich als Fahrgast und Buchhalter Geld für einen Plüschwal.",
+          "Der Geist hält vollständig ausgeschriebene Fahrtaufzeichnungen für Platzverschwendung.",
+          "Sam übergibt dem Geist bei Tangruh das Logbuch."
+        ]
+      }
+    },
+    "revisionHash": "426356b695a0e224e4fc6a36ea98aacf2596b57657a1a8795b0672100c38a947",
+    "draftHash": "dbeb1dfbecafdefc23c8365e1158e55d4b7d4847eb4c6b7192c6dc5d7ef6c012"
+  },
+  {
+    "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df",
+    "positionId": "P02",
+    "caseId": "C-02",
+    "cardRef": "gk-illustrated-card-v1-sha256:e9181dc6e6d798c6b8dc690a663e8908ce94308997d7df506a8853dbcbf5cd44",
+    "flavorVariantId": "independent-1",
+    "predecessor": null,
+    "request": {
+      "contractVersion": 1,
+      "sourceHash": "ad4c8329b94efab3554ced0ef2d3fd88a255e47850481bd624ec98884d539869",
+      "source": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "id": "C-02",
+        "logic": {
+          "clues": [
+            {
+              "count": 0,
+              "distance": 0,
+              "fromHour": 3,
+              "id": "H1",
+              "placeId": "geo-02",
+              "toHour": 6,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 0,
+              "distance": 5,
+              "fromHour": 6,
+              "id": "H2",
+              "placeId": "geo-03",
+              "toHour": 6,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 1,
+              "distance": 1,
+              "fromHour": 1,
+              "id": "H3",
+              "placeId": "geo-01",
+              "toHour": 5,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 1,
+              "distance": 3,
+              "fromHour": 2,
+              "id": "H4",
+              "placeId": "geo-03",
+              "toHour": 2,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 2,
+              "distance": 2,
+              "fromHour": 1,
+              "id": "H5",
+              "placeId": "geo-02",
+              "toHour": 3,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "distance": 1,
+              "hour": 5,
+              "id": "H6",
+              "placeId": "geo-02",
+              "type": "distanceToPlace"
+            },
+            {
+              "distance": 2,
+              "hours": [
+                1,
+                3
+              ],
+              "id": "H7",
+              "type": "distanceBetweenHours"
+            }
+          ],
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "cells": [
+                  "B1"
+                ],
+                "id": "geo-01",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B4"
+                ],
+                "id": "geo-02",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D1",
+                  "D2",
+                  "E1",
+                  "E2"
+                ],
+                "id": "geo-03",
+                "passable": false
+              }
+            ]
+          },
+          "start": "B1",
+          "steps": 6
+        },
+        "presentation": {
+          "assetPlacements": [
+            {
+              "anchor": "B1",
+              "assetId": "sea-life.accent.h1.buoy.v1",
+              "id": "art-001",
+              "objectId": "geo-01"
+            },
+            {
+              "anchor": "B4",
+              "assetId": "sea-life.accent.h1.driftwood.v1",
+              "id": "art-002",
+              "objectId": "geo-02"
+            },
+            {
+              "anchor": "D1",
+              "assetId": "land-coast.settlement.h4.tesoro.v4",
+              "id": "art-003",
+              "objectId": "geo-03"
+            }
+          ],
+          "background": "sea-blue-01",
+          "clueTexts": {
+            "H1": "Von Stunde 3 bis Stunde 6 war das Schiff nie auf dem Ort geo-02 (B4).",
+            "H2": "In Stunde 6 war das Schiff nicht genau 5 Hexfelder von dem Ort geo-03 (D1, D2, E1, E2) entfernt.",
+            "H3": "Von Stunde 1 bis Stunde 5 war das Schiff genau einmal neben dem Ort geo-01 (B1).",
+            "H4": "In Stunde 2 war das Schiff genau 3 Hexfelder von dem Ort geo-03 (D1, D2, E1, E2) entfernt.",
+            "H5": "Von Stunde 1 bis Stunde 3 war das Schiff genau zweimal genau 2 Hexfelder von dem Ort geo-02 (B4) entfernt.",
+            "H6": "Hexabstand in Stunde 5 zu Ort geo-02 (B4): genau 1.",
+            "H7": "Hexabstand zwischen den Positionen in Stunde 1 und Stunde 3: genau 2."
+          },
+          "hints": [],
+          "intro": [
+            "Technische Referenzfassung des öffentlichen Rätsels."
+          ],
+          "objectNames": {
+            "geo-01": "Gelbpunkt",
+            "geo-02": "Tangruh",
+            "geo-03": "Tesoro"
+          },
+          "title": "C-02"
+        }
+      }
+    },
+    "draft": {
+      "contractVersion": 1,
+      "sourceHash": "ad4c8329b94efab3554ced0ef2d3fd88a255e47850481bd624ec98884d539869",
+      "revision": 1,
+      "presentation": {
+        "title": "Ein Freibier auf eigene Kosten",
+        "intro": [
+          "Sehr geehrte Mitreisende,",
+          "Sie haben bei der Buchung Ihrer Uberfahrt den Tarif mit Bierraten gewählt. Herzlichen Glückwunsch zur korrekten Identifizierung unseres Calicos Kübelbiers!",
+          "Der Bierpreis entfällt selbstverständlich. Bedauerlicherweise hat sich unser Buchungssystem daraufhin auch von der Fahrtaufzeichnung getrennt. Um Ihnen eine ordentliche Rechnung für die Fahrt mit Ausgangspunkt Gelbpunkt ausstellen zu können, benötigen wir Ihre Mithilfe.",
+          "Die nachstehenden Angaben sind noch vorhanden. Wir bitten Sie, die Unannehmlichkeiten zu entschuldigen. Die Entschuldigung ist ebenfalls kostenlos."
+        ],
+        "objectNames": {
+          "geo-02": "Tangruh",
+          "geo-03": "Tesoro"
+        },
+        "clueTexts": {
+          "H1": "Für die Stunden 3 bis einschließlich 6 ist ein Aufenthalt auf dem Feld von Tangruh ausgeschlossen.",
+          "H2": "Der kürzeste Hexabstand zu Tesoro betrug in Stunde 6 nicht genau fünf Hexfelder.",
+          "H3": "Von Stunde 1 bis einschließlich Stunde 5 befand sich unser Schiff genau einmal auf einem Nachbarfeld von Gelbpunkt.",
+          "H4": "Für Stunde 2 liegt eine vollständige Entfernungsangabe vor: genau drei Hexfelder bis zum nächstgelegenen Feld von Tesoro.",
+          "H5": "In den Stunden 1 bis einschließlich 3 wurde genau zweimal ein Abstand von exakt zwei Hexfeldern zu Tangruh verzeichnet.",
+          "H6": "In Stunde 5 betrug der Abstand zu Tangruh genau ein Hexfeld.",
+          "H7": "Die Positionen unseres Schiffs in Stunde 1 und Stunde 3 hatten einen Hexabstand von genau zwei. Eine Entfernungsangabe, keine Abrechnung von Fahretappen."
+        },
+        "hints": []
+      },
+      "resultTexts": {},
+      "evidence": {
+        "H1": {
+          "mode": "free"
+        },
+        "H2": {
+          "mode": "free"
+        },
+        "H3": {
+          "mode": "free"
+        },
+        "H4": {
+          "mode": "free"
+        },
+        "H5": {
+          "mode": "free"
+        },
+        "H6": {
+          "mode": "free"
+        },
+        "H7": {
+          "mode": "free"
+        }
+      }
+    },
+    "checkpoint": {
+      "contractVersion": 1,
+      "sourceHash": "ad4c8329b94efab3554ced0ef2d3fd88a255e47850481bd624ec98884d539869",
+      "draft": {
+        "contractVersion": 1,
+        "sourceHash": "ad4c8329b94efab3554ced0ef2d3fd88a255e47850481bd624ec98884d539869",
+        "revision": 1,
+        "presentation": {
+          "title": "Ein Freibier auf eigene Kosten",
+          "intro": [
+            "Sehr geehrte Mitreisende,",
+            "Sie haben bei der Buchung Ihrer Uberfahrt den Tarif mit Bierraten gewählt. Herzlichen Glückwunsch zur korrekten Identifizierung unseres Calicos Kübelbiers!",
+            "Der Bierpreis entfällt selbstverständlich. Bedauerlicherweise hat sich unser Buchungssystem daraufhin auch von der Fahrtaufzeichnung getrennt. Um Ihnen eine ordentliche Rechnung für die Fahrt mit Ausgangspunkt Gelbpunkt ausstellen zu können, benötigen wir Ihre Mithilfe.",
+            "Die nachstehenden Angaben sind noch vorhanden. Wir bitten Sie, die Unannehmlichkeiten zu entschuldigen. Die Entschuldigung ist ebenfalls kostenlos."
+          ],
+          "objectNames": {
+            "geo-02": "Tangruh",
+            "geo-03": "Tesoro"
+          },
+          "clueTexts": {
+            "H1": "Für die Stunden 3 bis einschließlich 6 ist ein Aufenthalt auf dem Feld von Tangruh ausgeschlossen.",
+            "H2": "Der kürzeste Hexabstand zu Tesoro betrug in Stunde 6 nicht genau fünf Hexfelder.",
+            "H3": "Von Stunde 1 bis einschließlich Stunde 5 befand sich unser Schiff genau einmal auf einem Nachbarfeld von Gelbpunkt.",
+            "H4": "Für Stunde 2 liegt eine vollständige Entfernungsangabe vor: genau drei Hexfelder bis zum nächstgelegenen Feld von Tesoro.",
+            "H5": "In den Stunden 1 bis einschließlich 3 wurde genau zweimal ein Abstand von exakt zwei Hexfeldern zu Tangruh verzeichnet.",
+            "H6": "In Stunde 5 betrug der Abstand zu Tangruh genau ein Hexfeld.",
+            "H7": "Die Positionen unseres Schiffs in Stunde 1 und Stunde 3 hatten einen Hexabstand von genau zwei. Eine Entfernungsangabe, keine Abrechnung von Fahretappen."
+          },
+          "hints": []
+        },
+        "resultTexts": {},
+        "evidence": {
+          "H1": {
+            "mode": "free"
+          },
+          "H2": {
+            "mode": "free"
+          },
+          "H3": {
+            "mode": "free"
+          },
+          "H4": {
+            "mode": "free"
+          },
+          "H5": {
+            "mode": "free"
+          },
+          "H6": {
+            "mode": "free"
+          },
+          "H7": {
+            "mode": "free"
+          }
+        }
+      },
+      "checks": {
+        "H1": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "c52ccc12a9310231b85599d4d7c3a83fd1862fdafc38559f06f01ca07fccfb05"
+        },
+        "H2": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "94d4e8c64fe75468f60dfffb7e2bc027768f6c952291939b0c00676fbd7c7637"
+        },
+        "H3": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "5b07237692d66a0de5ba27720d9d7ada59483f989e23f3212cf856a10506dad3"
+        },
+        "H4": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "99db60159d9eaa84b180f8de5ba0ddca9db92a78c2dce626d9d19512bd7f4cf9"
+        },
+        "H5": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "314961f96f47980e73cbc8e99a8ce38ed247fb9b676f2d19fb0735d63c29e212"
+        },
+        "H6": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "759314dc5439bab32ab18c69a374a0f9a8a254050e01c4970bc55848687aad0d"
+        },
+        "H7": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "549f200b54d25236c0ce9398c585b18966c7ec86179a98a4e5959c3fd338c7eb"
+        }
+      }
+    },
+    "metadata": {
+      "origin": "model-reported",
+      "value": {
+        "form": "Kundenschreiben eines Uberfahrers",
+        "themes": [
+          "Kundenservice",
+          "Freibier",
+          "Abrechnung",
+          "Buchungspanne"
+        ],
+        "worldMotifs": [
+          "U001 – Uberfahren und Uberfahrer [U]",
+          "U002 – Bierraten [U]",
+          "U003 – Calicos Kübelbier [U]",
+          "Geld, Preise und Verhandlungen als praktische Erzählmotive [A/I]"
+        ],
+        "inventions": [
+          "Ein Uberfahrttarif mit integriertem Bierraten.",
+          "Ein Buchungssystem, das beim Erlass des Bierpreises die vollständige Fahrtaufzeichnung verliert.",
+          "Ein Kundenschreiben zur Rekonstruktion der Fahrt und Vorbereitung der Rechnung."
+        ]
+      }
+    },
+    "revisionHash": "5b66dac1b374141c8b124c01fa8b67a7bdbc342ddf1104a9bcaeed6be0800f4f",
+    "draftHash": "0599b8d4de070f68b72653d8f1fea9f2d4f20fc32ee3c3c3bc3fe39f6f04c6ec"
+  },
+  {
+    "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df",
+    "positionId": "P03",
+    "caseId": "C-03",
+    "cardRef": "gk-illustrated-card-v1-sha256:ba92ade296b267061c7ff3cd6d8c6ece7a3c550b074638c418451c27080f37a3",
+    "flavorVariantId": "independent-1",
+    "predecessor": null,
+    "request": {
+      "contractVersion": 1,
+      "sourceHash": "c4f4c6cbcd0225349656241460fb38022ee054965af4f3706f5e4701b419d62b",
+      "source": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "id": "C-03",
+        "logic": {
+          "clues": [
+            {
+              "count": 0,
+              "distance": 2,
+              "fromHour": 3,
+              "id": "H1",
+              "placeId": "geo-02",
+              "toHour": 3,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 0,
+              "distance": 3,
+              "fromHour": 3,
+              "id": "H2",
+              "placeId": "geo-02",
+              "toHour": 3,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 2,
+              "distance": 2,
+              "fromHour": 2,
+              "id": "H3",
+              "placeId": "geo-01",
+              "toHour": 4,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "direction": "NW",
+              "hour": 1,
+              "id": "H4",
+              "type": "direction"
+            },
+            {
+              "distance": 1,
+              "hour": 6,
+              "id": "H5",
+              "placeId": "geo-02",
+              "type": "distanceToPlace"
+            },
+            {
+              "distance": 1,
+              "hours": [
+                0,
+                2
+              ],
+              "id": "H6",
+              "type": "distanceBetweenHours"
+            }
+          ],
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "cells": [
+                  "B4"
+                ],
+                "id": "geo-01",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "D4",
+                  "E4"
+                ],
+                "id": "geo-02",
+                "passable": false
+              }
+            ]
+          },
+          "start": "B4",
+          "steps": 6
+        },
+        "presentation": {
+          "assetPlacements": [
+            {
+              "anchor": "B4",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "id": "art-001",
+              "objectId": "geo-01"
+            },
+            {
+              "anchor": "D4",
+              "assetId": "land-coast.island.h2.lookout-bay-01.v1",
+              "id": "art-002",
+              "objectId": "geo-02"
+            }
+          ],
+          "background": "sea-blue-01",
+          "clueTexts": {
+            "H1": "In Stunde 3 war das Schiff nicht genau 2 Hexfelder von dem Ort geo-02 (D4, E4) entfernt.",
+            "H2": "In Stunde 3 war das Schiff nicht genau 3 Hexfelder von dem Ort geo-02 (D4, E4) entfernt.",
+            "H3": "Von Stunde 2 bis Stunde 4 war das Schiff genau zweimal genau 2 Hexfelder von dem Ort geo-01 (B4) entfernt.",
+            "H4": "Fahrtrichtung von Stunde 0 zu Stunde 1: Nordwest.",
+            "H5": "Hexabstand in Stunde 6 zu Ort geo-02 (D4, E4): genau 1.",
+            "H6": "Hexabstand zwischen den Positionen in Stunde 0 und Stunde 2: genau 1."
+          },
+          "hints": [],
+          "intro": [
+            "Technische Referenzfassung des öffentlichen Rätsels."
+          ],
+          "objectNames": {
+            "geo-01": "Treibkahn",
+            "geo-02": "Blickwinkel"
+          },
+          "title": "C-03"
+        }
+      }
+    },
+    "draft": {
+      "contractVersion": 1,
+      "sourceHash": "c4f4c6cbcd0225349656241460fb38022ee054965af4f3706f5e4701b419d62b",
+      "revision": 1,
+      "presentation": {
+        "title": "Karten klamüsern",
+        "intro": [
+          "Aus den Ausbildungsunterlagen von Robert Rotbart: Karten klamüsern – eine Navigationsübung nach dem Vorbild des beliebten Klüsen klamüsern.",
+          "Die Idee zu dieser Übung entstand bei dem Versuch, die Anschaffung neuer Würfel aus dem Ausbildungsbudget zu vermeiden. Die Anschaffung neuer Seekarten war erheblich teurer, aber da war die Übung schon angekündigt.",
+          "Gegenstand der heutigen Prüfung ist eine Fahrt mit Ausgangspunkt Treibkahn. Die Auskünfte des Prüfers stehen bereits fest. Weitere Fragen beantwortet er aus Gründen der Vergleichbarkeit nicht."
+        ],
+        "objectNames": {
+          "geo-02": "Blickwinkel"
+        },
+        "clueTexts": {
+          "H1": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau zwei Hexfelder? Antwort: Nein.",
+          "H2": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau drei Hexfelder? Antwort: Ebenfalls nein.",
+          "H3": "Frage: In wie vielen der Stunden 2 bis einschließlich 4 betrug der Abstand zu Treibkahn exakt zwei Hexfelder? Antwort: In genau zwei Stunden.",
+          "H4": "Frage: In welche Richtung führte die Etappe von Stunde 0 zu Stunde 1? Antwort: Nordwesten.",
+          "H5": "Frage: Wie groß war in Stunde 6 der kürzeste Hexabstand zu Blickwinkel? Antwort: Genau ein Hexfeld.",
+          "H6": "Frage: Welchen Hexabstand hatten die Positionen in Stunde 0 und Stunde 2 voneinander? Antwort: Genau ein Hexfeld."
+        },
+        "hints": []
+      },
+      "resultTexts": {},
+      "evidence": {
+        "H1": {
+          "mode": "free"
+        },
+        "H2": {
+          "mode": "free"
+        },
+        "H3": {
+          "mode": "free"
+        },
+        "H4": {
+          "mode": "free"
+        },
+        "H5": {
+          "mode": "free"
+        },
+        "H6": {
+          "mode": "free"
+        }
+      }
+    },
+    "checkpoint": {
+      "contractVersion": 1,
+      "sourceHash": "c4f4c6cbcd0225349656241460fb38022ee054965af4f3706f5e4701b419d62b",
+      "draft": {
+        "contractVersion": 1,
+        "sourceHash": "c4f4c6cbcd0225349656241460fb38022ee054965af4f3706f5e4701b419d62b",
+        "revision": 1,
+        "presentation": {
+          "title": "Karten klamüsern",
+          "intro": [
+            "Aus den Ausbildungsunterlagen von Robert Rotbart: Karten klamüsern – eine Navigationsübung nach dem Vorbild des beliebten Klüsen klamüsern.",
+            "Die Idee zu dieser Übung entstand bei dem Versuch, die Anschaffung neuer Würfel aus dem Ausbildungsbudget zu vermeiden. Die Anschaffung neuer Seekarten war erheblich teurer, aber da war die Übung schon angekündigt.",
+            "Gegenstand der heutigen Prüfung ist eine Fahrt mit Ausgangspunkt Treibkahn. Die Auskünfte des Prüfers stehen bereits fest. Weitere Fragen beantwortet er aus Gründen der Vergleichbarkeit nicht."
+          ],
+          "objectNames": {
+            "geo-02": "Blickwinkel"
+          },
+          "clueTexts": {
+            "H1": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau zwei Hexfelder? Antwort: Nein.",
+            "H2": "Frage: Betrug der kürzeste Hexabstand zu Blickwinkel in Stunde 3 genau drei Hexfelder? Antwort: Ebenfalls nein.",
+            "H3": "Frage: In wie vielen der Stunden 2 bis einschließlich 4 betrug der Abstand zu Treibkahn exakt zwei Hexfelder? Antwort: In genau zwei Stunden.",
+            "H4": "Frage: In welche Richtung führte die Etappe von Stunde 0 zu Stunde 1? Antwort: Nordwesten.",
+            "H5": "Frage: Wie groß war in Stunde 6 der kürzeste Hexabstand zu Blickwinkel? Antwort: Genau ein Hexfeld.",
+            "H6": "Frage: Welchen Hexabstand hatten die Positionen in Stunde 0 und Stunde 2 voneinander? Antwort: Genau ein Hexfeld."
+          },
+          "hints": []
+        },
+        "resultTexts": {},
+        "evidence": {
+          "H1": {
+            "mode": "free"
+          },
+          "H2": {
+            "mode": "free"
+          },
+          "H3": {
+            "mode": "free"
+          },
+          "H4": {
+            "mode": "free"
+          },
+          "H5": {
+            "mode": "free"
+          },
+          "H6": {
+            "mode": "free"
+          }
+        }
+      },
+      "checks": {
+        "H1": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "47544ffe589e0c522b905534f7f84e25701a8a9fbc5c762bf3d012fef58f9ce1"
+        },
+        "H2": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "cf4150e295aebaf7ea4168dafef43332a671518581ceb0de68e1773178ea70be"
+        },
+        "H3": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "c98137922dda24acda3ae2d12d9f3b673b5e39dd34882894178a219708b3182c"
+        },
+        "H4": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "2abc5b1513a1b6dcd3bd2f938e7e56c7ace5ca9b28cd7d335593ac3c7f6c7ae8"
+        },
+        "H5": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "7c40115b8c73e31ad5e8536cba7ab27bf5fa942bcf3ce9034f1c381d0e3b9bf6"
+        },
+        "H6": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "af3a06bc715223c0ae3ef1cbc17f5347e32d37b4e7d15210e951dbbe0520ff7d"
+        }
+      }
+    },
+    "metadata": {
+      "origin": "model-reported",
+      "value": {
+        "form": "Prüfungsunterlage mit Frage-Antwort-Protokoll",
+        "themes": [
+          "Piratenausbildung",
+          "Deduktion",
+          "Kneipenspiele",
+          "Sparmaßnahmen"
+        ],
+        "worldMotifs": [
+          "Robert Rotbart als Piratenausbilder [B]",
+          "Raster- und Würfelaufgaben im Piratentraining [A]",
+          "U011 – Klüsen klamüsern [U]"
+        ],
+        "inventions": [
+          "Karten klamüsern als Navigationsübung nach dem Vorbild von Klüsen klamüsern.",
+          "Die vermeintliche Einsparung bei der Beschaffung von Ausbildungsmaterial.",
+          "Das konkrete Prüfungsformat mit vorgegebenen Fragen und Antworten."
+        ]
+      }
+    },
+    "revisionHash": "59d66d452d98aebea46a51f5e80fab1e557cae2edae8aedd15d390240e8bb60b",
+    "draftHash": "3db5bbd8f31320d459c9522d4c7b4fd1a89fa63af9d9cccc4ff7ef030b467929"
+  },
+  {
+    "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df",
+    "positionId": "P04",
+    "caseId": "C-11",
+    "cardRef": "gk-illustrated-card-v1-sha256:2a5eb9b67733d5c327549b50546ade516befec6a9e44ac0463124d11c64e2f70",
+    "flavorVariantId": "independent-1",
+    "predecessor": null,
+    "request": {
+      "contractVersion": 1,
+      "sourceHash": "40a07acfd88870168ea304a4552a2c97df6260d9cd524d9823f691db49fb78b0",
+      "source": {
+        "schemaVersion": 2,
+        "rulesVersion": "gezeitenkarten-2",
+        "dataVersion": 1,
+        "id": "C-11",
+        "logic": {
+          "clues": [
+            {
+              "count": 0,
+              "distance": 1,
+              "fromHour": 1,
+              "id": "H1",
+              "placeId": "geo-02",
+              "toHour": 5,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 0,
+              "distance": 4,
+              "fromHour": 2,
+              "id": "H2",
+              "placeId": "geo-02",
+              "toHour": 5,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 1,
+              "distance": 1,
+              "fromHour": 5,
+              "id": "H3",
+              "placeId": "geo-02",
+              "toHour": 6,
+              "type": "countDistanceToPlace"
+            },
+            {
+              "count": 1,
+              "distance": 3,
+              "fromHour": 3,
+              "id": "H4",
+              "placeId": "geo-04",
+              "toHour": 6,
+              "type": "countDistanceToPlace"
+            }
+          ],
+          "map": {
+            "geometry": "even-row-offset-pointy-v1",
+            "grid": {
+              "columns": 5,
+              "rows": 5
+            },
+            "objects": [
+              {
+                "cells": [
+                  "E2",
+                  "E3"
+                ],
+                "id": "geo-01",
+                "passable": false
+              },
+              {
+                "cells": [
+                  "E5"
+                ],
+                "id": "geo-02",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "C4",
+                  "C5"
+                ],
+                "id": "geo-03",
+                "passable": false
+              },
+              {
+                "cells": [
+                  "A3"
+                ],
+                "id": "geo-04",
+                "passable": true
+              },
+              {
+                "cells": [
+                  "B2",
+                  "C1",
+                  "D1"
+                ],
+                "id": "geo-05",
+                "passable": false
+              }
+            ]
+          },
+          "start": "A3",
+          "steps": 6
+        },
+        "presentation": {
+          "assetPlacements": [
+            {
+              "anchor": "A3",
+              "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+              "id": "art-001",
+              "objectId": "geo-04"
+            },
+            {
+              "anchor": "B2",
+              "assetId": "land-coast.island.h3.smuggler-cove.v1",
+              "id": "art-002",
+              "objectId": "geo-05"
+            },
+            {
+              "anchor": "C5",
+              "assetId": "land-coast.island.h2.mist-forest-02.v1",
+              "id": "art-003",
+              "objectId": "geo-03"
+            },
+            {
+              "anchor": "E3",
+              "assetId": "land-coast.settlement.h2.hut-settlement-02.v1",
+              "id": "art-004",
+              "objectId": "geo-01"
+            },
+            {
+              "anchor": "E5",
+              "assetId": "sea-life.accent.h1.rowboat.v1",
+              "id": "art-005",
+              "objectId": "geo-02"
+            }
+          ],
+          "background": "sea-blue-01",
+          "clueTexts": {
+            "H1": "Von Stunde 1 bis Stunde 5 war das Schiff nie neben dem Ort geo-02 (E5).",
+            "H2": "Von Stunde 2 bis Stunde 5 war das Schiff nie genau 4 Hexfelder von dem Ort geo-02 (E5) entfernt.",
+            "H3": "Von Stunde 5 bis Stunde 6 war das Schiff genau einmal neben dem Ort geo-02 (E5).",
+            "H4": "Von Stunde 3 bis Stunde 6 war das Schiff genau einmal genau 3 Hexfelder von dem Ort geo-04 (A3) entfernt."
+          },
+          "hints": [],
+          "intro": [
+            "Technische Referenzfassung des öffentlichen Rätsels."
+          ],
+          "objectNames": {
+            "geo-01": "Plankendorf",
+            "geo-02": "Wackelkahn",
+            "geo-03": "Schattenhain",
+            "geo-04": "Nebellicht",
+            "geo-05": "Hinterbucht"
+          },
+          "title": "C-11"
+        }
+      }
+    },
+    "draft": {
+      "contractVersion": 1,
+      "sourceHash": "40a07acfd88870168ea304a4552a2c97df6260d9cd524d9823f691db49fb78b0",
+      "revision": 1,
+      "presentation": {
+        "title": "Die amtliche Nebenkostenabrechnung",
+        "intro": [
+          "++ AN DIE PIRAT:INNEN-INNUNG +++",
+          "++ BEANTRAGE ERSTATTUNG DER NAVIGATIONSKOSTEN +++ FAHRTBEGINN NEBELLICHT +++ VOLLSTÄNDIGES FAHRTPROTOKOLL FEHLT +++ AUFZEICHNUNGEN ANBEI +++",
+          "++ BITTE AUCH KOSTEN DIESES TELEGRAMMS ERSTATTEN +++ JEDES WORT KOSTET +++ DANKE +++"
+        ],
+        "objectNames": {
+          "geo-01": "Plankendorf",
+          "geo-02": "Wackelkahn",
+          "geo-03": "Schattenhain",
+          "geo-05": "Hinterbucht"
+        },
+        "clueTexts": {
+          "H1": "STUNDE 1 BIS EINSCHLIESSLICH 5: NIE AUF NACHBARFELD VON WACKELKAHN.",
+          "H2": "STUNDE 2 BIS EINSCHLIESSLICH 5: NIE EXAKT VIER HEXFELDER ABSTAND ZU WACKELKAHN.",
+          "H3": "STUNDE 5 UND 6: IN GENAU EINER DIESER STUNDEN AUF NACHBARFELD VON WACKELKAHN.",
+          "H4": "STUNDE 3 BIS EINSCHLIESSLICH 6: IN GENAU EINER STUNDE EXAKT DREI HEXFELDER ABSTAND ZU NEBELLICHT."
+        },
+        "hints": []
+      },
+      "resultTexts": {},
+      "evidence": {
+        "H1": {
+          "mode": "free"
+        },
+        "H2": {
+          "mode": "free"
+        },
+        "H3": {
+          "mode": "free"
+        },
+        "H4": {
+          "mode": "free"
+        }
+      }
+    },
+    "checkpoint": {
+      "contractVersion": 1,
+      "sourceHash": "40a07acfd88870168ea304a4552a2c97df6260d9cd524d9823f691db49fb78b0",
+      "draft": {
+        "contractVersion": 1,
+        "sourceHash": "40a07acfd88870168ea304a4552a2c97df6260d9cd524d9823f691db49fb78b0",
+        "revision": 1,
+        "presentation": {
+          "title": "Die amtliche Nebenkostenabrechnung",
+          "intro": [
+            "++ AN DIE PIRAT:INNEN-INNUNG +++",
+            "++ BEANTRAGE ERSTATTUNG DER NAVIGATIONSKOSTEN +++ FAHRTBEGINN NEBELLICHT +++ VOLLSTÄNDIGES FAHRTPROTOKOLL FEHLT +++ AUFZEICHNUNGEN ANBEI +++",
+            "++ BITTE AUCH KOSTEN DIESES TELEGRAMMS ERSTATTEN +++ JEDES WORT KOSTET +++ DANKE +++"
+          ],
+          "objectNames": {
+            "geo-01": "Plankendorf",
+            "geo-02": "Wackelkahn",
+            "geo-03": "Schattenhain",
+            "geo-05": "Hinterbucht"
+          },
+          "clueTexts": {
+            "H1": "STUNDE 1 BIS EINSCHLIESSLICH 5: NIE AUF NACHBARFELD VON WACKELKAHN.",
+            "H2": "STUNDE 2 BIS EINSCHLIESSLICH 5: NIE EXAKT VIER HEXFELDER ABSTAND ZU WACKELKAHN.",
+            "H3": "STUNDE 5 UND 6: IN GENAU EINER DIESER STUNDEN AUF NACHBARFELD VON WACKELKAHN.",
+            "H4": "STUNDE 3 BIS EINSCHLIESSLICH 6: IN GENAU EINER STUNDE EXAKT DREI HEXFELDER ABSTAND ZU NEBELLICHT."
+          },
+          "hints": []
+        },
+        "resultTexts": {},
+        "evidence": {
+          "H1": {
+            "mode": "free"
+          },
+          "H2": {
+            "mode": "free"
+          },
+          "H3": {
+            "mode": "free"
+          },
+          "H4": {
+            "mode": "free"
+          }
+        }
+      },
+      "checks": {
+        "H1": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "1715daa74b60d4a08d582670986cca8dfb8080df514c142ed59487ffd031d0ad"
+        },
+        "H2": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "ec230a4efb2b8b12bee1fbdf1cf864a8c3b74313ee8359b56e8bd9dda5717e85"
+        },
+        "H3": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "cffb9b32f1940ff16138fc5a07a45c8ae40b0c4a484147a3b8054ed21b8b66c3"
+        },
+        "H4": {
+          "status": "UNCERTAIN",
+          "method": "flavor-check-v1",
+          "scope": "single-clue-contract",
+          "code": "interpretation-required",
+          "details": "Free prose has no verified complete interpretation, including possible additional constraints.",
+          "inputHash": "f70801165b70faa56d4c5e0ba5903868892991b081957d7fd03f4350626aa3f2"
+        }
+      }
+    },
+    "metadata": {
+      "origin": "model-reported",
+      "value": {
+        "form": "Telegramm mit beigefügten Fahrtaufzeichnungen",
+        "themes": [
+          "Bürokratie",
+          "Kostenerstattung",
+          "Sparsamkeit"
+        ],
+        "worldMotifs": [
+          "Pirat:innen-Innung [B]",
+          "Organisierter Piratenalltag und Geldangelegenheiten [A/I]"
+        ],
+        "inventions": [
+          "Ein Antrag auf Erstattung von Navigationskosten durch die Pirat:innen-Innung.",
+          "Eine kostenpflichtige, nach Wörtern abgerechnete Telegrammübermittlung.",
+          "Die zusätzliche Beantragung der Erstattung der Telegrammkosten."
+        ]
+      }
+    },
+    "revisionHash": "c872743b0f874f105147428ae3f3fbff4ec8fe09e4afcff92fa0d5247180c5df",
+    "draftHash": "48fe3a34dcb11f93a278b57b2f4a75f29b3156dc839b3ba800490f4b290e629f"
+  }
+]

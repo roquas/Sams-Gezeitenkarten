@@ -1,5 +1,6 @@
 """Deterministic static deployment; publication requires Node.js and Pillow."""
 import json
+from html.parser import HTMLParser
 import argparse
 import re
 import sys
@@ -8,6 +9,21 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+class RuntimeHTMLReferences(HTMLParser):
+    """Navigation may leave the game; every loaded runtime resource stays local."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.refs = []
+
+    def handle_starttag(self, tag, attrs):
+        for name, value in attrs:
+            if name not in ('src', 'href') or not value:
+                continue
+            if tag == 'a' and name == 'href' and re.match(r'^https?://', value, re.IGNORECASE):
+                continue
+            self.refs.append(value)
 
 
 def collect(root):
@@ -32,7 +48,9 @@ def collect(root):
         text = path.read_text(encoding='utf-8')
         refs = []
         if path.suffix == '.html':
-            refs += re.findall(r'(?:src|href)=[\"\']([^\"\']+)[\"\']', text)
+            parser = RuntimeHTMLReferences()
+            parser.feed(text)
+            refs += parser.refs
         if path.suffix == '.css':
             refs += re.findall(r'url\([\"\']?([^\"\')]+)[\"\']?\)', text)
         if path.suffix == '.mjs':

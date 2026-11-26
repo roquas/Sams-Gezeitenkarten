@@ -8,7 +8,7 @@ import {createFlavorRequest,validateFlavorRequest,createFlavorDraft,validateFlav
 import {technicalClueText} from './clue-text.mjs';
 
 export const PRODUCTION_VERSION=1;
-export const PROMPT_REVISION='flavor-production-1';
+export const PROMPT_REVISION='flavor-production-2';
 export const json=value=>JSON.stringify(value,null,2)+'\n';
 export const contentHash=value=>sha256('gezeitenkarten-flavor-production/v1\0'+canonicalJson(value));
 export const same=(a,b,message)=>assert.equal(canonicalJson(a),canonicalJson(b),'flavor production: '+message);
@@ -25,7 +25,7 @@ export const intentSchema=object({flavorVariantId:id,revision:rev,predecessor:nu
 const positionRefs={positionId:id,caseId:id,puzzleId:id,cardRef:{type:'string',pattern:'^gk-illustrated-card-v1-sha256:[a-f0-9]{64}$'},sourceHash:hash};
 export const editorialSchema=object({goal:text,impulses:list(text),themes:list(text),context:nullable(text)});
 const publicCardSchema=object({cardRef:positionRefs.cardRef,map:mapSchema,background:id,assetPlacements:list(placementSchema),objectNames:names});
-export const productionOrderSchema=object({contractVersion:{const:PRODUCTION_VERSION},promptRevision:{const:PROMPT_REVISION},
+export const productionOrderSchema=object({contractVersion:{const:PRODUCTION_VERSION},promptRevision:{enum:['flavor-production-1',PROMPT_REVISION]},
  orderId:{type:'string',pattern:'^flavor-order-[a-f0-9]{64}$'},
  inputHashes:object({rules:hash,prompt:hash,responseSchema:hash,references:hash}),
  world:object({packageId:id,version:text,packageHash:hash}),editorial:editorialSchema,
@@ -104,11 +104,22 @@ export function validateProductionResponse(order,response){
  }
  return {complete:response.positions.every(r=>r.status==='complete'),response};
 }
-export function createProductionRecords(order,response){
+export function createProductionRecords(order,response){return buildProductionRecords(order,response);}
+// Decode immutable accepted records using their recorded wire version. This
+// does not expose a legacy-generation mode or change historical response bytes.
+export function validateStoredProductionRecords(order,response,records){
+ assert.ok(Array.isArray(records)&&records.length===order.positions.length,'flavor production: stored record coverage');
+ same(records,buildProductionRecords(order,response,records),'stored records/checkpoints');return records;
+}
+function buildProductionRecords(order,response,storedRecords){
  const checked=validateProductionResponse(order,response);
  assert.ok(checked.complete,'flavor production: incomplete order; unresolved positions: '+response.positions.filter(r=>r.status==='problem').map(r=>r.positionId).join(', '));
  return order.positions.map((p,i)=>{
   const r=response.positions[i],draft=createFlavorDraft(p.request);
+  if(storedRecords?.[i]?.draft?.contractVersion===1){
+   draft.contractVersion=1;
+   draft.presentation.objectNames=structuredClone(storedRecords[i].draft.presentation.objectNames);
+  }
   draft.revision=p.intent.revision;draft.presentation.title=r.title;draft.presentation.intro=structuredClone(r.intro);
   draft.presentation.clueTexts=Object.fromEntries(r.clues.map(c=>[c.id,c.text]));
   draft.evidence=Object.fromEntries(r.clues.map(c=>[c.id,{mode:'free'}]));

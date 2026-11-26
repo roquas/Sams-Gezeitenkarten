@@ -1,0 +1,132 @@
+{
+  "transportVersion": 1,
+  "stage": "reader",
+  "jobId": "job-80e2e387-1553-4711-b0be-0cbe59c0cc14",
+  "methodHash": "9819a13260102abc9479d21f8eeef38706182e7dfcb6bccbd1f81e7739c2d88a",
+  "items": [
+    {
+      "itemId": "item-faeeccad-312d-4d47-9ab4-c45d928c479e",
+      "inputHash": "5c6fbbe3c7dab172659ef320c55466eff172a3e963142ccf2880d533cecd190a",
+      "coverage": [],
+      "claims": [],
+      "interpretations": [
+        {
+          "clueId": "H1",
+          "claimIds": []
+        },
+        {
+          "clueId": "H2",
+          "claimIds": []
+        },
+        {
+          "clueId": "H3",
+          "claimIds": []
+        },
+        {
+          "clueId": "H4",
+          "claimIds": []
+        },
+        {
+          "clueId": "H5",
+          "claimIds": []
+        },
+        {
+          "clueId": "H6",
+          "claimIds": []
+        }
+      ]
+    },
+    {
+      "itemId": "item-cb960688-cc93-4ec0-8d59-975e6ea7a538",
+      "inputHash": "49bcc31bc40d31dd090933479ee2ad300a570343601607cb96a653cc92ad588d",
+      "coverage": [],
+      "claims": [],
+      "interpretations": [
+        {
+          "clueId": "H1",
+          "claimIds": []
+        },
+        {
+          "clueId": "H2",
+          "claimIds": []
+        },
+        {
+          "clueId": "H3",
+          "claimIds": []
+        },
+        {
+          "clueId": "H4",
+          "claimIds": []
+        },
+        {
+          "clueId": "H5",
+          "claimIds": []
+        },
+        {
+          "clueId": "H6",
+          "claimIds": []
+        },
+        {
+          "clueId": "H7",
+          "claimIds": []
+        }
+      ]
+    },
+    {
+      "itemId": "item-871b7841-43d6-4d63-9120-e9dcb872c484",
+      "inputHash": "dc57f772409f47457736a53753847eb9a004ff8c3e3c704ae6fdf30a49fd9e9d",
+      "coverage": [],
+      "claims": [],
+      "interpretations": [
+        {
+          "clueId": "H1",
+          "claimIds": []
+        },
+        {
+          "clueId": "H2",
+          "claimIds": []
+        },
+        {
+          "clueId": "H3",
+          "claimIds": []
+        },
+        {
+          "clueId": "H4",
+          "claimIds": []
+        },
+        {
+          "clueId": "H5",
+          "claimIds": []
+        },
+        {
+          "clueId": "H6",
+          "claimIds": []
+        }
+      ]
+    },
+    {
+      "itemId": "item-3387153f-c6ec-4511-8f62-c9b13e0064c3",
+      "inputHash": "46fe8024dc8f601a322b2d9428281f078c32a214e174ac11d2c5c1530e1d15d3",
+      "coverage": [],
+      "claims": [],
+      "interpretations": [
+        {
+          "clueId": "H1",
+          "claimIds": []
+        },
+        {
+          "clueId": "H2",
+          "claimIds": []
+        },
+        {
+          "clueId": "H3",
+          "claimIds": []
+        },
+        {
+          "clueId": "H4",
+          "claimIds": []
+        }
+      ]
+    }
+  ]
+}

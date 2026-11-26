@@ -1,0 +1,92 @@
+F02-B PR 1 – technischer Prüfbeleg, 25.11.2026
+
+Basis: origin/main = abeb1824d6278b6fc646a101f44f71d4d89b1f16 (PR #130), unmittelbar vor dem PR erneut gefetcht und unverändert. Eigener Branch codex/f02-b-pr1-quality-contracts in separatem Clone /private/tmp/sams-f02b-pr1-20261125. Die ursprüngliche Arbeitskopie mit fremden uncommitteten UI-Änderungen wurde nicht verändert. Kein Merge, keine Auswahl/Freigabe, keine Veröffentlichung, kein API-/GenAI-Aufruf.
+
+Umgebung:
+macOS arm64; Node v22.23.3, npm ci --offline --no-audit --no-fund erfolgreich.
+Vorhandene Python-Testumgebung /private/tmp/f01-test-venv/bin (Python 3.9, Pillow 11.3.0, numpy 2.0.2) wird über PATH benutzt. Das Standard-Python besitzt kein Pillow; erste Bestandsversuche wurden deshalb nicht als bestanden gewertet und ersetzt.
+Reproduktionsgates benötigen ausdrücklich Node v24.19.0: /private/tmp/b1s04b-node24-runtime/node-v24.19.0-darwin-arm64/bin/node. Der ähnlich benannte ältere temporäre Ordner enthielt nur defekte npm/npx-Symlinks, keinen Node; jener Versuch lief tatsächlich mit Node 22 und wurde nicht als bestanden gewertet.
+Auf macOS ist os.tmpdir() teilweise /var/folders/... statt des kanonischen /private/var/folders/.... Historische CLI-Skripte vergleichen import.meta.url mit process.argv[1], weshalb extrahierte Reproduktionsprogramme unter diesem Symlink ohne Ausgabe enden. Korrigierter Reproduktionslauf mit TMPDIR=/private/tmp; historische Programme und Tests unverändert. CI läuft auf den bestehenden Linux-Runnern mit den konfigurierten Node-Versionen.
+
+Ausgeführte Befehle und bei PR-Erstellung bereits abgeschlossene Befunde:
+- node --test tests/contracts/flavor-quality.test.mjs: 11/11 bestanden (einschließlich privater Originalmutation bei identischem vollständigem Blindpaket, Unicode, geschlossener Abdeckung, Vergleichsrichtungen/Gegenbeispielen, Budget und leerem Routenraum). Der danach zusätzlich um verschachtelte technische Original-/Produzenten-Sentinels erweiterte Einzeltest wurde erneut ausgeführt und bestand (1/1).
+- node --test tests/contracts/flavor-quality-calibration.test.mjs: 2/2 bestanden; 22 künstliche Fälle und ungepaarter Export ohne Erwartungslecks. Reale Piloten bleiben unverändert.
+- Gesamter neuer Qualitätslauf: node --test tests/contracts/flavor-quality.test.mjs tests/contracts/flavor-quality-calibration.test.mjs tests/integration/flavor-quality.test.mjs mit Python-Testumgebung im PATH: 25/25 bestanden, 0 fehlgeschlagen; einschließlich 12 Integrationsprüfungen für gesamten dreistufigen Weg, tatsächliche konkurrierende Prozesse, Unterbrechung, Teilfortschritt, Korruption, stale Revision/Kontext, historische Methoden, CLI und unveränderte reale Produktionsbytes. Keine fachlichen GenAI-Prüfungen.
+- npm run test:content: 21/21 bestanden.
+- npm run test:puzzles: erfolgreich, unveränderte Rätselvalidierung.
+- npm run check:community: erfolgreich, 15 bestehende Fälle validiert.
+- npm run check:community:release: erwartungsgemäß Exit 1, Flavor not approved: C-06, pending statt approved. Kein Gate angepasst.
+- node scripts/catalog-release.mjs check-archive --previous origin/main: erfolgreich, 2 bestehende Releases, unverändertes Archiv.
+- python3 scripts/dev-server.py --self-test: erfolgreich mit lokalem Loopback-Port außerhalb der Port-Sandbox. Erster Sandboxversuch konnte den Port nicht binden; kein Produktfehler.
+- git diff --check und git diff --cached --check: erfolgreich. .github/workflows/tests.yml, scripts/ci-changes.mjs, package.json und package-lock.json unverändert. Keine neue Allowlist; die neuen Pfade behalten das vollständige CI-Profil.
+
+Zusätzlich vollständig gestartete Bestands-/Abnahmeläufe; ihr endgültiger Status wird im PR/CI ausgewiesen, solange hier kein erfolgreicher Abschluss protokolliert ist:
+PATH=/private/tmp/f01-test-venv/bin:$PATH npm run test:unit
+PATH=/private/tmp/f01-test-venv/bin:$PATH npm run test:assets
+TMPDIR=/private/tmp PATH=/private/tmp/f01-test-venv/bin:$PATH /private/tmp/b1s04b-node24-runtime/node-v24.19.0-darwin-arm64/bin/node --test --test-reporter=tap tests/reproduction/b2-s02.test.mjs tests/reproduction/b2-search-comparison.test.mjs tests/reproduction/s03-evidence.test.mjs tests/reproduction/s03.test.mjs tests/reproduction/s03-v2-evidence.test.mjs tests/reproduction/s03-v2.test.mjs
+
+Die vollständigen lokalen Chromium- und WebKit-Suiten wurden ebenfalls unverändert gestartet. Wegen der historischen macOS-CLI-Temporärpfadfrage und gemeinsamer lokaler Laufzeitlast wurden diese Läufe beendet; sie werden nicht als grün behauptet. Die vollständige unveränderte Linux-CI einschließlich Browser, Assets, Archiv, Reproduktion und Deployment-Packaging ist für den neuen PR maßgeblich. Kein Profil/Gate wurde reduziert.
+
+Tatsächlicher Pilotexport:
+node scripts/flavor-quality.mjs prepare-pilot --production-store .dev/f02b-delivery/production --quality-store content/flavor/quality-pilot-v1/local --out .dev/f02b-delivery/reader-public
+job-80e2e387-1553-4711-b0be-0cbe59c0cc14
+MethodHash 9819a13260102abc9479d21f8eeef38706182e7dfcb6bccbd1f81e7739c2d88a
+Produktionsantwort-SHA e69847b8d1c031196aeeb455f558ce2621a0bb6b33af67cff0310e2748adf3c1
+4 tatsächliche Fassungen, 23 Hinweise, Texteinheiten 10/12/10/8 (40 insgesamt), 28 öffentliche Dateien, 9582128 Paketbytes.
+Öffentlicher Inhalt unter content/flavor/quality-pilot-v1/local/jobs/JOB/public/, lokale Bindung daneben; Reader-Paket per Inventar, Quellenhashes, statischen SVG-Referenzen und Leckprüfung verifiziert. Chromium-Loadcheck aller vier Artikel/Karten: alle SVGs geladen, 5/5/4/7 Bilder, keine fehlerhaften oder externen Ressourcen. Screenshot nur zur technischen Präsentationskontrolle; kein semantisches Modellprüfergebnis.
+Separates ZIP enthält ausschließlich diese 28 öffentlichen Dateien im neutralen Ordner reader-batch/.
+ZIP-SHA256 262dc7963d40d1c64da3e6c7dfb1f1e93820242233a7cfe8a5afe38b8fd9c634; 9422257 Bytes.
+
+inspect dieses echten Jobs: 0 importierte Qualitätsantworten; Reader/Vergleich/Gesamtprüfung fehlen; qualified:false für alle vier Items. F01-Checkpoints bleiben UNCERTAIN. Keine echten Reader-/Reviewer-Antworten oder Kalibrierungsbeobachtungen erfunden. Technische Testdoubles werden nur in temporären Teststores benutzt; technical-test-Evidenz kann keine reale F02-B-Qualifikation erteilen.
+
+Weiter offen: externe unabhängige Blindinterpretation, danach deterministischer Vergleich und separater unabhängiger Gesamtprüflauf, empirische Auswertung und später 10+5-Kalibrierung. PR 2 beginnt erst nach unabhängiger Review und Integration von PR 1 durch den vorgesehenen gesonderten Prozess.
+
+
+Nachtrag: vollständige Startortnamen, 25.11.2026
+
+Die ausdrücklich beauftragte Startnamen-Korrektur wird in PR 1 integriert. Neue Drafts/Checkpoints verwenden v2, alle gepinnten Namen einschließlich Startobjekt bleiben vollständig erhalten. Requests und Quellhashes bleiben v1. Kontrollierte neue Hinweise verwenden tatsächliche Namen statt Startalias. Die aktive Produktionsanweisung ist flavor-production-2. Bestehende Records werden versionsgetreu validiert; die realen Pilotantworten und alten Nachweise werden nicht neu erzeugt.
+
+Erfolgreiche lokale Abnahme der Codekorrektur (Node v22.23.3, Python-Testumgebung /private/tmp/sams-f02a-python/bin, TMPDIR=/private/tmp):
+- 123/123 Vertragsprüfungen: node --test --test-concurrency=2 tests/contracts/flavor.test.mjs tests/contracts/count-clue-normalization.test.mjs tests/contracts/flavor-production.test.mjs tests/contracts/flavor-quality.test.mjs
+- 1/1 reale Kartenintegration: node --test --test-name-pattern='four real versioned cases' tests/integration/card-import.test.mjs
+- 21/21 Inhaltstests: node --test tests/content/*.test.mjs
+- Darin enthalten: vollständige Namen bei verschiedenen Starts auf derselben Karte und ein-/mehrfeldrigen Startobjekten, unveränderte Objektflächen, historische kontrollierte Checkpoints samt neuer v2-Reparatur, exakter wiederholter Import der vier tatsächlichen Pilotfassungen, gleiche vollständige Spieleransicht, Ablehnung manipulierter Archivrecords.
+- Die zusätzlichen 2/2 isolierten Pilotregressionen sind bereits in den 123 Vertragsprüfungen enthalten und werden nicht doppelt gezählt.
+- Gegen a67de476278f26f6455032370bf7b9405b4ee54c unverändert: tatsächliche Pilotantworten/Records/Receipts, Originalaufträge und Exportdateien, bestehender Qualitätsauftrag, persistierte Karten und Beta-/Engine-Dateien. Originaldateien des mitgelieferten Pilotimports sind bytegleich.
+- git diff --check erfolgreich. Keine neue Spezifikationsdatei und kein separater Korrektur-PR; aktuelle Regeln stehen in den bestehenden F01-/Produktions-/F02-B-Unterlagen.
+
+Grenzen: Die zuvor begonnenen breiten lokalen Gesamtläufe wurden ohne Abschlussergebnis beendet; diese werden nicht als bestanden ausgegeben. Die unveränderte vollständige CI wird mit dem aktualisierten PR neu angestoßen. Keine semantischen Modellprüfungen, neuen Geschichten, Auswahl, Freigabe oder Merge.
+
+
+Nachtrag zur unabhängigen Review: P2 „gemischte Revisionsstände“, 25.11.2026
+
+Finding am geprüften Head 8ef12c8 bestätigt: Eine neue C-06-Revision machte im bisherigen Code auch C-02 ohne Serienkontext unanwendbar und blockierte den Review-Export trotz vorhandener Reader-Antwort. Der neue Regressionstest wurde zunächst gegen die bisherige Implementierung ausgeführt und schlug genau an dieser falschen Geschwisterinvalidierung fehl.
+
+Korrektur: Aktualität wird je Item über dessen eigene Revision und tatsächlichen Serienkontext geprüft. Vergleich, Review-Export, Status und Wiederverwendung fertiger Items nutzen diese Prüfung. Verspätete gemischte Antworten behalten ihre strukturell gültigen, revisionsgebundenen Nachweise; aktuelle Geschwister bleiben bearbeitbar, staleItemIds benennt veraltete Antworten. Eine Antwort ausschließlich veralteter Items oder mit veraltetem gemeinsamen Kontext wird nicht neu angenommen. Historische Importbytes und Prüfergebnisse werden nicht umgeschrieben.
+
+3/3 neue Integrationsregressionen lokal erfolgreich (Python-Testumgebung /private/tmp/sams-f02a-python/bin, TMPDIR=/private/tmp):
+node --test --test-name-pattern='independent mixed-revision|late mixed reader|changed shared series' tests/integration/flavor-quality.test.mjs
+Abgedeckt sind der ursprüngliche Zweierbatch samt vorhandenen Vergleichen/Review, verspätete gemischte Reader- und Reviewer-Antworten, idempotente Wiederholung, einzelne aktuelle Teilantworten, kein erneuter Blindlauf für C-02 sowie weiterhin vollständige Invalidierung tatsächlich gemeinsamer Serienabhängigkeiten. Alle Antworten sind markierte technische Doubles, keine reale Qualifikation.
+
+Der vollständige gezielte lokale Lauf wurde zusätzlich gestartet; ein vollständiger Abschluss wird nur bei tatsächlich erfolgreicher Beendigung behauptet. Die unveränderte vollständige CI startet mit dem neuen Commit erneut. CI #533 war für den vorherigen Head 8ef12c8 grün; das ersetzt keinen Nachweis für den neuen Stand.
+
+Weil flavor-quality-store.mjs an METHOD_HASH gebunden ist, ändert die Korrektur den Methodenstand. Der bisher im Repository archivierte Auftrag bleibt bytegleich historisch erhalten. Ein frischer tatsächlicher Blindauftrag wurde über prepare-pilot erzeugt: vier unveränderte Fassungen, 23 Hinweise, keine Qualitätsantworten und keine Qualifikationen. Sämtliche öffentlichen fachlichen Inputs und Inputhashes sind mit dem vorher gelieferten Blindpaket identisch; nur Job-/Itemkennungen und Methodenbindung sind neu. Transport ausschließlich des neu exportierten öffentlichen Pakets. Alte Antworten nicht umetikettieren. Aktueller Methodenhash: de1532c24a10bd8c9733c52dbd77d22667659f5b59f68bd5b5bb9ef41b659e8b.
+
+Die realen Pilottexte, Produktionsimporte, historischen Qualitätsaufträge, Karten und Beta-/Freigabedaten bleiben unverändert. Kein Merge, keine Auswahl, keine fachlichen Modellantworten, kein Beginn von PR 2.
+
+
+Nachtrag: Vertrags-/Schemahärtung nach manuellem Pilot, 26.11.2026
+
+Rein technische Korrekturen im bestehenden PR: Fehlende Einzelhinweis-ID ist nicht mehr gleichbedeutend mit zusätzlicher Mathematik außerhalb der Hinweise. Unterstützte Mehrhinweis-Reader-Kombinationen brauchen tatsächliche Textbezüge zu mindestens zwei Hinweisen, ausdrückliche Originalfaktenbezüge und positive unabhängige Hinweisurteile. Titel-/Einleitungs-/Serienmathematik, unklare Bedeutung und vorweggenommene Deduktion bleiben geschützt. Keine Änderung des strikten mathematischen Einzelvergleichs.
+
+Jobgebundene exportierte Antwortschemas bilden kind/state/atoms-Varianten, feste Kennungen/Hashes, Referenz-Namensräume und Pflichtplätze ab. Arbeitsvorlagen enthalten Pflichtplätze mit ungültigen Platzhaltern; kein vorgetäuschtes positives Urteil. Prompts beschreiben auch die darüber hinaus nötigen relationalen Laufzeitprüfungen. Methode f02b-three-stage-2; historische Jobs und Produktionsbytes werden nicht migriert oder überschrieben.
+
+Neue Regressionen: Kombinationen von sechs kind-Werten, drei states und leeren/nichtleeren atoms gegen Schema und Runtime; jobgebundene Referenzen/Hashes; Vorlagen ohne Ergebnis; Mehrhinweis-Kombination mit bestätigter unabhängiger Prüfung; echte Zusatzmathematik aus Titel/Einleitung/Kontext; fehlende Fakten, Einzelhinweis ohne Zuordnung, vorweggenommene Deduktion und ungelöste Bedeutung. Keine privaten externen Antworttexte in neuen Repositoryfixtures.
+
+15/15 gezielte Qualitäts-Vertragstests und 143/143 umfassende gezielte Vertrags-/Integrationsprüfungen erfolgreich. Zusätzlicher gezielter Negativlauf erfolgreich (1/1, in derselben Testgruppe): Titel-/Einleitungsmathematik trotz gesetzter Hinweis-ID und Trennung einer unabhängigen offenen Bereichsprüfung von der Mehrhinweis-Klassifikation. Keine neue Gate-Allowlist und keine Reduktion der vollständigen CI. Keine API-/Modellaufrufe, keine Auswahl/Freigabe oder Geschichte verändert. Konkreter Liveanbieter und Budget werden nicht durch diesen Vertragsfix festgelegt.
+
+
+Integrationsnachtrag zum inzwischen erweiterten main, 26.11.2026
+CI #539 testete den Merge mit main 9ce5833 und scheiterte im unveränderten Deploymentgate vor Testausführung: index.html enthält inzwischen den HTTPS-Footerlink https://lanoinc.de, den der bisherige Packager fälschlich wie eine einzubindende Laufzeitdatei behandelte. Dieser Fehler lag außerhalb der Flavor-Vertragsänderung.
+Die eng begrenzte Integrationskorrektur unterscheidet HTML-Ankernavigation von geladenen Ressourcen: HTTP(S)-href auf a bleibt als Link erhalten, externe script-/img-/link-Ressourcen und javascript-Navigation bleiben abgewiesen. HTML-Attribute werden mit dem Standard-HTMLParser einschließlich Groß-/Kleinschreibung ausgewertet; keine Domain-Allowlist und keine CI-Gate-Reduktion. Keine Änderung des Footertextes oder der Spielinhalte.
+22/22 Packagingtests lokal erfolgreich (PATH=/private/tmp/sams-f02a-python/bin:$PATH python3 tests/test_package.py), darunter unverändert enthaltene Navigationslinks und Negativfälle für externe Skripte, Bilder, Styles und unsichere Navigationsschemata. Dieser Packagingfix verändert den Methodenhash der Flavor-Prüfung nicht. Der neue PR-Head muss die vollständige CI erneut durchlaufen.

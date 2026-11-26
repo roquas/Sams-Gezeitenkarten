@@ -1,0 +1,319 @@
+{
+  "description": "Frozen v1 wire fixture for read compatibility only; not current naming instructions",
+  "request": {
+    "contractVersion": 1,
+    "sourceHash": "f2140dbb03a1d43296dabf55135cb09a38f5776dcb76ab7fe67c92a11ce07ccc",
+    "source": {
+      "schemaVersion": 2,
+      "rulesVersion": "gezeitenkarten-2",
+      "dataVersion": 1,
+      "id": "flavor-public",
+      "logic": {
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "id": "port",
+              "cells": [
+                "C3",
+                "D3"
+              ],
+              "passable": true
+            },
+            {
+              "id": "shore",
+              "cells": [
+                "B2",
+                "C2"
+              ],
+              "passable": false
+            }
+          ]
+        },
+        "start": "C3",
+        "steps": 6,
+        "clues": [
+          {
+            "id": "direction",
+            "type": "direction",
+            "hour": 1,
+            "direction": "E"
+          },
+          {
+            "id": "turn",
+            "type": "turn",
+            "hour": 2,
+            "degrees": 60
+          },
+          {
+            "id": "position",
+            "type": "position",
+            "hour": 0,
+            "cell": "C3"
+          },
+          {
+            "id": "place",
+            "type": "distanceToPlace",
+            "hour": 3,
+            "placeId": "shore",
+            "distance": 2
+          },
+          {
+            "id": "between",
+            "type": "distanceBetweenHours",
+            "hours": [
+              0,
+              6
+            ],
+            "distance": 3
+          },
+          {
+            "id": "count",
+            "type": "countDistanceToPlace",
+            "fromHour": 0,
+            "toHour": 6,
+            "placeId": "shore",
+            "distance": 1,
+            "count": 2
+          },
+          {
+            "id": "start_ref",
+            "type": "distanceToPlace",
+            "hour": 0,
+            "placeId": "port",
+            "distance": 0
+          }
+        ]
+      },
+      "presentation": {
+        "title": "Fixture",
+        "intro": [
+          "Test"
+        ],
+        "objectNames": {
+          "port": "Alter Hafen",
+          "shore": "Klippeninsel"
+        },
+        "clueTexts": {
+          "direction": "Öffentlicher Originaltext direction",
+          "turn": "Öffentlicher Originaltext turn",
+          "position": "Öffentlicher Originaltext position",
+          "place": "Öffentlicher Originaltext place",
+          "between": "Öffentlicher Originaltext between",
+          "count": "Öffentlicher Originaltext count",
+          "start_ref": "Historical controlled start reference"
+        },
+        "hints": [],
+        "background": "test-sea",
+        "assetPlacements": [],
+        "cluePlaceRefs": {
+          "place": [
+            "shore"
+          ],
+          "count": [
+            "shore"
+          ],
+          "start_ref": [
+            "port"
+          ]
+        }
+      },
+      "resultTexts": {
+        "correct": "Geschafft!",
+        "incorrect": "Noch einmal prüfen."
+      }
+    }
+  },
+  "checkpoint": {
+    "contractVersion": 1,
+    "sourceHash": "f2140dbb03a1d43296dabf55135cb09a38f5776dcb76ab7fe67c92a11ce07ccc",
+    "draft": {
+      "contractVersion": 1,
+      "sourceHash": "f2140dbb03a1d43296dabf55135cb09a38f5776dcb76ab7fe67c92a11ce07ccc",
+      "revision": 1,
+      "presentation": {
+        "title": "Fixture",
+        "intro": [
+          "Test"
+        ],
+        "objectNames": {
+          "shore": "Klippeninsel"
+        },
+        "clueTexts": {
+          "direction": "Von Stunde 0 zu Stunde 1: fährt das Schiff nach Osten.",
+          "turn": "In Stunde 2: ändert das Schiff gegenüber der unmittelbar vorherigen Fahrtrichtung seinen Kurs um 60° rechts (0° bedeutet geradeaus).",
+          "position": "In Stunde 0: befindet sich das Schiff auf Feld C3.",
+          "place": "In Stunde 3: beträgt der kleinste Hexabstand des Schiffs zur gesamten Fläche von \"Klippeninsel\" [shore] genau 2.",
+          "between": "Zwischen den Positionen in Stunde 0 und Stunde 6: beträgt der Hexabstand genau 3.",
+          "count": "Von Stunde 0 bis einschließlich Stunde 6: ist der kleinste Hexabstand des Schiffs zur gesamten Fläche von \"Klippeninsel\" [shore] in genau 2 dieser Stunden gleich 1.",
+          "start_ref": "In Stunde 0: beträgt der kleinste Hexabstand des Schiffs zur gesamten Fläche von Objekt [port], das Start enthält genau 0."
+        },
+        "hints": [],
+        "cluePlaceRefs": {
+          "place": [
+            "shore"
+          ],
+          "count": [
+            "shore"
+          ],
+          "start_ref": [
+            "port"
+          ]
+        }
+      },
+      "resultTexts": {
+        "correct": "Geschafft!",
+        "incorrect": "Noch einmal prüfen."
+      },
+      "evidence": {
+        "direction": {
+          "mode": "controlled-v1",
+          "statement": {
+            "id": "direction",
+            "type": "direction",
+            "hour": 1,
+            "direction": "E"
+          },
+          "order": "time-first",
+          "startAlias": "Start"
+        },
+        "turn": {
+          "mode": "controlled-v1",
+          "statement": {
+            "id": "turn",
+            "type": "turn",
+            "hour": 2,
+            "degrees": 60
+          },
+          "order": "time-first",
+          "startAlias": "Start"
+        },
+        "position": {
+          "mode": "controlled-v1",
+          "statement": {
+            "id": "position",
+            "type": "position",
+            "hour": 0,
+            "cell": "C3"
+          },
+          "order": "time-first",
+          "startAlias": "Start"
+        },
+        "place": {
+          "mode": "controlled-v1",
+          "statement": {
+            "id": "place",
+            "type": "distanceToPlace",
+            "hour": 3,
+            "placeId": "shore",
+            "distance": 2
+          },
+          "order": "time-first",
+          "startAlias": "Start"
+        },
+        "between": {
+          "mode": "controlled-v1",
+          "statement": {
+            "id": "between",
+            "type": "distanceBetweenHours",
+            "hours": [
+              0,
+              6
+            ],
+            "distance": 3
+          },
+          "order": "time-first",
+          "startAlias": "Start"
+        },
+        "count": {
+          "mode": "controlled-v1",
+          "statement": {
+            "id": "count",
+            "type": "countDistanceToPlace",
+            "fromHour": 0,
+            "toHour": 6,
+            "placeId": "shore",
+            "distance": 1,
+            "count": 2
+          },
+          "order": "time-first",
+          "startAlias": "Start"
+        },
+        "start_ref": {
+          "mode": "controlled-v1",
+          "statement": {
+            "id": "start_ref",
+            "type": "distanceToPlace",
+            "hour": 0,
+            "placeId": "port",
+            "distance": 0
+          },
+          "order": "time-first",
+          "startAlias": "Start"
+        }
+      }
+    },
+    "checks": {
+      "direction": {
+        "status": "PASS",
+        "method": "flavor-check-v1",
+        "scope": "single-clue-contract",
+        "code": "controlled-preservation",
+        "details": "Entire controlled text is bound to the unchanged structured clue. No claim about free prose or the whole story.",
+        "inputHash": "bf2fdd36a40303c14d60b57d0f336e2bf9ac655ae2e67e22281162f340111a53"
+      },
+      "turn": {
+        "status": "PASS",
+        "method": "flavor-check-v1",
+        "scope": "single-clue-contract",
+        "code": "controlled-preservation",
+        "details": "Entire controlled text is bound to the unchanged structured clue. No claim about free prose or the whole story.",
+        "inputHash": "02b4be296ae57f52dc01c4222605b2232a50a0787290c10b0a69325245e827d1"
+      },
+      "position": {
+        "status": "PASS",
+        "method": "flavor-check-v1",
+        "scope": "single-clue-contract",
+        "code": "controlled-preservation",
+        "details": "Entire controlled text is bound to the unchanged structured clue. No claim about free prose or the whole story.",
+        "inputHash": "bf8c29aa29e12d23069ed7168e7fb61e860a9645e38516a0e9c0d4be13424603"
+      },
+      "place": {
+        "status": "PASS",
+        "method": "flavor-check-v1",
+        "scope": "single-clue-contract",
+        "code": "controlled-preservation",
+        "details": "Entire controlled text is bound to the unchanged structured clue. No claim about free prose or the whole story.",
+        "inputHash": "09c71abf2a95c3e4cf9b91cc988303ebea0f392d9b0adf5b991570f530321de8"
+      },
+      "between": {
+        "status": "PASS",
+        "method": "flavor-check-v1",
+        "scope": "single-clue-contract",
+        "code": "controlled-preservation",
+        "details": "Entire controlled text is bound to the unchanged structured clue. No claim about free prose or the whole story.",
+        "inputHash": "aae22612c9c4720c87eb88eaa55975cf443b6aff8c446bd8fb512454e1924f08"
+      },
+      "count": {
+        "status": "PASS",
+        "method": "flavor-check-v1",
+        "scope": "single-clue-contract",
+        "code": "controlled-preservation",
+        "details": "Entire controlled text is bound to the unchanged structured clue. No claim about free prose or the whole story.",
+        "inputHash": "57f732114ab39e0bdb15d076f614338d0204712779201a2697e2c3c3f5dff68b"
+      },
+      "start_ref": {
+        "status": "PASS",
+        "method": "flavor-check-v1",
+        "scope": "single-clue-contract",
+        "code": "controlled-preservation",
+        "details": "Entire controlled text is bound to the unchanged structured clue. No claim about free prose or the whole story.",
+        "inputHash": "16b9a74763b70abf8da613c149aa8a2de1738cf93c99590cb14a6b656dc20589"
+      }
+    }
+  }
+}

@@ -1,0 +1,259 @@
+# F02-B – Technische Konzeption und Vorbereitung des Codex-Implementierungsauftrags
+
+**Repository:** `roquas/Sams-Gezeitenkarten`
+
+Die gemeinsame fachliche Konzeption von F02-B ist im separaten Chat abgeschlossen. Die folgenden Entscheidungen sind verbindliche Grundlage für die technische Konzeption.
+
+Prüfe zunächst den tatsächlichen Repositorybestand nach F01 und F02-A/1 sowie F02-A/2, insbesondere den Stand nach den gemergten PRs #129 und #130. Nutze die vorhandenen Produktionsverträge, Pilotimporte, Dokumentationen und das bereits vorbereitete F02-B-Lesepaket.
+
+Ziel dieses Auftrags ist eine schlanke, technisch fundierte Konzeption und ein anschließend ausführbarer Codex-Implementierungsauftrag. Noch keine Implementierung und keine Veröffentlichung.
+
+## 1. Ziel und Architekturgrundsätze
+
+F02-B ergänzt die bestehende Flavor-Pipeline um unabhängige Qualitätsprüfung, gezielte Reparatur und wiederaufnehmbare Batch-Verarbeitung.
+
+Langfristiges Ziel ist die Produktion mehrerer Hundert Rätsel ohne regelmäßige menschliche Einzelredaktion. Der Projektverantwortliche möchte die späteren Dailys selbst unvoreingenommen spielen können.
+
+- Keine kostenpflichtige API als Voraussetzung.
+- Zunächst Verwendung vorhandener ChatGPT-/Codex-Möglichkeiten mit gesammelten Transportpaketen.
+- Bestehende F01- und F02-A-Verträge möglichst weiterverwenden.
+- Karte, Assets, persistierte Namen, Start, mathematische Hinweise und Rätsellogik bleiben unverändert.
+- Strikte 1:1-Zuordnung mathematischer Hinweise und vollständiger Spielertexte.
+- Keine kosmetische Überarbeitung gelungener Geschichten.
+- Keine neuen technischen Subsysteme ohne konkreten Bedarf.
+
+## 2. Verbindliches Qualitätsmodell
+
+Unterscheide vier Qualitätsdimensionen:
+
+1. Vollständiger mathematischer Bedeutungserhalt jedes einzelnen Hinweises.
+2. Keine unzulässigen zusätzlichen Spielerfolgerungen aus dem vollständigen Episodentext und gegebenenfalls Serienkontext.
+3. Welt-/Stilkonsistenz, Verständlichkeit und redaktionelle Unbedenklichkeit.
+4. Gesonderte Auswahl und Veröffentlichungsfreigabe.
+
+Als langfristig ausreichender Qualitätsnachweis wurde eine **evidenzbasierte semantische Qualifikation** vereinbart, sofern die Kalibrierung ihre Zuverlässigkeit bestätigt.
+
+Diese ist kein vollständiger mathematischer Beweis natürlicher Sprache. Die bestehenden F01-Prüfungen dürfen nicht stillschweigend umgedeutet werden. Eine F02-B-Qualifikation kann mit einem methodisch begründeten F01-UNCERTAIN koexistieren.
+
+Relevante ungelöste Unsicherheit aus F02-B verhindert hingegen die Qualifikation.
+
+## 3. Verbindlicher dreistufiger Prüfablauf
+
+### Stufe 1 – Blinde GenAI-Interpretation
+
+Der unabhängige Leser erhält:
+
+- vollständigen tatsächlichen Spielertext einschließlich Titel, Einleitung und aller Hinweise,
+- öffentliche Karte, Namen, Objektflächen und Start,
+- öffentliche Spielregeln,
+- Welt-/Stilpaket,
+- gegebenenfalls relevanten erzählerischen Serienkontext.
+
+Er erhält keine mathematischen Originalhinweise, keine Zielroute, keine privaten Solverdaten, keine früheren Findings und keine Reparaturziele. Auch indirekte Informationslecks über Metadaten, Dateien oder zugängliche Quellen sind auszuschließen.
+
+Der Leser rekonstruiert eigenständig:
+
+- sämtliche mathematischen Aussagen,
+- weitere potenziell rätselrelevante Aussagen,
+- erzählerische Aussagen und Erfindungen,
+- Mehrdeutigkeiten und nicht zuverlässig interpretierbare Aussagen,
+- mögliche Implikationen aus dem Zusammenspiel mehrerer Textstellen.
+
+Ein korrekt extrahierter Teilbestand genügt nicht. Jeder Textabschnitt muss nachvollziehbar abgedeckt werden. Die Abdeckung ist deterministisch zu kontrollieren, soweit technisch möglich; sie beweist nicht automatisch die Richtigkeit der Interpretation.
+
+Die existierende mathematische Normalisierung soll möglichst weiterverwendet werden. Keine neue allgemeine Beschreibungssprache für natürliche Sprache auf Vorrat entwickeln.
+
+### Stufe 2 – Deterministischer Vergleich
+
+Vergleiche die rekonstruierte mathematische Bedeutung mit den normalisierten Originalhinweisen.
+
+- Identische normalisierte Repräsentationen sollen möglichst einfach vergleichbar sein.
+- Abweichende Repräsentationen können logisch gleichwertig sein.
+- Prüfe vorhandene Möglichkeiten für deterministische Gleichwertigkeits- und Gegenbeispielverfahren.
+- Vergleiche jeden Hinweis zunächst isoliert von den übrigen Hinweisen unter den öffentlichen Spielregeln.
+- Erkenne sowohl abgeschwächte als auch verschärfte und anderweitig veränderte Bedingungen.
+- Nicht formalisierbare Zusatzbedingungen dürfen nicht stillschweigend verworfen werden.
+
+Dass die Zielroute weiterhin zulässig ist oder das Gesamträtsel dieselbe eindeutige Lösung besitzt, genügt nicht.
+
+### Stufe 3 – Vergleichende unabhängige GenAI-Gesamtprüfung
+
+Diese Prüfung erhält den vollständigen Spielertext, die Originalquellen, die Ergebnisse der blinden Interpretation und des deterministischen Vergleichs sowie den erforderlichen Welt-/Stil- und Serienkontext.
+
+Sie untersucht insbesondere:
+
+- übersehene, falsch interpretierte oder unvollständig erfasste Aussagen,
+- zusätzliche Spielerfolgerungen einschließlich indirekter Implikationen,
+- vorweggenommene Deduktionsschritte,
+- Widersprüche und relevante Mehrdeutigkeiten,
+- Welt-/Stilkonsistenz und Verständlichkeit,
+- potenziell rechtlich, politisch, diskriminierend oder sexuell problematische Inhalte und Namen.
+
+Bereits aus dem vollständigen Hinweisbestand ableitbare, aber nicht ausdrücklich gegebene Lösungsinformationen dürfen nicht einfach erzählerisch vorweggenommen werden.
+
+Erwünschte Weltmotive und zulässige kreative Erfindungen dürfen nicht durch generische Inhaltsfilter oder stilistische Vereinheitlichung unterdrückt werden.
+
+Beide GenAI-Prüfungen sind zunächst für jede Episode und jede neue Revision verbindlich. Eine spätere Optimierung anhand empirischer Ergebnisse bleibt möglich.
+
+## 4. Findings und Qualitätsnachweise
+
+Unterscheide fachlich:
+
+- ERROR: konkreter Verstoß gegen eine verbindliche Anforderung.
+- UNCERTAIN: relevante, nicht zuverlässig entscheidbare Frage.
+- ADVISORY: optionale Beobachtung oder redaktionelle Verbesserung.
+
+Die technischen Bezeichnungen sind anhand vorhandener Verträge festzulegen.
+
+ERROR und ungelöste relevante UNCERTAIN verhindern die Qualifikation. ADVISORY führt nicht zu automatischen Textänderungen.
+
+Findings enthalten mindestens nachvollziehbare Textstelle, betroffene Anforderung, Begründung, Nachweismethode und gegebenenfalls erforderliches Reparaturziel.
+
+Alle Qualitätsnachweise müssen an die tatsächlich geprüfte vollständige Fassung, ihre Quellen und den Prüflauf gebunden sein.
+
+Ein technisch unvollständiger oder fehlgeschlagener Prüflauf ist kein Textfehler und kein bestandenes Ergebnis.
+
+Bei relevanter Unsicherheit soll zunächst eine begrenzte gezielte Klärung möglich sein. Eine weitere unbegründete Modellzustimmung genügt nicht zur Auflösung.
+
+## 5. Reparatur und Ersatzproduktion
+
+Der Produzent verantwortet die kreative Gestaltung. Der Prüfer diagnostiziert. Das Reparaturmodell behebt konkrete Qualitätsprobleme mit möglichst geringer Beeinträchtigung der ursprünglichen Geschichte.
+
+Verbindlich:
+
+- Keine kosmetischen Reparaturen oder ungefragten Optimierungen.
+- Erhalt der erzählerischen Identität und des ursprünglichen Stils.
+- Kleinstmöglicher sinnvoller inhaltlicher Eingriff.
+- Mehrere notwendige Korrekturen einer Episode möglichst bündeln.
+- Titel, Einleitung und einzelne oder mehrere Hinweise müssen gezielt reparierbar sein.
+- Deterministische Kontrolle, dass nicht zur Bearbeitung freigegebene Textbestandteile unverändert bleiben.
+- Jede neue Revision durchläuft erneut den vollständigen dreistufigen Prüfprozess.
+- Frühere Fassungen und sämtliche Nachweise bleiben erhalten.
+
+Nach zwei erfolglosen Reparaturversuchen wird die Geschichte verworfen.
+
+Für dasselbe Rätsel wird innerhalb des Produktionsauftrags eine neue Geschichte als eigenständige Flavor-Variante erzeugt.
+
+Die verworfene Geschichte wird mitsamt sämtlichen Revisionen, Findings und Prüfnachweisen im abschließenden Batch-Bericht als besonderer Finding-Fall ausgewiesen.
+
+Lediglich eine einfache technische Abbruchbegrenzung gegen Endlosschleifen ist erforderlich. Keine weitergehende Eskalationsarchitektur oder spezielle Visualisierung auf Vorrat.
+
+## 6. Persistenz und Wiederaufnahme
+
+Nutze möglichst die vorhandenen F01-Checkpoints und den persistenten F02-A-Produktionsbestand.
+
+Die Verarbeitung muss unterbrochen und fortgesetzt werden können, ohne bereits gültig abgeschlossene Arbeit unnötig zu wiederholen.
+
+Berücksichtige insbesondere:
+
+- teilweise geprüfte Batches,
+- ausstehende Prüf- und Reparaturantworten,
+- bereits importierte Reparaturrevisionen,
+- verworfene Geschichten und ausstehende Ersatzproduktion,
+- idempotente Wiederholungsimporte,
+- veraltete oder widersprüchliche Ergebnisse,
+- unveränderliche historische Nachweise,
+- fehlende oder unvollständige Prüfergebnisse.
+
+Keine automatische Übertragung von Prüfergebnissen auf geänderte Fassungen.
+
+Gesammelte Transportpakete statt manueller Einzelübertragung je Hinweis oder Episode. Spätere automatisierte Modellanbindung soll anschließen können.
+
+Erfasse den Verarbeitungsaufwand soweit verfügbar, insbesondere Modellaufrufe, Paketgrößen, Reparaturhäufigkeit und Wiederholungen.
+
+## 7. Redaktion, Freigabe und Batch-Dashboard
+
+Qualifikation, Auswahl und Veröffentlichung bleiben getrennte Vorgänge. Auswahl und Freigabe sollen perspektivisch regelbasiert automatisierbar sein.
+
+Keine reguläre menschliche Einzelredaktion als langfristige Voraussetzung.
+
+Die Pipeline liefert eine möglichst spoilerarme aggregierte Batch- und spätere Paketübersicht mit:
+
+- Qualitäts- und Verarbeitungsstand,
+- relevanten offenen Findings,
+- verworfenen Geschichten einschließlich nachvollziehbarer Revisionshistorie,
+- verwendeten Erzählformen, Themen und Motiven,
+- neuen erzählerischen Ideen und Weltbestandteilen,
+- verwendeten Namen und Bezeichnungen,
+- potenziell problematischen redaktionellen Inhalten.
+
+Die Übersicht basiert auf unabhängig geprüften tatsächlichen Textinhalten, nicht ausschließlich auf Produktionsmetadaten.
+
+Standardmäßig keine unnötige Zuordnung von Geschichten, Hinweisen oder Ideen zu konkreten Rätseln oder Veröffentlichungstagen. Detaillierte Informationen sollen bei Bedarf zugänglich sein.
+
+Der Projektverantwortliche soll langfristig Ausnahmefälle entscheiden und allgemeine redaktionelle Regeln anpassen können. Keine automatische Änderung des Welt-/Stilpakets.
+
+Eine spezielle Dashboard-Oberfläche, automatische Kalenderverwaltung und automatische Veröffentlichung sind für F02-B noch nicht zwingend zu implementieren. Zunächst genügen geeignete strukturierte Ergebnisse und ein Batch-Bericht.
+
+Nachträgliche Deaktivierung, Korrektur und erneute Freigabe veröffentlichter Rätsel müssen perspektivisch möglich bleiben. Prüfe vorhandene technische Voraussetzungen; keinen unnötigen Ausbau vorziehen.
+
+## 8. Kalibrierung und Regressionstests
+
+Drei aufeinander aufbauende Stufen wurden vereinbart.
+
+### A – Vier vorhandene Pilotepisoden
+
+C-06, C-02, C-03 und C-11, jeweils independent-1, Revision 1, insgesamt 23 Hinweise.
+
+Die vier Fassungen sind vorläufig positive Kalibrierungsfälle. Sie sollen nicht verändert werden, nur um Reparaturen zu demonstrieren. Neue Beanstandungen müssen konkret begründet sein.
+
+Prüfe die tatsächlichen importierten Fassungen und deren Inhaltsbindung.
+
+### B – Gezielte künstliche Gegenbeispiele
+
+Erstelle einen dauerhaft wiederverwendbaren semantischen Regressionstestbestand mit begründeten erwarteten Ergebnissen.
+
+Berücksichtige unter anderem:
+
+- veränderte inklusive Intervallgrenzen,
+- verlorene Negationen und exakte Häufigkeiten,
+- falsche Bezugsobjekte und Mehrhexflächen,
+- geometrischen Abstand versus gefahrene Etappen,
+- zusätzliche Aussagen trotz korrekt extrahiertem Originalhinweis,
+- erfundene Aufenthalte und Besuche,
+- zusätzliche Informationen in Titel, Einleitung und Serienkontext,
+- mehrdeutige Aussagen,
+- zulässige kreative Ausschmückungen als Schutz gegen Überkorrektur,
+- bislang nicht durch die vier Pilotfälle abgedeckte Hinweistypen.
+
+Künstliche Testfassungen müssen strikt von realen Produktionsvarianten und Veröffentlichungsbeständen getrennt bleiben.
+
+Unterscheide deterministische Regressionstests der Infrastruktur von empirischer Kalibrierung der GenAI-Prüfqualität. Ein aufgezeichneter Modelloutput beweist nicht die Zuverlässigkeit zukünftiger Modellläufe.
+
+### C – Vollständiger 10+5-Betatest
+
+Zehn Einzelgeschichten und eine fünfteilige Geschichte auf den 15 bestehenden Rätseln.
+
+Fallzuordnung und Serienreihenfolge bleiben zunächst offen.
+
+Alle 15 vollständigen Texte werden vom Projektverantwortlichen menschlich testgelesen. Dies dient der anfänglichen Kalibrierung, nicht der Etablierung dauerhafter Einzelredaktion.
+
+Erfasse insbesondere falsch akzeptierte Fehler, falsch beanstandete Texte, unnötige Reparaturen, erfolgreiche Reparaturen und Verarbeitungsaufwand.
+
+Die empirischen Tests sollen später bei Modellwechseln, Promptänderungen oder einer Optimierung der Prüfarchitektur wiederverwendbar sein.
+
+Keine unbelegten Automatisierungsgarantien oder statistisch nicht tragfähigen Aussagen aus den kleinen Pilotbeständen ableiten.
+
+## 9. Auftrag an Work
+
+Prüfe die fachlichen Entscheidungen gegen den tatsächlichen Repositorybestand.
+
+Untersuche insbesondere:
+
+- Wiederverwendbarkeit von F01-Requests, Drafts, Checkpoints, Normalisierung und Reparaturanschlüssen,
+- Erweiterungspunkte in F02-A-Produktion und -Persistenz,
+- sichere blinde Prüfexporte,
+- Inhalts- und Revisionsbindungen,
+- deterministische Vergleichsmöglichkeiten,
+- geeignete Abgrenzung der GenAI-Verträge,
+- technische Durchsetzung zulässiger Reparaturumfänge,
+- Wiederaufnahme und idempotente Verarbeitung,
+- erforderliche Regressionstests und Kalibrierungsartefakte.
+
+Identifiziere tatsächliche Architekturkonflikte oder noch notwendige fachliche Entscheidungen. Keine bereits entschiedenen Grundsatzfragen ohne konkreten neuen Anlass erneut öffnen.
+
+Entwickle anschließend eine möglichst schlanke technische Zielarchitektur und einen abgegrenzten, ausführbaren Codex-Implementierungsauftrag einschließlich überprüfbarer Abnahmekriterien.
+
+Empfehle eine sinnvolle Aufteilung in Implementierungsschritte bzw. PRs, falls dies für unabhängige Reviews und Kalibrierung erforderlich ist. Keine unnötige Fragmentierung.
+
+Keine Repositoryänderungen im Rahmen dieses Konzeptionsauftrags, kein Merge und keine Veröffentlichung.

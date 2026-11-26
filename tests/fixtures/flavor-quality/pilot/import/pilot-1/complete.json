@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "path": "receipt.json",
+      "bytes": 594,
+      "sha256": "1875a10c57813f09668df94f868e185ce20d472d0459f97bf48814c25d4e3f64"
+    },
+    {
+      "path": "records.json",
+      "bytes": 48381,
+      "sha256": "7a34f75efebf42e7429fc94b25effaffbea1024689e43640a702fa290ebfd936"
+    },
+    {
+      "path": "response.json",
+      "bytes": 11064,
+      "sha256": "e69847b8d1c031196aeeb455f558ce2621a0bb6b33af67cff0310e2748adf3c1"
+    }
+  ]
+}

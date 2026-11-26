@@ -1,0 +1,118 @@
+F02-B – TECHNISCHE KONZEPTION UND REPOSITORY-PRÜFBERICHT
+Stand: 25. November 2026. Keine Implementierung, Repositoryänderung, Modellproduktion, Auswahl, Freigabe oder Veröffentlichung durchgeführt.
+
+1. ERGEBNIS UND BASIS
+Der fachliche Auftrag ist mit der bestehenden Architektur vereinbar. Empfohlen werden zwei zusammengehörige PRs: erst Prüfgrundlage und vollständiger manueller dreistufiger Prüfweg, dann Reparatur-/Ersatzsteuerung, Wiederaufnahme und Bericht. Es ist kein erneuter fachlicher Grundsatzentscheid vor PR 1 nötig. Die spätere Freigabe der Methode für unbeaufsichtigte Produktion hängt weiterhin von empirischer Kalibrierung ab; die Implementierung ersetzt diese Entscheidung nicht.
+
+Aktueller main beim Abruf: abeb1824d6278b6fc646a101f44f71d4d89b1f16, Merge von PR #130. Die lokal geprüfte Arbeitskopie auf dem unabhängig geprüften PR-Head 491bef2e1a51d1553d14279beb3d1c8e8cbc7261 ist sauber und besitzt denselben Git-Dateibaum a5651f7eba84c217f735f3ef67712d49158e878d wie main. F01, PR #129 und PR #130 sind damit die tatsächlich verfügbare Basis.
+
+Der mitgelieferte neue fachliche Auftrag wird unter F02-B-Auftrag-aus-Konzeptionschat.txt unverändert archiviert. Er hat gegenüber älteren Zwischenständen Vorrang. Das F02-B-Lesepaket und alle dort referenzierten Pilot-/Weltdateien sind vorhanden.
+
+2. TATSÄCHLICHER PILOTBESTAND
+Im Repository liegen die ursprünglichen öffentlichen Produktionsaufträge und Karten. Die vier echten Antwortimporte liegen bislang außerhalb des Repositorys im dauerhaft gesicherten Projekt-Ausgabeordner f02-a2-pilot-20261125/local/imports/pilot-1. Sie sind nicht mit tests/fixtures/flavor-production.mjs zu verwechseln: Dort stehen technische Testantworten, keine echten Geschichten.
+
+Die importierten Records wurden gegen den gespeicherten Auftrag und die Kartenbibliothek gelesen und validiert. Request, Revision, Inhaltsbindung, Checkpoint und vollständige Namensmaterialisierung stimmen. Die vier Fassungen sind independent-1, Revision 1: C-06 mit 6, C-02 mit 7, C-03 mit 6 und C-11 mit 4 Hinweisen. Alle 23 F01-Checks sind UNCERTAIN. Es besteht keine Auswahl oder Beta-Freigabe.
+
+SHA-256 der tatsächlich importierten Antwort: e69847b8d1c031196aeeb455f558ce2621a0bb6b33af67cff0310e2748adf3c1. Die Antwort wurde aus einer maskierten Nutzereinfügung rekonstruiert. Die Ausgangskopie und die Transformation sind erhalten; exakte Produzentenbytes, Modell und Produktionszeitpunkt sind unbekannt. Das Begleitpaket enthält den wirklichen Import inklusive complete.json, receipt.json und records.json sowie Antwort, Transportherkunft und Beobachtungen. Es enthält keinen neuen Modelllauf und keinen automatisch vergebenen Bedeutungsnachweis.
+
+Die Projektverantwortlichen-Bewertung und die anschließende sprachliche Einzelprüfung sind vorläufig positive Beobachtungen. Sie dürfen weder zu einer bereits kalibrierten Fehlerrate noch zu einer neuen automatischen F01-PASS-Methode umetikettiert werden.
+
+3. WIEDERVERWENDUNG UND GRENZEN
+scripts/lib/flavor-contract.mjs: Request, Draft, Validierungen, freie Belege, Checkpoints und Quellbindung weiterverwenden. FLAVOR_VERSION und flavor-check-v1 bleiben unverändert. Die bestehende PASS-Aussage bezieht sich ausschließlich auf vollständige kontrollierte Formulierungen. Freie F02-B-Texte können evidenzbasiert qualifiziert sein und dabei F01-UNCERTAIN behalten. Technisch ungültige Daten bleiben blockierend.
+
+scripts/lib/flavor-production.mjs: revisionRefSchema, Inhaltsbindungen, vollständige Spielerpräsentation und Beta-Projektion weiterverwenden. materializeFlavorRevision ist ein guter lokaler Ausgangspunkt, jedoch kein Blindexport: Das zurückgegebene puzzle enthält weiterhin logic.clues.
+
+scripts/lib/flavor-production-store.mjs: Unveränderliche Aufträge/Antworten/Records, Sperre, atomare Veröffentlichung, Vorgängerprüfung, Idempotenz und getrennte Auswahl weiterverwenden. Die Dateisystemhilfen sind derzeit intern. Eine kleine gemeinsame interne Hilfsdatei ist gerechtfertigt, soweit Qualitätsstore und Produktionsstore dieselben Operationen benötigen. Kein allgemeines Workflowframework oder zweiter unabhängiger Flavor-Versionsbestand.
+
+src/puzzles/schema.mjs und src/puzzles/json-schema.mjs: Die sechs ausführbaren Hinweisformen und der vorhandene begrenzte Schema-Evaluator bleiben die Quelle. Neue Schemas müssen dessen tatsächlich unterstütztes Vokabular verwenden; Referenz-, Abdeckungs- und Ablaufprüfungen werden zusätzlich ausdrücklich validiert.
+
+src/engine/puzzle.mjs: createRules liefert dieselbe Legalität, Routenaufzählung und matches-Prädikate wie das Spiel. Keine zweite Geometrie oder Regelimplementierung.
+
+scripts/lib/count-clue-normalization.mjs: Die vorhandene Normalisierung verbindet ausschließlich sichere Null-/Alle-Zählintervalle, sortiert und vergibt neue Hinweis-IDs. Sie darf nicht auf den gesamten Spielerhinweisbestand angewendet werden. Innerhalb der rekonstruierten Konjunktion eines einzelnen Hinweises kann sie verwendet werden; die äußere Spielerhinweis-ID bleibt unverändert. Andere äquivalente Darstellungen bleiben Aufgabe des deterministischen Vergleichs.
+
+scripts/lib/puzzle-route-solver.mjs: Der bestehende B2-Workspace verlangt genau sechs Schritte und leere Eingabehinweise. Seine effectKey-Ausgabe beschreibt eine Menge einzelner Hinweiseffekte, nicht automatisch den Effekt ihrer Gesamtkonjunktion. Er liefert über die öffentliche Schnittstelle auch keine allgemeinen Gegenbeispiele. Für F02-B ist ein kleiner Vergleichsadapter direkt auf createRules zweckmäßiger als ein Umbau dieser historischen B2-Verträge.
+
+4. BLINDHEIT UND TEXTABDECKUNG
+Ein eigener enger DTO/Transport ist notwendig. Weder F01-Request, Produktionsauftrag, Record, Checkpoint, kompilierte Spielansicht noch bisheriges Produktionspaket dürfen als Blindpaket wiederverwendet werden. Sie enthalten Originalhinweise, technische Referenztexte, Metadaten oder Prüf-/Herkunftsinformationen.
+
+src/ui/place-references.mjs leitet cluePlaceIds ersatzweise aus dem strukturierten placeId ab. Deshalb dürfen auch hinweisbezogene Ortsmarker oder daraus erzeugte Screenshots die blinde Interpretation nicht unterstützen. Statische Karte, sämtliche Namen, Objektflächen und Start sind erlaubt; der erwartete Objektbezug eines einzelnen Hinweises wird nicht aus der Quelle ergänzt.
+
+Das Blindpaket enthält den tatsächlichen vollständigen Titel, Einleitungsabsätze und Hinweistexte, unveränderte öffentliche Kartendaten und statische Bilder, Start/Etappen, Regeln und Welt-/Stilpaket sowie tatsächlichen erforderlichen Serienkontext. Keine Originalprädikate, technischen Ausgangstexte, Produzenten-Metadaten, Findings, Reparaturziele, Kalibrierungsetiketten, Originalfallpfade oder privaten Lösungsdaten. Lokale Zuordnung zu revisionRef/sourceHash bleibt im nicht transportierten Sidecar. Öffentliche Inhaltshashes werden nur aus zulässigen Eingaben berechnet. Unabhängige opake Job-/Laufkennungen dürfen keine Originalwerte codieren; die vollständige Quellzuordnung liegt lokal. Ein gleicher fachlicher Blindinput bedeutet nicht, dass alte quellgebundene Qualifikationen automatisch auf eine andere Quelle übergehen. Aufgaben werden pseudonymisiert; das ist keine Isolation gegen einen Agenten mit Repositoryzugriff. Für den manuellen Weg sind frische getrennte Chats mit ausschließlich dem jeweiligen Paket erforderlich.
+
+Abdeckung: Der Exporter bildet stabile Texteinheiten mit Feldpfad, unverändertem Wortlaut und lokal berechneten Bereichen. Titel, jeder Einleitungsabsatz, jeder Hinweis und relevanter Kontext werden vollständig erfasst. Eine deterministische Satzsegmentierung ist möglich; Intl.Segmenter ist in der geprüften Node-Umgebung verfügbar. Segmentierungsversion und erzeugte Einheiten werden im Auftrag eingefroren, nicht später ungeprüft neu erzeugt. Modellantworten adressieren IDs statt selbst Zeichenpositionen auszuzählen. Verbindungen über mehrere Einheiten sind ausdrücklich möglich. Jede Einheit muss bewertet sein, jeder Claim muss gültige Textbezüge haben. Diese formale Kontrolle beweist keine richtige oder vollständige Interpretation; Stufe 3 prüft auch genau diese Lücke.
+
+Als minimale formalisierbare Bedeutung genügt zunächst eine Konjunktion von Atomen der vorhandenen sechs Hinweisformen. Kein allgemeines Sprach-DSL, keine unbemerkte Vereinfachung von Disjunktionen, Quantorbereichen oder weiteren Bedingungen. Nicht sicher ausdrückbare Bedeutungen werden als explizite ungelöste Claims erhalten. Ein korrektes Atom neben einer verworfenen Zusatzbedingung ist kein vollständiger Erfolg.
+
+5. DETERMINISTISCHER VERGLEICH UND ERPROBUNG
+Vergleichsraum eines Hinweises sind alle legalen Routen unter Karte, Start, Etappenzahl und öffentlichen Regeln, ohne die anderen mathematischen Hinweise. Die gespeicherte Zielroute wird nicht gelesen. Zunächst strukturierte kanonische Gleichheit unter sicherer Normalisierung prüfen; andernfalls die tatsächlich gemeinsame Wirkung von Original und rekonstruierten Atomen über die Engine vergleichen.
+
+Ein kleiner lokaler Probevergleich vollständig unter dem bestehenden Budget von 250000 Knoten ergab:
+C-06: 1170 legale Routen, 1755 besuchte Suchknoten.
+C-02: 1303 legale Routen, 1920 Knoten.
+C-03: 1475 legale Routen, 2361 Knoten.
+C-11: 110 legale Routen, 269 Knoten.
+Es wurden keine gespeicherten Lösungen benutzt und keine Routenkoordinaten ausgegeben.
+
+Für C-06/H4 sind eine Alle-Zählbedingung über Stunden 1–2 und die Konjunktion zweier entsprechender Stundenabstände gleichwertig. Die bestehende Normalisierung allein stellt diese verschiedenen Typdarstellungen nicht identisch dar; der Enginevergleich kann sie dennoch bestätigen.
+
+Weitere Probevergleiche nur dieses Hinweises ergaben: Weglassen der zweiten Stundenbedingung erlaubt 287 zusätzliche legale Routen. Hinzufügen eines anderen Originalhinweises schließt 37 zuvor erlaubte Routen aus. Änderung der exakten Häufigkeit erzeugt Abweichungen in beiden Richtungen: 82 nur vom Original und 333 nur von der Interpretation erlaubte Routen. Dies belegt die technische Fähigkeit, Abschwächung, Verschärfung und sonstige Änderung unabhängig vom Gesamträtsel zu unterscheiden.
+
+Bei Budgetende ist ohne vollständige Aufzählung keine Gleichwertigkeit über Routen bewiesen. Ein bereits gefundener gültiger Gegenbeispielpfad beweist dennoch eine Abweichung; die vollständige Einordnung als reine Verschärfung/Abschwächung kann dann noch unbekannt sein. Ein leerer legaler Vergleichsraum darf keinen inhaltlichen Erfolg durch Vakuumgleichheit vortäuschen. Voraussetzungenfehler und Suchabbrüche sind keine Textfehler.
+
+Stufe 2 beweist die Beziehung der eingereichten Interpretation zur Quelle. Sie beweist nicht allein, dass das Modell den Text richtig interpretiert hat. Ein Interpretationsfehler muss geklärt werden, statt einen korrekten Spielertext automatisch umzuschreiben.
+
+6. GLEICHWERTIGKEIT IST NICHT GLEICH ERLAUBTE SPIELERINFORMATION
+Am Pilot lässt sich ein realer Grenzfall zeigen: C-03/H4 nennt die erste Fahrtrichtung. Bei bekanntem Start ist diese Bedingung über allen legalen Routen gleichwertig zu einer konkreten ersten Position. Die Position wäre jedoch bereits ein abgeleiteter Lösungsschritt. Deshalb bleiben Gleichwertigkeit und die in Stufe 3 geforderte Informationsgrenze getrennte Dimensionen.
+
+Stufe 3 muss jede zusätzliche rätselrelevante Aussage auf ausdrückliche öffentliche Fakten, Originalhinweise oder Spielregeln zurückführen und tatsächliche Paraphrase von vorweggenommener Deduktion unterscheiden. Eine Implikation aus dem vollständigen Hinweisbestand oder dieselbe eindeutige Lösung autorisiert keinen erzählerischen Zusatz. Auch vollständig mathematisch redundante Zusatzinformation ist damit nicht automatisch zulässig. Notwendige Bestandteile eines Hinweises dürfen nicht erst aus Titel/Einleitung beschafft werden.
+
+Die Gesamtprüfung erhält Originalquellen, blinde Interpretation, Vergleich und Welt-/Serienkontext in einem separaten Paket und einem frischen unabhängigen Chat. Keine gespeicherte Zielroute erforderlich. Produzenten-Metadaten werden nicht als Inhaltsnachweis übernommen. Der Prüfer liefert begründete Findings sowie aus dem tatsächlichen Text abgeleitete Erzählformen, Themen, Motive, neue Ideen, Namen und redaktionelle Auffälligkeiten jeweils mit Textbezügen.
+
+7. QUALIFIKATION UND KLÄRUNG
+Neue F02-B-Methode mit eigener Version und deklariertem Evidenzumfang; kein Überschreiben der F01-Prüfungen. ERROR, relevante offene UNCERTAIN und technische Unvollständigkeit verhindern die Qualifikation. ADVISORY veranlasst keine automatische Textänderung.
+
+Die Qualifikationsentscheidung wird lokal aus vollständigen gültigen Stufennachweisen, Abdeckung, Vergleichen und offenen Findings abgeleitet; das Modell setzt sie nicht selbst. Alle Nachweise binden vollständige Spielerpräsentation, revisionRef, Quellen, Regeln, Welt-/Stilpaket, tatsächlichen Serienkontext, Prompt-/Methodenstand und Abhängigkeiten.
+
+Eine inhaltliche Differenz zwischen Reader und Quelle ist zunächst ein Vergleichsbefund. Bevor ein Text repariert wird, muss feststehen, ob der Text oder seine Interpretation falsch ist. Höchstens eine gezielte Klärungsrunde je Revision wird als technischer Startwert empfohlen. Ein neu benötigter Blindleselauf bleibt blind und erhält weder frühere Findings noch die erwartete Lösung; die Auswahl der betroffenen Episode und die Klärungsbegründung werden nur lokal dokumentiert. Die anschließende unabhängige vergleichende Prüfung muss eine Auflösung mit konkreten Text- und Quellbelegen begründen. Änderungen der maßgeblichen Interpretation erfordern neuen Vergleich und entsprechende Gesamtprüfung. Eine neue unbegründete Modellzustimmung oder Stimmenmehrheit löst Unsicherheit nicht auf. Wirklich mehrdeutiger Text bleibt blockiert und kann einen konkreten Reparaturauftrag erhalten.
+
+Eine Qualifikation benennt den empirischen Kalibrierungsstand. PR 1/2 führen keine automatische Auswahl oder Veröffentlichung ein. Die spätere Entscheidung über ausreichende empirische Zuverlässigkeit für unbeaufsichtigte Produktion bleibt offen, bis Kalibrierung und 10+5-Test vorliegen. Das blockiert den technischen Mechanismus nicht.
+
+8. REPARATUR UND PRODUKTIONSINTEGRATION
+repairFlavorClue ändert genau einen Hinweis und erhöht sofort die Revision. Mehrmaliges Aufrufen würde eine gebündelte Korrektur in mehrere Revisionen zerlegen. Notwendig ist deshalb ein kleiner Adapter: Sparse Patch auf einer validierten Kopie, ein Revisionsschritt, bestehende F01-Validierung und neuer F01-Checkpoint. Der alte F01-Vertrag bleibt erhalten.
+
+Vorab lokal autorisierte Ziele sind Titel, Einleitungsabsätze bzw. bei begründetem Strukturbedarf die vollständige Einleitung und eine Menge konkreter Hinweis-IDs. Unveränderte übrige Felder werden bytegleich kontrolliert. Karte, Namen, Start, Logik, Regeln, andere Hinweise und Kontext sind keine frei bearbeitbaren Antwortfelder. Mehrere Pflichtkorrekturen einer Episode werden gebündelt. Wenigste Zeichenänderungen sind nicht automatisch die kleinste sinnvolle inhaltliche Reparatur; die Wahrung von Geschichte und Stil wird in der erneuten Gesamtprüfung beurteilt.
+
+Die bestehende Produktionsablage rekonstruiert ihre Records aus einer vollständigen Produktionsantwort. Ein Sparse Patch darf daher nicht heimlich als vom Modell gelieferte Vollantwort ausgegeben werden. PR 2 ergänzt einen eng begrenzten, ausdrücklich typisierten Reparaturimport mit echter Patch-Antwort, Autorisierung, Vorgänger und daraus deterministisch abgeleitetem Record. Historische Produktionsantworten und Hashes bleiben unverändert lesbar. Die Produktion bleibt Eigentümer von Drafts/Revisionen; Qualitätsstore und Produktionsstore führen keine parallelen Flavor-Fassungen.
+
+Die materialisierte Reparaturrevision muss auch über den normalen Auswahl-/Beta-Projektionsanschluss auflösbar sein. Der aktuelle CLI-Pfad holt das ursprüngliche order.positions-Intent; dieses passt nach einer separaten Patch-Revision nicht automatisch. Eine gemeinsame Auflösung des validierten Revisionskontexts ist deshalb Teil der erforderlichen engen Integration. Keine erfundenen neuen GenAI-Vollproduktionsaufträge als Herkunft.
+
+Nach vollständiger Prüfung fehlgeschlagene Reparatur 1 und Reparatur 2 verbrauchen die zwei fachlich vereinbarten Versuche. Anfangsfassung ist Versuch 0; technische Antwort-/Importfehler zählen nicht als neue inhaltliche Revision. Nach zwei erfolglosen Reparaturen wird die Variante verworfen, bleibt aber vollständig erhalten. Ersatzproduktion verwendet denselben Rätselrequest, eine neue Variantenkennung und den normalen F02-A-Produzentenvertrag. Für v1 wird eine Ersatzvariante je Position als einfache konfigurierbare technische Abbruchgrenze empfohlen. Ebenso gelten endliche technische Wiederholungsbudgets. Erschöpfung bleibt im Bericht sichtbar.
+
+Ist der unveränderliche Kartenname oder eine andere Quelle selbst problematisch, darf weder Textreparatur noch Ersatzgeschichte die Quelle heimlich ändern. Das ist ein blockierter Quellfall mit konkretem Finding; keine sinnlosen Reparaturschleifen und keine neue Eskalationsplattform.
+
+9. PERSISTENZ, TEILFORTSCHRITT UND SERIEN
+Ein kleiner zusätzlicher Qualitätsbestand speichert Jobs, echte Antwortbytes, geprüfte Ergebnisse, Klärungs-/Autorisierungs-/Verwerfungsereignisse und daraus abgeleiteten Batchstand. F01-Checkpoints bleiben bestehen, können aber nicht um fremde Stufenprüfungen ergänzt werden: ihr Schema und die Wiederberechnung verlangen die bisherigen F01-Checks.
+
+Wiederaufnahme leitet den Stand aus unveränderlichen Nachweisen ab. Gültige abgeschlossene Arbeit wird bei gleichen vollständigen Bindungen weiterverwendet, offene Arbeit neu exportiert. Strukturfehler, verspätete Antworten, widersprüchliche Wiederholungen und Budgetabbrüche sind getrennt von Textfehlern zu berichten.
+
+Anders als die reine Vollproduktionsannahme aus F02-A kann die Qualitätsverarbeitung itemweise Fortschritt benötigen. Bei gültigem Batchumschlag werden vollständige gültige Episodenergebnisse gespeichert; fehlende/defekte Einzelresultate bleiben technisch offen. Ein unbrauchbarer oder nicht eindeutig zuordenbarer Umschlag wird nicht teilweise als vertrauenswürdiger Erfolg behandelt. Jede Annahme selbst ist atomar und idempotent. Wiederholung erzeugt keine neuen Modellaufträge oder Revisionen. Gleichzeitige Schreiber und veraltete Vorgänger müssen wie im vorhandenen Store kontrolliert werden.
+
+Zwei Bestände brauchen keinen verteilten Commit: Nach einem Reparaturimport leitet die Wiederaufnahme den neuen Revisionsstand aus der Produktionsablage ab. Ein Absturz vor einem nachfolgenden Qualitätsereignis darf weder dieselbe Revision erneut erzeugen noch ihre Prüfung überspringen.
+
+A2 besitzt bislang einen optionalen redaktionellen Kontextstring, keinen versionierten tatsächlichen Serienstand. Für den späteren 10+5-Test braucht F02-B einen expliziten Kontextsnapshot der tatsächlichen zusammengehörigen Spielertexte und Reihenfolge. Ein Plan ist kein Ersatz für den tatsächlichen Text. Erster Pilot: leerer Serienkontext. Ändert sich ein referenzierter Serientext, werden die davon abhängigen Ergebnisse für den neuen Kontext nicht weiterverwendet. Ein gemeinsamer vollständiger Fünfteil-Snapshot ist zunächst einfacher und sicherer als ein neuer Relevanzklassifikator; seine Änderung kann berechtigt mehrere Episodenprüfungen invalidieren.
+
+10. BERICHT UND SPÄTERE VERÖFFENTLICHUNG
+Standardbericht: aggregierte Stufenstände, Qualität, offene Finding-Kategorien, verworfene Varianten, Aufwand und unabhängig erhobene Themen/Formen/Motive/Namen/Ideen. Keine konkreten Hinweise, Routen, Textzitate, Titel oder Zuordnung zu Rätselkennungen/Tagen im Standard. Neue Ideen zunächst abstrakt zusammenfassen, keine unnötigen Pointen verraten. Für Ausnahmeentscheidungen gibt es einen getrennten Detailbericht mit expliziten Referenzen und Revisionshistorie. Jede verworfene Geschichte erscheint als besonderer Finding-Fall mit Detailverweis.
+
+Modellaufrufe sind beim manuellen Transport nicht unabhängig messbar. Sicher gezählt werden Exporte, importierte Antworten, deklarierte Ausführungen, Paketbytes, akzeptierte Reparaturrevisionen und Wiederholungen; unbekannte Token-/Kostenwerte bleiben unbekannt. Keine erfundene API-Abrechnung.
+
+Vorhandene Veröffentlichungsanschlüsse: Beta-Gate mit vollständigen Namen, neuer dataVersion, reviewer und an vollständige presentation gebundener semanticReview; Archiv mit unveränderlicher Historie und neuen Veröffentlichungsrevisionen; Loadermanifest und versionierte Spielstandsidentitäten. Es gibt keinen allgemeinen Widerrufs-/Deaktivierungsmechanismus. Der konkrete Community-Builder verlangt alle 15 Fälle; der Loader puffert das Manifest, und bereits verteilte statische Pakete lassen sich nicht aus der Ferne zurückrufen. F02-B hält Qualitätsnachweise anschlussfähig, implementiert aber weder einen Publisher noch ein Widerrufssystem.
+
+11. AUSGEFÜHRTE PRÜFUNGEN UND GRENZEN
+71 bestehende Tests in tests/contracts/flavor.test.mjs und tests/contracts/count-clue-normalization.test.mjs bestanden. Der wirkliche Pilotimport wurde gelesen, seine Records/Checkpoints gegen die Produktionsablage geprüft und die vollständige Präsentation materialisiert. Die oben beschriebenen rein speicherinternen Engine-Proben und die Bestands-/Hashprüfung wurden ausgeführt. Kein neuer F02-B-Code und kein neuer Modelllauf wurde erzeugt; keine vollständige CI erneut gestartet. Die Arbeitskopie blieb unverändert.
+
+12. WEITERES VORGEHEN
+Zuerst PR 1 nach beiliegendem vollständigem Auftrag umsetzen und unabhängig reviewen. Er endet mit einem echten sicheren Blindpaket für die vier tatsächlichen Fassungen sowie deterministischer Infrastruktur und getrenntem Kalibrierungskorpus. Er produziert keine fingierten realen Prüfergebnisse. Danach PR 2 auf dem gemergten ersten PR umsetzen. Empirische Blind- und Gesamtprüfungen erfolgen in getrennten Chats mit ausschließlich den jeweiligen Exporten. Der größere 10+5-Test ist ein anschließender bewusst menschlich gelesener Kalibrierungsschritt.
+
+Quellen im geprüften Repository: scripts/lib/flavor-contract.mjs; scripts/lib/flavor-production.mjs; scripts/lib/flavor-production-store.mjs; scripts/lib/count-clue-normalization.mjs; scripts/lib/puzzle-route-solver.mjs; scripts/lib/puzzle-clue-effects.mjs; src/engine/puzzle.mjs; src/puzzles/schema.mjs; src/ui/place-references.mjs; scripts/community-beta.mjs; scripts/lib/publication-archive.mjs; src/puzzles/loader.mjs; src/beta/storage.mjs.
+Permanente Basis: https://github.com/roquas/Sams-Gezeitenkarten/tree/abeb1824d6278b6fc646a101f44f71d4d89b1f16

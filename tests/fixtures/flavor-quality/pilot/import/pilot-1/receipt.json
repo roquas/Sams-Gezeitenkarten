@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df",
+  "runId": "pilot-1",
+  "responseSha256": "e69847b8d1c031196aeeb455f558ce2621a0bb6b33af67cff0310e2748adf3c1",
+  "operator": {
+    "origin": "operator-supplied",
+    "value": {
+      "model": null,
+      "producedAt": null
+    }
+  },
+  "observation": {
+    "origin": "technically-observed",
+    "importedAt": "2026-11-25T13:48:38.476Z"
+  },
+  "limits": "Manual transport: model execution, hidden system parameters and unprovided chat history are not independently observed."
+}

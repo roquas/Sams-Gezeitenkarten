@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "stage": "reader",
+  "jobId": "job-80e2e387-1553-4711-b0be-0cbe59c0cc14",
+  "methodHash": "9819a13260102abc9479d21f8eeef38706182e7dfcb6bccbd1f81e7739c2d88a",
+  "context": {
+    "version": 1,
+    "episodes": []
+  },
+  "items": [
+    {
+      "itemId": "item-faeeccad-312d-4d47-9ab4-c45d928c479e",
+      "revisionRef": {
+        "caseId": "C-06",
+        "flavorVariantId": "independent-1",
+        "revision": 1,
+        "revisionHash": "426356b695a0e224e4fc6a36ea98aacf2596b57657a1a8795b0672100c38a947"
+      },
+      "sourceHash": "deb882ea41d811be6cba1cf4594a12ed431976c993997360c66c3522208577bc",
+      "presentationHash": "6306cbdac51c2eecd6b952bf7df898b1020c5dd0d704eefa123004ffd343a956",
+      "contextHash": "73aedada0269b29f46a061bd56a4a7b97652d8425d4508b3ce7ae6eb66fc0bc0",
+      "sourceBinding": "dc00f79e557ac5e42b92b6aa80ebc7aa7e0a58a9ff32dfa24781564384301945",
+      "publicInputHash": "5c6fbbe3c7dab172659ef320c55466eff172a3e963142ccf2880d533cecd190a"
+    },
+    {
+      "itemId": "item-cb960688-cc93-4ec0-8d59-975e6ea7a538",
+      "revisionRef": {
+        "caseId": "C-02",
+        "flavorVariantId": "independent-1",
+        "revision": 1,
+        "revisionHash": "5b66dac1b374141c8b124c01fa8b67a7bdbc342ddf1104a9bcaeed6be0800f4f"
+      },
+      "sourceHash": "ad4c8329b94efab3554ced0ef2d3fd88a255e47850481bd624ec98884d539869",
+      "presentationHash": "b229eb1dc5a6eb06615f615aa7a36f45428f1b0fcdd0dc25b60df7358d8b732b",
+      "contextHash": "73aedada0269b29f46a061bd56a4a7b97652d8425d4508b3ce7ae6eb66fc0bc0",
+      "sourceBinding": "e68162a5721a483a691a6c49342097789abf7d2fcbc09d73b66aebf94b939a4e",
+      "publicInputHash": "49bcc31bc40d31dd090933479ee2ad300a570343601607cb96a653cc92ad588d"
+    },
+    {
+      "itemId": "item-871b7841-43d6-4d63-9120-e9dcb872c484",
+      "revisionRef": {
+        "caseId": "C-03",
+        "flavorVariantId": "independent-1",
+        "revision": 1,
+        "revisionHash": "59d66d452d98aebea46a51f5e80fab1e557cae2edae8aedd15d390240e8bb60b"
+      },
+      "sourceHash": "c4f4c6cbcd0225349656241460fb38022ee054965af4f3706f5e4701b419d62b",
+      "presentationHash": "1539dafac0f789cf9746e38d3f1176085aef4801a5977d377810759c7a6ea542",
+      "contextHash": "73aedada0269b29f46a061bd56a4a7b97652d8425d4508b3ce7ae6eb66fc0bc0",
+      "sourceBinding": "54bea75a43e1b1b490deaf627515ce57b260b760ecb4814309b550b4f1ece6b0",
+      "publicInputHash": "dc57f772409f47457736a53753847eb9a004ff8c3e3c704ae6fdf30a49fd9e9d"
+    },
+    {
+      "itemId": "item-3387153f-c6ec-4511-8f62-c9b13e0064c3",
+      "revisionRef": {
+        "caseId": "C-11",
+        "flavorVariantId": "independent-1",
+        "revision": 1,
+        "revisionHash": "c872743b0f874f105147428ae3f3fbff4ec8fe09e4afcff92fa0d5247180c5df"
+      },
+      "sourceHash": "40a07acfd88870168ea304a4552a2c97df6260d9cd524d9823f691db49fb78b0",
+      "presentationHash": "abc71738bc28e66f8e88b1ba3d59283dcd67a24aff86a43139dc08450455f430",
+      "contextHash": "73aedada0269b29f46a061bd56a4a7b97652d8425d4508b3ce7ae6eb66fc0bc0",
+      "sourceBinding": "503377ba0f6daba1167156309ef53cb2a2b3fbd439330b2a3db438be8f002a87",
+      "publicInputHash": "46fe8024dc8f601a322b2d9428281f078c32a214e174ac11d2c5c1530e1d15d3"
+    }
+  ]
+}

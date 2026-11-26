@@ -1,4 +1,4 @@
-# Produktionsanweisung · flavor-production-1
+# Produktionsanweisung · flavor-production-2
 
 Lies order.json, rules.md sowie world/manifest.json, world/world.md,
 world/style.md und world/production.md vollständig. Die statischen Karten in
@@ -10,8 +10,9 @@ Nutze ausschließlich dieses Paket. Es enthält keine Zielroute.
 Führe das redaktionelle Ziel in order.json aus. Bewahre Reihenfolge, IDs,
 Kartennamen, Start, Etappenzahl und sämtliche strukturierten Hinweise unverändert.
 Die neutralen technischen Hinweisformulierungen dienen als Referenz, nicht als
-alte Geschichte. Der öffentliche Startname steht vollständig zur Verfügung;
-die interne F01-Startnamenausnahme ist keine Wissenssperre für die Produktion.
+alte Geschichte. Alle persistierten Ortsnamen stehen vollständig zur Verfügung, auch der Name
+des Startortes. Benenne und referenziere Startorte wie jeden anderen Ort; ihre
+Startfunktion verändert oder beschränkt ihren Namen nicht.
 
 Antworte ausschließlich mit einem JSON-Objekt gemäß response.schema.json.
 response-template.json enthält alle vorgegebenen Referenzen und Hinweis-IDs.

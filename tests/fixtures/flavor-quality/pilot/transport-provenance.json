@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df",
+  "runId": "pilot-1",
+  "repository": "roquas/Sams-Gezeitenkarten",
+  "reviewedImplementationCommit": "491bef2e1a51d1553d14279beb3d1c8e8cbc7261",
+  "mergedImplementationCommit": "abeb1824d6278b6fc646a101f44f71d4d89b1f16",
+  "source": {
+    "kind": "user-pasted-production-response",
+    "file": "production-source.txt",
+    "sha256": "46f0df92259c0a976353b5d13d7e9a001dfed772e9207ad761b7a3fa92d61d6d"
+  },
+  "derivedResponse": {
+    "file": "response.json",
+    "sha256": "e69847b8d1c031196aeeb455f558ce2621a0bb6b33af67cff0310e2748adf3c1",
+    "transformations": [
+      "Remove one trailing backslash per encoded source line where present",
+      "Decode HTML entities",
+      "Parse JSON and serialize as UTF-8 with two-space indentation and final newline"
+    ],
+    "contentEqualityVerified": true,
+    "exactOriginalProducerBytesKnown": false
+  },
+  "producer": {
+    "model": null,
+    "producedAt": null
+  },
+  "scope": "Local draft import only; reconstruction is documented separately from the immutable import receipt. No semantic approval, selection or publication."
+}

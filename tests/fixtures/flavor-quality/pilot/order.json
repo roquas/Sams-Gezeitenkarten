@@ -1,0 +1,898 @@
+{
+  "contractVersion": 1,
+  "promptRevision": "flavor-production-1",
+  "inputHashes": {
+    "rules": "7feb01ca61c405f2fb1dec9832be728cc0fd384c6774bca4d6b8d1b549875528",
+    "prompt": "17c3969b1662cc60a084444c8af4c37795d04f80b20ef8a71739dc93fb897ea3",
+    "responseSchema": "dc30a3f5e77989784415a00ee4d490005333e1bdebbd24142c75bcb86eb55946",
+    "references": "3e2fdf20a1d64ade46be7d114848c0ac96293cc5899a93ee5b0cf4c5f3ae9e0f"
+  },
+  "world": {
+    "packageId": "sams-gezeitenkarten-carribera-world-style",
+    "version": "1.0.0",
+    "packageHash": "f90443c20c0dcb3b7616c9b88312684bf083d20f23fd44205fb1b8a8fa191625"
+  },
+  "editorial": {
+    "goal": "Erzeuge zu jedem der vier feststehenden Rätsel genau eine eigenständige Episode. Themen, Erzählformen und Länge sind innerhalb des Welt-/Stilpakets frei. Die Geschichten sind voneinander unabhängig und keine Fortsetzungen. Bewahre sämtliche mathematischen Hinweise vollständig unter ihren IDs. Ergänze keine Lösungsinformationen. Gib ausschließlich das vereinbarte maschinenlesbare Ergebnis zurück; melde konkrete Produktionsprobleme ausdrücklich.",
+    "impulses": [],
+    "themes": [],
+    "context": null
+  },
+  "positions": [
+    {
+      "positionId": "P01",
+      "caseId": "C-06",
+      "puzzleId": "C-06",
+      "cardRef": "gk-illustrated-card-v1-sha256:7dc68f72bed7af2fcd7e9d1e51b42be34da13767d19ace4b59a122aa5530ae08",
+      "sourceHash": "deb882ea41d811be6cba1cf4594a12ed431976c993997360c66c3522208577bc",
+      "request": {
+        "contractVersion": 1,
+        "sourceHash": "deb882ea41d811be6cba1cf4594a12ed431976c993997360c66c3522208577bc",
+        "source": {
+          "schemaVersion": 2,
+          "rulesVersion": "gezeitenkarten-2",
+          "dataVersion": 1,
+          "id": "C-06",
+          "logic": {
+            "clues": [
+              {
+                "count": 0,
+                "distance": 3,
+                "fromHour": 1,
+                "id": "H1",
+                "placeId": "geo-01",
+                "toHour": 5,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 1,
+                "distance": 2,
+                "fromHour": 4,
+                "id": "H2",
+                "placeId": "geo-03",
+                "toHour": 5,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 2,
+                "distance": 1,
+                "fromHour": 1,
+                "id": "H3",
+                "placeId": "geo-02",
+                "toHour": 4,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 2,
+                "distance": 2,
+                "fromHour": 1,
+                "id": "H4",
+                "placeId": "geo-02",
+                "toHour": 2,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "direction": "SW",
+                "hour": 3,
+                "id": "H5",
+                "type": "direction"
+              },
+              {
+                "distance": 2,
+                "hours": [
+                  3,
+                  6
+                ],
+                "id": "H6",
+                "type": "distanceBetweenHours"
+              }
+            ],
+            "map": {
+              "geometry": "even-row-offset-pointy-v1",
+              "grid": {
+                "columns": 5,
+                "rows": 5
+              },
+              "objects": [
+                {
+                  "cells": [
+                    "D1"
+                  ],
+                  "id": "geo-01",
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "D3"
+                  ],
+                  "id": "geo-02",
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "B1",
+                    "B2"
+                  ],
+                  "id": "geo-03",
+                  "passable": false
+                }
+              ]
+            },
+            "start": "D1",
+            "steps": 6
+          },
+          "presentation": {
+            "assetPlacements": [
+              {
+                "anchor": "B1",
+                "assetId": "land-coast.settlement.h2.prison-island-03.v1",
+                "id": "art-001",
+                "objectId": "geo-03"
+              },
+              {
+                "anchor": "D1",
+                "assetId": "sea-life.accent.h1.driftwood.v1",
+                "id": "art-002",
+                "objectId": "geo-01"
+              },
+              {
+                "anchor": "D3",
+                "assetId": "sea-life.accent.h1.bottle.v1",
+                "id": "art-003",
+                "objectId": "geo-02"
+              }
+            ],
+            "background": "sea-blue-01",
+            "clueTexts": {
+              "H1": "Von Stunde 1 bis Stunde 5 war das Schiff nie genau 3 Hexfelder von dem Ort geo-01 (D1) entfernt.",
+              "H2": "Von Stunde 4 bis Stunde 5 war das Schiff genau einmal genau 2 Hexfelder von dem Ort geo-03 (B1, B2) entfernt.",
+              "H3": "Von Stunde 1 bis Stunde 4 war das Schiff genau zweimal neben dem Ort geo-02 (D3).",
+              "H4": "Von Stunde 1 bis Stunde 2 war das Schiff in jeder Stunde genau 2 Hexfelder von dem Ort geo-02 (D3) entfernt.",
+              "H5": "Fahrtrichtung von Stunde 2 zu Stunde 3: Südwest.",
+              "H6": "Hexabstand zwischen den Positionen in Stunde 3 und Stunde 6: genau 2."
+            },
+            "hints": [],
+            "intro": [
+              "Technische Referenzfassung des öffentlichen Rätsels."
+            ],
+            "objectNames": {
+              "geo-01": "Tangruh",
+              "geo-02": "Flaschenruh",
+              "geo-03": "Zaunkante"
+            },
+            "title": "C-06"
+          }
+        }
+      },
+      "card": {
+        "cardRef": "gk-illustrated-card-v1-sha256:7dc68f72bed7af2fcd7e9d1e51b42be34da13767d19ace4b59a122aa5530ae08",
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "cells": [
+                "D1"
+              ],
+              "id": "geo-01",
+              "passable": true
+            },
+            {
+              "cells": [
+                "D3"
+              ],
+              "id": "geo-02",
+              "passable": true
+            },
+            {
+              "cells": [
+                "B1",
+                "B2"
+              ],
+              "id": "geo-03",
+              "passable": false
+            }
+          ]
+        },
+        "background": "sea-blue-01",
+        "assetPlacements": [
+          {
+            "id": "art-001",
+            "assetId": "land-coast.settlement.h2.prison-island-03.v1",
+            "anchor": "B1",
+            "objectId": "geo-03"
+          },
+          {
+            "id": "art-002",
+            "assetId": "sea-life.accent.h1.driftwood.v1",
+            "anchor": "D1",
+            "objectId": "geo-01"
+          },
+          {
+            "id": "art-003",
+            "assetId": "sea-life.accent.h1.bottle.v1",
+            "anchor": "D3",
+            "objectId": "geo-02"
+          }
+        ],
+        "objectNames": {
+          "geo-01": "Tangruh",
+          "geo-02": "Flaschenruh",
+          "geo-03": "Zaunkante"
+        }
+      },
+      "intent": {
+        "flavorVariantId": "independent-1",
+        "revision": 1,
+        "predecessor": null
+      }
+    },
+    {
+      "positionId": "P02",
+      "caseId": "C-02",
+      "puzzleId": "C-02",
+      "cardRef": "gk-illustrated-card-v1-sha256:e9181dc6e6d798c6b8dc690a663e8908ce94308997d7df506a8853dbcbf5cd44",
+      "sourceHash": "ad4c8329b94efab3554ced0ef2d3fd88a255e47850481bd624ec98884d539869",
+      "request": {
+        "contractVersion": 1,
+        "sourceHash": "ad4c8329b94efab3554ced0ef2d3fd88a255e47850481bd624ec98884d539869",
+        "source": {
+          "schemaVersion": 2,
+          "rulesVersion": "gezeitenkarten-2",
+          "dataVersion": 1,
+          "id": "C-02",
+          "logic": {
+            "clues": [
+              {
+                "count": 0,
+                "distance": 0,
+                "fromHour": 3,
+                "id": "H1",
+                "placeId": "geo-02",
+                "toHour": 6,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 0,
+                "distance": 5,
+                "fromHour": 6,
+                "id": "H2",
+                "placeId": "geo-03",
+                "toHour": 6,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 1,
+                "distance": 1,
+                "fromHour": 1,
+                "id": "H3",
+                "placeId": "geo-01",
+                "toHour": 5,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 1,
+                "distance": 3,
+                "fromHour": 2,
+                "id": "H4",
+                "placeId": "geo-03",
+                "toHour": 2,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 2,
+                "distance": 2,
+                "fromHour": 1,
+                "id": "H5",
+                "placeId": "geo-02",
+                "toHour": 3,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "distance": 1,
+                "hour": 5,
+                "id": "H6",
+                "placeId": "geo-02",
+                "type": "distanceToPlace"
+              },
+              {
+                "distance": 2,
+                "hours": [
+                  1,
+                  3
+                ],
+                "id": "H7",
+                "type": "distanceBetweenHours"
+              }
+            ],
+            "map": {
+              "geometry": "even-row-offset-pointy-v1",
+              "grid": {
+                "columns": 5,
+                "rows": 5
+              },
+              "objects": [
+                {
+                  "cells": [
+                    "B1"
+                  ],
+                  "id": "geo-01",
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "B4"
+                  ],
+                  "id": "geo-02",
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "D1",
+                    "D2",
+                    "E1",
+                    "E2"
+                  ],
+                  "id": "geo-03",
+                  "passable": false
+                }
+              ]
+            },
+            "start": "B1",
+            "steps": 6
+          },
+          "presentation": {
+            "assetPlacements": [
+              {
+                "anchor": "B1",
+                "assetId": "sea-life.accent.h1.buoy.v1",
+                "id": "art-001",
+                "objectId": "geo-01"
+              },
+              {
+                "anchor": "B4",
+                "assetId": "sea-life.accent.h1.driftwood.v1",
+                "id": "art-002",
+                "objectId": "geo-02"
+              },
+              {
+                "anchor": "D1",
+                "assetId": "land-coast.settlement.h4.tesoro.v4",
+                "id": "art-003",
+                "objectId": "geo-03"
+              }
+            ],
+            "background": "sea-blue-01",
+            "clueTexts": {
+              "H1": "Von Stunde 3 bis Stunde 6 war das Schiff nie auf dem Ort geo-02 (B4).",
+              "H2": "In Stunde 6 war das Schiff nicht genau 5 Hexfelder von dem Ort geo-03 (D1, D2, E1, E2) entfernt.",
+              "H3": "Von Stunde 1 bis Stunde 5 war das Schiff genau einmal neben dem Ort geo-01 (B1).",
+              "H4": "In Stunde 2 war das Schiff genau 3 Hexfelder von dem Ort geo-03 (D1, D2, E1, E2) entfernt.",
+              "H5": "Von Stunde 1 bis Stunde 3 war das Schiff genau zweimal genau 2 Hexfelder von dem Ort geo-02 (B4) entfernt.",
+              "H6": "Hexabstand in Stunde 5 zu Ort geo-02 (B4): genau 1.",
+              "H7": "Hexabstand zwischen den Positionen in Stunde 1 und Stunde 3: genau 2."
+            },
+            "hints": [],
+            "intro": [
+              "Technische Referenzfassung des öffentlichen Rätsels."
+            ],
+            "objectNames": {
+              "geo-01": "Gelbpunkt",
+              "geo-02": "Tangruh",
+              "geo-03": "Tesoro"
+            },
+            "title": "C-02"
+          }
+        }
+      },
+      "card": {
+        "cardRef": "gk-illustrated-card-v1-sha256:e9181dc6e6d798c6b8dc690a663e8908ce94308997d7df506a8853dbcbf5cd44",
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "cells": [
+                "B1"
+              ],
+              "id": "geo-01",
+              "passable": true
+            },
+            {
+              "cells": [
+                "B4"
+              ],
+              "id": "geo-02",
+              "passable": true
+            },
+            {
+              "cells": [
+                "D1",
+                "D2",
+                "E1",
+                "E2"
+              ],
+              "id": "geo-03",
+              "passable": false
+            }
+          ]
+        },
+        "background": "sea-blue-01",
+        "assetPlacements": [
+          {
+            "id": "art-001",
+            "assetId": "sea-life.accent.h1.buoy.v1",
+            "anchor": "B1",
+            "objectId": "geo-01"
+          },
+          {
+            "id": "art-002",
+            "assetId": "sea-life.accent.h1.driftwood.v1",
+            "anchor": "B4",
+            "objectId": "geo-02"
+          },
+          {
+            "id": "art-003",
+            "assetId": "land-coast.settlement.h4.tesoro.v4",
+            "anchor": "D1",
+            "objectId": "geo-03"
+          }
+        ],
+        "objectNames": {
+          "geo-01": "Gelbpunkt",
+          "geo-02": "Tangruh",
+          "geo-03": "Tesoro"
+        }
+      },
+      "intent": {
+        "flavorVariantId": "independent-1",
+        "revision": 1,
+        "predecessor": null
+      }
+    },
+    {
+      "positionId": "P03",
+      "caseId": "C-03",
+      "puzzleId": "C-03",
+      "cardRef": "gk-illustrated-card-v1-sha256:ba92ade296b267061c7ff3cd6d8c6ece7a3c550b074638c418451c27080f37a3",
+      "sourceHash": "c4f4c6cbcd0225349656241460fb38022ee054965af4f3706f5e4701b419d62b",
+      "request": {
+        "contractVersion": 1,
+        "sourceHash": "c4f4c6cbcd0225349656241460fb38022ee054965af4f3706f5e4701b419d62b",
+        "source": {
+          "schemaVersion": 2,
+          "rulesVersion": "gezeitenkarten-2",
+          "dataVersion": 1,
+          "id": "C-03",
+          "logic": {
+            "clues": [
+              {
+                "count": 0,
+                "distance": 2,
+                "fromHour": 3,
+                "id": "H1",
+                "placeId": "geo-02",
+                "toHour": 3,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 0,
+                "distance": 3,
+                "fromHour": 3,
+                "id": "H2",
+                "placeId": "geo-02",
+                "toHour": 3,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 2,
+                "distance": 2,
+                "fromHour": 2,
+                "id": "H3",
+                "placeId": "geo-01",
+                "toHour": 4,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "direction": "NW",
+                "hour": 1,
+                "id": "H4",
+                "type": "direction"
+              },
+              {
+                "distance": 1,
+                "hour": 6,
+                "id": "H5",
+                "placeId": "geo-02",
+                "type": "distanceToPlace"
+              },
+              {
+                "distance": 1,
+                "hours": [
+                  0,
+                  2
+                ],
+                "id": "H6",
+                "type": "distanceBetweenHours"
+              }
+            ],
+            "map": {
+              "geometry": "even-row-offset-pointy-v1",
+              "grid": {
+                "columns": 5,
+                "rows": 5
+              },
+              "objects": [
+                {
+                  "cells": [
+                    "B4"
+                  ],
+                  "id": "geo-01",
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "D4",
+                    "E4"
+                  ],
+                  "id": "geo-02",
+                  "passable": false
+                }
+              ]
+            },
+            "start": "B4",
+            "steps": 6
+          },
+          "presentation": {
+            "assetPlacements": [
+              {
+                "anchor": "B4",
+                "assetId": "sea-life.accent.h1.rowboat.v1",
+                "id": "art-001",
+                "objectId": "geo-01"
+              },
+              {
+                "anchor": "D4",
+                "assetId": "land-coast.island.h2.lookout-bay-01.v1",
+                "id": "art-002",
+                "objectId": "geo-02"
+              }
+            ],
+            "background": "sea-blue-01",
+            "clueTexts": {
+              "H1": "In Stunde 3 war das Schiff nicht genau 2 Hexfelder von dem Ort geo-02 (D4, E4) entfernt.",
+              "H2": "In Stunde 3 war das Schiff nicht genau 3 Hexfelder von dem Ort geo-02 (D4, E4) entfernt.",
+              "H3": "Von Stunde 2 bis Stunde 4 war das Schiff genau zweimal genau 2 Hexfelder von dem Ort geo-01 (B4) entfernt.",
+              "H4": "Fahrtrichtung von Stunde 0 zu Stunde 1: Nordwest.",
+              "H5": "Hexabstand in Stunde 6 zu Ort geo-02 (D4, E4): genau 1.",
+              "H6": "Hexabstand zwischen den Positionen in Stunde 0 und Stunde 2: genau 1."
+            },
+            "hints": [],
+            "intro": [
+              "Technische Referenzfassung des öffentlichen Rätsels."
+            ],
+            "objectNames": {
+              "geo-01": "Treibkahn",
+              "geo-02": "Blickwinkel"
+            },
+            "title": "C-03"
+          }
+        }
+      },
+      "card": {
+        "cardRef": "gk-illustrated-card-v1-sha256:ba92ade296b267061c7ff3cd6d8c6ece7a3c550b074638c418451c27080f37a3",
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "cells": [
+                "B4"
+              ],
+              "id": "geo-01",
+              "passable": true
+            },
+            {
+              "cells": [
+                "D4",
+                "E4"
+              ],
+              "id": "geo-02",
+              "passable": false
+            }
+          ]
+        },
+        "background": "sea-blue-01",
+        "assetPlacements": [
+          {
+            "id": "art-001",
+            "assetId": "sea-life.accent.h1.rowboat.v1",
+            "anchor": "B4",
+            "objectId": "geo-01"
+          },
+          {
+            "id": "art-002",
+            "assetId": "land-coast.island.h2.lookout-bay-01.v1",
+            "anchor": "D4",
+            "objectId": "geo-02"
+          }
+        ],
+        "objectNames": {
+          "geo-01": "Treibkahn",
+          "geo-02": "Blickwinkel"
+        }
+      },
+      "intent": {
+        "flavorVariantId": "independent-1",
+        "revision": 1,
+        "predecessor": null
+      }
+    },
+    {
+      "positionId": "P04",
+      "caseId": "C-11",
+      "puzzleId": "C-11",
+      "cardRef": "gk-illustrated-card-v1-sha256:2a5eb9b67733d5c327549b50546ade516befec6a9e44ac0463124d11c64e2f70",
+      "sourceHash": "40a07acfd88870168ea304a4552a2c97df6260d9cd524d9823f691db49fb78b0",
+      "request": {
+        "contractVersion": 1,
+        "sourceHash": "40a07acfd88870168ea304a4552a2c97df6260d9cd524d9823f691db49fb78b0",
+        "source": {
+          "schemaVersion": 2,
+          "rulesVersion": "gezeitenkarten-2",
+          "dataVersion": 1,
+          "id": "C-11",
+          "logic": {
+            "clues": [
+              {
+                "count": 0,
+                "distance": 1,
+                "fromHour": 1,
+                "id": "H1",
+                "placeId": "geo-02",
+                "toHour": 5,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 0,
+                "distance": 4,
+                "fromHour": 2,
+                "id": "H2",
+                "placeId": "geo-02",
+                "toHour": 5,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 1,
+                "distance": 1,
+                "fromHour": 5,
+                "id": "H3",
+                "placeId": "geo-02",
+                "toHour": 6,
+                "type": "countDistanceToPlace"
+              },
+              {
+                "count": 1,
+                "distance": 3,
+                "fromHour": 3,
+                "id": "H4",
+                "placeId": "geo-04",
+                "toHour": 6,
+                "type": "countDistanceToPlace"
+              }
+            ],
+            "map": {
+              "geometry": "even-row-offset-pointy-v1",
+              "grid": {
+                "columns": 5,
+                "rows": 5
+              },
+              "objects": [
+                {
+                  "cells": [
+                    "E2",
+                    "E3"
+                  ],
+                  "id": "geo-01",
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "E5"
+                  ],
+                  "id": "geo-02",
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "C4",
+                    "C5"
+                  ],
+                  "id": "geo-03",
+                  "passable": false
+                },
+                {
+                  "cells": [
+                    "A3"
+                  ],
+                  "id": "geo-04",
+                  "passable": true
+                },
+                {
+                  "cells": [
+                    "B2",
+                    "C1",
+                    "D1"
+                  ],
+                  "id": "geo-05",
+                  "passable": false
+                }
+              ]
+            },
+            "start": "A3",
+            "steps": 6
+          },
+          "presentation": {
+            "assetPlacements": [
+              {
+                "anchor": "A3",
+                "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+                "id": "art-001",
+                "objectId": "geo-04"
+              },
+              {
+                "anchor": "B2",
+                "assetId": "land-coast.island.h3.smuggler-cove.v1",
+                "id": "art-002",
+                "objectId": "geo-05"
+              },
+              {
+                "anchor": "C5",
+                "assetId": "land-coast.island.h2.mist-forest-02.v1",
+                "id": "art-003",
+                "objectId": "geo-03"
+              },
+              {
+                "anchor": "E3",
+                "assetId": "land-coast.settlement.h2.hut-settlement-02.v1",
+                "id": "art-004",
+                "objectId": "geo-01"
+              },
+              {
+                "anchor": "E5",
+                "assetId": "sea-life.accent.h1.rowboat.v1",
+                "id": "art-005",
+                "objectId": "geo-02"
+              }
+            ],
+            "background": "sea-blue-01",
+            "clueTexts": {
+              "H1": "Von Stunde 1 bis Stunde 5 war das Schiff nie neben dem Ort geo-02 (E5).",
+              "H2": "Von Stunde 2 bis Stunde 5 war das Schiff nie genau 4 Hexfelder von dem Ort geo-02 (E5) entfernt.",
+              "H3": "Von Stunde 5 bis Stunde 6 war das Schiff genau einmal neben dem Ort geo-02 (E5).",
+              "H4": "Von Stunde 3 bis Stunde 6 war das Schiff genau einmal genau 3 Hexfelder von dem Ort geo-04 (A3) entfernt."
+            },
+            "hints": [],
+            "intro": [
+              "Technische Referenzfassung des öffentlichen Rätsels."
+            ],
+            "objectNames": {
+              "geo-01": "Plankendorf",
+              "geo-02": "Wackelkahn",
+              "geo-03": "Schattenhain",
+              "geo-04": "Nebellicht",
+              "geo-05": "Hinterbucht"
+            },
+            "title": "C-11"
+          }
+        }
+      },
+      "card": {
+        "cardRef": "gk-illustrated-card-v1-sha256:2a5eb9b67733d5c327549b50546ade516befec6a9e44ac0463124d11c64e2f70",
+        "map": {
+          "geometry": "even-row-offset-pointy-v1",
+          "grid": {
+            "columns": 5,
+            "rows": 5
+          },
+          "objects": [
+            {
+              "cells": [
+                "E2",
+                "E3"
+              ],
+              "id": "geo-01",
+              "passable": false
+            },
+            {
+              "cells": [
+                "E5"
+              ],
+              "id": "geo-02",
+              "passable": true
+            },
+            {
+              "cells": [
+                "C4",
+                "C5"
+              ],
+              "id": "geo-03",
+              "passable": false
+            },
+            {
+              "cells": [
+                "A3"
+              ],
+              "id": "geo-04",
+              "passable": true
+            },
+            {
+              "cells": [
+                "B2",
+                "C1",
+                "D1"
+              ],
+              "id": "geo-05",
+              "passable": false
+            }
+          ]
+        },
+        "background": "sea-blue-01",
+        "assetPlacements": [
+          {
+            "id": "art-001",
+            "assetId": "navigation.lighthouse.h1.offcenter-beacon.v1",
+            "anchor": "A3",
+            "objectId": "geo-04"
+          },
+          {
+            "id": "art-002",
+            "assetId": "land-coast.island.h3.smuggler-cove.v1",
+            "anchor": "B2",
+            "objectId": "geo-05"
+          },
+          {
+            "id": "art-003",
+            "assetId": "land-coast.island.h2.mist-forest-02.v1",
+            "anchor": "C5",
+            "objectId": "geo-03"
+          },
+          {
+            "id": "art-004",
+            "assetId": "land-coast.settlement.h2.hut-settlement-02.v1",
+            "anchor": "E3",
+            "objectId": "geo-01"
+          },
+          {
+            "id": "art-005",
+            "assetId": "sea-life.accent.h1.rowboat.v1",
+            "anchor": "E5",
+            "objectId": "geo-02"
+          }
+        ],
+        "objectNames": {
+          "geo-01": "Plankendorf",
+          "geo-02": "Wackelkahn",
+          "geo-03": "Schattenhain",
+          "geo-04": "Nebellicht",
+          "geo-05": "Hinterbucht"
+        }
+      },
+      "intent": {
+        "flavorVariantId": "independent-1",
+        "revision": 1,
+        "predecessor": null
+      }
+    }
+  ],
+  "orderId": "flavor-order-85bb07ece126d1b5a2af6d98ea55ad5943f6f41f43a6245f835a16e71ba6b4df"
+}
