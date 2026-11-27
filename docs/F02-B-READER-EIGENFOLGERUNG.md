@@ -76,3 +76,23 @@ Methodenbindung entscheidet; unbekannte/defekte Dateien werden getrennt archivie
 Alte gültige Reader-/Reviewerbelege werden weiterverwendet, keine Readerneustarts
 allein wegen dieser Vertragslücke. Erst unabhängige Review; keine echten Modellaufrufe
 im Implementierungsauftrag. Die technische Kopie ist kein empirischer Qualitätsbeleg.
+
+Der gemeinsame neue EINGANG nimmt auch reguläre Reader-/Reviewerantworten auf.
+Diese werden nach strikt geprüfter Identität an den vorhandenen regulären
+Importpfad mit Batchbindung und dessen Herkunfts-/Teilantwortregeln weitergereicht;
+sie werden nicht als Ergänzungen interpretiert. Offene oder unbekannte Dateien
+ändern keine Qualifikation. Ein positiver Ergänzungsbefund und die anschließende
+normale Fortsetzung laufen damit im selben expliziten Qualitätsblick.
+
+Der gelieferte Fortsetzungsstand ist ein Snapshot. Bei parallel eingegangenen
+regulären Antworten müssen diese vor der operativen Übernahme ebenfalls über den
+neuen Importer eingelesen werden. Neue Revisionen, andere Quellen oder bereits
+beantwortete Klärungen verlangen eine erneute explizite Bindungsprüfung; nie
+laufende Stores oder Identitäten still überschreiben. Serienarbeit außerhalb der
+betroffenen Legacyepisoden bleibt im vorhandenen separaten Arbeitsstand.
+
+Beim lokalen Export wurde außerdem ein konkreter Renderer-EOF-Hänger diagnostiziert.
+Der reine öffentliche Rendererinput kommt nun aus einer endlichen temporären Datei,
+mit Zeitbegrenzung und anschließender Löschung. Karten-/Namensdaten und mathematische
+Verträge ändern sich dadurch nicht. Die PNG-Regression prüft den dateigestützten
+Eingang und weiterhin vollständige Karte/Legende sowie Metadatenfreiheit.
