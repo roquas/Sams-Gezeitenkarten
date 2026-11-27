@@ -68,7 +68,7 @@ bestehender Arbeitsstand durch einen versehentlich übernommenen Pfad beschriebe
 `evidenceKind` ist normalerweise external-manual; technische Proben verwenden
 technical-test ausschließlich auf Kopien.
 
-Alle sechs Episoden/eight Claims des belegten Bestands werden als drei überschaubare
+Alle sechs Episoden/acht Claims des belegten Bestands werden als drei überschaubare
 Zweiergruppen vorbereitet. Das frühere E01 ist **ersetzt**, bleibt unverändert als
 v1-Beleg erhalten und darf nicht still auf v2 umetikettiert werden. Vollständige neue
 JSON-Dateien kommen ohne Umbenennen in den neuen gemeinsamen EINGANG. Job-/Input-/
