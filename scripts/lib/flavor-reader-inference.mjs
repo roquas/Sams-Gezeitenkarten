@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createRules} from '../../src/engine/puzzle.mjs';
 import {validateLogic} from '../../src/engine/validate.mjs';
-import {object,array,refs,text,structure,hash,exactIds} from './flavor-quality-contract.mjs';
+import {object,array,refs,text,digest,id,structure,hash,exactIds} from './flavor-quality-contract.mjs';
 import {sha256} from './content-hash.mjs';
 export const METHOD='f02b-bound-hint-reader-inference-2';
 export const METHOD_HASH=hash({method:METHOD,files:['flavor-reader-inference.mjs','flavor-inference-connection.mjs','../flavor-reader-inference.mjs','../flavor-inference-continuation.mjs','flavor-quality-json.mjs','flavor-quality-contract.mjs','content-hash.mjs','../../src/engine/puzzle.mjs','../../src/engine/hex.mjs','../../src/engine/validate.mjs','../../src/puzzles/schema.mjs','../../src/puzzles/json-schema.mjs'].map(n=>sha256(fs.readFileSync(new URL(n,import.meta.url))))});
@@ -35,6 +35,7 @@ export function proveInference(input,claimId,{maxNodes=250000}={}){
  return {entailed:complete&&premiseRoutes>0&&counterexamples===0,complete,legalRoutes,premiseRoutes,counterexamples,maxNodes,premiseHintIds:hintIds,unlistedHintsUsed:false,savedTargetUsed:false};
 }
 export function createSupplement(input,claimIds,provenance){
+ structure(provenance,object({legacyCommit:{type:'string',pattern:'^[a-f0-9]{40}$'},legacyJobHash:digest,legacyResponseHash:digest,legacyMethodHash:digest,legacyJobId:id,legacyItemId:id,legacyInputHash:digest}));
  assert.ok(Array.isArray(claimIds)&&claimIds.length);exactIds(claimIds,[...new Set(claimIds)],'supplement claims');claimIds=[...claimIds].sort();claimIds.forEach(id=>premises(input,id));const inputHash=hash({input,claimIds,provenance});return {version:2,stage:'reviewer-inference',method:METHOD,methodHash:METHOD_HASH,jobId:'inference-'+inputHash.slice(0,40),inputHash,claimIds,input,provenance};
 }
 export function evaluateSupplement(job,response,legacyResult,{kind,maxNodes=250000}={}){
