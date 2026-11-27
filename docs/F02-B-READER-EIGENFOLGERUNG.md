@@ -96,3 +96,30 @@ Der reine öffentliche Rendererinput kommt nun aus einer endlichen temporären D
 mit Zeitbegrenzung und anschließender Löschung. Karten-/Namensdaten und mathematische
 Verträge ändern sich dadurch nicht. Die PNG-Regression prüft den dateigestützten
 Eingang und weiterhin vollständige Karte/Legende sowie Metadatenfreiheit.
+
+## Korrigierte Lesefassungen nach P1-Review
+
+`flavor-inference-presentation.mjs` setzt Gruppennummern ausschließlich in
+vorgesehene Überschriften, Dateinamen und Starttexte ein. Normative Dateien werden
+nur HTML-escaped, PNGs nur Base64-kodiert; nachträgliche Textersetzungen am fertigen
+HTML entfallen. Kombinierte Gruppen werden aus denselben unveränderten Einzeldateien
+aufgebaut, ohne Titelbitten in eingebetteten Rollenaufträgen umzuschreiben. Der
+äußere Gruppenstart benennt ausdrücklich den Vorrang der Gruppentitelbitte.
+
+Beim Neuausliefern bestehender Jobs bleiben `job.json`, Antwortschema, öffentliche
+Quellen, PNG-Dateien und eingefrorene Belege bytegleich. Ein geänderter Exporter
+ändert wegen des bisherigen breiten Codefingerprints auch den Fingerprint neu
+erzeugter Jobs. Bereits vorbereitete Jobs dürfen deshalb nicht auf den neuen
+Fingerprint umetikettiert werden: ihre Bewertungs-/Fortsetzungsruntime bleibt
+explizit auf dem ursprünglichen Commit gepinnt, der korrigierte Darstellungsexport
+wird separat mit seinem Commit ausgewiesen. Parser und Qualifikationslogik werden
+hierfür nicht verändert. Die alte Lieferung bleibt archiviert und wird mit einem
+separaten Ersetzt-Hinweis versehen; neue Lesefassungen, ZIPs und Inventare liegen in
+einem eigenen Lieferverzeichnis. Absolute Bedienpfade müssen entsprechend dorthin
+zeigen und werden als reine Pfadänderungen dokumentiert.
+
+Regressionen prüfen sämtliche eingebetteten Karten mit strikter kanonischer
+Base64-Dekodierung und Bytevergleich sowie normative `SYNTHETIC E01 MARKER`-Quellen
+in Einzel- und Gruppenansichten. Die konkrete Lieferung wird zusätzlich unabhängig
+vom Exporter aus HTML/ZIP/Inventaren gelesen und gegen ihre gebundenen Dateien
+geprüft; die tatsächlichen dekodierten Karten werden visuell kontrolliert.
