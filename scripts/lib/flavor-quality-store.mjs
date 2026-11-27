@@ -301,7 +301,7 @@ export function openQualityStore({directory:target,production,beforePublish}={})
   const parent=rawJob(binding.readerJobId),readerBinding=parent.sidecar.items.find(i=>i.itemId===binding.readerItemId),readerItem=parent.job.items.find(i=>i.itemId===binding.readerItemId);
   assert.equal(parent.job.stage,'reader');assert.equal(parent.job.methodHash,methodHash);same(parent.sidecar.context,context,'failed reader context');same(readerBinding?.revisionRef,reference,'failed reader revision');
   same(binding.sourceBinding,readerBinding.sourceBinding,'failed stage source binding');same(item.input.public,readerItem.input,'failed public input');assert.equal(readerBinding.publicInputHash,readerItem.inputHash);
-  const source=buildReaderInputs({production,references:[reference],context}).entries[0];
+  const source=buildReaderInputs({production,references:[reference],context,seriesVersion:parent.historical&&readerItem.input.seriesContext.version===1?1:2}).entries[0];
   same(readerItem.input.presentation,source.input.presentation,'archived reader presentation');same(readerBinding.presentationHash,source.binding.presentationHash,'archived presentation binding');
   const chartWithoutImage=({image,imageSha256,...chart})=>chart;
   same(chartWithoutImage(readerItem.input.chart),chartWithoutImage(source.input.chart),'archived chart source');same(readerItem.input.sources,source.input.sources,'archived public sources');same(readerItem.input.seriesContext,source.input.seriesContext,'archived actual context');
