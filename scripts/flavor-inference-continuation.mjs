@@ -5,7 +5,7 @@ import {openPlan,refresh} from './flavor-handoff.mjs';import {openInferenceConne
 const json=v=>JSON.stringify(v,null,2)+'\n',parse=p=>parseQualityResponse(fs.readFileSync(p));
 export async function openContinuation(file){
  const config=parse(file),root=fs.realpathSync(path.dirname(path.resolve(file)));assert.equal(config.version,1);assert.equal(config.mode,'isolated-continuation');
- const operatorFile=path.resolve(root,config.operatorPlan),operator=parse(operatorFile),operatorRoot=path.dirname(operatorFile);
+ const operatorFile=path.resolve(root,config.operatorPlan);assert.ok(operatorFile.startsWith(root+path.sep),'operator plan must be inside isolated root');const operator=parse(operatorFile),operatorRoot=path.dirname(operatorFile);
  for(const d of operator.datasets)for(const field of ['production','quality']){const real=fs.realpathSync(path.resolve(operatorRoot,d[field]));assert.ok(real.startsWith(root+path.sep),'store must be inside isolated continuation root');}
  const ctx=await openPlan(operatorFile),connections=new Map();
  for(const id of new Set(config.cases.map(c=>c.datasetId))){const d=ctx.datasets.find(d=>d.id===id);assert.ok(d);const connection=openInferenceConnection({directory:path.join(root,'inference-store',id),quality:d.quality,runtimeCommit:d.codeCommit}),{openFlavorBatch}=await import(pathToFileURL(path.resolve(operatorRoot,d.codeRoot,'scripts/lib/flavor-batch.mjs')).href);connections.set(id,connection);d.batch=connectInferenceBatch({openFlavorBatch,connection,production:d.production,batchId:d.batchId});d.quality=connection.quality;}
