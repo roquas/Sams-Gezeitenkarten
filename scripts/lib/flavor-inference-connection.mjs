@@ -17,7 +17,11 @@ export function openInferenceConnection({directory:root,quality,runtimeCommit}){
   for(const name of fs.readdirSync(path.join(quality.directory,'imports')).filter(n=>!n.startsWith('.'))){const files=unseal(readTree(path.join(quality.directory,'imports',name))),receipt=parseQualityResponse(files.get('receipt.json'));if(!ids.includes(receipt.jobId))continue;const raw=files.get('response.json');parseQualityResponse(raw);assert.equal(sha256(raw),receipt.responseSha256);if(receipt.jobId===p.legacyJobId&&sha256(raw)===p.legacyResponseHash)reviewRaw=true;}
   assert.ok(reviewRaw,'bound accepted reviewer raw bytes required');
   const status=quality.inspect(p.legacyJobId).items.find(i=>i.itemId===p.legacyItemId);assert.ok(status?.applicable&&status.reader&&status.comparison&&status.review,'current complete historical chain required');
-  assert.deepEqual(blockedClaims(status),job.claimIds);return status;
+  assert.deepEqual(blockedClaims(status),job.claimIds);
+  // Never use an earlier assessment to bypass an answered clarification or a discard.
+  for(const id of fs.readdirSync(path.join(quality.directory,'jobs')).filter(n=>!n.startsWith('.'))){const child=quality.loadJob(id);if(child.job.stage==='reader'&&child.sidecar.clarification?.jobId===p.legacyJobId&&child.sidecar.clarification.itemId===p.legacyItemId)assert.equal(quality.evidence(id).results.length,0,'answered clarification supersedes earlier inference target');}
+  const batches=path.join(quality.directory,'batches');if(fs.existsSync(batches))for(const id of fs.readdirSync(batches).filter(n=>!n.startsWith('.'))){const events=path.join(batches,id,'events');if(!fs.existsSync(events))continue;for(const n of fs.readdirSync(events).filter(n=>!n.startsWith('.'))){const event=parseQualityResponse(unseal(readTree(path.join(events,n))).get('event.json'));if(event.type==='discarded')assert.ok(event.data.caseId!==status.revisionRef.caseId||event.data.variant!==status.revisionRef.flavorVariantId,'discarded variant cannot be requalified');}}
+  return status;
  }
  function register(job){return withStoreLock(root,()=>{assert.deepEqual(job,createSupplement(job.input,job.claimIds,job.provenance));source(job);localId(job.jobId);return publishTree(path.join(root,'jobs',job.jobId),seal(new Map([['job.json',json(job)]])));});}
  function load(id){localId(id);return parseQualityResponse(unseal(readTree(path.join(root,'jobs',id))).get('job.json'));}
@@ -32,9 +36,13 @@ export function openInferenceConnection({directory:root,quality,runtimeCommit}){
   }return status;
  })};}
  const view=Object.freeze({...quality,inspect});
- return {method:CONNECTION_METHOD,methodHash:METHOD_HASH,register,importResponse,inspect,quality:view};
+ function pendingReferences(){const pending=[];for(const id of fs.readdirSync(path.join(root,'jobs')).filter(n=>!n.startsWith('.'))){const job=load(id);try{const status=source(job);if(!inspect(job.provenance.legacyJobId).items.find(i=>i.itemId===job.provenance.legacyItemId)?.qualified)pending.push(status.revisionRef);}catch{}}return pending;}
+ return {method:CONNECTION_METHOD,methodHash:METHOD_HASH,register,importResponse,inspect,pendingReferences,quality:view};
 }
 export function connectInferenceBatch({openFlavorBatch,connection,production,batchId}){
- const base=openFlavorBatch({quality:connection.quality,production,batchId}),decorate=r=>({...r,summary:{...r.summary,qualificationView:{method:CONNECTION_METHOD,methodHash:METHOD_HASH}},qualificationView:{method:CONNECTION_METHOD,methodHash:METHOD_HASH}});
- return Object.freeze({...base,report:()=>decorate(base.report()),run:adapter=>decorate(base.run(adapter))});
+ const base=openFlavorBatch({quality:connection.quality,production,batchId});
+ const heldIds=()=>new Set(connection.pendingReferences().map(r=>r.revisionHash));
+ function decorate(r){const held=heldIds(),evidence=new Map(r.details.evidence.map(e=>[e.work.id,e.work])),heldWork=r.work.filter(w=>held.has(evidence.get(w.id)?.reference.revisionHash)),work=r.work.filter(w=>!held.has(evidence.get(w.id)?.reference.revisionHash)),positions=r.details.positions.map(p=>held.has(p.reference.revisionHash)&&p.state==='waiting-quality'?{...p,state:'waiting-inference'}:p),counts={};positions.forEach(p=>counts[p.state]=(counts[p.state]??0)+1);const view={method:CONNECTION_METHOD,methodHash:METHOD_HASH};return {...r,summary:{...r.summary,status:heldWork.length&&!work.length?'waiting-inference':r.summary.status,counts,inference:{pendingEpisodes:heldWork.length},qualificationView:view},details:{...r.details,legacyPositions:r.details.positions,positions},work,heldWork,qualificationView:view};}
+ function run(adapter){const wrapped={...adapter,execute:args=>{const held=heldIds();return adapter.execute({...args,work:args.work.filter(w=>!w.job?.items.some(i=>{const saved=connection.quality.loadJob(w.jobId),b=saved.sidecar.items.find(b=>b.itemId===i.itemId);return held.has(b?.revisionRef.revisionHash);}))});}};return decorate(base.run(wrapped));}
+ return Object.freeze({...base,report:()=>decorate(base.report()),run});
 }
