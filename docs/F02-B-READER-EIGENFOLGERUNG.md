@@ -41,9 +41,14 @@ Job ein. `evaluate` liest und validiert diese Originale erneut und archiviert di
 neuen Antwortrohbytes ohne sie umzuschreiben. Es schreibt niemals in bestehende
 Produktions-/Qualitäts-/Batchstores. Seine Entscheidung benennt die neue Methode,
 behält legacyResult unverändert bei und ist kein rückwirkender Legacy-PASS.
-Technische Antworten können nur technicalWouldQualify ergeben. Ein tatsächliches
-qualified im Ergänzungsnachweis erfordert explizit external-manual-Herkunft. Auch
-dies bewirkt weder Auswahl noch Veröffentlichung noch automatische Batchfortsetzung.
+Technische Antworten können nur technicalWouldSupport ergeben. supportedUnderSupplement
+verlangt explizit external-manual-Herkunft und benennt ausschließlich den neuen
+Ergänzungsbefund. qualified bleibt immer false: Die CLI prüft keine Importreceipts
+oder vollständige Herkunftskette aus einem lebenden Store und darf deshalb auch
+keine geerbte technische Evidenz zu echter Qualifikation aufwerten. Die bestehende
+Storeautorität, Herkunftssperren und alte Qualifikation bleiben unangetastet. Auch
+ein positiver echter Ergänzungsbefund ist keine automatische Batchfortsetzung,
+Auswahl oder Veröffentlichung.
 
 Bedienung (private Bindungspfade, niemals öffentlich committen):
 

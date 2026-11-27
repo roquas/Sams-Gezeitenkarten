@@ -43,6 +43,6 @@ export function evaluateSupplement(job,response,legacyResult,{kind,maxNodes=2500
  if(Object.values(response.boundaries).some(v=>v!=='clear'))reasons.push('information-boundary-open');
  if(!proof.entailed)reasons.push('single-hint-proof-open');
  return {method:METHOD,methodHash:METHOD_HASH,jobId:job.jobId,inputHash:job.inputHash,responseHash:hash(response),legacyResult,proof,reasons,
- qualified:kind==='external-manual'&&reasons.length===0,technicalWouldQualify:kind==='technical-test'&&reasons.length===0,evidenceKind:kind,model:null,producedAt:null,
- scope:'Composite supplemental evidence only. Legacy result and stores unchanged. No selection/publication.'};
+ qualified:false,supportedUnderSupplement:kind==='external-manual'&&reasons.length===0,technicalWouldSupport:kind==='technical-test'&&reasons.length===0,evidenceKind:kind,model:null,producedAt:null,
+ scope:'Composite supplemental evidence only. Legacy result and stores unchanged. This supplement never grants store qualification or bypasses inherited provenance. No selection/publication.'};
 }
