@@ -1,0 +1,25 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {pathToFileURL} from 'node:url';
+import {parseQualityResponse} from './lib/flavor-quality-json.mjs';
+import {verifyRuntime} from './flavor-handoff.mjs';import {readTree,publishTree} from './lib/immutable-file-store.mjs';import {sha256} from './lib/content-hash.mjs';import {hash} from './lib/flavor-quality-contract.mjs';
+import {createInferenceReviewFiles} from './lib/flavor-inference-presentation.mjs';
+import {createSupplement,responseSchema,evaluateSupplement,proveInference,blockedClaims,METHOD_HASH} from './lib/flavor-reader-inference.mjs';import {renderPublicChart} from './lib/flavor-handoff.mjs';
+const json=v=>JSON.stringify(v,null,2)+'\n',parse=p=>parseQualityResponse(fs.readFileSync(p));
+async function baseline(binding){
+ verifyRuntime(binding.runtime,binding.commit);const mod=n=>import(pathToFileURL(binding.runtime+'/scripts/lib/'+n+'.mjs').href),[contract,pkg]=await Promise.all([mod('flavor-quality-contract'),mod('flavor-quality-package')]);
+ const files=readTree(binding.jobDirectory);pkg.verifyQualityPackage(files);const job=parseQualityResponse(files.get('job.json')),raw=fs.readFileSync(binding.response),response=parseQualityResponse(raw);contract.validateEnvelope(job,response);assert.equal(job.items.length,1);assert.equal(response.items.length,1);const item=job.items[0],review=response.items[0];contract.validateReviewerItem(item,review);contract.validateReaderItem({itemId:item.input.reader.itemId,inputHash:item.input.reader.inputHash,input:item.input.public},item.input.reader);
+ return {files,job,item,raw,result:contract.qualify(item,item.input.reader,item.input.comparison,review)};
+}
+export async function prepare(binding,out,{python='python3',number='E02'}={}){
+ assert.ok(!fs.existsSync(out),'new exclusive output required');const b=await baseline(binding);const claimIds=blockedClaims(b.result);assert.match(number,/^E[0-9]+(?:-[0-9]+)?$/);
+ const provenance={legacyCommit:binding.commit,legacyJobHash:sha256(b.files.get('job.json')),legacyResponseHash:sha256(b.raw),legacyMethodHash:b.job.methodHash,legacyJobId:b.job.jobId,legacyItemId:b.item.itemId,legacyInputHash:b.item.inputHash};
+ const input={public:b.item.input.public,originals:b.item.input.originals,reader:b.item.input.reader},job=createSupplement(input,claimIds,provenance),proof=Object.fromEntries(claimIds.map(id=>[id,proveInference(input,id)]));
+ const source=new Map([...b.files].filter(([n])=>n==='rules.md'||n.startsWith('world/')||n.startsWith('maps/')||n.startsWith('charts/')||n.startsWith('resources/'))),png=renderPublicChart(input.public.chart,source,number+' / aktuelle Episode',{python});
+ const files=createInferenceReviewFiles({number,source,jobBytes:json(job),schemaBytes:json(responseSchema(job)),png});
+ fs.mkdirSync(out,{recursive:true,mode:0o700});publishTree(out+'/review',files);fs.mkdirSync(out+'/EINGANG');fs.mkdirSync(out+'/private-evidence');publishTree(out+'/private-evidence/legacy-package',b.files);fs.writeFileSync(out+'/private-evidence/legacy-response.bin',b.raw);fs.writeFileSync(out+'/operator-binding.json',json({...binding,jobDirectory:path.resolve(out,'private-evidence/legacy-package'),response:path.resolve(out,'private-evidence/legacy-response.bin')}));fs.writeFileSync(out+'/private-evidence/technical-proof.json',json({legacyResult:b.result,proof,methodHash:METHOD_HASH,newIndependentResponseMissing:true}));return {out,proof,legacyResult:b.result};
+}
+export async function evaluate(out,responseFile,kind){
+ const raw=fs.readFileSync(responseFile),response=parseQualityResponse(raw);
+ const binding=parse(out+'/operator-binding.json'),b=await baseline(binding),job=parse(out+'/review/job.json');assert.equal(job.provenance.legacyJobHash,sha256(b.files.get('job.json')));assert.equal(job.provenance.legacyResponseHash,sha256(b.raw));assert.deepEqual(job.provenance,{legacyCommit:binding.commit,legacyJobHash:sha256(b.files.get('job.json')),legacyResponseHash:sha256(b.raw),legacyMethodHash:b.job.methodHash,legacyJobId:b.job.jobId,legacyItemId:b.item.itemId,legacyInputHash:b.item.inputHash});assert.equal(job.methodHash,METHOD_HASH);assert.equal(hash(job.input),hash({public:b.item.input.public,originals:b.item.input.originals,reader:b.item.input.reader}));
+ const result=evaluateSupplement(job,response,b.result,{kind});fs.mkdirSync(out+'/results',{recursive:true});publishTree(out+'/results/'+sha256(raw),new Map([['raw-response.bin',raw],['decision.json',json(result)]]));return result;
+}
+if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){const [cmd,a,b,c]=process.argv.slice(2);try{const result=cmd==='prepare'?await prepare(parse(a),b,{python:c??'python3'}):cmd==='evaluate'?await evaluate(a,b,c):assert.fail('prepare BINDING OUT [PYTHON] | evaluate OUT RESPONSE external-manual|technical-test');console.log(json(result));}catch(e){console.error('Focused inference operation failed; private diagnostics required: '+e.message);process.exitCode=1;}}

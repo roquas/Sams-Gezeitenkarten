@@ -70,7 +70,8 @@ test('download inbox matches envelopes, retains bytes, supports partial/multiple
 });
 
 test('real PNG contains the complete public legend/start with no carried source metadata',()=>{
- const f=reader(setup(),1),chart=f.saved.job.items[0].input.chart,png=renderPublicChart(chart,f.saved.files,'R01 / episode-01');assert.ok(png.length>10000);assert.equal(png.readUInt32BE(16),1126);let p=8,tags=[];while(p<png.length){const len=png.readUInt32BE(p);tags.push(png.subarray(p+4,p+8).toString());p+=12+len;}assert.ok(!tags.some(x=>['tEXt','zTXt','iTXt','eXIf'].includes(x)));fs.writeFileSync(root+'/rendered-test.png',png);
+ const wrapper=root+'/seekable-python';fs.writeFileSync(wrapper,"#!/usr/bin/env python3\nimport os,stat,runpy,sys\nassert stat.S_ISREG(os.fstat(0).st_mode), 'renderer input must have a finite file EOF'\nrunpy.run_path(sys.argv[1],run_name='__main__')\n");fs.chmodSync(wrapper,0o755);
+ const f=reader(setup(),1),chart=f.saved.job.items[0].input.chart,png=renderPublicChart(chart,f.saved.files,'R01 / episode-01',{python:wrapper});assert.ok(png.length>10000);assert.equal(png.readUInt32BE(16),1126);let p=8,tags=[];while(p<png.length){const len=png.readUInt32BE(p);tags.push(png.subarray(p+4,p+8).toString());p+=12+len;}assert.ok(!tags.some(x=>['tEXt','zTXt','iTXt','eXIf'].includes(x)));fs.writeFileSync(root+'/rendered-test.png',png);
 });
 
 test('runtime pin rejects a wrong commit or tracked drift instead of reinterpreting historical methods',()=>{
