@@ -24,17 +24,17 @@ export function openInferenceConnection({directory:root,quality,runtimeCommit}){
  function imported(job){const at=path.join(root,'imports',job.jobId);if(!fs.existsSync(at))return null;const files=unseal(readTree(at)),raw=files.get('response.bin'),receipt=parseQualityResponse(files.get('receipt.json'));assert.equal(receipt.methodHash,METHOD_HASH);assert.equal(receipt.inputHash,job.inputHash);assert.equal(receipt.responseHash,sha256(raw));assert.ok(['external-manual','technical-test'].includes(receipt.kind));return {raw,receipt,response:parseQualityResponse(raw)};}
  function importResponse({jobId,responseBytes,kind}){return withStoreLock(root,()=>{assert.ok(['external-manual','technical-test'].includes(kind));const response=parseQualityResponse(responseBytes),job=load(jobId),status=source(job),result=evaluateSupplement(job,response,status,{kind}),prior=imported(job);if(prior){assert.deepEqual(prior.raw,responseBytes,'conflicting supplemental repeat');assert.equal(prior.receipt.kind,kind,'cannot relabel provenance');return {created:false,result};}
   const receipt={version:1,connectionMethod:CONNECTION_METHOD,methodHash:METHOD_HASH,inputHash:job.inputHash,responseHash:sha256(responseBytes),kind,model:null,producedAt:null};publishTree(path.join(root,'imports',jobId),seal(new Map([['response.bin',responseBytes],['receipt.json',json(receipt)]])));return {created:true,result};});}
- function inspect(jobId,options){const base=quality.inspect(jobId,options);return {...base,qualificationView:{method:CONNECTION_METHOD,methodHash:METHOD_HASH,runtimeCommit},items:base.items.map(status=>{
+ function inspect(jobId,options){const base=quality.inspect(jobId,options);return {...base,baseMethodHash:base.methodHash,methodHash:METHOD_HASH,qualificationView:{method:CONNECTION_METHOD,methodHash:METHOD_HASH,runtimeCommit},items:base.items.map(status=>{
   if(base.stage!=='reviewer'||!status.applicable||!status.reader||!status.review||!status.comparison||status.evidenceKind==='technical-test')return status;
   const candidates=fs.readdirSync(path.join(root,'jobs')).filter(n=>!n.startsWith('.')).map(load).filter(j=>j.provenance.legacyJobId===jobId&&j.provenance.legacyItemId===status.itemId);
   for(const job of candidates){const accepted=imported(job);if(!accepted||accepted.receipt.kind!=='external-manual')continue;let result;try{source(job);result=evaluateSupplement(job,accepted.response,status,{kind:accepted.receipt.kind});}catch{continue;}if(!result.supportedUnderSupplement)continue;
-   return {...status,qualified:true,technicalWouldQualify:null,reasons:[],qualificationMethod:CONNECTION_METHOD,qualificationMethodHash:METHOD_HASH,legacyResult:status,supplement:{jobId:job.jobId,responseHash:accepted.receipt.responseHash,methodHash:METHOD_HASH}};
+   return {...status,method:CONNECTION_METHOD,qualified:true,technicalWouldQualify:null,reasons:[],qualificationMethod:CONNECTION_METHOD,qualificationMethodHash:METHOD_HASH,legacyResult:status,supplement:{jobId:job.jobId,responseHash:accepted.receipt.responseHash,methodHash:METHOD_HASH}};
   }return status;
  })};}
  const view=Object.freeze({...quality,inspect});
  return {method:CONNECTION_METHOD,methodHash:METHOD_HASH,register,importResponse,inspect,quality:view};
 }
 export function connectInferenceBatch({openFlavorBatch,connection,production,batchId}){
- const base=openFlavorBatch({quality:connection.quality,production,batchId}),decorate=r=>({...r,qualificationView:{method:CONNECTION_METHOD,methodHash:METHOD_HASH}});
+ const base=openFlavorBatch({quality:connection.quality,production,batchId}),decorate=r=>({...r,summary:{...r.summary,qualificationView:{method:CONNECTION_METHOD,methodHash:METHOD_HASH}},qualificationView:{method:CONNECTION_METHOD,methodHash:METHOD_HASH}});
  return Object.freeze({...base,report:()=>decorate(base.report()),run:adapter=>decorate(base.run(adapter))});
 }

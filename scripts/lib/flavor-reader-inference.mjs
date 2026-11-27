@@ -6,7 +6,7 @@ import {validateLogic} from '../../src/engine/validate.mjs';
 import {object,array,refs,text,structure,hash,exactIds} from './flavor-quality-contract.mjs';
 import {sha256} from './content-hash.mjs';
 export const METHOD='f02b-bound-hint-reader-inference-2';
-export const METHOD_HASH=hash({method:METHOD,files:['flavor-reader-inference.mjs','flavor-inference-connection.mjs','../flavor-reader-inference.mjs','flavor-quality-json.mjs','flavor-quality-contract.mjs','content-hash.mjs','../../src/engine/puzzle.mjs','../../src/engine/hex.mjs','../../src/engine/validate.mjs','../../src/puzzles/schema.mjs','../../src/puzzles/json-schema.mjs'].map(n=>sha256(fs.readFileSync(new URL(n,import.meta.url))))});
+export const METHOD_HASH=hash({method:METHOD,files:['flavor-reader-inference.mjs','flavor-inference-connection.mjs','../flavor-reader-inference.mjs','../flavor-inference-continuation.mjs','flavor-quality-json.mjs','flavor-quality-contract.mjs','content-hash.mjs','../../src/engine/puzzle.mjs','../../src/engine/hex.mjs','../../src/engine/validate.mjs','../../src/puzzles/schema.mjs','../../src/puzzles/json-schema.mjs'].map(n=>sha256(fs.readFileSync(new URL(n,import.meta.url))))});
 export const PUBLIC_FACTS=['public.map','public.names','public.start','public.steps','public.rules'];
 export function blockedClaims(result){
  assert.ok(!result.qualified&&result.reasons.length&&result.reasons.every(r=>r.startsWith('additional-mathematics:')),'only additional-mathematics reasons are eligible');
