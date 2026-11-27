@@ -58,7 +58,7 @@ export function refresh(context){
    const jobs=g.members.map(m=>pending.find(j=>j.datasetId===m.datasetId&&j.saved.job.jobId===m.jobId)).filter(Boolean),count=jobs.reduce((n,j)=>n+j.itemIds.length,0);
    if(!count){
     let missing=0,stale=false;for(const m of g.members){const d=datasets.find(d=>d.id===m.datasetId),status=d.quality.inspect(m.jobId);for(const i of status.items.filter(i=>m.initialItems.includes(i.itemId))){stale ||= !i.applicable;if(i.applicable&&!(g.stage==='reader'?i.reader:i.review))missing++;}}
-    rows.push({...g,count:missing,blocked:missing>0,status:missing?'technisch blockiert – lokale Fehlerdetails prüfen':stale?'überholt – keine erneute Ausführung':'Antworten vollständig (keine Freigabe)',packages:g.packages??null});continue;
+    const heldForInference=g.members.some(m=>datasets.find(d=>d.id===m.datasetId)?.report.heldWork?.some(w=>datasets.find(d=>d.id===m.datasetId).report.details.evidence.find(e=>e.work.id===w.id)?.work.jobId===m.jobId));rows.push({...g,count:missing,blocked:missing>0,status:missing?(heldForInference?'wartet auf unabhängigen Ergänzungsnachweis – keinen Reader starten':'technisch blockiert – lokale Fehlerdetails prüfen'):stale?'überholt – keine erneute Ausführung':'Antworten vollständig (keine Freigabe)',packages:g.packages??null});continue;
    }
    const cacheKey=hash({viewRecipe,jobs:jobs.map(j=>({dataset:j.datasetId,jobId:j.saved.job.jobId,inventory:hash(packageInventory(j.saved.files)),itemIds:j.itemIds}))});
    if(g.cacheKey===cacheKey&&g.packages){
