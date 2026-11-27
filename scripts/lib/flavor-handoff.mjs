@@ -62,7 +62,10 @@ export function renderPublicChart(chart,files,label,{python='python3'}={}){
  const images={};for(const [,ref] of svg.toString().matchAll(/(?:href|xlink:href)="([^"]+)"/g)){
   const name=path.posix.normalize(path.posix.join(path.posix.dirname(chart.image),ref));assert.ok(!ref.includes(':')&&!name.startsWith('../')&&files.has(name),'chart resource outside public inventory');images[ref]=files.get(name).toString('base64');
  }
- const proc=spawnSync(python,[fileURLToPath(new URL('../render-quality-chart.py',import.meta.url))],{input:JSON.stringify({svg:svg.toString(),images,chart,label,hexes:HEXES}),maxBuffer:64*1024*1024});
+ // A finite regular input file avoids platform-specific pipe EOF stalls for large atlases.
+ const staging=fs.mkdtempSync(path.join(os.tmpdir(),'quality-chart-input-'));let fd,proc;
+ try{const input=path.join(staging,'public-chart.json');fs.writeFileSync(input,JSON.stringify({svg:svg.toString(),images,chart,label,hexes:HEXES}));fd=fs.openSync(input,'r');proc=spawnSync(python,[fileURLToPath(new URL('../render-quality-chart.py',import.meta.url))],{stdio:[fd,'pipe','pipe'],timeout:30000,maxBuffer:64*1024*1024});}
+ finally{if(fd!==undefined)fs.closeSync(fd);fs.rmSync(staging,{recursive:true,force:true});}
  assert.equal(proc.status,0,'PNG renderer unavailable or failed; install Pillow/numpy and provide a valid Python executable');assert.ok(proc.stdout.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),'renderer did not return PNG');return proc.stdout;
 }
 export function groupJobs(jobs,{maxItems=2}={}){
